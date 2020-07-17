@@ -12,6 +12,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+
         navBar_bnv.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.bottom_item_map -> {

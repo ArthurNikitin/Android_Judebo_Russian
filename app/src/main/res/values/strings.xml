@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Judebo</string>
+    <string name="app_name" translatable="false">Judebo</string>
     <string name="no_internet">No internet connection!</string>
     <string name="bottom_map">Map</string>
     <string name="bottom_setting">Setting</string>

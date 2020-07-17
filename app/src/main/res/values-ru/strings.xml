@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="no_internet">Нет интернет соединения!</string>
+    <string name="bottom_map">Карта</string>
+    <string name="bottom_setting">Настройки</string>
+    <string name="current_language">Текущий язык</string>
+    <string name="current_currency">Текущая валюта</string>
+    <string name="support">Поддержка</string>
+</resources>
