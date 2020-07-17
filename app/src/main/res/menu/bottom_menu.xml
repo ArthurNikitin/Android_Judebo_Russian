@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bottom_item_map"
+        android:icon="@drawable/looking_for_48"
+        android:title="@string/bottom_map" />
+    <item
+        android:id="@+id/bottom_item_setting"
+        android:icon="@drawable/settings_48"
+        android:title="@string/bottom_setting" />
+</menu>
