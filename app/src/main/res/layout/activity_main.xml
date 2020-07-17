@@ -7,9 +7,23 @@
     android:layout_height="match_parent"
     tools:context=".activities.MainActivity">
 
+    <FrameLayout
+        android:id="@+id/frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <fragment
+            class="com.byte4b.judebo.fragments.MapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </FrameLayout>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navBar_bnv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        app:labelVisibilityMode="unlabeled"
         app:menu="@menu/bottom_menu" />
 </RelativeLayout>

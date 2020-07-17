@@ -3,4 +3,7 @@
     <string name="no_internet">No internet connection!</string>
     <string name="bottom_map">Map</string>
     <string name="bottom_setting">Setting</string>
+    <string name="current_language">Current Language</string>
+    <string name="current_currency">Current currency</string>
+    <string name="support">Support</string>
 </resources>
