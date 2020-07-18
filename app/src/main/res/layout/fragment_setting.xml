@@ -100,16 +100,16 @@
                 android:textColor="@color/main_text_color" />
 
             <TextView
-                android:textColor="@color/main_text_color"
                 android:id="@+id/support_tv"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:paddingStart="15dp"
-                android:paddingEnd="15dp"
-                android:gravity="end"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:gravity="end"
+                android:paddingStart="15dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="5dp"
+                android:text="@string/settings_title_support_email"
+                android:textColor="@color/main_text_color" />
 
         </LinearLayout>
     </ScrollView>

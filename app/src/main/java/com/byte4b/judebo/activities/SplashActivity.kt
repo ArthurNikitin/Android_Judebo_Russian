@@ -22,11 +22,10 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun setLocale(locale: String) {
-        resources.configuration.locale = Locale(locale)
-        resources.updateConfiguration(
-            resources.configuration,
-            resources.displayMetrics
-        )
+        resources.apply {
+            configuration.locale = Locale(locale)
+            updateConfiguration(configuration, displayMetrics)
+        }
     }
 
 }

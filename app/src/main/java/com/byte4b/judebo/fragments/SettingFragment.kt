@@ -1,6 +1,8 @@
 package com.byte4b.judebo.fragments
 
 import android.content.DialogInterface
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AlertDialog
@@ -63,6 +65,13 @@ class SettingFragment : Fragment(R.layout.fragment_setting) {
                     dialog.dismiss()
                 }
                 .show()
+        }
+
+        support_tv.setOnClickListener {
+            val emailIntent = Intent(Intent.ACTION_SENDTO)
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "")
+            emailIntent.data = Uri.parse("mailto: ${getString(R.string.settings_title_support_email)}")
+            startActivity(emailIntent)
         }
     }
 
