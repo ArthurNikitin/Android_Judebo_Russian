@@ -10,4 +10,8 @@ class Setting(ctx: Context) {
         get() = pref.getString("language", "")
         set(value) = pref.edit().putString("language", value).apply()
 
+    var currency
+        get() = pref.getString("currency", "")
+        set(value) = pref.edit().putString("currency", value).apply()
+
 }

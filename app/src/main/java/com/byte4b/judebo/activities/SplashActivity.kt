@@ -18,6 +18,7 @@ class SplashActivity : AppCompatActivity() {
             setLocale("en")
 
         startActivity<MainActivity>()
+        finish()
     }
 
     private fun setLocale(locale: String) {
