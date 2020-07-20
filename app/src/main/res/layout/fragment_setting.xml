@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_main">
@@ -14,28 +16,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <TextView
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:paddingStart="15dp"
-                android:paddingEnd="15dp"
+            <ImageView
+                android:id="@+id/imageView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/param_background"
-                android:text="@string/current_language"
-                android:textColor="@color/main_text_color" />
-
-            <TextView
-                android:textColor="@color/main_text_color"
-                android:id="@+id/lang_tv"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:paddingStart="15dp"
-                android:paddingEnd="15dp"
-                android:gravity="end"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_height="184dp"
+                android:adjustViewBounds="true"
+                android:padding="15dp"
+                app:srcCompat="@drawable/big_logo_setting" />
 
             <TextView
                 android:paddingTop="5dp"
@@ -45,20 +32,34 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/param_background"
-                android:text="@string/current_currency"
+                android:text="@string/settings_title_current_language"
                 android:textColor="@color/main_text_color" />
 
-            <TextView
-                android:textColor="@color/main_text_color"
-                android:id="@+id/currency_tv"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:paddingStart="15dp"
-                android:paddingEnd="15dp"
-                android:gravity="end"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
+            <LinearLayout
+                android:layout_gravity="end"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/langIcon_iv"
+                    android:src="@drawable/en" />
+
+                <TextView
+                    android:textColor="@color/main_text_color"
+                    android:id="@+id/lang_tv"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="English (English)" />
+
+            </LinearLayout>
 
             <TextView
                 android:paddingTop="5dp"
@@ -68,20 +69,57 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/param_background"
-                android:text="@string/support"
+                android:text="@string/settings_title_current_currency"
+                android:textColor="@color/main_text_color" />
+
+            <LinearLayout
+                android:layout_gravity="end"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/currencyIcon_iv"
+                    android:src="@drawable/irub" />
+
+                <TextView
+                    android:textColor="@color/main_text_color"
+                    android:id="@+id/currency_tv"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="RUB" />
+
+            </LinearLayout>
+
+            <TextView
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/param_background"
+                android:text="@string/settings_title_support"
                 android:textColor="@color/main_text_color" />
 
             <TextView
-                android:textColor="@color/main_text_color"
                 android:id="@+id/support_tv"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:paddingStart="15dp"
-                android:paddingEnd="15dp"
-                android:gravity="end"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:gravity="end"
+                android:paddingStart="15dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="5dp"
+                android:text="@string/settings_title_support_email"
+                android:textColor="@color/main_text_color" />
 
         </LinearLayout>
     </ScrollView>

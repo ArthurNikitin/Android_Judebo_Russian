@@ -28,6 +28,6 @@ fun onError(ctx: Context, reason: String) {
 fun onFailure(context: Context, t: Throwable) {
     try {
         if (t.message!!.contains("No address associated with hostname"))
-            Toast.makeText(context, R.string.no_internet, Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, R.string.error_no_internet, Toast.LENGTH_SHORT).show()
     } catch (e: Exception) {}
 }

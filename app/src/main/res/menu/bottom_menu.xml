@@ -4,9 +4,9 @@
     <item
         android:id="@+id/bottom_item_map"
         android:icon="@drawable/looking_for_48"
-        android:title="@string/bottom_map" />
+        android:title="@string/search_title_search" />
     <item
         android:id="@+id/bottom_item_setting"
         android:icon="@drawable/settings_48"
-        android:title="@string/bottom_setting" />
+        android:title="@string/settings_title_settings" />
 </menu>
