@@ -19,8 +19,8 @@ class Setting(ctx: Context) {
     var lastMapCameraPosition: LatLng
         get() {
             return LatLng(
-                pref.getFloat("lastMapCameraPosition_latitude", 0f).toDouble(),
-                pref.getFloat("lastMapCameraPosition_longitude", 0f).toDouble()
+                pref.getFloat("lastMapCameraPosition_latitude", defaultLatitude.toFloat()).toDouble(),
+                pref.getFloat("lastMapCameraPosition_longitude", defaultLongitude.toFloat()).toDouble()
             )
         }
         set(value) {
@@ -30,8 +30,11 @@ class Setting(ctx: Context) {
             }
         }
 
-    val basicZoom = 10.0f
-    val minZoom = 6.0f
-    val maxZoom = 14.0f
+    val basicZoom = 11.0f
+    val minZoom = 2.0f
+    val maxZoom = 16.0f
+
+    val defaultLatitude = 0.0
+    val defaultLongitude = 0.0
 
 }
