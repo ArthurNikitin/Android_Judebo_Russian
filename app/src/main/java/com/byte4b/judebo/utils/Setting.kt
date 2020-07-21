@@ -37,4 +37,10 @@ class Setting(ctx: Context) {
     val defaultLatitude = 0.0
     val defaultLongitude = 0.0
 
+    val max_search_latitude_size = 0.4
+    val max_search_longitude_size = 0.4
+    val search_square_increase_infinitesimal = 0.1
+    val search_request_pause = 1 //seconds
+    val search_request_min_move_delta = 0.1 //degrees
+
 }

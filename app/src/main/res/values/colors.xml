@@ -9,4 +9,5 @@
     <color name="primary">#232323</color>
     <color name="param_background">#8F8F8F</color>
     <color name="main_text_color">#fff</color>
+    <color name="search_polygon_square">#00c55c</color>
 </resources>
