@@ -7,15 +7,16 @@ import com.byte4b.judebo.R
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-private const val BASE_URL = "https://..."
+private const val BASE_URL = "https://"
+const val secretKey = "DSFRGVergbewrbh"
 
-fun getRetrofit(): Retrofit {
+fun getRetrofit(locale: String): Retrofit {
     return Retrofit.Builder().baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 }
 
-fun getAPI(ctx: Context) = getRetrofit().create(API::class.java)
+fun getAPI() = getRetrofit().create(API::class.java)
 
 fun onError(ctx: Context, reason: String) {
     try {

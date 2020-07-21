@@ -8,7 +8,10 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import com.byte4b.judebo.R
 import com.byte4b.judebo.getLocation
+import com.byte4b.judebo.models.MyMarker
+import com.byte4b.judebo.services.ApiServiceImpl
 import com.byte4b.judebo.utils.Setting
+import com.byte4b.judebo.view.ServiceListener
 import com.github.florent37.runtimepermission.kotlin.askPermission
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -22,7 +25,7 @@ import kotlinx.android.synthetic.main.fragment_maps.*
 import kotlin.math.abs
 
 
-class MapsFragment : Fragment(R.layout.fragment_maps) {
+class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
 
     private val setting by lazy { Setting(ctx) }
     private val ctx by lazy { requireActivity() }
@@ -96,6 +99,24 @@ class MapsFragment : Fragment(R.layout.fragment_maps) {
                 Thread.sleep(setting.search_request_pause * 1000L)
             }
         }.start()
+        val position = googleMap.cameraPosition.target
+        ApiServiceImpl(this).getNearbyMarkers(
+            if (setting.language == "") "en" else setting.language!!,
+            position.latitude - setting.max_search_latitude_size / 2,
+            position.longitude - setting.max_search_longitude_size / 2,
+            position.latitude + setting.max_search_latitude_size / 2,
+            position.longitude + setting.max_search_longitude_size / 2
+        )
+    }
+
+    override fun onNearbyMarkersLoaded(list: List<MyMarker>?) {
+        list?.apply {
+            forEach {
+                map?.addMarker(MarkerOptions()
+                    .position(LatLng(it.UF_MAP_POINT_LATITUDE, it.UF_MAP_POINT_LONGITUDE))
+                )
+            }
+        }
     }
 
     @SuppressLint("MissingPermission")
