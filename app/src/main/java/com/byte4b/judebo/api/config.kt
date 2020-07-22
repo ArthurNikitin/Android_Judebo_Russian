@@ -1,34 +1,43 @@
 package com.byte4b.judebo.api
 
-import android.content.Context
-import android.util.Log
-import android.widget.Toast
-import com.byte4b.judebo.R
+import com.byte4b.judebo.BuildConfig
+import okhttp3.Interceptor
+import okhttp3.OkHttpClient
+import okhttp3.Response
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
-private const val BASE_URL = "https://"
 const val secretKey = "DSFRGVergbewrbh"
 
 fun getRetrofit(locale: String): Retrofit {
-    return Retrofit.Builder().baseUrl(BASE_URL)
+    val interceptor = HttpLoggingInterceptor()
+    interceptor.level =
+        if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY
+        else HttpLoggingInterceptor.Level.NONE
+    val client = OkHttpClient.Builder()
+        .addInterceptor(interceptor)
+        .addInterceptor(ResponseInterceptor())
+        .connectTimeout(10, TimeUnit.SECONDS)
+        .readTimeout(30, TimeUnit.SECONDS)
+        .build()
+    return Retrofit.Builder().baseUrl("https://$locale.judebo.com")
         .addConverterFactory(GsonConverterFactory.create())
+        .client(client)
         .build()
 }
 
-fun getAPI() = getRetrofit().create(API::class.java)
+fun getAPI(locale: String) = getRetrofit(locale).create(API::class.java)
 
-fun onError(ctx: Context, reason: String) {
-    try {
-        when (reason) {
-            else -> Log.e("debug", "new type error: $reason")
-        }
-    } catch (e: Exception) {}
-}
+class ResponseInterceptor : Interceptor {
+    override fun intercept(chain: Interceptor.Chain): Response {
+        val response = chain.proceed(chain.request())
+        val modified = response.newBuilder()
+            .removeHeader("Content-Type")
+            .addHeader("Content-Type", "application/json; charset=utf-8")
+            .build()
 
-fun onFailure(context: Context, t: Throwable) {
-    try {
-        if (t.message!!.contains("No address associated with hostname"))
-            Toast.makeText(context, R.string.error_no_internet, Toast.LENGTH_SHORT).show()
-    } catch (e: Exception) {}
+        return modified
+    }
 }
