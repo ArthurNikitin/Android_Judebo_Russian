@@ -150,7 +150,8 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
             if (lang?.locale == setting.language) {
                 view.salary_tv.text = data.UF_GROSS_PER_MONTH
             } else {
-                view.salary_tv.text = "${data.UF_GROSS_PER_MONTH} (${data.UF_GROSS_PER_MONTH.toDouble() / (currency?.rate ?: 1)} ${currency?.name ?: "USD"})"
+                view.salary_tv.text =
+                    "${data.UF_GROSS_PER_MONTH} (${data.UF_GROSS_PER_MONTH.toDouble() / (currency?.rate ?: 1)} ${currency?.name ?: "USD"})"
             }
             view.place_tv.text = data.COMPANY
 
