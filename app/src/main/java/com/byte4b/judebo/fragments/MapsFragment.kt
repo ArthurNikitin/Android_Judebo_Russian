@@ -7,18 +7,19 @@ import android.os.Handler
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.byte4b.judebo.R
 import com.byte4b.judebo.activities.DetailsActivity
 import com.byte4b.judebo.adapters.SkillsAdapter
 import com.byte4b.judebo.getLocation
 import com.byte4b.judebo.models.MyMarker
 import com.byte4b.judebo.models.currencies
+import com.byte4b.judebo.models.languages
 import com.byte4b.judebo.services.ApiServiceImpl
 import com.byte4b.judebo.startActivity
 import com.byte4b.judebo.utils.Setting
 import com.byte4b.judebo.view.ServiceListener
 import com.github.florent37.runtimepermission.kotlin.askPermission
+import com.google.android.flexbox.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -143,17 +144,33 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
                     .into(view.logo_iv)
             }
 
-            view.salary_tv.text = data.UF_GROSS_PER_MONTH
+            val currency = currencies.firstOrNull { it.id == data.UF_GROSS_CURRENCY_ID }
+            val lang = languages.firstOrNull { currency?.name == it.currency }
+
+            if (lang?.locale == setting.language) {
+                view.salary_tv.text = data.UF_GROSS_PER_MONTH
+            } else {
+                view.salary_tv.text = "${data.UF_GROSS_PER_MONTH} (${data.UF_GROSS_PER_MONTH.toDouble() / (currency?.rate ?: 1)} ${currency?.name ?: "USD"})"
+            }
             view.place_tv.text = data.COMPANY
-            if (currencies.any { it.id == data.UF_GROSS_CURRENCY_ID }) {
+
+            if (currency != null) {
                 Picasso.get()
-                    .load(currencies.first { it.id == data.UF_GROSS_CURRENCY_ID }.icon)
+                    .load(lang?.flag ?: R.drawable.en)
                     .placeholder(R.drawable.en)
                     .error(R.drawable.en)
                     .into(view.currency_iv)
             }
-            view.filters_tv.layoutManager =
-                LinearLayoutManager(ctx, LinearLayoutManager.HORIZONTAL, false)
+
+            view.currencyTitle_tv.text = lang?.locale?.toUpperCase() ?: "EN"
+
+            val layoutManager = FlexboxLayoutManager(ctx)
+            layoutManager.flexWrap = FlexWrap.WRAP
+            layoutManager.flexDirection = FlexDirection.ROW
+            layoutManager.justifyContent = JustifyContent.FLEX_START
+            layoutManager.alignItems = AlignItems.FLEX_START
+
+            view.filters_tv.layoutManager = layoutManager
             if (data.UF_SKILLS_ID_ALL == "") {
                 view.filters_tv.visibility = View.GONE
             } else {

@@ -3,6 +3,7 @@
     android:layout_width="300dp"
     android:layout_height="wrap_content"
     app:cardCornerRadius="8dp"
+    android:layout_marginBottom="5dp"
     app:cardBackgroundColor="#fff"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -10,7 +11,7 @@
     <LinearLayout
         android:layout_margin="8dp"
         android:orientation="vertical"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content">
 
         <TextView
@@ -58,6 +59,7 @@
             android:layout_height="match_parent" />
 
         <LinearLayout
+            android:gravity="center_vertical"
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -65,11 +67,18 @@
 
             <ImageView
                 android:id="@+id/currency_iv"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="5dp"
+                android:scaleType="fitStart"
+                app:srcCompat="@drawable/en" />
+
+            <TextView
+                android:id="@+id/currencyTitle_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:scaleType="fitStart"
-                app:srcCompat="@drawable/en" />
+                android:text="EN" />
 
             <TextView
                 android:textColor="#0000FF"
