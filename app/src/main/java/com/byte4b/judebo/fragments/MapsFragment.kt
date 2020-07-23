@@ -7,8 +7,10 @@ import android.os.Handler
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.byte4b.judebo.R
 import com.byte4b.judebo.activities.DetailsActivity
+import com.byte4b.judebo.adapters.SkillsAdapter
 import com.byte4b.judebo.getLocation
 import com.byte4b.judebo.models.MyMarker
 import com.byte4b.judebo.models.currencies
@@ -23,6 +25,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.google.gson.Gson
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_maps.*
 import kotlinx.android.synthetic.main.preview.view.*
 import kotlin.math.abs
@@ -125,7 +128,7 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
     }
 
     private fun getPreview(marker: Marker): View {
-        val view = ctx.layoutInflater.inflate(R.layout.preview, container, false)
+        val view = ctx.layoutInflater.inflate(R.layout.preview, null)
         val data = markers?.first {
             marker.position.latitude == it.UF_MAP_POINT_LATITUDE
                     && marker.position.longitude == it.UF_MAP_POINT_LONGITUDE
@@ -133,22 +136,30 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
         try {
             view.title_tv.text = data.NAME
             if (data.UF_LOGO_IMAGE.isNotEmpty()) {
-                //Picasso.get()
-                //    .load(data.UF_PREVIEW_IMAGE)
-                //    .placeholder(R.drawable.big_logo_setting)
-                //    .error(R.drawable.big_logo_setting)
-                //    .into(view.logo_iv)
+                Picasso.get()
+                    .load(data.UF_PREVIEW_IMAGE)
+                    .placeholder(R.drawable.big_logo_setting)
+                    .error(R.drawable.big_logo_setting)
+                    .into(view.logo_iv)
             }
+
             view.salary_tv.text = data.UF_GROSS_PER_MONTH
             view.place_tv.text = data.COMPANY
             if (currencies.any { it.id == data.UF_GROSS_CURRENCY_ID }) {
-                //Picasso.get()
-                //    .load(currencies.first { it.id == data.UF_GROSS_CURRENCY_ID }.icon)
-                //    .placeholder(R.drawable.en)
-                //    .error(R.drawable.en)
-                //    .into(view.currency_iv)
+                Picasso.get()
+                    .load(currencies.first { it.id == data.UF_GROSS_CURRENCY_ID }.icon)
+                    .placeholder(R.drawable.en)
+                    .error(R.drawable.en)
+                    .into(view.currency_iv)
             }
-            //view.filters_tv
+            view.filters_tv.layoutManager =
+                LinearLayoutManager(ctx, LinearLayoutManager.HORIZONTAL, false)
+            if (data.UF_SKILLS_ID_ALL == "") {
+                view.filters_tv.visibility = View.GONE
+            } else {
+                view.filters_tv.visibility = View.VISIBLE
+                view.filters_tv.adapter = SkillsAdapter(ctx, data.ALL_SKILLS_NAME.split(","))
+            }
         } catch (e: Exception) {
             Log.e("test", e.localizedMessage?: "error")
         }

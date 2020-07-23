@@ -12,7 +12,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:id="@+id/check"
-        android:src="@drawable/choose" />
+        android:src="@drawable/accept" />
 
     <ImageView
         android:padding="5dp"
