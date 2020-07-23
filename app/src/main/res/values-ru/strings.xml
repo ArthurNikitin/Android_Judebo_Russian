@@ -9,6 +9,7 @@
     <string name="settings_title_language">Выберите язык</string>
     <string name="settings_title_support_email">ru@judebo.com</string>
     <string name="settings_title_currency">Выберите валюту</string>
+    <string name="more">Подробнее</string>
 </resources>
 
 <!-- русская локализация -->

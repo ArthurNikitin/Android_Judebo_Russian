@@ -2,10 +2,13 @@ package com.byte4b.judebo.fragments
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.View
+import androidx.core.graphics.drawable.toBitmap
+import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.Fragment
 import com.byte4b.judebo.R
 import com.byte4b.judebo.activities.DetailsActivity
@@ -147,12 +150,37 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
             val currency = currencies.firstOrNull { it.id == data.UF_GROSS_CURRENCY_ID }
             val lang = languages.firstOrNull { currency?.name == it.currency }
 
-            if (lang?.locale == setting.language) {
-                view.salary_tv.text = data.UF_GROSS_PER_MONTH
+            if (data.UF_GROSS_PER_MONTH.isEmpty() || data.UF_GROSS_PER_MONTH == "0") {
+                view.salary_tv.visibility = View.GONE
             } else {
-                view.salary_tv.text =
-                    "${data.UF_GROSS_PER_MONTH} (${data.UF_GROSS_PER_MONTH.toDouble() / (currency?.rate ?: 1)} ${currency?.name ?: "USD"})"
+                view.salary_tv.visibility = View.VISIBLE
             }
+            if (lang?.locale == setting.language) {
+                view.salary_tv.text = data.UF_GROSS_PER_MONTH + " ${currency?.name ?: ""}"
+                val img: Drawable = ctx.resources.getDrawable( currency?.icon ?: R.drawable.iusd)
+                val b = img.toBitmap(40, 40)
+                val kostil: Drawable = b.toDrawable(resources)
+                view.salary_tv.setCompoundDrawablesWithIntrinsicBounds(null,null,
+                    kostil, null)
+                view.secondSalary_tv.visibility = View.INVISIBLE
+            } else {
+                view.salary_tv.text = data.UF_GROSS_PER_MONTH + " ${currency?.name ?: ""}"
+                val img = ctx.resources.getDrawable( currency?.icon ?: R.drawable.iusd)
+                val b = img.toBitmap(40, 40)
+                val kostil: Drawable = b.toDrawable(resources)
+                view.salary_tv.setCompoundDrawablesWithIntrinsicBounds(null,null,
+                    kostil, null)
+                view.secondSalary_tv.visibility = View.VISIBLE
+                val currency2 = currencies.firstOrNull { it.name == setting.currency }
+                val img2 = ctx.resources.getDrawable( currency2?.icon ?: R.drawable.iusd)
+                val b2 = img2.toBitmap(40, 40)
+                val kostil2: Drawable = b2.toDrawable(resources)
+                view.secondSalary_tv.text =
+                    "(≈${data.UF_GROSS_PER_MONTH.toDouble() * (currency2?.rate ?: 1)} ${currency2?.name ?: "USD"})"
+                view.secondSalary_tv.setCompoundDrawablesWithIntrinsicBounds(null,null,
+                    kostil2, null)
+            }
+            view.more_tv.text = "#(${data.UF_JOBS_ID}) ${getString(R.string.more)}"
             view.place_tv.text = data.COMPANY
 
             if (currency != null) {
