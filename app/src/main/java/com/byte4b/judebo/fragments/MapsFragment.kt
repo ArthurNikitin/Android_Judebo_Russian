@@ -23,7 +23,6 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.google.gson.Gson
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_maps.*
 import kotlinx.android.synthetic.main.preview.view.*
 import kotlin.math.abs
@@ -109,6 +108,13 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
             }
             true
         }
+        googleMap.setOnInfoWindowClickListener {marker ->
+            val data = markers?.first {
+                marker.position.latitude == it.UF_MAP_POINT_LATITUDE
+                        && marker.position.longitude == it.UF_MAP_POINT_LONGITUDE
+            } ?: return@setOnInfoWindowClickListener
+            ctx.startActivity<DetailsActivity> { putExtra("marker", Gson().toJson(data)) }
+        }
         Thread {
             while (true) {
                 if (isResumed)
@@ -125,34 +131,24 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
                     && marker.position.longitude == it.UF_MAP_POINT_LONGITUDE
         } ?: return view
         try {
-            view.setOnClickListener {
-
-                Log.e("test", Gson().toJson(data))
-            }
             view.title_tv.text = data.NAME
-            view.title_tv.setOnClickListener {
-                ctx.startActivity<DetailsActivity> { putExtra("marker", Gson().toJson(data)) }
-            }
             if (data.UF_LOGO_IMAGE.isNotEmpty()) {
-                Picasso.get()
-                    .load(data.UF_PREVIEW_IMAGE)
-                    .placeholder(R.drawable.big_logo_setting)
-                    .error(R.drawable.big_logo_setting)
-                    .into(view.logo_iv)
+                //Picasso.get()
+                //    .load(data.UF_PREVIEW_IMAGE)
+                //    .placeholder(R.drawable.big_logo_setting)
+                //    .error(R.drawable.big_logo_setting)
+                //    .into(view.logo_iv)
             }
             view.salary_tv.text = data.UF_GROSS_PER_MONTH
             view.place_tv.text = data.COMPANY
-            view.more_tv.setOnClickListener {
-                ctx.startActivity<DetailsActivity> { putExtra("marker", Gson().toJson(data)) }
-            }
             if (currencies.any { it.id == data.UF_GROSS_CURRENCY_ID }) {
-                Picasso.get()
-                    .load(currencies.first { it.id == data.UF_GROSS_CURRENCY_ID }.icon)
-                    .placeholder(R.drawable.en)
-                    .error(R.drawable.en)
-                    .into(view.currency_iv)
+                //Picasso.get()
+                //    .load(currencies.first { it.id == data.UF_GROSS_CURRENCY_ID }.icon)
+                //    .placeholder(R.drawable.en)
+                //    .error(R.drawable.en)
+                //    .into(view.currency_iv)
             }
-            view.filters_tv
+            //view.filters_tv
         } catch (e: Exception) {
             Log.e("test", e.localizedMessage?: "error")
         }
