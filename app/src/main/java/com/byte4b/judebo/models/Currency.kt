@@ -12,5 +12,5 @@ class Currency(
 
 val currencies = listOf(
     Currency(1, "USD", R.drawable.iusd, 1),
-    Currency(3, "RUB", R.drawable.irub, 1)//fix
+    Currency(2, "RUB", R.drawable.irub, 1)
 )
