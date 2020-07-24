@@ -18,6 +18,8 @@ import com.byte4b.judebo.adapters.SkillsAdapter
 import com.byte4b.judebo.models.MyMarker
 import com.byte4b.judebo.models.currencies
 import com.byte4b.judebo.models.languages
+import com.byte4b.judebo.setLeftDrawable
+import com.byte4b.judebo.setRightDrawable
 import com.byte4b.judebo.utils.Setting
 import com.google.android.flexbox.*
 import com.google.gson.Gson
@@ -29,6 +31,7 @@ import kotlinx.android.synthetic.main.preview.view.*
 class DetailsActivity : AppCompatActivity() {
 
     private var job: MyMarker? = null
+    private val setting by lazy { Setting(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,9 +41,15 @@ class DetailsActivity : AppCompatActivity() {
         val jobInfo = Gson().fromJson(intent.getStringExtra("marker"), MyMarker::class.java)
         job = jobInfo
 
+        val setting = Setting(this)
+        val currency = currencies.firstOrNull { it.id == jobInfo.UF_GROSS_CURRENCY_ID }
+        val lang = languages.firstOrNull { currency?.name == it.currency }
+
+        phone_tv.setLeftDrawable(R.drawable.phone)
+        email_tv.setLeftDrawable(R.drawable.mail)
+
         name_tv.text = jobInfo.NAME
 
-        Log.e("test", jobInfo.UF_DETAIL_IMAGE)
         if (jobInfo.UF_DETAIL_IMAGE.isNotEmpty()) {
             Picasso.get()
                 .load(jobInfo.UF_DETAIL_IMAGE)
@@ -48,9 +57,6 @@ class DetailsActivity : AppCompatActivity() {
                 .error(R.drawable.big_logo_setting)
                 .into(logo_iv)
         }
-        val setting = Setting(this)
-        val currency = currencies.firstOrNull { it.id == jobInfo.UF_GROSS_CURRENCY_ID }
-        val lang = languages.firstOrNull { currency?.name == it.currency }
 
         if (jobInfo.UF_GROSS_PER_MONTH.isEmpty() || jobInfo.UF_GROSS_PER_MONTH == "0") {
             salary_tv.visibility = View.GONE
@@ -59,28 +65,16 @@ class DetailsActivity : AppCompatActivity() {
         }
         if (lang?.locale == setting.language) {
             salary_tv.text = jobInfo.UF_GROSS_PER_MONTH + " ${currency?.name ?: ""}"
-            val img: Drawable = resources.getDrawable( currency?.icon ?: R.drawable.iusd)
-            val b = img.toBitmap(40, 40)
-            val kostil: Drawable = b.toDrawable(resources)
-            salary_tv.setCompoundDrawablesWithIntrinsicBounds(null,null,
-                kostil, null)
+            salary_tv.setRightDrawable(currency?.icon ?: R.drawable.iusd)
             secondSalary_tv.visibility = View.INVISIBLE
         } else {
             salary_tv.text = jobInfo.UF_GROSS_PER_MONTH + " ${currency?.name ?: ""}"
-            val img = resources.getDrawable( currency?.icon ?: R.drawable.iusd)
-            val b = img.toBitmap(40, 40)
-            val kostil: Drawable = b.toDrawable(resources)
-            salary_tv.setCompoundDrawablesWithIntrinsicBounds(null,null,
-                kostil, null)
+            salary_tv.setRightDrawable(currency?.icon ?: R.drawable.iusd)
             secondSalary_tv.visibility = View.VISIBLE
             val currency2 = currencies.firstOrNull { it.name == setting.currency }
-            val img2 = resources.getDrawable( currency2?.icon ?: R.drawable.iusd)
-            val b2 = img2.toBitmap(40, 40)
-            val kostil2: Drawable = b2.toDrawable(resources)
             secondSalary_tv.text =
                 "(≈${jobInfo.UF_GROSS_PER_MONTH.toDouble() * (currency2?.rate ?: 1)} ${currency2?.name ?: "USD"})"
-            secondSalary_tv.setCompoundDrawablesWithIntrinsicBounds(null,null,
-                kostil2, null)
+            secondSalary_tv.setRightDrawable(currency2?.icon ?: R.drawable.iusd)
         }
 
         val layoutManager = FlexboxLayoutManager(this)
@@ -104,9 +98,8 @@ class DetailsActivity : AppCompatActivity() {
         phone_tv.text = jobInfo.UF_CONTACT_PHONE
         email_tv.text = jobInfo.UF_CONTACT_EMAIL
 
-        lastUpdate_tv.text = jobInfo.UF_MODIFED
+        lastUpdate_tv.text = "(#${jobInfo.UF_JOBS_ID}) ${jobInfo.UF_MODIFED}"
         company_tv.text = jobInfo.COMPANY
-        jobId_tv.text = "#${jobInfo.UF_JOBS_ID}"
         jobType_tv.text = jobInfo.UF_TYPE_OF_JOB_ID.toString()
 
         details_tv.text = jobInfo.DETAIL_TEXT
@@ -147,5 +140,17 @@ class DetailsActivity : AppCompatActivity() {
 
     }
 
-    fun fbclick(view: View) {}
+    fun fbclick(view: View) {
+        val locale = if (setting.language.isNullOrEmpty()) "en" else setting.language!!
+        val sendIntent: Intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT,
+                "https://$locale.judebo.com/search_job/detail.php?job_id=${job?.UF_JOBS_ID}"
+            )
+            type = "text/plain"
+        }
+
+        val shareIntent = Intent.createChooser(sendIntent, null)
+        startActivity(shareIntent)
+    }
 }

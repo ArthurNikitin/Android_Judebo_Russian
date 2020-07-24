@@ -5,10 +5,17 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.drawable.Drawable
 import android.location.Location
 import android.location.LocationManager
+import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.DrawableRes
 import androidx.core.app.ActivityCompat
+import androidx.core.graphics.drawable.toBitmap
+import androidx.core.graphics.drawable.toDrawable
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.preview.view.*
 
 
 fun Context.toast(text: String, duration: Int = Toast.LENGTH_SHORT) =
@@ -34,4 +41,20 @@ fun Context.getLocation(): Location? {
     } catch (e: Exception) {
         null
     }
+}
+
+fun TextView.setLeftDrawable(@DrawableRes drawable: Int) {
+    val drawable = resources
+        .getDrawable( drawable)
+        .toBitmap(40, 40)
+        .toDrawable(resources)
+   setCompoundDrawablesWithIntrinsicBounds(drawable,null, null, null)
+}
+
+fun TextView.setRightDrawable(@DrawableRes drawable: Int) {
+    val drawable = resources
+        .getDrawable( drawable)
+        .toBitmap(40, 40)
+        .toDrawable(resources)
+    setCompoundDrawablesWithIntrinsicBounds(null,null, drawable, null)
 }
