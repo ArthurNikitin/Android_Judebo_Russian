@@ -140,11 +140,13 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
         try {
             view.title_tv.text = data.NAME
             if (data.UF_LOGO_IMAGE.isNotEmpty()) {
-                Picasso.get()
-                    .load(data.UF_PREVIEW_IMAGE)
-                    .placeholder(R.drawable.big_logo_setting)
-                    .error(R.drawable.big_logo_setting)
-                    .into(view.logo_iv)
+                try {
+                    Picasso.get()
+                        .load(data.UF_PREVIEW_IMAGE)
+                        .placeholder(R.drawable.big_logo_setting)
+                        .error(R.drawable.big_logo_setting)
+                        .into(view.logo_iv)
+                } catch (e: Exception) {}
             }
 
             val currency = currencies.firstOrNull { it.id == data.UF_GROSS_CURRENCY_ID }
@@ -184,11 +186,13 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
             view.place_tv.text = data.COMPANY
 
             if (currency != null) {
-                Picasso.get()
-                    .load(lang?.flag ?: R.drawable.en)
-                    .placeholder(R.drawable.en)
-                    .error(R.drawable.en)
-                    .into(view.currency_iv)
+                try {
+                    Picasso.get()
+                        .load(lang?.flag ?: R.drawable.en)
+                        .placeholder(R.drawable.en)
+                        .error(R.drawable.en)
+                        .into(view.currency_iv)
+                } catch (e: Exception) {}
             }
 
             view.currencyTitle_tv.text = lang?.locale?.toUpperCase() ?: "EN"
