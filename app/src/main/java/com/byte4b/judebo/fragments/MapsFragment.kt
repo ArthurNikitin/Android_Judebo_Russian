@@ -108,10 +108,10 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
                 }
                 ApiServiceImpl(this).getNearbyMarkers(
                     if (setting.language == "") "en" else setting.language!!,
-                    position.latitude - setting.max_search_latitude_size / 2,
-                    position.longitude - setting.max_search_longitude_size / 2,
                     position.latitude + setting.max_search_latitude_size / 2,
-                    position.longitude + setting.max_search_longitude_size / 2
+                    position.longitude + setting.max_search_longitude_size / 2,
+                    position.latitude - setting.max_search_latitude_size / 2,
+                    position.longitude - setting.max_search_longitude_size / 2
                 )
             }
             true
@@ -231,7 +231,7 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
                     if (location != null) {
                         map?.animateCamera(
                             CameraUpdateFactory.newLatLngZoom(
-                                LatLng(55.5, 37.3),//stub LatLng(location.latitude, location.longitude),
+                                LatLng(location.latitude, location.longitude),
                                 setting.basicZoom
                             )
                         )
