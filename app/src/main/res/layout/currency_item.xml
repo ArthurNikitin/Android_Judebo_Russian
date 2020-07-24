@@ -3,22 +3,22 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:gravity="center_vertical"
-    android:padding="5dp"
+    android:padding="4dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <ImageView
-        android:padding="5dp"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
         android:id="@+id/check"
+        android:layout_marginStart="5dp"
         android:src="@drawable/accept" />
 
     <ImageView
-        android:padding="5dp"
+        android:layout_marginStart="8dp"
         android:id="@+id/icon"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
         android:src="@drawable/iusd"/>
 
     <TextView

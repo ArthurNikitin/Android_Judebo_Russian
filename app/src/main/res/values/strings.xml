@@ -9,7 +9,8 @@
     <string name="settings_title_language">Choose language</string>
     <string name="settings_title_support_email">en@judebo.com</string>
     <string name="settings_title_currency">Choose currency</string>
-    <string name="button_detail_title">More</string>
+    <string name="button_detail_title">More...</string>
+    <string name="button_share">Share</string>
 </resources>
 
     <!-- локализация по умолчанию -->

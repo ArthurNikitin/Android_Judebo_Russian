@@ -3,13 +3,14 @@
     <string name="error_no_internet">Нет интернет соединения!</string>
     <string name="search_title_search">Поиск</string>
     <string name="settings_title_settings">Настройки</string>
-    <string name="settings_title_current_language">Текущий язык</string>
-    <string name="settings_title_current_currency">Текущая валюта</string>
+    <string name="settings_title_current_language">Язык</string>
+    <string name="settings_title_current_currency">Валюта</string>
     <string name="settings_title_support">Поддержка</string>
-    <string name="settings_title_language">Выберите язык</string>
+    <string name="settings_title_language">Язык</string>
     <string name="settings_title_support_email">ru@judebo.com</string>
-    <string name="settings_title_currency">Выберите валюту</string>
-    <string name="button_detail_title">Подробнее</string>
+    <string name="settings_title_currency">Валюта</string>
+    <string name="button_detail_title">подробнее...</string>
+    <string name="button_share">Поделиться</string>
 </resources>
 
 <!-- русская локализация -->
