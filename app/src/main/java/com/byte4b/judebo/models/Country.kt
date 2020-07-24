@@ -4,6 +4,7 @@ import androidx.annotation.DrawableRes
 import com.byte4b.judebo.R
 
 class Language(
+    val id: Int,
     val name: String,
     val native: String,
     @DrawableRes val flag: Int,
@@ -14,6 +15,6 @@ class Language(
 }
 
 val languages = listOf(
-    Language("English", "English", R.drawable.en, "en", "USD"),
-    Language("Russian", "Русский", R.drawable.ru, "ru", "RUB")
+    Language(2, "English", "English", R.drawable.en, "en", "USD"),
+    Language(1, "Russian", "Русский", R.drawable.ru, "ru", "RUB")
 )

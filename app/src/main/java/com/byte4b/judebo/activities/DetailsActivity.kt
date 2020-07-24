@@ -53,8 +53,8 @@ class DetailsActivity : AppCompatActivity() {
         if (jobInfo.UF_DETAIL_IMAGE.isNotEmpty()) {
             Picasso.get()
                 .load(jobInfo.UF_DETAIL_IMAGE)
-                .placeholder(R.drawable.big_logo_setting)
-                .error(R.drawable.big_logo_setting)
+                .placeholder(R.drawable.default_logo_detail)
+                .error(R.drawable.default_logo_detail)
                 .into(logo_iv)
         }
 

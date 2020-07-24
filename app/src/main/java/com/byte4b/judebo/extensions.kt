@@ -14,8 +14,7 @@ import androidx.annotation.DrawableRes
 import androidx.core.app.ActivityCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.graphics.drawable.toDrawable
-import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.preview.view.*
+import kotlin.math.roundToInt
 
 
 fun Context.toast(text: String, duration: Int = Toast.LENGTH_SHORT) =
@@ -43,10 +42,12 @@ fun Context.getLocation(): Location? {
     }
 }
 
+
+private val size = 30
 fun TextView.setLeftDrawable(@DrawableRes drawable: Int) {
     val drawable = resources
         .getDrawable( drawable)
-        .toBitmap(40, 40)
+        .toBitmap(size, size)
         .toDrawable(resources)
    setCompoundDrawablesWithIntrinsicBounds(drawable,null, null, null)
 }
@@ -54,7 +55,15 @@ fun TextView.setLeftDrawable(@DrawableRes drawable: Int) {
 fun TextView.setRightDrawable(@DrawableRes drawable: Int) {
     val drawable = resources
         .getDrawable( drawable)
-        .toBitmap(40, 40)
+        .toBitmap(size, size)
         .toDrawable(resources)
     setCompoundDrawablesWithIntrinsicBounds(null,null, drawable, null)
+}
+
+fun String.round(): String {
+    return try {
+        ((toDouble() / 100).roundToInt() * 100).toString()
+    } catch (e: Exception) {
+        this
+    }
 }

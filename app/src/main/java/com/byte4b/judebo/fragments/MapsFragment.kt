@@ -2,24 +2,21 @@ package com.byte4b.judebo.fragments
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.View
-import androidx.core.graphics.drawable.toBitmap
-import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.byte4b.judebo.*
 import com.byte4b.judebo.R
 import com.byte4b.judebo.activities.DetailsActivity
+import com.byte4b.judebo.adapters.LanguagesAdapter
 import com.byte4b.judebo.adapters.SkillsAdapter
-import com.byte4b.judebo.getLocation
 import com.byte4b.judebo.models.MyMarker
 import com.byte4b.judebo.models.currencies
 import com.byte4b.judebo.models.languages
 import com.byte4b.judebo.services.ApiServiceImpl
-import com.byte4b.judebo.setRightDrawable
-import com.byte4b.judebo.startActivity
 import com.byte4b.judebo.utils.Setting
 import com.byte4b.judebo.view.ServiceListener
 import com.github.florent37.runtimepermission.kotlin.askPermission
@@ -32,6 +29,7 @@ import com.google.android.gms.maps.model.*
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_maps.*
+import kotlinx.android.synthetic.main.preview.*
 import kotlinx.android.synthetic.main.preview.view.*
 import kotlin.math.abs
 
@@ -144,47 +142,61 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
                 try {
                     Picasso.get()
                         .load(data.UF_PREVIEW_IMAGE)
-                        .placeholder(R.drawable.big_logo_setting)
-                        .error(R.drawable.big_logo_setting)
+                        .placeholder(R.drawable.default_logo_preview)
+                        .error(R.drawable.default_logo_preview)
                         .into(view.logo_iv)
                 } catch (e: Exception) {}
             }
 
             val currency = currencies.firstOrNull { it.id == data.UF_GROSS_CURRENCY_ID }
-            val lang = languages.firstOrNull { currency?.name == it.currency }
+            //val lang = languages.firstOrNull { currency?.name == it.currency }
 
-            if (data.UF_GROSS_PER_MONTH.isEmpty() || data.UF_GROSS_PER_MONTH == "0") {
-                view.salary_tv.visibility = View.GONE
-            } else {
-                view.salary_tv.visibility = View.VISIBLE
-            }
-            if (lang?.locale == setting.language) {
-                view.salary_tv.text = data.UF_GROSS_PER_MONTH + " ${currency?.name ?: ""}"
-                view.salary_tv.setRightDrawable(currency?.icon ?: R.drawable.iusd)
-                view.secondSalary_tv.visibility = View.INVISIBLE
-            } else {
-                view.salary_tv.text = data.UF_GROSS_PER_MONTH + " ${currency?.name ?: ""}"
-                view.salary_tv.setRightDrawable(currency?.icon ?: R.drawable.iusd)
-                view.secondSalary_tv.visibility = View.VISIBLE
-                val currency2 = currencies.firstOrNull { it.name == setting.currency }
-                view.secondSalary_tv.text =
-                    "(≈${data.UF_GROSS_PER_MONTH.toDouble() * (currency2?.rate ?: 1)} ${currency2?.name ?: "USD"})"
-                view.secondSalary_tv.setRightDrawable(currency2?.icon ?: R.drawable.iusd)
-            }
-            view.more_tv.text = "#(${data.UF_JOBS_ID}) ${getString(R.string.more)}"
+            try {
+
+                if (data.UF_GROSS_PER_MONTH.isEmpty() || data.UF_GROSS_PER_MONTH == "0") {
+                    view.secondContainer.visibility = View.GONE
+                    view.salaryContainer.visibility = View.GONE
+                } else {
+                    view.secondContainer.visibility = View.VISIBLE
+                    view.salaryContainer.visibility = View.VISIBLE
+                }
+                if (currency?.name == setting.currency
+                    || (setting.currency == "" && currency?.name == "USD")
+                ) {
+                    Log.e("test", data.UF_GROSS_PER_MONTH.round())
+                    view.salary_tv.text = data.UF_GROSS_PER_MONTH.round()
+                    Log.e("test", " ${currency?.name ?: ""}")
+                    view.salaryVal_tv.text = " ${currency?.name ?: ""}"
+                    view.salary_tv.setRightDrawable(currency?.icon ?: R.drawable.iusd)
+                    view.secondContainer.visibility = View.GONE
+                } else {
+                    view.salary_tv.text = data.UF_GROSS_PER_MONTH.round()
+                    view.salaryVal_tv.text = " ${currency?.name ?: ""}"
+                    view.salary_tv.setRightDrawable(currency?.icon ?: R.drawable.iusd)
+                    view.secondContainer.visibility = View.VISIBLE
+                    val currencyFromSetting =
+                        if (setting.currency.isNullOrEmpty()) "USD" else setting.currency!!
+                    val currency2 = currencies.firstOrNull { it.name == currencyFromSetting }
+                    val convertedSalary =
+                        data.UF_GROSS_PER_MONTH.toDouble() * (currency2?.rate
+                            ?: 1) / (currency?.rate ?: 1)
+                    if (convertedSalary == 0.0)
+                        secondContainer.visibility = View.GONE
+                    view.secondSalary_tv.text =
+                        "≈${convertedSalary.toString().round()}"
+                    view.secondSalaryVal_tv.text = "${currency2?.name ?: "USD"}"
+                    view.secondSalary_tv.setRightDrawable(currency2?.icon ?: R.drawable.iusd)
+                }
+            } catch (e: Exception) {}
+            view.more_tv.text = "(#${data.UF_JOBS_ID}) ${getString(R.string.button_detail_title)}"
+            try {
+                view.langs_rv.layoutManager =
+                    LinearLayoutManager(ctx, LinearLayoutManager.HORIZONTAL, false)
+                view.langs_rv.adapter = LanguagesAdapter(ctx, data.UF_LANGUAGE_ID_ALL.split(",").map {
+                    languages.first { lang -> lang.id == it.toInt() }
+                })
+            } catch (e:Exception) {}
             view.place_tv.text = data.COMPANY
-
-            if (currency != null) {
-                try {
-                    Picasso.get()
-                        .load(lang?.flag ?: R.drawable.en)
-                        .placeholder(R.drawable.en)
-                        .error(R.drawable.en)
-                        .into(view.currency_iv)
-                } catch (e: Exception) {}
-            }
-
-            view.currencyTitle_tv.text = lang?.locale?.toUpperCase() ?: "EN"
 
             val layoutManager = FlexboxLayoutManager(ctx)
             layoutManager.flexWrap = FlexWrap.WRAP
