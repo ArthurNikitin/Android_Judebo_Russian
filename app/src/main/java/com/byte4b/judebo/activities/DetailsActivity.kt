@@ -46,7 +46,6 @@ class DetailsActivity : AppCompatActivity() {
 
         val setting = Setting(this)
         val currency = currencies.firstOrNull { it.id == jobInfo.UF_GROSS_CURRENCY_ID }
-        val lang = languages.firstOrNull { currency?.name == it.currency }
 
         phone_tv.setLeftDrawable(R.drawable.phone)
         email_tv.setLeftDrawable(R.drawable.mail)
@@ -122,7 +121,7 @@ class DetailsActivity : AppCompatActivity() {
 
         lastUpdate_tv.text = "#${jobInfo.UF_JOBS_ID}\n${jobInfo.UF_MODIFED}"
         company_tv.text = jobInfo.COMPANY
-        jobType_tv.text = jobInfo.UF_TYPE_OF_JOB_ID.toString()
+        jobType_tv.text = jobInfo.UF_TYPE_OF_JOB_NAME ?: ""
 
         details_tv.text = jobInfo.DETAIL_TEXT
 
