@@ -27,6 +27,8 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.google.gson.Gson
+import com.google.maps.android.clustering.ClusterItem
+import com.google.maps.android.clustering.ClusterManager
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_maps.*
 import kotlinx.android.synthetic.main.preview.*
@@ -114,6 +116,13 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
             }
             true
         }
+
+        googleMap.setOnCameraMoveListener {
+            val clusterManager = ClusterManager<AbstractMarker>(activity!!.applicationContext, map)
+            clusterManager.addItems((markers ?: listOf()).map { AbstractMarker(it.UF_MAP_POINT_LATITUDE, it.UF_MAP_POINT_LONGITUDE) })
+            clusterManager.cluster()
+        }
+
         googleMap.setOnInfoWindowClickListener {marker ->
             val data = markers?.first {
                 marker.position.latitude == it.UF_MAP_POINT_LATITUDE
@@ -163,9 +172,7 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
                 if (currency?.name == setting.currency
                     || (setting.currency == "" && currency?.name == "USD")
                 ) {
-                    Log.e("test", data.UF_GROSS_PER_MONTH.round())
                     view.salary_tv.text = data.UF_GROSS_PER_MONTH.round()
-                    Log.e("test", " ${currency?.name ?: ""}")
                     view.salaryVal_tv.text = " ${currency?.name ?: ""}"
                     view.salary_tv.setRightDrawable(currency?.icon ?: R.drawable.iusd)
                     view.secondContainer.visibility = View.GONE
@@ -218,12 +225,17 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
     }
 
     override fun onNearbyMarkersLoaded(list: List<MyMarker>?) {
+        val clusterManager = ClusterManager<AbstractMarker>(activity!!.applicationContext, map)
+
+        clusterManager.addItems((list ?: listOf()).map { AbstractMarker(it.UF_MAP_POINT_LATITUDE, it.UF_MAP_POINT_LONGITUDE) })
+        clusterManager.cluster()
         list?.apply {
             markers = list
             forEach {
                 map?.addMarker(MarkerOptions()
                     .position(LatLng(it.UF_MAP_POINT_LATITUDE, it.UF_MAP_POINT_LONGITUDE))
-                    //.icon(BitmapDescriptorFactory.fromResource(R.drawable.green_marker))
+                    //.title("dsads")
+                    //.icon(BitmapDescriptorFactory.fromBitmap())
                 )
             }
         }
@@ -273,6 +285,26 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
             setting.lastMapCameraPosition = target
         }
         super.onStop()
+    }
+
+}
+class AbstractMarker(
+    var latitude: Double = 0.0,
+    var longitude: Double = 0.0
+) : ClusterItem {
+
+    //others getters & setters
+    var marker: MarkerOptions? = null
+    override fun getSnippet(): String? {
+        return null
+    }
+
+    override fun getTitle(): String? {
+        return "lol"
+    }
+
+    override fun getPosition(): LatLng {
+        return LatLng(latitude, longitude)
     }
 
 }
