@@ -11,6 +11,8 @@
     <string name="settings_title_currency">Choose currency</string>
     <string name="button_detail_title">More...</string>
     <string name="button_share">Share</string>
+    <string name="add_job_title">add_job_title</string>
+    <string name="add_job_link">add_job_link</string>
 </resources>
 
     <!-- локализация по умолчанию -->

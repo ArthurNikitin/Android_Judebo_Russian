@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.byte4b.judebo.R
+import com.byte4b.judebo.fragments.CreatorFragment
 import com.byte4b.judebo.fragments.MapsFragment
 import com.byte4b.judebo.fragments.SettingFragment
 import com.github.florent37.runtimepermission.kotlin.askPermission
@@ -50,6 +51,14 @@ class MainActivity : AppCompatActivity() {
                         .replace(R.id.frame, SettingFragment())
                         .commit()
                     supportActionBar?.title = getString(R.string.settings_title_settings)
+                    true
+                }
+                R.id.bottom_item_creator -> {
+                    supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.frame, CreatorFragment())
+                        .commit()
+                    supportActionBar?.title = getString(R.string.add_job_title)
                     true
                 }
                 else -> true

@@ -45,7 +45,6 @@ class SettingFragment : Fragment(R.layout.fragment_setting) {
 
 
         lang_tv.setOnClickListener {
-            val langs = languages.map { it.title }  //возможные варианты
             val locales = languages.map { it.locale } //название этих локализаций
             val lang = if (setting.language == "") "en" else setting.language!!
             AlertDialog.Builder(requireContext())

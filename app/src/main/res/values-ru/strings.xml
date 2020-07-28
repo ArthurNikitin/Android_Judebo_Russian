@@ -11,6 +11,8 @@
     <string name="settings_title_currency">Валюта</string>
     <string name="button_detail_title">подробнее...</string>
     <string name="button_share">Поделиться</string>
+    <string name="add_job_title">add_job_title</string>
+    <string name="add_job_link">add_job_link</string>
 </resources>
 
 <!-- русская локализация -->

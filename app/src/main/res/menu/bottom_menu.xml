@@ -5,8 +5,15 @@
         android:id="@+id/bottom_item_map"
         android:icon="@drawable/looking_for_48"
         android:title="@string/search_title_search" />
+
+    <item
+        android:id="@+id/bottom_item_creator"
+        android:icon="@drawable/tab_add"
+        android:title="@string/add_job_title" />
+
     <item
         android:id="@+id/bottom_item_setting"
         android:icon="@drawable/settings_48"
         android:title="@string/settings_title_settings" />
+
 </menu>
