@@ -43,7 +43,7 @@ class Setting(ctx: Context) {
     val search_request_pause = 1 //seconds
     val search_request_min_move_delta = 0.1 //degrees
 
-
+    val cluster_radius = 100.0
 
 
 }

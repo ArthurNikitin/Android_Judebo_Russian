@@ -73,26 +73,26 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
 
         clusterManager = ClusterManager(activity!!.applicationContext, map)
         clusterManager?.renderer = OwnIconRendered(ctx, map, clusterManager)
-        clusterManager?.algorithm = Algorithm<AbstractMarker>().
+        val alg = clusterManager!!.algorithm
+        alg.maxDistanceBetweenClusteredItems = (setting.cluster_radius * 2).toInt()
+        clusterManager?.algorithm = alg
         clusterManager?.setOnClusterClickListener {
-            Log.e("debug", "setOnClusterClickListener")
+            var zoom = googleMap.cameraPosition.zoom + 1
+            if (zoom > setting.maxZoom) zoom = setting.maxZoom
+            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(googleMap.cameraPosition.target.latitude, googleMap.cameraPosition.target.longitude), zoom))
             true
         }
-        clusterManager?.setOnClusterItemClickListener {
-            Log.e("debug", "setOnClusterItemClickListener")
-            true
-        }
+
+        clusterManager?.markerCollection?.setInfoWindowAdapter(object : GoogleMap.InfoWindowAdapter {
+            override fun getInfoContents(marker: Marker) = getPreview(marker)
+            override fun getInfoWindow(marker: Marker) = getPreview(marker)
+        })
 
         if (setting.lastMapCameraPosition.latitude != 0.0) {
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
                 setting.lastMapCameraPosition, setting.basicZoom
             ))
         }
-
-        googleMap.setInfoWindowAdapter(object : GoogleMap.InfoWindowAdapter {
-            override fun getInfoContents(marker: Marker) = getPreview(marker)
-            override fun getInfoWindow(marker: Marker) = getPreview(marker)
-        })
 
         addMyLocationTarget()
 
