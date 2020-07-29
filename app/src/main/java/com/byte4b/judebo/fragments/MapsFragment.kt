@@ -10,12 +10,18 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestBuilder
+import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.SimpleTarget
+import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.request.transition.Transition
 import com.byte4b.judebo.*
 import com.byte4b.judebo.R
@@ -42,6 +48,7 @@ import com.google.maps.android.clustering.ClusterItem
 import com.google.maps.android.clustering.ClusterManager
 import com.google.maps.android.clustering.algo.Algorithm
 import com.google.maps.android.clustering.view.DefaultClusterRenderer
+import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_maps.*
 import kotlinx.android.synthetic.main.preview.*
@@ -353,31 +360,59 @@ class OwnIconRendered(
     override fun onBeforeClusterItemRendered(item: AbstractMarker, markerOptions: MarkerOptions) {
         try {
             context?.apply {
-                if (!item.marker.UF_LOGO_IMAGE.isNullOrEmpty())
+                if (!item.marker.UF_LOGO_IMAGE.isNullOrEmpty()) {
                     Log.e("deb", item.marker.UF_LOGO_IMAGE)
+
+                    val img = ImageView(context)
+                    Picasso.get()
+                        .load(item.marker.UF_LOGO_IMAGE)
+                        .centerInside()
+                        .into(img, object : com.squareup.picasso.Callback {
+                            override fun onSuccess() {
+                                markerOptions.icon(
+                                    BitmapDescriptorFactory.fromBitmap(
+                                        img.drawable.toBitmap(100, 100)
+                                    )
+                                )
+                            }
+
+                            override fun onError(e: java.lang.Exception?) {
+                            }
+                        })
+
                     Glide.with(this)
                         .load(item.marker.UF_LOGO_IMAGE)
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .fitCenter()
-                        .into(
-                            object : SimpleTarget<Drawable>() {
-                                override fun onResourceReady(
-                                    resource: Drawable,
-                                    transition: Transition<in Drawable>?
-                                ) {
-                                    markerOptions.icon(
-                                        BitmapDescriptorFactory.fromBitmap(
-                                            resource.toBitmap(100, 100)
-                                        )
-                                    )
-                                }
-
-                                override fun onLoadFailed(errorDrawable: Drawable?) {
-                                    Log.e("deb", "error")
-                                }
-
+                        .listener(object : RequestListener<Drawable> {
+                            override fun onLoadFailed(
+                                e: GlideException?,
+                                model: Any?,
+                                target: Target<Drawable>?,
+                                isFirstResource: Boolean
+                            ): Boolean {
+                                Log.e("deb", e?.localizedMessage ?: "Glide error")
+                                return true
                             }
-                        )
+
+                            override fun onResourceReady(
+                                resource: Drawable?,
+                                model: Any?,
+                                target: Target<Drawable>?,
+                                dataSource: DataSource?,
+                                isFirstResource: Boolean
+                            ): Boolean {
+                                markerOptions.icon(
+                                    BitmapDescriptorFactory.fromBitmap(
+                                        resource?.toBitmap(100, 100)
+                                    )
+                                )
+                                return true
+                            }
+
+                        })
+                        .into(ImageView(context))
+                }
             }
         } catch (e: Exception) { }
         super.onBeforeClusterItemRendered(item, markerOptions)
