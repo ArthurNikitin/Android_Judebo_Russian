@@ -19,8 +19,10 @@ class Setting(ctx: Context) {
     var lastMapCameraPosition: LatLng
         get() {
             return LatLng(
-                pref.getFloat("lastMapCameraPosition_latitude", defaultLatitude.toFloat()).toDouble(),
-                pref.getFloat("lastMapCameraPosition_longitude", defaultLongitude.toFloat()).toDouble()
+                pref.getFloat("lastMapCameraPosition_latitude", defaultLatitude.toFloat())
+                    .toDouble(),
+                pref.getFloat("lastMapCameraPosition_longitude", defaultLongitude.toFloat())
+                    .toDouble()
             )
         }
         set(value) {
@@ -44,6 +46,7 @@ class Setting(ctx: Context) {
     val search_request_min_move_delta = 0.1 //degrees
 
     val cluster_radius = 100.0
-
+    val cluster_sizes =
+        listOf(2..2, 3..5, 6..10, 11..15, 16..20, 21..25, 26..30, 31..35, 36..40, 41..45)
 
 }

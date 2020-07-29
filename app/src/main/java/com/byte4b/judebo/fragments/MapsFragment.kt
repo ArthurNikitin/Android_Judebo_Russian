@@ -3,12 +3,20 @@ package com.byte4b.judebo.fragments
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.View
+import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.target.SimpleTarget
+import com.bumptech.glide.request.transition.Transition
 import com.byte4b.judebo.*
 import com.byte4b.judebo.R
 import com.byte4b.judebo.activities.DetailsActivity
@@ -27,6 +35,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
+import com.google.android.gms.maps.model.BitmapDescriptorFactory.HUE_BLUE
 import com.google.gson.Gson
 import com.google.maps.android.clustering.Cluster
 import com.google.maps.android.clustering.ClusterItem
@@ -37,6 +46,9 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_maps.*
 import kotlinx.android.synthetic.main.preview.*
 import kotlinx.android.synthetic.main.preview.view.*
+import java.io.IOException
+import java.net.HttpURLConnection
+import java.net.URL
 import kotlin.math.abs
 
 
@@ -160,7 +172,7 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
         } ?: return view
         try {
             view.title_tv.text = data.NAME
-            if (data.UF_LOGO_IMAGE.isNotEmpty()) {
+            if (!data.UF_LOGO_IMAGE.isNullOrEmpty()) {
                 try {
                     Picasso.get()
                         .load(data.UF_PREVIEW_IMAGE)
@@ -238,18 +250,9 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
 
     override fun onNearbyMarkersLoaded(list: List<MyMarker>?) {
         clusterManager?.clearItems()
-        clusterManager?.addItems((list ?: listOf()).map { AbstractMarker(it.UF_MAP_POINT_LATITUDE, it.UF_MAP_POINT_LONGITUDE) })
+        clusterManager?.addItems((list ?: listOf()).map { AbstractMarker(it.UF_MAP_POINT_LATITUDE, it.UF_MAP_POINT_LONGITUDE, it) })
         clusterManager?.cluster()
-        list?.apply {
-            markers = list
-            forEach {
-                map?.addMarker(MarkerOptions()
-                    .position(LatLng(it.UF_MAP_POINT_LATITUDE, it.UF_MAP_POINT_LONGITUDE))
-                    //.title("dsads")
-                    //.icon(BitmapDescriptorFactory.fromBitmap())
-                )
-            }
-        }
+        markers = list
     }
 
     @SuppressLint("MissingPermission")
@@ -301,11 +304,10 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
 }
 class AbstractMarker(
     var latitude: Double = 0.0,
-    var longitude: Double = 0.0
+    var longitude: Double = 0.0,
+    val marker: MyMarker
 ) : ClusterItem {
 
-    //others getters & setters
-    var marker: MarkerOptions? = null
     override fun getSnippet(): String? {
         return "debug"
     }
@@ -321,16 +323,64 @@ class AbstractMarker(
 }
 
 class OwnIconRendered(
-    context: Context?, map: GoogleMap?,
+    val context: Context?, map: GoogleMap?,
     clusterManager: ClusterManager<AbstractMarker>?
 ) : DefaultClusterRenderer<AbstractMarker>(context, map, clusterManager) {
+
+    private val setting by lazy { Setting(context!!) }
 
     override fun onBeforeClusterRendered(
         cluster: Cluster<AbstractMarker>,
         markerOptions: MarkerOptions
     ) {
-        markerOptions.icon(/*item.marker!!.icon*/BitmapDescriptorFactory.fromResource(R.drawable.green_marker))
-        super.onBeforeClusterRendered(cluster, markerOptions)
+        markerOptions.icon(BitmapDescriptorFactory.fromResource(
+            when (cluster.items.size) {
+                in setting.cluster_sizes[0] -> R.drawable.cluster_01
+                in setting.cluster_sizes[1] -> R.drawable.cluster_02
+                in setting.cluster_sizes[2] -> R.drawable.cluster_03
+                in setting.cluster_sizes[3] -> R.drawable.cluster_04
+                in setting.cluster_sizes[4] -> R.drawable.cluster_05
+                in setting.cluster_sizes[5] -> R.drawable.cluster_06
+                in setting.cluster_sizes[6] -> R.drawable.cluster_07
+                in setting.cluster_sizes[7] -> R.drawable.cluster_08
+                in setting.cluster_sizes[8] -> R.drawable.cluster_09
+                else -> R.drawable.cluster_10
+            }
+        ))
+
+    }
+
+    override fun onBeforeClusterItemRendered(item: AbstractMarker, markerOptions: MarkerOptions) {
+        try {
+            context?.apply {
+                if (!item.marker.UF_LOGO_IMAGE.isNullOrEmpty())
+                    Log.e("deb", item.marker.UF_LOGO_IMAGE)
+                    Glide.with(this)
+                        .load(item.marker.UF_LOGO_IMAGE)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .fitCenter()
+                        .into(
+                            object : SimpleTarget<Drawable>() {
+                                override fun onResourceReady(
+                                    resource: Drawable,
+                                    transition: Transition<in Drawable>?
+                                ) {
+                                    markerOptions.icon(
+                                        BitmapDescriptorFactory.fromBitmap(
+                                            resource.toBitmap(100, 100)
+                                        )
+                                    )
+                                }
+
+                                override fun onLoadFailed(errorDrawable: Drawable?) {
+                                    Log.e("deb", "error")
+                                }
+
+                            }
+                        )
+            }
+        } catch (e: Exception) { }
+        super.onBeforeClusterItemRendered(item, markerOptions)
     }
 
 }

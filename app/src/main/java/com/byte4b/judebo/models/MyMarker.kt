@@ -18,7 +18,7 @@ data class MyMarker(
     val UF_JOBS_ID: Int,
     val UF_LANGUAGE_ID_ALL: String,
     val UF_TYPE_OF_JOB_NAME: String? = null,
-    val UF_LOGO_IMAGE: String,
+    val UF_LOGO_IMAGE: String? = null,
     val UF_MAP_POINT: String,
     val UF_MAP_POINT_LATITUDE: Double,
     val UF_MAP_POINT_LONGITUDE: Double,
