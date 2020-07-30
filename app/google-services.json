@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "620761118690",
+    "firebase_url": "https://judebo.firebaseio.com",
+    "project_id": "judebo",
+    "storage_bucket": "judebo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:620761118690:android:da22ce5d0b0832fd33ebbb",
+        "android_client_info": {
+          "package_name": "com.byte4b.judebo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "620761118690-voli049q5btg3ffeogrrik3hc7phi3rs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB819eNiEe1AZgQbiis1pMpHlQDiEdtSAE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "620761118690-voli049q5btg3ffeogrrik3hc7phi3rs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
