@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name" translatable="false">Judebo</string>
     <string name="error_no_internet">No internet connection!</string>
     <string name="search_title_search">Search</string>
     <string name="settings_title_settings">Setting</string>

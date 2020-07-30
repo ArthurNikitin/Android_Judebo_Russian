@@ -4,25 +4,24 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
+import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.target.Target
-import com.bumptech.glide.request.transition.Transition
 import com.byte4b.judebo.*
 import com.byte4b.judebo.R
 import com.byte4b.judebo.activities.DetailsActivity
@@ -41,21 +40,17 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
-import com.google.android.gms.maps.model.BitmapDescriptorFactory.HUE_BLUE
 import com.google.gson.Gson
 import com.google.maps.android.clustering.Cluster
 import com.google.maps.android.clustering.ClusterItem
 import com.google.maps.android.clustering.ClusterManager
-import com.google.maps.android.clustering.algo.Algorithm
 import com.google.maps.android.clustering.view.DefaultClusterRenderer
-import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.cluster_icon.view.*
 import kotlinx.android.synthetic.main.fragment_maps.*
 import kotlinx.android.synthetic.main.preview.*
 import kotlinx.android.synthetic.main.preview.view.*
-import java.io.IOException
-import java.net.HttpURLConnection
-import java.net.URL
+import java.util.zip.Inflater
 import kotlin.math.abs
 
 
@@ -340,7 +335,9 @@ class OwnIconRendered(
         cluster: Cluster<AbstractMarker>,
         markerOptions: MarkerOptions
     ) {
-        markerOptions.icon(BitmapDescriptorFactory.fromResource(
+        val view = (context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater)
+            .inflate(R.layout.cluster_icon, null)
+        view.img.setImageResource(
             when (cluster.items.size) {
                 in setting.cluster_sizes[0] -> R.drawable.cluster_01
                 in setting.cluster_sizes[1] -> R.drawable.cluster_02
@@ -353,8 +350,20 @@ class OwnIconRendered(
                 in setting.cluster_sizes[8] -> R.drawable.cluster_09
                 else -> R.drawable.cluster_10
             }
-        ))
+        )
+        view.size.text = cluster.items.size.toString()
+        markerOptions.icon(BitmapDescriptorFactory.fromBitmap(view.toBitmap()))
+    }
 
+    fun View.toBitmap(): Bitmap {
+        val measureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+        measure(measureSpec, measureSpec)
+        layout(0, 0, measuredWidth, measuredHeight)
+        val r = Bitmap.createBitmap(measuredWidth, measuredHeight, Bitmap.Config.ARGB_8888)
+        r.eraseColor(Color.TRANSPARENT)
+        val canvas = Canvas(r)
+        draw(canvas)
+        return r
     }
 
     override fun onBeforeClusterItemRendered(item: AbstractMarker, markerOptions: MarkerOptions) {
@@ -418,4 +427,7 @@ class OwnIconRendered(
         super.onBeforeClusterItemRendered(item, markerOptions)
     }
 
+    override fun getClusterText(bucket: Int): String {
+        return "dsvsdwdsd"
+    }
 }

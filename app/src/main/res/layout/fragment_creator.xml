@@ -7,12 +7,14 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:textSize="24sp"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/add_job_title" />
 
     <TextView
+        android:textSize="20sp"
         android:id="@+id/link_tv"
         android:layout_marginTop="15dp"
         android:layout_width="match_parent"
