@@ -69,7 +69,6 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
                 map?.addMarker(MarkerOptions().position(me)
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.me)))
             }
-
         }
     }
 
@@ -88,7 +87,7 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
         clusterManager?.setOnClusterClickListener {
             var zoom = googleMap.cameraPosition.zoom + 1
             if (zoom > setting.maxZoom) zoom = setting.maxZoom
-            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(googleMap.cameraPosition.target.latitude, googleMap.cameraPosition.target.longitude), zoom))
+            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(it.position, zoom))
             true
         }
 
@@ -96,6 +95,8 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
             override fun getInfoContents(marker: Marker) = getPreview(marker)
             override fun getInfoWindow(marker: Marker) = getPreview(marker)
         })
+
+
 
         if (setting.lastMapCameraPosition.latitude != 0.0) {
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
@@ -144,7 +145,7 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
         }
         googleMap.setOnCameraMoveListener { clusterManager?.cluster() }
 
-        googleMap.setOnInfoWindowClickListener {marker ->
+        clusterManager?.markerCollection?.setOnInfoWindowClickListener { marker ->
             val data = markers?.first {
                 marker.position.latitude == it.UF_MAP_POINT_LATITUDE
                         && marker.position.longitude == it.UF_MAP_POINT_LONGITUDE
@@ -216,7 +217,7 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
                     view.secondSalary_tv.setRightDrawable(currency2?.icon ?: R.drawable.iusd)
                 }
             } catch (e: Exception) {}
-            view.more_tv.text = "(#${data.UF_JOBS_ID}) ${getString(R.string.button_detail_title)}"
+            view.more_tv.text = "#${data.UF_JOBS_ID} ${getString(R.string.button_detail_title)}"
             try {
                 view.langs_rv.layoutManager =
                     LinearLayoutManager(ctx, LinearLayoutManager.HORIZONTAL, false)
