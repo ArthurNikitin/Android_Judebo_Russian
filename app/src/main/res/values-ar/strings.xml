@@ -1,17 +1,17 @@
 <resources>
     <string name="error_no_internet">No internet connection!</string>
-    <string name="search_title_search">Search</string>
-    <string name="settings_title_settings">Setting</string>
-    <string name="settings_title_current_language">Current Language</string>
-    <string name="settings_title_current_currency">Current currency</string>
-    <string name="settings_title_support">Support</string>
-    <string name="settings_title_language">Choose language</string>
-    <string name="settings_title_support_email">en@judebo.com</string>
-    <string name="settings_title_currency">Choose currency</string>
-    <string name="button_detail_title">More...</string>
-    <string name="button_share">Share</string>
-    <string name="add_job_title">Please open browser</string>
-    <string name="add_job_link">htpps://en.judebo.com</string>
+    <string name="search_title_search">بحث</string>
+    <string name="settings_title_settings">الإعدادات</string>
+    <string name="settings_title_current_language">لغة</string>
+    <string name="settings_title_current_currency">عملة</string>
+    <string name="settings_title_support">الدعم</string>
+    <string name="settings_title_language">لغة</string>
+    <string name="settings_title_support_email">ar@judebo.com</string>
+    <string name="settings_title_currency">عملة</string>
+    <string name="button_share">شارك</string>
+    <string name="add_job_link">https://ar.judebo.com/jobs/</string>
+    <string name="button_detail_title">التفاصيل</string>
+    <string name="add_job_title">يمكنك إضافة وظائف شاغرة عن طريق متصفح الويب</string>
 </resources>
 
     <!-- локализация по умолчанию -->

@@ -11,7 +11,7 @@
     <string name="settings_title_currency">Choose currency</string>
     <string name="button_detail_title">More...</string>
     <string name="button_share">Share</string>
-    <string name="add_job_title">Please open browser</string>
+    <string name="add_job_title">You can add vacancies by web browser</string>
     <string name="add_job_link">htpps://en.judebo.com</string>
 </resources>
 

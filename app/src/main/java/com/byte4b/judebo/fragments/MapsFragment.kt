@@ -418,7 +418,7 @@ class OwnIconRendered(
     override fun onClusterItemUpdated(item: AbstractMarker, marker: Marker) {
         val view = (context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater)
             .inflate(R.layout.marker_item, null)
-        view.marker_title.text = "test data"
+        view.marker_title.text = item.marker.NAME
 
         try {
             if (!item.marker.UF_LOGO_IMAGE.isNullOrEmpty()) {
@@ -432,7 +432,7 @@ class OwnIconRendered(
                         Glide.with(context)
                             .load(item.marker.UF_LOGO_IMAGE)
                             .centerInside()
-                            .placeholder(R.drawable.green_marker)
+                            .placeholder(R.drawable.map_default_marker)
 
                             .into(object : SimpleTarget<Drawable>() {
 

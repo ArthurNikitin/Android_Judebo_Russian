@@ -7,13 +7,15 @@
 
     <TextView
         android:id="@+id/marker_title"
+        android:gravity="center"
+        android:maxWidth="60dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView" />
 
     <ImageView
         android:id="@+id/marker_icon"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/green_marker" />
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        app:srcCompat="@drawable/map_default_marker" />
 </LinearLayout>
