@@ -21,7 +21,9 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.target.Target
+import com.bumptech.glide.request.transition.Transition
 import com.byte4b.judebo.*
 import com.byte4b.judebo.R
 import com.byte4b.judebo.activities.DetailsActivity
@@ -48,6 +50,7 @@ import com.google.maps.android.clustering.view.DefaultClusterRenderer
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.cluster_icon.view.*
 import kotlinx.android.synthetic.main.fragment_maps.*
+import kotlinx.android.synthetic.main.marker_item.view.*
 import kotlinx.android.synthetic.main.preview.*
 import kotlinx.android.synthetic.main.preview.view.*
 import java.util.zip.Inflater
@@ -252,7 +255,9 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
 
     override fun onNearbyMarkersLoaded(list: List<MyMarker>?) {
         clusterManager?.clearItems()
-        clusterManager?.addItems((list ?: listOf()).map { AbstractMarker(it.UF_MAP_POINT_LATITUDE, it.UF_MAP_POINT_LONGITUDE, it) })
+        clusterManager?.addItems((list ?: listOf()).map {
+            AbstractMarker(it.UF_MAP_POINT_LATITUDE, it.UF_MAP_POINT_LONGITUDE, it)
+        })
         clusterManager?.cluster()
         markers = list
     }
@@ -308,14 +313,15 @@ class AbstractMarker(
     var latitude: Double = 0.0,
     var longitude: Double = 0.0,
     val marker: MyMarker
+    //val id: Int
 ) : ClusterItem {
 
     override fun getSnippet(): String? {
-        return "debug"
+        return null
     }
 
     override fun getTitle(): String? {
-        return "lol"
+        return null
     }
 
     override fun getPosition(): LatLng {
@@ -326,9 +332,10 @@ class AbstractMarker(
 
 class OwnIconRendered(
     val context: Context?, map: GoogleMap?,
-    clusterManager: ClusterManager<AbstractMarker>?
+    val clusterManager: ClusterManager<AbstractMarker>?
 ) : DefaultClusterRenderer<AbstractMarker>(context, map, clusterManager) {
 
+    private val drawables = mutableMapOf<String, Drawable>()
     private val setting by lazy { Setting(context!!) }
 
     override fun onBeforeClusterRendered(
@@ -366,68 +373,92 @@ class OwnIconRendered(
         return r
     }
 
+    val handler = Handler {
+        clusterManager?.cluster()
+        true
+    }
+
     override fun onBeforeClusterItemRendered(item: AbstractMarker, markerOptions: MarkerOptions) {
+        val view = (context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater)
+            .inflate(R.layout.marker_item, null)
+        view.marker_title.text = "test data"
+
         try {
-            context?.apply {
                 if (!item.marker.UF_LOGO_IMAGE.isNullOrEmpty()) {
-                    Log.e("deb", item.marker.UF_LOGO_IMAGE)
 
-                    val img = ImageView(context)
-                    Picasso.get()
-                        .load(item.marker.UF_LOGO_IMAGE)
-                        .centerInside()
-                        .into(img, object : com.squareup.picasso.Callback {
-                            override fun onSuccess() {
-                                markerOptions.icon(
-                                    BitmapDescriptorFactory.fromBitmap(
-                                        img.drawable.toBitmap(100, 100)
-                                    )
-                                )
-                            }
+                    if (drawables.containsKey(item.marker.UF_LOGO_IMAGE)) {
+                        Log.e("debug", "contains")
+                        view.marker_icon.setImageDrawable(drawables[item.marker.UF_LOGO_IMAGE])
+                    } else {
+                        Log.e("debug", "new load")
+                        Picasso.get()
+                            .load(item.marker.UF_LOGO_IMAGE)
+                            .centerInside()
+                            .into(view.marker_icon, object : com.squareup.picasso.Callback {
+                                override fun onSuccess() {
+                                    Log.e("debug", "Picasso success")
+                                    drawables[item.marker.UF_LOGO_IMAGE] = view.marker_icon.drawable
 
-                            override fun onError(e: java.lang.Exception?) {
-                            }
-                        })
+                                    clusterManager?.updateItem(item)
+                                }
 
-                    Glide.with(this)
-                        .load(item.marker.UF_LOGO_IMAGE)
-                        .diskCacheStrategy(DiskCacheStrategy.ALL)
-                        .fitCenter()
-                        .listener(object : RequestListener<Drawable> {
-                            override fun onLoadFailed(
-                                e: GlideException?,
-                                model: Any?,
-                                target: Target<Drawable>?,
-                                isFirstResource: Boolean
-                            ): Boolean {
-                                Log.e("deb", e?.localizedMessage ?: "Glide error")
-                                return true
-                            }
-
-                            override fun onResourceReady(
-                                resource: Drawable?,
-                                model: Any?,
-                                target: Target<Drawable>?,
-                                dataSource: DataSource?,
-                                isFirstResource: Boolean
-                            ): Boolean {
-                                markerOptions.icon(
-                                    BitmapDescriptorFactory.fromBitmap(
-                                        resource?.toBitmap(100, 100)
-                                    )
-                                )
-                                return true
-                            }
-
-                        })
-                        .into(ImageView(context))
-                }
+                                override fun onError(e: java.lang.Exception?) {
+                                    Log.e("debug", "Picasso error")
+                                }
+                            })
+                        clusterManager?.updateItem(item)
+                    }
             }
         } catch (e: Exception) { }
+        markerOptions.icon(BitmapDescriptorFactory.fromBitmap(view.toBitmap()))
+
         super.onBeforeClusterItemRendered(item, markerOptions)
     }
 
-    override fun getClusterText(bucket: Int): String {
-        return "dsvsdwdsd"
+    override fun onClusterItemUpdated(item: AbstractMarker, marker: Marker) {
+        val view = (context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater)
+            .inflate(R.layout.marker_item, null)
+        view.marker_title.text = "test data"
+
+        try {
+            if (!item.marker.UF_LOGO_IMAGE.isNullOrEmpty()) {
+
+                if (drawables.containsKey(item.marker.UF_LOGO_IMAGE)) {
+                    Log.e("debug", "contains")
+                    view.marker_icon.setImageDrawable(drawables[item.marker.UF_LOGO_IMAGE])
+                } else {
+                    Log.e("debug", "new load")
+                    Thread {
+                        Glide.with(context)
+                            .load(item.marker.UF_LOGO_IMAGE)
+                            .centerInside()
+                            .placeholder(R.drawable.green_marker)
+
+                            .into(object : SimpleTarget<Drawable>() {
+
+                                override fun onResourceReady(
+                                    resource: Drawable,
+                                    transition: Transition<in Drawable>?
+                                ) {
+                                    Log.e("debug", "Glide success")
+                                    drawables[item.marker.UF_LOGO_IMAGE] = resource
+
+                                    handler.sendEmptyMessage(0)
+                                }
+                            })
+                    }.start()
+
+
+
+                    clusterManager?.updateItem(item)
+                }
+            }
+        } catch (e: Exception) { }
+        marker.setIcon(BitmapDescriptorFactory.fromBitmap(view.toBitmap()))
+
+
+        super.onClusterItemUpdated(item, marker)
     }
+
+
 }
