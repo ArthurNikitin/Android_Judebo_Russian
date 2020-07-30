@@ -12,17 +12,10 @@ import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.ImageView
-import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.SimpleTarget
-import com.bumptech.glide.request.target.Target
 import com.bumptech.glide.request.transition.Transition
 import com.byte4b.judebo.*
 import com.byte4b.judebo.R
@@ -53,7 +46,6 @@ import kotlinx.android.synthetic.main.fragment_maps.*
 import kotlinx.android.synthetic.main.marker_item.view.*
 import kotlinx.android.synthetic.main.preview.*
 import kotlinx.android.synthetic.main.preview.view.*
-import java.util.zip.Inflater
 import kotlin.math.abs
 
 
@@ -342,6 +334,10 @@ class OwnIconRendered(
         cluster: Cluster<AbstractMarker>,
         markerOptions: MarkerOptions
     ) {
+        markerOptions.icon(BitmapDescriptorFactory.fromBitmap(getClusterIcon(cluster)))
+    }
+
+    private fun getClusterIcon(cluster: Cluster<AbstractMarker>): Bitmap {
         val view = (context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater)
             .inflate(R.layout.cluster_icon, null)
         view.img.setImageResource(
@@ -359,10 +355,14 @@ class OwnIconRendered(
             }
         )
         view.size.text = cluster.items.size.toString()
-        markerOptions.icon(BitmapDescriptorFactory.fromBitmap(view.toBitmap()))
+        return view.toBitmap()
     }
 
-    fun View.toBitmap(): Bitmap {
+    override fun onClusterUpdated(cluster: Cluster<AbstractMarker>, marker: Marker) {
+        marker.setIcon(BitmapDescriptorFactory.fromBitmap(getClusterIcon(cluster)))
+    }
+
+    private fun View.toBitmap(): Bitmap {
         val measureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
         measure(measureSpec, measureSpec)
         layout(0, 0, measuredWidth, measuredHeight)
@@ -379,86 +379,47 @@ class OwnIconRendered(
     }
 
     override fun onBeforeClusterItemRendered(item: AbstractMarker, markerOptions: MarkerOptions) {
-        val view = (context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater)
-            .inflate(R.layout.marker_item, null)
-        view.marker_title.text = "test data"
-
-        try {
-                if (!item.marker.UF_LOGO_IMAGE.isNullOrEmpty()) {
-
-                    if (drawables.containsKey(item.marker.UF_LOGO_IMAGE)) {
-                        Log.e("debug", "contains")
-                        view.marker_icon.setImageDrawable(drawables[item.marker.UF_LOGO_IMAGE])
-                    } else {
-                        Log.e("debug", "new load")
-                        Picasso.get()
-                            .load(item.marker.UF_LOGO_IMAGE)
-                            .centerInside()
-                            .into(view.marker_icon, object : com.squareup.picasso.Callback {
-                                override fun onSuccess() {
-                                    Log.e("debug", "Picasso success")
-                                    drawables[item.marker.UF_LOGO_IMAGE] = view.marker_icon.drawable
-
-                                    clusterManager?.updateItem(item)
-                                }
-
-                                override fun onError(e: java.lang.Exception?) {
-                                    Log.e("debug", "Picasso error")
-                                }
-                            })
-                        clusterManager?.updateItem(item)
-                    }
-            }
-        } catch (e: Exception) { }
-        markerOptions.icon(BitmapDescriptorFactory.fromBitmap(view.toBitmap()))
-
+        markerOptions.icon(BitmapDescriptorFactory.fromBitmap(getMarkerIcon(item)))
         super.onBeforeClusterItemRendered(item, markerOptions)
     }
 
-    override fun onClusterItemUpdated(item: AbstractMarker, marker: Marker) {
+    private fun getMarkerIcon(item: AbstractMarker): Bitmap {
         val view = (context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater)
             .inflate(R.layout.marker_item, null)
         view.marker_title.text = item.marker.NAME
 
         try {
-            if (!item.marker.UF_LOGO_IMAGE.isNullOrEmpty()) {
+            val logoUrl = item.marker.UF_LOGO_IMAGE
+            if (!logoUrl.isNullOrEmpty()) {
 
-                if (drawables.containsKey(item.marker.UF_LOGO_IMAGE)) {
-                    Log.e("debug", "contains")
-                    view.marker_icon.setImageDrawable(drawables[item.marker.UF_LOGO_IMAGE])
-                } else {
-                    Log.e("debug", "new load")
+                if (drawables.containsKey(logoUrl))
+                    view.marker_icon.setImageDrawable(drawables[logoUrl])
+                else {
                     Thread {
                         Glide.with(context)
-                            .load(item.marker.UF_LOGO_IMAGE)
+                            .load(logoUrl)
                             .centerInside()
                             .placeholder(R.drawable.map_default_marker)
-
                             .into(object : SimpleTarget<Drawable>() {
-
                                 override fun onResourceReady(
                                     resource: Drawable,
                                     transition: Transition<in Drawable>?
                                 ) {
-                                    Log.e("debug", "Glide success")
-                                    drawables[item.marker.UF_LOGO_IMAGE] = resource
-
+                                    drawables[logoUrl] = resource
                                     handler.sendEmptyMessage(0)
                                 }
                             })
                     }.start()
-
-
-
                     clusterManager?.updateItem(item)
                 }
             }
         } catch (e: Exception) { }
-        marker.setIcon(BitmapDescriptorFactory.fromBitmap(view.toBitmap()))
-
-
-        super.onClusterItemUpdated(item, marker)
+        return view.toBitmap()
     }
 
+    override fun onClusterItemUpdated(item: AbstractMarker, marker: Marker) {
+        marker.setIcon(BitmapDescriptorFactory.fromBitmap(getMarkerIcon(item)))
+        super.onClusterItemUpdated(item, marker)
+    }
 
 }
