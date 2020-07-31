@@ -46,20 +46,23 @@ class OwnIconRendered(
     private fun getClusterIcon(cluster: Cluster<AbstractMarker>): Bitmap {
         val view = (context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater)
             .inflate(R.layout.cluster_icon, null)
-        view.img.setImageResource(
+        val size =
             when (cluster.items.size) {
-                in setting.cluster_sizes[0] -> R.drawable.cluster_01
-                in setting.cluster_sizes[1] -> R.drawable.cluster_02
-                in setting.cluster_sizes[2] -> R.drawable.cluster_03
-                in setting.cluster_sizes[3] -> R.drawable.cluster_04
-                in setting.cluster_sizes[4] -> R.drawable.cluster_05
-                in setting.cluster_sizes[5] -> R.drawable.cluster_06
-                in setting.cluster_sizes[6] -> R.drawable.cluster_07
-                in setting.cluster_sizes[7] -> R.drawable.cluster_08
-                in setting.cluster_sizes[8] -> R.drawable.cluster_09
-                else -> R.drawable.cluster_10
+                in setting.cluster_sizes[0] -> 15
+                in setting.cluster_sizes[1] -> 25
+                in setting.cluster_sizes[2] -> 35
+                in setting.cluster_sizes[3] -> 45
+                in setting.cluster_sizes[4] -> 55
+                in setting.cluster_sizes[5] -> 65
+                in setting.cluster_sizes[6] -> 75
+                in setting.cluster_sizes[7] -> 85
+                in setting.cluster_sizes[8] -> 95
+                else -> 100
             }
-        )
+        val params = view.img.layoutParams
+        params.height = size
+        params.width = size
+        view.img.layoutParams = params
         view.size.text = cluster.items.size.toString()
         return view.toBitmap()
     }
