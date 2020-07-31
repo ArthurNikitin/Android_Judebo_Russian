@@ -3,35 +3,93 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/marker_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:maxWidth="120dp"
+        android:text="TextView" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/marker_title"
+        <LinearLayout
+            android:id="@+id/salaryContainerMain4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/secondContainer4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/secondSalary_tv4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text=""
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/secondSalaryVal_tv4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="17sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/salaryContainer4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/salary_tv4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/salaryVal_tv4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="17sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/marker_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/map_default_marker" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/salaryContainerMain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:maxWidth="120dp"
-            android:text="TextView" />
-
-        <ImageView
-            android:id="@+id/marker_icon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            app:srcCompat="@drawable/map_default_marker" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/salaryContainerMain"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:id="@+id/secondContainer2"
@@ -40,19 +98,19 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:textSize="17sp"
-                    android:layout_marginStart="5dp"
                     android:id="@+id/secondSalary_tv2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="" />
+                    android:layout_marginStart="5dp"
+                    android:text=""
+                    android:textSize="17sp" />
 
                 <TextView
-                    android:textSize="17sp"
                     android:id="@+id/secondSalaryVal_tv2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="" />
+                    android:text=""
+                    android:textSize="17sp" />
 
             </LinearLayout>
 
@@ -63,20 +121,22 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:textSize="17sp"
                     android:id="@+id/salary_tv2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="" />
+                    android:text=""
+                    android:textSize="17sp" />
 
                 <TextView
-                    android:textSize="17sp"
                     android:id="@+id/salaryVal_tv2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="" />
+                    android:text=""
+                    android:textSize="17sp" />
 
             </LinearLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 
