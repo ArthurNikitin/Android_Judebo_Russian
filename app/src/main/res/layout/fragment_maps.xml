@@ -32,4 +32,35 @@
         android:layout_marginBottom="15dp"
         android:src="@drawable/location_button" />
 
+    <androidx.cardview.widget.CardView
+        android:visibility="gone"
+        android:id="@+id/clusterPreview_cv"
+        android:layout_centerInParent="true"
+        android:layout_margin="15dp"
+        android:background="#fff"
+        app:cardCornerRadius="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="500dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/clusterContainer_rv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp" />
+
+        </LinearLayout>
+
+        </ScrollView>
+
+    </androidx.cardview.widget.CardView>
+
 </RelativeLayout>

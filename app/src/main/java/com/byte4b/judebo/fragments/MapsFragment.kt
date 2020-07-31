@@ -20,6 +20,7 @@ import com.bumptech.glide.request.transition.Transition
 import com.byte4b.judebo.*
 import com.byte4b.judebo.R
 import com.byte4b.judebo.activities.DetailsActivity
+import com.byte4b.judebo.adapters.ClusterAdapter
 import com.byte4b.judebo.adapters.LanguagesAdapter
 import com.byte4b.judebo.adapters.SkillsAdapter
 import com.byte4b.judebo.models.AbstractMarker
@@ -91,20 +92,25 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
                 var zoom = googleMap.cameraPosition.zoom + 1
                 if (zoom > setting.maxZoom) zoom = setting.maxZoom
                 googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(it.position, zoom))
+            } else {
+                if (it.items.isNotEmpty()) {
+                    googleMap.animateCamera(CameraUpdateFactory.newLatLng(it.position))
+                    clusterPreview_cv.visibility = View.VISIBLE
+                    clusterContainer_rv.layoutManager = LinearLayoutManager(ctx)
+                    clusterContainer_rv.adapter = ClusterAdapter(ctx, it.items.map { it.marker })
+                }
             }
             true
         }
+
+        googleMap.setOnMapClickListener { clusterPreview_cv.visibility = View.GONE }
+        googleMap.setOnCameraMoveStartedListener { clusterPreview_cv.visibility = View.GONE }
 
         clusterManager?.markerCollection?.setInfoWindowAdapter(object : GoogleMap.InfoWindowAdapter {
             override fun getInfoContents(marker: Marker) = getPreview(marker)
             override fun getInfoWindow(marker: Marker) = getPreview(marker)
         })
 
-        clusterManager?.clusterMarkerCollection?.setInfoWindowAdapter(object : GoogleMap.InfoWindowAdapter {
-            override fun getInfoContents(p0: Marker?) = getClusterPreview(p0!!)
-            override fun getInfoWindow(p0: Marker?) = getClusterPreview(p0!!)
-        })
-        
         if (setting.lastMapCameraPosition.latitude != 0.0) {
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
                 setting.lastMapCameraPosition, setting.basicZoom
@@ -166,10 +172,6 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
                 Thread.sleep(setting.search_request_pause * 1000L)
             }
         }.start()
-    }
-
-    private fun getClusterPreview(cluster: Marker): View {
-        return ctx.layoutInflater.inflate(R.layout.preview, null)
     }
 
     @SuppressLint("SetTextI18n")
