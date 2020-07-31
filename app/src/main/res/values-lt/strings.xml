@@ -1,2 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+
+    <string name="settings_title_current_language">Kalba</string>
+
+    <string name="settings_title_settings">Nustatymai</string>
+
+    <string name="settings_title_currency">Valiuta</string>
+    <string name="settings_title_current_currency">Valiuta</string>
+    <string name="settings_title_support">Palaikymas</string>
+    <string name="settings_title_support_email">lt@judebo.com</string>
+    <string name="button_detail_title">detalė</string>
+
+    <string name="add_job_title">Galite pridėti laisvų darbo vietų naudodamiesi interneto naršykle</string>
+    <string name="add_job_link">https://lt.judebo.com/jobs/</string>
+
+
+    <string name="search_title_search">Paieška</string>
+    <string name="button_share">Dalintis</string>
+    <string name="error_no_internet">Nėra interneto ryšio!</string>
+    <string name="settings_title_language">Kalba</string>
+
+
+
+</resources>

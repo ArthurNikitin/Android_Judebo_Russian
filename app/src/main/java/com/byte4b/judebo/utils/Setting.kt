@@ -45,8 +45,8 @@ class Setting(ctx: Context) {
     val search_request_pause = 1 //seconds
     val search_request_min_move_delta = 0.1 //degrees
 
-    val cluster_radius = 100.0
+    val cluster_radius = 60.0
     val cluster_sizes =
-        listOf(2..2, 3..5, 6..10, 11..15, 16..20, 21..25, 26..30, 31..35, 36..40, 41..45)
+        listOf(2..3, 4..5, 6..10, 11..15, 16..20, 21..25, 26..30, 31..35, 36..40, 41..45)
 
 }

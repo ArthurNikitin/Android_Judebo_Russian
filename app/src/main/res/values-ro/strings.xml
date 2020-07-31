@@ -1,2 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+
+    <string name="settings_title_current_language">Limba</string>
+
+    <string name="settings_title_settings">Setări</string>
+
+    <string name="settings_title_currency">Valută</string>
+    <string name="settings_title_current_currency">Valută</string>
+    <string name="settings_title_support">A sustine</string>
+    <string name="settings_title_support_email">ro@judebo.com</string>
+    <string name="button_detail_title">detaliu</string>
+
+    <string name="add_job_title">Puteți adăuga posturi vacante de către un browser web</string>
+    <string name="add_job_link">https://ro.judebo.com/jobs/</string>
+
+
+    <string name="search_title_search">Căutare</string>
+    <string name="button_share">Acțiune</string>
+    <string name="error_no_internet">Fără conexiune internet!</string>
+    <string name="settings_title_language">Limba</string>
+
+
+
+</resources>

@@ -1,2 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="settings_title_current_language">Мова</string>
+    <string name="settings_title_settings">Налаштування</string>
+    <string name="settings_title_currency">Валюта</string>
+    <string name="settings_title_current_currency">Валюта</string>
+    <string name="settings_title_support">Підтримка</string>
+    <string name="settings_title_support_email">uk@judebo.com</string>
+    <string name="button_detail_title">докладно</string>
+    <string name="add_job_title">Ви можете додати вакансії через веб-браузер</string>
+    <string name="add_job_link">https://uk.judebo.com/jobs/</string>
+    <string name="search_title_search">Пошук</string>
+    <string name="button_share">Поділитися</string>
+    <string name="error_no_internet">No internet connection!</string>
+    <string name="settings_title_language">Мова</string>
+</resources>

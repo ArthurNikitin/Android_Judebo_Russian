@@ -1,2 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+
+    <string name="settings_title_current_language">Լեզու</string>
+
+    <string name="settings_title_settings">Կարգավորումներ</string>
+
+    <string name="settings_title_currency">Արժույթ</string>
+    <string name="settings_title_current_currency">Արժույթ</string>
+    <string name="settings_title_support">Աջակցություն</string>
+    <string name="settings_title_support_email">hy@judebo.com</string>
+    <string name="button_detail_title">մանրամասնություն</string>
+
+    <string name="add_job_title">Դուք կարող եք ավելացնել թափուր աշխատատեղեր վեբ զննարկչի կողմից</string>
+    <string name="add_job_link">https://hy.judebo.com/jobs/</string>
+
+
+    <string name="search_title_search">Որոնել</string>
+    <string name="button_share">Կիսվիր</string>
+    <string name="error_no_internet">Ոչ մի ինտերնետային կապ:</string>
+    <string name="settings_title_language">Լեզու</string>
+
+
+
+</resources>

@@ -85,9 +85,11 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
         alg.maxDistanceBetweenClusteredItems = (setting.cluster_radius * 2).toInt()
         clusterManager?.algorithm = alg
         clusterManager?.setOnClusterClickListener {
-            var zoom = googleMap.cameraPosition.zoom + 1
-            if (zoom > setting.maxZoom) zoom = setting.maxZoom
-            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(it.position, zoom))
+            if (googleMap.cameraPosition.zoom != setting.maxZoom) {
+                var zoom = googleMap.cameraPosition.zoom + 1
+                if (zoom > setting.maxZoom) zoom = setting.maxZoom
+                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(it.position, zoom))
+            }
             true
         }
 
@@ -96,8 +98,11 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
             override fun getInfoWindow(marker: Marker) = getPreview(marker)
         })
 
-
-
+        clusterManager?.clusterMarkerCollection?.setInfoWindowAdapter(object : GoogleMap.InfoWindowAdapter {
+            override fun getInfoContents(p0: Marker?) = getClusterPreview(p0!!)
+            override fun getInfoWindow(p0: Marker?) = getClusterPreview(p0!!)
+        })
+        
         if (setting.lastMapCameraPosition.latitude != 0.0) {
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
                 setting.lastMapCameraPosition, setting.basicZoom
@@ -159,6 +164,10 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
                 Thread.sleep(setting.search_request_pause * 1000L)
             }
         }.start()
+    }
+
+    private fun getClusterPreview(cluster: Marker): View {
+        return ctx.layoutInflater.inflate(R.layout.preview, null)
     }
 
     @SuppressLint("SetTextI18n")

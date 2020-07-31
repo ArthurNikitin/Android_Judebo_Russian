@@ -1,2 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+
+    <string name="settings_title_current_language">Језик</string>
+
+    <string name="settings_title_settings">Подешавања</string>
+
+    <string name="settings_title_currency">Валута</string>
+    <string name="settings_title_current_currency">Валута</string>
+    <string name="settings_title_support">Подршка</string>
+    <string name="settings_title_support_email">sr@judebo.com</string>
+    <string name="button_detail_title">детаљ</string>
+
+    <string name="add_job_title">Слободна радна места можете додати путем веб прегледача</string>
+    <string name="add_job_link">https://sr.judebo.com/jobs/</string>
+
+
+    <string name="search_title_search">Претрага</string>
+    <string name="button_share">Објави</string>
+    <string name="error_no_internet">Нема интернет конекције!</string>
+    <string name="settings_title_language">Језик</string>
+
+
+
+</resources>

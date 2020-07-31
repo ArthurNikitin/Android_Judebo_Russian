@@ -1,2 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+
+    <string name="settings_title_current_language">Dil</string>
+
+    <string name="settings_title_settings">Parametrlər</string>
+
+    <string name="settings_title_currency">Valyuta</string>
+    <string name="settings_title_current_currency">Valyuta</string>
+    <string name="settings_title_support">Dəstək</string>
+    <string name="settings_title_support_email">az@judebo.com</string>
+    <string name="button_detail_title">detal</string>
+
+    <string name="add_job_title">Veb brauzer tərəfindən vakansiyalar əlavə edə bilərsiniz</string>
+    <string name="add_job_link">https://az.judebo.com/jobs/</string>
+
+
+    <string name="search_title_search">Axtarış</string>
+    <string name="button_share">Paylaşın</string>
+    <string name="error_no_internet">İnternet bağlantısı yoxdur!</string>
+    <string name="settings_title_language">Dil</string>
+
+
+
+</resources>

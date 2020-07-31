@@ -1,2 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+
+    <string name="settings_title_current_language">Taal</string>
+
+    <string name="settings_title_settings">Instellingen</string>
+
+    <string name="settings_title_currency">Valuta</string>
+    <string name="settings_title_current_currency">Valuta</string>
+    <string name="settings_title_support">Ondersteuning</string>
+    <string name="settings_title_support_email">nl@judebo.com</string>
+    <string name="button_detail_title">detail</string>
+
+    <string name="add_job_title">U kunt vacatures toevoegen via een webbrowser</string>
+    <string name="add_job_link">https://nl.judebo.com/jobs/</string>
+
+
+    <string name="search_title_search">Zoeken</string>
+    <string name="button_share">Delen</string>
+    <string name="error_no_internet">Geen internet verbinding!</string>
+    <string name="settings_title_language">Taal</string>
+
+
+
+</resources>

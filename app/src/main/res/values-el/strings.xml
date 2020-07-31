@@ -1,2 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+
+    <string name="settings_title_current_language">Γλώσσα</string>
+
+    <string name="settings_title_settings">Ρυθμίσεις</string>
+
+    <string name="settings_title_currency">Νόμισμα</string>
+    <string name="settings_title_current_currency">Νόμισμα</string>
+    <string name="settings_title_support">Υποστήριξη</string>
+    <string name="settings_title_support_email">el@judebo.com</string>
+    <string name="button_detail_title">λεπτομέρεια</string>
+
+    <string name="add_job_title">Μπορείτε να προσθέσετε κενές θέσεις από ένα πρόγραμμα περιήγησης ιστού</string>
+    <string name="add_job_link">https://el.judebo.com/jobs/</string>
+
+
+    <string name="search_title_search">Αναζήτηση</string>
+    <string name="button_share">Μερίδιο</string>
+    <string name="error_no_internet">Δεν υπάρχει σύνδεση στο διαδίκτυο!</string>
+    <string name="settings_title_language">Γλώσσα</string>
+
+
+
+</resources>

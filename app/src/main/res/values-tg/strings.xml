@@ -1,2 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+
+    <string name="settings_title_current_language">Забон</string>
+
+    <string name="settings_title_settings">Танзимот</string>
+
+    <string name="settings_title_currency">Асъор</string>
+    <string name="settings_title_current_currency">Асъор</string>
+    <string name="settings_title_support">Дастгирӣ</string>
+    <string name="settings_title_support_email">tg@judebo.com</string>
+    <string name="button_detail_title">муфассал</string>
+
+    <string name="add_job_title">Шумо метавонед ҷойҳои кории холиро тавассути веб-браузер илова кунед</string>
+    <string name="add_job_link">https://tg.judebo.com/jobs/</string>
+
+
+    <string name="search_title_search">Ҷустуҷӯ</string>
+    <string name="button_share">Ҳиссаи</string>
+    <string name="error_no_internet">Пайвастшавӣ ба интернет!</string>
+    <string name="settings_title_language">Забон</string>
+
+
+
+</resources>

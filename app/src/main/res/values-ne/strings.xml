@@ -1,2 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+
+    <string name="settings_title_current_language">भाषा</string>
+
+    <string name="settings_title_settings">सेटिंग्स</string>
+
+    <string name="settings_title_currency">मुद्रा</string>
+    <string name="settings_title_current_currency">मुद्रा</string>
+    <string name="settings_title_support">समर्थन</string>
+    <string name="settings_title_support_email">ne@judebo.com</string>
+    <string name="button_detail_title">विस्तार</string>
+
+    <string name="add_job_title">तपाईं एक वेब ब्राउजर द्वारा खाली पदहरू थप्न सक्नुहुन्छ</string>
+    <string name="add_job_link">https://ne.judebo.com/jobs/</string>
+
+
+    <string name="search_title_search">खोज्नुहोस्</string>
+    <string name="button_share">सेयर गर्नुहोस्</string>
+    <string name="error_no_internet">कुनै इन्टरनेट जडान छैन!</string>
+    <string name="settings_title_language">भाषा</string>
+
+
+
+</resources>

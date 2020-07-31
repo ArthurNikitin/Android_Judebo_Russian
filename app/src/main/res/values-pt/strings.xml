@@ -1,2 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+
+    <string name="settings_title_current_language">Língua</string>
+
+    <string name="settings_title_settings">Configurações</string>
+
+    <string name="settings_title_currency">Moeda</string>
+    <string name="settings_title_current_currency">Moeda</string>
+    <string name="settings_title_support">Apoio, suporte</string>
+    <string name="settings_title_support_email">pt@judebo.com</string>
+    <string name="button_detail_title">detalhe</string>
+
+    <string name="add_job_title">Você pode adicionar vagas por um navegador da web</string>
+    <string name="add_job_link">https://pt.judebo.com/jobs/</string>
+
+
+    <string name="search_title_search">Procurar</string>
+    <string name="button_share">Compartilhar</string>
+    <string name="error_no_internet">Sem conexão à internet!</string>
+    <string name="settings_title_language">Língua</string>
+
+
+
+</resources>

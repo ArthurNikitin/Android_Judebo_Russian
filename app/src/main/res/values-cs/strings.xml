@@ -1,2 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+
+    <string name="settings_title_current_language">Jazyk</string>
+
+    <string name="settings_title_settings">Nastavení</string>
+
+    <string name="settings_title_currency">Měna</string>
+    <string name="settings_title_current_currency">Měna</string>
+    <string name="settings_title_support">Podpěra, podpora</string>
+    <string name="settings_title_support_email">cs@judebo.com</string>
+    <string name="button_detail_title">detail</string>
+
+    <string name="add_job_title">Volná místa můžete přidat pomocí webového prohlížeče</string>
+    <string name="add_job_link">https://cs.judebo.com/jobs/</string>
+
+
+    <string name="search_title_search">Vyhledávání</string>
+    <string name="button_share">Podíl</string>
+    <string name="error_no_internet">Žádné internetové připojení!</string>
+    <string name="settings_title_language">Jazyk</string>
+
+
+
+</resources>

@@ -1,2 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+
+    <string name="settings_title_current_language">שפה</string>
+
+    <string name="settings_title_settings">הגדרות</string>
+
+    <string name="settings_title_currency">מַטְבֵּעַ</string>
+    <string name="settings_title_current_currency">מַטְבֵּעַ</string>
+    <string name="settings_title_support">תמיכה</string>
+    <string name="settings_title_support_email">he@judebo.com</string>
+    <string name="button_detail_title">פרט</string>
+
+    <string name="add_job_title">אתה יכול להוסיף מקומות פנויים באמצעות דפדפן אינטרנט</string>
+    <string name="add_job_link">https://he.judebo.com/jobs/</string>
+
+
+    <string name="search_title_search">לחפש</string>
+    <string name="button_share">לַחֲלוֹק</string>
+    <string name="error_no_internet">אין חיבור אינטרנט!</string>
+    <string name="settings_title_language">שפה</string>
+
+
+
+</resources>

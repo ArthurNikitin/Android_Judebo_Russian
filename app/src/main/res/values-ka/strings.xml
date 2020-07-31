@@ -1,2 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+
+    <string name="settings_title_current_language">Ენა</string>
+
+    <string name="settings_title_settings">პარამეტრები</string>
+
+    <string name="settings_title_currency">ვალუტა</string>
+    <string name="settings_title_current_currency">ვალუტა</string>
+    <string name="settings_title_support">მხარდაჭერა</string>
+    <string name="settings_title_support_email">ka@judebo.com</string>
+    <string name="button_detail_title">დეტალი</string>
+
+    <string name="add_job_title">შეგიძლიათ დაამატოთ ვაკანსიები ვებ ბრაუზერის საშუალებით</string>
+    <string name="add_job_link">https://ka.judebo.com/jobs/</string>
+
+
+    <string name="search_title_search">ძებნა</string>
+    <string name="button_share">გაზიარება</string>
+    <string name="error_no_internet">Არ არის ინტერნეტ კავშირი!</string>
+    <string name="settings_title_language">Ენა</string>
+
+
+
+</resources>

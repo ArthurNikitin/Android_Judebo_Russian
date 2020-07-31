@@ -1,2 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+
+    <string name="settings_title_current_language">linguaggio</string>
+
+    <string name="settings_title_settings">impostazioni</string>
+
+    <string name="settings_title_currency">Moneta</string>
+    <string name="settings_title_current_currency">Moneta</string>
+    <string name="settings_title_support">Supporto</string>
+    <string name="settings_title_support_email">it@judebo.com</string>
+    <string name="button_detail_title">dettaglio</string>
+
+    <string name="add_job_title">Puoi aggiungere posti vacanti da un browser web</string>
+    <string name="add_job_link">https://it.judebo.com/jobs/</string>
+
+
+    <string name="search_title_search">Ricerca</string>
+    <string name="button_share">Condividere</string>
+    <string name="error_no_internet">Nessuna connessione internet!</string>
+    <string name="settings_title_language">linguaggio</string>
+
+
+
+</resources>

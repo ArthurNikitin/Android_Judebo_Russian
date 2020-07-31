@@ -1,2 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+
+    <string name="settings_title_current_language">භාෂාව</string>
+
+    <string name="settings_title_settings">සැකසුම්</string>
+
+    <string name="settings_title_currency">මුදල්</string>
+    <string name="settings_title_current_currency">මුදල්</string>
+    <string name="settings_title_support">සහාය</string>
+    <string name="settings_title_support_email">si@judebo.com</string>
+    <string name="button_detail_title">විස්තර</string>
+
+    <string name="add_job_title">වෙබ් බ්‍රව්සරයකින් ඔබට පුරප්පාඩු එකතු කළ හැකිය</string>
+    <string name="add_job_link">https://si.judebo.com/jobs/</string>
+
+
+    <string name="search_title_search">සෙවීම</string>
+    <string name="button_share">බෙදාගන්න</string>
+    <string name="error_no_internet">අන්තර්ජාල සම්බන්ධතාවයක් නොමැත!</string>
+    <string name="settings_title_language">භාෂාව</string>
+
+
+
+</resources>

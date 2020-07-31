@@ -1,2 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+
+    <string name="settings_title_current_language">Basa</string>
+
+    <string name="settings_title_settings">Setelan</string>
+
+    <string name="settings_title_currency">Dhuwit</string>
+    <string name="settings_title_current_currency">Dhuwit</string>
+    <string name="settings_title_support">Dhukungan</string>
+    <string name="settings_title_support_email">lv@judebo.com</string>
+    <string name="button_detail_title">rinci</string>
+
+    <string name="add_job_title">Sampeyan bisa nambah lowongan dening browser web</string>
+    <string name="add_job_link">https://lv.judebo.com/jobs/</string>
+
+
+    <string name="search_title_search">Telusuri</string>
+    <string name="button_share">Nuduhake</string>
+    <string name="error_no_internet">Ora ana sambungan internet!</string>
+    <string name="settings_title_language">Basa</string>
+
+
+
+</resources>

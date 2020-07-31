@@ -1,2 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+
+    <string name="settings_title_current_language">Språk</string>
+
+    <string name="settings_title_settings">inställningar</string>
+
+    <string name="settings_title_currency">Valuta</string>
+    <string name="settings_title_current_currency">Valuta</string>
+    <string name="settings_title_support">Stöd</string>
+    <string name="settings_title_support_email">sv@judebo.com</string>
+    <string name="button_detail_title">detalj</string>
+
+    <string name="add_job_title">Du kan lägga till lediga platser med en webbläsare</string>
+    <string name="add_job_link">https://sv.judebo.com/jobs/</string>
+
+
+    <string name="search_title_search">Sök</string>
+    <string name="button_share">Dela med sig</string>
+    <string name="error_no_internet">Ingen internetanslutning!</string>
+    <string name="settings_title_language">Språk</string>
+
+
+
+</resources>

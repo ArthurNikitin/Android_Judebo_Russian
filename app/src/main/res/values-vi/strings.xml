@@ -1,2 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+
+    <string name="settings_title_current_language">Ngôn ngữ</string>
+
+    <string name="settings_title_settings">Cài đặt</string>
+
+    <string name="settings_title_currency">Tiền tệ</string>
+    <string name="settings_title_current_currency">Tiền tệ</string>
+    <string name="settings_title_support">Ủng hộ</string>
+    <string name="settings_title_support_email">vi@judebo.com</string>
+    <string name="button_detail_title">chi tiết</string>
+
+    <string name="add_job_title">Bạn có thể thêm vị trí tuyển dụng bằng trình duyệt web</string>
+    <string name="add_job_link">https://vi.judebo.com/jobs/</string>
+
+
+    <string name="search_title_search">Tìm kiếm</string>
+    <string name="button_share">Chia sẻ</string>
+    <string name="error_no_internet">Không có kết nối Internet!</string>
+    <string name="settings_title_language">Ngôn ngữ</string>
+
+
+
+</resources>

@@ -1,2 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+
+    <string name="settings_title_current_language">言語</string>
+
+    <string name="settings_title_settings">設定</string>
+
+    <string name="settings_title_currency">通貨</string>
+    <string name="settings_title_current_currency">通貨</string>
+    <string name="settings_title_support">サポート</string>
+    <string name="settings_title_support_email">ja@judebo.com</string>
+    <string name="button_detail_title">細部</string>
+
+    <string name="add_job_title">ウェブブラウザで空席を追加できます</string>
+    <string name="add_job_link">https://ja.judebo.com/jobs/</string>
+
+
+    <string name="search_title_search">探す</string>
+    <string name="button_share">共有</string>
+    <string name="error_no_internet">インターネットに接続されていません！</string>
+    <string name="settings_title_language">言語</string>
+
+
+
+</resources>

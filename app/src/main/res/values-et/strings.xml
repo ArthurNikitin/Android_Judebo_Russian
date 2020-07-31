@@ -1,2 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+
+    <string name="settings_title_current_language">Keel</string>
+
+    <string name="settings_title_settings">Seadistused</string>
+
+    <string name="settings_title_currency">Valuuta</string>
+    <string name="settings_title_current_currency">Valuuta</string>
+    <string name="settings_title_support">Toetus</string>
+    <string name="settings_title_support_email">et@judebo.com</string>
+    <string name="button_detail_title">detail</string>
+
+    <string name="add_job_title">Vabade töökohtade lisamiseks saate kasutada veebibrauserit</string>
+    <string name="add_job_link">https://et.judebo.com/jobs/</string>
+
+
+    <string name="search_title_search">Otsing</string>
+    <string name="button_share">Jaga</string>
+    <string name="error_no_internet">Interneti-ühendust pole!</string>
+    <string name="settings_title_language">Keel</string>
+
+
+
+</resources>

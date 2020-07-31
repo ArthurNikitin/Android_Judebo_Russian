@@ -1,18 +1,18 @@
 <resources>
     <string name="app_name" translatable="false">Judebo</string>
-    <string name="error_no_internet">No internet connection!</string>
-    <string name="search_title_search">Search</string>
+    <string name="settings_title_current_language">Language</string>
     <string name="settings_title_settings">Setting</string>
-    <string name="settings_title_current_language">Current Language</string>
-    <string name="settings_title_current_currency">Current currency</string>
+    <string name="settings_title_currency">Currency</string>
+    <string name="settings_title_current_currency">Currency</string>
     <string name="settings_title_support">Support</string>
-    <string name="settings_title_language">Choose language</string>
     <string name="settings_title_support_email">en@judebo.com</string>
-    <string name="settings_title_currency">Choose currency</string>
-    <string name="button_detail_title">More...</string>
-    <string name="button_share">Share</string>
+    <string name="button_detail_title">detail</string>
     <string name="add_job_title">You can add vacancies by web browser</string>
-    <string name="add_job_link">htpps://en.judebo.com</string>
+    <string name="add_job_link">https://en.judebo.com/jobs/</string>
+    <string name="search_title_search">Search</string>
+    <string name="button_share">Share</string>
+    <string name="error_no_internet">No internet connection!</string>
+    <string name="settings_title_language">Language</string>
 </resources>
 
     <!-- локализация по умолчанию -->

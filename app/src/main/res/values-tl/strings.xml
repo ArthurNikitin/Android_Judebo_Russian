@@ -1,2 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+
+    <string name="settings_title_current_language">Wika</string>
+
+    <string name="settings_title_settings">Mga setting</string>
+
+    <string name="settings_title_currency">Pera</string>
+    <string name="settings_title_current_currency">Pera</string>
+    <string name="settings_title_support">Suporta</string>
+    <string name="settings_title_support_email">tl@judebo.com</string>
+    <string name="button_detail_title">detalye</string>
+
+    <string name="add_job_title">Maaari kang magdagdag ng mga bakante sa pamamagitan ng isang web browser</string>
+    <string name="add_job_link">https://tl.judebo.com/jobs/</string>
+
+
+    <string name="search_title_search">Paghahanap</string>
+    <string name="button_share">Ibahagi</string>
+    <string name="error_no_internet">Walang koneksyon sa internet!</string>
+    <string name="settings_title_language">Wika</string>
+
+
+
+</resources>

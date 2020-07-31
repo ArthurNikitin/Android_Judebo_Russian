@@ -1,2 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+
+    <string name="settings_title_current_language">Kieli</string>
+
+    <string name="settings_title_settings">asetukset</string>
+
+    <string name="settings_title_currency">valuutta</string>
+    <string name="settings_title_current_currency">valuutta</string>
+    <string name="settings_title_support">Tuki</string>
+    <string name="settings_title_support_email">fi@judebo.com</string>
+    <string name="button_detail_title">yksityiskohta</string>
+
+    <string name="add_job_title">Voit lisätä avoimia työpaikkoja selaimella</string>
+    <string name="add_job_link">https://fi.judebo.com/jobs/</string>
+
+
+    <string name="search_title_search">Hae</string>
+    <string name="button_share">Jaa</string>
+    <string name="error_no_internet">Ei Internet-yhteyttä!</string>
+    <string name="settings_title_language">Kieli</string>
+
+
+
+</resources>

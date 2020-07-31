@@ -1,2 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+
+    <string name="settings_title_current_language">Dil</string>
+
+    <string name="settings_title_settings">Sazlamalar</string>
+
+    <string name="settings_title_currency">Walýuta</string>
+    <string name="settings_title_current_currency">Walýuta</string>
+    <string name="settings_title_support">Goldaw</string>
+    <string name="settings_title_support_email">tk@judebo.com</string>
+    <string name="button_detail_title">jikme-jiklik</string>
+
+    <string name="add_job_title">Web brauzeri bilen boş ýerleri goşup bilersiňiz</string>
+    <string name="add_job_link">https://tk.judebo.com/jobs/</string>
+
+
+    <string name="search_title_search">Gözlemek</string>
+    <string name="button_share">Paýlaş</string>
+    <string name="error_no_internet">Internet birikmesi ýok!</string>
+    <string name="settings_title_language">Dil</string>
+
+
+
+</resources>

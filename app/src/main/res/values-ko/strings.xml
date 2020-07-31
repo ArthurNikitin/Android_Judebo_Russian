@@ -1,2 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+
+    <string name="settings_title_current_language">언어</string>
+
+    <string name="settings_title_settings">설정</string>
+
+    <string name="settings_title_currency">통화</string>
+    <string name="settings_title_current_currency">통화</string>
+    <string name="settings_title_support">지원하다</string>
+    <string name="settings_title_support_email">ko@judebo.com</string>
+    <string name="button_detail_title">세부 묘사</string>
+
+    <string name="add_job_title">웹 브라우저로 공석을 추가 할 수 있습니다</string>
+    <string name="add_job_link">https://ko.judebo.com/jobs/</string>
+
+
+    <string name="search_title_search">검색</string>
+    <string name="button_share">공유</string>
+    <string name="error_no_internet">인터넷에 연결되지 않음!</string>
+    <string name="settings_title_language">언어</string>
+
+
+
+</resources>

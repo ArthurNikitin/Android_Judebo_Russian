@@ -1,16 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="error_no_internet">Нет интернет соединения!</string>
-    <string name="search_title_search">Поиск</string>
-    <string name="settings_title_settings">Настройки</string>
-    <string name="settings_title_current_language">Язык</string>
-    <string name="settings_title_current_currency">Валюта</string>
-    <string name="settings_title_support">Поддержка</string>
-    <string name="settings_title_language">Язык</string>
-    <string name="settings_title_support_email">ru@judebo.com</string>
-    <string name="settings_title_currency">Валюта</string>
-    <string name="button_detail_title">подробнее...</string>
-    <string name="button_share">Поделиться</string>
-    <string name="add_job_title">Для добавления вакансии передите по ссылке</string>
-    <string name="add_job_link">https://ru.judebo.com</string>
+
+
+    <string name="settings_title_current_language">語言</string>
+
+    <string name="settings_title_settings">設定值</string>
+
+    <string name="settings_title_currency">貨幣</string>
+    <string name="settings_title_current_currency">貨幣</string>
+    <string name="settings_title_support">支持</string>
+    <string name="settings_title_support_email">zh@judebo.com</string>
+    <string name="button_detail_title">詳情</string>
+
+    <string name="add_job_title">您可以通過網絡瀏覽器添加職位空缺</string>
+    <string name="add_job_link">https://zh.judebo.com/jobs/</string>
+
+
+    <string name="search_title_search">搜索</string>
+    <string name="button_share">分享</string>
+    <string name="error_no_internet">沒有網絡連接！</string>
+    <string name="settings_title_language">語言</string>
+
+
+
 </resources>

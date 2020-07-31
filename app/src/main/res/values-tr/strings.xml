@@ -1,2 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+
+    <string name="settings_title_current_language">Dil</string>
+
+    <string name="settings_title_settings">Ayarlar</string>
+
+    <string name="settings_title_currency">Para birimi</string>
+    <string name="settings_title_current_currency">Para birimi</string>
+    <string name="settings_title_support">Destek</string>
+    <string name="settings_title_support_email">tr@judebo.com</string>
+    <string name="button_detail_title">detay</string>
+
+    <string name="add_job_title">Bir web tarayıcısı tarafından boş pozisyonlar ekleyebilirsiniz</string>
+    <string name="add_job_link">https://tr.judebo.com/jobs/</string>
+
+
+    <string name="search_title_search">Arama</string>
+    <string name="button_share">Paylaş</string>
+    <string name="error_no_internet">İnternet bağlantısı yok!</string>
+    <string name="settings_title_language">Dil</string>
+
+
+
+</resources>

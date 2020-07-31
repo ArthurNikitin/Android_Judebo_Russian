@@ -1,2 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+
+    <string name="settings_title_current_language">Nyelv</string>
+
+    <string name="settings_title_settings">Beállítások</string>
+
+    <string name="settings_title_currency">Valuta</string>
+    <string name="settings_title_current_currency">Valuta</string>
+    <string name="settings_title_support">Támogatás</string>
+    <string name="settings_title_support_email">hu@judebo.com</string>
+    <string name="button_detail_title">Részlet</string>
+
+    <string name="add_job_title">A megüresedett helyeket egy webböngésző segítségével adhatja hozzá</string>
+    <string name="add_job_link">https://hu.judebo.com/jobs/</string>
+
+
+    <string name="search_title_search">Keresés</string>
+    <string name="button_share">Ossza meg</string>
+    <string name="error_no_internet">Nincs internetkapcsolat!</string>
+    <string name="settings_title_language">Nyelv</string>
+
+
+
+</resources>
