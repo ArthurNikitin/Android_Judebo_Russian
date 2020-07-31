@@ -1,5 +1,6 @@
 package com.byte4b.judebo.utils
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -13,6 +14,10 @@ import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.byte4b.judebo.R
 import com.byte4b.judebo.models.AbstractMarker
+import com.byte4b.judebo.models.MyMarker
+import com.byte4b.judebo.models.currencies
+import com.byte4b.judebo.round
+import com.byte4b.judebo.setRightDrawable
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.Marker
@@ -84,11 +89,53 @@ class OwnIconRendered(
         super.onBeforeClusterItemRendered(item, markerOptions)
     }
 
+    @SuppressLint("SetTextI18n")
+    private fun getViewWithSalaryMath(view: View, data: MyMarker): View {
+        try {
+            val currency = currencies.firstOrNull { it.id == data.UF_GROSS_CURRENCY_ID }
+
+            if (data.UF_GROSS_PER_MONTH.isEmpty() || data.UF_GROSS_PER_MONTH == "0") {
+                view.secondContainer2.visibility = View.GONE
+                view.salaryContainer2.visibility = View.GONE
+            } else {
+                view.secondContainer2.visibility = View.VISIBLE
+                view.salaryContainer2.visibility = View.VISIBLE
+            }
+            if (currency?.name == setting.currency
+                || (setting.currency == "" && currency?.name == "USD")
+            ) {
+                view.salary_tv2.text = data.UF_GROSS_PER_MONTH.round()
+                view.salaryVal_tv2.text = " ${currency?.name ?: ""}"
+                view.salary_tv2.setRightDrawable(currency?.icon ?: R.drawable.iusd)
+                view.secondContainer2.visibility = View.GONE
+            } else {
+                view.salary_tv2.text = data.UF_GROSS_PER_MONTH.round()
+                view.salaryVal_tv2.text = " ${currency?.name ?: ""}"
+                view.salary_tv2.setRightDrawable(currency?.icon ?: R.drawable.iusd)
+                view.secondContainer2.visibility = View.VISIBLE
+                val currencyFromSetting =
+                    if (setting.currency.isNullOrEmpty()) "USD" else setting.currency!!
+                val currency2 = currencies.firstOrNull { it.name == currencyFromSetting }
+                val convertedSalary =
+                    data.UF_GROSS_PER_MONTH.toDouble() * (currency2?.rate
+                        ?: 1) / (currency?.rate ?: 1)
+                if (convertedSalary == 0.0)
+                    view.secondContainer2.visibility = View.GONE
+                view.secondSalary_tv2.text =
+                    "≈${convertedSalary.toString().round()}"
+                view.secondSalaryVal_tv2.text = currency2?.name ?: "USD"
+                view.secondSalary_tv2.setRightDrawable(currency2?.icon ?: R.drawable.iusd)
+            }
+        } catch (e: Exception) {
+        }
+        return view
+    }
+
     private fun getMarkerIcon(item: AbstractMarker): Bitmap {
-        val view = (context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater)
+        var view = (context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater)
             .inflate(R.layout.marker_item, null)
         view.marker_title.text = item.marker.NAME
-
+        view = getViewWithSalaryMath(view, item.marker)
         try {
             val logoUrl = item.marker.UF_LOGO_IMAGE
             if (!logoUrl.isNullOrEmpty()) {
