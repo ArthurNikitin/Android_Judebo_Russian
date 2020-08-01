@@ -41,7 +41,9 @@ class OwnIconRendered(
         cluster: Cluster<AbstractMarker>,
         markerOptions: MarkerOptions
     ) {
-        markerOptions.icon(BitmapDescriptorFactory.fromBitmap(getClusterIcon(cluster)))
+        try {
+            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(getClusterIcon(cluster)))
+        } catch (e: Exception) {}
     }
 
     private fun getClusterIcon(cluster: Cluster<AbstractMarker>): Bitmap {
@@ -70,7 +72,8 @@ class OwnIconRendered(
     }
 
     override fun onClusterUpdated(cluster: Cluster<AbstractMarker>, marker: Marker) {
-        marker.setIcon(BitmapDescriptorFactory.fromBitmap(getClusterIcon(cluster)))
+        try { marker.setIcon(BitmapDescriptorFactory.fromBitmap(getClusterIcon(cluster))) }
+        catch (e: Exception) {}
     }
 
     private fun View.toBitmap(): Bitmap {
