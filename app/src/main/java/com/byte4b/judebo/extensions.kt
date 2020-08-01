@@ -14,6 +14,9 @@ import androidx.annotation.DrawableRes
 import androidx.core.app.ActivityCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.graphics.drawable.toDrawable
+import androidx.core.text.TextUtilsCompat
+import androidx.core.view.ViewCompat
+import java.util.*
 import kotlin.math.roundToInt
 
 
@@ -45,19 +48,23 @@ fun Context.getLocation(): Location? {
 
 private val size = 30
 fun TextView.setLeftDrawable(@DrawableRes drawable: Int) {
+    val isRtl = TextUtilsCompat.getLayoutDirectionFromLocale(Locale.getDefault()) == ViewCompat.LAYOUT_DIRECTION_RTL
+
     val drawable = resources
         .getDrawable( drawable)
         .toBitmap(size, size)
         .toDrawable(resources)
-   setCompoundDrawablesWithIntrinsicBounds(drawable,null, null, null)
+   setCompoundDrawablesWithIntrinsicBounds(if (!isRtl) drawable else null,null, if (isRtl) drawable else null, null)
 }
 
 fun TextView.setRightDrawable(@DrawableRes drawable: Int) {
+    val isRtl = TextUtilsCompat.getLayoutDirectionFromLocale(Locale.getDefault()) == ViewCompat.LAYOUT_DIRECTION_RTL
+
     val drawable = resources
         .getDrawable( drawable)
         .toBitmap(size, size)
         .toDrawable(resources)
-    setCompoundDrawablesWithIntrinsicBounds(null,null, drawable, null)
+    setCompoundDrawablesWithIntrinsicBounds(if (isRtl) drawable else null ,null, if (!isRtl) drawable else null, null)
 }
 
 fun String.round(): String {

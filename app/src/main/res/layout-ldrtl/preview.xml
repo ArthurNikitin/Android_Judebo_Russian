@@ -29,13 +29,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <ImageView
-                android:layout_marginEnd="8dp"
-                android:id="@+id/logo_iv"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                app:srcCompat="@drawable/default_logo_preview" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -43,6 +36,7 @@
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:gravity="end"
                     android:id="@+id/secondContainer"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -66,6 +60,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:gravity="end"
                     android:id="@+id/salaryContainer"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -88,13 +83,24 @@
                 </LinearLayout>
 
                 <TextView
+                    android:gravity="end"
                     android:textSize="17sp"
                     android:id="@+id/place_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="TextView" />
             </LinearLayout>
+
+            <ImageView
+                android:id="@+id/logo_iv"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="8dp"
+                app:srcCompat="@drawable/default_logo_preview" />
+
+
         </LinearLayout>
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/filters_tv"
@@ -121,7 +127,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="15dp"
                 android:layout_weight="1"
-                android:gravity="end"
+                android:gravity="start"
                 android:text="@string/button_detail_title" />
 
         </LinearLayout>

@@ -86,7 +86,7 @@ class DetailsActivity : AppCompatActivity() {
                     if (convertedSalary == 0.0)
                         secondContainer.visibility = View.GONE
                     view.secondSalary_tv.text =
-                        "≈${convertedSalary.toString().round()}"
+                        "${convertedSalary.toString().round()}≈"
                     view.secondSalaryVal_tv.text = currency2?.name ?: "USD"
                     view.secondSalary_tv.setRightDrawable(currency2?.icon ?: R.drawable.iusd)
                 }

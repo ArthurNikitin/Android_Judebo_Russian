@@ -16,6 +16,7 @@
         android:background="@color/toolbar_background_color">
 
         <ImageView
+            android:rotation="180"
             android:layout_centerVertical="true"
             android:onClick="closeClick"
             android:layout_width="wrap_content"
@@ -82,6 +83,7 @@
             </LinearLayout>
 
             <TextView
+                android:gravity="end"
                 android:textSize="17sp"
                 android:id="@+id/company_tv"
                 android:layout_marginBottom="8dp"
@@ -107,10 +109,18 @@
             </LinearLayout>
 
             <LinearLayout
+                android:gravity="end"
                 android:id="@+id/secondContainer"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/secondSalaryVal_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="17sp" />
 
                 <TextView
                     android:textSize="17sp"
@@ -120,31 +130,25 @@
                     android:layout_height="wrap_content"
                     android:text="" />
 
-                <TextView
-                    android:textSize="17sp"
-                    android:id="@+id/secondSalaryVal_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="" />
-
             </LinearLayout>
 
             <LinearLayout
+                android:gravity="end"
                 android:id="@+id/salaryContainer"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:textSize="17sp"
-                    android:id="@+id/salary_tv"
+                    android:id="@+id/salaryVal_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="" />
+                    android:text=""
+                    android:textSize="17sp" />
 
                 <TextView
                     android:textSize="17sp"
-                    android:id="@+id/salaryVal_tv"
+                    android:id="@+id/salary_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="" />
@@ -173,23 +177,23 @@
                 </LinearLayout>
 
                 <TextView
+                    android:gravity="end"
                     android:layout_marginBottom="8dp"
-                    android:drawableStart="@drawable/phone"
+                    android:drawableEnd="@drawable/phone"
                     android:id="@+id/phone_tv"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:onClick="callClick"
                     android:text="TextView" />
 
                 <TextView
+                    android:gravity="end"
                     android:layout_marginBottom="8dp"
-                    android:drawableStart="@drawable/mail"
+                    android:drawableEnd="@drawable/mail"
                     android:id="@+id/email_tv"
                     android:onClick="emailSend"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:text="TextView" />
 
             </LinearLayout>
