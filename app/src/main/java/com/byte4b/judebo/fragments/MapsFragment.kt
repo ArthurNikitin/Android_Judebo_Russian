@@ -146,6 +146,7 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
                     lastPolygonLatitude = latitude
                     lastPolygonLongitude = longitude
                 }
+                try {
                 ApiServiceImpl(this).getNearbyMarkers(
                     if (setting.language == "") "en" else setting.language!!,
                     position.latitude + setting.max_search_latitude_size / 2,
@@ -153,6 +154,9 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
                     position.latitude - setting.max_search_latitude_size / 2,
                     position.longitude - setting.max_search_longitude_size / 2
                 )
+                } catch (e: Exception) {
+                    Log.e("debug", e.localizedMessage ?: "error retrofit")
+                }
             }
             true
         }

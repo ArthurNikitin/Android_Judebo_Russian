@@ -52,16 +52,16 @@ class OwnIconRendered(
         val size =
             when (cluster.items.size) {
                 //размеры кластера здесь
-                in setting.cluster_sizes[0] -> 35
-                in setting.cluster_sizes[1] -> 40
-                in setting.cluster_sizes[2] -> 45
-                in setting.cluster_sizes[3] -> 50
-                in setting.cluster_sizes[4] -> 55
-                in setting.cluster_sizes[5] -> 60
-                in setting.cluster_sizes[6] -> 65
-                in setting.cluster_sizes[7] -> 70
-                in setting.cluster_sizes[8] -> 75
-                else -> 100
+                in setting.cluster_sizes[0] -> 40
+                in setting.cluster_sizes[1] -> 45
+                in setting.cluster_sizes[2] -> 50
+                in setting.cluster_sizes[3] -> 55
+                in setting.cluster_sizes[4] -> 60
+                in setting.cluster_sizes[5] -> 65
+                in setting.cluster_sizes[6] -> 70
+                in setting.cluster_sizes[7] -> 75
+                in setting.cluster_sizes[8] -> 80
+                else -> 85
             }
         val params = view.img.layoutParams
         params.height = size

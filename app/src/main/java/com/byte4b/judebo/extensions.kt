@@ -46,7 +46,7 @@ fun Context.getLocation(): Location? {
 }
 
 
-private val size = 30
+private val size = 14
 fun TextView.setLeftDrawable(@DrawableRes drawable: Int) {
     val isRtl = TextUtilsCompat.getLayoutDirectionFromLocale(Locale.getDefault()) == ViewCompat.LAYOUT_DIRECTION_RTL
 
