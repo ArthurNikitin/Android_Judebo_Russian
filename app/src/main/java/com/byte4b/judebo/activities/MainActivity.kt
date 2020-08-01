@@ -8,6 +8,7 @@ import com.byte4b.judebo.R
 import com.byte4b.judebo.fragments.CreatorFragment
 import com.byte4b.judebo.fragments.MapsFragment
 import com.byte4b.judebo.fragments.SettingFragment
+import com.byte4b.judebo.utils.Setting
 import com.github.florent37.runtimepermission.kotlin.askPermission
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -22,10 +23,17 @@ class MainActivity : AppCompatActivity() {
             Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.ACCESS_FINE_LOCATION) {
 
-            supportFragmentManager
-                .beginTransaction()
-                .add(R.id.frame, MapsFragment())
-                .commit()
+            Setting(this).apply {
+                if (isFromRecreate) {
+                    isFromRecreate = false
+                    restartFragment(SettingFragment())
+                } else {
+                    supportFragmentManager
+                        .beginTransaction()
+                        .add(R.id.frame, MapsFragment())
+                        .commit()
+                }
+            }
 
         }.onDeclined {
             if (it.hasDenied())

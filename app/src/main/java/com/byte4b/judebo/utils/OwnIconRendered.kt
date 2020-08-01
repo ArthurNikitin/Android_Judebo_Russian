@@ -90,13 +90,16 @@ class OwnIconRendered(
     }
 
     override fun onBeforeClusterItemRendered(item: AbstractMarker, markerOptions: MarkerOptions) {
-        if (item.marker.UF_GROSS_PER_MONTH.isEmpty()
-            || item.marker.UF_GROSS_PER_MONTH == "0") {
-            markerOptions.anchor(.5f, 1f)
-        } else {
-            markerOptions.anchor(0f, 1f)
-        }
-        markerOptions.icon(BitmapDescriptorFactory.fromBitmap(getMarkerIcon(item)))
+        try {
+            if (item.marker.UF_GROSS_PER_MONTH.isEmpty()
+                || item.marker.UF_GROSS_PER_MONTH == "0"
+            ) {
+                markerOptions.anchor(.5f, 1f)
+            } else {
+                markerOptions.anchor(0f, 1f)
+            }
+            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(getMarkerIcon(item)))
+        } catch (e: Exception) {}
         super.onBeforeClusterItemRendered(item, markerOptions)
     }
 
@@ -179,13 +182,18 @@ class OwnIconRendered(
     }
 
     override fun onClusterItemUpdated(item: AbstractMarker, marker: Marker) {
-        if (item.marker.UF_GROSS_PER_MONTH.isEmpty()
-            || item.marker.UF_GROSS_PER_MONTH == "0") {
-            marker.setAnchor(.5f, 1f)
-        } else {
-            marker.setAnchor(0f, 1f)
+        try {
+            if (item.marker.UF_GROSS_PER_MONTH.isEmpty()
+                || item.marker.UF_GROSS_PER_MONTH == "0"
+            ) {
+                marker.setAnchor(.5f, 1f)
+            } else {
+                marker.setAnchor(0f, 1f)
+            }
+            marker.setIcon(BitmapDescriptorFactory.fromBitmap(getMarkerIcon(item)))
+        } catch (e: Exception) {
+
         }
-        marker.setIcon(BitmapDescriptorFactory.fromBitmap(getMarkerIcon(item)))
         super.onClusterItemUpdated(item, marker)
     }
 

@@ -4,11 +4,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.text.TextUtils
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.byte4b.judebo.R
@@ -74,8 +70,10 @@ class SettingFragment : Fragment(R.layout.fragment_setting) {
                     setting.language = locales[i]
                     setLocale(locales[i])
                     dialogInterface.dismiss()
-                    parent.supportActionBar?.title = getString(R.string.settings_title_settings)
-                    parent.restartFragment(SettingFragment())
+                    setting.isFromRecreate = true
+                    parent.recreate()
+                    //parent.supportActionBar?.title = getString(R.string.settings_title_settings)
+                    //parent.restartFragment(SettingFragment())
                 }
             }
             .show()

@@ -16,6 +16,10 @@ class Setting(ctx: Context) {
         get() = pref.getString("currency", "")
         set(value) = pref.edit().putString("currency", value).apply()
 
+    var isFromRecreate
+        get() = pref.getBoolean("is_from_recreate", false)
+        set(value) = pref.edit().putBoolean("is_from_recreate", value).apply()
+
     var lastMapCameraPosition: LatLng
         get() {
             return LatLng(

@@ -123,13 +123,6 @@
                 android:text="@string/settings_title_support_email"
                 android:textColor="@color/main_text_color" />
 
-            <TextView
-                android:textColor="#fff"
-                android:id="@+id/textView2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="origin" />
-
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
