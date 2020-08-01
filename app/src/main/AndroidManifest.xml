@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="com.android.vending.BILLING"/>
 
 
     <application
@@ -15,8 +16,8 @@
         android:roundIcon="@mipmap/ic_app_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.DetailsActivity"></activity>
-
+        
+        <activity android:name=".activities.DetailsActivity" />
 
         <uses-library android:name="com.google.android.maps" />
 
