@@ -1,6 +1,7 @@
 package com.byte4b.judebo.activities
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.byte4b.judebo.startActivity
 import com.byte4b.judebo.utils.Setting
@@ -23,7 +24,7 @@ class SplashActivity : AppCompatActivity() {
 
     private fun setLocale(locale: String) {
         resources.apply {
-            configuration.locale = Locale(locale)
+            configuration.setLocale(Locale(locale))
             updateConfiguration(configuration, displayMetrics)
         }
     }
