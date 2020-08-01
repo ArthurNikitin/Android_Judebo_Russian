@@ -28,6 +28,7 @@ import com.google.maps.android.clustering.view.DefaultClusterRenderer
 import kotlinx.android.synthetic.main.cluster_icon.view.*
 import kotlinx.android.synthetic.main.marker_item.view.*
 
+
 class OwnIconRendered(
     val context: Context?, map: GoogleMap?,
     val clusterManager: ClusterManager<AbstractMarker>?
@@ -158,6 +159,7 @@ class OwnIconRendered(
                         Glide.with(context)
                             .load(logoUrl)
                             .centerInside()
+                            .circleCrop()
                             .placeholder(R.drawable.map_default_marker)
                             .into(object : SimpleTarget<Drawable>() {
                                 override fun onResourceReady(

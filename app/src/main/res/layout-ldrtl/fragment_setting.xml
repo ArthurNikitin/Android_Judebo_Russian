@@ -24,6 +24,7 @@
                 app:srcCompat="@drawable/big_logo_setting" />
 
             <TextView
+                android:gravity="start"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
                 android:paddingStart="15dp"
@@ -36,7 +37,7 @@
 
             <LinearLayout
                 android:id="@+id/langClickable"
-                android:gravity="end"
+                android:gravity="start"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -62,6 +63,7 @@
             </LinearLayout>
 
             <TextView
+                android:gravity="start"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
                 android:paddingStart="15dp"
@@ -74,7 +76,7 @@
 
             <LinearLayout
                 android:id="@+id/currencyClickable"
-                android:gravity="end"
+                android:gravity="start"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -100,6 +102,7 @@
             </LinearLayout>
 
             <TextView
+                android:gravity="start"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
                 android:paddingStart="15dp"
@@ -121,6 +124,13 @@
                 android:paddingBottom="5dp"
                 android:text="@string/settings_title_support_email"
                 android:textColor="@color/main_text_color" />
+
+            <TextView
+                android:textColor="#fff"
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="rtl" />
 
         </LinearLayout>
     </ScrollView>

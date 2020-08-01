@@ -24,6 +24,7 @@
                 app:srcCompat="@drawable/big_logo_setting" />
 
             <TextView
+                android:gravity="start"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
                 android:paddingStart="15dp"
@@ -38,7 +39,7 @@
                 android:layout_gravity="end"
                 android:orientation="horizontal"
                 android:id="@+id/langClickable"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
                 <ImageView
@@ -76,7 +77,7 @@
                 android:layout_gravity="end"
                 android:orientation="horizontal"
                 android:id="@+id/currencyClickable"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
                 <ImageView
@@ -121,6 +122,13 @@
                 android:paddingBottom="5dp"
                 android:text="@string/settings_title_support_email"
                 android:textColor="@color/main_text_color" />
+
+            <TextView
+                android:textColor="#fff"
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="origin" />
 
         </LinearLayout>
     </ScrollView>

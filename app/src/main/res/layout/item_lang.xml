@@ -14,7 +14,7 @@
         app:srcCompat="@drawable/en" />
 
     <TextView
-        android:textSize="16sp"
+        android:textSize="12sp"
         android:id="@+id/currencyTitle_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

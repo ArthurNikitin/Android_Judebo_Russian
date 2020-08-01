@@ -1,7 +1,6 @@
 package com.byte4b.judebo.models
 
 import androidx.annotation.DrawableRes
-import com.byte4b.judebo.R
 import com.byte4b.judebo.R.drawable
 
 class Language(
@@ -16,14 +15,14 @@ class Language(
 }
 
 val languages = listOf(
-    Language(1, "English", "English", drawable.en, "en", "USD"),
-    Language(2, "Chinese", "中文", drawable.zh, "zh", "USD"),
-    Language(3, "Hindi", "हिन्दी", drawable.hi, "hi", "USD"),
-    Language(4, "Spanish", "Española", drawable.es, "es", "EUR"),
-    Language(5, "Arabian", "عربي", drawable.ar, "ar", "EUR"),
-    Language(6, "Portuguese", "Português", drawable.pt, "pt", "EUR"),
-    Language(7, "French", "Française", drawable.fr, "fr", "EUR"),
-    Language(8, "Russian", "Русский", drawable.ru, "ru", "RUB"),
+    Language(2, "English", "English", drawable.en, "en", "USD"),
+    Language(3, "Chinese", "中文", drawable.zh, "zh", "USD"),
+    Language(4, "Hindi", "हिन्दी", drawable.hi, "hi", "USD"),
+    Language(5, "Spanish", "Española", drawable.es, "es", "EUR"),
+    Language(6, "Arabian", "عربي", drawable.ar, "ar", "EUR"),
+    Language(7, "Portuguese", "Português", drawable.pt, "pt", "EUR"),
+    Language(8, "French", "Française", drawable.fr, "fr", "EUR"),
+    Language(1, "Russian", "Русский", drawable.ru, "ru", "RUB"),
     Language(9, "Japanese", "日本人", drawable.ja, "ja", "EUR"),
     Language(10, "Deutsch", "Deutsch", drawable.de, "de", "EUR"),
     Language(11, "Javanese ", "ꦧꦱꦗꦮ", drawable.jv, "jv", "EUR"),
