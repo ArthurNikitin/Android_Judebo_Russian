@@ -5,7 +5,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.drawable.Drawable
 import android.location.Location
 import android.location.LocationManager
 import android.widget.TextView
@@ -16,6 +15,7 @@ import androidx.core.graphics.drawable.toBitmap
 import androidx.core.graphics.drawable.toDrawable
 import androidx.core.text.TextUtilsCompat
 import androidx.core.view.ViewCompat
+import com.byte4b.judebo.utils.Setting
 import java.util.*
 import kotlin.math.roundToInt
 
@@ -45,14 +45,12 @@ fun Context.getLocation(): Location? {
     }
 }
 
-
-private val size = 14
 fun TextView.setLeftDrawable(@DrawableRes drawable: Int) {
     val isRtl = TextUtilsCompat.getLayoutDirectionFromLocale(Locale.getDefault()) == ViewCompat.LAYOUT_DIRECTION_RTL
 
     val drawable = resources
         .getDrawable( drawable)
-        .toBitmap(size, size)
+        .toBitmap(Setting.CURRENCY_ICON_SIZE, Setting.CURRENCY_ICON_SIZE)
         .toDrawable(resources)
    setCompoundDrawablesWithIntrinsicBounds(if (!isRtl) drawable else null,null, if (isRtl) drawable else null, null)
 }
@@ -62,7 +60,7 @@ fun TextView.setRightDrawable(@DrawableRes drawable: Int) {
 
     val drawable = resources
         .getDrawable( drawable)
-        .toBitmap(size, size)
+        .toBitmap(Setting.CURRENCY_ICON_SIZE, Setting.CURRENCY_ICON_SIZE)
         .toDrawable(resources)
     setCompoundDrawablesWithIntrinsicBounds(if (isRtl) drawable else null ,null, if (!isRtl) drawable else null, null)
 }
