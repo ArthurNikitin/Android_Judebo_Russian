@@ -48,15 +48,16 @@ class OwnIconRendered(
             .inflate(R.layout.cluster_icon, null)
         val size =
             when (cluster.items.size) {
-                in setting.cluster_sizes[0] -> 15
-                in setting.cluster_sizes[1] -> 25
-                in setting.cluster_sizes[2] -> 35
-                in setting.cluster_sizes[3] -> 45
+                //размеры кластера здесь
+                in setting.cluster_sizes[0] -> 35
+                in setting.cluster_sizes[1] -> 40
+                in setting.cluster_sizes[2] -> 45
+                in setting.cluster_sizes[3] -> 50
                 in setting.cluster_sizes[4] -> 55
-                in setting.cluster_sizes[5] -> 65
-                in setting.cluster_sizes[6] -> 75
-                in setting.cluster_sizes[7] -> 85
-                in setting.cluster_sizes[8] -> 95
+                in setting.cluster_sizes[5] -> 60
+                in setting.cluster_sizes[6] -> 65
+                in setting.cluster_sizes[7] -> 70
+                in setting.cluster_sizes[8] -> 75
                 else -> 100
             }
         val params = view.img.layoutParams
