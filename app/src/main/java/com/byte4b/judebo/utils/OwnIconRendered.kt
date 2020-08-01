@@ -89,50 +89,14 @@ class OwnIconRendered(
     }
 
     override fun onBeforeClusterItemRendered(item: AbstractMarker, markerOptions: MarkerOptions) {
+        if (item.marker.UF_GROSS_PER_MONTH.isEmpty()
+            || item.marker.UF_GROSS_PER_MONTH == "0") {
+            markerOptions.anchor(.5f, 1f)
+        } else {
+            markerOptions.anchor(0f, 1f)
+        }
         markerOptions.icon(BitmapDescriptorFactory.fromBitmap(getMarkerIcon(item)))
         super.onBeforeClusterItemRendered(item, markerOptions)
-    }
-
-    @SuppressLint("SetTextI18n")
-    private fun getViewWithSalaryStub(view: View, data: MyMarker): View {
-        try {
-            val currency = currencies.firstOrNull { it.id == data.UF_GROSS_CURRENCY_ID }
-
-            if (data.UF_GROSS_PER_MONTH.isEmpty() || data.UF_GROSS_PER_MONTH == "0") {
-                view.secondContainer4.visibility = View.GONE
-                view.salaryContainer4.visibility = View.GONE
-            } else {
-                view.secondContainer4.visibility = View.INVISIBLE
-                view.salaryContainer4.visibility = View.INVISIBLE
-            }
-            if (currency?.name == setting.currency
-                || (setting.currency == "" && currency?.name == "USD")
-            ) {
-                view.salary_tv4.text = data.UF_GROSS_PER_MONTH.round()
-                view.salaryVal_tv4.text = " ${currency?.name ?: ""}"
-                view.salary_tv4.setRightDrawable(currency?.icon ?: R.drawable.iusd)
-                view.secondContainer4.visibility = View.GONE
-            } else {
-                view.salary_tv4.text = data.UF_GROSS_PER_MONTH.round()
-                view.salaryVal_tv4.text = " ${currency?.name ?: ""}"
-                view.salary_tv4.setRightDrawable(currency?.icon ?: R.drawable.iusd)
-                view.secondContainer4.visibility = View.INVISIBLE
-                val currencyFromSetting =
-                    if (setting.currency.isNullOrEmpty()) "USD" else setting.currency!!
-                val currency2 = currencies.firstOrNull { it.name == currencyFromSetting }
-                val convertedSalary =
-                    data.UF_GROSS_PER_MONTH.toDouble() * (currency2?.rate
-                        ?: 1) / (currency?.rate ?: 1)
-                if (convertedSalary == 0.0)
-                    view.secondContainer4.visibility = View.GONE
-                view.secondSalary_tv4.text =
-                    "≈${convertedSalary.toString().round()}"
-                view.secondSalaryVal_tv4.text = currency2?.name ?: "USD"
-                view.secondSalary_tv4.setRightDrawable(currency2?.icon ?: R.drawable.iusd)
-            }
-        } catch (e: Exception) {
-        }
-        return view
     }
 
     @SuppressLint("SetTextI18n")
@@ -182,14 +146,14 @@ class OwnIconRendered(
             .inflate(R.layout.marker_item, null)
         view.marker_title.text = item.marker.NAME
         view = getViewWithSalaryMath(view, item.marker)
-        view = getViewWithSalaryStub(view, item.marker)
+
         try {
             val logoUrl = item.marker.UF_LOGO_IMAGE
             if (!logoUrl.isNullOrEmpty()) {
 
-                if (drawables.containsKey(logoUrl))
+                if (drawables.containsKey(logoUrl)) {
                     view.marker_icon.setImageDrawable(drawables[logoUrl])
-                else {
+                } else {
                     Thread {
                         Glide.with(context)
                             .load(logoUrl)
@@ -213,6 +177,12 @@ class OwnIconRendered(
     }
 
     override fun onClusterItemUpdated(item: AbstractMarker, marker: Marker) {
+        if (item.marker.UF_GROSS_PER_MONTH.isEmpty()
+            || item.marker.UF_GROSS_PER_MONTH == "0") {
+            marker.setAnchor(.5f, 1f)
+        } else {
+            marker.setAnchor(0f, 1f)
+        }
         marker.setIcon(BitmapDescriptorFactory.fromBitmap(getMarkerIcon(item)))
         super.onClusterItemUpdated(item, marker)
     }
