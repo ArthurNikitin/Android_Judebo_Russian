@@ -47,9 +47,9 @@ class Setting(ctx: Context) {
     val max_search_longitude_size = 0.4
     val search_square_increase_infinitesimal = 0.1
     val search_request_pause = 1 //seconds
-    val search_request_min_move_delta = 0.15 //degrees
+    val search_request_min_move_delta = 0.17 //degrees
 
-    val cluster_radius = 60.0
+    val cluster_radius = 110.0
     val cluster_sizes =
         listOf(2..3, 4..5, 6..7, 8..9, 10..11, 12..15, 16..20, 21..30, 31..50, 51..99)
 
