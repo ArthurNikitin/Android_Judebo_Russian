@@ -98,8 +98,10 @@ class OwnIconRendered(
                 || item.marker.UF_GROSS_PER_MONTH == "0"
             ) {
                 markerOptions.anchor(.5f, 1f)
+                markerOptions.infoWindowAnchor(000.5f, .5f)
             } else {
-                markerOptions.anchor(0f, 1f)
+                markerOptions.anchor(0f, .5f)
+                markerOptions.infoWindowAnchor(000.1f, .5f)
             }
             markerOptions.icon(BitmapDescriptorFactory.fromBitmap(getMarkerIcon(item)))
         } catch (e: Exception) {}
@@ -190,8 +192,10 @@ class OwnIconRendered(
                 || item.marker.UF_GROSS_PER_MONTH == "0"
             ) {
                 marker.setAnchor(.5f, 1f)
+                marker.setInfoWindowAnchor(000.5f, .5f)
             } else {
-                marker.setAnchor(0f, 1f)
+                marker.setAnchor(0f, .5f)
+                marker.setInfoWindowAnchor(000.1f, .5f)
             }
             marker.setIcon(BitmapDescriptorFactory.fromBitmap(getMarkerIcon(item)))
         } catch (e: Exception) {

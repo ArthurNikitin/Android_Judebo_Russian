@@ -2,21 +2,12 @@ package com.byte4b.judebo.fragments
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.SimpleTarget
-import com.bumptech.glide.request.transition.Transition
 import com.byte4b.judebo.*
 import com.byte4b.judebo.R
 import com.byte4b.judebo.activities.DetailsActivity
@@ -39,14 +30,9 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.google.gson.Gson
-import com.google.maps.android.clustering.Cluster
-import com.google.maps.android.clustering.ClusterItem
 import com.google.maps.android.clustering.ClusterManager
-import com.google.maps.android.clustering.view.DefaultClusterRenderer
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.cluster_icon.view.*
 import kotlinx.android.synthetic.main.fragment_maps.*
-import kotlinx.android.synthetic.main.marker_item.view.*
 import kotlinx.android.synthetic.main.preview.*
 import kotlinx.android.synthetic.main.preview.view.*
 import kotlin.math.abs
@@ -235,20 +221,23 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
                 }
             } catch (e: Exception) {}
             view.more_tv.text = "#${data.UF_JOBS_ID} ${getString(R.string.button_detail_title)}"
+
+            val layoutManager = FlexboxLayoutManager(ctx)
+            layoutManager.flexWrap = FlexWrap.WRAP
+            layoutManager.flexDirection = FlexDirection.ROW
+            layoutManager.justifyContent =
+                if (isRtl) JustifyContent.FLEX_END else JustifyContent.FLEX_START
+            layoutManager.alignItems = if (isRtl) AlignItems.FLEX_END else AlignItems.FLEX_START
+
             try {
-                view.langs_rv.layoutManager =
-                    LinearLayoutManager(ctx, LinearLayoutManager.HORIZONTAL, false)
+                view.langs_rv.layoutManager = //layoutManager
+                    LinearLayoutManager(ctx, LinearLayoutManager.HORIZONTAL, isRtl)
                 view.langs_rv.adapter = LanguagesAdapter(ctx, data.UF_LANGUAGE_ID_ALL.split(",").map {
                     languages.first { lang -> lang.id == it.toInt() }
                 })
             } catch (e:Exception) {}
             view.place_tv.text = data.COMPANY
 
-            val layoutManager = FlexboxLayoutManager(ctx)
-            layoutManager.flexWrap = FlexWrap.WRAP
-            layoutManager.flexDirection = FlexDirection.ROW
-            layoutManager.justifyContent = JustifyContent.FLEX_START
-            layoutManager.alignItems = AlignItems.FLEX_START
 
             view.filters_tv.layoutManager = layoutManager
             if (data.UF_SKILLS_ID_ALL == "") {

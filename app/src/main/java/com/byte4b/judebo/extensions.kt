@@ -46,8 +46,6 @@ fun Context.getLocation(): Location? {
 }
 
 fun TextView.setLeftDrawable(@DrawableRes drawable: Int) {
-    val isRtl = TextUtilsCompat.getLayoutDirectionFromLocale(Locale.getDefault()) == ViewCompat.LAYOUT_DIRECTION_RTL
-
     val drawable = resources
         .getDrawable( drawable)
         .toBitmap(Setting.CURRENCY_ICON_SIZE, Setting.CURRENCY_ICON_SIZE)
@@ -55,9 +53,11 @@ fun TextView.setLeftDrawable(@DrawableRes drawable: Int) {
    setCompoundDrawablesWithIntrinsicBounds(if (!isRtl) drawable else null,null, if (isRtl) drawable else null, null)
 }
 
-fun TextView.setRightDrawable(@DrawableRes drawable: Int) {
-    val isRtl = TextUtilsCompat.getLayoutDirectionFromLocale(Locale.getDefault()) == ViewCompat.LAYOUT_DIRECTION_RTL
+val isRtl get() =
+    TextUtilsCompat.getLayoutDirectionFromLocale(Locale.getDefault()) ==
+        ViewCompat.LAYOUT_DIRECTION_RTL
 
+fun TextView.setRightDrawable(@DrawableRes drawable: Int) {
     val drawable = resources
         .getDrawable( drawable)
         .toBitmap(Setting.CURRENCY_ICON_SIZE, Setting.CURRENCY_ICON_SIZE)
