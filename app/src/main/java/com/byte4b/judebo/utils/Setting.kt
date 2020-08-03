@@ -23,9 +23,9 @@ class Setting(ctx: Context) {
     var lastMapCameraPosition: LatLng
         get() {
             return LatLng(
-                pref.getFloat("lastMapCameraPosition_latitude", defaultLatitude.toFloat())
+                pref.getFloat("lastMapCameraPosition_latitude", DEFAULT_LATITUDE.toFloat())
                     .toDouble(),
-                pref.getFloat("lastMapCameraPosition_longitude", defaultLongitude.toFloat())
+                pref.getFloat("lastMapCameraPosition_longitude", DEFAULT_LONGITUDE.toFloat())
                     .toDouble()
             )
         }
@@ -36,25 +36,26 @@ class Setting(ctx: Context) {
             }
         }
 
-    val basicZoom = 11.0f
-    val minZoom = 2.0f
-    val maxZoom = 16.0f
-
-    val defaultLatitude = 0.0
-    val defaultLongitude = 0.0
-
-    val max_search_latitude_size = 0.4
-    val max_search_longitude_size = 0.4
-    val search_square_increase_infinitesimal = 0.1
-    val search_request_pause = 1 //seconds
-    val search_request_min_move_delta = 0.17 //degrees
-
-    val cluster_radius = 110.0
-    val cluster_sizes =
-        listOf(2..3, 4..5, 6..7, 8..9, 10..11, 12..15, 16..20, 21..30, 31..50, 51..99)
-
     companion object {
-        val CURRENCY_ICON_SIZE = 16
+        const val BASIC_ZOOM = 11.0f
+        const val MIN_ZOOM = 2.0f
+        const val MAX_ZOOM = 16.0f
+
+        const val DEFAULT_LATITUDE = 0.0
+        const val DEFAULT_LONGITUDE = 0.0
+
+        const val MAX_SEARCH_LATITUDE_SIZE = 0.4
+        const val MAX_SEARCH_LONGITUDE_SIZE = 0.4
+
+        const val SEARCH_REQUEST_PAUSE_SECONDS = 1
+        const val SEARCH_REQUEST_MIN_MOVE_DELTA = 0.17 //degrees
+
+        const val CLUSTER_RADIUS = 200.0
+        const val VALUE_INFINITESIMAL = 0.0005
+        const val CURRENCY_ICON_SIZE = 16
+
+        val CLUSTER_SIZES =
+            listOf(2..3, 4..5, 6..7, 8..9, 10..11, 12..15, 16..20, 21..30, 31..50, 51..99)
     }
 
 }

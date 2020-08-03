@@ -7,6 +7,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import com.bumptech.glide.Glide
@@ -22,6 +23,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.gson.Gson
 import com.google.maps.android.clustering.Cluster
 import com.google.maps.android.clustering.ClusterManager
 import com.google.maps.android.clustering.view.DefaultClusterRenderer
@@ -52,15 +54,15 @@ class OwnIconRendered(
         val size =
             when (cluster.items.size) {
                 //размеры кластера здесь
-                in setting.cluster_sizes[0] -> 40
-                in setting.cluster_sizes[1] -> 45
-                in setting.cluster_sizes[2] -> 50
-                in setting.cluster_sizes[3] -> 55
-                in setting.cluster_sizes[4] -> 60
-                in setting.cluster_sizes[5] -> 65
-                in setting.cluster_sizes[6] -> 70
-                in setting.cluster_sizes[7] -> 75
-                in setting.cluster_sizes[8] -> 80
+                in Setting.CLUSTER_SIZES[0] -> 40
+                in Setting.CLUSTER_SIZES[1] -> 45
+                in Setting.CLUSTER_SIZES[2] -> 50
+                in Setting.CLUSTER_SIZES[3] -> 55
+                in Setting.CLUSTER_SIZES[4] -> 60
+                in Setting.CLUSTER_SIZES[5] -> 65
+                in Setting.CLUSTER_SIZES[6] -> 70
+                in Setting.CLUSTER_SIZES[7] -> 75
+                in Setting.CLUSTER_SIZES[8] -> 80
                 else -> 85
             }
         val params = view.img.layoutParams
@@ -104,7 +106,9 @@ class OwnIconRendered(
                 markerOptions.infoWindowAnchor(000.1f, .5f)
             }
             markerOptions.icon(BitmapDescriptorFactory.fromBitmap(getMarkerIcon(item)))
-        } catch (e: Exception) {}
+        } catch (e: Exception) {
+            Log.e("debug", Gson().toJson(item))
+        }
         super.onBeforeClusterItemRendered(item, markerOptions)
     }
 
@@ -199,7 +203,7 @@ class OwnIconRendered(
             }
             marker.setIcon(BitmapDescriptorFactory.fromBitmap(getMarkerIcon(item)))
         } catch (e: Exception) {
-
+            Log.e("debug", Gson().toJson(item))
         }
         super.onClusterItemUpdated(item, marker)
     }

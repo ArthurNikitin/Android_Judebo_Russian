@@ -54,7 +54,7 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
                 map?.addMarker(MarkerOptions().position(me)
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.me)))
             } else {
-                val me = LatLng(setting.defaultLatitude, setting.defaultLongitude)
+                val me = LatLng(Setting.DEFAULT_LATITUDE, Setting.DEFAULT_LONGITUDE)
                 map?.addMarker(MarkerOptions().position(me)
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.me)))
             }
@@ -65,18 +65,18 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
     private val callback = OnMapReadyCallback { googleMap ->
         map = googleMap
         googleMap.uiSettings.isRotateGesturesEnabled = false
-        googleMap.setMaxZoomPreference(setting.maxZoom)
-        googleMap.setMinZoomPreference(setting.minZoom)
+        googleMap.setMaxZoomPreference(Setting.MAX_ZOOM)
+        googleMap.setMinZoomPreference(Setting.MIN_ZOOM)
 
         clusterManager = ClusterManager(activity!!.applicationContext, map)
         clusterManager?.renderer = OwnIconRendered(ctx, map, clusterManager)
         val alg = clusterManager!!.algorithm
-        alg.maxDistanceBetweenClusteredItems = (setting.cluster_radius * 2).toInt()
+        alg.maxDistanceBetweenClusteredItems = Setting.CLUSTER_RADIUS.toInt()
         clusterManager?.algorithm = alg
         clusterManager?.setOnClusterClickListener {
-            if (googleMap.cameraPosition.zoom != setting.maxZoom) {
+            if (googleMap.cameraPosition.zoom != Setting.MAX_ZOOM) {
                 var zoom = googleMap.cameraPosition.zoom + 1
-                if (zoom > setting.maxZoom) zoom = setting.maxZoom
+                if (zoom > Setting.MAX_ZOOM) zoom = Setting.MAX_ZOOM
                 googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(it.position, zoom))
             } else {
                 if (it.items.isNotEmpty()) {
@@ -99,7 +99,7 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
 
         if (setting.lastMapCameraPosition.latitude != 0.0) {
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
-                setting.lastMapCameraPosition, setting.basicZoom
+                setting.lastMapCameraPosition, Setting.BASIC_ZOOM
             ))
         }
 
@@ -111,19 +111,19 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
             //draw here
             val position = googleMap.cameraPosition.target
             if (position != null
-                && (abs(lastPolygonLatitude - position.latitude) > setting.search_request_min_move_delta
-                        || abs(lastPolygonLongitude - position.longitude) > setting.search_request_min_move_delta)) {
+                && (abs(lastPolygonLatitude - position.latitude) > Setting.SEARCH_REQUEST_MIN_MOVE_DELTA
+                        || abs(lastPolygonLongitude - position.longitude) > Setting.SEARCH_REQUEST_MIN_MOVE_DELTA)) {
                 val polygon = PolygonOptions().add(
-                    LatLng(position.latitude + setting.max_search_latitude_size / 2,
-                        position.longitude + setting.max_search_longitude_size / 2),
-                    LatLng(position.latitude - setting.max_search_latitude_size / 2,
-                        position.longitude + setting.max_search_longitude_size / 2),
-                    LatLng(position.latitude - setting.max_search_latitude_size / 2,
-                        position.longitude - setting.max_search_longitude_size / 2),
-                    LatLng(position.latitude + setting.max_search_latitude_size / 2,
-                        position.longitude - setting.max_search_longitude_size / 2),
-                    LatLng(position.latitude + setting.max_search_latitude_size / 2,
-                        position.longitude + setting.max_search_longitude_size / 2)
+                    LatLng(position.latitude + Setting.MAX_SEARCH_LATITUDE_SIZE / 2,
+                        position.longitude + Setting.MAX_SEARCH_LONGITUDE_SIZE / 2),
+                    LatLng(position.latitude - Setting.MAX_SEARCH_LATITUDE_SIZE / 2,
+                        position.longitude + Setting.MAX_SEARCH_LONGITUDE_SIZE / 2),
+                    LatLng(position.latitude - Setting.MAX_SEARCH_LATITUDE_SIZE / 2,
+                        position.longitude - Setting.MAX_SEARCH_LONGITUDE_SIZE / 2),
+                    LatLng(position.latitude + Setting.MAX_SEARCH_LATITUDE_SIZE / 2,
+                        position.longitude - Setting.MAX_SEARCH_LONGITUDE_SIZE / 2),
+                    LatLng(position.latitude + Setting.MAX_SEARCH_LATITUDE_SIZE / 2,
+                        position.longitude + Setting.MAX_SEARCH_LONGITUDE_SIZE / 2)
                 ).strokeColor(ctx.resources.getColor(R.color.search_polygon_square))
                 googleMap.clear()
                 addMyLocationTarget()
@@ -135,10 +135,10 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
                 try {
                 ApiServiceImpl(this).getNearbyMarkers(
                     if (setting.language == "") "en" else setting.language!!,
-                    position.latitude + setting.max_search_latitude_size / 2,
-                    position.longitude + setting.max_search_longitude_size / 2,
-                    position.latitude - setting.max_search_latitude_size / 2,
-                    position.longitude - setting.max_search_longitude_size / 2
+                    position.latitude + Setting.MAX_SEARCH_LATITUDE_SIZE / 2,
+                    position.longitude + Setting.MAX_SEARCH_LONGITUDE_SIZE / 2,
+                    position.latitude - Setting.MAX_SEARCH_LATITUDE_SIZE / 2,
+                    position.longitude - Setting.MAX_SEARCH_LONGITUDE_SIZE / 2
                 )
                 } catch (e: Exception) {
                     Log.e("debug", e.localizedMessage ?: "error retrofit")
@@ -159,7 +159,7 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
             while (true) {
                 if (isResumed)
                     handler.sendEmptyMessage(0)
-                Thread.sleep(setting.search_request_pause * 1000L)
+                Thread.sleep(Setting.SEARCH_REQUEST_PAUSE_SECONDS * 1000L)
             }
         }.start()
     }
@@ -276,15 +276,15 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
                         map?.animateCamera(
                             CameraUpdateFactory.newLatLngZoom(
                                 LatLng(location.latitude, location.longitude),
-                                setting.basicZoom
+                                Setting.BASIC_ZOOM
                             )
                         )
                         addMyLocationTarget()
                     } else {
                         map?.animateCamera(
                             CameraUpdateFactory.newLatLngZoom(
-                                LatLng(setting.defaultLatitude, setting.defaultLongitude),
-                                setting.basicZoom
+                                LatLng(Setting.DEFAULT_LATITUDE, Setting.DEFAULT_LONGITUDE),
+                                Setting.BASIC_ZOOM
                             )
                         )
                         addMyLocationTarget()
