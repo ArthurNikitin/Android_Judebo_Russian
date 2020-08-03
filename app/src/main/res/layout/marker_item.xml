@@ -7,6 +7,11 @@
     android:orientation="vertical">
 
     <TextView
+        android:shadowRadius="1"
+    android:shadowDx="0"
+    android:shadowDy="0"
+    android:shadowColor="#fff"
+
         android:gravity="start"
         android:paddingTop="2dp"
         android:textSize="12sp"
@@ -15,10 +20,6 @@
         android:layout_height="wrap_content"
         android:maxWidth="120dp"
         android:maxLines="2"
-        android:shadowColor="#fff"
-        android:shadowDx="1.5"
-        android:shadowDy="1.3"
-        android:shadowRadius="8"
         android:text="TextView" />
 
     <LinearLayout
@@ -49,6 +50,10 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:shadowRadius="1"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowColor="#fff"
                     android:id="@+id/secondSalary_tv2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -56,6 +61,10 @@
                     android:textSize="10sp" />
 
                 <TextView
+                    android:shadowRadius="1"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowColor="#fff"
                     android:id="@+id/secondSalaryVal_tv2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -71,6 +80,10 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:shadowRadius="1"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowColor="#fff"
                     android:id="@+id/salary_tv2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -78,6 +91,10 @@
                     android:textSize="10sp" />
 
                 <TextView
+                    android:shadowRadius="1"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowColor="#fff"
                     android:id="@+id/salaryVal_tv2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

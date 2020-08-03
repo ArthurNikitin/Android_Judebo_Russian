@@ -7,6 +7,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Handler
+import android.text.Html
 import android.util.LayoutDirection
 import android.util.Log
 import android.view.Gravity
@@ -163,6 +164,8 @@ class OwnIconRendered(
             .inflate(R.layout.marker_item, null)
         view.marker_title.text = item.marker.NAME
         view = getViewWithSalaryMath(view, item.marker)
+
+        //view.marker_title.setShadowLayer(1f, 0f, 0f, Color.RED)
 
         if (isRtl(context)) {
             view.gravity_container.layoutDirection = LayoutDirection.RTL
