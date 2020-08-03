@@ -7,11 +7,11 @@
     android:orientation="vertical">
 
     <TextView
-        android:shadowRadius="1"
+        android:layout_marginStart="6dp"
+        android:shadowRadius="5"
     android:shadowDx="0"
     android:shadowDy="0"
     android:shadowColor="#fff"
-
         android:gravity="start"
         android:paddingTop="2dp"
         android:textSize="12sp"
@@ -50,10 +50,10 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:shadowRadius="1"
+                    android:shadowRadius="2"
                     android:shadowDx="0"
                     android:shadowDy="0"
-                    android:shadowColor="#fff"
+                    android:shadowColor="#17a"
                     android:id="@+id/secondSalary_tv2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
                     android:textSize="10sp" />
 
                 <TextView
-                    android:shadowRadius="1"
+                    android:shadowRadius="2"
                     android:shadowDx="0"
                     android:shadowDy="0"
                     android:shadowColor="#fff"
@@ -80,7 +80,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:shadowRadius="1"
+                    android:shadowRadius="2"
                     android:shadowDx="0"
                     android:shadowDy="0"
                     android:shadowColor="#fff"
@@ -91,7 +91,7 @@
                     android:textSize="10sp" />
 
                 <TextView
-                    android:shadowRadius="1"
+                    android:shadowRadius="2"
                     android:shadowDx="0"
                     android:shadowDy="0"
                     android:shadowColor="#fff"
