@@ -7,13 +7,16 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Handler
+import android.util.LayoutDirection
 import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.byte4b.judebo.R
+import com.byte4b.judebo.isRtl
 import com.byte4b.judebo.models.AbstractMarker
 import com.byte4b.judebo.models.MyMarker
 import com.byte4b.judebo.models.currencies
@@ -154,11 +157,17 @@ class OwnIconRendered(
         return view
     }
 
+    @SuppressLint("WrongConstant")
     private fun getMarkerIcon(item: AbstractMarker): Bitmap {
         var view = (context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater)
             .inflate(R.layout.marker_item, null)
         view.marker_title.text = item.marker.NAME
         view = getViewWithSalaryMath(view, item.marker)
+
+        if (isRtl(context)) {
+            view.gravity_container.layoutDirection = LayoutDirection.RTL
+            view.marker_title.gravity = Gravity.END
+        }
 
         try {
             val logoUrl = item.marker.UF_LOGO_IMAGE

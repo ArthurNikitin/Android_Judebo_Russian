@@ -57,6 +57,14 @@ val isRtl get() =
     TextUtilsCompat.getLayoutDirectionFromLocale(Locale.getDefault()) ==
         ViewCompat.LAYOUT_DIRECTION_RTL
 
+fun isRtl(ctx: Context): Boolean {
+    Setting(ctx).apply {
+        val locale = if (language.isNullOrEmpty()) "en" else language!!
+        return TextUtilsCompat.getLayoutDirectionFromLocale(Locale(locale)) ==
+                ViewCompat.LAYOUT_DIRECTION_RTL
+    }
+}
+
 fun TextView.setRightDrawable(@DrawableRes drawable: Int) {
     val drawable = resources
         .getDrawable( drawable)
