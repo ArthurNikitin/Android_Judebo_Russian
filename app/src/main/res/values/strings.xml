@@ -13,6 +13,10 @@
     <string name="button_share">Share</string>
     <string name="error_no_internet">No internet connection!</string>
     <string name="settings_title_language">Language</string>
+    <string name="request_geolocation_title">stub</string>
+    <string name="request_geolocation_message">stub</string>
+    <string name="request_geolocation_ok">stub</string>
+    <string name="request_geolocation_cancel">stub</string>
 </resources>
 
     <!-- локализация по умолчанию -->

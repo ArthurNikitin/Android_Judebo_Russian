@@ -24,7 +24,7 @@
                 app:srcCompat="@drawable/big_logo_setting" />
 
             <TextView
-                android:gravity="start"
+                android:gravity="right"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
                 android:paddingStart="15dp"
@@ -37,7 +37,7 @@
 
             <LinearLayout
                 android:id="@+id/langClickable"
-                android:gravity="start"
+                android:gravity="left"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -63,7 +63,7 @@
             </LinearLayout>
 
             <TextView
-                android:gravity="start"
+                android:gravity="right"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
                 android:paddingStart="15dp"
@@ -76,7 +76,7 @@
 
             <LinearLayout
                 android:id="@+id/currencyClickable"
-                android:gravity="start"
+                android:gravity="left"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -102,7 +102,7 @@
             </LinearLayout>
 
             <TextView
-                android:gravity="start"
+                android:gravity="right"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
                 android:paddingStart="15dp"
@@ -117,7 +117,7 @@
                 android:id="@+id/support_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="start"
+                android:gravity="left"
                 android:paddingStart="15dp"
                 android:paddingTop="5dp"
                 android:paddingEnd="15dp"

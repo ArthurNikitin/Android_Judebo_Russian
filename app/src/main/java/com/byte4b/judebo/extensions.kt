@@ -3,6 +3,7 @@ package com.byte4b.judebo
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.content.Context.LOCATION_SERVICE
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
@@ -30,16 +31,19 @@ inline fun <reified A : Activity> Context.startActivity(configIntent: Intent.() 
     startActivity(Intent(this, A::class.java).apply(configIntent))
 }
 
-fun Context.isHavePermission(permission: String): Boolean {
-    return ActivityCompat.checkSelfPermission(this, permission) ==
-            PackageManager.PERMISSION_GRANTED
-}
-
 @SuppressLint("MissingPermission")
 fun Context.getLocation(): Location? {
     return try {
-        val lm = getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
+        val mLocationManager =
+            applicationContext.getSystemService(LOCATION_SERVICE) as LocationManager
+        val providers = mLocationManager.getProviders(true)
+        var bestLocation: Location? = null
+        for (provider in providers) {
+            val l = mLocationManager.getLastKnownLocation(provider) ?: continue
+            if (bestLocation == null || l.accuracy < bestLocation.accuracy)
+                bestLocation = l
+        }
+        return bestLocation
     } catch (e: Exception) {
         null
     }

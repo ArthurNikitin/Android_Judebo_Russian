@@ -289,13 +289,13 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
                 val enabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
                 if (!enabled) {
                     AlertDialog.Builder(ctx)
-                        .setTitle("stub")
-                        .setMessage("stub")
-                        .setCancelable(false)
-                        .setPositiveButton("stub") { dialogInterface, _ ->
+                        .setTitle(R.string.request_geolocation_title)
+                        .setMessage(R.string.request_geolocation_message)
+                        .setPositiveButton(R.string.request_geolocation_ok) { dialogInterface, _ ->
                             startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
                             dialogInterface.dismiss()
                         }
+                        .setNegativeButton(R.string.request_geolocation_cancel) { d, _ -> d.cancel()}
                         .show()
                 } else {
 
