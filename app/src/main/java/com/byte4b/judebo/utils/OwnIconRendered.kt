@@ -176,7 +176,7 @@ class OwnIconRendered(
             var view =
                 (context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater)
                     .inflate(R.layout.marker_item, null)
-            view.marker_title.text = item.marker.NAME
+            view.marker_title.text = Html.fromHtml("<div style='text-shadow: 0px 0px 4px #FFFFFF;'>${item.marker.NAME}</div>")//item.marker.NAME
             view = getViewWithSalaryMath(view, item.marker)
 
             if (isRtl(context)) {
