@@ -35,7 +35,10 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_maps.*
 import kotlinx.android.synthetic.main.preview.*
 import kotlinx.android.synthetic.main.preview.view.*
+import java.lang.Math.pow
+import java.lang.Math.sqrt
 import kotlin.math.abs
+import kotlin.math.pow
 
 
 class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
@@ -111,19 +114,21 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
             //draw here
             val position = googleMap.cameraPosition.target
             if (position != null
-                && (abs(lastPolygonLatitude - position.latitude) > Setting.SEARCH_REQUEST_MIN_MOVE_DELTA
-                        || abs(lastPolygonLongitude - position.longitude) > Setting.SEARCH_REQUEST_MIN_MOVE_DELTA)) {
-                val polygon = PolygonOptions().add(
-                    LatLng(position.latitude + Setting.MAX_SEARCH_LATITUDE_SIZE / 2,
-                        position.longitude + Setting.MAX_SEARCH_LONGITUDE_SIZE / 2),
-                    LatLng(position.latitude - Setting.MAX_SEARCH_LATITUDE_SIZE / 2,
-                        position.longitude + Setting.MAX_SEARCH_LONGITUDE_SIZE / 2),
-                    LatLng(position.latitude - Setting.MAX_SEARCH_LATITUDE_SIZE / 2,
-                        position.longitude - Setting.MAX_SEARCH_LONGITUDE_SIZE / 2),
-                    LatLng(position.latitude + Setting.MAX_SEARCH_LATITUDE_SIZE / 2,
-                        position.longitude - Setting.MAX_SEARCH_LONGITUDE_SIZE / 2),
-                    LatLng(position.latitude + Setting.MAX_SEARCH_LATITUDE_SIZE / 2,
-                        position.longitude + Setting.MAX_SEARCH_LONGITUDE_SIZE / 2)
+                    && ((lastPolygonLatitude - position.latitude).pow(2.0) +
+                        (lastPolygonLongitude - position.longitude).pow(2.0))
+                        > Setting.SEARCH_REQUEST_MIN_MOVE_DELTA.pow(2.0)) {
+
+                    val polygon = PolygonOptions().add(
+                    LatLng(position.latitude + Setting.MAX_SEARCH_LATITUDE_SIZE,
+                        position.longitude + Setting.MAX_SEARCH_LONGITUDE_SIZE),
+                    LatLng(position.latitude - Setting.MAX_SEARCH_LATITUDE_SIZE,
+                        position.longitude + Setting.MAX_SEARCH_LONGITUDE_SIZE),
+                    LatLng(position.latitude - Setting.MAX_SEARCH_LATITUDE_SIZE,
+                        position.longitude - Setting.MAX_SEARCH_LONGITUDE_SIZE),
+                    LatLng(position.latitude + Setting.MAX_SEARCH_LATITUDE_SIZE,
+                        position.longitude - Setting.MAX_SEARCH_LONGITUDE_SIZE),
+                    LatLng(position.latitude + Setting.MAX_SEARCH_LATITUDE_SIZE,
+                        position.longitude + Setting.MAX_SEARCH_LONGITUDE_SIZE)
                 ).strokeColor(ctx.resources.getColor(R.color.search_polygon_square))
                 googleMap.clear()
                 addMyLocationTarget()

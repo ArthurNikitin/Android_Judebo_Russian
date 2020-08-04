@@ -39,19 +39,19 @@ class Setting(ctx: Context) {
     companion object {
         const val BASIC_ZOOM = 11.0f
         const val MIN_ZOOM = 2.0f
-        const val MAX_ZOOM = 16.0f
+        const val MAX_ZOOM = 21.0f
 
         const val DEFAULT_LATITUDE = 0.0
         const val DEFAULT_LONGITUDE = 0.0
 
-        const val MAX_SEARCH_LATITUDE_SIZE = 0.4
-        const val MAX_SEARCH_LONGITUDE_SIZE = 0.4
+        const val MAX_SEARCH_LATITUDE_SIZE = 0.3
+        const val MAX_SEARCH_LONGITUDE_SIZE = 0.3
 
         const val SEARCH_REQUEST_PAUSE_SECONDS = 1
-        const val SEARCH_REQUEST_MIN_MOVE_DELTA = 0.17 //degrees
+        const val SEARCH_REQUEST_MIN_MOVE_DELTA = 0.2 //degrees
 
-        const val CLUSTER_RADIUS = 200.0
-        const val VALUE_INFINITESIMAL = 0.0005
+        const val CLUSTER_RADIUS = 165.0
+        const val VALUE_INFINITESIMAL = 0.00001
         const val CURRENCY_ICON_SIZE = 16
 
         val CLUSTER_SIZES =

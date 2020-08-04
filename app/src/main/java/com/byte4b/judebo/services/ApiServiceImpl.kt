@@ -33,12 +33,19 @@ class ApiServiceImpl(val listener: ServiceListener?) : ApiService {
                         try {
                             val objects = response.body()?.entrySet()?.map {
                                 val result = Gson().fromJson(it.value, MyMarker::class.java)
+//                                result.UF_MAP_POINT_LATITUDE +=
+//                                    Random.nextDouble(-Setting.VALUE_INFINITESIMAL,
+//                                        Setting.VALUE_INFINITESIMAL)
+//                                result.UF_MAP_POINT_LONGITUDE +=
+//                                    Random.nextDouble(-Setting.VALUE_INFINITESIMAL,
+//                                        Setting.VALUE_INFINITESIMAL)
+
                                 result.UF_MAP_POINT_LATITUDE +=
-                                    Random.nextDouble(-Setting.VALUE_INFINITESIMAL,
-                                        Setting.VALUE_INFINITESIMAL)
+                                    Random.nextInt(-8, 8) * Setting.VALUE_INFINITESIMAL
+
                                 result.UF_MAP_POINT_LONGITUDE +=
-                                    Random.nextDouble(-Setting.VALUE_INFINITESIMAL,
-                                        Setting.VALUE_INFINITESIMAL)
+                                    2 * Random.nextInt(-8, 8) * Setting.VALUE_INFINITESIMAL
+
                                 result
                             }
                             listener?.onNearbyMarkersLoaded(objects)
