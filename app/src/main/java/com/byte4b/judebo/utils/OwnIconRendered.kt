@@ -38,7 +38,7 @@ class OwnIconRendered(
     val clusterManager: ClusterManager<AbstractMarker>?
 ) : DefaultClusterRenderer<AbstractMarker>(context, map, clusterManager) {
 
-    private val drawables = mutableMapOf<String, Drawable>()
+    val drawables = mutableMapOf<String, Drawable>()
     private val setting by lazy { Setting(context!!) }
 
     override fun onBeforeClusterRendered(

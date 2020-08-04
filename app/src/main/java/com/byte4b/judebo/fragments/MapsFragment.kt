@@ -48,6 +48,7 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
     private var map: GoogleMap? = null
     private var markers: List<MyMarker>? = null
     private var clusterManager: ClusterManager<AbstractMarker>? = null
+    private var renderer: OwnIconRendered? = null
 
     private fun addMyLocationTarget() {
         if (map != null) {
@@ -75,7 +76,8 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
         googleMap.isIndoorEnabled = false
 
         clusterManager = ClusterManager(activity!!.applicationContext, map)
-        clusterManager?.renderer = OwnIconRendered(ctx, map, clusterManager)
+        renderer = OwnIconRendered(ctx, map, clusterManager)
+        clusterManager?.renderer = renderer
         val alg = clusterManager!!.algorithm
         alg.maxDistanceBetweenClusteredItems = Setting.CLUSTER_RADIUS.toInt()
         clusterManager?.algorithm = alg
@@ -182,12 +184,11 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
         try {
             view.title_tv.text = data.NAME
             if (!data.UF_LOGO_IMAGE.isNullOrEmpty()) {
+                renderer?.apply {
+                    view.logo_iv.setImageDrawable(renderer!!.drawables[data.UF_LOGO_IMAGE])
+                }
                 try {
-                    Picasso.get()
-                        .load(data.UF_PREVIEW_IMAGE)
-                        .placeholder(R.drawable.default_logo_preview)
-                        .error(R.drawable.default_logo_preview)
-                        .into(view.logo_iv)
+
                 } catch (e: Exception) {}
             }
 
