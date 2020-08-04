@@ -13,6 +13,7 @@ import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
@@ -35,7 +36,7 @@ import kotlinx.android.synthetic.main.marker_without_salary.view.*
 
 class OwnIconRendered(
     val context: Context?, map: GoogleMap?,
-    val clusterManager: ClusterManager<AbstractMarker>?
+    private val clusterManager: ClusterManager<AbstractMarker>?
 ) : DefaultClusterRenderer<AbstractMarker>(context, map, clusterManager) {
 
     val drawables = mutableMapOf<String, Drawable>()
@@ -218,6 +219,10 @@ class OwnIconRendered(
                     .inflate(R.layout.marker_without_salary, null)
             view.marker_title_short.text = item.marker.NAME
 
+            if (isRtl(context)) {
+                view.marker_icon_short.scaleType = ImageView.ScaleType.FIT_END
+                view.marker_title_short.gravity = Gravity.RIGHT
+            }
             try {
                 val logoUrl = item.marker.UF_LOGO_IMAGE
                 if (!logoUrl.isNullOrEmpty()) {

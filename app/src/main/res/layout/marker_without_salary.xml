@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
         android:layout_marginEnd="6dp"
-        android:gravity="center"
         android:maxWidth="120dp"
         android:maxLines="2"
         android:paddingTop="2dp"
@@ -26,9 +25,9 @@
 
     <ImageView
         android:id="@+id/marker_icon_short"
-        android:layout_width="30dp"
+        android:layout_width="match_parent"
+        android:scaleType="fitStart"
         android:layout_height="30dp"
-        android:layout_gravity="center"
         app:srcCompat="@drawable/map_default_marker" />
 
 </LinearLayout>
