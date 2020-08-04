@@ -30,6 +30,7 @@ import com.google.maps.android.clustering.ClusterManager
 import com.google.maps.android.clustering.view.DefaultClusterRenderer
 import kotlinx.android.synthetic.main.cluster_icon.view.*
 import kotlinx.android.synthetic.main.marker_item.view.*
+import kotlinx.android.synthetic.main.marker_without_salary.view.*
 
 
 class OwnIconRendered(
@@ -170,46 +171,83 @@ class OwnIconRendered(
 
     @SuppressLint("WrongConstant")
     private fun getMarkerIcon(item: AbstractMarker): Bitmap {
-        var view = (context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater)
-            .inflate(R.layout.marker_item, null)
-        view.marker_title.text = item.marker.NAME
-        view = getViewWithSalaryMath(view, item.marker)
+        if (!(item.marker.UF_GROSS_PER_MONTH.isEmpty() || item.marker.UF_GROSS_PER_MONTH == "0")) {
+            var view =
+                (context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater)
+                    .inflate(R.layout.marker_item, null)
+            view.marker_title.text = item.marker.NAME
+            view = getViewWithSalaryMath(view, item.marker)
 
-        if (isRtl(context)) {
-            //view.salaryContainer2.layoutDirection = LayoutDirection.LTR
-            //view.secondContainer2.layoutDirection = LayoutDirection.LTR
-            view.gravity_container.layoutDirection = LayoutDirection.RTL
-            view.marker_title.gravity = Gravity.RIGHT
-        }
-
-        try {
-            val logoUrl = item.marker.UF_LOGO_IMAGE
-            if (!logoUrl.isNullOrEmpty()) {
-
-                if (drawables.containsKey(logoUrl)) {
-                    view.marker_icon.setImageDrawable(drawables[logoUrl])
-                } else {
-                    Thread {
-                        Glide.with(context)
-                            .load(logoUrl)
-                            .centerInside()
-                            .circleCrop()
-                            .placeholder(R.drawable.map_default_marker)
-                            .into(object : SimpleTarget<Drawable>() {
-                                override fun onResourceReady(
-                                    resource: Drawable,
-                                    transition: Transition<in Drawable>?
-                                ) {
-                                    drawables[logoUrl] = resource
-                                    handler.sendEmptyMessage(0)
-                                }
-                            })
-                    }.start()
-                    clusterManager?.updateItem(item)
-                }
+            if (isRtl(context)) {
+                view.gravity_container.layoutDirection = LayoutDirection.RTL
+                view.marker_title.gravity = Gravity.RIGHT
             }
-        } catch (e: Exception) { }
-        return view.toBitmap()
+
+            try {
+                val logoUrl = item.marker.UF_LOGO_IMAGE
+                if (!logoUrl.isNullOrEmpty()) {
+
+                    if (drawables.containsKey(logoUrl)) {
+                        view.marker_icon.setImageDrawable(drawables[logoUrl])
+                    } else {
+                        Thread {
+                            Glide.with(context)
+                                .load(logoUrl)
+                                .centerInside()
+                                .circleCrop()
+                                .placeholder(R.drawable.map_default_marker)
+                                .into(object : SimpleTarget<Drawable>() {
+                                    override fun onResourceReady(
+                                        resource: Drawable,
+                                        transition: Transition<in Drawable>?
+                                    ) {
+                                        drawables[logoUrl] = resource
+                                        handler.sendEmptyMessage(0)
+                                    }
+                                })
+                        }.start()
+                        clusterManager?.updateItem(item)
+                    }
+                }
+            } catch (e: Exception) {
+            }
+            return view.toBitmap()
+        } else {
+            val view =
+                (context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater)
+                    .inflate(R.layout.marker_without_salary, null)
+            view.marker_title_short.text = item.marker.NAME
+
+            try {
+                val logoUrl = item.marker.UF_LOGO_IMAGE
+                if (!logoUrl.isNullOrEmpty()) {
+
+                    if (drawables.containsKey(logoUrl)) {
+                        view.marker_icon_short.setImageDrawable(drawables[logoUrl])
+                    } else {
+                        Thread {
+                            Glide.with(context)
+                                .load(logoUrl)
+                                .centerInside()
+                                .circleCrop()
+                                .placeholder(R.drawable.map_default_marker)
+                                .into(object : SimpleTarget<Drawable>() {
+                                    override fun onResourceReady(
+                                        resource: Drawable,
+                                        transition: Transition<in Drawable>?
+                                    ) {
+                                        drawables[logoUrl] = resource
+                                        handler.sendEmptyMessage(0)
+                                    }
+                                })
+                        }.start()
+                        clusterManager?.updateItem(item)
+                    }
+                }
+            } catch (e: Exception) {
+            }
+            return view.toBitmap()
+        }
     }
 
     override fun onClusterItemUpdated(item: AbstractMarker, marker: Marker) {
