@@ -16,13 +16,10 @@ import android.view.View
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
-import com.byte4b.judebo.R
-import com.byte4b.judebo.isRtl
+import com.byte4b.judebo.*
 import com.byte4b.judebo.models.AbstractMarker
 import com.byte4b.judebo.models.MyMarker
 import com.byte4b.judebo.models.currencies
-import com.byte4b.judebo.round
-import com.byte4b.judebo.setRightDrawable
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.Marker
@@ -133,12 +130,19 @@ class OwnIconRendered(
             ) {
                 view.salary_tv2.text = data.UF_GROSS_PER_MONTH.round()
                 view.salaryVal_tv2.text = " ${currency?.name ?: ""}"
-                view.salary_tv2.setRightDrawable(currency?.icon ?: R.drawable.iusd)
+                if (isRtl(context!!))
+                    view.salary_tv2.setLeftDrawable(currency?.icon ?: R.drawable.iusd)
+                else
+                    view.salary_tv2.setRightDrawable(currency?.icon ?: R.drawable.iusd)
                 view.secondContainer2.visibility = View.GONE
             } else {
                 view.salary_tv2.text = data.UF_GROSS_PER_MONTH.round()
                 view.salaryVal_tv2.text = " ${currency?.name ?: ""}"
-                view.salary_tv2.setRightDrawable(currency?.icon ?: R.drawable.iusd)
+                if (isRtl(context!!))
+                    view.salary_tv2.setLeftDrawable(currency?.icon ?: R.drawable.iusd)
+                else
+                    view.salary_tv2.setRightDrawable(currency?.icon ?: R.drawable.iusd)
+
                 view.secondContainer2.visibility = View.VISIBLE
                 val currencyFromSetting =
                     if (setting.currency.isNullOrEmpty()) "USD" else setting.currency!!
@@ -149,9 +153,14 @@ class OwnIconRendered(
                 if (convertedSalary == 0.0)
                     view.secondContainer2.visibility = View.GONE
                 view.secondSalary_tv2.text =
-                    "≈${convertedSalary.toString().round()}"
+                    if (isRtl(context!!)) "${convertedSalary.toString().round()}≈"
+                    else "≈${convertedSalary.toString().round()}"
                 view.secondSalaryVal_tv2.text = currency2?.name ?: "USD"
-                view.secondSalary_tv2.setRightDrawable(currency2?.icon ?: R.drawable.iusd)
+
+                if (isRtl(context))
+                    view.secondSalary_tv2.setLeftDrawable(currency2?.icon ?: R.drawable.iusd)
+                else
+                    view.secondSalary_tv2.setRightDrawable(currency2?.icon ?: R.drawable.iusd)
             }
         } catch (e: Exception) {
         }
@@ -165,11 +174,11 @@ class OwnIconRendered(
         view.marker_title.text = item.marker.NAME
         view = getViewWithSalaryMath(view, item.marker)
 
-        //view.marker_title.setShadowLayer(1f, 0f, 0f, Color.RED)
-
         if (isRtl(context)) {
+            //view.salaryContainer2.layoutDirection = LayoutDirection.LTR
+            //view.secondContainer2.layoutDirection = LayoutDirection.LTR
             view.gravity_container.layoutDirection = LayoutDirection.RTL
-            view.marker_title.gravity = Gravity.END
+            view.marker_title.gravity = Gravity.RIGHT
         }
 
         try {

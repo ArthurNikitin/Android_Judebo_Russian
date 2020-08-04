@@ -8,6 +8,7 @@
 
     <TextView
         android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
         android:shadowRadius="5"
     android:shadowDx="0"
     android:shadowDy="0"
@@ -50,17 +51,18 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:shadowRadius="2"
-                    android:shadowDx="0"
-                    android:shadowDy="0"
-                    android:shadowColor="#17a"
                     android:id="@+id/secondSalary_tv2"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:shadowColor="#fff"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowRadius="2"
                     android:text="§1113414"
                     android:textSize="10sp" />
 
                 <TextView
+                    android:layout_marginStart="2dp"
                     android:shadowRadius="2"
                     android:shadowDx="0"
                     android:shadowDy="0"
@@ -91,6 +93,7 @@
                     android:textSize="10sp" />
 
                 <TextView
+                    android:layout_marginRight="2dp"
                     android:shadowRadius="2"
                     android:shadowDx="0"
                     android:shadowDy="0"
