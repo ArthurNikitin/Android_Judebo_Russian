@@ -39,7 +39,7 @@ fun Context.isHavePermission(permission: String): Boolean {
 fun Context.getLocation(): Location? {
     return try {
         val lm = getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        lm.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+        lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
     } catch (e: Exception) {
         null
     }
@@ -81,7 +81,7 @@ fun String.round(): String {
     }
 }
 
-fun String.getFormattedSalary(split: String = " "): String {
+fun String.getFormattedSalary(split: String = "\u00A0"): String {
     val list = mutableListOf<String>()
 
     var tmp = ""

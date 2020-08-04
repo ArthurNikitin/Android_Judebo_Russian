@@ -1,11 +1,16 @@
 package com.byte4b.judebo.fragments
 
 import android.Manifest
+import android.provider.Settings
 import android.annotation.SuppressLint
+import android.content.Context.LOCATION_SERVICE
+import android.content.Intent
+import android.location.LocationManager
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.byte4b.judebo.*
@@ -273,6 +278,21 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
     @SuppressLint("MissingPermission")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val locationManager = ctx.getSystemService(LOCATION_SERVICE) as LocationManager
+        val enabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+        if (!enabled) {
+            AlertDialog.Builder(ctx)
+                .setTitle("stub")
+                .setMessage("stub")
+                .setCancelable(false)
+                .setPositiveButton("stub") { dialogInterface, _ ->
+                    startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
+                    dialogInterface.dismiss()
+                }
+                .show()
+        }
+
         askPermission(Manifest.permission.ACCESS_COARSE_LOCATION,
                         Manifest.permission.ACCESS_FINE_LOCATION) {
             val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
