@@ -279,46 +279,47 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val locationManager = ctx.getSystemService(LOCATION_SERVICE) as LocationManager
-        val enabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
-        if (!enabled) {
-            AlertDialog.Builder(ctx)
-                .setTitle("stub")
-                .setMessage("stub")
-                .setCancelable(false)
-                .setPositiveButton("stub") { dialogInterface, _ ->
-                    startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
-                    dialogInterface.dismiss()
-                }
-                .show()
-        }
-
         askPermission(Manifest.permission.ACCESS_COARSE_LOCATION,
                         Manifest.permission.ACCESS_FINE_LOCATION) {
             val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
             mapFragment?.getMapAsync(callback)
 
             myGeo_iv.setOnClickListener {
-                if (map != null) {
-                    val location = ctx.getLocation()
-                    if (location != null) {
-                        map?.animateCamera(
-                            CameraUpdateFactory.newLatLngZoom(
-                                LatLng(location.latitude, location.longitude),
-                                Setting.BASIC_ZOOM
-                            )
-                        )
-                        addMyLocationTarget()
-                    } else {
-                        map?.animateCamera(
-                            CameraUpdateFactory.newLatLngZoom(
-                                LatLng(Setting.DEFAULT_LATITUDE, Setting.DEFAULT_LONGITUDE),
-                                Setting.BASIC_ZOOM
-                            )
-                        )
-                        addMyLocationTarget()
-                    }
+                val locationManager = ctx.getSystemService(LOCATION_SERVICE) as LocationManager
+                val enabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+                if (!enabled) {
+                    AlertDialog.Builder(ctx)
+                        .setTitle("stub")
+                        .setMessage("stub")
+                        .setCancelable(false)
+                        .setPositiveButton("stub") { dialogInterface, _ ->
+                            startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
+                            dialogInterface.dismiss()
+                        }
+                        .show()
+                } else {
 
+                    if (map != null) {
+                        val location = ctx.getLocation()
+                        if (location != null) {
+                            map?.animateCamera(
+                                CameraUpdateFactory.newLatLngZoom(
+                                    LatLng(location.latitude, location.longitude),
+                                    Setting.BASIC_ZOOM
+                                )
+                            )
+                            addMyLocationTarget()
+                        } else {
+                            map?.animateCamera(
+                                CameraUpdateFactory.newLatLngZoom(
+                                    LatLng(Setting.DEFAULT_LATITUDE, Setting.DEFAULT_LONGITUDE),
+                                    Setting.BASIC_ZOOM
+                                )
+                            )
+                            addMyLocationTarget()
+                        }
+
+                    }
                 }
             }
         }.onDeclined {
