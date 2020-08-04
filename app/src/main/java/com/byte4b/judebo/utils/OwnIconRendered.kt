@@ -144,6 +144,7 @@ class OwnIconRendered(
                     view.salary_tv2.setRightDrawable(currency?.icon ?: R.drawable.iusd)
 
                 view.secondContainer2.visibility = View.VISIBLE
+
                 val currencyFromSetting =
                     if (setting.currency.isNullOrEmpty()) "USD" else setting.currency!!
                 val currency2 = currencies.firstOrNull { it.name == currencyFromSetting }

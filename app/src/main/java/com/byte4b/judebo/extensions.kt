@@ -75,8 +75,26 @@ fun TextView.setRightDrawable(@DrawableRes drawable: Int) {
 
 fun String.round(): String {
     return try {
-        ((toDouble() / 100).roundToInt() * 100).toString()
+        ((toDouble() / 100).roundToInt() * 100).toString().getFormattedSalary()
     } catch (e: Exception) {
-        this
+        this.getFormattedSalary()
     }
+}
+
+fun String.getFormattedSalary(split: String = " "): String {
+    val list = mutableListOf<String>()
+
+    var tmp = ""
+    val reverse = reversed()
+    for (index in reverse.indices) {
+        if (index % 3 == 0) {
+            list.add(tmp)
+            tmp = ""
+        }
+        tmp += reverse[index]
+    }
+    if (tmp.isNotBlank())
+        list.add(tmp)
+
+    return list.joinToString(split).reversed()
 }

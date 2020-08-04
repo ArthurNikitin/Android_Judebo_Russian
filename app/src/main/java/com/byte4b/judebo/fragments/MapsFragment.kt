@@ -70,6 +70,9 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
         googleMap.uiSettings.isRotateGesturesEnabled = false
         googleMap.setMaxZoomPreference(Setting.MAX_ZOOM)
         googleMap.setMinZoomPreference(Setting.MIN_ZOOM)
+        googleMap.isTrafficEnabled = false
+        googleMap.isBuildingsEnabled = true
+        googleMap.isIndoorEnabled = false
 
         clusterManager = ClusterManager(activity!!.applicationContext, map)
         clusterManager?.renderer = OwnIconRendered(ctx, map, clusterManager)
