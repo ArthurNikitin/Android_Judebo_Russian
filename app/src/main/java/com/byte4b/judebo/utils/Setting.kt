@@ -49,11 +49,11 @@ class Setting(ctx: Context) {
     fun getCurrentCurrency(): Currency {
         return if (currency == "") {
             if (language == "")
-                currencies.first { it.name == getLangFromLocale().currency }
+                currencies.firstOrNull { it.name == getLangFromLocale().currency } ?: currencies.first()
             else
-                currencies.first { it.name == currency }
+                currencies.firstOrNull { it.name == currency } ?: currencies.first()
         } else
-            currencies.first { it.name == currency }
+            currencies.firstOrNull { it.name == currency } ?: currencies.first()
     }
 
     companion object {
@@ -68,9 +68,12 @@ class Setting(ctx: Context) {
         const val MAX_SEARCH_LONGITUDE_SIZE = 0.3
 
         const val SEARCH_REQUEST_PAUSE_SECONDS = 1
-        const val SEARCH_REQUEST_MIN_MOVE_DELTA = 0.2 //degrees
+        const val SEARCH_REQUEST_MIN_MOVE_DELTA = 0.18
+        //degrees
 
-        const val CLUSTER_RADIUS = 165.0
+        // 2020-08-10 b.2.5
+        // const val CLUSTER_RADIUS = 165.0
+        const val CLUSTER_RADIUS = 100.0
         const val VALUE_INFINITESIMAL = 0.00001
         const val CURRENCY_ICON_SIZE = 16
 

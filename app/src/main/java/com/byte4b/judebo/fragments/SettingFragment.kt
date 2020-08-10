@@ -4,6 +4,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
@@ -28,30 +29,33 @@ class SettingFragment : Fragment(R.layout.fragment_setting) {
 
         showCurrentCurrency()
 
-        if (setting.language == "") {
-            val lang = getLangFromLocale()
-            lang_tv.text = lang.title
-            langIcon_iv.setImageResource(lang.flag)
-        } else {
-            val lang = languages.first { it.locale == setting.language }
-            lang_tv.text = lang.title
-            langIcon_iv.setImageResource(lang.flag)
+        try {
+            val lang = setting.getCurrentLanguage()
+                lang_tv.text = lang.title
+                langIcon_iv.setImageResource(lang.flag)
+        } catch (e: Exception) {
+            Log.e("test", "1: " + e.localizedMessage)
         }
 
-        if (setting.currency == "") {
-            if (setting.language == "") {
-                val currentCurrency = currencies.first { it.name == getLangFromLocale().currency }
-                currency_tv.text = currentCurrency.name
-                currencyIcon_iv.setImageResource(currentCurrency.icon)
+        try {
+            if (setting.currency == "") {
+                if (setting.language == "") {
+                    val currentCurrency =
+                        currencies.first { it.name == getLangFromLocale().currency }
+                    currency_tv.text = currentCurrency.name
+                    currencyIcon_iv.setImageResource(currentCurrency.icon)
+                } else {
+                    val currentCurrency = currencies.first { it.name == setting.currency }
+                    currency_tv.text = currentCurrency.name
+                    currencyIcon_iv.setImageResource(currentCurrency.icon)
+                }
             } else {
                 val currentCurrency = currencies.first { it.name == setting.currency }
                 currency_tv.text = currentCurrency.name
                 currencyIcon_iv.setImageResource(currentCurrency.icon)
             }
-        } else {
-            val currentCurrency = currencies.first { it.name == setting.currency }
-            currency_tv.text = currentCurrency.name
-            currencyIcon_iv.setImageResource(currentCurrency.icon)
+        } catch (e: Exception) {
+            Log.e("test", "2: " + e.localizedMessage ?: "2")
         }
 
         langClickable.setOnClickListener { showLanguageDialog() }
@@ -67,13 +71,7 @@ class SettingFragment : Fragment(R.layout.fragment_setting) {
     private fun showCurrencyDialog() {
         val titles = currencies.map { it.name }
 
-        val currency = if (setting.currency == "") {
-            if (setting.language == "")
-                currencies.first { it.name == getLangFromLocale().currency }
-            else
-                currencies.first { it.name == setting.currency }
-        } else
-            currencies.first { it.name == setting.currency }
+        val currency = setting.getCurrentCurrency()
 
         AlertDialog.Builder(requireContext())
             .setTitle(R.string.settings_title_currency)
@@ -87,7 +85,7 @@ class SettingFragment : Fragment(R.layout.fragment_setting) {
 
     private fun showLanguageDialog() {
         val locales = languages.map { it.locale } //название этих локализаций
-        val lang = if (setting.language == "") getLangFromLocale().locale else setting.language!!
+        val lang = setting.getCurrentLanguage().locale
         AlertDialog.Builder(requireContext())
             .setTitle(R.string.settings_title_language)
             .setAdapter(LanguageAdapter(requireContext(), languages.toTypedArray(), lang)) { dialogInterface: DialogInterface, i: Int ->
@@ -103,21 +101,25 @@ class SettingFragment : Fragment(R.layout.fragment_setting) {
     }
 
     private fun showCurrentCurrency() {
-        if (setting.currency != "") {
-            val currency = currencies.first { it.name == setting.currency }
-            currency_tv.text = currency.name
-            currencyIcon_iv.setImageResource(currency.icon)
-        } else {
-            if (languages.none { it.locale == Locale.getDefault().language }) {
-                val currency = currencies.first { it.name == "USD" }
+        try {
+            if (setting.currency != "") {
+                val currency = currencies.first { it.name == setting.currency }
                 currency_tv.text = currency.name
                 currencyIcon_iv.setImageResource(currency.icon)
             } else {
-                val lang = languages.first { it.locale == Locale.getDefault().language }
-                val currency = currencies.first { it.name == lang.currency }
-                currency_tv.text = currency.name
-                currencyIcon_iv.setImageResource(currency.icon)
+                if (languages.none { it.locale == Locale.getDefault().language }) {
+                    val currency = currencies.first { it.name == "USD" }
+                    currency_tv.text = currency.name
+                    currencyIcon_iv.setImageResource(currency.icon)
+                } else {
+                    val lang = languages.first { it.locale == Locale.getDefault().language }
+                    val currency = currencies.first { it.name == lang.currency }
+                    currency_tv.text = currency.name
+                    currencyIcon_iv.setImageResource(currency.icon)
+                }
             }
+        } catch (e: Exception) {
+            Log.e("test", e.localizedMessage?:"error")
         }
     }
 

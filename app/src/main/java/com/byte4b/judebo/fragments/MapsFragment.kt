@@ -37,7 +37,6 @@ import com.google.android.gms.maps.model.*
 import com.google.gson.Gson
 import com.google.maps.android.clustering.ClusterManager
 import kotlinx.android.synthetic.main.fragment_maps.*
-import kotlinx.android.synthetic.main.preview.*
 import kotlinx.android.synthetic.main.preview.view.*
 import kotlin.math.pow
 
@@ -175,7 +174,7 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
                 }
                 try {
                 ApiServiceImpl(this).getNearbyMarkers(
-                    if (setting.language == "") "en" else setting.language!!,
+                    setting.getCurrentLanguage().locale,
                     position.latitude + Setting.MAX_SEARCH_LATITUDE_SIZE / 2,
                     position.longitude + Setting.MAX_SEARCH_LONGITUDE_SIZE / 2,
                     position.latitude - Setting.MAX_SEARCH_LATITUDE_SIZE / 2,
@@ -298,7 +297,6 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
 
     override fun onResume() {
         super.onResume()
-        Log.e("test", isFromSetting.toString())
         if (isFromSetting) {
             showMe()
             isFromSetting = false
