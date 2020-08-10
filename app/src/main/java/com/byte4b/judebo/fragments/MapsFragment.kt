@@ -36,7 +36,6 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.google.gson.Gson
 import com.google.maps.android.clustering.ClusterManager
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_maps.*
 import kotlinx.android.synthetic.main.preview.*
 import kotlinx.android.synthetic.main.preview.view.*
@@ -54,6 +53,8 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
     private var markers: List<MyMarker>? = null
     private var clusterManager: ClusterManager<AbstractMarker>? = null
     private var renderer: OwnIconRendered? = null
+    private var isFromSetting = false
+    private var isMustBeSetLocation = false
 
     private fun addMyLocationTarget() {
         if (map != null) {
@@ -70,9 +71,37 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
         }
     }
 
+    private fun showMe() {
+        if (map != null) {
+            val location = ctx.getLocation()
+            if (location != null) {
+                map?.animateCamera(
+                    CameraUpdateFactory.newLatLngZoom(
+                        LatLng(location.latitude, location.longitude),
+                        Setting.BASIC_ZOOM
+                    )
+                )
+                addMyLocationTarget()
+            } else {
+                map?.animateCamera(
+                    CameraUpdateFactory.newLatLngZoom(
+                        LatLng(Setting.DEFAULT_LATITUDE, Setting.DEFAULT_LONGITUDE),
+                        Setting.BASIC_ZOOM
+                    )
+                )
+                addMyLocationTarget()
+            }
+        }
+    }
+
     @SuppressLint("MissingPermission")
     private val callback = OnMapReadyCallback { googleMap ->
         map = googleMap
+        if (isMustBeSetLocation) {
+            showMe()
+            isMustBeSetLocation = false
+        }
+
         googleMap.uiSettings.isRotateGesturesEnabled = false
         googleMap.setMaxZoomPreference(Setting.MAX_ZOOM)
         googleMap.setMinZoomPreference(Setting.MIN_ZOOM)
@@ -275,6 +304,15 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
         markers = list
     }
 
+    override fun onResume() {
+        super.onResume()
+        Log.e("test", isFromSetting.toString())
+        if (isFromSetting) {
+            showMe()
+            isFromSetting = false
+        }
+    }
+
     @SuppressLint("MissingPermission")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -283,6 +321,12 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
                         Manifest.permission.ACCESS_FINE_LOCATION) {
             val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
             mapFragment?.getMapAsync(callback)
+
+            if (setting.lastMapCameraPosition.latitude == 0.0
+                && setting.lastMapCameraPosition.longitude == 0.0) {
+                isMustBeSetLocation = true
+                showMe()
+            }
 
             myGeo_iv.setOnClickListener {
                 val locationManager = ctx.getSystemService(LOCATION_SERVICE) as LocationManager
@@ -294,32 +338,12 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
                         .setPositiveButton(R.string.request_geolocation_ok) { dialogInterface, _ ->
                             startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
                             dialogInterface.dismiss()
+                            isFromSetting = true
                         }
                         .setNegativeButton(R.string.request_geolocation_cancel) { d, _ -> d.cancel()}
                         .show()
                 } else {
-
-                    if (map != null) {
-                        val location = ctx.getLocation()
-                        if (location != null) {
-                            map?.animateCamera(
-                                CameraUpdateFactory.newLatLngZoom(
-                                    LatLng(location.latitude, location.longitude),
-                                    Setting.BASIC_ZOOM
-                                )
-                            )
-                            addMyLocationTarget()
-                        } else {
-                            map?.animateCamera(
-                                CameraUpdateFactory.newLatLngZoom(
-                                    LatLng(Setting.DEFAULT_LATITUDE, Setting.DEFAULT_LONGITUDE),
-                                    Setting.BASIC_ZOOM
-                                )
-                            )
-                            addMyLocationTarget()
-                        }
-
-                    }
+                    showMe()
                 }
             }
         }.onDeclined {
