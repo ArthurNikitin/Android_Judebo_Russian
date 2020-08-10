@@ -36,6 +36,7 @@
                 android:textColor="#000" />
 
             <LinearLayout
+                android:layoutDirection="ltr"
                 android:layout_gravity="right"
                 android:orientation="horizontal"
                 android:id="@+id/langClickable"
@@ -75,6 +76,7 @@
                 android:textColor="#000" />
 
             <LinearLayout
+                android:layoutDirection="ltr"
                 android:layout_gravity="right"
                 android:orientation="horizontal"
                 android:id="@+id/currencyClickable"
@@ -118,9 +120,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
-                android:paddingStart="8dp"
+                android:paddingLeft="8dp"
                 android:paddingTop="5dp"
-                android:paddingEnd="15dp"
+                android:paddingRight="15dp"
                 android:paddingBottom="5dp"
                 android:text="@string/settings_title_support_email"
                 android:textColor="#000" />
