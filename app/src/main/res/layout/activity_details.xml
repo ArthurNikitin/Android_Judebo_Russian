@@ -118,14 +118,14 @@
                     android:id="@+id/secondSalary_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="" />
+                    android:text="230" />
 
                 <TextView
                     android:textSize="16sp"
                     android:id="@+id/secondSalaryVal_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="" />
+                    android:text="RUB" />
 
             </LinearLayout>
 
@@ -140,14 +140,14 @@
                     android:id="@+id/salary_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="" />
+                    android:text="10 000" />
 
                 <TextView
                     android:textSize="16sp"
                     android:id="@+id/salaryVal_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="" />
+                    android:text="USD" />
 
             </LinearLayout>
 
@@ -173,7 +173,7 @@
                 </LinearLayout>
 
                     <TextView
-                        android:textSize="14sp"
+                        android:textSize="16sp"
                         android:layout_marginBottom="8dp"
                         android:drawableStart="@drawable/phone"
                         android:id="@+id/phone_tv"
@@ -181,10 +181,10 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:onClick="callClick"
-                        android:text="TextView" />
+                        android:text="8 800 55 55 55" />
 
                     <TextView
-                        android:textSize="14sp"
+                        android:textSize="16sp"
                         android:layout_marginBottom="8dp"
                         android:drawableStart="@drawable/mail"
                         android:id="@+id/email_tv"

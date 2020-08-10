@@ -177,7 +177,7 @@
                 </LinearLayout>
 
                 <TextView
-                    android:textSize="14sp"
+                    android:textSize="16sp"
                     android:gravity="end"
                     android:layout_marginBottom="8dp"
                     android:drawableEnd="@drawable/phone"
@@ -188,7 +188,7 @@
                     android:text="TextView" />
 
                 <TextView
-                    android:textSize="14sp"
+                    android:textSize="16sp"
                     android:gravity="end"
                     android:layout_marginBottom="8dp"
                     android:drawableEnd="@drawable/mail"

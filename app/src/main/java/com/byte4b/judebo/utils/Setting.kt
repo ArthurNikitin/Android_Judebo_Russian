@@ -75,7 +75,7 @@ class Setting(ctx: Context) {
         // const val CLUSTER_RADIUS = 165.0
         const val CLUSTER_RADIUS = 100.0
         const val VALUE_INFINITESIMAL = 0.00001
-        const val CURRENCY_ICON_SIZE = 16
+        const val CURRENCY_ICON_SIZE = 20
 
         val CLUSTER_SIZES =
             listOf(2..3, 4..5, 6..7, 8..9, 10..11, 12..15, 16..20, 21..30, 31..50, 51..99)
