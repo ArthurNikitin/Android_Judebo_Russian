@@ -39,9 +39,6 @@ import com.google.maps.android.clustering.ClusterManager
 import kotlinx.android.synthetic.main.fragment_maps.*
 import kotlinx.android.synthetic.main.preview.*
 import kotlinx.android.synthetic.main.preview.view.*
-import java.lang.Math.pow
-import java.lang.Math.sqrt
-import kotlin.math.abs
 import kotlin.math.pow
 
 
@@ -221,11 +218,9 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
                 renderer?.apply {
                     view.logo_iv.setImageDrawable(renderer!!.drawables[data.UF_LOGO_IMAGE])
                 }
-                try {
-
-                } catch (e: Exception) {}
             }
 
+            //val currency = setting.getCurrentCurrency()
             val currency = currencies.firstOrNull { it.id == data.UF_GROSS_CURRENCY_ID }
 
             try {
@@ -237,6 +232,7 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
                     view.secondContainer.visibility = View.VISIBLE
                     view.salaryContainer.visibility = View.VISIBLE
                 }
+
                 if (currency?.name == setting.currency
                     || (setting.currency == "" && currency?.name == "USD")
                 ) {
@@ -248,19 +244,17 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
                     view.salary_tv.text = data.UF_GROSS_PER_MONTH.round()
                     view.salaryVal_tv.text = " ${currency?.name ?: ""}"
                     view.salary_tv.setRightDrawable(currency?.icon ?: R.drawable.iusd)
-                    view.secondContainer.visibility = View.VISIBLE
-                    val currencyFromSetting =
-                        if (setting.currency.isNullOrEmpty()) "USD" else setting.currency!!
-                    val currency2 = currencies.firstOrNull { it.name == currencyFromSetting }
+
+                    val currency2 = setting.getCurrentCurrency()
                     val convertedSalary =
-                        data.UF_GROSS_PER_MONTH.toDouble() * (currency2?.rate
-                            ?: 1) / (currency?.rate ?: 1)
-                    if (convertedSalary == 0.0)
-                        secondContainer.visibility = View.GONE
-                    view.secondSalary_tv.text =
-                        "≈${convertedSalary.toString().round()}"
-                    view.secondSalaryVal_tv.text = currency2?.name ?: "USD"
-                    view.secondSalary_tv.setRightDrawable(currency2?.icon ?: R.drawable.iusd)
+                        (data.UF_GROSS_PER_MONTH.toDouble() * currency2.rate / (currency?.rate ?: 1))
+                            .toString().round().trim()
+                    view.secondSalary_tv.text = "≈${convertedSalary}"
+                    view.secondContainer.visibility =
+                        if (convertedSalary == "0") View.GONE
+                        else View.VISIBLE
+                    view.secondSalaryVal_tv.text = currency2.name
+                    view.secondSalary_tv.setRightDrawable(currency2.icon)
                 }
             } catch (e: Exception) {}
             view.more_tv.text = "#${data.UF_JOBS_ID} ${getString(R.string.button_detail_title)}"

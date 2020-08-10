@@ -2,6 +2,11 @@ package com.byte4b.judebo.utils
 
 import android.content.Context
 import androidx.core.content.edit
+import com.byte4b.judebo.getLangFromLocale
+import com.byte4b.judebo.models.Currency
+import com.byte4b.judebo.models.Language
+import com.byte4b.judebo.models.currencies
+import com.byte4b.judebo.models.languages
 import com.google.android.gms.maps.model.LatLng
 
 class Setting(ctx: Context) {
@@ -35,6 +40,21 @@ class Setting(ctx: Context) {
                 putFloat("lastMapCameraPosition_longitude", value.longitude.toFloat())
             }
         }
+
+    fun getCurrentLanguage(): Language {
+        return if (language == "") getLangFromLocale()
+        else languages.first { it.locale == language!! }
+    }
+
+    fun getCurrentCurrency(): Currency {
+        return if (currency == "") {
+            if (language == "")
+                currencies.first { it.name == getLangFromLocale().currency }
+            else
+                currencies.first { it.name == currency }
+        } else
+            currencies.first { it.name == currency }
+    }
 
     companion object {
         const val BASIC_ZOOM = 11.0f

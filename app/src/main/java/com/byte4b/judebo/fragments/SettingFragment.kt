@@ -75,7 +75,6 @@ class SettingFragment : Fragment(R.layout.fragment_setting) {
         } else
             currencies.first { it.name == setting.currency }
 
-        //val currency = if (setting.currency == "") "USD" else setting.currency!!
         AlertDialog.Builder(requireContext())
             .setTitle(R.string.settings_title_currency)
             .setAdapter(CurrencyAdapter(requireContext(), currencies.toTypedArray(), currency.name)) { dialog, index ->

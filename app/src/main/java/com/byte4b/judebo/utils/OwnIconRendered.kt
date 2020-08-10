@@ -33,7 +33,6 @@ import kotlinx.android.synthetic.main.cluster_icon.view.*
 import kotlinx.android.synthetic.main.marker_item.view.*
 import kotlinx.android.synthetic.main.marker_without_salary.view.*
 
-
 class OwnIconRendered(
     val context: Context?, map: GoogleMap?,
     private val clusterManager: ClusterManager<AbstractMarker>?
@@ -147,23 +146,20 @@ class OwnIconRendered(
 
                 view.secondContainer2.visibility = View.VISIBLE
 
-                val currencyFromSetting =
-                    if (setting.currency.isNullOrEmpty()) "USD" else setting.currency!!
-                val currency2 = currencies.firstOrNull { it.name == currencyFromSetting }
+                val currency2 = setting.getCurrentCurrency()
                 val convertedSalary =
-                    data.UF_GROSS_PER_MONTH.toDouble() * (currency2?.rate
-                        ?: 1) / (currency?.rate ?: 1)
-                if (convertedSalary == 0.0)
-                    view.secondContainer2.visibility = View.GONE
-                view.secondSalary_tv2.text =
-                    if (isRtl(context!!)) "${convertedSalary.toString().round()}≈"
-                    else "≈${convertedSalary.toString().round()}"
-                view.secondSalaryVal_tv2.text = currency2?.name ?: "USD"
+                    (data.UF_GROSS_PER_MONTH.toDouble() * currency2.rate / (currency?.rate ?: 1))
+                        .toString().round().trim()
+                view.secondSalary_tv2.text = "≈${convertedSalary}"
+                view.secondContainer2.visibility =
+                    if (convertedSalary == "0") View.GONE
+                    else View.VISIBLE
+                view.secondSalaryVal_tv2.text = currency2.name
 
                 if (isRtl(context))
-                    view.secondSalary_tv2.setLeftDrawable(currency2?.icon ?: R.drawable.iusd)
+                    view.secondSalary_tv2.setLeftDrawable(currency2.icon)
                 else
-                    view.secondSalary_tv2.setRightDrawable(currency2?.icon ?: R.drawable.iusd)
+                    view.secondSalary_tv2.setRightDrawable(currency2.icon)
             }
         } catch (e: Exception) {
         }

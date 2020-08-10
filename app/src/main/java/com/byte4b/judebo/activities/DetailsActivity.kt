@@ -23,6 +23,7 @@ import com.google.android.flexbox.*
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_details.*
+import kotlinx.android.synthetic.main.preview.view.*
 
 
 class DetailsActivity : AppCompatActivity() {
@@ -76,19 +77,17 @@ class DetailsActivity : AppCompatActivity() {
                     view.salary_tv.text = jobInfo.UF_GROSS_PER_MONTH.round()
                     view.salaryVal_tv.text = " ${currency?.name ?: ""}"
                     view.salary_tv.setRightDrawable(currency?.icon ?: R.drawable.iusd)
-                    view.secondContainer.visibility = View.VISIBLE
-                    val currencyFromSetting =
-                        if (setting.currency.isNullOrEmpty()) "USD" else setting.currency!!
-                    val currency2 = currencies.firstOrNull { it.name == currencyFromSetting }
+
+                    val currency2 = setting.getCurrentCurrency()
                     val convertedSalary =
-                        jobInfo.UF_GROSS_PER_MONTH.toDouble() * (currency2?.rate
-                            ?: 1) / (currency?.rate ?: 1)
-                    if (convertedSalary == 0.0)
-                        secondContainer.visibility = View.GONE
-                    view.secondSalary_tv.text =
-                        "${convertedSalary.toString().round()}≈"
-                    view.secondSalaryVal_tv.text = currency2?.name ?: "USD"
-                    view.secondSalary_tv.setRightDrawable(currency2?.icon ?: R.drawable.iusd)
+                        (jobInfo.UF_GROSS_PER_MONTH.toDouble() * currency2.rate / (currency?.rate ?: 1))
+                            .toString().round().trim()
+                    view.secondSalary_tv.text = "≈${convertedSalary}"
+                    view.secondContainer.visibility =
+                        if (convertedSalary == "0") View.GONE
+                        else View.VISIBLE
+                    view.secondSalaryVal_tv.text = currency2.name
+                    view.secondSalary_tv.setRightDrawable(currency2.icon)
                 }
             } catch (e: Exception) {
             }
