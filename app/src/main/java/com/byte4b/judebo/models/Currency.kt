@@ -20,7 +20,7 @@ val currencies = listOf(
     Currency(10, "AED", R.drawable.currency_aed, 233298),
     Currency(3, "RUB", R.drawable.currency_rub, 4725157),
     Currency(7, "JPY", R.drawable.currency_jpy, 6722757),
-    Currency(8, "IDR", R.drawable.currency_idr, 933728356),
+    Currency(8, "IDR", R.drawable.qqq, 933728356),
     Currency(12, "KRW", R.drawable.currency_krw, 75866123),
     Currency(13, "TRY", R.drawable.currency_try, 442884),
     Currency(14, "VND", R.drawable.currency_vnd, 1472363923),

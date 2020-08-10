@@ -15,6 +15,8 @@ import com.byte4b.judebo.adapters.LanguageAdapter
 import com.byte4b.judebo.getLangFromLocale
 import com.byte4b.judebo.models.currencies
 import com.byte4b.judebo.models.languages
+import com.byte4b.judebo.setLeftDrawable
+import com.byte4b.judebo.setRightDrawable
 import com.byte4b.judebo.utils.Setting
 import kotlinx.android.synthetic.main.fragment_setting.*
 import java.util.*
@@ -36,6 +38,8 @@ class SettingFragment : Fragment(R.layout.fragment_setting) {
         } catch (e: Exception) {
             Log.e("test", "1: " + e.localizedMessage)
         }
+
+        //support_tv.setLeftDrawable(R.drawable.currency_bgn)
 
         try {
             if (setting.currency == "") {
