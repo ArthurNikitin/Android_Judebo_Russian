@@ -16,6 +16,8 @@ import androidx.core.graphics.drawable.toBitmap
 import androidx.core.graphics.drawable.toDrawable
 import androidx.core.text.TextUtilsCompat
 import androidx.core.view.ViewCompat
+import com.byte4b.judebo.models.Language
+import com.byte4b.judebo.models.languages
 import com.byte4b.judebo.utils.Setting
 import java.util.*
 import kotlin.math.roundToInt
@@ -101,4 +103,12 @@ fun String.getFormattedSalary(split: String = "\u00A0"): String {
         list.add(tmp)
 
     return list.joinToString(split).reversed()
+}
+
+fun getLangFromLocale(): Language {
+    for (lang in languages) {
+        if (lang.locale == Locale.getDefault().language)
+            return lang
+    }
+    return languages.first()
 }
