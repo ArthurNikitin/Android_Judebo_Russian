@@ -23,6 +23,9 @@ class SplashActivity : AppCompatActivity() {
         else
             setLocale(getLangFromLocale().locale)
 
+        if (setting.currency == "")
+            setting.currency = setting.getCurrentCurrency().name
+
         Handler().postDelayed({
             startActivity<MainActivity>()
             finish()
