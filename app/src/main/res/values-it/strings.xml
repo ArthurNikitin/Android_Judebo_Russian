@@ -19,6 +19,10 @@
     <string name="button_share">Condividere</string>
     <string name="error_no_internet">Nessuna connessione internet!</string>
     <string name="settings_title_language">linguaggio</string>
+    <string name="request_geolocation_title">geolocalizzazione</string>
+    <string name="request_geolocation_message">Abilita la geolocalizzazione</string>
+    <string name="request_geolocation_ok">Ok</string>
+    <string name="request_geolocation_cancel">Annulla</string>
 
 
 

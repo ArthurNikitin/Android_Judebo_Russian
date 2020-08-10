@@ -1,15 +1,29 @@
 <resources>
-    <string name="settings_title_current_language">" لغة"</string>
-    <string name="settings_title_settings">" الإعدادات"</string>
+
+
+    <string name="settings_title_current_language"> لغة</string>
+
+    <string name="settings_title_settings"> الإعدادات</string>
+
     <string name="settings_title_currency">عملة</string>
-    <string name="settings_title_current_currency">عملة</string>
+    <string name="settings_title_current_currency"> عملة</string>
     <string name="settings_title_support">الدعم</string>
     <string name="settings_title_support_email">ar@judebo.com</string>
     <string name="button_detail_title">التفاصيل</string>
+
     <string name="add_job_title">يمكنك إضافة وظائف شاغرة عن طريق متصفح الويب</string>
     <string name="add_job_link">https://ar.judebo.com/jobs/</string>
+
+
     <string name="search_title_search">بحث</string>
     <string name="button_share">شارك</string>
     <string name="error_no_internet">No internet connection!</string>
-    <string name="settings_title_language">" لغة"</string>
+    <string name="settings_title_language"> لغة</string>
+    <string name="request_geolocation_title">موقعك</string>
+    <string name="request_geolocation_message">الرجاء تمكين الموقع</string>
+    <string name="request_geolocation_ok">حسنا</string>
+    <string name="request_geolocation_cancel">إلغاء</string>
+
+
+
 </resources>

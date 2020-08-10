@@ -17,8 +17,12 @@
 
     <string name="search_title_search">Поиск</string>
     <string name="button_share">Поделиться</string>
-    <string name="error_no_internet">No internet connection!</string>
+    <string name="error_no_internet">Нет интернет соединения</string>
     <string name="settings_title_language">Язык</string>
+    <string name="request_geolocation_title">Геолокация</string>
+    <string name="request_geolocation_message">Пожалуйста, включите геолокацию</string>
+    <string name="request_geolocation_ok">Включить</string>
+    <string name="request_geolocation_cancel">Отмена</string>
 
 
 

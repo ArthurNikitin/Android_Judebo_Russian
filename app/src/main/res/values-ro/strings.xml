@@ -19,6 +19,10 @@
     <string name="button_share">Acțiune</string>
     <string name="error_no_internet">Fără conexiune internet!</string>
     <string name="settings_title_language">Limba</string>
+    <string name="request_geolocation_title">Localizarea geografică</string>
+    <string name="request_geolocation_message">Vă rugăm să activați geolocalizarea</string>
+    <string name="request_geolocation_ok">O.K</string>
+    <string name="request_geolocation_cancel">Anulare</string>
 
 
 

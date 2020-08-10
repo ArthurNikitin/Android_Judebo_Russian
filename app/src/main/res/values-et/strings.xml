@@ -19,6 +19,10 @@
     <string name="button_share">Jaga</string>
     <string name="error_no_internet">Interneti-ühendust pole!</string>
     <string name="settings_title_language">Keel</string>
+    <string name="request_geolocation_title">Geograafiline asukoht</string>
+    <string name="request_geolocation_message">Lubage geograafiline asukoha määramine</string>
+    <string name="request_geolocation_ok">Okei</string>
+    <string name="request_geolocation_cancel">Tühista</string>
 
 
 

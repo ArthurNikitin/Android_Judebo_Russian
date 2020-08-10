@@ -19,6 +19,10 @@
     <string name="button_share">Delen</string>
     <string name="error_no_internet">Geen internet verbinding!</string>
     <string name="settings_title_language">Taal</string>
+    <string name="request_geolocation_title">Geolocatie</string>
+    <string name="request_geolocation_message">Schakel geolocaltie in</string>
+    <string name="request_geolocation_ok">OK</string>
+    <string name="request_geolocation_cancel">Annuleer</string>
 
 
 

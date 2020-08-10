@@ -19,6 +19,10 @@
     <string name="button_share">Chia sẻ</string>
     <string name="error_no_internet">Không có kết nối Internet!</string>
     <string name="settings_title_language">Ngôn ngữ</string>
+    <string name="request_geolocation_title">Vị trí địa lý</string>
+    <string name="request_geolocation_message">Vui lòng bật định vị địa lý</string>
+    <string name="request_geolocation_ok">Đồng ý</string>
+    <string name="request_geolocation_cancel">Huỷ bỏ</string>
 
 
 

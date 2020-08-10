@@ -19,6 +19,10 @@
     <string name="button_share">Dela med sig</string>
     <string name="error_no_internet">Ingen internetanslutning!</string>
     <string name="settings_title_language">Språk</string>
+    <string name="request_geolocation_title">Geolocation</string>
+    <string name="request_geolocation_message">Aktivera geolocaltion</string>
+    <string name="request_geolocation_ok">Ok</string>
+    <string name="request_geolocation_cancel">Annullera</string>
 
 
 

@@ -19,6 +19,10 @@
     <string name="button_share">לַחֲלוֹק</string>
     <string name="error_no_internet">אין חיבור אינטרנט!</string>
     <string name="settings_title_language">שפה</string>
+    <string name="request_geolocation_title">מיקום גיאוגרפי</string>
+    <string name="request_geolocation_message">אנא אפשר גיאולוקולציה</string>
+    <string name="request_geolocation_ok">בסדר</string>
+    <string name="request_geolocation_cancel">לְבַטֵל</string>
 
 
 

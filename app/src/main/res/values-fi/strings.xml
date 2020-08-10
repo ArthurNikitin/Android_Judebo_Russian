@@ -19,6 +19,10 @@
     <string name="button_share">Jaa</string>
     <string name="error_no_internet">Ei Internet-yhteyttä!</string>
     <string name="settings_title_language">Kieli</string>
+    <string name="request_geolocation_title">Geolocation</string>
+    <string name="request_geolocation_message">Ota maantieteellinen sijainti käyttöön</string>
+    <string name="request_geolocation_ok">kunnossa</string>
+    <string name="request_geolocation_cancel">Peruuttaa</string>
 
 
 

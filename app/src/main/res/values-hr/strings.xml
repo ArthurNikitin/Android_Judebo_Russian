@@ -19,6 +19,10 @@
     <string name="button_share">Udio</string>
     <string name="error_no_internet">Nema internetske veze!</string>
     <string name="settings_title_language">Jezik</string>
+    <string name="request_geolocation_title">Geolocation</string>
+    <string name="request_geolocation_message">Omogućite geolokalciju</string>
+    <string name="request_geolocation_ok">U redu</string>
+    <string name="request_geolocation_cancel">Otkazati</string>
 
 
 

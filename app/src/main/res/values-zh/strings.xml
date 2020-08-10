@@ -19,6 +19,10 @@
     <string name="button_share">分享</string>
     <string name="error_no_internet">沒有網絡連接！</string>
     <string name="settings_title_language">語言</string>
+    <string name="request_geolocation_title">地理位置</string>
+    <string name="request_geolocation_message">請啟用地理定位</string>
+    <string name="request_geolocation_ok">好</string>
+    <string name="request_geolocation_cancel">取消</string>
 
 
 

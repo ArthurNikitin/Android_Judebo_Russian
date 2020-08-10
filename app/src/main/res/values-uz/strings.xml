@@ -1,24 +1,28 @@
 <resources>
 
 
-    <string name="settings_title_current_language">Ენა</string>
+    <string name="settings_title_current_language">Til</string>
 
-    <string name="settings_title_settings">პარამეტრები</string>
+    <string name="settings_title_settings">Sozlamalar</string>
 
-    <string name="settings_title_currency">ვალუტა</string>
-    <string name="settings_title_current_currency">ვალუტა</string>
-    <string name="settings_title_support">მხარდაჭერა</string>
-    <string name="settings_title_support_email">ka@judebo.com</string>
-    <string name="button_detail_title">დეტალი</string>
+    <string name="settings_title_currency">Pul birligi</string>
+    <string name="settings_title_current_currency">Pul birligi</string>
+    <string name="settings_title_support">Qo\'llab-quvvatlash</string>
+    <string name="settings_title_support_email">uz@judebo.com</string>
+    <string name="button_detail_title">batafsil</string>
 
-    <string name="add_job_title">შეგიძლიათ დაამატოთ ვაკანსიები ვებ ბრაუზერის საშუალებით</string>
-    <string name="add_job_link">https://ka.judebo.com/jobs/</string>
+    <string name="add_job_title">Bo\'sh ish o\'rinlarini veb-brauzer orqali qo\'shishingiz mumkin</string>
+    <string name="add_job_link">https://uz.judebo.com/jobs/</string>
 
 
-    <string name="search_title_search">ძებნა</string>
-    <string name="button_share">გაზიარება</string>
-    <string name="error_no_internet">Არ არის ინტერნეტ კავშირი!</string>
-    <string name="settings_title_language">Ენა</string>
+    <string name="search_title_search">Qidirmoq</string>
+    <string name="button_share">Ulashish</string>
+    <string name="error_no_internet">Internet aloqasi yo\'q!</string>
+    <string name="settings_title_language">Til</string>
+    <string name="request_geolocation_title">Geolokatsiya</string>
+    <string name="request_geolocation_message">Iltimos, geolocaltion-ni yoqing</string>
+    <string name="request_geolocation_ok">Ok</string>
+    <string name="request_geolocation_cancel">Bekor qilish</string>
 
 
 

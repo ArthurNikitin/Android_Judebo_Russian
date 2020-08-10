@@ -19,6 +19,10 @@
     <string name="button_share">Ҳиссаи</string>
     <string name="error_no_internet">Пайвастшавӣ ба интернет!</string>
     <string name="settings_title_language">Забон</string>
+    <string name="request_geolocation_title">Ҷойгиршавӣ</string>
+    <string name="request_geolocation_message">Лутфан геолокалионро фаъол кунед</string>
+    <string name="request_geolocation_ok">Хуб</string>
+    <string name="request_geolocation_cancel">Бекор кардан</string>
 
 
 

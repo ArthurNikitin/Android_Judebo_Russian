@@ -19,6 +19,10 @@
     <string name="button_share">Dele</string>
     <string name="error_no_internet">Ingen internettforbindelse!</string>
     <string name="settings_title_language">Språk</string>
+    <string name="request_geolocation_title">geolocation</string>
+    <string name="request_geolocation_message">Vennligst aktiver geolocaltion</string>
+    <string name="request_geolocation_ok">ok</string>
+    <string name="request_geolocation_cancel">Avbryt</string>
 
 
 

@@ -19,6 +19,10 @@
     <string name="button_share">Објави</string>
     <string name="error_no_internet">Нема интернет конекције!</string>
     <string name="settings_title_language">Језик</string>
+    <string name="request_geolocation_title">Геолокација</string>
+    <string name="request_geolocation_message">Молимо омогућите геолокалцију</string>
+    <string name="request_geolocation_ok">Ок</string>
+    <string name="request_geolocation_cancel">Поништити, отказати</string>
 
 
 

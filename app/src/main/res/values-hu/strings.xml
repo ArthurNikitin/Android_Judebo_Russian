@@ -19,6 +19,10 @@
     <string name="button_share">Ossza meg</string>
     <string name="error_no_internet">Nincs internetkapcsolat!</string>
     <string name="settings_title_language">Nyelv</string>
+    <string name="request_geolocation_title">Geolocation</string>
+    <string name="request_geolocation_message">Kérjük, engedélyezze a helymeghatározást</string>
+    <string name="request_geolocation_ok">Rendben</string>
+    <string name="request_geolocation_cancel">Megszünteti</string>
 
 
 

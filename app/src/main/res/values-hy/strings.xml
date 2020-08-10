@@ -19,6 +19,10 @@
     <string name="button_share">Կիսվիր</string>
     <string name="error_no_internet">Ոչ մի ինտերնետային կապ:</string>
     <string name="settings_title_language">Լեզու</string>
+    <string name="request_geolocation_title">Երկրաբաշխում</string>
+    <string name="request_geolocation_message">Խնդրում ենք միացնել երկրաչափումը</string>
+    <string name="request_geolocation_ok">Լավ</string>
+    <string name="request_geolocation_cancel">Չեղարկել</string>
 
 
 

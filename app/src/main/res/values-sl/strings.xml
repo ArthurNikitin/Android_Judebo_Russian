@@ -19,6 +19,10 @@
     <string name="button_share">Deliti</string>
     <string name="error_no_internet">Brez internetne povezave!</string>
     <string name="settings_title_language">Jezik</string>
+    <string name="request_geolocation_title">Geolokacija</string>
+    <string name="request_geolocation_message">Prosimo, omogočite geolokalcijo</string>
+    <string name="request_geolocation_ok">V redu</string>
+    <string name="request_geolocation_cancel">Prekliči</string>
 
 
 

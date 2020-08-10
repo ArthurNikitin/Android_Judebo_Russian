@@ -19,6 +19,10 @@
     <string name="button_share">Dalintis</string>
     <string name="error_no_internet">Nėra interneto ryšio!</string>
     <string name="settings_title_language">Kalba</string>
+    <string name="request_geolocation_title">Geografinė vieta</string>
+    <string name="request_geolocation_message">Įgalinkite geolokalizaciją</string>
+    <string name="request_geolocation_ok">Gerai</string>
+    <string name="request_geolocation_cancel">Atšaukti</string>
 
 
 

@@ -19,6 +19,10 @@
     <string name="button_share">Падзяліцца</string>
     <string name="error_no_internet">Няма падлучэння да Інтэрнэту!</string>
     <string name="settings_title_language">Мова</string>
+    <string name="request_geolocation_title">Геалакацыя</string>
+    <string name="request_geolocation_message">Уключыце геолокацию</string>
+    <string name="request_geolocation_ok">Добра</string>
+    <string name="request_geolocation_cancel">Адмяніць</string>
 
 
 

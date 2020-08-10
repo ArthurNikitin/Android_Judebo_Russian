@@ -19,6 +19,10 @@
     <string name="button_share">Nuduhake</string>
     <string name="error_no_internet">Ora ana sambungan internet!</string>
     <string name="settings_title_language">Basa</string>
+    <string name="request_geolocation_title">Ģeogrāfiskā atrašanās vieta</string>
+    <string name="request_geolocation_message">Lūdzu, iespējojiet ģeogrāfisko atrašanās vietu</string>
+    <string name="request_geolocation_ok">Labi</string>
+    <string name="request_geolocation_cancel">Atcelt</string>
 
 
 

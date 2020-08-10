@@ -19,6 +19,10 @@
     <string name="button_share">共有</string>
     <string name="error_no_internet">インターネットに接続されていません！</string>
     <string name="settings_title_language">言語</string>
+    <string name="request_geolocation_title">ジオロケーション</string>
+    <string name="request_geolocation_message">地理位置情報を有効にしてください</string>
+    <string name="request_geolocation_ok">OK</string>
+    <string name="request_geolocation_cancel">キャンセル</string>
 
 
 

@@ -19,6 +19,10 @@
     <string name="button_share">शेयर</string>
     <string name="error_no_internet">कोई इंटरनेट कनेक्शन नहीं!</string>
     <string name="settings_title_language">भाषा: हिन्दी</string>
+    <string name="request_geolocation_title">जियोलोकेशन</string>
+    <string name="request_geolocation_message">कृपया जियोलोकेशन सक्षम करें</string>
+    <string name="request_geolocation_ok">ठीक</string>
+    <string name="request_geolocation_cancel">रद्द करना</string>
 
 
 

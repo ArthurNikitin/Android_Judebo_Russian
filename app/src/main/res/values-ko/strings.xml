@@ -19,6 +19,10 @@
     <string name="button_share">공유</string>
     <string name="error_no_internet">인터넷에 연결되지 않음!</string>
     <string name="settings_title_language">언어</string>
+    <string name="request_geolocation_title">지리적 위치</string>
+    <string name="request_geolocation_message">지리적 위치를 활성화하십시오</string>
+    <string name="request_geolocation_ok">확인</string>
+    <string name="request_geolocation_cancel">취소</string>
 
 
 

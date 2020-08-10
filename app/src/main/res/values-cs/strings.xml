@@ -19,6 +19,10 @@
     <string name="button_share">Podíl</string>
     <string name="error_no_internet">Žádné internetové připojení!</string>
     <string name="settings_title_language">Jazyk</string>
+    <string name="request_geolocation_title">Geolokace</string>
+    <string name="request_geolocation_message">Povolte geolokaci</string>
+    <string name="request_geolocation_ok">OK</string>
+    <string name="request_geolocation_cancel">zrušení</string>
 
 
 

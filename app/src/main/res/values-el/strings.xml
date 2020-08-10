@@ -19,6 +19,10 @@
     <string name="button_share">Μερίδιο</string>
     <string name="error_no_internet">Δεν υπάρχει σύνδεση στο διαδίκτυο!</string>
     <string name="settings_title_language">Γλώσσα</string>
+    <string name="request_geolocation_title">Γεωγραφική τοποθεσία</string>
+    <string name="request_geolocation_message">Ενεργοποιήστε το geolocaltion</string>
+    <string name="request_geolocation_ok">Εντάξει</string>
+    <string name="request_geolocation_cancel">Ματαίωση</string>
 
 
 

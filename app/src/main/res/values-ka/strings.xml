@@ -19,6 +19,10 @@
     <string name="button_share">გაზიარება</string>
     <string name="error_no_internet">Არ არის ინტერნეტ კავშირი!</string>
     <string name="settings_title_language">Ენა</string>
+    <string name="request_geolocation_title">გეოლოკაცია</string>
+    <string name="request_geolocation_message">გთხოვთ, ჩართოთ გეოლოკალაცია</string>
+    <string name="request_geolocation_ok">Კარგი</string>
+    <string name="request_geolocation_cancel">გაუქმება</string>
 
 
 

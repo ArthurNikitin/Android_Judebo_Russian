@@ -19,6 +19,10 @@
     <string name="button_share">Дял</string>
     <string name="error_no_internet">Няма интернет връзка!</string>
     <string name="settings_title_language">език</string>
+    <string name="request_geolocation_title">геолокация</string>
+    <string name="request_geolocation_message">Моля, активирайте геолокацията</string>
+    <string name="request_geolocation_ok">Добре</string>
+    <string name="request_geolocation_cancel">Отказ</string>
 
 
 

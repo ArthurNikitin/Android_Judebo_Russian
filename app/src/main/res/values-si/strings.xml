@@ -19,6 +19,10 @@
     <string name="button_share">බෙදාගන්න</string>
     <string name="error_no_internet">අන්තර්ජාල සම්බන්ධතාවයක් නොමැත!</string>
     <string name="settings_title_language">භාෂාව</string>
+    <string name="request_geolocation_title">භූ පිහිටීම</string>
+    <string name="request_geolocation_message">කරුණාකර භූ-ස්ථානගත කිරීම සක්‍රීය කරන්න</string>
+    <string name="request_geolocation_ok">හරි</string>
+    <string name="request_geolocation_cancel">අවලංගු කරන්න</string>
 
 
 

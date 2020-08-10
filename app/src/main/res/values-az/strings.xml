@@ -19,6 +19,10 @@
     <string name="button_share">Paylaşın</string>
     <string name="error_no_internet">İnternet bağlantısı yoxdur!</string>
     <string name="settings_title_language">Dil</string>
+    <string name="request_geolocation_title">Geolokasiya</string>
+    <string name="request_geolocation_message">Zəhmət olmasa geolokaltionu aktivləşdirin</string>
+    <string name="request_geolocation_ok">Tamam</string>
+    <string name="request_geolocation_cancel">Ləğv et</string>
 
 
 

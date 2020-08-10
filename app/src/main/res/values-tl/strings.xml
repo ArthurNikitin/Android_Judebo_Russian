@@ -19,6 +19,10 @@
     <string name="button_share">Ibahagi</string>
     <string name="error_no_internet">Walang koneksyon sa internet!</string>
     <string name="settings_title_language">Wika</string>
+    <string name="request_geolocation_title">Geolocation</string>
+    <string name="request_geolocation_message">Mangyaring paganahin ang geolocaltion</string>
+    <string name="request_geolocation_ok">Ok</string>
+    <string name="request_geolocation_cancel">Pagkansela</string>
 
 
 
