@@ -233,15 +233,13 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
                     view.salaryContainer.visibility = View.VISIBLE
                 }
 
-                if (currency?.name == setting.currency
-                    || (setting.currency == "" && currency?.name == "USD")
-                ) {
+                if (currency?.name == setting.getCurrentCurrency().name) {
                     view.salary_tv.text = data.UF_GROSS_PER_MONTH.round()
-                    view.salaryVal_tv.text = " ${currency?.name ?: ""}"
-                    view.salary_tv.setRightDrawable(currency?.icon ?: R.drawable.iusd)
+                    view.salaryVal_tv.text = " ${currency.name}"
+                    view.salary_tv.setRightDrawable(currency.icon)
                     view.secondContainer.visibility = View.GONE
                 } else {
-                    view.salary_tv.text = data.UF_GROSS_PER_MONTH.round()
+                    view.salary_tv.text = data.UF_GROSS_PER_MONTH.round().trim()
                     view.salaryVal_tv.text = " ${currency?.name ?: ""}"
                     view.salary_tv.setRightDrawable(currency?.icon ?: R.drawable.iusd)
 

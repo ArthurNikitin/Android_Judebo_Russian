@@ -66,15 +66,13 @@ class DetailsActivity : AppCompatActivity() {
                     view.secondContainer.visibility = View.VISIBLE
                     view.salaryContainer.visibility = View.VISIBLE
                 }
-                if (currency?.name == setting.currency
-                    || (setting.currency == "" && currency?.name == "USD")
-                ) {
+                if (currency?.name == setting.getCurrentCurrency().name) {
                     view.salary_tv.text = jobInfo.UF_GROSS_PER_MONTH.round()
                     view.salaryVal_tv.text = " ${currency?.name ?: ""}"
                     view.salary_tv.setRightDrawable(currency?.icon ?: R.drawable.iusd)
                     view.secondContainer.visibility = View.GONE
                 } else {
-                    view.salary_tv.text = jobInfo.UF_GROSS_PER_MONTH.round()
+                    view.salary_tv.text = jobInfo.UF_GROSS_PER_MONTH.round().trim()
                     view.salaryVal_tv.text = " ${currency?.name ?: ""}"
                     view.salary_tv.setRightDrawable(currency?.icon ?: R.drawable.iusd)
 

@@ -126,18 +126,16 @@ class OwnIconRendered(
                 view.secondContainer2.visibility = View.VISIBLE
                 view.salaryContainer2.visibility = View.VISIBLE
             }
-            if (currency?.name == setting.currency
-                || (setting.currency == "" && currency?.name == "USD")
-            ) {
+            if (currency?.name == setting.getCurrentCurrency().name) {
                 view.salary_tv2.text = data.UF_GROSS_PER_MONTH.round()
-                view.salaryVal_tv2.text = " ${currency?.name ?: ""}"
+                view.salaryVal_tv2.text = " ${currency.name}"
                 if (isRtl(context!!))
-                    view.salary_tv2.setLeftDrawable(currency?.icon ?: R.drawable.iusd)
+                    view.salary_tv2.setLeftDrawable(currency.icon)
                 else
-                    view.salary_tv2.setRightDrawable(currency?.icon ?: R.drawable.iusd)
+                    view.salary_tv2.setRightDrawable(currency.icon)
                 view.secondContainer2.visibility = View.GONE
             } else {
-                view.salary_tv2.text = data.UF_GROSS_PER_MONTH.round()
+                view.salary_tv2.text = data.UF_GROSS_PER_MONTH.round().trim()
                 view.salaryVal_tv2.text = " ${currency?.name ?: ""}"
                 if (isRtl(context!!))
                     view.salary_tv2.setLeftDrawable(currency?.icon ?: R.drawable.iusd)
