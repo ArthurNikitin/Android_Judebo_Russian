@@ -39,8 +39,6 @@ class SettingFragment : Fragment(R.layout.fragment_setting) {
             Log.e("test", "1: " + e.localizedMessage)
         }
 
-        //support_tv.setLeftDrawable(R.drawable.currency_bgn)
-
         try {
             if (setting.currency == "") {
                 if (setting.language == "") {
@@ -59,7 +57,7 @@ class SettingFragment : Fragment(R.layout.fragment_setting) {
                 currencyIcon_iv.setImageResource(currentCurrency.icon)
             }
         } catch (e: Exception) {
-            Log.e("test", "2: " + e.localizedMessage ?: "2")
+            Log.e("test", "2: " + e.localizedMessage)
         }
 
         langClickable.setOnClickListener { showLanguageDialog() }

@@ -49,12 +49,13 @@
                     android:layout_height="wrap_content"
                     android:paddingStart="8dp"
                     android:paddingTop="5dp"
-                    android:paddingEnd="15dp"
+                    android:paddingEnd="11dp"
                     android:paddingBottom="5dp"
                     android:text="English (English)"
                     android:textColor="#000" />
 
                 <ImageView
+                    android:layout_marginLeft="15dp"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center"
@@ -96,6 +97,7 @@
                     android:textColor="#000" />
 
                 <ImageView
+                    android:layout_marginLeft="15dp"
                     android:layout_width="16dp"
                     android:layout_height="16dp"
                     android:layout_gravity="center"
@@ -123,7 +125,7 @@
                 android:layout_gravity="left"
                 android:paddingRight="8dp"
                 android:paddingTop="5dp"
-                android:paddingLeft="32dp"
+                android:paddingLeft="47dp"
                 android:paddingBottom="5dp"
                 android:text="@string/settings_title_support_email"
                 android:textColor="#000" />

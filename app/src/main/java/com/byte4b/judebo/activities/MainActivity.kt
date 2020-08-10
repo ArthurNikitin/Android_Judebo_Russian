@@ -2,12 +2,15 @@ package com.byte4b.judebo.activities
 
 import android.Manifest
 import android.os.Bundle
+import android.util.LayoutDirection
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.byte4b.judebo.R
 import com.byte4b.judebo.fragments.CreatorFragment
 import com.byte4b.judebo.fragments.MapsFragment
 import com.byte4b.judebo.fragments.SettingFragment
+import com.byte4b.judebo.isRtl
 import com.byte4b.judebo.utils.Setting
 import com.github.florent37.runtimepermission.kotlin.askPermission
 import kotlinx.android.synthetic.main.activity_main.*
@@ -18,6 +21,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
+
+        navBar_bnv.layoutDirection =
+            if (isRtl(this)) View.LAYOUT_DIRECTION_RTL
+            else View.LAYOUT_DIRECTION_LTR
 
         askPermission(
             Manifest.permission.ACCESS_COARSE_LOCATION,
@@ -73,7 +80,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun restartFragment(fragment: Fragment) {
+    private fun restartFragment(fragment: Fragment) {
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.frame, fragment)
