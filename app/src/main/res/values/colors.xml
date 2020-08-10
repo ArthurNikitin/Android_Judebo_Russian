@@ -7,7 +7,7 @@
     <color name="background_primary">#000</color>
     <color name="toolbar">#232323</color>
     <color name="primary">#232323</color>
-    <color name="param_background">#8F8F8F</color>
+    <color name="param_background">#e5e5e5</color>
     <color name="main_text_color">#fff</color>
     <color name="search_polygon_square">#00c55c</color>
     <color name="toolbar_background_color">#027E3C</color>

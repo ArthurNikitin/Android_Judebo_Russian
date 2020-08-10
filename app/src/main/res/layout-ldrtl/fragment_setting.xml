@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_main">
+    android:background="#fff">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/param_background"
                 android:text="@string/settings_title_current_language"
-                android:textColor="@color/main_text_color" />
+                android:textColor="#000" />
 
             <LinearLayout
                 android:id="@+id/langClickable"
@@ -51,7 +51,7 @@
                     android:paddingEnd="15dp"
                     android:paddingBottom="5dp"
                     android:text="English (English)"
-                    android:textColor="@color/main_text_color" />
+                    android:textColor="#000" />
 
                 <ImageView
                     android:layout_width="20dp"
@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/param_background"
                 android:text="@string/settings_title_current_currency"
-                android:textColor="@color/main_text_color" />
+                android:textColor="#000" />
 
             <LinearLayout
                 android:id="@+id/currencyClickable"
@@ -90,7 +90,7 @@
                     android:paddingEnd="15dp"
                     android:paddingBottom="5dp"
                     android:text="RUB"
-                    android:textColor="@color/main_text_color" />
+                    android:textColor="#000" />
 
                 <ImageView
                     android:layout_width="16dp"
@@ -111,7 +111,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/param_background"
                 android:text="@string/settings_title_support"
-                android:textColor="@color/main_text_color" />
+                android:textColor="#000" />
 
             <TextView
                 android:id="@+id/support_tv"
@@ -123,7 +123,7 @@
                 android:paddingEnd="32dp"
                 android:paddingBottom="5dp"
                 android:text="@string/settings_title_support_email"
-                android:textColor="@color/main_text_color" />
+                android:textColor="#000" />
 
         </LinearLayout>
     </ScrollView>
