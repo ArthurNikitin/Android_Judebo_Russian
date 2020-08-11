@@ -11,8 +11,6 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.byte4b.judebo.*
 import com.byte4b.judebo.R
 import com.byte4b.judebo.adapters.LanguagesAdapter
 import com.byte4b.judebo.adapters.SkillsAdapter
@@ -20,12 +18,16 @@ import com.byte4b.judebo.fragments.DetailsMapFragment
 import com.byte4b.judebo.models.MyMarker
 import com.byte4b.judebo.models.currencies
 import com.byte4b.judebo.models.languages
+import com.byte4b.judebo.round
+import com.byte4b.judebo.setLeftDrawable
+import com.byte4b.judebo.setRightDrawable
 import com.byte4b.judebo.utils.Setting
+import com.facebook.share.model.ShareLinkContent
+import com.facebook.share.widget.ShareDialog
 import com.google.android.flexbox.*
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_details.*
-import kotlinx.android.synthetic.main.preview.view.*
 
 
 class DetailsActivity : AppCompatActivity() {
@@ -178,15 +180,10 @@ class DetailsActivity : AppCompatActivity() {
 
     fun fbclick(view: View) {
         val locale = if (setting.language.isNullOrEmpty()) "en" else setting.language!!
-        val sendIntent: Intent = Intent().apply {
-            action = Intent.ACTION_SEND
-            putExtra(Intent.EXTRA_TEXT,
-                "https://$locale.judebo.com/search_job/detail.php?job_id=${job?.UF_JOBS_ID}"
-            )
-            type = "text/plain"
-        }
 
-        val shareIntent = Intent.createChooser(sendIntent, null)
-        startActivity(shareIntent)
+        val content = ShareLinkContent.Builder()
+            .setContentUrl(Uri.parse("https://$locale.judebo.com/search_job/detail.php?job_id=${job?.UF_JOBS_ID}"))
+            .build()
+        ShareDialog.show(this, content)
     }
 }
