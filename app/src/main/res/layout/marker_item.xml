@@ -39,6 +39,7 @@
             app:srcCompat="@drawable/map_default_marker" />
 
         <LinearLayout
+            android:minWidth="100dp"
             android:id="@+id/salaryContainerMain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
