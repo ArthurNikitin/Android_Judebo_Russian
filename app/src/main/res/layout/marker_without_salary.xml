@@ -6,7 +6,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <TextView
+    <com.byte4b.judebo.ui.StrokeTextView
+        android:textStyle="bold"
         android:id="@+id/marker_title_short"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

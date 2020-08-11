@@ -6,14 +6,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <TextView
+    <com.byte4b.judebo.ui.StrokeTextView
+        android:textStyle="bold"
         android:singleLine="false"
         android:layout_marginStart="6dp"
         android:layout_marginEnd="6dp"
-        android:shadowRadius="5"
-    android:shadowDx="0"
-    android:shadowDy="0"
-    android:shadowColor="#fff"
         android:gravity="start"
         android:paddingTop="2dp"
         android:textSize="12sp"
@@ -52,7 +49,8 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <TextView
+                <com.byte4b.judebo.ui.StrokeTextView
+                    android:textStyle="bold"
                     android:id="@+id/secondSalary_tv2"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -63,7 +61,8 @@
                     android:text="§1113414"
                     android:textSize="10sp" />
 
-                <TextView
+                <com.byte4b.judebo.ui.StrokeTextView
+                    android:textStyle="bold"
                     android:layout_marginStart="2dp"
                     android:shadowRadius="2"
                     android:shadowDx="0"
@@ -83,7 +82,8 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <TextView
+                <com.byte4b.judebo.ui.StrokeTextView
+                    android:textStyle="bold"
                     android:shadowRadius="2"
                     android:shadowDx="0"
                     android:shadowDy="0"
@@ -94,7 +94,8 @@
                     android:text="123123"
                     android:textSize="10sp" />
 
-                <TextView
+                <com.byte4b.judebo.ui.StrokeTextView
+                    android:textStyle="bold"
                     android:layout_marginRight="2dp"
                     android:shadowRadius="2"
                     android:shadowDx="0"
