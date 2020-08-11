@@ -11,13 +11,14 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.byte4b.judebo.*
 import com.byte4b.judebo.R
+import com.byte4b.judebo.adapters.LanguagesAdapter
 import com.byte4b.judebo.adapters.SkillsAdapter
 import com.byte4b.judebo.models.MyMarker
 import com.byte4b.judebo.models.currencies
-import com.byte4b.judebo.round
-import com.byte4b.judebo.setLeftDrawable
-import com.byte4b.judebo.setRightDrawable
+import com.byte4b.judebo.models.languages
 import com.byte4b.judebo.utils.Setting
 import com.google.android.flexbox.*
 import com.google.gson.Gson
@@ -94,6 +95,15 @@ class DetailsActivity : AppCompatActivity() {
             layoutManager.flexDirection = FlexDirection.ROW
             layoutManager.justifyContent = JustifyContent.FLEX_START
             layoutManager.alignItems = AlignItems.FLEX_START
+
+            try {
+                lang_rv.layoutManager = //layoutManager
+                    LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, isRtl)
+                lang_rv.adapter = LanguagesAdapter(this, jobInfo.UF_LANGUAGE_ID_ALL.split(",").map {
+                    languages.first { lang -> lang.id == it.toInt() }
+                })
+            } catch (e:Exception) {}
+
 
             filters_tv.layoutManager = layoutManager
             if (jobInfo.UF_SKILLS_ID_ALL == "") {

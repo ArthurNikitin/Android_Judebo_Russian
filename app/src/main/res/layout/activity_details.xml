@@ -87,7 +87,7 @@
                 android:layout_marginBottom="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="Company name" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -181,7 +181,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:onClick="callClick"
-                        android:text="8 800 55 55 55" />
+                        android:text="+7 800 555 55 55" />
 
                     <TextView
                         android:textSize="16sp"
@@ -192,7 +192,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TextView" />
+                        android:text="send_me_mail@gmail.com" />
 
             </LinearLayout>
 
@@ -211,6 +211,12 @@
                 android:layout_height="match_parent"
                 android:layout_marginBottom="8dp"
                 android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/lang_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/filters_tv"
@@ -232,12 +238,18 @@
                 android:visibility="gone"
                 app:srcCompat="@drawable/en" />
 
+            <fragment
+                android:id="@+id/fragment"
+                android:name="com.byte4b.judebo.fragments.MapsFragment"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
             <TextView
                 android:layout_marginBottom="8dp"
                 android:id="@+id/details_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="detail info about job" />
 
             <LinearLayout
                 android:layout_marginBottom="8dp"
@@ -266,7 +278,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:text="TextView" />
+                    android:text="#392 \n 10.05.2020" />
             </LinearLayout>
 
         </LinearLayout>
