@@ -60,6 +60,7 @@
 
             <TextView
                 android:id="@+id/name_tv"
+                android:gravity="right"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp"
@@ -67,20 +68,27 @@
                 android:layout_height="wrap_content"
                 android:text="Vacancy name" />
 
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
             <LinearLayout
-                android:layout_marginBottom="8dp"
-                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <TextView
+                    android:layout_marginBottom="8dp"
                     android:textSize="17sp"
+                    android:gravity="right"
                     android:id="@+id/jobType_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Full time" />
-            </LinearLayout>
 
             <TextView
                 android:gravity="end"
@@ -90,6 +98,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="TextView" />
+
+        </LinearLayout>
+
+            <ImageView
+                android:onClick="fbclick"
+                app:srcCompat="@drawable/facebook_share_small_rtl"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+
+        </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -251,6 +269,7 @@
 
             <LinearLayout
                 android:layout_marginBottom="8dp"
+                android:gravity="center_vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
@@ -261,14 +280,13 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
-                <TextView
+                <ImageView
                     android:id="@+id/textView11"
-                    android:layout_width="match_parent"
+                    android:layout_width="220dp"
+                    android:adjustViewBounds="true"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
                     android:onClick="fbclick"
-                    android:text="@string/button_share" />
+                    app:srcCompat="@drawable/facebook_share_big" />
 
                 <TextView
                     android:id="@+id/lastUpdate_tv"
