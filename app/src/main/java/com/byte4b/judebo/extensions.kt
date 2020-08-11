@@ -51,10 +51,10 @@ fun Context.getLocation(): Location? {
     }
 }
 
-fun TextView.setLeftDrawable(@DrawableRes drawable: Int) {
+fun TextView.setLeftDrawable(@DrawableRes drawable: Int, size: Int = Setting.CURRENCY_ICON_SIZE) {
     val drawable = resources
         .getDrawable( drawable)
-        .toBitmap(Setting.CURRENCY_ICON_SIZE, Setting.CURRENCY_ICON_SIZE)
+        .toBitmap(size, size)
         .toDrawable(resources)
    setCompoundDrawablesWithIntrinsicBounds(if (!isRtl) drawable else null,null, if (isRtl) drawable else null, null)
 }
@@ -71,10 +71,10 @@ fun isRtl(ctx: Context): Boolean {
     }
 }
 
-fun TextView.setRightDrawable(@DrawableRes drawable: Int) {
+fun TextView.setRightDrawable(@DrawableRes drawable: Int, size: Int = Setting.CURRENCY_ICON_SIZE) {
     val drawable = resources
         .getDrawable( drawable)
-        .toBitmap(Setting.CURRENCY_ICON_SIZE, Setting.CURRENCY_ICON_SIZE)
+        .toBitmap(size, size)
         .toDrawable(resources)
     setCompoundDrawablesWithIntrinsicBounds(if (isRtl) drawable else null ,null, if (!isRtl) drawable else null, null)
 }

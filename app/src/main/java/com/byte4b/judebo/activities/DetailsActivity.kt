@@ -16,6 +16,7 @@ import com.byte4b.judebo.*
 import com.byte4b.judebo.R
 import com.byte4b.judebo.adapters.LanguagesAdapter
 import com.byte4b.judebo.adapters.SkillsAdapter
+import com.byte4b.judebo.fragments.DetailsMapFragment
 import com.byte4b.judebo.models.MyMarker
 import com.byte4b.judebo.models.currencies
 import com.byte4b.judebo.models.languages
@@ -45,8 +46,8 @@ class DetailsActivity : AppCompatActivity() {
             val setting = Setting(this)
             val currency = currencies.firstOrNull { it.id == jobInfo.UF_GROSS_CURRENCY_ID }
 
-            phone_tv.setLeftDrawable(R.drawable.phone)
-            email_tv.setLeftDrawable(R.drawable.mail)
+            phone_tv.setLeftDrawable(R.drawable.phone, 50)
+            email_tv.setLeftDrawable(R.drawable.mail, 50)
 
             name_tv.text = jobInfo.NAME
 
@@ -69,8 +70,8 @@ class DetailsActivity : AppCompatActivity() {
                 }
                 if (currency?.name == setting.getCurrentCurrency().name) {
                     view.salary_tv.text = jobInfo.UF_GROSS_PER_MONTH.round()
-                    view.salaryVal_tv.text = " ${currency?.name ?: ""}"
-                    view.salary_tv.setRightDrawable(currency?.icon ?: R.drawable.iusd)
+                    view.salaryVal_tv.text = " ${currency.name}"
+                    view.salary_tv.setRightDrawable(currency.icon)
                     view.secondContainer.visibility = View.GONE
                 } else {
                     view.salary_tv.text = jobInfo.UF_GROSS_PER_MONTH.round().trim()
@@ -88,20 +89,33 @@ class DetailsActivity : AppCompatActivity() {
                     view.secondSalaryVal_tv.text = currency2.name
                     view.secondSalary_tv.setRightDrawable(currency2.icon)
                 }
+
+                supportFragmentManager.beginTransaction()
+                    .add(R.id.containerFragment, DetailsMapFragment(jobInfo))
+                    .commit()
             } catch (e: Exception) {
             }
+
+
+
             val layoutManager = FlexboxLayoutManager(this)
             layoutManager.flexWrap = FlexWrap.WRAP
             layoutManager.flexDirection = FlexDirection.ROW
             layoutManager.justifyContent = JustifyContent.FLEX_START
             layoutManager.alignItems = AlignItems.FLEX_START
 
+            val layoutManager2 = FlexboxLayoutManager(this)
+            layoutManager2.flexWrap = FlexWrap.WRAP
+            layoutManager2.flexDirection = FlexDirection.ROW
+            layoutManager2.justifyContent = JustifyContent.FLEX_START
+            layoutManager2.alignItems = AlignItems.FLEX_START
+
             try {
-                lang_rv.layoutManager = //layoutManager
-                    LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, isRtl)
-                lang_rv.adapter = LanguagesAdapter(this, jobInfo.UF_LANGUAGE_ID_ALL.split(",").map {
+                val languagesList = jobInfo.UF_LANGUAGE_ID_ALL.split(",").map {
                     languages.first { lang -> lang.id == it.toInt() }
-                })
+                }
+                lang_rv.layoutManager = layoutManager2
+                lang_rv.adapter = LanguagesAdapter(this, languagesList, true)
             } catch (e:Exception) {}
 
 
@@ -110,7 +124,7 @@ class DetailsActivity : AppCompatActivity() {
                 filters_tv.visibility = View.GONE
             } else {
                 filters_tv.visibility = View.VISIBLE
-                filters_tv.adapter = SkillsAdapter(this, jobInfo.ALL_SKILLS_NAME.split(","))
+                filters_tv.adapter = SkillsAdapter(this, jobInfo.ALL_SKILLS_NAME.split(","), true)
             }
 
             if (jobInfo.UF_CONTACT_PHONE.isEmpty())

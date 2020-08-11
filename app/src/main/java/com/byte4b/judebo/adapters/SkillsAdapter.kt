@@ -1,6 +1,7 @@
 package com.byte4b.judebo.adapters
 
 import android.content.Context
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +11,8 @@ import kotlinx.android.synthetic.main.item_skill.view.*
 
 class SkillsAdapter(
     private val ctx: Context,
-    private val skills: List<String>
+    private val skills: List<String>,
+    private val isDetails: Boolean = false
 ) : RecyclerView.Adapter<SkillsAdapter.Holder>() {
 
     override fun getItemCount() = skills.size
@@ -20,6 +22,7 @@ class SkillsAdapter(
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.skillTitle.text = skills[position]
+        if (isDetails) holder.skillTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
     }
 
     class Holder(view: View) : RecyclerView.ViewHolder(view) {

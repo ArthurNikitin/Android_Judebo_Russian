@@ -61,6 +61,9 @@ class Setting(ctx: Context) {
         const val MIN_ZOOM = 2.0f
         const val MAX_ZOOM = 21.0f
 
+        val DETAILS_MIN_ZOOM = MIN_ZOOM + 5
+        val DETAILS_MAX_ZOOM = MAX_ZOOM
+
         const val DEFAULT_LATITUDE = 0.0
         const val DEFAULT_LONGITUDE = 0.0
 

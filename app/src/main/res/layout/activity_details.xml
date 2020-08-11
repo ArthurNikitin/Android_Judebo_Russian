@@ -162,14 +162,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
-
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:onClick="fbclick"
-                        android:text="@string/button_share" />
                 </LinearLayout>
 
                     <TextView
@@ -216,6 +208,7 @@
                     android:id="@+id/lang_rv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
                     android:layout_weight="1" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -238,15 +231,16 @@
                 android:visibility="gone"
                 app:srcCompat="@drawable/en" />
 
-            <fragment
-                android:id="@+id/fragment"
-                android:name="com.byte4b.judebo.fragments.MapsFragment"
+            <FrameLayout
+                android:layout_marginBottom="10dp"
+                android:id="@+id/containerFragment"
                 android:layout_width="match_parent"
-                android:layout_height="200dp" />
+                android:layout_height="250dp" />
 
             <TextView
                 android:layout_marginBottom="8dp"
                 android:id="@+id/details_tv"
+                android:textSize="18sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="detail info about job" />

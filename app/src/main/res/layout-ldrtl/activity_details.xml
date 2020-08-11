@@ -166,14 +166,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
-
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:onClick="fbclick"
-                        android:text="@string/button_share" />
                 </LinearLayout>
 
                 <TextView
@@ -218,6 +210,7 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/lang_rv"
+                    android:layout_marginBottom="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
@@ -242,7 +235,14 @@
                 android:visibility="gone"
                 app:srcCompat="@drawable/en" />
 
+            <FrameLayout
+                android:id="@+id/containerFragment"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_height="250dp" />
+
             <TextView
+                android:textSize="18sp"
                 android:layout_marginBottom="8dp"
                 android:id="@+id/details_tv"
                 android:layout_width="match_parent"
