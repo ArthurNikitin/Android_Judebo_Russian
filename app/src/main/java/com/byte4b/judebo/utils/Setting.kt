@@ -1,7 +1,9 @@
 package com.byte4b.judebo.utils
 
 import android.content.Context
+import android.os.Build
 import androidx.core.content.edit
+import com.byte4b.judebo.BuildConfig
 import com.byte4b.judebo.getLangFromLocale
 import com.byte4b.judebo.models.Currency
 import com.byte4b.judebo.models.Language
@@ -80,7 +82,15 @@ class Setting(ctx: Context) {
         // const val CLUSTER_RADIUS = 165.0
         const val CLUSTER_RADIUS = 100.0
         const val VALUE_INFINITESIMAL = 0.00001
-        const val CURRENCY_ICON_SIZE = 24
+        //API LEVEL -> (increase const * size)
+        val CURRENCY_ICON_SIZE =
+            when (Build.VERSION.SDK_INT) {
+                26 -> (1.2 * 24).toInt()//8.0 android
+                27 -> (1.2 * 24).toInt()//8.1
+                28 -> 24 / 2//9
+
+                else -> 24//other versions
+            }
 
         val CLUSTER_SIZES =
             listOf(2..3, 4..5, 6..7, 8..9, 10..11, 12..15, 16..20, 21..30, 31..50, 51..99)

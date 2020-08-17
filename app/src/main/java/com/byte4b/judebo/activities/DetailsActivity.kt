@@ -11,6 +11,7 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import com.byte4b.judebo.*
 import com.byte4b.judebo.R
 import com.byte4b.judebo.adapters.LanguagesAdapter
 import com.byte4b.judebo.adapters.SkillsAdapter
@@ -18,9 +19,6 @@ import com.byte4b.judebo.fragments.DetailsMapFragment
 import com.byte4b.judebo.models.MyMarker
 import com.byte4b.judebo.models.currencies
 import com.byte4b.judebo.models.languages
-import com.byte4b.judebo.round
-import com.byte4b.judebo.setLeftDrawable
-import com.byte4b.judebo.setRightDrawable
 import com.byte4b.judebo.utils.Setting
 import com.facebook.share.model.ShareLinkContent
 import com.facebook.share.widget.ShareDialog
@@ -48,8 +46,13 @@ class DetailsActivity : AppCompatActivity() {
             val setting = Setting(this)
             val currency = currencies.firstOrNull { it.id == jobInfo.UF_GROSS_CURRENCY_ID }
 
-            phone_tv.setLeftDrawable(R.drawable.phone, 50)
-            email_tv.setLeftDrawable(R.drawable.mail, 50)
+            if (!isRtl(this)) {
+                phone_tv.setLeftDrawable(R.drawable.phone, 50)
+                email_tv.setLeftDrawable(R.drawable.mail, 50)
+            } else {
+                phone_tv.setRightDrawable(R.drawable.phone, 50)
+                email_tv.setRightDrawable(R.drawable.mail, 50)
+            }
 
             name_tv.text = jobInfo.NAME
 
@@ -133,8 +136,9 @@ class DetailsActivity : AppCompatActivity() {
                 phone_tv.visibility = View.GONE
             if (jobInfo.UF_CONTACT_EMAIL.isEmpty())
                 email_tv.visibility = View.GONE
-            phone_tv.text = " " + jobInfo.UF_CONTACT_PHONE
-            email_tv.text = " " + jobInfo.UF_CONTACT_EMAIL
+
+            phone_tv.text = jobInfo.UF_CONTACT_PHONE + " "//.replace(" ", "\u00A0")
+            email_tv.text = jobInfo.UF_CONTACT_EMAIL + " "
 
             lastUpdate_tv.text = "#${jobInfo.UF_JOBS_ID}\n${jobInfo.UF_MODIFED}"
             company_tv.text = jobInfo.COMPANY
