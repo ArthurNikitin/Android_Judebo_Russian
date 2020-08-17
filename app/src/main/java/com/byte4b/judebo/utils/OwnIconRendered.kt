@@ -72,7 +72,7 @@ class OwnIconRendered(
         params.width = size
         view.img.layoutParams = params
         view.size.text = cluster.items.size.toString()
-        return view.toBitmap()
+        return view.toBitmap()[0] as Bitmap
     }
 
     override fun onClusterUpdated(cluster: Cluster<AbstractMarker>, marker: Marker) {
@@ -80,7 +80,7 @@ class OwnIconRendered(
         catch (e: Exception) {}
     }
 
-    private fun View.toBitmap(): Bitmap {
+    private fun View.toBitmap(): List<Any> {
         val measureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
         measure(measureSpec, measureSpec)
         layout(0, 0, measuredWidth, measuredHeight)
@@ -88,7 +88,11 @@ class OwnIconRendered(
         r.eraseColor(Color.TRANSPARENT)
         val canvas = Canvas(r)
         draw(canvas)
-        return r
+        try {
+            return listOf(r, width, marker_icon.width)
+        } catch (e: Exception) {
+            return  listOf(r, width, width)
+        }
     }
 
     val handler = Handler {
@@ -96,22 +100,28 @@ class OwnIconRendered(
         true
     }
 
-    override fun onBeforeClusterItemRendered(item: AbstractMarker, markerOptions: MarkerOptions) {
+    val isRtlNow by lazy { isRtl(context!!) }
+
+    override fun onBeforeClusterItemRendered(item: AbstractMarker, marker: MarkerOptions) {
         try {
+            val icon = getMarkerIcon(item)
+            val img: Bitmap = icon[0] as Bitmap
             if (item.marker.UF_GROSS_PER_MONTH.isEmpty()
                 || item.marker.UF_GROSS_PER_MONTH == "0"
             ) {
-                markerOptions.anchor(.5f, 1f)
-                markerOptions.infoWindowAnchor(000.5f, .5f)
+                marker.anchor(.5f, 1f)
+                marker.infoWindowAnchor(000.5f, .5f)
             } else {
-                markerOptions.anchor(0f, .5f)
-                markerOptions.infoWindowAnchor(000.1f, .5f)
+                val iconCenterPercent = ((((icon[2] as Int) / 2f)) / icon[1] as Int) / 2
+                if (!isRtlNow)
+                    marker.anchor(iconCenterPercent, .5f)
+                else
+                    marker.anchor(1f - iconCenterPercent, .5f)
+                marker.infoWindowAnchor(000.1f, .5f)
             }
-            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(getMarkerIcon(item)))
-        } catch (e: Exception) {
-            Log.e("debug", Gson().toJson(item))
-        }
-        super.onBeforeClusterItemRendered(item, markerOptions)
+            marker.icon(BitmapDescriptorFactory.fromBitmap(img))
+        } catch (e: Exception) {}
+        super.onBeforeClusterItemRendered(item, marker)
     }
 
     @SuppressLint("SetTextI18n")
@@ -165,7 +175,7 @@ class OwnIconRendered(
     }
 
     @SuppressLint("WrongConstant")
-    private fun getMarkerIcon(item: AbstractMarker): Bitmap {
+    private fun getMarkerIcon(item: AbstractMarker): List<Any> {
         if (!(item.marker.UF_GROSS_PER_MONTH.isEmpty() || item.marker.UF_GROSS_PER_MONTH == "0")) {
             var view =
                 (context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater)
@@ -251,19 +261,24 @@ class OwnIconRendered(
 
     override fun onClusterItemUpdated(item: AbstractMarker, marker: Marker) {
         try {
+            val icon = getMarkerIcon(item)
+            val img: Bitmap = icon[0] as Bitmap
             if (item.marker.UF_GROSS_PER_MONTH.isEmpty()
                 || item.marker.UF_GROSS_PER_MONTH == "0"
             ) {
                 marker.setAnchor(.5f, 1f)
                 marker.setInfoWindowAnchor(000.5f, .5f)
             } else {
-                marker.setAnchor(0f, .5f)
+                val iconCenterPercent = ((((icon[2] as Int) / 2f)) / icon[1] as Int) / 2f
+                Log.e("test", iconCenterPercent.toString())
+                if (!isRtlNow)
+                    marker.setAnchor(iconCenterPercent, .5f)
+                else
+                    marker.setAnchor(1f - iconCenterPercent, .5f)
                 marker.setInfoWindowAnchor(000.1f, .5f)
             }
-            marker.setIcon(BitmapDescriptorFactory.fromBitmap(getMarkerIcon(item)))
-        } catch (e: Exception) {
-            Log.e("debug", Gson().toJson(item))
-        }
+            marker.setIcon(BitmapDescriptorFactory.fromBitmap(img))
+        } catch (e: Exception) {}
         super.onClusterItemUpdated(item, marker)
     }
 
