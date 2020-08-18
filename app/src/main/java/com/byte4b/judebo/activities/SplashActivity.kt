@@ -6,21 +6,15 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.byte4b.judebo.R
 import com.byte4b.judebo.getLangFromLocale
-import com.byte4b.judebo.models.JobType
-import com.byte4b.judebo.models.JobTypeRealm
-import com.byte4b.judebo.models.Skill
-import com.byte4b.judebo.models.SkillRealm
+import com.byte4b.judebo.models.*
 import com.byte4b.judebo.services.ApiServiceImpl
 import com.byte4b.judebo.startActivity
 import com.byte4b.judebo.utils.Setting
 import com.byte4b.judebo.view.ServiceListener
-import com.google.gson.Gson
 import io.realm.Realm
 import io.realm.kotlin.createObject
 import io.realm.kotlin.delete
-import io.realm.kotlin.where
 import java.util.*
-import kotlin.time.milliseconds
 
 class SplashActivity : AppCompatActivity(), ServiceListener {
 
@@ -29,7 +23,12 @@ class SplashActivity : AppCompatActivity(), ServiceListener {
     private var isSkillsLoaded = false
     private var isJobTypesLoaded = false
     private var isAnimationEnded = false
-    private val isCanOpenMap get() = isJobTypesLoaded && isSkillsLoaded && isAnimationEnded
+    private var isRatesUpdated = false
+    private val isCanOpenMap get() =
+        isJobTypesLoaded
+                && isSkillsLoaded
+                && isAnimationEnded
+                && isRatesUpdated
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,14 +55,14 @@ class SplashActivity : AppCompatActivity(), ServiceListener {
             val locale = setting.getCurrentLanguage().locale
             val nowMillis = Calendar.getInstance().timeInMillis
             val lastUpdateMillis = setting.lastUpdateDynamicDataFromServer.toLong()
-            //Log.e("test", "$nowMillis, $lastUpdateMillis, ${Setting.PERIOD_UPDATE_DYNAMIC_DATA_FROM_SERVER_IN_MINUTE * 60L * 1000}")
+
             if (nowMillis > lastUpdateMillis + Setting.PERIOD_UPDATE_DYNAMIC_DATA_FROM_SERVER_IN_MINUTE * 60L * 1000) {
-                //Log.e("test", "load new data")
                 getSkills(locale)
                 getJobTypes(locale)
+                getRates(locale)
                 setting.lastUpdateDynamicDataFromServer = nowMillis.toString()
             } else {
-                //Log.e("test", "use old data")
+                isRatesUpdated = true
                 isJobTypesLoaded = true
                 isSkillsLoaded = true
             }
@@ -71,9 +70,37 @@ class SplashActivity : AppCompatActivity(), ServiceListener {
     }
 
     private fun toNext() {
-
         startActivity<MainActivity>()
         finish()
+    }
+
+    override fun onRatesLoaded(list: List<CurrencyRate>?) {
+        if (list != null) {
+            try {
+                realm.executeTransaction {
+                    it.createObject<CurrencyRateRealm>()
+                }
+            } catch (e: Exception) {
+                e.toLog("init")
+            }
+            try {
+                realm.executeTransaction {
+                    it.delete<CurrencyRateRealm>()
+                    try {
+                        it.createObject<CurrencyRateRealm>()
+                    } catch (e: Exception) {
+                        e.toLog("double")
+                    }
+                    it.copyToRealm(list.map { it.toRealmVersion() })
+                }
+            } catch (e: Exception) {
+                e.toLog("long")
+            }
+        }
+
+        isRatesUpdated = true
+        if (isCanOpenMap)
+            toNext()
     }
 
     override fun onSkillsLoaded(list: List<Skill>?) {
