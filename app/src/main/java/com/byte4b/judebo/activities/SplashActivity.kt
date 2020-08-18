@@ -54,15 +54,18 @@ class SplashActivity : AppCompatActivity(), ServiceListener {
 
         ApiServiceImpl(this).apply {
             val locale = setting.getCurrentLanguage().locale
-            val now = Calendar.getInstance().timeInMillis
-            val lastUpdate = setting.lastUpdateDynamicDataFromServer.toLong()
-            if (now > lastUpdate + Setting.PERIOD_UPDATE_DYNAMIC_DATA_FROM_SERVER_IN_MINUTE * 60 * 1000) {
+            val nowMillis = Calendar.getInstance().timeInMillis
+            val lastUpdateMillis = setting.lastUpdateDynamicDataFromServer.toLong()
+            //Log.e("test", "$nowMillis, $lastUpdateMillis, ${Setting.PERIOD_UPDATE_DYNAMIC_DATA_FROM_SERVER_IN_MINUTE * 60L * 1000}")
+            if (nowMillis > lastUpdateMillis + Setting.PERIOD_UPDATE_DYNAMIC_DATA_FROM_SERVER_IN_MINUTE * 60L * 1000) {
+                //Log.e("test", "load new data")
                 getSkills(locale)
                 getJobTypes(locale)
+                setting.lastUpdateDynamicDataFromServer = nowMillis.toString()
             } else {
+                //Log.e("test", "use old data")
                 isJobTypesLoaded = true
                 isSkillsLoaded = true
-                setting.lastUpdateDynamicDataFromServer = now.toString()
             }
         }
     }
