@@ -11,4 +11,8 @@ interface ApiService {
         southWestLongitude: Double
     )
 
+    fun getSkills(locale: String)
+
+    fun getJobTypes(locale: String)
+
 }
