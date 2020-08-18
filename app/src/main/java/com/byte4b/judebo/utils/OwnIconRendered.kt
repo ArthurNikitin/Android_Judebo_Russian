@@ -100,19 +100,23 @@ class OwnIconRendered(
         true
     }
 
-    val isRtlNow by lazy { isRtl(context!!) }
+    private val isRtlNow by lazy { isRtl(context!!) }
 
     override fun onBeforeClusterItemRendered(item: AbstractMarker, marker: MarkerOptions) {
         try {
             val icon = getMarkerIcon(item)
             val img: Bitmap = icon[0] as Bitmap
+            val iconCenterPercent = ((((icon[2] as Int) / 2f)) / icon[1] as Int) / 2
+
             if (item.marker.UF_GROSS_PER_MONTH.isEmpty()
                 || item.marker.UF_GROSS_PER_MONTH == "0"
             ) {
-                marker.anchor(.5f, 1f)
+                if (!isRtlNow)
+                    marker.anchor(iconCenterPercent, 1f)
+                else
+                    marker.anchor(1f - iconCenterPercent, 1f)
                 marker.infoWindowAnchor(000.5f, .5f)
             } else {
-                val iconCenterPercent = ((((icon[2] as Int) / 2f)) / icon[1] as Int) / 2
                 if (!isRtlNow)
                     marker.anchor(iconCenterPercent, .5f)
                 else
@@ -263,14 +267,16 @@ class OwnIconRendered(
         try {
             val icon = getMarkerIcon(item)
             val img: Bitmap = icon[0] as Bitmap
+            val iconCenterPercent = ((((icon[2] as Int) / 2f)) / icon[1] as Int) / 2
             if (item.marker.UF_GROSS_PER_MONTH.isEmpty()
                 || item.marker.UF_GROSS_PER_MONTH == "0"
             ) {
-                marker.setAnchor(.5f, 1f)
+                if (!isRtlNow)
+                    marker.setAnchor(iconCenterPercent, 1f)
+                else
+                    marker.setAnchor(1f - iconCenterPercent, 1f)
                 marker.setInfoWindowAnchor(000.5f, .5f)
             } else {
-                val iconCenterPercent = ((((icon[2] as Int) / 2f)) / icon[1] as Int) / 2f
-                Log.e("test", iconCenterPercent.toString())
                 if (!isRtlNow)
                     marker.setAnchor(iconCenterPercent, .5f)
                 else

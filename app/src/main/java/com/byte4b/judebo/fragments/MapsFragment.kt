@@ -287,6 +287,7 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
     }
 
     override fun onNearbyMarkersLoaded(list: List<MyMarker>?) {
+        list?.apply { Log.e("test", "markers size: $size") }
         clusterManager?.clearItems()
         clusterManager?.addItems((list ?: listOf()).map {
             AbstractMarker(it.UF_MAP_POINT_LATITUDE, it.UF_MAP_POINT_LONGITUDE, it)
