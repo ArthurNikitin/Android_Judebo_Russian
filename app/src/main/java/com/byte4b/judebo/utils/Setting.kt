@@ -10,10 +10,15 @@ import com.byte4b.judebo.models.Language
 import com.byte4b.judebo.models.currencies
 import com.byte4b.judebo.models.languages
 import com.google.android.gms.maps.model.LatLng
+import java.util.*
 
 class Setting(ctx: Context) {
 
     private val pref = ctx.getSharedPreferences("setting", Context.MODE_PRIVATE)
+
+    var lastUpdateDynamicDataFromServer
+        get() = pref.getString("last_update", Calendar.getInstance().timeInMillis.toString())
+        set(value) = pref.edit().putString("last_update", value).apply()
 
     var language
         get() = pref.getString("language", "")
@@ -77,6 +82,9 @@ class Setting(ctx: Context) {
         const val SEARCH_REQUEST_PAUSE_SECONDS = 1
         const val SEARCH_REQUEST_MIN_MOVE_DELTA = 0.18
         //degrees
+
+        const val PERIOD_UPDATE_DYNAMIC_DATA_FROM_SERVER_IN_MINUTE = 60 * 24
+
 
         // 2020-08-10 b.2.5
         // const val CLUSTER_RADIUS = 165.0
