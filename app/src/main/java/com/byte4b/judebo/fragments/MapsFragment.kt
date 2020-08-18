@@ -177,10 +177,10 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
                     refresher.isRefreshing = true
                 ApiServiceImpl(this).getNearbyMarkers(
                     setting.getCurrentLanguage().locale,
-                    position.latitude + Setting.MAX_SEARCH_LATITUDE_SIZE / 2,
-                    position.longitude + Setting.MAX_SEARCH_LONGITUDE_SIZE / 2,
-                    position.latitude - Setting.MAX_SEARCH_LATITUDE_SIZE / 2,
-                    position.longitude - Setting.MAX_SEARCH_LONGITUDE_SIZE / 2
+                    position.latitude + Setting.MAX_SEARCH_LATITUDE_SIZE / 1,
+                    position.longitude + Setting.MAX_SEARCH_LONGITUDE_SIZE / 1,
+                    position.latitude - Setting.MAX_SEARCH_LATITUDE_SIZE / 1,
+                    position.longitude - Setting.MAX_SEARCH_LONGITUDE_SIZE / 1
                 )
                 } catch (e: Exception) {
                     Log.e("debug", e.localizedMessage ?: "error retrofit")

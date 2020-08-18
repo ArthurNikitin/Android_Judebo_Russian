@@ -17,7 +17,7 @@ class Setting(ctx: Context) {
     private val pref = ctx.getSharedPreferences("setting", Context.MODE_PRIVATE)
 
     var lastUpdateDynamicDataFromServer
-        get() = pref.getString("last_update", Calendar.getInstance().timeInMillis.toString())
+        get() = pref.getString("last_update", Calendar.getInstance().timeInMillis.toString())!!
         set(value) = pref.edit().putString("last_update", value).apply()
 
     var language
