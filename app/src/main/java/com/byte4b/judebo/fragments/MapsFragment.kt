@@ -5,6 +5,7 @@ import android.provider.Settings
 import android.annotation.SuppressLint
 import android.content.Context.LOCATION_SERVICE
 import android.content.Intent
+import android.graphics.Path
 import android.location.LocationManager
 import android.os.Bundle
 import android.os.Handler
@@ -173,6 +174,7 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
                     lastPolygonLongitude = longitude
                 }
                 try {
+                    refresher.isRefreshing = true
                 ApiServiceImpl(this).getNearbyMarkers(
                     setting.getCurrentLanguage().locale,
                     position.latitude + Setting.MAX_SEARCH_LATITUDE_SIZE / 2,
@@ -287,7 +289,7 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
     }
 
     override fun onNearbyMarkersLoaded(list: List<MyMarker>?) {
-        list?.apply { Log.e("test", "markers size: $size") }
+        refresher.isRefreshing = false
         clusterManager?.clearItems()
         clusterManager?.addItems((list ?: listOf()).map {
             AbstractMarker(it.UF_MAP_POINT_LATITUDE, it.UF_MAP_POINT_LONGITUDE, it)
