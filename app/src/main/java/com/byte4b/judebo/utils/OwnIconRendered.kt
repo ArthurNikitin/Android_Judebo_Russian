@@ -89,9 +89,9 @@ class OwnIconRendered(
         val canvas = Canvas(r)
         draw(canvas)
         try {
-            return listOf(r, width, marker_icon.width)
+            return listOf(r, width, marker_icon.width, height, marker_icon.height)
         } catch (e: Exception) {
-            return  listOf(r, width, width)
+            return  listOf(r, width, width, height, height)
         }
     }
 
@@ -104,26 +104,24 @@ class OwnIconRendered(
 
     override fun onBeforeClusterItemRendered(item: AbstractMarker, marker: MarkerOptions) {
         try {
-            val icon = getMarkerIcon(item)
-            val img: Bitmap = icon[0] as Bitmap
-            val iconCenterPercent = ((((icon[2] as Int) / 2f)) / icon[1] as Int) / 2
+            val (icon, containerWidth, iconWidth, containerHeight, iconHeight) = getMarkerIcon(item)
+
+            var iconCenterHorizontal = ((((iconWidth as Int) / 2f)) / containerWidth as Int) / 2
+            if (isRtlNow) iconCenterHorizontal = 1f - iconCenterHorizontal
+            val iconCenterVertical =
+                if (item.marker.UF_LOGO_IMAGE.isNullOrEmpty()) 1f
+                else 1f - (((iconHeight as Int) / 2f) / containerHeight as Int)
 
             if (item.marker.UF_GROSS_PER_MONTH.isEmpty()
                 || item.marker.UF_GROSS_PER_MONTH == "0"
             ) {
-                if (!isRtlNow)
-                    marker.anchor(iconCenterPercent, 1f)
-                else
-                    marker.anchor(1f - iconCenterPercent, 1f)
+                marker.anchor(iconCenterHorizontal, iconCenterVertical)
                 marker.infoWindowAnchor(000.5f, .5f)
             } else {
-                if (!isRtlNow)
-                    marker.anchor(iconCenterPercent, .5f)
-                else
-                    marker.anchor(1f - iconCenterPercent, .5f)
+                marker.anchor(iconCenterHorizontal, iconCenterVertical)
                 marker.infoWindowAnchor(000.1f, .5f)
             }
-            marker.icon(BitmapDescriptorFactory.fromBitmap(img))
+            marker.icon(BitmapDescriptorFactory.fromBitmap(icon as Bitmap))
         } catch (e: Exception) {}
         super.onBeforeClusterItemRendered(item, marker)
     }
@@ -265,25 +263,24 @@ class OwnIconRendered(
 
     override fun onClusterItemUpdated(item: AbstractMarker, marker: Marker) {
         try {
-            val icon = getMarkerIcon(item)
-            val img: Bitmap = icon[0] as Bitmap
-            val iconCenterPercent = ((((icon[2] as Int) / 2f)) / icon[1] as Int) / 2
+            val (icon, containerWidth, iconWidth, containerHeight, iconHeight) = getMarkerIcon(item)
+
+            var iconCenterHorizontal = ((((iconWidth as Int) / 2f)) / containerWidth as Int) / 2
+            if (isRtlNow) iconCenterHorizontal = 1f - iconCenterHorizontal
+            val iconCenterVertical =
+                if (item.marker.UF_LOGO_IMAGE.isNullOrEmpty()) 1f
+                else 1f - (((iconHeight as Int) / 2f) / containerHeight as Int)
+
             if (item.marker.UF_GROSS_PER_MONTH.isEmpty()
                 || item.marker.UF_GROSS_PER_MONTH == "0"
             ) {
-                if (!isRtlNow)
-                    marker.setAnchor(iconCenterPercent, 1f)
-                else
-                    marker.setAnchor(1f - iconCenterPercent, 1f)
+                marker.setAnchor(iconCenterHorizontal, iconCenterVertical)
                 marker.setInfoWindowAnchor(000.5f, .5f)
             } else {
-                if (!isRtlNow)
-                    marker.setAnchor(iconCenterPercent, .5f)
-                else
-                    marker.setAnchor(1f - iconCenterPercent, .5f)
+                marker.setAnchor(iconCenterHorizontal, iconCenterVertical)
                 marker.setInfoWindowAnchor(000.1f, .5f)
             }
-            marker.setIcon(BitmapDescriptorFactory.fromBitmap(img))
+            marker.setIcon(BitmapDescriptorFactory.fromBitmap(icon as Bitmap))
         } catch (e: Exception) {}
         super.onClusterItemUpdated(item, marker)
     }
