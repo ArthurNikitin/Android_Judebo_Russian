@@ -15,4 +15,6 @@ interface ApiService {
 
     fun getJobTypes(locale: String)
 
+    fun getRates(locale: String)
+
 }

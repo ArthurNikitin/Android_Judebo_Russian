@@ -2,6 +2,7 @@ package com.byte4b.judebo.services
 
 import com.byte4b.judebo.api.getAPI
 import com.byte4b.judebo.api.secretKey
+import com.byte4b.judebo.models.CurrencyRate
 import com.byte4b.judebo.models.JobType
 import com.byte4b.judebo.models.MyMarker
 import com.byte4b.judebo.models.Skill
@@ -85,6 +86,23 @@ class ApiServiceImpl(val listener: ServiceListener?) : ApiService {
                         listener?.onJobTypesLoaded(response.body())
                     else
                         listener?.onJobTypesLoaded(null)
+                }
+            })
+    }
+
+    override fun getRates(locale: String) {
+        getAPI(locale)
+            .getRates(secretKey)
+            .enqueue(object : Callback<List<CurrencyRate>> {
+                override fun onFailure(call: Call<List<CurrencyRate>>, t: Throwable) {
+                    listener?.onRatesLoaded(null)
+                }
+
+                override fun onResponse(call: Call<List<CurrencyRate>>, response: Response<List<CurrencyRate>>) {
+                    if (response.isSuccessful)
+                        listener?.onRatesLoaded(response.body())
+                    else
+                        listener?.onRatesLoaded(null)
                 }
             })
     }

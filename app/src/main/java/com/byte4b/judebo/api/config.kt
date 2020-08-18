@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 const val secretKey = "DSFRGVergbewrbh"
 
 fun getRetrofit(locale: String): Retrofit {
-    return Retrofit.Builder().baseUrl("https://$locale.judebo.com")
+    return Retrofit.Builder().baseUrl("https://$locale.judebo.com/search_job/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 }
