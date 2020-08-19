@@ -1,5 +1,6 @@
 package com.byte4b.judebo.models
 
+import android.util.Log
 import io.realm.RealmObject
 
 data class Vocation(
@@ -9,7 +10,7 @@ data class Vocation(
     val DETAIL_TEXT: String,
     val ID: Int,
     val NAME: String,
-    val UF_APP_JOB_ID: String,
+    val UF_APP_JOB_ID: String?,
     val UF_CONTACT_EMAIL: String,
     val UF_CONTACT_PHONE: String,
     val UF_DETAIL_IMAGE: String,
@@ -77,7 +78,7 @@ open class VocationRealm : RealmObject() {
     var DETAIL_TEXT: String = ""
     var ID: Int = 0
     var NAME: String = ""
-    var UF_APP_JOB_ID: String = ""
+    var UF_APP_JOB_ID: String? = null
     var UF_CONTACT_EMAIL: String = ""
     var UF_CONTACT_PHONE: String = ""
     var UF_DETAIL_IMAGE: String = ""
@@ -102,12 +103,37 @@ open class VocationRealm : RealmObject() {
     var UF_TYPE_OF_JOB_NAME: String = ""
     var UF_USER_ID: String = ""
 
-    fun toBasicVersion() = Vocation(ALL_SKILLS_NAME, AUTO_TRANSLATE, COMPANY, DETAIL_TEXT, ID, NAME,
-        UF_APP_JOB_ID, UF_CONTACT_EMAIL, UF_CONTACT_PHONE, UF_DETAIL_IMAGE, UF_DISABLE,
-        UF_GOLD_GROSS_MONTH, UF_GOLD_PER_MONTH, UF_GROSS_CURRENCY_ID, UF_GROSS_PER_MONTH, UF_JOBS_ID,
-        UF_LANGUAGE_ID, UF_LANGUAGE_ID_ALL, UF_LOGO_IMAGE, UF_MAP_POINT, UF_MAP_POINT_LATITUDE,
-        UF_MAP_POINT_LONGITUDE, UF_MAP_RENDERED, UF_MODIFED, UF_PREVIEW_IMAGE, UF_SKILLS_ID,
-        UF_SKILLS_ID_ALL, UF_TYPE_OF_JOB_ID, UF_TYPE_OF_JOB_NAME, UF_USER_ID
+    fun toBasicVersion() = Vocation(
+        ALL_SKILLS_NAME = ALL_SKILLS_NAME,
+        AUTO_TRANSLATE = AUTO_TRANSLATE,
+        COMPANY = COMPANY,
+        DETAIL_TEXT = DETAIL_TEXT,
+        ID = ID,
+        NAME = NAME,
+        UF_APP_JOB_ID = UF_APP_JOB_ID,
+        UF_CONTACT_EMAIL = UF_CONTACT_EMAIL,
+        UF_CONTACT_PHONE = UF_CONTACT_PHONE,
+        UF_DETAIL_IMAGE = UF_DETAIL_IMAGE,
+        UF_DISABLE = UF_DISABLE,
+        UF_GOLD_GROSS_MONTH = UF_GOLD_GROSS_MONTH,
+        UF_GOLD_PER_MONTH = UF_GOLD_PER_MONTH,
+        UF_GROSS_CURRENCY_ID = UF_GROSS_CURRENCY_ID,
+        UF_GROSS_PER_MONTH = UF_GROSS_PER_MONTH,
+        UF_JOBS_ID = UF_JOBS_ID,
+        UF_LANGUAGE_ID = UF_LANGUAGE_ID,
+        UF_LANGUAGE_ID_ALL = UF_LANGUAGE_ID_ALL,
+        UF_LOGO_IMAGE = UF_LOGO_IMAGE,
+        UF_MAP_POINT = UF_MAP_POINT,
+        UF_MAP_POINT_LATITUDE = UF_MAP_POINT_LATITUDE,
+        UF_MAP_POINT_LONGITUDE = UF_MAP_POINT_LONGITUDE,
+        UF_MAP_RENDERED = UF_MAP_RENDERED,
+        UF_MODIFED = UF_MODIFED,
+        UF_PREVIEW_IMAGE = UF_PREVIEW_IMAGE,
+        UF_SKILLS_ID = UF_SKILLS_ID,
+        UF_SKILLS_ID_ALL = UF_SKILLS_ID_ALL,
+        UF_TYPE_OF_JOB_ID = UF_TYPE_OF_JOB_ID,
+        UF_TYPE_OF_JOB_NAME = UF_TYPE_OF_JOB_NAME,
+        UF_USER_ID = UF_USER_ID
     )
 }
 

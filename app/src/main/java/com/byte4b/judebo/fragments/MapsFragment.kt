@@ -289,7 +289,9 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
     }
 
     override fun onNearbyMarkersLoaded(list: List<MyMarker>?) {
-        refresher.isRefreshing = false
+        try {
+            refresher.isRefreshing = false
+        } catch (e: Exception) {}
         clusterManager?.clearItems()
         clusterManager?.addItems((list ?: listOf()).map {
             AbstractMarker(it.UF_MAP_POINT_LATITUDE, it.UF_MAP_POINT_LONGITUDE, it)
