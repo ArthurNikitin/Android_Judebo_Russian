@@ -70,7 +70,7 @@ data class Vocation(
     }
 }
 
-class VocationRealm : RealmObject() {
+open class VocationRealm : RealmObject() {
     var ALL_SKILLS_NAME: String = ""
     var AUTO_TRANSLATE: Int = 0
     var COMPANY: String = ""
