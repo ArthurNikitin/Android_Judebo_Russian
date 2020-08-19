@@ -2,10 +2,7 @@ package com.byte4b.judebo.services
 
 import com.byte4b.judebo.api.getAPI
 import com.byte4b.judebo.api.secretKey
-import com.byte4b.judebo.models.CurrencyRate
-import com.byte4b.judebo.models.JobType
-import com.byte4b.judebo.models.MyMarker
-import com.byte4b.judebo.models.Skill
+import com.byte4b.judebo.models.*
 import com.byte4b.judebo.utils.Setting
 import com.byte4b.judebo.view.ServiceListener
 import com.google.gson.Gson
@@ -103,6 +100,23 @@ class ApiServiceImpl(val listener: ServiceListener?) : ApiService {
                         listener?.onRatesLoaded(response.body())
                     else
                         listener?.onRatesLoaded(null)
+                }
+            })
+    }
+
+    override fun getMyVocations(locale: String, token: String, login: String) {
+        getAPI(locale)
+            .getMyVocations(secretKey, token, login)
+            .enqueue(object : Callback<List<Vocation>> {
+                override fun onFailure(call: Call<List<Vocation>>, t: Throwable) {
+                    listener?.onMyVocationsLoaded(null)
+                }
+
+                override fun onResponse(call: Call<List<Vocation>>, response: Response<List<Vocation>>) {
+                    if (response.isSuccessful)
+                        listener?.onMyVocationsLoaded(response.body())
+                    else
+                        listener?.onMyVocationsLoaded(null)
                 }
             })
     }

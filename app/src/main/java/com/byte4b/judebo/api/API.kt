@@ -3,6 +3,7 @@ package com.byte4b.judebo.api
 import com.byte4b.judebo.models.CurrencyRate
 import com.byte4b.judebo.models.JobType
 import com.byte4b.judebo.models.Skill
+import com.byte4b.judebo.models.Vocation
 import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.http.GET
@@ -27,5 +28,11 @@ interface API {
     @GET("app_currency_rates.php")
     fun getRates(@Query("key") secretKey: String):
             Call<List<CurrencyRate>>
+
+    @GET("app_user_jobs.php")
+    fun getMyVocations(@Query("key") secretKey: String,
+                       @Query("tok") token: String,
+                       @Query("login") login: String):
+            Call<List<Vocation>>
 
 }

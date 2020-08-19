@@ -1,9 +1,6 @@
 package com.byte4b.judebo.view
 
-import com.byte4b.judebo.models.CurrencyRate
-import com.byte4b.judebo.models.JobType
-import com.byte4b.judebo.models.MyMarker
-import com.byte4b.judebo.models.Skill
+import com.byte4b.judebo.models.*
 
 interface ServiceListener {
 
@@ -14,5 +11,7 @@ interface ServiceListener {
     fun onJobTypesLoaded(list: List<JobType>?) {}
 
     fun onRatesLoaded(list: List<CurrencyRate>?) {}
+
+    fun onMyVocationsLoaded(list: List<Vocation>?) {}
 
 }
