@@ -1,11 +1,16 @@
 package com.byte4b.judebo.activities
 
+import android.Manifest
+import android.content.Intent
+import android.graphics.Bitmap
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
 import com.byte4b.judebo.*
 import com.byte4b.judebo.R
 import com.byte4b.judebo.adapters.LanguagesAdapter
@@ -18,6 +23,7 @@ import com.byte4b.judebo.models.languages
 import com.byte4b.judebo.utils.Setting
 import com.facebook.share.model.ShareLinkContent
 import com.facebook.share.widget.ShareDialog
+import com.github.florent37.runtimepermission.kotlin.askPermission
 import com.google.android.flexbox.*
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
@@ -27,6 +33,11 @@ class VocationEditActivity : AppCompatActivity() {
 
     private var job: Vocation? = null
     private val setting by lazy { Setting(this) }
+
+    companion object {
+        private const val REQUEST_CAMERA = 101
+        private const val REQUEST_PICTURE = 102
+    }
 
     var EditText.data
         get() = text.toString()
@@ -39,6 +50,54 @@ class VocationEditActivity : AppCompatActivity() {
 
         val jobInfo = Gson().fromJson(intent.getStringExtra("data"), Vocation::class.java)
         job = jobInfo
+
+        logo_iv.setOnClickListener {
+            askPermission(
+                Manifest.permission.CAMERA,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE) {
+
+                val items = arrayOf("Camera", "Gallery")//arrayOf(getString(R.string.camera), getString(R.string.galery))
+                AlertDialog.Builder(this).apply {
+                    setItems(items) { dialog, item ->
+                        when (item) {
+                            0 -> startActivityForResult(
+                                Intent(MediaStore.ACTION_IMAGE_CAPTURE), REQUEST_CAMERA
+                            )
+                            1 -> {
+                                val intent = Intent()
+                                intent.type = "image/*"
+                                intent.action = Intent.ACTION_GET_CONTENT
+                                startActivityForResult(Intent.createChooser(intent, "Select Picture"),
+                                    REQUEST_PICTURE)
+                            }
+                        }
+                        dialog.dismiss()
+                    }
+                }
+
+            }.onDeclined { e ->
+                if (e.hasDenied()) {
+                    AlertDialog.Builder(this).apply {
+                        setMessage("Accept permissions")
+                        setPositiveButton(AlertDialog.BUTTON_POSITIVE) { dialog, _ ->
+                            e.askAgain()
+                            dialog.dismiss()
+                        }
+                    }
+                }
+
+                if (e.hasForeverDenied()) {
+                    AlertDialog.Builder(this).apply {
+                        setMessage("Permission request")
+                        setPositiveButton(AlertDialog.BUTTON_POSITIVE) { dialog, _ ->
+                            e.goToSettings()
+                            dialog.dismiss()
+                        }
+                    }
+                }
+            }
+        }
 
         try {
             val currency = currencies.firstOrNull { it.id == jobInfo.UF_GROSS_CURRENCY_ID }
@@ -158,6 +217,17 @@ class VocationEditActivity : AppCompatActivity() {
             .setContentUrl(Uri.parse("https://$locale.judebo.com/search_job/detail.php?job_id=${job?.UF_JOBS_ID}"))
             .build()
         ShareDialog.show(this, content)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        when (requestCode) {
+            REQUEST_CAMERA -> {
+                val image = data?.extras?.get("data") as Bitmap
+                icon_iv.setImageBitmap(image)
+            }
+            REQUEST_PICTURE -> icon_iv.setImageURI(data?.data)
+        }
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
 }
