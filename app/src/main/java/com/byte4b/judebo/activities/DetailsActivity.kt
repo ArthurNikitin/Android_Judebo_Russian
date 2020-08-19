@@ -43,7 +43,6 @@ class DetailsActivity : AppCompatActivity() {
             val jobInfo = Gson().fromJson(intent.getStringExtra("marker"), MyMarker::class.java)
             job = jobInfo
 
-            val setting = Setting(this)
             val currency = currencies.firstOrNull { it.id == jobInfo.UF_GROSS_CURRENCY_ID }
 
             if (!isRtl(this)) {
@@ -137,7 +136,7 @@ class DetailsActivity : AppCompatActivity() {
             if (jobInfo.UF_CONTACT_EMAIL.isEmpty())
                 email_tv.visibility = View.GONE
 
-            phone_tv.text = jobInfo.UF_CONTACT_PHONE + " "//.replace(" ", "\u00A0")
+            phone_tv.text = jobInfo.UF_CONTACT_PHONE + " "
             email_tv.text = jobInfo.UF_CONTACT_EMAIL + " "
 
             lastUpdate_tv.text = "#${jobInfo.UF_JOBS_ID}\n${jobInfo.UF_MODIFED}"
@@ -183,7 +182,7 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     fun fbclick(view: View) {
-        val locale = if (setting.language.isNullOrEmpty()) "en" else setting.language!!
+        val locale = setting.getCurrentLanguage().locale
 
         val content = ShareLinkContent.Builder()
             .setContentUrl(Uri.parse("https://$locale.judebo.com/search_job/detail.php?job_id=${job?.UF_JOBS_ID}"))

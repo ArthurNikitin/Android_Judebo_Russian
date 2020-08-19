@@ -27,7 +27,6 @@ class DetailsMapFragment(val marker: MyMarker) : Fragment(R.layout.fragment_maps
     private fun setMarker(drawable: Drawable? = null) {
         val target = MarkerOptions()
             .position(LatLng(marker.UF_MAP_POINT_LATITUDE, marker.UF_MAP_POINT_LONGITUDE))
-            //.icon(BitmapDescriptorFactory.fromResource(R.drawable.map_default_marker))
 
         val icon =
             requireContext().resources.getDrawable(R.drawable.map_default_marker)
