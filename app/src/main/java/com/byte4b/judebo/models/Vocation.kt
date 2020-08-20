@@ -1,42 +1,44 @@
 package com.byte4b.judebo.models
 
-import android.util.Log
 import io.realm.RealmObject
 
 data class Vocation(
-    val ALL_SKILLS_NAME: String,
-    val AUTO_TRANSLATE: Int,
-    val COMPANY: String,
-    val DETAIL_TEXT: String,
+    val isHided: Boolean = false,
+
+    val ALL_SKILLS_NAME: String?,
+    val AUTO_TRANSLATE: Int?,
+    val COMPANY: String?,
+    val DETAIL_TEXT: String?,
     val ID: Int,
-    val NAME: String,
+    val NAME: String?,
     val UF_APP_JOB_ID: String?,
-    val UF_CONTACT_EMAIL: String,
-    val UF_CONTACT_PHONE: String,
-    val UF_DETAIL_IMAGE: String,
-    val UF_DISABLE: String,
-    val UF_GOLD_GROSS_MONTH: String,
-    val UF_GOLD_PER_MONTH: String,
-    val UF_GROSS_CURRENCY_ID: Int,
-    val UF_GROSS_PER_MONTH: String,
-    val UF_JOBS_ID: Int,
-    val UF_LANGUAGE_ID: String,
-    val UF_LANGUAGE_ID_ALL: String,
-    val UF_LOGO_IMAGE: String,
-    val UF_MAP_POINT: String,
-    val UF_MAP_POINT_LATITUDE: Double,
-    val UF_MAP_POINT_LONGITUDE: Double,
-    val UF_MAP_RENDERED: Int,
-    val UF_MODIFED: String,
-    val UF_PREVIEW_IMAGE: String,
-    val UF_SKILLS_ID: String,
-    val UF_SKILLS_ID_ALL: String,
-    val UF_TYPE_OF_JOB_ID: Int,
-    val UF_TYPE_OF_JOB_NAME: String,
-    val UF_USER_ID: String
+    val UF_CONTACT_EMAIL: String?,
+    val UF_CONTACT_PHONE: String?,
+    val UF_DETAIL_IMAGE: String?,
+    val UF_DISABLE: String?,
+    val UF_GOLD_GROSS_MONTH: String?,
+    val UF_GOLD_PER_MONTH: String?,
+    val UF_GROSS_CURRENCY_ID: Int?,
+    val UF_GROSS_PER_MONTH: String?,
+    val UF_JOBS_ID: Int?,
+    val UF_LANGUAGE_ID: String?,
+    val UF_LANGUAGE_ID_ALL: String?,
+    val UF_LOGO_IMAGE: String?,
+    val UF_MAP_POINT: String?,
+    val UF_MAP_POINT_LATITUDE: Double?,
+    val UF_MAP_POINT_LONGITUDE: Double?,
+    val UF_MAP_RENDERED: Int?,
+    val UF_MODIFED: String?,
+    val UF_PREVIEW_IMAGE: String?,
+    val UF_SKILLS_ID: String?,
+    val UF_SKILLS_ID_ALL: String?,
+    val UF_TYPE_OF_JOB_ID: Int?,
+    val UF_TYPE_OF_JOB_NAME: String?,
+    val UF_USER_ID: String?
 ) {
     fun toRealmVersion(): VocationRealm {
         val result = VocationRealm()
+        result.isHided = isHided
         result.ALL_SKILLS_NAME = ALL_SKILLS_NAME
         result.AUTO_TRANSLATE = AUTO_TRANSLATE
         result.COMPANY = COMPANY
@@ -72,38 +74,42 @@ data class Vocation(
 }
 
 open class VocationRealm : RealmObject() {
-    var ALL_SKILLS_NAME: String = ""
-    var AUTO_TRANSLATE: Int = 0
-    var COMPANY: String = ""
-    var DETAIL_TEXT: String = ""
+    //system
+    var isHided: Boolean = false
+
+    var ALL_SKILLS_NAME: String? = null
+    var AUTO_TRANSLATE: Int? = null
+    var COMPANY: String? = null
+    var DETAIL_TEXT: String? = null
     var ID: Int = 0
-    var NAME: String = ""
+    var NAME: String? = null
     var UF_APP_JOB_ID: String? = null
-    var UF_CONTACT_EMAIL: String = ""
-    var UF_CONTACT_PHONE: String = ""
-    var UF_DETAIL_IMAGE: String = ""
-    var UF_DISABLE: String = ""
-    var UF_GOLD_GROSS_MONTH: String = ""
-    var UF_GOLD_PER_MONTH: String = ""
-    var UF_GROSS_CURRENCY_ID: Int = 0
-    var UF_GROSS_PER_MONTH: String = ""
-    var UF_JOBS_ID: Int = 0
-    var UF_LANGUAGE_ID: String = ""
-    var UF_LANGUAGE_ID_ALL: String = ""
-    var UF_LOGO_IMAGE: String = ""
-    var UF_MAP_POINT: String = ""
-    var UF_MAP_POINT_LATITUDE: Double = 0.0
-    var UF_MAP_POINT_LONGITUDE: Double = 0.0
-    var UF_MAP_RENDERED: Int = 0
-    var UF_MODIFED: String = ""
-    var UF_PREVIEW_IMAGE: String = ""
-    var UF_SKILLS_ID: String = ""
-    var UF_SKILLS_ID_ALL: String = ""
-    var UF_TYPE_OF_JOB_ID: Int = 0
-    var UF_TYPE_OF_JOB_NAME: String = ""
-    var UF_USER_ID: String = ""
+    var UF_CONTACT_EMAIL: String? = null
+    var UF_CONTACT_PHONE: String? = null
+    var UF_DETAIL_IMAGE: String? = null
+    var UF_DISABLE: String? = null
+    var UF_GOLD_GROSS_MONTH: String? = null
+    var UF_GOLD_PER_MONTH: String? = null
+    var UF_GROSS_CURRENCY_ID: Int? = null
+    var UF_GROSS_PER_MONTH: String? = null
+    var UF_JOBS_ID: Int? = null
+    var UF_LANGUAGE_ID: String? = null
+    var UF_LANGUAGE_ID_ALL: String? = null
+    var UF_LOGO_IMAGE: String? = null
+    var UF_MAP_POINT: String? = null
+    var UF_MAP_POINT_LATITUDE: Double? = null
+    var UF_MAP_POINT_LONGITUDE: Double? = null
+    var UF_MAP_RENDERED: Int? = null
+    var UF_MODIFED: String? = null
+    var UF_PREVIEW_IMAGE: String? = null
+    var UF_SKILLS_ID: String? = null
+    var UF_SKILLS_ID_ALL: String? = null
+    var UF_TYPE_OF_JOB_ID: Int? = null
+    var UF_TYPE_OF_JOB_NAME: String? = null
+    var UF_USER_ID: String? = null
 
     fun toBasicVersion() = Vocation(
+        isHided = isHided,
         ALL_SKILLS_NAME = ALL_SKILLS_NAME,
         AUTO_TRANSLATE = AUTO_TRANSLATE,
         COMPANY = COMPANY,

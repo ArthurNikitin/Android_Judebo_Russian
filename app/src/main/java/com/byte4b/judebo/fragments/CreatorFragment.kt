@@ -81,8 +81,10 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
             refresher.isRefreshing = false
         } catch (e: Exception) {}
         vocations_rv.layoutManager = LinearLayoutManager(requireContext())
-        vocations_rv.addItemDecoration(DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL))
-        vocations_rv.adapter = VocationsAdapter(requireContext(), list ?: listOf())
+        vocations_rv
+            .addItemDecoration(DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL))
+        vocations_rv.adapter =
+            VocationsAdapter(requireContext(), (list ?: listOf()).filterNot { it.isHided })
 
         if (list == null)
             Toast.makeText(requireContext(), "Error", Toast.LENGTH_SHORT).show()
