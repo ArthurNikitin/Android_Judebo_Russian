@@ -85,6 +85,7 @@ class Setting(ctx: Context) {
 
         const val PERIOD_UPDATE_DYNAMIC_DATA_FROM_SERVER_IN_MINUTE = 60 * 24
 
+        const val PERIOD_UPDATE_JOB_LIST_FOR_USER_IN_MINUTES = 3 * 60 * 1000L
 
         // 2020-08-10 b.2.5
         // const val CLUSTER_RADIUS = 165.0
@@ -102,6 +103,9 @@ class Setting(ctx: Context) {
 
         val CLUSTER_SIZES =
             listOf(2..3, 4..5, 6..7, 8..9, 10..11, 12..15, 16..20, 21..30, 31..50, 51..99)
+
+        const val JOB_LIFETIME_IN_DAYS = 90 * 24 * 60 * 60 * 1000L
+
     }
 
 }
