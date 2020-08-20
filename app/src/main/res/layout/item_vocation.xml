@@ -4,49 +4,82 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
+    android:background="#999"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
         android:layout_margin="8dp"
         android:layout_centerVertical="true"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="50dp"
         android:orientation="horizontal">
 
         <ImageView
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"
             android:id="@+id/delete1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
-            app:srcCompat="@drawable/del" />
+            app:srcCompat="@drawable/button_delete" />
+
+        <View
+            android:layout_marginRight="8dp"
+            android:backgroundTint="@color/toolbar_background_color"
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:background="?android:attr/listDivider" />
 
         <ImageView
-            android:layout_marginStart="8dp"
             android:id="@+id/copy1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
-            app:srcCompat="@drawable/copy" />
+            app:srcCompat="@drawable/button_copy" />
+
+        <View
+            android:layout_marginLeft="8dp"
+            android:backgroundTint="@color/toolbar_background_color"
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:background="?android:attr/listDivider" />
+
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
+        <View
+            android:layout_marginRight="8dp"
+            android:backgroundTint="@color/toolbar_background_color"
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:background="?android:attr/listDivider" />
+
         <ImageView
-            android:layout_marginEnd="8dp"
             android:id="@+id/copy2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
-            app:srcCompat="@drawable/copy" />
+            app:srcCompat="@drawable/button_copy" />
+
+        <View
+            android:layout_marginLeft="8dp"
+            android:backgroundTint="@color/toolbar_background_color"
+            android:id="@+id/divider2"
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:background="?android:attr/listDivider" />
 
         <ImageView
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"
             android:id="@+id/delete2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
-            app:srcCompat="@drawable/del" />
+            app:srcCompat="@drawable/button_delete" />
     </LinearLayout>
 
     <com.daimajia.swipe.SwipeLayout
@@ -59,7 +92,7 @@
 
         <LinearLayout
             android:id="@+id/right1"
-            android:layout_width="100dp"
+            android:layout_width="156dp"
             android:weightSum="1"
             android:layout_height="match_parent"
             android:orientation="horizontal">
@@ -67,7 +100,7 @@
 
         <LinearLayout
             android:id="@+id/left1"
-            android:layout_width="100dp"
+            android:layout_width="156dp"
             android:weightSum="1"
             android:layout_height="match_parent"
             android:orientation="horizontal">
