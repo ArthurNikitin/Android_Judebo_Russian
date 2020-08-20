@@ -1,13 +1,20 @@
 package com.byte4b.judebo.fragments
 
 import android.content.Intent
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.byte4b.judebo.R
 import com.byte4b.judebo.adapters.VocationsAdapter
@@ -74,6 +81,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
             refresher.isRefreshing = false
         } catch (e: Exception) {}
         vocations_rv.layoutManager = LinearLayoutManager(requireContext())
+        vocations_rv.addItemDecoration(DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL))
         vocations_rv.adapter = VocationsAdapter(requireContext(), list ?: listOf())
 
         if (list == null)

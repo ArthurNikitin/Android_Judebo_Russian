@@ -13,6 +13,7 @@ import com.byte4b.judebo.activities.VocationEditActivity
 import com.byte4b.judebo.models.Vocation
 import com.byte4b.judebo.models.currencies
 import com.byte4b.judebo.startActivity
+import com.daimajia.swipe.SwipeLayout
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_vocation.view.*
@@ -30,13 +31,22 @@ class VocationsAdapter(
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: Holder, position: Int) {
         with(vocations[position]) {
-            holder.view.setOnClickListener {
-                ctx.startActivity<VocationEditActivity> {
-                    putExtra("data", Gson().toJson(this@with))
-                }
+            holder.main.setOnClickListener {
+                if (holder.swiper.openStatus == SwipeLayout.Status.Close) {
+                    ctx.startActivity<VocationEditActivity> {
+                        putExtra("data", Gson().toJson(this@with))
+                    }
+                } else
+                    holder.swiper.close()
             }
             holder.nameView.text = NAME
             holder.idView.text = "#$UF_JOBS_ID"
+            holder.swiper.isLeftSwipeEnabled = true
+            holder.swiper.isRightSwipeEnabled = true
+
+            holder.swiper.addDrag(SwipeLayout.DragEdge.Left, holder.left)
+            holder.swiper.addDrag(SwipeLayout.DragEdge.Right, holder.right)
+
             try {
                 if (UF_LOGO_IMAGE.isNotEmpty()) {
                     Glide.with(holder.view)
@@ -60,6 +70,10 @@ class VocationsAdapter(
         val idView = view.id_tv!!
         val editDateView = view.edit_tv!!
         val deleteDateView = view.delete_tv!!
+        val swiper = view.side_swiper!!
+        val left = view.left1!!
+        val right = view.right1!!
+        val main = view.container!!
     }
 
 }
