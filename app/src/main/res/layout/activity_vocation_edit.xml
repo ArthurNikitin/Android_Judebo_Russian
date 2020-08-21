@@ -44,6 +44,14 @@
                 app:srcCompat="@drawable/default_log_name" />
         </LinearLayout>
 
+        <ImageView
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:onClick="saveClick"
+            android:layout_height="wrap_content"
+            app:srcCompat="@android:drawable/ic_menu_save" />
+
     </RelativeLayout>
 
     <ScrollView
@@ -99,12 +107,6 @@
 
                 </LinearLayout>
 
-                <ImageView
-                    android:onClick="fbclick"
-                    app:srcCompat="@drawable/facebook_share_small_ltr"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -118,32 +120,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
-                    android:maxHeight="300dp"
-                    app:srcCompat="@drawable/default_logo_detail" />
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/edit_page_default_logo" />
 
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/secondContainer"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:textSize="16sp"
-                    android:layout_marginStart="5dp"
-                    android:id="@+id/secondSalary_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="230" />
-
-                <TextView
-                    android:textSize="16sp"
-                    android:id="@+id/secondSalaryVal_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="RUB" />
 
             </LinearLayout>
 
@@ -153,10 +132,12 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <TextView
+                <EditText
+                    android:layout_marginRight="5dp"
                     android:textSize="16sp"
                     android:id="@+id/salary_tv"
-                    android:layout_width="wrap_content"
+                    android:gravity="right"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:text="10 000" />
 
@@ -182,7 +163,7 @@
                     android:orientation="horizontal">
                 </LinearLayout>
 
-                <TextView
+                <EditText
                     android:textSize="16sp"
                     android:layout_marginBottom="8dp"
                     android:hint="Phone"
@@ -269,19 +250,19 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/textView10"
+                <ImageView
+                    android:onClick="deleteClick"
+                    app:srcCompat="@drawable/button_delete"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_weight="1" />
 
                 <ImageView
-                    android:id="@+id/textView11"
-                    android:layout_width="220dp"
-                    android:adjustViewBounds="true"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="fbclick"
-                    app:srcCompat="@drawable/facebook_share_big" />
+                    android:onClick="saveClick"
+                    android:layout_weight="1"
+                    app:srcCompat="@android:drawable/ic_menu_save" />
 
                 <TextView
                     android:id="@+id/lastUpdate_tv"

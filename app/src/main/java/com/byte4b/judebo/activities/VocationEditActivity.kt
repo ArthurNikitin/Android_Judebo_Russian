@@ -2,27 +2,20 @@ package com.byte4b.judebo.activities
 
 import android.Manifest
 import android.content.Intent
-import android.graphics.Bitmap
-import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
-import android.util.Log
 import android.view.View
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.byte4b.judebo.*
 import com.byte4b.judebo.R
 import com.byte4b.judebo.adapters.LanguagesAdapter
-import com.byte4b.judebo.adapters.SkillsAdapter
 import com.byte4b.judebo.fragments.DetailsMapFragment
 import com.byte4b.judebo.models.MyMarker
 import com.byte4b.judebo.models.Vocation
 import com.byte4b.judebo.models.currencies
 import com.byte4b.judebo.models.languages
 import com.byte4b.judebo.utils.Setting
-import com.facebook.share.model.ShareLinkContent
-import com.facebook.share.widget.ShareDialog
 import com.github.florent37.runtimepermission.kotlin.askPermission
 import com.google.android.flexbox.*
 import com.google.gson.Gson
@@ -35,11 +28,10 @@ class VocationEditActivity : AppCompatActivity() {
     private val setting by lazy { Setting(this) }
 
     companion object {
-        private const val REQUEST_CAMERA = 101
         private const val REQUEST_PICTURE = 102
     }
 
-    var EditText.data
+    var EditText.data: String?
         get() = text.toString()
         set(value) = setText(value)
 
@@ -53,29 +45,17 @@ class VocationEditActivity : AppCompatActivity() {
 
         logo_iv.setOnClickListener {
             askPermission(
-                Manifest.permission.CAMERA,
                 Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE) {
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ) {
 
-                val items = arrayOf("Camera", "Gallery")//arrayOf(getString(R.string.camera), getString(R.string.galery))
-                AlertDialog.Builder(this).apply {
-                    setItems(items) { dialog, item ->
-                        when (item) {
-                            0 -> startActivityForResult(
-                                Intent(MediaStore.ACTION_IMAGE_CAPTURE), REQUEST_CAMERA
-                            )
-                            1 -> {
-                                val intent = Intent()
-                                intent.type = "image/*"
-                                intent.action = Intent.ACTION_GET_CONTENT
-                                startActivityForResult(Intent.createChooser(intent, "Select Picture"),
-                                    REQUEST_PICTURE)
-                            }
-                        }
-                        dialog.dismiss()
-                    }
-                }
-
+                val intent = Intent()
+                intent.type = "image/*"
+                intent.action = Intent.ACTION_GET_CONTENT
+                startActivityForResult(
+                    Intent.createChooser(intent, "Select Picture"),
+                    REQUEST_PICTURE
+                )
             }.onDeclined { e ->
                 if (e.hasDenied()) {
                     AlertDialog.Builder(this).apply {
@@ -103,11 +83,11 @@ class VocationEditActivity : AppCompatActivity() {
             val currency = currencies.firstOrNull { it.id == jobInfo.UF_GROSS_CURRENCY_ID }
 
             if (!isRtl(this)) {
-                phone_tv.setLeftDrawable(R.drawable.phone, 50)
-                email_tv.setLeftDrawable(R.drawable.mail, 50)
+                phone_tv.setLeftDrawable(R.drawable.edit_page_phone, 50)
+                email_tv.setLeftDrawable(R.drawable.edit_page_mail, 50)
             } else {
-                phone_tv.setRightDrawable(R.drawable.phone, 50)
-                email_tv.setRightDrawable(R.drawable.mail, 50)
+                phone_tv.setRightDrawable(R.drawable.edit_page_phone, 50)
+                email_tv.setRightDrawable(R.drawable.edit_page_mail, 50)
             }
 
             name_tv.setText(jobInfo.NAME)
@@ -115,66 +95,44 @@ class VocationEditActivity : AppCompatActivity() {
             if (!jobInfo.UF_DETAIL_IMAGE.isNullOrEmpty()) {
                 Picasso.get()
                     .load(jobInfo.UF_DETAIL_IMAGE)
+                    .placeholder(R.drawable.edit_page_default_logo)
                     .into(logo_iv)
             } else {
                 logo_iv.visibility = View.GONE
             }
 
             try {
-                val view = this
-                if (jobInfo.UF_GROSS_PER_MONTH.isNullOrEmpty() || jobInfo.UF_GROSS_PER_MONTH == "0") {
-                    view.secondContainer.visibility = View.GONE
-                    view.salaryContainer.visibility = View.GONE
-                } else {
-                    view.secondContainer.visibility = View.VISIBLE
-                    view.salaryContainer.visibility = View.VISIBLE
-                }
-                if (currency?.name == setting.getCurrentCurrency().name) {
-                    view.salary_tv.text = jobInfo.UF_GROSS_PER_MONTH?.round()
-                    view.salaryVal_tv.text = " ${currency.name}"
-                    view.salary_tv.setRightDrawable(currency.icon)
-                    view.secondContainer.visibility = View.GONE
-                } else {
-                    view.salary_tv.text = jobInfo.UF_GROSS_PER_MONTH?.round()?.trim()
-                    view.salaryVal_tv.text = " ${currency?.name ?: ""}"
-                    view.salary_tv.setRightDrawable(currency?.icon ?: R.drawable.iusd)
-
-                    val currency2 = setting.getCurrentCurrency()
-                    val convertedSalary =
-                        (jobInfo.UF_GROSS_PER_MONTH?.toDouble() ?: .0 * currency2.rate / (currency?.rate ?: 1))
-                            .toString().round().trim()
-                    view.secondSalary_tv.text = "≈${convertedSalary}"
-                    view.secondContainer.visibility =
-                        if (convertedSalary == "0") View.GONE
-                        else View.VISIBLE
-                    view.secondSalaryVal_tv.text = currency2.name
-                    view.secondSalary_tv.setRightDrawable(currency2.icon)
-                }
+                salary_tv.data = jobInfo.UF_GROSS_PER_MONTH?.round()?.trim()
+                salaryVal_tv.text = " ${currency?.name ?: ""}"
+                salary_tv.setRightDrawable(currency?.icon ?: R.drawable.iusd)
 
                 jobInfo.apply {
                     supportFragmentManager.beginTransaction()
-                        .add(R.id.containerFragment, DetailsMapFragment(MyMarker(
-                            "", AUTO_TRANSLATE ?: 0,
-                            COMPANY ?: "", DETAIL_TEXT ?: "", UF_JOBS_ID ?: 0,
-                            NAME ?: "", UF_CONTACT_EMAIL ?: "",
-                            UF_CONTACT_PHONE ?: "",
-                            UF_DETAIL_IMAGE ?: "", UF_DISABLE ?: "",
-                            UF_GOLD_GROSS_MONTH ?: "",
-                            UF_GOLD_PER_MONTH ?: "",
-                            UF_GROSS_CURRENCY_ID ?: 0,
-                            UF_GROSS_PER_MONTH ?: "",
-                            UF_JOBS_ID ?: 0, UF_LANGUAGE_ID_ALL ?: "",
-                            null, UF_LOGO_IMAGE, UF_MAP_POINT ?: "",
-                            location[0], location[1], UF_MAP_RENDERED ?: 0,
-                            UF_MODIFED ?: "", UF_PREVIEW_IMAGE ?: "",
-                            UF_SKILLS_ID_ALL ?: "",
-                            UF_TYPE_OF_JOB_ID ?: 0
-                        )))
+                        .add(
+                            R.id.containerFragment, DetailsMapFragment(
+                                MyMarker(
+                                    "", AUTO_TRANSLATE ?: 0,
+                                    COMPANY ?: "", DETAIL_TEXT ?: "", UF_JOBS_ID ?: 0,
+                                    NAME ?: "", UF_CONTACT_EMAIL ?: "",
+                                    UF_CONTACT_PHONE ?: "",
+                                    UF_DETAIL_IMAGE ?: "", UF_DISABLE ?: "",
+                                    UF_GOLD_GROSS_MONTH ?: "",
+                                    UF_GOLD_PER_MONTH ?: "",
+                                    UF_GROSS_CURRENCY_ID ?: 0,
+                                    UF_GROSS_PER_MONTH ?: "",
+                                    UF_JOBS_ID ?: 0, UF_LANGUAGE_ID_ALL ?: "",
+                                    null, UF_LOGO_IMAGE, UF_MAP_POINT ?: "",
+                                    location[0], location[1], UF_MAP_RENDERED ?: 0,
+                                    UF_MODIFED ?: "", UF_PREVIEW_IMAGE ?: "",
+                                    UF_SKILLS_ID_ALL ?: "",
+                                    UF_TYPE_OF_JOB_ID ?: 0
+                                ), true
+                            )
+                        )
                         .commit()
                 }
             } catch (e: Exception) {
             }
-
 
 
             val layoutManager = FlexboxLayoutManager(this)
@@ -196,7 +154,8 @@ class VocationEditActivity : AppCompatActivity() {
                 lang_rv.layoutManager = layoutManager2
                 lang_rv.adapter =
                     LanguagesAdapter(this, languagesList ?: listOf(), true)
-            } catch (e:Exception) {}
+            } catch (e: Exception) {
+            }
 
 
             filters_tv.layoutManager = layoutManager
@@ -207,44 +166,28 @@ class VocationEditActivity : AppCompatActivity() {
                 //filters_tv.adapter = SkillsAdapter(this, (jobInfo.ALL_SKILLS_NAME?:"").split(","), true)
             }
 
-            if (jobInfo.UF_CONTACT_PHONE.isNullOrEmpty())
-                phone_tv.visibility = View.GONE
-            if (jobInfo.UF_CONTACT_EMAIL.isNullOrEmpty())
-                email_tv.visibility = View.GONE
-
-            phone_tv.text = jobInfo.UF_CONTACT_PHONE + " "
-            email_tv.data = jobInfo.UF_CONTACT_EMAIL + " "
+            phone_tv.data = jobInfo.UF_CONTACT_PHONE
+            email_tv.data = jobInfo.UF_CONTACT_EMAIL
 
             lastUpdate_tv.text = "#${jobInfo.UF_JOBS_ID}\n${jobInfo.UF_MODIFED}"
             company_tv.data = jobInfo.COMPANY ?: ""
             //jobType_tv.text = jobInfo.UF_TYPE_OF_JOB_NAME ?: ""
 
             details_tv.data = jobInfo.DETAIL_TEXT ?: ""
-        } catch (e: Exception) {
-            Log.e("debug", e.localizedMessage ?: "Details error")
-        }
+        } catch (e: Exception) {}
     }
 
     fun closeClick(v: View) = finish()
 
-    fun fbclick(v: View) {
-        val locale = setting.getCurrentLanguage().locale
-
-        val content = ShareLinkContent.Builder()
-            .setContentUrl(Uri.parse("https://$locale.judebo.com/search_job/detail.php?job_id=${job?.UF_JOBS_ID}"))
-            .build()
-        ShareDialog.show(this, content)
-    }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         when (requestCode) {
-            REQUEST_CAMERA -> {
-                val image = data?.extras?.get("data") as Bitmap
-                icon_iv.setImageBitmap(image)
-            }
-            REQUEST_PICTURE -> icon_iv.setImageURI(data?.data)
+            REQUEST_PICTURE -> logo_iv.setImageURI(data?.data)
         }
         super.onActivityResult(requestCode, resultCode, data)
     }
+
+    fun deleteClick(v: View) = toast("delete stub")
+
+    fun saveClick(v: View) = toast("save stub")
 
 }

@@ -16,13 +16,33 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.*
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.fragment_maps.*
 
 
-class DetailsMapFragment(val marker: MyMarker) : Fragment(R.layout.fragment_maps) {
+class DetailsMapFragment(
+    private val marker: MyMarker,
+    private val isEdit: Boolean = false
+) : Fragment(R.layout.fragment_maps) {
 
     private var map: GoogleMap? = null
+
+    private fun setDraggableMarker() {
+        val target = MarkerOptions()
+            .position(LatLng(marker.UF_MAP_POINT_LATITUDE, marker.UF_MAP_POINT_LONGITUDE))
+
+        val icon =
+            requireContext().resources.getDrawable(R.drawable.map_default_marker)
+                .toBitmap(100, 100)
+        target.icon(BitmapDescriptorFactory.fromBitmap(icon))
+        //todo: if location is empty - show user location or default location
+        target.draggable(true)
+
+        map?.addMarker(target)
+        map?.animateCamera(CameraUpdateFactory.newLatLngZoom(target.position, Setting.BASIC_ZOOM))
+    }
 
     private fun setMarker(drawable: Drawable? = null) {
         val target = MarkerOptions()
@@ -61,20 +81,23 @@ class DetailsMapFragment(val marker: MyMarker) : Fragment(R.layout.fragment_maps
         googleMap.uiSettings.isTiltGesturesEnabled = false
         googleMap.uiSettings.isMapToolbarEnabled = false
 
-        setMarker()
-        Glide.with(requireContext())
-            .load(marker.UF_LOGO_IMAGE)
-            .centerInside()
-            .circleCrop()
-            .placeholder(R.drawable.map_default_marker)
-            .into(object : SimpleTarget<Drawable>() {
-                override fun onResourceReady(
-                    resource: Drawable,
-                    transition: Transition<in Drawable>?
-                ) {
-                    setMarker(resource)
-                }
-            })
+        if (!isEdit) {
+            setMarker()
+            Glide.with(requireContext())
+                .load(marker.UF_LOGO_IMAGE)
+                .centerInside()
+                .circleCrop()
+                .placeholder(R.drawable.map_default_marker)
+                .into(object : SimpleTarget<Drawable>() {
+                    override fun onResourceReady(
+                        resource: Drawable,
+                        transition: Transition<in Drawable>?
+                    ) {
+                        setMarker(resource)
+                    }
+                })
+        } else
+            setDraggableMarker()
     }
 
     @SuppressLint("MissingPermission")
