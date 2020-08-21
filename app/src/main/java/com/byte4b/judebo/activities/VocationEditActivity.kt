@@ -112,7 +112,7 @@ class VocationEditActivity : AppCompatActivity() {
 
             name_tv.setText(jobInfo.NAME)
 
-            if (jobInfo.UF_DETAIL_IMAGE.isNotEmpty()) {
+            if (!jobInfo.UF_DETAIL_IMAGE.isNullOrEmpty()) {
                 Picasso.get()
                     .load(jobInfo.UF_DETAIL_IMAGE)
                     .into(logo_iv)
@@ -122,7 +122,7 @@ class VocationEditActivity : AppCompatActivity() {
 
             try {
                 val view = this
-                if (jobInfo.UF_GROSS_PER_MONTH.isEmpty() || jobInfo.UF_GROSS_PER_MONTH == "0") {
+                if (jobInfo.UF_GROSS_PER_MONTH.isNullOrEmpty() || jobInfo.UF_GROSS_PER_MONTH == "0") {
                     view.secondContainer.visibility = View.GONE
                     view.salaryContainer.visibility = View.GONE
                 } else {
@@ -130,18 +130,18 @@ class VocationEditActivity : AppCompatActivity() {
                     view.salaryContainer.visibility = View.VISIBLE
                 }
                 if (currency?.name == setting.getCurrentCurrency().name) {
-                    view.salary_tv.text = jobInfo.UF_GROSS_PER_MONTH.round()
+                    view.salary_tv.text = jobInfo.UF_GROSS_PER_MONTH?.round()
                     view.salaryVal_tv.text = " ${currency.name}"
                     view.salary_tv.setRightDrawable(currency.icon)
                     view.secondContainer.visibility = View.GONE
                 } else {
-                    view.salary_tv.text = jobInfo.UF_GROSS_PER_MONTH.round().trim()
+                    view.salary_tv.text = jobInfo.UF_GROSS_PER_MONTH?.round()?.trim()
                     view.salaryVal_tv.text = " ${currency?.name ?: ""}"
                     view.salary_tv.setRightDrawable(currency?.icon ?: R.drawable.iusd)
 
                     val currency2 = setting.getCurrentCurrency()
                     val convertedSalary =
-                        (jobInfo.UF_GROSS_PER_MONTH.toDouble() * currency2.rate / (currency?.rate ?: 1))
+                        (jobInfo.UF_GROSS_PER_MONTH?.toDouble() ?: .0 * currency2.rate / (currency?.rate ?: 1))
                             .toString().round().trim()
                     view.secondSalary_tv.text = "≈${convertedSalary}"
                     view.secondContainer.visibility =
@@ -153,7 +153,23 @@ class VocationEditActivity : AppCompatActivity() {
 
                 jobInfo.apply {
                     supportFragmentManager.beginTransaction()
-                        .add(R.id.containerFragment, DetailsMapFragment(MyMarker(ALL_SKILLS_NAME, AUTO_TRANSLATE, COMPANY, DETAIL_TEXT, ID, NAME, UF_CONTACT_EMAIL, UF_CONTACT_PHONE, UF_DETAIL_IMAGE, UF_DISABLE, UF_GOLD_GROSS_MONTH, UF_GOLD_PER_MONTH, UF_GROSS_CURRENCY_ID, UF_GROSS_PER_MONTH, UF_JOBS_ID, UF_LANGUAGE_ID_ALL, UF_TYPE_OF_JOB_NAME, UF_LOGO_IMAGE, UF_MAP_POINT, UF_MAP_POINT_LATITUDE, UF_MAP_POINT_LONGITUDE, UF_MAP_RENDERED, UF_MODIFED, UF_PREVIEW_IMAGE, UF_SKILLS_ID_ALL, UF_TYPE_OF_JOB_ID)))
+                        .add(R.id.containerFragment, DetailsMapFragment(MyMarker(
+                            "", AUTO_TRANSLATE ?: 0,
+                            COMPANY ?: "", DETAIL_TEXT ?: "", UF_JOBS_ID ?: 0,
+                            NAME ?: "", UF_CONTACT_EMAIL ?: "",
+                            UF_CONTACT_PHONE ?: "",
+                            UF_DETAIL_IMAGE ?: "", UF_DISABLE ?: "",
+                            UF_GOLD_GROSS_MONTH ?: "",
+                            UF_GOLD_PER_MONTH ?: "",
+                            UF_GROSS_CURRENCY_ID ?: 0,
+                            UF_GROSS_PER_MONTH ?: "",
+                            UF_JOBS_ID ?: 0, UF_LANGUAGE_ID_ALL ?: "",
+                            null, UF_LOGO_IMAGE, UF_MAP_POINT ?: "",
+                            location[0], location[1], UF_MAP_RENDERED ?: 0,
+                            UF_MODIFED ?: "", UF_PREVIEW_IMAGE ?: "",
+                            UF_SKILLS_ID_ALL ?: "",
+                            UF_TYPE_OF_JOB_ID ?: 0
+                        )))
                         .commit()
                 }
             } catch (e: Exception) {
@@ -174,11 +190,12 @@ class VocationEditActivity : AppCompatActivity() {
             layoutManager2.alignItems = AlignItems.FLEX_START
 
             try {
-                val languagesList = jobInfo.UF_LANGUAGE_ID_ALL.split(",").map {
+                val languagesList = jobInfo.UF_LANGUAGE_ID_ALL?.split(",")?.map {
                     languages.first { lang -> lang.id == it.toInt() }
                 }
                 lang_rv.layoutManager = layoutManager2
-                lang_rv.adapter = LanguagesAdapter(this, languagesList, true)
+                lang_rv.adapter =
+                    LanguagesAdapter(this, languagesList ?: listOf(), true)
             } catch (e:Exception) {}
 
 
@@ -187,22 +204,22 @@ class VocationEditActivity : AppCompatActivity() {
                 filters_tv.visibility = View.GONE
             } else {
                 filters_tv.visibility = View.VISIBLE
-                filters_tv.adapter = SkillsAdapter(this, jobInfo.ALL_SKILLS_NAME.split(","), true)
+                //filters_tv.adapter = SkillsAdapter(this, (jobInfo.ALL_SKILLS_NAME?:"").split(","), true)
             }
 
-            if (jobInfo.UF_CONTACT_PHONE.isEmpty())
+            if (jobInfo.UF_CONTACT_PHONE.isNullOrEmpty())
                 phone_tv.visibility = View.GONE
-            if (jobInfo.UF_CONTACT_EMAIL.isEmpty())
+            if (jobInfo.UF_CONTACT_EMAIL.isNullOrEmpty())
                 email_tv.visibility = View.GONE
 
             phone_tv.text = jobInfo.UF_CONTACT_PHONE + " "
             email_tv.data = jobInfo.UF_CONTACT_EMAIL + " "
 
             lastUpdate_tv.text = "#${jobInfo.UF_JOBS_ID}\n${jobInfo.UF_MODIFED}"
-            company_tv.data = jobInfo.COMPANY
-            jobType_tv.text = jobInfo.UF_TYPE_OF_JOB_NAME ?: ""
+            company_tv.data = jobInfo.COMPANY ?: ""
+            //jobType_tv.text = jobInfo.UF_TYPE_OF_JOB_NAME ?: ""
 
-            details_tv.data = jobInfo.DETAIL_TEXT
+            details_tv.data = jobInfo.DETAIL_TEXT ?: ""
         } catch (e: Exception) {
             Log.e("debug", e.localizedMessage ?: "Details error")
         }
@@ -210,7 +227,7 @@ class VocationEditActivity : AppCompatActivity() {
 
     fun closeClick(v: View) = finish()
 
-    fun fbclick(view: View) {
+    fun fbclick(v: View) {
         val locale = setting.getCurrentLanguage().locale
 
         val content = ShareLinkContent.Builder()

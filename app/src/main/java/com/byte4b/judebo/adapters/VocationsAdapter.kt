@@ -109,7 +109,7 @@ class VocationsAdapter(
     private fun deleteVocation(vocation: Vocation) {
         Realm.getDefaultInstance().executeTransaction {
             val vocationRealm = it.where<VocationRealm>()
-                .equalTo("ID", vocation.ID)
+                .equalTo("UF_JOBS_ID", vocation.UF_JOBS_ID)
                 .findFirst()
             vocationRealm?.apply {
                 isHided = true
@@ -118,7 +118,6 @@ class VocationsAdapter(
                 UF_MODIFED = format.format(Calendar.getInstance().time)
                 Log.e("test", UF_MODIFED.toString())
 
-                ALL_SKILLS_NAME = null
                 AUTO_TRANSLATE = null
                 COMPANY = null
                 DETAIL_TEXT = null
@@ -131,18 +130,13 @@ class VocationsAdapter(
                 UF_GOLD_PER_MONTH = null
                 UF_GROSS_CURRENCY_ID = null
                 UF_GROSS_PER_MONTH = null
-                UF_LANGUAGE_ID = null
                 UF_LANGUAGE_ID_ALL = null
                 UF_LOGO_IMAGE = null
                 UF_MAP_POINT = null
-                UF_MAP_POINT_LATITUDE = null
-                UF_MAP_POINT_LONGITUDE = null
                 UF_MAP_RENDERED = null
                 UF_PREVIEW_IMAGE = null
-                UF_SKILLS_ID = null
                 UF_SKILLS_ID_ALL = null
                 UF_TYPE_OF_JOB_ID = null
-                UF_TYPE_OF_JOB_NAME = null
                 UF_USER_ID = null
             }
         }

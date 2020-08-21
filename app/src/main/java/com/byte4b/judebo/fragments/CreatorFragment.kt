@@ -47,7 +47,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                 if (vocations.isEmpty())
                     onRefresh()
                 else
-                    onMyVocationsLoaded(vocations.map { it.toBasicVersion() }.filter { it.ID != 0 })
+                    onMyVocationsLoaded(vocations.map { it.toBasicVersion() }.filter { it.UF_JOBS_ID != 0 })
             } catch (e: Exception) {}
         }
 
