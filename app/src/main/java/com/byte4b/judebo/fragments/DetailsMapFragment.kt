@@ -29,9 +29,11 @@ class DetailsMapFragment(
 
     private var map: GoogleMap? = null
 
-    private fun setDraggableMarker() {
-        val target = MarkerOptions()
-            .position(LatLng(marker.UF_MAP_POINT_LATITUDE, marker.UF_MAP_POINT_LONGITUDE))
+    private fun setDraggableMarker(
+        lat: Double = marker.UF_MAP_POINT_LATITUDE,
+        lon: Double = marker.UF_MAP_POINT_LONGITUDE
+    ) {
+        val target = MarkerOptions().position(LatLng(lat, lon))
 
         val icon =
             requireContext().resources.getDrawable(R.drawable.map_default_marker)
@@ -40,6 +42,7 @@ class DetailsMapFragment(
         //todo: if location is empty - show user location or default location
         target.draggable(true)
 
+        map?.clear()
         map?.addMarker(target)
         map?.animateCamera(CameraUpdateFactory.newLatLngZoom(target.position, Setting.BASIC_ZOOM))
     }
@@ -74,14 +77,15 @@ class DetailsMapFragment(
         googleMap.isTrafficEnabled = false
         googleMap.isBuildingsEnabled = true
         googleMap.isIndoorEnabled = false
-        googleMap.uiSettings.isScrollGesturesEnabled = false
-        googleMap.uiSettings.isCompassEnabled = false
-        googleMap.uiSettings.isZoomControlsEnabled = true
-        googleMap.uiSettings.isZoomGesturesEnabled = false
-        googleMap.uiSettings.isTiltGesturesEnabled = false
-        googleMap.uiSettings.isMapToolbarEnabled = false
 
         if (!isEdit) {
+            googleMap.uiSettings.isScrollGesturesEnabled = false
+            googleMap.uiSettings.isCompassEnabled = false
+            googleMap.uiSettings.isZoomControlsEnabled = true
+            googleMap.uiSettings.isZoomGesturesEnabled = false
+            googleMap.uiSettings.isTiltGesturesEnabled = false
+            googleMap.uiSettings.isMapToolbarEnabled = false
+
             setMarker()
             Glide.with(requireContext())
                 .load(marker.UF_LOGO_IMAGE)
@@ -96,8 +100,12 @@ class DetailsMapFragment(
                         setMarker(resource)
                     }
                 })
-        } else
+        } else {
+            googleMap.setOnMapClickListener {
+                setDraggableMarker(it.latitude, it.longitude)
+            }
             setDraggableMarker()
+        }
     }
 
     @SuppressLint("MissingPermission")
