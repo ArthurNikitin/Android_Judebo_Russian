@@ -1,14 +1,13 @@
 package com.byte4b.judebo.fragments
 
 import android.Manifest
-import android.provider.Settings
 import android.annotation.SuppressLint
 import android.content.Context.LOCATION_SERVICE
 import android.content.Intent
-import android.graphics.Path
 import android.location.LocationManager
 import android.os.Bundle
 import android.os.Handler
+import android.provider.Settings
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AlertDialog
@@ -280,7 +279,11 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
                 view.filters_tv.visibility = View.GONE
             } else {
                 view.filters_tv.visibility = View.VISIBLE
-                view.filters_tv.adapter = SkillsAdapter(ctx, data.ALL_SKILLS_NAME.split(","))
+                view.filters_tv.adapter = SkillsAdapter(ctx,
+                    data.ALL_SKILLS_NAME
+                        .split(",")
+                        .filterNot { it == Setting.DEFAULT_SKILL_ID_ALWAYS_HIDDEN }
+                )
             }
         } catch (e: Exception) {
             Log.e("test", e.localizedMessage?: "error")

@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.byte4b.judebo.*
 import com.byte4b.judebo.R
 import com.byte4b.judebo.adapters.LanguagesAdapter
+import com.byte4b.judebo.adapters.SkillsAdapter
 import com.byte4b.judebo.fragments.DetailsMapFragment
 import com.byte4b.judebo.models.*
 import com.byte4b.judebo.utils.Setting
@@ -173,7 +174,11 @@ class VocationEditActivity : AppCompatActivity() {
                 filters_tv.visibility = View.GONE
             } else {
                 filters_tv.visibility = View.VISIBLE
-                //filters_tv.adapter = SkillsAdapter(this, (jobInfo.ALL_SKILLS_NAME?:"").split(","), true)
+                filters_tv.adapter = SkillsAdapter(this,
+                    (jobInfo.UF_SKILLS_ID_ALL ?: "")
+                        .split(",")
+                        .filterNot { it == Setting.DEFAULT_SKILL_ID_ALWAYS_HIDDEN },
+                    true)
             }
 
             phone_tv.data = jobInfo.UF_CONTACT_PHONE

@@ -128,7 +128,11 @@ class DetailsActivity : AppCompatActivity() {
                 filters_tv.visibility = View.GONE
             } else {
                 filters_tv.visibility = View.VISIBLE
-                filters_tv.adapter = SkillsAdapter(this, jobInfo.ALL_SKILLS_NAME.split(","), true)
+                filters_tv.adapter = SkillsAdapter(this,
+                    jobInfo.ALL_SKILLS_NAME
+                        .split(",")
+                        .filterNot { it == Setting.DEFAULT_SKILL_ID_ALWAYS_HIDDEN },
+                    true)
             }
 
             if (jobInfo.UF_CONTACT_PHONE.isEmpty())

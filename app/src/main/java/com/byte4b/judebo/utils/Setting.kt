@@ -107,7 +107,7 @@ class Setting(ctx: Context) {
         const val MAX_IMG_CROP_HEIGHT_LOGO = 32
         const val MAX_IMG_CROP_HEIGHT_PREVIEW = 100
         const val MAX_IMG_CROP_HEIGHT = 400
-        const val DEFAULT_SKILL_ID_ALWAYS_HIDDEN = 32
+        const val DEFAULT_SKILL_ID_ALWAYS_HIDDEN = "32"
 
     }
 
