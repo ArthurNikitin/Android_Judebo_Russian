@@ -4,12 +4,12 @@ import androidx.annotation.DrawableRes
 import com.byte4b.judebo.R.drawable
 
 class Language(
-    val id: Int,
-    val name: String,
-    val native: String,
-    @DrawableRes val flag: Int,
-    val locale: String,
-    val currency: String
+    val id: Int = 0,
+    val name: String = "",
+    val native: String = "",
+    @DrawableRes val flag: Int = drawable.en,
+    val locale: String = "en",
+    val currency: String = ""
 ) {
     val title get() = "$native ($name)"
 }

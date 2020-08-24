@@ -162,10 +162,10 @@
                     android:text="10 000" />
 
                 <Spinner
-                    android:textSize="16sp"
                     android:id="@+id/salaryVal_tv"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="match_parent"
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -214,28 +214,33 @@
                 android:visibility="gone"
                 app:srcCompat="@drawable/en" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="8dp"
-                android:orientation="vertical">
+                <TextView
+                    android:layout_marginBottom="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="toLanguagesClick"
+                    android:text="@string/edit_item_languages_list" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/lang_rv"
+                    android:onClick="toLanguagesClick"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:layout_weight="1" />
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:layout_marginBottom="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="toSkillsClick"
+                    android:text="@string/edit_item_tags_list" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/filters_tv"
+                    android:layout_marginBottom="8dp"
+                    android:onClick="toSkillsClick"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                </androidx.recyclerview.widget.RecyclerView>
-
-            </LinearLayout>
+                    android:layout_height="wrap_content" />
 
             <ImageView
                 android:id="@+id/imageView4"

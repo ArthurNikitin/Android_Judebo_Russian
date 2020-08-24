@@ -34,6 +34,8 @@ class VocationEditActivity : AppCompatActivity() {
 
     companion object {
         private const val REQUEST_PICTURE = 102
+        const val REQUEST_LANGUAGES = 103
+        const val REQUEST_SKILLS = 104
     }
 
     var EditText.data: String?
@@ -161,7 +163,11 @@ class VocationEditActivity : AppCompatActivity() {
                 }
                 lang_rv.layoutManager = layoutManager2
                 lang_rv.adapter =
-                    LanguagesAdapter(this, languagesList ?: listOf(), true)
+                    LanguagesAdapter(this,
+                        (languagesList ?: listOf(setting.getCurrentLanguage())) +
+                        Language(name = getString(R.string.edit_item_add_language),
+                            flag = R.drawable.button_plus_gray),
+                        isDetails = true, isEditor = true)
             } catch (e: Exception) {
             }
 
@@ -177,8 +183,9 @@ class VocationEditActivity : AppCompatActivity() {
                 filters_tv.adapter = SkillsAdapter(this,
                     (jobInfo.UF_SKILLS_ID_ALL ?: "")
                         .split(",")
-                        .filterNot { it == Setting.DEFAULT_SKILL_ID_ALWAYS_HIDDEN },
-                    true)
+                        .filterNot { it == Setting.DEFAULT_SKILL_ID_ALWAYS_HIDDEN } +
+                            getString(R.string.edit_item_add_tag),
+                    isDetails = true, isEditor = true)
             }
 
             phone_tv.data = jobInfo.UF_CONTACT_PHONE
@@ -268,5 +275,13 @@ class VocationEditActivity : AppCompatActivity() {
     }
 
     fun saveClick(v: View) = toast("save stub")
+
+    fun toLanguagesClick(v: View) = startActivityForResult(
+        Intent(this, LanguagesActivity::class.java), REQUEST_LANGUAGES
+    )
+
+    fun toSkillsClick(v: View) = startActivityForResult(
+        Intent(this, SkillsActivity::class.java), REQUEST_SKILLS
+    )
 
 }

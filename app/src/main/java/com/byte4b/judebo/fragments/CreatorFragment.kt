@@ -1,30 +1,21 @@
 package com.byte4b.judebo.fragments
 
 import android.content.Intent
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.byte4b.judebo.R
 import com.byte4b.judebo.adapters.VocationsAdapter
-import com.byte4b.judebo.models.CurrencyRateRealm
 import com.byte4b.judebo.models.Vocation
 import com.byte4b.judebo.models.VocationRealm
 import com.byte4b.judebo.services.ApiServiceImpl
 import com.byte4b.judebo.utils.Setting
 import com.byte4b.judebo.view.ServiceListener
-import com.google.gson.Gson
 import io.realm.Realm
 import io.realm.kotlin.createObject
 import io.realm.kotlin.delete
@@ -47,7 +38,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                 if (vocations.isEmpty())
                     onRefresh()
                 else
-                    onMyVocationsLoaded(vocations.map { it.toBasicVersion() }.filter { it.UF_JOBS_ID != 0 })
+                    onMyVocationsLoaded(vocations.map { it.toBasicVersion() }.filter { it.UF_JOBS_ID != 0 && it.UF_MODIFED != null })
             } catch (e: Exception) {}
         }
 
