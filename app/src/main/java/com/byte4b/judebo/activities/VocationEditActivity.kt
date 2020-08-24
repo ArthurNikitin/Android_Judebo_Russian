@@ -113,7 +113,14 @@ class VocationEditActivity : AppCompatActivity() {
 
             try {
                 salary_tv.data = jobInfo.UF_GROSS_PER_MONTH?.round()?.trim()
-                salaryVal_tv.setSelection(currencies.firstOrNull { it.name == currency?.name}?.id ?: 0, true)
+                val selectedCurrency = currency ?: setting.getCurrentCurrency()
+                currencies.indices.forEach {
+                    if (currencies[it].id == selectedCurrency.id) {
+                        salaryVal_tv.setSelection(it)
+                        return@forEach
+                    }
+                }
+
                 salary_tv.setRightDrawable(currency?.icon ?: R.drawable.iusd)
 
                 jobInfo.apply {
