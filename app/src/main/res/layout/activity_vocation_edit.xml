@@ -125,7 +125,13 @@
                 android:layout_marginBottom="8dp"
                 android:orientation="horizontal">
 
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
                 <ImageView
+                    android:layout_weight="1"
                     android:id="@+id/logo_iv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -133,6 +139,10 @@
                     android:scaleType="centerCrop"
                     app:srcCompat="@drawable/edit_page_default_logo" />
 
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
             </LinearLayout>
 
