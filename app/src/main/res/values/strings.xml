@@ -28,6 +28,8 @@
     <string name="request_request_delete_message" translatable="false">Are you sure?</string>
     <string name="request_request_delete_ok" translatable="false">Delete</string>
     <string name="request_request_delete_cancel" translatable="false">Cancel</string>
+    <string name="edit_item_add_language" translatable="false">Add language</string>
+    <string name="edit_item_add_tag" translatable="false">Add skill</string>
 
 
 </resources>
