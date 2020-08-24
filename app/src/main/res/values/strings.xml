@@ -30,6 +30,8 @@
     <string name="request_request_delete_cancel" translatable="false">Cancel</string>
     <string name="edit_item_add_language" translatable="false">Add language</string>
     <string name="edit_item_add_tag" translatable="false">Add skill</string>
+    <string name="edit_item_languages_list" translatable="false">languages</string>
+    <string name="edit_item_tags_list" translatable="false">Skills</string>
 
 
 </resources>
