@@ -1,5 +1,6 @@
 package com.byte4b.judebo.services
 
+import android.util.Log
 import com.byte4b.judebo.api.getAPI
 import com.byte4b.judebo.api.secretKey
 import com.byte4b.judebo.models.*
@@ -14,6 +15,14 @@ import kotlin.random.Random
 
 class ApiServiceImpl(val listener: ServiceListener?) : ApiService {
 
+    private fun check(action: () -> Unit) {
+        try {
+            action()
+        } catch (e: Exception) {
+            Log.e("test", e.localizedMessage ?: "Error")
+        }
+    }
+
     override fun getNearbyMarkers(
         locale: String,
         northEastLatitude: Double,
@@ -25,7 +34,7 @@ class ApiServiceImpl(val listener: ServiceListener?) : ApiService {
         "$southWestLatitude,$southWestLongitude", secretKey)
             .enqueue(object : Callback<JsonObject> {
                 override fun onFailure(call: Call<JsonObject>, t: Throwable) {
-                    listener?.onNearbyMarkersLoaded(null)
+                    check { listener?.onNearbyMarkersLoaded(null) }
                 }
 
                 override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
@@ -44,10 +53,10 @@ class ApiServiceImpl(val listener: ServiceListener?) : ApiService {
                             }
                             listener?.onNearbyMarkersLoaded(objects)
                         } catch (e: Exception) {
-                            listener?.onNearbyMarkersLoaded(null)
+                            check { listener?.onNearbyMarkersLoaded(null) }
                         }
                     } else
-                        listener?.onNearbyMarkersLoaded(null)
+                        check { listener?.onNearbyMarkersLoaded(null) }
                 }
 
             })
@@ -109,14 +118,16 @@ class ApiServiceImpl(val listener: ServiceListener?) : ApiService {
             .getMyVocations(secretKey, token, login)
             .enqueue(object : Callback<List<Vocation>> {
                 override fun onFailure(call: Call<List<Vocation>>, t: Throwable) {
-                    listener?.onMyVocationsLoaded(null)
+                    check { listener?.onMyVocationsLoaded(null) }
                 }
 
                 override fun onResponse(call: Call<List<Vocation>>, response: Response<List<Vocation>>) {
-                    if (response.isSuccessful)
-                        listener?.onMyVocationsLoaded(response.body())
-                    else
-                        listener?.onMyVocationsLoaded(null)
+                    check {
+                        if (response.isSuccessful)
+                            listener?.onMyVocationsLoaded(response.body())
+                        else
+                            listener?.onMyVocationsLoaded(null)
+                    }
                 }
             })
     }
