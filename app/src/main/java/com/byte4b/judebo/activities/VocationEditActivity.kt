@@ -177,6 +177,8 @@ class VocationEditActivity : AppCompatActivity() {
 
             details_tv.data = jobInfo.DETAIL_TEXT ?: ""
         } catch (e: Exception) {}
+
+        name_tv.hideKeyboard()
     }
 
     fun closeClick(v: View) = finish()
