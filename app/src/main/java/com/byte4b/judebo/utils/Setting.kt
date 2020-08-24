@@ -3,14 +3,12 @@ package com.byte4b.judebo.utils
 import android.content.Context
 import android.os.Build
 import androidx.core.content.edit
-import com.byte4b.judebo.BuildConfig
 import com.byte4b.judebo.getLangFromLocale
 import com.byte4b.judebo.models.Currency
 import com.byte4b.judebo.models.Language
 import com.byte4b.judebo.models.currencies
 import com.byte4b.judebo.models.languages
 import com.google.android.gms.maps.model.LatLng
-import java.util.*
 
 class Setting(ctx: Context) {
 
@@ -105,6 +103,10 @@ class Setting(ctx: Context) {
             listOf(2..3, 4..5, 6..7, 8..9, 10..11, 12..15, 16..20, 21..30, 31..50, 51..99)
 
         const val JOB_LIFETIME_IN_DAYS = 90 * 24 * 60 * 60 * 1000L
+
+        const val MAX_IMG_CROP_HEIGHT_LOGO = 32
+        const val MAX_IMG_CROP_HEIGHT_PREVIEW = 100
+        const val MAX_IMG_CROP_HEIGHT = 400
 
     }
 
