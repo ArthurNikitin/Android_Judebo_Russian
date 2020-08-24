@@ -98,14 +98,13 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <TextView
+                    <Spinner
                         android:layout_marginBottom="8dp"
                         android:textSize="17sp"
+                        android:layout_weight="1"
                         android:id="@+id/jobType_tv"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Full time" />
+                        android:layout_height="wrap_content" />
 
                     <EditText
                         android:hint="Company"
@@ -162,12 +161,11 @@
                     android:layout_height="wrap_content"
                     android:text="10 000" />
 
-                <TextView
+                <Spinner
                     android:textSize="16sp"
                     android:id="@+id/salaryVal_tv"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="USD" />
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 

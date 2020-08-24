@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -26,6 +27,7 @@ import java.util.*
 
 class VocationEditActivity : AppCompatActivity() {
 
+    private val realm by lazy { Realm.getDefaultInstance() }
     private var job: Vocation? = null
     private val setting by lazy { Setting(this) }
 
@@ -44,6 +46,9 @@ class VocationEditActivity : AppCompatActivity() {
 
         val jobInfo = Gson().fromJson(intent.getStringExtra("data"), Vocation::class.java)
         job = jobInfo
+
+        initJobTypes()
+        initCurrencies()
 
         logo_iv.setOnClickListener {
             askPermission(
@@ -105,7 +110,7 @@ class VocationEditActivity : AppCompatActivity() {
 
             try {
                 salary_tv.data = jobInfo.UF_GROSS_PER_MONTH?.round()?.trim()
-                salaryVal_tv.text = " ${currency?.name ?: ""}"
+                salaryVal_tv.setSelection(currencies.firstOrNull { it.name == currency?.name}?.id ?: 0, true)
                 salary_tv.setRightDrawable(currency?.icon ?: R.drawable.iusd)
 
                 jobInfo.apply {
@@ -159,6 +164,9 @@ class VocationEditActivity : AppCompatActivity() {
             } catch (e: Exception) {
             }
 
+            filters_tv.setOnClickListener {
+                startActivity<SkillsActivity>()
+            }
 
             filters_tv.layoutManager = layoutManager
             if (jobInfo.UF_SKILLS_ID_ALL == "") {
@@ -179,6 +187,22 @@ class VocationEditActivity : AppCompatActivity() {
         } catch (e: Exception) {}
 
         name_tv.hideKeyboard()
+    }
+
+    private fun initJobTypes() {
+        jobType_tv.adapter = ArrayAdapter<String>(this,
+            android.R.layout.simple_spinner_dropdown_item,
+            realm.where<JobTypeRealm>().findAll().map { it.name }.filter { it.trim() != "" }
+        )
+    }
+
+    private fun initCurrencies() {
+        salaryVal_tv.adapter = ArrayAdapter<String>(this,
+            android.R.layout.simple_spinner_dropdown_item,
+            currencies.map { it.name }
+        )
+
+        //UF_GROSS_CURRENCY_ID
     }
 
     fun closeClick(v: View) = finish()
