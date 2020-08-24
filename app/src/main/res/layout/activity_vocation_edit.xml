@@ -45,12 +45,22 @@
         </LinearLayout>
 
         <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="deleteClick"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/imageView6"
+            app:srcCompat="@drawable/button_delete" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:adjustViewBounds="true"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:onClick="saveClick"
-            android:layout_height="wrap_content"
-            app:srcCompat="@android:drawable/ic_menu_save" />
+            android:layout_height="35dp"
+            app:srcCompat="@drawable/button_save" />
 
     </RelativeLayout>
 
@@ -259,10 +269,10 @@
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
                     android:onClick="saveClick"
                     android:layout_weight="1"
-                    app:srcCompat="@android:drawable/ic_menu_save" />
+                    app:srcCompat="@drawable/button_save" />
 
                 <TextView
                     android:id="@+id/lastUpdate_tv"

@@ -3,6 +3,7 @@ package com.byte4b.judebo.activities
 import android.Manifest
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
@@ -11,16 +12,17 @@ import com.byte4b.judebo.*
 import com.byte4b.judebo.R
 import com.byte4b.judebo.adapters.LanguagesAdapter
 import com.byte4b.judebo.fragments.DetailsMapFragment
-import com.byte4b.judebo.models.MyMarker
-import com.byte4b.judebo.models.Vocation
-import com.byte4b.judebo.models.currencies
-import com.byte4b.judebo.models.languages
+import com.byte4b.judebo.models.*
 import com.byte4b.judebo.utils.Setting
 import com.github.florent37.runtimepermission.kotlin.askPermission
 import com.google.android.flexbox.*
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
+import io.realm.Realm
+import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.activity_vocation_edit.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class VocationEditActivity : AppCompatActivity() {
 
@@ -186,7 +188,53 @@ class VocationEditActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
     }
 
-    fun deleteClick(v: View) = toast("delete stub")
+    fun deleteClick(v: View) {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.request_request_delete_title)
+            .setMessage(R.string.request_request_delete_message)
+            .setPositiveButton(R.string.request_request_delete_ok) { dialog, _ ->
+
+                Realm.getDefaultInstance().executeTransaction {
+                    val vocationRealm = it.where<VocationRealm>()
+                        .equalTo("UF_JOBS_ID", job?.UF_JOBS_ID)
+                        .findFirst()
+                    vocationRealm?.apply {
+                        isHided = true
+                        val format = SimpleDateFormat("dd.mm.yyyy hh:mm:ss")
+//17.08.2021 11:46:20
+                        UF_MODIFED = format.format(Calendar.getInstance().time)
+                        Log.e("test", UF_MODIFED.toString())
+
+                        AUTO_TRANSLATE = null
+                        COMPANY = null
+                        DETAIL_TEXT = null
+                        NAME = null
+                        UF_CONTACT_EMAIL = null
+                        UF_CONTACT_PHONE = null
+                        UF_DETAIL_IMAGE = null
+                        UF_DISABLE = null
+                        UF_GOLD_GROSS_MONTH = null
+                        UF_GOLD_PER_MONTH = null
+                        UF_GROSS_CURRENCY_ID = null
+                        UF_GROSS_PER_MONTH = null
+                        UF_LANGUAGE_ID_ALL = null
+                        UF_LOGO_IMAGE = null
+                        UF_MAP_POINT = null
+                        UF_MAP_RENDERED = null
+                        UF_PREVIEW_IMAGE = null
+                        UF_SKILLS_ID_ALL = null
+                        UF_TYPE_OF_JOB_ID = null
+                        UF_USER_ID = null
+                    }
+                }
+                //todo: update query to server
+                //todo: reload list
+
+                dialog.dismiss()
+            }
+            .setNegativeButton(R.string.request_request_delete_cancel) { d, _ -> d.cancel() }
+            .show()
+    }
 
     fun saveClick(v: View) = toast("save stub")
 

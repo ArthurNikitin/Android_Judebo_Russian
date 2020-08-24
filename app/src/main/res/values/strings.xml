@@ -24,6 +24,10 @@
     <string name="request_geolocation_ok">Ok</string>
     <string name="request_geolocation_cancel">Cancel</string>
     <string name="app_name" translatable="false">Judebo</string>
+    <string name="request_request_delete_title" translatable="false">Delete?</string>
+    <string name="request_request_delete_message" translatable="false">Are you sure?</string>
+    <string name="request_request_delete_ok" translatable="false">Delete</string>
+    <string name="request_request_delete_cancel" translatable="false">Cancel</string>
 
 
 </resources>

@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.byte4b.judebo.R
@@ -35,42 +36,48 @@ class VocationsAdapter(
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        with(vocations[position]) {
-            holder.main.setOnClickListener {
-                if (holder.swiper.openStatus == SwipeLayout.Status.Close) {
-                    ctx.startActivity<VocationEditActivity> {
-                        putExtra("data", Gson().toJson(this@with))
-                    }
-                } else
-                    holder.swiper.close()
-            }
-            holder.nameView.text = NAME
-            holder.idView.text = "#$UF_JOBS_ID"
-            holder.swiper.isLeftSwipeEnabled = true
-            holder.swiper.isRightSwipeEnabled = true
+        try {
+            with(vocations[position]) {
 
-            holder.swiper.addDrag(SwipeLayout.DragEdge.Left, holder.left)
-            holder.swiper.addDrag(SwipeLayout.DragEdge.Right, holder.right)
+                holder.copy1.setOnClickListener { copyVocations(this) }
+                holder.copy2.setOnClickListener { copyVocations(this) }
 
-            try {
-                if (!UF_LOGO_IMAGE.isNullOrEmpty()) {
-                    Glide.with(holder.view)
-                        .load(UF_LOGO_IMAGE)
-                        .circleCrop()
-                        .placeholder(R.drawable.map_default_marker)
-                        .into(holder.iconView)
+                holder.del1.setOnClickListener { deleteVocation(this) }
+                holder.del2.setOnClickListener { deleteVocation(this) }
+
+                holder.main.setOnClickListener {
+                    if (holder.swiper.openStatus == SwipeLayout.Status.Close) {
+                        ctx.startActivity<VocationEditActivity> {
+                            putExtra("data", Gson().toJson(this@with))
+                        }
+                    } else
+                        holder.swiper.close()
                 }
-            } catch (e: Exception) {}
-            holder.editDateView.text = UF_MODIFED?.split(" ")?.firstOrNull() ?: "Empty"
-            holder.deleteDateView.text = UF_DISABLE?.split(" ")?.firstOrNull() ?: "Empty"
-            val currency = currencies.firstOrNull { it.id == UF_GROSS_CURRENCY_ID }
-            holder.salaryView.text = "$UF_GROSS_PER_MONTH ${currency?.name ?: "USD"}"
+                holder.nameView.text = NAME
+                holder.idView.text = "#$UF_JOBS_ID"
+                holder.swiper.isLeftSwipeEnabled = true
+                holder.swiper.isRightSwipeEnabled = true
 
-            holder.copy1.setOnClickListener { copyVocations(this) }
-            holder.copy2.setOnClickListener { copyVocations(this) }
+                holder.swiper.addDrag(SwipeLayout.DragEdge.Left, holder.left)
+                holder.swiper.addDrag(SwipeLayout.DragEdge.Right, holder.right)
 
-            holder.del1.setOnClickListener { deleteVocation(this) }
-            holder.del2.setOnClickListener { deleteVocation(this) }
+                try {
+                    if (!UF_LOGO_IMAGE.isNullOrEmpty()) {
+                        Glide.with(holder.view)
+                            .load(UF_LOGO_IMAGE)
+                            .circleCrop()
+                            .placeholder(R.drawable.map_default_marker)
+                            .into(holder.iconView)
+                    }
+                } catch (e: Exception) {
+                }
+                holder.editDateView.text = UF_MODIFED?.split(" ")?.firstOrNull() ?: "Empty"
+                holder.deleteDateView.text = UF_DISABLE?.split(" ")?.firstOrNull() ?: "Empty"
+                val currency = currencies.firstOrNull { it.id == UF_GROSS_CURRENCY_ID }
+                holder.salaryView.text = "$UF_GROSS_PER_MONTH ${currency?.name ?: "USD"}"
+            }
+        } catch (e: Exception) {
+            Log.e("test", e.localizedMessage ?: "error")
         }
     }
 
@@ -78,7 +85,7 @@ class VocationsAdapter(
     private fun copyVocations(vocation: Vocation) {
         Realm.getDefaultInstance().executeTransaction {
             val vocationRealm = it.where<VocationRealm>()
-                .equalTo("UF_JOBS_IВ", vocation.UF_JOBS_ID)
+                .equalTo("UF_JOBS_ID", vocation.UF_JOBS_ID)
                 .findFirst()
                 ?: return@executeTransaction
             val newVocation = vocationRealm.toBasicVersion().toRealmVersion()
@@ -89,7 +96,6 @@ class VocationsAdapter(
 
                 val format = SimpleDateFormat("dd.mm.yyyy hh:mm:ss")
                 UF_MODIFED = format.format(now.time)
-                Log.e("test", UF_MODIFED.toString())
 
                 UF_APP_JOB_ID = UUID.randomUUID().toString() + getMaxId(it) + 1
 
@@ -101,47 +107,55 @@ class VocationsAdapter(
         //todo: reload list
     }
 
-    inline fun getMaxId(realm: Realm): Int {
-        return realm.where<VocationRealm>().max("ID")?.toInt() ?: 0
-    }
+    private fun getMaxId(realm: Realm) =
+        realm.where<VocationRealm>().max("UF_JOBS_ID")?.toInt() ?: 0
 
     @SuppressLint("SimpleDateFormat")
     private fun deleteVocation(vocation: Vocation) {
-        Realm.getDefaultInstance().executeTransaction {
-            val vocationRealm = it.where<VocationRealm>()
-                .equalTo("UF_JOBS_ID", vocation.UF_JOBS_ID)
-                .findFirst()
-            vocationRealm?.apply {
-                isHided = true
-                val format = SimpleDateFormat("dd.mm.yyyy hh:mm:ss")
-//17.08.2021 11:46:20
-                UF_MODIFED = format.format(Calendar.getInstance().time)
-                Log.e("test", UF_MODIFED.toString())
+        Log.e("test", "del")
+        AlertDialog.Builder(ctx)
+            .setTitle(R.string.request_request_delete_title)
+            .setMessage(R.string.request_request_delete_message)
+            .setPositiveButton(R.string.request_request_delete_ok) { dialog, _ ->
 
-                AUTO_TRANSLATE = null
-                COMPANY = null
-                DETAIL_TEXT = null
-                NAME = null
-                UF_CONTACT_EMAIL = null
-                UF_CONTACT_PHONE = null
-                UF_DETAIL_IMAGE = null
-                UF_DISABLE = null
-                UF_GOLD_GROSS_MONTH = null
-                UF_GOLD_PER_MONTH = null
-                UF_GROSS_CURRENCY_ID = null
-                UF_GROSS_PER_MONTH = null
-                UF_LANGUAGE_ID_ALL = null
-                UF_LOGO_IMAGE = null
-                UF_MAP_POINT = null
-                UF_MAP_RENDERED = null
-                UF_PREVIEW_IMAGE = null
-                UF_SKILLS_ID_ALL = null
-                UF_TYPE_OF_JOB_ID = null
-                UF_USER_ID = null
+                Realm.getDefaultInstance().executeTransaction {
+                    val vocationRealm = it.where<VocationRealm>()
+                        .equalTo("UF_JOBS_ID", vocation.UF_JOBS_ID)
+                        .findFirst()
+                    vocationRealm?.apply {
+                        isHided = true
+                        val format = SimpleDateFormat("dd.mm.yyyy hh:mm:ss")
+                        UF_MODIFED = format.format(Calendar.getInstance().time)
+
+                        AUTO_TRANSLATE = null
+                        COMPANY = null
+                        DETAIL_TEXT = null
+                        NAME = null
+                        UF_CONTACT_EMAIL = null
+                        UF_CONTACT_PHONE = null
+                        UF_DETAIL_IMAGE = null
+                        UF_DISABLE = null
+                        UF_GOLD_GROSS_MONTH = null
+                        UF_GOLD_PER_MONTH = null
+                        UF_GROSS_CURRENCY_ID = null
+                        UF_GROSS_PER_MONTH = null
+                        UF_LANGUAGE_ID_ALL = null
+                        UF_LOGO_IMAGE = null
+                        UF_MAP_POINT = null
+                        UF_MAP_RENDERED = null
+                        UF_PREVIEW_IMAGE = null
+                        UF_SKILLS_ID_ALL = null
+                        UF_TYPE_OF_JOB_ID = null
+                        UF_USER_ID = null
+                    }
+                }
+                //todo: update query to server
+                //todo: reload list
+
+                dialog.dismiss()
             }
-        }
-        //todo: update query to server
-        //todo: reload list
+            .setNegativeButton(R.string.request_request_delete_cancel) { d, _ -> d.cancel() }
+            .show()
     }
 
     class Holder(val view: View) : RecyclerView.ViewHolder(view) {
