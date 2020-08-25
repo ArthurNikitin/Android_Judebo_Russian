@@ -131,6 +131,7 @@
                     android:layout_height="match_parent" />
 
                 <ImageView
+                    android:onClick="setAvatar"
                     android:layout_weight="1"
                     android:id="@+id/logo_iv"
                     android:layout_width="match_parent"

@@ -53,42 +53,6 @@ class VocationEditActivity : AppCompatActivity() {
         initJobTypes()
         initCurrencies()
 
-        logo_iv.setOnClickListener {
-            askPermission(
-                Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-            ) {
-
-                val intent = Intent()
-                intent.type = "image/*"
-                intent.action = Intent.ACTION_GET_CONTENT
-                startActivityForResult(
-                    Intent.createChooser(intent, "Select Picture"),
-                    REQUEST_PICTURE
-                )
-            }.onDeclined { e ->
-                if (e.hasDenied()) {
-                    AlertDialog.Builder(this).apply {
-                        setMessage("Accept permissions")
-                        setPositiveButton(AlertDialog.BUTTON_POSITIVE) { dialog, _ ->
-                            e.askAgain()
-                            dialog.dismiss()
-                        }
-                    }
-                }
-
-                if (e.hasForeverDenied()) {
-                    AlertDialog.Builder(this).apply {
-                        setMessage("Permission request")
-                        setPositiveButton(AlertDialog.BUTTON_POSITIVE) { dialog, _ ->
-                            e.goToSettings()
-                            dialog.dismiss()
-                        }
-                    }
-                }
-            }
-        }
-
         try {
             val currency = currencies.firstOrNull { it.id == jobInfo.UF_GROSS_CURRENCY_ID }
 
@@ -107,8 +71,6 @@ class VocationEditActivity : AppCompatActivity() {
                     .load(jobInfo.UF_DETAIL_IMAGE)
                     .placeholder(R.drawable.edit_page_default_logo)
                     .into(logo_iv)
-            } else {
-                logo_iv.visibility = View.GONE
             }
 
             try {
@@ -178,17 +140,14 @@ class VocationEditActivity : AppCompatActivity() {
             } catch (e: Exception) {
             }
 
-            filters_tv.setOnClickListener {
-                startActivity<SkillsActivity>()
-            }
-
             filters_tv.layoutManager = layoutManager
-            if (jobInfo.UF_SKILLS_ID_ALL == "") {
-                filters_tv.visibility = View.GONE
-            } else {
-                filters_tv.visibility = View.VISIBLE
+            if (jobInfo.UF_SKILLS_ID_ALL.isNullOrEmpty()) {
                 filters_tv.adapter = SkillsAdapter(this,
-                    (jobInfo.UF_SKILLS_ID_ALL ?: "")
+                    listOf(getString(R.string.edit_item_add_tag)),
+                    isDetails = true, isEditor = true)
+            } else {
+                filters_tv.adapter = SkillsAdapter(this,
+                    jobInfo.UF_SKILLS_ID_ALL!!
                         .split(",")
                         .filterNot { it == Setting.DEFAULT_SKILL_ID_ALWAYS_HIDDEN } +
                             getString(R.string.edit_item_add_tag),
@@ -290,5 +249,41 @@ class VocationEditActivity : AppCompatActivity() {
     fun toSkillsClick(v: View) = startActivityForResult(
         Intent(this, SkillsActivity::class.java), REQUEST_SKILLS
     )
+
+    fun setAvatar(v: View) {
+        askPermission(
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+        ) {
+
+            val intent = Intent()
+            intent.type = "image/*"
+            intent.action = Intent.ACTION_GET_CONTENT
+            startActivityForResult(
+                Intent.createChooser(intent, "Select Picture"),
+                REQUEST_PICTURE
+            )
+        }.onDeclined { e ->
+            if (e.hasDenied()) {
+                AlertDialog.Builder(this).apply {
+                    setMessage("Accept permissions")
+                    setPositiveButton(AlertDialog.BUTTON_POSITIVE) { dialog, _ ->
+                        e.askAgain()
+                        dialog.dismiss()
+                    }
+                }
+            }
+
+            if (e.hasForeverDenied()) {
+                AlertDialog.Builder(this).apply {
+                    setMessage("Permission request")
+                    setPositiveButton(AlertDialog.BUTTON_POSITIVE) { dialog, _ ->
+                        e.goToSettings()
+                        dialog.dismiss()
+                    }
+                }
+            }
+        }
+    }
 
 }
