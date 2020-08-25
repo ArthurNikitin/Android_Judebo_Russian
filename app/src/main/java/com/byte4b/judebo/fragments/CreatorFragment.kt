@@ -10,12 +10,15 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.byte4b.judebo.R
+import com.byte4b.judebo.activities.VocationEditActivity
 import com.byte4b.judebo.adapters.VocationsAdapter
 import com.byte4b.judebo.models.Vocation
 import com.byte4b.judebo.models.VocationRealm
 import com.byte4b.judebo.services.ApiServiceImpl
+import com.byte4b.judebo.startActivity
 import com.byte4b.judebo.utils.Setting
 import com.byte4b.judebo.view.ServiceListener
+import com.google.gson.Gson
 import io.realm.Realm
 import io.realm.kotlin.createObject
 import io.realm.kotlin.delete
@@ -38,8 +41,18 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                 if (vocations.isEmpty())
                     onRefresh()
                 else
-                    onMyVocationsLoaded(vocations.map { it.toBasicVersion() }.filter { it.UF_JOBS_ID != 0 && it.UF_MODIFED != null })
+                    onMyVocationsLoaded(
+                        vocations
+                            .map { it.toBasicVersion() }
+                            .filter { it.UF_JOBS_ID != 0 && it.UF_MODIFED != null }
+                    )
             } catch (e: Exception) {}
+        }
+
+        createNew.setOnClickListener {
+            requireContext().startActivity<VocationEditActivity> {
+                putExtra("data", Gson().toJson(Vocation()))
+            }
         }
 
         link_tv.setOnClickListener {

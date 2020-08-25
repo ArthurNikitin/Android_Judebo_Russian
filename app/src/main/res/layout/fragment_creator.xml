@@ -1,6 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:gravity="center_vertical"
+        android:background="@color/toolbar_background_color"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/button_subscribe_setup" />
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/subcribe_stub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="subcribe_stub" />
+
+        <ImageView
+            android:id="@+id/createNew"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            app:srcCompat="@drawable/button_plus_vacancy" />
+    </LinearLayout>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
     android:id="@+id/refresher"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -34,3 +68,5 @@
         android:layout_height="match_parent" />
 </LinearLayout>
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</LinearLayout>
