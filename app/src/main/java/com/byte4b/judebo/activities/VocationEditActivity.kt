@@ -1,6 +1,7 @@
 package com.byte4b.judebo.activities
 
 import android.Manifest
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -31,6 +32,7 @@ class VocationEditActivity : AppCompatActivity() {
     private val realm by lazy { Realm.getDefaultInstance() }
     private var job: Vocation? = null
     private val setting by lazy { Setting(this) }
+    private val skillsRealm by lazy { realm.where<SkillRealm>().findAll().map { it.toBasicVersion() } }
 
     companion object {
         private const val REQUEST_PICTURE = 102
@@ -114,11 +116,7 @@ class VocationEditActivity : AppCompatActivity() {
             }
 
 
-            val layoutManager = FlexboxLayoutManager(this)
-            layoutManager.flexWrap = FlexWrap.WRAP
-            layoutManager.flexDirection = FlexDirection.ROW
-            layoutManager.justifyContent = JustifyContent.FLEX_START
-            layoutManager.alignItems = AlignItems.FLEX_START
+            setSkillsList()
 
             val layoutManager2 = FlexboxLayoutManager(this)
             layoutManager2.flexWrap = FlexWrap.WRAP
@@ -138,20 +136,6 @@ class VocationEditActivity : AppCompatActivity() {
                             flag = R.drawable.button_plus_gray),
                         isDetails = true, isEditor = true)
             } catch (e: Exception) {
-            }
-
-            filters_tv.layoutManager = layoutManager
-            if (jobInfo.UF_SKILLS_ID_ALL.isNullOrEmpty()) {
-                filters_tv.adapter = SkillsAdapter(this,
-                    listOf(getString(R.string.edit_item_add_tag)),
-                    isDetails = true, isEditor = true)
-            } else {
-                filters_tv.adapter = SkillsAdapter(this,
-                    jobInfo.UF_SKILLS_ID_ALL!!
-                        .split(",")
-                        .filterNot { it == Setting.DEFAULT_SKILL_ID_ALWAYS_HIDDEN } +
-                            getString(R.string.edit_item_add_tag),
-                    isDetails = true, isEditor = true)
             }
 
             phone_tv.data = jobInfo.UF_CONTACT_PHONE
@@ -188,8 +172,40 @@ class VocationEditActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         when (requestCode) {
             REQUEST_PICTURE -> logo_iv.setImageURI(data?.data)
+            REQUEST_SKILLS -> {
+                if (resultCode == Activity.RESULT_OK) {
+                    job?.UF_SKILLS_ID_ALL = data?.getStringExtra("skills")
+                    setSkillsList()
+                }
+            }
         }
         super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    private fun setSkillsList() {
+        if (job == null) return
+        val jobInfo = job!!
+
+        val layoutManager = FlexboxLayoutManager(this)
+        layoutManager.flexWrap = FlexWrap.WRAP
+        layoutManager.flexDirection = FlexDirection.ROW
+        layoutManager.justifyContent = JustifyContent.FLEX_START
+        layoutManager.alignItems = AlignItems.FLEX_START
+
+        filters_tv.layoutManager = layoutManager
+        if (jobInfo.UF_SKILLS_ID_ALL.isNullOrEmpty()) {
+            filters_tv.adapter = SkillsAdapter(this,
+                listOf(getString(R.string.edit_item_add_tag)),
+                isDetails = true, isEditor = true, vocation = jobInfo)
+        } else {
+            val vocationSkillsIds = jobInfo.UF_SKILLS_ID_ALL!!
+                .split(",")
+                .filterNot { it == Setting.DEFAULT_SKILL_ID_ALWAYS_HIDDEN }
+            filters_tv.adapter = SkillsAdapter(this,
+                 skillsRealm.filter { it.id.toString() in vocationSkillsIds }.map { it.name } +
+                        getString(R.string.edit_item_add_tag),
+                isDetails = true, isEditor = true, vocation = jobInfo)
+        }
     }
 
     fun deleteClick(v: View) {
@@ -242,13 +258,17 @@ class VocationEditActivity : AppCompatActivity() {
 
     fun saveClick(v: View) = toast("save stub")
 
-    fun toLanguagesClick(v: View) = startActivityForResult(
-        Intent(this, LanguagesActivity::class.java), REQUEST_LANGUAGES
-    )
+    fun toLanguagesClick(v: View) {
+        val selectIntent = Intent(this, LanguagesActivity::class.java)
+        selectIntent.putExtra("data", Gson().toJson(job))
+        startActivityForResult(selectIntent, REQUEST_LANGUAGES)
+    }
 
-    fun toSkillsClick(v: View) = startActivityForResult(
-        Intent(this, SkillsActivity::class.java), REQUEST_SKILLS
-    )
+    fun toSkillsClick(v: View) {
+        val selectIntent = Intent(this, SkillsActivity::class.java)
+        selectIntent.putExtra("data", Gson().toJson(job))
+        startActivityForResult(selectIntent, REQUEST_SKILLS)
+    }
 
     fun setAvatar(v: View) {
         askPermission(
