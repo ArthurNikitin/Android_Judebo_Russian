@@ -117,26 +117,7 @@ class VocationEditActivity : AppCompatActivity() {
 
 
             setSkillsList()
-
-            val layoutManager2 = FlexboxLayoutManager(this)
-            layoutManager2.flexWrap = FlexWrap.WRAP
-            layoutManager2.flexDirection = FlexDirection.ROW
-            layoutManager2.justifyContent = JustifyContent.FLEX_START
-            layoutManager2.alignItems = AlignItems.FLEX_START
-
-            try {
-                val languagesList = jobInfo.UF_LANGUAGE_ID_ALL?.split(",")?.map {
-                    languages.first { lang -> lang.id == it.toInt() }
-                }
-                lang_rv.layoutManager = layoutManager2
-                lang_rv.adapter =
-                    LanguagesAdapter(this,
-                        (languagesList ?: listOf(setting.getCurrentLanguage())) +
-                        Language(name = getString(R.string.edit_item_add_language),
-                            flag = R.drawable.button_plus_gray),
-                        isDetails = true, isEditor = true)
-            } catch (e: Exception) {
-            }
+            setLanguagesList()
 
             phone_tv.data = jobInfo.UF_CONTACT_PHONE
             email_tv.data = jobInfo.UF_CONTACT_EMAIL
@@ -178,8 +159,40 @@ class VocationEditActivity : AppCompatActivity() {
                     setSkillsList()
                 }
             }
+            REQUEST_LANGUAGES -> {
+                if (resultCode == Activity.RESULT_OK) {
+                    job?.UF_LANGUAGE_ID_ALL = data?.getStringExtra("langs")
+                    setLanguagesList()
+                }
+            }
         }
         super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    private fun setLanguagesList() {
+        if (job == null) return
+        val jobInfo = job!!
+
+        val layoutManager = FlexboxLayoutManager(this)
+        layoutManager.apply {
+            flexWrap = FlexWrap.WRAP
+            flexDirection = FlexDirection.ROW
+            justifyContent = JustifyContent.FLEX_START
+            alignItems = AlignItems.FLEX_START
+        }
+        try {
+            val languagesList = jobInfo.UF_LANGUAGE_ID_ALL?.split(",")?.map {
+                languages.first { lang -> lang.id == it.toInt() }
+            }
+            lang_rv.layoutManager = layoutManager
+            lang_rv.adapter =
+                LanguagesAdapter(this,
+                    (languagesList ?: listOf(setting.getCurrentLanguage())) +
+                            Language(name = getString(R.string.edit_item_add_language),
+                                flag = R.drawable.button_plus_gray),
+                    isDetails = true, isEditor = true, vocation = jobInfo
+                )
+        } catch (e: Exception) {}
     }
 
     private fun setSkillsList() {

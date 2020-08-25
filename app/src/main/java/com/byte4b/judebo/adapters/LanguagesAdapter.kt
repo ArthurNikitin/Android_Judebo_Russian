@@ -9,16 +9,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.byte4b.judebo.R
-import com.byte4b.judebo.activities.SkillsActivity
+import com.byte4b.judebo.activities.LanguagesActivity
 import com.byte4b.judebo.activities.VocationEditActivity
 import com.byte4b.judebo.models.Language
+import com.byte4b.judebo.models.Vocation
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.item_lang.view.*
 
 class LanguagesAdapter(
     private val ctx: Context,
     private val langs: List<Language>,
     private val isDetails: Boolean = false,
-    private val isEditor: Boolean = false
+    private val isEditor: Boolean = false,
+    private val vocation: Vocation? = null
 ) : RecyclerView.Adapter<LanguagesAdapter.Holder>() {
 
     override fun getItemCount() = langs.size
@@ -35,9 +38,11 @@ class LanguagesAdapter(
 
         holder.view.setOnClickListener {
             if (!isEditor) return@setOnClickListener
-            (ctx as Activity).startActivityForResult(
-                Intent(ctx, SkillsActivity::class.java), VocationEditActivity.REQUEST_SKILLS
-            )
+            try {
+                val selectIntent = Intent((ctx as Activity), LanguagesActivity::class.java)
+                selectIntent.putExtra("data", Gson().toJson(vocation))
+                ctx.startActivityForResult(selectIntent, VocationEditActivity.REQUEST_LANGUAGES)
+            } catch (e: Exception) {}
         }
     }
 
