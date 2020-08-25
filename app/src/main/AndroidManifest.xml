@@ -20,7 +20,9 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activities.LanguagesActivity" />
         <activity android:name=".activities.SkillsActivity" />
-        <activity android:name=".activities.VocationEditActivity" />
+        <activity android:name=".activities.VocationEditActivity"
+            android:windowSoftInputMode="stateHidden"
+            />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
