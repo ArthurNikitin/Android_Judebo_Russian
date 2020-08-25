@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
@@ -27,6 +28,7 @@ import kotlinx.android.synthetic.main.activity_vocation_edit.*
 import java.text.SimpleDateFormat
 import java.util.*
 
+
 class VocationEditActivity : AppCompatActivity() {
 
     private val realm by lazy { Realm.getDefaultInstance() }
@@ -35,6 +37,7 @@ class VocationEditActivity : AppCompatActivity() {
     private val skillsRealm by lazy { realm.where<SkillRealm>().findAll().map { it.toBasicVersion() } }
 
     companion object {
+        private const val REQUEST_CROP = 101
         private const val REQUEST_PICTURE = 102
         const val REQUEST_LANGUAGES = 103
         const val REQUEST_SKILLS = 104
@@ -152,7 +155,25 @@ class VocationEditActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         when (requestCode) {
-            REQUEST_PICTURE -> logo_iv.setImageURI(data?.data)
+            REQUEST_CROP -> {
+                logo_iv.setImageURI(data?.data)
+            }
+            REQUEST_PICTURE -> {
+                val cropIntent = Intent("com.android.camera.action.CROP")
+                cropIntent.setDataAndType(data?.data, "image/*")
+                cropIntent.putExtra("crop", "true")
+                cropIntent.putExtra("aspectX", 1)
+                cropIntent.putExtra("aspectY", 1)
+                intent.putExtra("outputX", Setting.MAX_IMG_CROP_HEIGHT)
+                intent.putExtra("outputY", Setting.MAX_IMG_CROP_HEIGHT)
+                //image type
+                intent.putExtra("outputFormat", "JPEG");
+                cropIntent.putExtra("return-data", true)
+
+                //val outputFileUri = Uri.fromFile(createCropFile())
+                cropIntent.putExtra(MediaStore.EXTRA_OUTPUT, data?.data)
+                startActivityForResult(cropIntent, REQUEST_CROP)
+            }
             REQUEST_SKILLS -> {
                 if (resultCode == Activity.RESULT_OK) {
                     job?.UF_SKILLS_ID_ALL = data?.getStringExtra("skills")
