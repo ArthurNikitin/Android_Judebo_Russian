@@ -81,9 +81,11 @@ class Setting(ctx: Context) {
         const val SEARCH_REQUEST_MIN_MOVE_DELTA = 0.18
         //degrees
 
+        // skills, languages, currencies rates
         const val PERIOD_UPDATE_DYNAMIC_DATA_FROM_SERVER_IN_MINUTE = 60 * 24
 
-        const val PERIOD_UPDATE_JOB_LIST_FOR_USER_IN_MINUTES = 3 * 60 * 1000L
+        // how offen update job list from server in TAB vacancies
+        const val PERIOD_UPDATE_JOB_LIST_FOR_USER_IN_SECONDS = 3 * 60 * 1000L
 
         // 2020-08-10 b.2.5
         // const val CLUSTER_RADIUS = 165.0

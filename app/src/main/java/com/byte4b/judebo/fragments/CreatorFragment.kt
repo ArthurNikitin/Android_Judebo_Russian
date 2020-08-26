@@ -1,6 +1,7 @@
 package com.byte4b.judebo.fragments
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -42,7 +43,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                     onMyVocationsLoaded(
                         vocations
                             .map { it.toBasicVersion() }
-                            .filter { it.UF_JOBS_ID != 0 && it.UF_MODIFED != null }
+                            .filter { !it.isHided }
                     )
             } catch (e: Exception) {}
         }
@@ -52,6 +53,18 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                 putExtra("data", Gson().toJson(Vocation()))
             }
         }
+//PERIOD_UPDATE_JOB_LIST_FOR_USER_IN_MINUTES
+        val handler = Handler {
+            onRefresh()
+            true
+        }
+        Thread {
+            while (true) {
+                if (isResumed)
+                    handler.sendEmptyMessage(0)
+                Thread.sleep(Setting.PERIOD_UPDATE_JOB_LIST_FOR_USER_IN_SECONDS * 1000L)
+            }
+        }.start()
     }
 
     override fun onMyVocationsLoaded(list: List<Vocation>?) {
@@ -74,6 +87,23 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
         try {
             refresher.isRefreshing = false
         } catch (e: Exception) {}
+
+        run {
+            try {
+                val vocations = realm.where<VocationRealm>().findAll()
+                val data = vocations
+                            .map { it.toBasicVersion() }
+                            .filter {  !it.isHided }
+                setList(data)
+            } catch (e: Exception) {
+                setList(list)
+            }
+        }
+
+
+    }
+
+    private fun setList(list: List<Vocation>?) {
         vocations_rv.layoutManager = LinearLayoutManager(requireContext())
         vocations_rv
             .addItemDecoration(DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL))
