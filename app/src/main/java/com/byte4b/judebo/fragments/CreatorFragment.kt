@@ -1,5 +1,6 @@
 package com.byte4b.judebo.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
@@ -23,6 +24,8 @@ import io.realm.kotlin.createObject
 import io.realm.kotlin.delete
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.fragment_creator.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
     SwipeRefreshLayout.OnRefreshListener {
@@ -67,7 +70,99 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
         }.start()
     }
 
+    @SuppressLint("SimpleDateFormat")
     override fun onMyVocationsLoaded(list: List<Vocation>?) {
+        val realmList: List<VocationRealm> = listOf() //read from db
+        list?.forEach {
+
+            // Element have UF_JOBS_ID
+            val obj = realmList.firstOrNull { voc -> it.UF_JOBS_ID == voc.UF_JOBS_ID }
+            if (obj != null)
+                //Element founded in Realm
+            {
+
+
+                    val objDate = SimpleDateFormat("dd.mm.yyyy hh:mm:ss")
+                        .parse(obj.UF_MODIFED!!)
+                    val itDate =
+                        if (it.UF_MODIFED == null) Date(0L)
+                        else SimpleDateFormat("dd.mm.yyyy hh:mm:ss").parse(it.UF_MODIFED!!)
+
+
+                    if (itDate!! > objDate)
+                        // Update on WEB
+                    {
+                        //todo: rewrite all params from WEB and UF_APP_JOB_ID
+                        if (it.UF_APP_JOB_ID == null) {
+
+                            //todo: ID in REALM
+                            // Generate APP_ID = DEVICE ID (exclude special symbols) + a(int)=1, before A 00000, a = XX XXX XXX
+                            // found  in REALM  APP_ID, if found, A++
+
+                            //
+                        }
+                    }else
+                        // Web data not actual nothing do
+                    {
+
+                    }
+
+            } else
+                //Element NOT founded in Realm with ID
+            {
+                if (it.UF_APP_JOB_ID == null)
+                    //JOB CREATED ON WEB
+                {
+                    //todo: ID in REALM
+                    // Generate APP_ID = DEVICE ID (exclude special symbols) + a(int)=1, before A 00000, a = XX XXX XXX
+                    // found  in REALM  APP_ID, if found, A++
+
+                    // todo: add to REALM all params from WEB and UF_APP_JOB_ID
+                }else
+                {
+                    //try found  in REALM  by APP_ID ()
+                    if (true)
+                        //FOUND
+                    {
+                        val objDate = SimpleDateFormat("dd.mm.yyyy hh:mm:ss")
+                            .parse(obj.UF_MODIFED!!)
+                        val itDate =
+                            if (it.UF_MODIFED == null) Date(0L)
+                            else SimpleDateFormat("dd.mm.yyyy hh:mm:ss").parse(it.UF_MODIFED!!)
+
+
+                        if (itDate!! > objDate)
+                        // todo: rewrite to REALM all params from WEB and UF_APP_JOB_ID
+                        {
+                            //NEW DATA FROM WEB
+                            //todo rewrite all
+
+                        }else
+                            //OLD DATA from WEB
+                        {
+                            //todo rewrite only JOB_ID, MODIFED
+                        }
+
+                    }else
+                        //NOT FOUND
+                    {
+                        // Generate APP_ID = DEVICE ID (exclude special symbols) + a(int)=1, before A 00000, a = XX XXX XXX
+                        // found  in REALM  APP_ID, if found, A++
+
+                        // todo: add to REALM all params from WEB and UF_APP_JOB_ID
+                    }
+                }
+            }
+        }
+
+        //удалить из локаль
+        realmList.forEach {
+            //проити по всем локальным элементам у которых JOB_ID не пустое, если такой элемент не пришел с сервера
+            //то удалить запись из REALM
+            // if (list.any { serverItem -> serverItem.UF_JOBS_ID == it.UF_JOBS_ID })
+        }
+
+
         if (list != null) {
             try {
                 realm.executeTransaction {
