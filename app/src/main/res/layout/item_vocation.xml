@@ -16,7 +16,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginLeft="8dp"
             android:id="@+id/delete12"
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             app:srcCompat="@drawable/button_delete" />
@@ -30,7 +30,7 @@
 
         <ImageView
             android:id="@+id/copy12"
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             app:srcCompat="@drawable/button_copy" />
@@ -57,7 +57,7 @@
 
         <ImageView
             android:id="@+id/copy2"
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             app:srcCompat="@drawable/button_copy" />
@@ -74,7 +74,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginLeft="8dp"
             android:id="@+id/delete22"
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             app:srcCompat="@drawable/button_delete" />
@@ -85,7 +85,7 @@
         app:leftEdgeSwipeOffset="0dp"
         app:rightEdgeSwipeOffset="0dp"
         android:layout_width="match_parent"
-        android:layout_height="80dp">
+        android:layout_height="100dp">
 
         <LinearLayout
             android:id="@+id/right1"
@@ -93,6 +93,12 @@
             android:weightSum="1"
             android:layout_height="match_parent"
             android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/corners_right"
+                android:layout_weight="1" />
 
             <ImageView
                 android:alpha="0.0"
@@ -129,16 +135,22 @@
 
             <ImageView
                 android:alpha="0.0"
-                android:background="@color/colorPrimaryDark"
+                android:background="@drawable/corners_left"
                 android:id="@+id/copy1"
                 android:layout_width="70dp"
                 android:layout_height="match_parent"
                 app:srcCompat="@drawable/button_copy" />
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/corners_left"
+                android:layout_weight="1" />
+
         </LinearLayout>
 
         <LinearLayout
-            android:paddingLeft="5dp"
+            android:padding="10dp"
             android:background="#fff"
             android:id="@+id/container"
             android:layout_width="match_parent"
@@ -151,9 +163,10 @@
 
                 <TextView
                     android:id="@+id/name_tv"
+                    android:singleLine="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Ортопед"
+                    android:text="ОртопедОртопедОртопед Ортопед Ортопед ОртопедОртопедОртопедОртопедОртопедОртопедОртопед"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 

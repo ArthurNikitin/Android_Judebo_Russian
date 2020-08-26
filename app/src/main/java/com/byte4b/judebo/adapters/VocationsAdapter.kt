@@ -40,6 +40,7 @@ class VocationsAdapter(
             }
         })
     }
+
     override fun getItemCount() = vocations.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
@@ -68,7 +69,7 @@ class VocationsAdapter(
                 holder.idView.text = "#$UF_JOBS_ID"
                 holder.swiper.isLeftSwipeEnabled = true
                 holder.swiper.isRightSwipeEnabled = true
-                holder.swiper.close()
+                holder.swiper.close(false)
                 holder.swiper.addSwipeListener(object : SwipeLayout.SwipeListener {
                     override fun onOpen(layout: SwipeLayout?) {
                         lastSwipedPosition = position
@@ -99,8 +100,10 @@ class VocationsAdapter(
                 val editDate = SimpleDateFormat("dd.mm.yyyy hh:mm:ss")
                     .parse(UF_MODIFED ?: "")
                 val editString =
-                    if (editDate != null) SimpleDateFormat("dd MMM").format(editDate)
-                    else "Empty"
+                    if (editDate != null)
+                        SimpleDateFormat("dd MMM", Locale.getDefault()).format(editDate)
+                    else
+                        "Empty"
                 holder.editDateView.text = editString
                 val currency = currencies.firstOrNull { it.id == UF_GROSS_CURRENCY_ID }
                 holder.salaryView.text = "$UF_GROSS_PER_MONTH ${currency?.name ?: "USD"}"
