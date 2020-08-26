@@ -31,6 +31,15 @@ class VocationsAdapter(
 
     private var lastSwipedPosition = -1
 
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                notifyItemChanged(lastSwipedPosition)
+            }
+        })
+    }
     override fun getItemCount() = vocations.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
@@ -59,6 +68,20 @@ class VocationsAdapter(
                 holder.idView.text = "#$UF_JOBS_ID"
                 holder.swiper.isLeftSwipeEnabled = true
                 holder.swiper.isRightSwipeEnabled = true
+                holder.swiper.close()
+                holder.swiper.addSwipeListener(object : SwipeLayout.SwipeListener {
+                    override fun onOpen(layout: SwipeLayout?) {
+                        lastSwipedPosition = position
+                    }
+                    override fun onUpdate(layout: SwipeLayout?, leftOffset: Int, topOffset: Int) {}
+                    override fun onStartOpen(layout: SwipeLayout?) {
+                        if (lastSwipedPosition != position)
+                            notifyItemChanged(lastSwipedPosition)
+                    }
+                    override fun onStartClose(layout: SwipeLayout?) {}
+                    override fun onHandRelease(layout: SwipeLayout?, xvel: Float, yvel: Float) {}
+                    override fun onClose(layout: SwipeLayout?) {}
+                })
 
                 holder.swiper.addDrag(SwipeLayout.DragEdge.Left, holder.left)
                 holder.swiper.addDrag(SwipeLayout.DragEdge.Right, holder.right)
