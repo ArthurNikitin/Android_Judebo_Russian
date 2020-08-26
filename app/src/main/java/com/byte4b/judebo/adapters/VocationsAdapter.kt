@@ -67,25 +67,39 @@ class VocationsAdapter(
                 }
                 holder.nameView.text = NAME
                 holder.idView.text = "#$UF_JOBS_ID"
-                holder.swiper.isLeftSwipeEnabled = true
-                holder.swiper.isRightSwipeEnabled = true
-                holder.swiper.close(false)
-                holder.swiper.addSwipeListener(object : SwipeLayout.SwipeListener {
-                    override fun onOpen(layout: SwipeLayout?) {
-                        lastSwipedPosition = position
-                    }
-                    override fun onUpdate(layout: SwipeLayout?, leftOffset: Int, topOffset: Int) {}
-                    override fun onStartOpen(layout: SwipeLayout?) {
-                        if (lastSwipedPosition != position)
-                            notifyItemChanged(lastSwipedPosition)
-                    }
-                    override fun onStartClose(layout: SwipeLayout?) {}
-                    override fun onHandRelease(layout: SwipeLayout?, xvel: Float, yvel: Float) {}
-                    override fun onClose(layout: SwipeLayout?) {}
-                })
+                with(holder.swiper) {
+                    isLeftSwipeEnabled = true
+                    isRightSwipeEnabled = true
+                    close(false)
+                    addSwipeListener(object : SwipeLayout.SwipeListener {
+                        override fun onOpen(layout: SwipeLayout?) {
+                            lastSwipedPosition = position
+                        }
 
-                holder.swiper.addDrag(SwipeLayout.DragEdge.Left, holder.left)
-                holder.swiper.addDrag(SwipeLayout.DragEdge.Right, holder.right)
+                        override fun onUpdate(
+                            layout: SwipeLayout?,
+                            leftOffset: Int,
+                            topOffset: Int
+                        ) {}
+
+                        override fun onStartOpen(layout: SwipeLayout?) {
+                            if (lastSwipedPosition != position)
+                                notifyItemChanged(lastSwipedPosition)
+                        }
+
+                        override fun onStartClose(layout: SwipeLayout?) {}
+                        override fun onHandRelease(
+                            layout: SwipeLayout?,
+                            xvel: Float,
+                            yvel: Float
+                        ) {}
+
+                        override fun onClose(layout: SwipeLayout?) {}
+                    })
+
+                    addDrag(SwipeLayout.DragEdge.Left, holder.left)
+                    addDrag(SwipeLayout.DragEdge.Right, holder.right)
+                }
 
                 try {
                     if (!UF_LOGO_IMAGE.isNullOrEmpty()) {
@@ -104,8 +118,7 @@ class VocationsAdapter(
                         SimpleDateFormat("dd MMM", Locale(Setting(ctx).getCurrentLanguage().locale)).format(editDate)
                     else
                         "Empty"
-                
-                holder.view.setOnTouchListener { view, motionEvent ->  }
+
                 holder.editDateView.text = editString
                 val currency = currencies.firstOrNull { it.id == UF_GROSS_CURRENCY_ID }
                 holder.salaryView.text = "$UF_GROSS_PER_MONTH ${currency?.name ?: "USD"}"
