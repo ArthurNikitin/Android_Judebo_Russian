@@ -3,6 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     tools:ignore="MissingDefaultResource">
-    <item android:color="@color/search_polygon_square" android:state_checked="true"/>
-    <item android:color="@color/primary"/>
+    <item android:color="@color/tab_icon_active" android:state_checked="true"/>
+    <item android:color="@color/tab_icon_not_active"/>
 </selector>
