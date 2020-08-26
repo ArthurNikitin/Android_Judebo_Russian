@@ -15,6 +15,7 @@
         <ImageView
             android:id="@+id/imageView9"
             android:layout_width="60dp"
+            android:padding="12dp"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/button_subscribe_setup" />
 
@@ -30,7 +31,7 @@
             android:id="@+id/createNew"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
-            android:padding="8dp"
+            android:padding="12dp"
             app:srcCompat="@drawable/button_plus_vacancy" />
     </LinearLayout>
 

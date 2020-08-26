@@ -29,12 +29,14 @@ class VocationsAdapter(
     private val vocations: List<Vocation>
 ) : RecyclerView.Adapter<VocationsAdapter.Holder>() {
 
+    private var lastSwipedPosition = -1
+
     override fun getItemCount() = vocations.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         Holder(LayoutInflater.from(ctx).inflate(R.layout.item_vocation, parent, false))
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "SimpleDateFormat")
     override fun onBindViewHolder(holder: Holder, position: Int) {
         try {
             with(vocations[position]) {
@@ -71,8 +73,12 @@ class VocationsAdapter(
                     }
                 } catch (e: Exception) {
                 }
-                holder.editDateView.text = UF_MODIFED?.split(" ")?.firstOrNull() ?: "Empty"
-                holder.deleteDateView.text = UF_DISABLE?.split(" ")?.firstOrNull() ?: "Empty"
+                val editDate = SimpleDateFormat("dd.mm.yyyy hh:mm:ss")
+                    .parse(UF_MODIFED ?: "")
+                val editString =
+                    if (editDate != null) SimpleDateFormat("dd MMM").format(editDate)
+                    else "Empty"
+                holder.editDateView.text = editString
                 val currency = currencies.firstOrNull { it.id == UF_GROSS_CURRENCY_ID }
                 holder.salaryView.text = "$UF_GROSS_PER_MONTH ${currency?.name ?: "USD"}"
             }
@@ -164,7 +170,6 @@ class VocationsAdapter(
         val salaryView = view.salary_tv!!
         val idView = view.id_tv!!
         val editDateView = view.edit_tv!!
-        val deleteDateView = view.delete_tv!!
         val swiper = view.side_swiper!!
         val left = view.left1!!
         val right = view.right1!!

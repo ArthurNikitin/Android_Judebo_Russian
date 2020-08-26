@@ -9,7 +9,7 @@
         android:layout_margin="8dp"
         android:layout_centerVertical="true"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="36dp"
         android:orientation="horizontal">
 
         <ImageView
@@ -82,9 +82,8 @@
 
     <com.daimajia.swipe.SwipeLayout
         android:id="@+id/side_swiper"
-        xmlns:swipe="http://schemas.android.com/apk/res-auto"
-        swipe:leftEdgeSwipeOffset="0dp"
-        swipe:rightEdgeSwipeOffset="0dp"
+        app:leftEdgeSwipeOffset="0dp"
+        app:rightEdgeSwipeOffset="0dp"
         android:layout_width="match_parent"
         android:layout_height="80dp">
 
@@ -139,80 +138,82 @@
         </LinearLayout>
 
         <LinearLayout
+            android:paddingLeft="5dp"
+            android:background="#fff"
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#fff"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/icon_iv"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:padding="8dp"
-                    app:srcCompat="@drawable/map_default_marker" />
+                <TextView
+                    android:id="@+id/name_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ортопед"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="8dp"
-                    android:layout_weight="28"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/name_tv"
+                    <ImageView
+                        android:id="@+id/icon_iv"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:padding="8dp"
+                        app:srcCompat="@drawable/map_default_marker" />
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Ортопед"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/salary_tv"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="10000 RUB" />
-
-                    <TextView
-                        android:id="@+id/id_tv"
-                        android:layout_width="120dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
+                        android:layout_margin="8dp"
+                        android:layout_weight="28"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/salary_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="10000 RUB" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="bottom"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_weight="50"
                         android:gravity="bottom"
-                        android:text="#345" />
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/edit_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:text="15 авг" />
+
+                        <TextView
+                            android:id="@+id/id_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:text="#345" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="bottom"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_weight="50"
-                    android:gravity="bottom"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/edit_tv"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="right"
-                        android:text="15.10.2003" />
-
-                    <TextView
-                        android:id="@+id/delete_tv"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="right"
-                        android:text="16.10.2019" />
-                </LinearLayout>
-
             </LinearLayout>
+
         </LinearLayout>
 
     </com.daimajia.swipe.SwipeLayout>
