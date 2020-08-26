@@ -101,9 +101,11 @@ class VocationsAdapter(
                     .parse(UF_MODIFED ?: "")
                 val editString =
                     if (editDate != null)
-                        SimpleDateFormat("dd MMM", Locale.getDefault()).format(editDate)
+                        SimpleDateFormat("dd MMM", Locale(Setting(ctx).getCurrentLanguage().locale)).format(editDate)
                     else
                         "Empty"
+                
+                holder.view.setOnTouchListener { view, motionEvent ->  }
                 holder.editDateView.text = editString
                 val currency = currencies.firstOrNull { it.id == UF_GROSS_CURRENCY_ID }
                 holder.salaryView.text = "$UF_GROSS_PER_MONTH ${currency?.name ?: "USD"}"

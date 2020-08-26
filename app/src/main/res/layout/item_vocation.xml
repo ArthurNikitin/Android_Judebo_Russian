@@ -82,6 +82,7 @@
 
     <com.daimajia.swipe.SwipeLayout
         android:id="@+id/side_swiper"
+        app:show_mode="lay_down"
         app:leftEdgeSwipeOffset="0dp"
         app:rightEdgeSwipeOffset="0dp"
         android:layout_width="match_parent"
@@ -89,38 +90,42 @@
 
         <LinearLayout
             android:id="@+id/right1"
-            android:layout_width="156dp"
-            android:weightSum="1"
+            android:layout_width="166dp"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="1">
 
             <ImageView
+                android:layout_width="10dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/corners_right" />
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/corners_right"
                 android:layout_weight="1" />
 
             <ImageView
-                android:alpha="0.0"
-                android:background="@color/colorPrimaryDark"
                 android:id="@+id/copy22"
                 android:layout_width="70dp"
                 android:layout_height="match_parent"
+                android:alpha="0.1"
+                android:background="@color/colorPrimaryDark"
                 app:srcCompat="@drawable/button_copy" />
 
             <ImageView
-                android:alpha="0.0"
-                android:background="@color/colorPrimary"
                 android:id="@+id/delete2"
                 android:layout_width="70dp"
                 android:layout_height="match_parent"
+                android:alpha="0.0"
+                android:background="@color/colorPrimary"
                 app:srcCompat="@drawable/button_delete" />
 
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/left1"
-            android:layout_width="156dp"
+            android:layout_width="166dp"
             android:weightSum="1"
             android:layout_height="match_parent"
             android:orientation="horizontal">
@@ -141,11 +146,15 @@
                 android:layout_height="match_parent"
                 app:srcCompat="@drawable/button_copy" />
 
-            <ImageView
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/corners_left"
                 android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/corners_left" />
 
         </LinearLayout>
 
@@ -162,6 +171,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:layout_marginStart="12dp"
                     android:id="@+id/name_tv"
                     android:singleLine="true"
                     android:layout_width="match_parent"
