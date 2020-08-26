@@ -1,7 +1,5 @@
 package com.byte4b.judebo.fragments
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -53,14 +51,6 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
             requireContext().startActivity<VocationEditActivity> {
                 putExtra("data", Gson().toJson(Vocation()))
             }
-        }
-
-        link_tv.setOnClickListener {
-            try {
-                val openURL = Intent(Intent.ACTION_VIEW)
-                openURL.data = Uri.parse(getString(R.string.add_job_link))
-                startActivity(openURL)
-            } catch (e: Exception) {}
         }
     }
 
