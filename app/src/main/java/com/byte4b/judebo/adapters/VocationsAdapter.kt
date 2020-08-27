@@ -150,7 +150,7 @@ class VocationsAdapter(
                 val format = SimpleDateFormat("dd.mm.yyyy hh:mm:ss")
                 UF_MODIFED = format.format(now.time)
 
-                UF_APP_JOB_ID = getNewJobAppId()
+                UF_APP_JOB_ID = getNewJobAppId().toInt()
 
                 now.add(Calendar.DATE, Setting.JOB_LIFETIME_IN_DAYS.toInt())
                 UF_DISABLE = format.format(now.time)

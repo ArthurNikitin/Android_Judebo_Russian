@@ -9,7 +9,7 @@ data class Vocation(
     var COMPANY: String? = null,
     var DETAIL_TEXT: String? = null,
     var NAME: String? = null,
-    var UF_APP_JOB_ID: String? = null,
+    var UF_APP_JOB_ID: Int? = null,
     var UF_CONTACT_EMAIL: String? = null,
     var UF_CONTACT_PHONE: String? = null,
     var UF_DETAIL_IMAGE: String? = null,
@@ -71,7 +71,7 @@ open class VocationRealm : RealmObject() {
     var COMPANY: String? = null
     var DETAIL_TEXT: String? = null
     var NAME: String? = null
-    var UF_APP_JOB_ID: String? = null
+    var UF_APP_JOB_ID: Int? = null
     var UF_CONTACT_EMAIL: String? = null
     var UF_CONTACT_PHONE: String? = null
     var UF_DETAIL_IMAGE: String? = null

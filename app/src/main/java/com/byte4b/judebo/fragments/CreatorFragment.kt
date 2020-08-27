@@ -156,7 +156,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                     // +++ JOB CREATED ON WEB
                     {
                         val tmpObj = objFromServer.toRealmVersion()
-                        tmpObj.UF_APP_JOB_ID = getNewJobAppId()
+                        tmpObj.UF_APP_JOB_ID = getNewJobAppId().toInt()
                         tmpObj.UF_MODIFED = dateFormat.format(Calendar.getInstance().time)
                         val now = Calendar.getInstance()
                         now.add(Calendar.DATE, Setting.JOB_LIFETIME_IN_DAYS.toInt())
