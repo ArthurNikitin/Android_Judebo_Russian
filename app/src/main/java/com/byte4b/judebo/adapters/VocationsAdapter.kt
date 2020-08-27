@@ -11,11 +11,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.byte4b.judebo.R
 import com.byte4b.judebo.activities.VocationEditActivity
+import com.byte4b.judebo.fragments.CreatorFragment
 import com.byte4b.judebo.models.Vocation
 import com.byte4b.judebo.models.VocationRealm
 import com.byte4b.judebo.models.currencies
+import com.byte4b.judebo.services.ApiServiceImpl
 import com.byte4b.judebo.startActivity
 import com.byte4b.judebo.utils.Setting
+import com.byte4b.judebo.view.ServiceListener
 import com.daimajia.swipe.SwipeLayout
 import com.google.gson.Gson
 import io.realm.Realm
@@ -23,12 +26,15 @@ import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.item_vocation.view.*
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.random.Random
 
 class VocationsAdapter(
     private val ctx: Context,
-    private val vocations: List<Vocation>
-) : RecyclerView.Adapter<VocationsAdapter.Holder>() {
+    private val vocations: List<Vocation>,
+    private val parent: CreatorFragment
+) : RecyclerView.Adapter<VocationsAdapter.Holder>(), ServiceListener {
 
+    private val setting by lazy { Setting(ctx) }
     private var lastSwipedPosition = -1
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
@@ -144,7 +150,7 @@ class VocationsAdapter(
                 val format = SimpleDateFormat("dd.mm.yyyy hh:mm:ss")
                 UF_MODIFED = format.format(now.time)
 
-                UF_APP_JOB_ID = UUID.randomUUID().toString() + getMaxId(it) + 1
+                UF_APP_JOB_ID = getNewJobAppId()
 
                 now.add(Calendar.DATE, Setting.JOB_LIFETIME_IN_DAYS.toInt())
                 UF_DISABLE = format.format(now.time)
@@ -154,8 +160,12 @@ class VocationsAdapter(
         //todo: reload list
     }
 
-    private fun getMaxId(realm: Realm) =
-        realm.where<VocationRealm>().max("UF_JOBS_ID")?.toInt() ?: 0
+    private fun getNewJobAppId(): String {
+        var random = Random.nextLong(0, 99999999).toString()
+        random = "0".repeat(8 - random.length) + random
+        Log.e("test", random)
+        return "${Calendar.getInstance().timeInMillis / 1000}$random"
+    }
 
     @SuppressLint("SimpleDateFormat")
     private fun deleteVocation(vocation: Vocation) {
@@ -196,6 +206,13 @@ class VocationsAdapter(
                         UF_USER_ID = null
                     }
                 }
+                ApiServiceImpl(this).deleteVocation(
+                    setting.getCurrentLanguage().locale,
+                    token = "Z4pjjs5t7rt6uJc2uOLWx5Zb",
+                    login = "judebo.com@gmail.com",
+                    vocation = vocation
+                )
+                parent.onRefresh()
                 //todo: update query to server
                 //todo: reload list
 

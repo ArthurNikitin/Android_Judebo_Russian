@@ -14,4 +14,6 @@ interface ServiceListener {
 
     fun onMyVocationsLoaded(list: List<Vocation>?) {}
 
+    fun onVocationDeleted(success: Boolean) {}
+
 }

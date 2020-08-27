@@ -6,6 +6,7 @@ import com.byte4b.judebo.models.Skill
 import com.byte4b.judebo.models.Vocation
 import com.google.gson.JsonObject
 import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
@@ -36,7 +37,11 @@ interface API {
                        @Query("login") login: String):
             Call<List<Vocation>>
 
-    @POST("app_add_job.php?login=judebo.com@gmail.com&key=DSFRGVergbewrbh&tok=Z4pjjs5t7rt6uJc2uOLWx5Zb")
-    fun updateMyVocations()
+    @POST("app_add_job.php")
+    fun deleteVocation(@Query("key") secretKey: String,
+                       @Query("tok") token: String,
+                       @Query("login") login: String,
+                       @Body list: List<Vocation>):
+            Call<Any>
 
 }

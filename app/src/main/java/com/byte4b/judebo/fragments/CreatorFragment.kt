@@ -71,7 +71,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
         }.start()
     }
 
-    private fun getNewId(): String {
+    private fun getNewJobAppId(): String {
         var random = Random.nextLong(0, 99999999).toString()
         random = "0".repeat(8 - random.length) + random
         Log.e("test", random)
@@ -80,28 +80,32 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
 
     @SuppressLint("SimpleDateFormat")
     override fun onMyVocationsLoaded(list: List<Vocation>?) {
+        Log.e("test", Gson().toJson(list))
         try {
             refresher.isRefreshing = false
         } catch (e: Exception) {}
+        if (list == null) return
 
         val dateFormat = SimpleDateFormat("dd.mm.yyyy hh:mm:ss")
         val realmList = vocationsFromRealm() //read from db
 
-        list?.forEach { objFromServer ->
+        realm.executeTransaction {
+            list?.forEach { objFromServer ->
 
-            // Element have UF_JOBS_ID
-            var objFromRealm = realmList.firstOrNull { objFromServer.UF_JOBS_ID == it.UF_JOBS_ID }
-            if (objFromRealm != null)
+                // Element have UF_JOBS_ID
+                var objFromRealm =
+                    realmList.firstOrNull { objFromServer.UF_JOBS_ID == it.UF_JOBS_ID }
+                if (objFromRealm != null)
                 //Element founded in Realm by ID
-            {
-                val objDate = dateFormat.parse(objFromRealm.UF_MODIFED!!)
-                val itDate =
-                    if (objFromServer.UF_MODIFED == null) Date(0L)
-                    else dateFormat.parse(objFromServer.UF_MODIFED!!)
+                {
+                    val objDate = dateFormat.parse(objFromRealm.UF_MODIFED!!)
+                    val itDate =
+                        if (objFromServer.UF_MODIFED == null) Date(0L)
+                        else dateFormat.parse(objFromServer.UF_MODIFED!!)
 
 
                     if (itDate!! > objDate)
-                        // Data updated on WEB
+                    // +++ Data updated on WEB
                     {
                         objFromRealm.apply {
                             AUTO_TRANSLATE = objFromServer.AUTO_TRANSLATE
@@ -128,113 +132,121 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                             UF_TYPE_OF_JOB_ID = objFromServer.UF_TYPE_OF_JOB_ID
                             UF_USER_ID = objFromServer.UF_USER_ID
                         }
-                        //todo: rewrite all params from WEB and UF_APP_JOB_ID
-                        if (objFromServer.UF_APP_JOB_ID == null) {
-                            objFromRealm.UF_APP_JOB_ID = getNewId()
+                        //rewrite all params from WEB and UF_APP_JOB_ID
+                        //if (objFromServer.UF_APP_JOB_ID == null) {
 
-                            //todo: ID in REALM
-                            // Generate APP_ID = DEVICE ID (exclude special symbols) + a(int)=1, before A 00000, a = XX XXX XXX
-                            // found  in REALM  APP_ID, if found, A++
-                        }
-                    }else
-                        // Web data not actual nothing do
+
+                        //IF we have recird in REAL that we have APP_ID
+                        // ID in REALM
+                        // Generate APP_ID = DEVICE ID (exclude special symbols) + a(int)=1, before A 00000, a = XX XXX XXX
+                        // found  in REALM  APP_ID, if found, A++
+
+                        //  objFromRealm.UF_APP_JOB_ID = getNewId()
+                        //  }
+                    } else
+                    // +++ Web data not actual nothing do
                     {
 
                     }
 
-            } else
-                //Element NOT founded in Realm by ID
-            {
-                if (objFromServer.UF_APP_JOB_ID == null)
-                    //JOB CREATED ON WEB
-                {
-                    val tmpObj = objFromServer.toRealmVersion()
-                    tmpObj.UF_APP_JOB_ID = getNewId()
-                    realm.copyToRealm(tmpObj)
-
-                    //todo: ID in REALM
-                    // Generate APP_ID = BIGINT
-                    // Timestamp (10 digit)  + 000 000 01 (Random 8 digit)
-                    // = DEVICE ID (exclude special symbols) + a(int)=1, before A 00000, a = XX XXX XXX
-                    // found  in REALM  APP_ID, if found, A++
-                    // todo: add to REALM all params from WEB and UF_APP_JOB_ID
                 } else
-                    //JOB CREATED IN APP (may be another device)
-
+                //Element NOT founded in Realm by ID
                 {
-                    objFromRealm =
-                        realmList.firstOrNull { it.UF_APP_JOB_ID == objFromServer.UF_APP_JOB_ID }
-                            //try found  in REALM  by APP_ID ()
-                            if (objFromRealm != null)
-                                    //FOUND in REALM by APP_ID ()
+                    if (objFromServer.UF_APP_JOB_ID == null)
+                    // +++ JOB CREATED ON WEB
+                    {
+                        val tmpObj = objFromServer.toRealmVersion()
+                        tmpObj.UF_APP_JOB_ID = getNewJobAppId()
+                        tmpObj.UF_MODIFED = dateFormat.format(Calendar.getInstance().time)
+                        val now = Calendar.getInstance()
+                        now.add(Calendar.DATE, Setting.JOB_LIFETIME_IN_DAYS.toInt())
+                        tmpObj.UF_DISABLE = dateFormat.format(now.time)
+                        //modified date current
+                        realm.copyToRealm(tmpObj)
+
+                        //todo: ID in REALM
+                        // Generate APP_ID = BIGINT
+                        // Timestamp (10 digit)  + 000 000 01 (Random 8 digit)
+                        // = DEVICE ID (exclude special symbols) + a(int)=1, before A 00000, a = XX XXX XXX
+                        // found  in REALM  APP_ID, if found, A++
+                        // todo: add to REALM all params from WEB and UF_APP_JOB_ID
+                    } else
+                    // --- JOB CREATED IN APP (may be another device)
+                    {
+                        objFromRealm =
+                            realmList.firstOrNull { it.UF_APP_JOB_ID == objFromServer.UF_APP_JOB_ID }
+                        //try found  in REALM  by APP_ID ()
+                        if (objFromRealm != null)
+                        //FOUND in REALM by APP_ID ()
+                        {
+                            val objDate = dateFormat.parse(objFromRealm.UF_MODIFED!!)
+                            val itDate =
+                                if (objFromServer.UF_MODIFED == null) Date(0L)
+                                else dateFormat.parse(objFromServer.UF_MODIFED!!)
+
+
+                            if (itDate!! > objDate)
+                            // todo: rewrite to REALM all params from WEB and UF_APP_JOB_ID
                             {
-                                val objDate = dateFormat.parse(objFromRealm.UF_MODIFED!!)
-                                val itDate =
-                                    if (objFromServer.UF_MODIFED == null) Date(0L)
-                                    else dateFormat.parse(objFromServer.UF_MODIFED!!)
-
-
-                                if (itDate!! > objDate)
-                                // todo: rewrite to REALM all params from WEB and UF_APP_JOB_ID
-                                {
-                                    //NEW DATA FROM WEB
-                                    //todo rewrite all ???? APP_ID
-                                    objFromRealm.apply {
-                                        AUTO_TRANSLATE = objFromServer.AUTO_TRANSLATE
-                                        COMPANY = objFromServer.COMPANY
-                                        DETAIL_TEXT = objFromServer.DETAIL_TEXT
-                                        NAME = objFromServer.NAME
-                                        UF_APP_JOB_ID = objFromServer.UF_APP_JOB_ID
-                                        UF_CONTACT_EMAIL = objFromServer.UF_CONTACT_EMAIL
-                                        UF_CONTACT_PHONE = objFromServer.UF_CONTACT_PHONE
-                                        UF_DETAIL_IMAGE = objFromServer.UF_DETAIL_IMAGE
-                                        UF_DISABLE = objFromServer.UF_DISABLE
-                                        UF_GOLD_GROSS_MONTH = objFromServer.UF_GOLD_GROSS_MONTH
-                                        UF_GOLD_PER_MONTH = objFromServer.UF_GOLD_PER_MONTH
-                                        UF_GROSS_CURRENCY_ID = objFromServer.UF_GROSS_CURRENCY_ID
-                                        UF_GROSS_PER_MONTH = objFromServer.UF_GROSS_PER_MONTH
-                                        UF_JOBS_ID = objFromServer.UF_JOBS_ID
-                                        UF_LANGUAGE_ID_ALL = objFromServer.UF_LANGUAGE_ID_ALL
-                                        UF_LOGO_IMAGE = objFromServer.UF_LOGO_IMAGE
-                                        UF_MAP_POINT = objFromServer.UF_MAP_POINT
-                                        UF_MAP_RENDERED = objFromServer.UF_MAP_RENDERED
-                                        UF_MODIFED = objFromServer.UF_MODIFED
-                                        UF_PREVIEW_IMAGE = objFromServer.UF_PREVIEW_IMAGE
-                                        UF_SKILLS_ID_ALL = objFromServer.UF_SKILLS_ID_ALL
-                                        UF_TYPE_OF_JOB_ID = objFromServer.UF_TYPE_OF_JOB_ID
-                                        UF_USER_ID = objFromServer.UF_USER_ID
-                                    }
-
-                                }else
-                                    //OLD DATA from WEB, need write only JOBS_ID, DATA MODIFED
-                                {
-                                    //todo rewrite only JOB_ID, MODIFED
-                                    objFromRealm.UF_JOBS_ID = objFromServer.UF_JOBS_ID
-                                    objFromRealm.UF_MODIFED = objFromServer.UF_MODIFED
+                                //NEW DATA FROM WEB
+                                //todo rewrite all ???? APP_ID
+                                objFromRealm.apply {
+                                    AUTO_TRANSLATE = objFromServer.AUTO_TRANSLATE
+                                    COMPANY = objFromServer.COMPANY
+                                    DETAIL_TEXT = objFromServer.DETAIL_TEXT
+                                    NAME = objFromServer.NAME
+                                    UF_APP_JOB_ID = objFromServer.UF_APP_JOB_ID
+                                    UF_CONTACT_EMAIL = objFromServer.UF_CONTACT_EMAIL
+                                    UF_CONTACT_PHONE = objFromServer.UF_CONTACT_PHONE
+                                    UF_DETAIL_IMAGE = objFromServer.UF_DETAIL_IMAGE
+                                    UF_DISABLE = objFromServer.UF_DISABLE
+                                    UF_GOLD_GROSS_MONTH = objFromServer.UF_GOLD_GROSS_MONTH
+                                    UF_GOLD_PER_MONTH = objFromServer.UF_GOLD_PER_MONTH
+                                    UF_GROSS_CURRENCY_ID = objFromServer.UF_GROSS_CURRENCY_ID
+                                    UF_GROSS_PER_MONTH = objFromServer.UF_GROSS_PER_MONTH
+                                    UF_JOBS_ID = objFromServer.UF_JOBS_ID
+                                    UF_LANGUAGE_ID_ALL = objFromServer.UF_LANGUAGE_ID_ALL
+                                    UF_LOGO_IMAGE = objFromServer.UF_LOGO_IMAGE
+                                    UF_MAP_POINT = objFromServer.UF_MAP_POINT
+                                    UF_MAP_RENDERED = objFromServer.UF_MAP_RENDERED
+                                    UF_MODIFED = objFromServer.UF_MODIFED
+                                    UF_PREVIEW_IMAGE = objFromServer.UF_PREVIEW_IMAGE
+                                    UF_SKILLS_ID_ALL = objFromServer.UF_SKILLS_ID_ALL
+                                    UF_TYPE_OF_JOB_ID = objFromServer.UF_TYPE_OF_JOB_ID
+                                    UF_USER_ID = objFromServer.UF_USER_ID
                                 }
 
                             } else
-                                //NOT FOUND in REALM by APP_ID ()
+                            //OLD DATA from WEB, need write only JOBS_ID, DATA MODIFED
                             {
-                                // Write element to local DB
-                                //
-                                val tmpObj = objFromServer.toRealmVersion()
-                                realm.copyToRealm(tmpObj)
-                                // todo: add to REALM all params from WEB and UF_APP_JOB_ID
+                                //todo rewrite only JOB_ID, MODIFED
+                                objFromRealm.UF_JOBS_ID = objFromServer.UF_JOBS_ID
+                                objFromRealm.UF_MODIFED = objFromServer.UF_MODIFED
                             }
+
+                        } else
+                        //+++ NOT FOUND in REALM by APP_ID ()
+                        {
+                            // Write element to local DB
+                            //
+                            val tmpObj = objFromServer.toRealmVersion()
+                            realm.copyToRealm(tmpObj)
+                            // todo: add to REALM all params from WEB and UF_APP_JOB_ID
+                        }
+                    }
                 }
             }
-        }
 
-        //удалить из локаль
-        realmList.forEach { objFromRealm ->
-            if (objFromRealm.UF_JOBS_ID == null) return@forEach
+            //удалить из локаль
+            realmList.forEach { objFromRealm ->
+                if (objFromRealm.UF_JOBS_ID == null) return@forEach
 
-            val objFromServer = list?.firstOrNull { it.UF_JOBS_ID == objFromRealm.UF_JOBS_ID }
-            if (objFromServer == null)
-                objFromRealm.deleteFromRealm()
-            //проити по всем локальным элементам у которых JOB_ID не пустое, если такой элемент не пришел с сервера
-            //то удалить запись из REALM
+                val objFromServer = list.firstOrNull { it.UF_JOBS_ID == objFromRealm.UF_JOBS_ID }
+                if (objFromServer == null)
+                    objFromRealm.deleteFromRealm()
+                //проити по всем локальным элементам у которых JOB_ID не пустое, если такой элемент не пришел с сервера
+                //то удалить запись из REALM
+            }
         }
 
         run {
@@ -243,8 +255,15 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                 val data = vocations
                             .map { it.toBasicVersion() }
                             .filter {  !it.isHided }
+                            .sortedBy { (dateFormat.parse(it.UF_MODIFED ?: "") ?: Date(0L)) }
+                data.forEach {
+                        Log.e("JobList", Gson().toJson(it))
+                }
                 setList(data)
             } catch (e: Exception) {
+                list.forEach {
+                        Log.e("JobList", Gson().toJson(it))
+                }
                 setList(list)
             }
         }
@@ -259,7 +278,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
         vocations_rv
             .addItemDecoration(DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL))
         vocations_rv.adapter =
-            VocationsAdapter(requireContext(), (list ?: listOf()).filterNot { it.isHided })
+            VocationsAdapter(requireContext(), (list ?: listOf()).filterNot { it.isHided }, this)
 
         if (list == null)
             Toast.makeText(requireContext(), "Error", Toast.LENGTH_SHORT).show()
