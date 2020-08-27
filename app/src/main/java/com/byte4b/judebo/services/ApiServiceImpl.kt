@@ -141,18 +141,38 @@ class ApiServiceImpl(val listener: ServiceListener?) : ApiService {
             .deleteVocation(secretKey, token, login, listOf(vocation))
             .enqueue(object : Callback<Any> {
                 override fun onFailure(call: Call<Any>, t: Throwable) {
+                    Log.e("test", t.localizedMessage ?: "onFail")
                     check { listener?.onVocationDeleted(false) }
                 }
 
                 override fun onResponse(call: Call<Any>, response: Response<Any>) {
+                    Log.e("test", Gson().toJson(response.body()))
                     check {
                         if (response.isSuccessful)
-                            listener?.onVocationDeleted(true)
+                            listener?.onVocationDeleted((response.body() as String).contains("success"))
                         else
                             listener?.onVocationDeleted(false)
                     }
                 }
             })
+    }
+
+    override fun updateMyVocations(
+        locale: String,
+        token: String,
+        login: String,
+        vocations: List<Vocation>
+    ) {
+        getAPI(locale)
+            .updateMyVocations(secretKey, token, login, vocations)
+        //todo:
+    }
+
+    override fun addMyVocation(locale: String, token: String, login: String, vocation: Vocation) {
+        getAPI(locale)
+            .addVocation(secretKey, token, login, listOf(vocation))
+            //.enqueue(object : Callback<Any> )
+        //todo:
     }
 
 }

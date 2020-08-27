@@ -23,4 +23,9 @@ interface ApiService {
 
     fun deleteVocation(locale: String, token: String, login: String, vocation: Vocation)
 
+    fun updateMyVocations(locale: String, token: String, login: String, vocations: List<Vocation>)
+
+    fun addMyVocation(locale: String, token: String, login: String, vocation: Vocation)
+
+
 }
