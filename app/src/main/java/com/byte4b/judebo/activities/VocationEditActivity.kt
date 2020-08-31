@@ -96,7 +96,7 @@ class VocationEditActivity : AppCompatActivity() {
                             R.id.containerFragment, DetailsMapFragment(
                                 MyMarker(
                                     "", AUTO_TRANSLATE ?: 0,
-                                    COMPANY ?: "", DETAIL_TEXT ?: "", UF_JOBS_ID ?: 0,
+                                    COMPANY ?: "", DETAIL_TEXT ?: "", (UF_JOBS_ID ?: 0).toInt(),
                                     NAME ?: "", UF_CONTACT_EMAIL ?: "",
                                     UF_CONTACT_PHONE ?: "",
                                     UF_DETAIL_IMAGE ?: "", UF_DISABLE ?: "",
@@ -104,9 +104,9 @@ class VocationEditActivity : AppCompatActivity() {
                                     UF_GOLD_PER_MONTH ?: "",
                                     UF_GROSS_CURRENCY_ID ?: 0,
                                     UF_GROSS_PER_MONTH ?: "",
-                                    UF_JOBS_ID ?: 0, UF_LANGUAGE_ID_ALL ?: "",
+                                    (UF_JOBS_ID?: 0L).toInt(), UF_LANGUAGE_ID_ALL ?: "",
                                     null, UF_LOGO_IMAGE, UF_MAP_POINT ?: "",
-                                    location[0], location[1], UF_MAP_RENDERED ?: 0,
+                                    location[0], location[1], 0,
                                     UF_MODIFED ?: "", UF_PREVIEW_IMAGE ?: "",
                                     UF_SKILLS_ID_ALL ?: "",
                                     UF_TYPE_OF_JOB_ID ?: 0
@@ -274,11 +274,9 @@ class VocationEditActivity : AppCompatActivity() {
                         UF_LANGUAGE_ID_ALL = null
                         UF_LOGO_IMAGE = null
                         UF_MAP_POINT = null
-                        UF_MAP_RENDERED = null
                         UF_PREVIEW_IMAGE = null
                         UF_SKILLS_ID_ALL = null
                         UF_TYPE_OF_JOB_ID = null
-                        UF_USER_ID = null
                     }
                 }
                 //todo: update query to server

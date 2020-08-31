@@ -119,13 +119,9 @@ class ApiServiceImpl(val listener: ServiceListener?) : ApiService {
             .enqueue(object : Callback<List<Vocation>> {
                 override fun onFailure(call: Call<List<Vocation>>, t: Throwable) {
                     check { listener?.onMyVocationsLoaded(null) }
-                    Log.e("test", t.localizedMessage ?: "fail")
-                    Log.e("test", call.request().url().toString())
-
                 }
 
                 override fun onResponse(call: Call<List<Vocation>>, response: Response<List<Vocation>>) {
-                    Log.e("test", call.request().url().toString())
                     check {
                         if (response.isSuccessful)
                             listener?.onMyVocationsLoaded(response.body())
@@ -137,21 +133,22 @@ class ApiServiceImpl(val listener: ServiceListener?) : ApiService {
     }
 
     override fun deleteVocation(locale: String, token: String, login: String, vocation: Vocation) {
+        Log.e("api", "vocation to delete: ${Gson().toJson(vocation)}")
         getAPI(locale)
             .deleteVocation(secretKey, token, login, listOf(vocation))
-            .enqueue(object : Callback<Any> {
-                override fun onFailure(call: Call<Any>, t: Throwable) {
-                    Log.e("test", t.localizedMessage ?: "onFail")
+            .enqueue(object : Callback<Result> {
+                override fun onFailure(call: Call<Result>, t: Throwable) {
                     check { listener?.onVocationDeleted(false) }
+                    Log.e("check", t.localizedMessage ?: "Error")
                 }
 
-                override fun onResponse(call: Call<Any>, response: Response<Any>) {
-                    Log.e("test", Gson().toJson(response.body()))
+                override fun onResponse(call: Call<Result>, response: Response<Result>) {
                     check {
                         if (response.isSuccessful)
-                            listener?.onVocationDeleted((response.body() as String).contains("success"))
+                            listener?.onVocationDeleted(response.body()?.status == "success")
                         else
                             listener?.onVocationDeleted(false)
+                        Log.e("check", Gson().toJson(response.body()))
                     }
                 }
             })

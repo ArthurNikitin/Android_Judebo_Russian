@@ -69,9 +69,9 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
         }
         Thread {
             while (true) {
+                Thread.sleep(Setting.PERIOD_UPDATE_JOB_LIST_FOR_USER_IN_SECONDS * 1000L)
                 if (isResumed)
                     handler.sendEmptyMessage(0)
-                Thread.sleep(Setting.PERIOD_UPDATE_JOB_LIST_FOR_USER_IN_SECONDS * 1000L)
             }
         }.start()
     }
@@ -79,13 +79,11 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
     private fun getNewJobAppId(): String {
         var random = Random.nextLong(0, 99999999).toString()
         random = "0".repeat(8 - random.length) + random
-        Log.e("test", random)
         return "${Calendar.getInstance().timeInMillis / 1000}$random"
     }
 
     @SuppressLint("SimpleDateFormat")
     override fun onMyVocationsLoaded(list: List<Vocation>?) {
-        Log.e("test", Gson().toJson(list))
         try {
             refresher.isRefreshing = false
         } catch (e: Exception) {}
@@ -130,12 +128,10 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                             UF_LANGUAGE_ID_ALL = objFromServer.UF_LANGUAGE_ID_ALL
                             UF_LOGO_IMAGE = objFromServer.UF_LOGO_IMAGE
                             UF_MAP_POINT = objFromServer.UF_MAP_POINT
-                            UF_MAP_RENDERED = objFromServer.UF_MAP_RENDERED
                             UF_MODIFED = objFromServer.UF_MODIFED
                             UF_PREVIEW_IMAGE = objFromServer.UF_PREVIEW_IMAGE
                             UF_SKILLS_ID_ALL = objFromServer.UF_SKILLS_ID_ALL
                             UF_TYPE_OF_JOB_ID = objFromServer.UF_TYPE_OF_JOB_ID
-                            UF_USER_ID = objFromServer.UF_USER_ID
                         }
                         //rewrite all params from WEB and UF_APP_JOB_ID
                         //if (objFromServer.UF_APP_JOB_ID == null) {
@@ -161,7 +157,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                     // +++ JOB CREATED ON WEB
                     {
                         val tmpObj = objFromServer.toRealmVersion()
-                        tmpObj.UF_APP_JOB_ID = getNewJobAppId().toInt()
+                        tmpObj.UF_APP_JOB_ID = getNewJobAppId().toLong()
                         tmpObj.UF_MODIFED = dateFormat.format(Calendar.getInstance().time)
                         val now = Calendar.getInstance()
                         now.add(Calendar.DATE, Setting.JOB_LIFETIME_IN_DAYS.toInt())
@@ -214,12 +210,10 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                                     UF_LANGUAGE_ID_ALL = objFromServer.UF_LANGUAGE_ID_ALL
                                     UF_LOGO_IMAGE = objFromServer.UF_LOGO_IMAGE
                                     UF_MAP_POINT = objFromServer.UF_MAP_POINT
-                                    UF_MAP_RENDERED = objFromServer.UF_MAP_RENDERED
                                     UF_MODIFED = objFromServer.UF_MODIFED
                                     UF_PREVIEW_IMAGE = objFromServer.UF_PREVIEW_IMAGE
                                     UF_SKILLS_ID_ALL = objFromServer.UF_SKILLS_ID_ALL
                                     UF_TYPE_OF_JOB_ID = objFromServer.UF_TYPE_OF_JOB_ID
-                                    UF_USER_ID = objFromServer.UF_USER_ID
                                 }
 
                             } else
@@ -261,20 +255,22 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                             .map { it.toBasicVersion() }
                             .filter {  !it.isHided }
                             .sortedBy { (dateFormat.parse(it.UF_MODIFED ?: "") ?: Date(0L)) }
-                data.forEach {
-                        Log.e("JobList", Gson().toJson(it))
-                }
                 setList(data)
-            } catch (e: Exception) {
-                list.forEach {
-                        Log.e("JobList", Gson().toJson(it))
-                }
-                setList(list)
-            }
+            } catch (e: Exception) { setList(list) }
         }
     }
 
     private fun setList(list: List<Vocation>?) {
+        Log.e("check", "for show")
+        list?.forEach {
+            Log.e("check", "${it.UF_JOBS_ID}: ${Gson().toJson(it)}")
+        }
+
+        Log.e("check", "in realm")
+        realm.where<VocationRealm>().findAll().map { it.toBasicVersion() }.forEach {
+            Log.e("check", "${it.UF_JOBS_ID}: ${Gson().toJson(it)}")
+        }
+
         try {
             refresher.isRefreshing = false
         } catch (e: Exception) {}

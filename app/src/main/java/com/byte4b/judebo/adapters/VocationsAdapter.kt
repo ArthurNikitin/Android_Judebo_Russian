@@ -130,7 +130,7 @@ class VocationsAdapter(
                 holder.salaryView.text = "$UF_GROSS_PER_MONTH ${currency?.name ?: "USD"}"
             }
         } catch (e: Exception) {
-            Log.e("test", e.localizedMessage ?: "error")
+            Log.e("test", "adapter: " + (e.localizedMessage ?: "error"))
         }
     }
 
@@ -150,7 +150,7 @@ class VocationsAdapter(
                 val format = SimpleDateFormat("dd.mm.yyyy hh:mm:ss")
                 UF_MODIFED = format.format(now.time)
 
-                UF_APP_JOB_ID = getNewJobAppId().toInt()
+                UF_APP_JOB_ID = getNewJobAppId().toLong()
 
                 now.add(Calendar.DATE, Setting.JOB_LIFETIME_IN_DAYS.toInt())
                 UF_DISABLE = format.format(now.time)
@@ -179,47 +179,51 @@ class VocationsAdapter(
                     val vocationRealm = it.where<VocationRealm>()
                         .equalTo("UF_JOBS_ID", vocation.UF_JOBS_ID)
                         .findFirst()
-                    vocationRealm?.apply {
-                        isHided = true
-                        val format = SimpleDateFormat("dd.mm.yyyy hh:mm:ss")
-                        UF_MODIFED = format.format(Calendar.getInstance().time)
 
-                        AUTO_TRANSLATE = null
-                        COMPANY = null
-                        DETAIL_TEXT = null
-                        NAME = null
-                        UF_CONTACT_EMAIL = null
-                        UF_CONTACT_PHONE = null
-                        UF_DETAIL_IMAGE = null
-                        UF_DISABLE = null
-                        UF_GOLD_GROSS_MONTH = null
-                        UF_GOLD_PER_MONTH = null
-                        UF_GROSS_CURRENCY_ID = null
-                        UF_GROSS_PER_MONTH = null
-                        UF_LANGUAGE_ID_ALL = null
-                        UF_LOGO_IMAGE = null
-                        UF_MAP_POINT = null
-                        UF_MAP_RENDERED = null
-                        UF_PREVIEW_IMAGE = null
-                        UF_SKILLS_ID_ALL = null
-                        UF_TYPE_OF_JOB_ID = null
-                        UF_USER_ID = null
+                    try {
+                        //vocationRealm?.isHided = true
+                        vocationRealm?.AUTO_TRANSLATE = null
+                        vocationRealm?.COMPANY = null
+                        vocationRealm?.DETAIL_TEXT = null
+                        vocationRealm?.NAME = null
+                        vocationRealm?.UF_CONTACT_EMAIL = null
+                        vocationRealm?.UF_CONTACT_PHONE = null
+                        //vocationRealm?.UF_DETAIL_IMAGE = null
+                        //vocationRealm?.UF_DISABLE = null
+                        //vocationRealm?.UF_GOLD_GROSS_MONTH = null
+                        //vocationRealm?.UF_GOLD_PER_MONTH = null
+                        //vocationRealm?.UF_GROSS_CURRENCY_ID = null
+                        //vocationRealm?.UF_GROSS_PER_MONTH = null
+                        //vocationRealm?.UF_LANGUAGE_ID_ALL = null
+                        //vocationRealm?.UF_LOGO_IMAGE = null
+                        //vocationRealm?.UF_MAP_POINT = null
+                        //vocationRealm?.UF_PREVIEW_IMAGE = null
+                        //vocationRealm?.UF_SKILLS_ID_ALL = null
+                        //vocationRealm?.UF_TYPE_OF_JOB_ID = null
+
+                        val format = SimpleDateFormat("dd.mm.yyyy hh:mm:ss")
+                        vocationRealm?.UF_MODIFED = format.format(Calendar.getInstance().time)
+                    } catch (e: Exception) { Log.e("test", e.localizedMessage ?: "ErrorMe") }
+                    try {
+                        ApiServiceImpl(this).deleteVocation(
+                            setting.getCurrentLanguage().locale,
+                            token = "Z4pjjs5t7rt6uJc2uOLWx5Zb",
+                            login = "judebo.com@gmail.com",
+                            vocation = vocationRealm!!.toBasicVersion()
+                        )
+                    } catch (e: Exception) {
+                        onVocationDeleted(false)
                     }
                 }
-                ApiServiceImpl(this).deleteVocation(
-                    setting.getCurrentLanguage().locale,
-                    token = "Z4pjjs5t7rt6uJc2uOLWx5Zb",
-                    login = "judebo.com@gmail.com",
-                    vocation = vocation
-                )
-                parent.onRefresh()
-                //todo: update query to server
-                //todo: reload list
-
                 dialog.dismiss()
             }
             .setNegativeButton(R.string.request_request_delete_cancel) { d, _ -> d.cancel() }
             .show()
+    }
+
+    override fun onVocationDeleted(success: Boolean) {
+        Log.e("check", "is deleted: $success")
+        parent.onRefresh()
     }
 
     class Holder(val view: View) : RecyclerView.ViewHolder(view) {

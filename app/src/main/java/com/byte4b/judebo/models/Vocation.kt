@@ -3,13 +3,13 @@ package com.byte4b.judebo.models
 import io.realm.RealmObject
 
 data class Vocation(
-    var isHided: Boolean = false,
+    @Transient var isHided: Boolean = false,
 
     var AUTO_TRANSLATE: Int? = null,
     var COMPANY: String? = null,
     var DETAIL_TEXT: String? = null,
     var NAME: String? = null,
-    var UF_APP_JOB_ID: Int? = null,
+    var UF_APP_JOB_ID: Long? = null,
     var UF_CONTACT_EMAIL: String? = null,
     var UF_CONTACT_PHONE: String? = null,
     var UF_DETAIL_IMAGE: String? = null,
@@ -18,16 +18,14 @@ data class Vocation(
     var UF_GOLD_PER_MONTH: String? = null,
     var UF_GROSS_CURRENCY_ID: Int? = null,
     var UF_GROSS_PER_MONTH: String? = null,
-    var UF_JOBS_ID: Int? = null,
+    var UF_JOBS_ID: Long? = null,
     var UF_LANGUAGE_ID_ALL: String? = null,
     var UF_LOGO_IMAGE: String? = null,
     var UF_MAP_POINT: String? = null,
-    var UF_MAP_RENDERED: Int? = null,
     var UF_MODIFED: String? = null,
     var UF_PREVIEW_IMAGE: String? = null,
     var UF_SKILLS_ID_ALL: String? = null,
-    var UF_TYPE_OF_JOB_ID: Int? = null,
-    var UF_USER_ID: String? = null
+    var UF_TYPE_OF_JOB_ID: Int? = null
 ) {
     var location
         get() = UF_MAP_POINT?.split(", ")?.map { it.toDouble() } ?: listOf(.0, .0)
@@ -53,12 +51,10 @@ data class Vocation(
         result.UF_LANGUAGE_ID_ALL = UF_LANGUAGE_ID_ALL
         result.UF_LOGO_IMAGE = UF_LOGO_IMAGE
         result.UF_MAP_POINT = UF_MAP_POINT
-        result.UF_MAP_RENDERED = UF_MAP_RENDERED
         result.UF_MODIFED = UF_MODIFED
         result.UF_PREVIEW_IMAGE = UF_PREVIEW_IMAGE
         result.UF_SKILLS_ID_ALL = UF_SKILLS_ID_ALL
         result.UF_TYPE_OF_JOB_ID = UF_TYPE_OF_JOB_ID
-        result.UF_USER_ID = UF_USER_ID
         return result
     }
 }
@@ -71,7 +67,7 @@ open class VocationRealm : RealmObject() {
     var COMPANY: String? = null
     var DETAIL_TEXT: String? = null
     var NAME: String? = null
-    var UF_APP_JOB_ID: Int? = null
+    var UF_APP_JOB_ID: Long? = null
     var UF_CONTACT_EMAIL: String? = null
     var UF_CONTACT_PHONE: String? = null
     var UF_DETAIL_IMAGE: String? = null
@@ -80,16 +76,14 @@ open class VocationRealm : RealmObject() {
     var UF_GOLD_PER_MONTH: String? = null
     var UF_GROSS_CURRENCY_ID: Int? = null
     var UF_GROSS_PER_MONTH: String? = null
-    var UF_JOBS_ID: Int? = null
+    var UF_JOBS_ID: Long? = null
     var UF_LANGUAGE_ID_ALL: String? = null
     var UF_LOGO_IMAGE: String? = null
     var UF_MAP_POINT: String? = null
-    var UF_MAP_RENDERED: Int? = null
     var UF_MODIFED: String? = null
     var UF_PREVIEW_IMAGE: String? = null
     var UF_SKILLS_ID_ALL: String? = null
     var UF_TYPE_OF_JOB_ID: Int? = null
-    var UF_USER_ID: String? = null
 
     var location
         get() = UF_MAP_POINT?.split(", ")?.map { it.toDouble() } ?: listOf(.0, .0)
@@ -114,12 +108,10 @@ open class VocationRealm : RealmObject() {
         UF_LANGUAGE_ID_ALL = UF_LANGUAGE_ID_ALL,
         UF_LOGO_IMAGE = UF_LOGO_IMAGE,
         UF_MAP_POINT = UF_MAP_POINT,
-        UF_MAP_RENDERED = UF_MAP_RENDERED,
         UF_MODIFED = UF_MODIFED,
         UF_PREVIEW_IMAGE = UF_PREVIEW_IMAGE,
         UF_SKILLS_ID_ALL = UF_SKILLS_ID_ALL,
-        UF_TYPE_OF_JOB_ID = UF_TYPE_OF_JOB_ID,
-        UF_USER_ID = UF_USER_ID
+        UF_TYPE_OF_JOB_ID = UF_TYPE_OF_JOB_ID
     )
 }
 

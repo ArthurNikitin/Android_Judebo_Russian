@@ -1,9 +1,6 @@
 package com.byte4b.judebo.api
 
-import com.byte4b.judebo.models.CurrencyRate
-import com.byte4b.judebo.models.JobType
-import com.byte4b.judebo.models.Skill
-import com.byte4b.judebo.models.Vocation
+import com.byte4b.judebo.models.*
 import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.http.Body
@@ -42,7 +39,7 @@ interface API {
                        @Query("tok") token: String,
                        @Query("login") login: String,
                        @Body list: List<Vocation>):
-            Call<Any>
+            Call<Result>
 
     @POST("app_add_job.php")
     fun updateMyVocations(@Query("key") secretKey: String,
