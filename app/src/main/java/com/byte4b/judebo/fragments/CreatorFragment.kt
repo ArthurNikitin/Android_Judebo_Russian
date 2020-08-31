@@ -221,6 +221,8 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                             {
                                 //todo rewrite only JOB_ID, MODIFED
                                 objFromRealm.UF_JOBS_ID = objFromServer.UF_JOBS_ID
+
+                                //DEL IT!!!!
                                 objFromRealm.UF_MODIFED = objFromServer.UF_MODIFED
                             }
 
