@@ -102,10 +102,8 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                 if (objFromRealm != null)
                 //Element founded in Realm by ID
                 {
-                    val objDate =
-                        Date((objFromRealm.UF_MODIFED!!.toLongOrNull() ?: 0L) * 1000L)
-                    val itDate =
-                        Date((objFromServer.UF_MODIFED ?:"0").toLongOrNull() ?: 0L * 1000L)
+                    val objDate = getDate(objFromRealm.UF_MODIFED)
+                    val itDate = getDate(objFromServer.UF_MODIFED)
 
 
                     if (itDate > objDate)
@@ -159,7 +157,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                     {
                         val tmpObj = objFromServer.toRealmVersion()
                         tmpObj.UF_APP_JOB_ID = getNewJobAppId().toLong()
-                        tmpObj.UF_MODIFED = Calendar.getInstance().timestamp.toString()
+                        tmpObj.UF_MODIFED = Calendar.getInstance().timestamp
                         val now = Calendar.getInstance()
                         now.add(Calendar.DATE, Setting.JOB_LIFETIME_IN_DAYS.toInt())
                         tmpObj.UF_DISABLE = now.timestamp.toString()

@@ -144,7 +144,7 @@ class VocationsAdapter(
                 val now = Calendar.getInstance()
 
                 UF_JOBS_ID = null
-                UF_MODIFED = now.timestamp.toString()
+                UF_MODIFED = now.timestamp
                 UF_APP_JOB_ID = getNewJobAppId().toLong()
 
                 now.add(Calendar.DATE, Setting.JOB_LIFETIME_IN_DAYS.toInt())
@@ -206,7 +206,7 @@ class VocationsAdapter(
                         vocationRealm?.UF_SKILLS_ID_ALL = null
                         vocationRealm?.UF_TYPE_OF_JOB_ID = null
 
-                        vocationRealm?.UF_MODIFED = Calendar.getInstance().timestamp.toString()
+                        vocationRealm?.UF_MODIFED = Calendar.getInstance().timestamp
                     } catch (e: Exception) {
                         Log.e("test", e.localizedMessage ?: "ErrorMe")
                     }

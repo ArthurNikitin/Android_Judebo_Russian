@@ -132,5 +132,5 @@ fun View.hideKeyboard() {
 
 val Calendar.timestamp get() = timeInMillis / 1000
 
-fun getDate(timestampString: String?) =
-    Date((timestampString ?: "0").toLongOrNull() ?: 0L * 1000L)
+fun getDate(timestampString: Long?) =
+    Date((timestampString ?: 0L) * 1000L)

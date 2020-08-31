@@ -105,7 +105,7 @@ class VocationEditActivity : AppCompatActivity() {
                                     (UF_JOBS_ID?: 0L).toInt(), UF_LANGUAGE_ID_ALL ?: "",
                                     null, UF_LOGO_IMAGE, UF_MAP_POINT ?: "",
                                     location[0], location[1], 0,
-                                    UF_MODIFED ?: "", UF_PREVIEW_IMAGE ?: "",
+                                    UF_MODIFED.toString(), UF_PREVIEW_IMAGE ?: "",
                                     UF_SKILLS_ID_ALL ?: "",
                                     UF_TYPE_OF_JOB_ID ?: 0
                                 ), true
@@ -252,7 +252,7 @@ class VocationEditActivity : AppCompatActivity() {
                         .findFirst()
                     vocationRealm?.apply {
                         isHided = true
-                        UF_MODIFED = Calendar.getInstance().timestamp.toString()
+                        UF_MODIFED = Calendar.getInstance().timestamp
 
                         AUTO_TRANSLATE = null
                         COMPANY = null
@@ -283,7 +283,12 @@ class VocationEditActivity : AppCompatActivity() {
             .show()
     }
 
-    fun saveClick(v: View) = toast("save stub")
+    fun saveClick(v: View) {
+        //todo save changes to realm + send to server
+        //val currentVocationRealm = realm.where<VocationRealm>().equalTo("UF_APP_JOB_ID")
+
+
+    }
 
     fun toLanguagesClick(v: View) {
         val selectIntent = Intent(this, LanguagesActivity::class.java)

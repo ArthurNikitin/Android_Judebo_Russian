@@ -22,7 +22,7 @@ data class Vocation(
     var UF_LANGUAGE_ID_ALL: String? = null,
     var UF_LOGO_IMAGE: String? = null,
     var UF_MAP_POINT: String? = null,
-    var UF_MODIFED: String? = null,
+    var UF_MODIFED: Long? = null,
     var UF_PREVIEW_IMAGE: String? = null,
     var UF_SKILLS_ID_ALL: String? = null,
     var UF_TYPE_OF_JOB_ID: Int? = null
@@ -80,7 +80,7 @@ open class VocationRealm : RealmObject() {
     var UF_LANGUAGE_ID_ALL: String? = null
     var UF_LOGO_IMAGE: String? = null
     var UF_MAP_POINT: String? = null
-    var UF_MODIFED: String? = null
+    var UF_MODIFED: Long? = null
     var UF_PREVIEW_IMAGE: String? = null
     var UF_SKILLS_ID_ALL: String? = null
     var UF_TYPE_OF_JOB_ID: Int? = null
