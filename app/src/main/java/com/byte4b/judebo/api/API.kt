@@ -46,7 +46,7 @@ interface API {
                           @Query("tok") token: String,
                           @Query("login") login: String,
                           @Body list: List<Vocation>):
-            Call<Any>
+            Call<Result>
 
     @POST("app_add_job.php")
     fun addVocation(@Query("key") secretKey: String,

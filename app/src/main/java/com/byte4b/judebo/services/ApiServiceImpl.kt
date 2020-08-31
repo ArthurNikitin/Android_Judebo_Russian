@@ -161,7 +161,20 @@ class ApiServiceImpl(val listener: ServiceListener?) : ApiService {
     ) {
         getAPI(locale)
             .updateMyVocations(secretKey, token, login, vocations)
-        //todo:
+            .enqueue(object : Callback<Result> {
+                override fun onFailure(call: Call<Result>, t: Throwable) {
+                    check { listener?.onMyVocationUpdated(false) }
+                }
+
+                override fun onResponse(call: Call<Result>, response: Response<Result>) {
+                    check {
+                        if (response.isSuccessful)
+                            listener?.onMyVocationUpdated(response.body()?.status == "success")
+                        else
+                            listener?.onMyVocationUpdated(false)
+                    }
+                }
+            })
     }
 
     override fun addMyVocation(locale: String, token: String, login: String, vocation: Vocation) {
