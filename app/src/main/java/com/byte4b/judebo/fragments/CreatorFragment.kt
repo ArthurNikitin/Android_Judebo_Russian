@@ -90,7 +90,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
         val realmList = vocationsFromRealm() //read from db
 
         realm.executeTransaction {
-            list?.forEach { objFromServer ->
+            list.forEach { objFromServer ->
 
                 // Element have UF_JOBS_ID
                 var objFromRealm =
@@ -185,8 +185,9 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                                 else dateFormat.parse(objFromServer.UF_MODIFED!!)
 
 
+                            //itDate from JSON
                             if (itDate!! > objDate)
-                            // todo: rewrite to REALM all params from WEB and UF_APP_JOB_ID
+                            // rewrite to REALM all params from WEB and UF_APP_JOB_ID
                             {
                                 //NEW DATA FROM WEB
                                 //todo rewrite all ???? APP_ID
@@ -217,13 +218,10 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                                 }
 
                             } else
-                            //OLD DATA from WEB, need write only JOBS_ID, DATA MODIFED
+                            //OLD DATA from WEB, need write only JOBS_ID, (not need: DATA MODIFED, DISABLE)
                             {
-                                //todo rewrite only JOB_ID, MODIFED
+                                // rewrite only JOB_ID
                                 objFromRealm.UF_JOBS_ID = objFromServer.UF_JOBS_ID
-
-                                //DEL IT!!!!
-                                objFromRealm.UF_MODIFED = objFromServer.UF_MODIFED
                             }
 
                         } else
