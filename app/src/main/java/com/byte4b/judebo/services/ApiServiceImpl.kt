@@ -133,7 +133,6 @@ class ApiServiceImpl(val listener: ServiceListener?) : ApiService {
     }
 
     override fun deleteVocation(locale: String, token: String, login: String, vocation: Vocation) {
-        Log.e("api", "vocation to delete: ${Gson().toJson(vocation)}")
         getAPI(locale)
             .deleteVocation(secretKey, token, login, listOf(vocation))
             .enqueue(object : Callback<Result> {
@@ -168,8 +167,20 @@ class ApiServiceImpl(val listener: ServiceListener?) : ApiService {
     override fun addMyVocation(locale: String, token: String, login: String, vocation: Vocation) {
         getAPI(locale)
             .addVocation(secretKey, token, login, listOf(vocation))
-            //.enqueue(object : Callback<Any> )
-        //todo:
+            .enqueue(object : Callback<Result> {
+                override fun onFailure(call: Call<Result>, t: Throwable) {
+                    check { listener?.onVocationAdded(false) }
+                }
+
+                override fun onResponse(call: Call<Result>, response: Response<Result>) {
+                    check {
+                        if (response.isSuccessful)
+                            listener?.onVocationAdded(response.body()?.status == "success")
+                        else
+                            listener?.onVocationAdded(false)
+                    }
+                }
+            })
     }
 
 }

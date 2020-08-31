@@ -150,9 +150,19 @@ class VocationsAdapter(
                 now.add(Calendar.DATE, Setting.JOB_LIFETIME_IN_DAYS.toInt())
                 UF_DISABLE = now.timestamp.toString()
             }
+            it.copyToRealm(newVocation)
+            ApiServiceImpl(this).addMyVocation(
+                setting.getCurrentLanguage().locale,
+                token = "Z4pjjs5t7rt6uJc2uOLWx5Zb",
+                login = "judebo.com@gmail.com",
+                vocation = newVocation.toBasicVersion()
+            )
         }
-        //todo: update query to server
-        //todo: reload list
+    }
+
+    override fun onVocationAdded(success: Boolean) {
+        Log.e("check", "is added: $success")
+        parent.onRefresh()
     }
 
     private fun getNewJobAppId(): String {

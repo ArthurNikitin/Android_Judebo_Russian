@@ -16,8 +16,8 @@ interface ServiceListener {
 
     fun onVocationDeleted(success: Boolean) {}
 
-    fun onMyVocationUpdated() {}
+    fun onMyVocationUpdated(success: Boolean) {}
 
-    fun onVocationAdded() {}
+    fun onVocationAdded(success: Boolean) {}
 
 }

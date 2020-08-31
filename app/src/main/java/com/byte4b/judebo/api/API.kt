@@ -53,6 +53,6 @@ interface API {
                      @Query("tok") token: String,
                      @Query("login") login: String,
                      @Body list: List<Vocation>):
-            Call<Any>
+            Call<Result>
 
 }
