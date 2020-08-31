@@ -129,3 +129,8 @@ fun View.hideKeyboard() {
     val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
     imm.hideSoftInputFromWindow(windowToken, 0)
 }
+
+val Calendar.timestamp get() = timeInMillis / 1000
+
+fun getDate(timestampString: String?) =
+    Date((timestampString ?: "0").toLongOrNull() ?: 0L * 1000L)

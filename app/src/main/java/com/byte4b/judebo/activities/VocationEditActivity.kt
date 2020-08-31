@@ -5,7 +5,6 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.EditText
@@ -25,7 +24,6 @@ import com.squareup.picasso.Picasso
 import io.realm.Realm
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.activity_vocation_edit.*
-import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -254,10 +252,7 @@ class VocationEditActivity : AppCompatActivity() {
                         .findFirst()
                     vocationRealm?.apply {
                         isHided = true
-                        val format = SimpleDateFormat("dd.mm.yyyy hh:mm:ss")
-//17.08.2021 11:46:20
-                        UF_MODIFED = format.format(Calendar.getInstance().time)
-                        Log.e("test", UF_MODIFED.toString())
+                        UF_MODIFED = Calendar.getInstance().timestamp.toString()
 
                         AUTO_TRANSLATE = null
                         COMPANY = null

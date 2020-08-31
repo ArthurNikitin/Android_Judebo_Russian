@@ -12,11 +12,13 @@ import com.bumptech.glide.Glide
 import com.byte4b.judebo.R
 import com.byte4b.judebo.activities.VocationEditActivity
 import com.byte4b.judebo.fragments.CreatorFragment
+import com.byte4b.judebo.getDate
 import com.byte4b.judebo.models.Vocation
 import com.byte4b.judebo.models.VocationRealm
 import com.byte4b.judebo.models.currencies
 import com.byte4b.judebo.services.ApiServiceImpl
 import com.byte4b.judebo.startActivity
+import com.byte4b.judebo.timestamp
 import com.byte4b.judebo.utils.Setting
 import com.byte4b.judebo.view.ServiceListener
 import com.daimajia.swipe.SwipeLayout
@@ -117,13 +119,9 @@ class VocationsAdapter(
                     }
                 } catch (e: Exception) {
                 }
-                val editDate = SimpleDateFormat("dd.mm.yyyy hh:mm:ss")
-                    .parse(UF_MODIFED ?: "")
+                val editDate = getDate(UF_MODIFED)
                 val editString =
-                    if (editDate != null)
-                        SimpleDateFormat("dd MMM", Locale(Setting(ctx).getCurrentLanguage().locale)).format(editDate)
-                    else
-                        "Empty"
+                    SimpleDateFormat("dd MMM", Locale(Setting(ctx).getCurrentLanguage().locale)).format(editDate)
 
                 holder.editDateView.text = editString
                 val currency = currencies.firstOrNull { it.id == UF_GROSS_CURRENCY_ID }
@@ -146,14 +144,11 @@ class VocationsAdapter(
                 val now = Calendar.getInstance()
 
                 UF_JOBS_ID = null
-
-                val format = SimpleDateFormat("dd.mm.yyyy hh:mm:ss")
-                UF_MODIFED = format.format(now.time)
-
+                UF_MODIFED = now.timestamp.toString()
                 UF_APP_JOB_ID = getNewJobAppId().toLong()
 
                 now.add(Calendar.DATE, Setting.JOB_LIFETIME_IN_DAYS.toInt())
-                UF_DISABLE = format.format(now.time)
+                UF_DISABLE = now.timestamp.toString()
             }
         }
         //todo: update query to server
@@ -163,8 +158,7 @@ class VocationsAdapter(
     private fun getNewJobAppId(): String {
         var random = Random.nextLong(0, 99999999).toString()
         random = "0".repeat(8 - random.length) + random
-        Log.e("test", random)
-        return "${Calendar.getInstance().timeInMillis / 1000}$random"
+        return "${Calendar.getInstance().timestamp}$random"
     }
 
     @SuppressLint("SimpleDateFormat")
@@ -181,29 +175,31 @@ class VocationsAdapter(
                         .findFirst()
 
                     try {
-                        //vocationRealm?.isHided = true
+                        vocationRealm?.isHided = true
                         vocationRealm?.AUTO_TRANSLATE = null
                         vocationRealm?.COMPANY = null
                         vocationRealm?.DETAIL_TEXT = null
                         vocationRealm?.NAME = null
                         vocationRealm?.UF_CONTACT_EMAIL = null
                         vocationRealm?.UF_CONTACT_PHONE = null
-                        //vocationRealm?.UF_DETAIL_IMAGE = null
-                        //vocationRealm?.UF_DISABLE = null
-                        //vocationRealm?.UF_GOLD_GROSS_MONTH = null
-                        //vocationRealm?.UF_GOLD_PER_MONTH = null
-                        //vocationRealm?.UF_GROSS_CURRENCY_ID = null
-                        //vocationRealm?.UF_GROSS_PER_MONTH = null
-                        //vocationRealm?.UF_LANGUAGE_ID_ALL = null
-                        //vocationRealm?.UF_LOGO_IMAGE = null
-                        //vocationRealm?.UF_MAP_POINT = null
-                        //vocationRealm?.UF_PREVIEW_IMAGE = null
-                        //vocationRealm?.UF_SKILLS_ID_ALL = null
-                        //vocationRealm?.UF_TYPE_OF_JOB_ID = null
+                        vocationRealm?.UF_DETAIL_IMAGE = null
+                        vocationRealm?.UF_DISABLE = null
+                        vocationRealm?.UF_GOLD_GROSS_MONTH = null
+                        vocationRealm?.UF_GOLD_PER_MONTH = null
+                        vocationRealm?.UF_GROSS_CURRENCY_ID = null
+                        vocationRealm?.UF_GROSS_PER_MONTH = null
+                        vocationRealm?.UF_LOGO_IMAGE = null
+                        vocationRealm?.UF_MAP_POINT = null
+                        vocationRealm?.UF_PREVIEW_IMAGE = null
 
-                        val format = SimpleDateFormat("dd.mm.yyyy hh:mm:ss")
-                        vocationRealm?.UF_MODIFED = format.format(Calendar.getInstance().time)
-                    } catch (e: Exception) { Log.e("test", e.localizedMessage ?: "ErrorMe") }
+                        vocationRealm?.UF_LANGUAGE_ID_ALL = null
+                        vocationRealm?.UF_SKILLS_ID_ALL = null
+                        vocationRealm?.UF_TYPE_OF_JOB_ID = null
+
+                        vocationRealm?.UF_MODIFED = Calendar.getInstance().timestamp.toString()
+                    } catch (e: Exception) {
+                        Log.e("test", e.localizedMessage ?: "ErrorMe")
+                    }
                     try {
                         ApiServiceImpl(this).deleteVocation(
                             setting.getCurrentLanguage().locale,

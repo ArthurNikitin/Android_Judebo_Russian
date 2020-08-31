@@ -14,17 +14,18 @@ import com.byte4b.judebo.R
 import com.byte4b.judebo.activities.SubscribesActivity
 import com.byte4b.judebo.activities.VocationEditActivity
 import com.byte4b.judebo.adapters.VocationsAdapter
+import com.byte4b.judebo.getDate
 import com.byte4b.judebo.models.Vocation
 import com.byte4b.judebo.models.VocationRealm
 import com.byte4b.judebo.services.ApiServiceImpl
 import com.byte4b.judebo.startActivity
+import com.byte4b.judebo.timestamp
 import com.byte4b.judebo.utils.Setting
 import com.byte4b.judebo.view.ServiceListener
 import com.google.gson.Gson
 import io.realm.Realm
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.fragment_creator.*
-import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.random.Random
 
@@ -89,7 +90,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
         } catch (e: Exception) {}
         if (list == null) return
 
-        val dateFormat = SimpleDateFormat("dd.mm.yyyy hh:mm:ss")
+        //val dateFormat = SimpleDateFormat("dd.mm.yyyy hh:mm:ss")
         val realmList = vocationsFromRealm() //read from db
 
         realm.executeTransaction {
@@ -101,13 +102,13 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                 if (objFromRealm != null)
                 //Element founded in Realm by ID
                 {
-                    val objDate = dateFormat.parse(objFromRealm.UF_MODIFED!!)
+                    val objDate =
+                        Date((objFromRealm.UF_MODIFED!!.toLongOrNull() ?: 0L) * 1000L)
                     val itDate =
-                        if (objFromServer.UF_MODIFED == null) Date(0L)
-                        else dateFormat.parse(objFromServer.UF_MODIFED!!)
+                        Date((objFromServer.UF_MODIFED ?:"0").toLongOrNull() ?: 0L * 1000L)
 
 
-                    if (itDate!! > objDate)
+                    if (itDate > objDate)
                     // +++ Data updated on WEB
                     {
                         objFromRealm.apply {
@@ -158,10 +159,10 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                     {
                         val tmpObj = objFromServer.toRealmVersion()
                         tmpObj.UF_APP_JOB_ID = getNewJobAppId().toLong()
-                        tmpObj.UF_MODIFED = dateFormat.format(Calendar.getInstance().time)
+                        tmpObj.UF_MODIFED = Calendar.getInstance().timestamp.toString()
                         val now = Calendar.getInstance()
                         now.add(Calendar.DATE, Setting.JOB_LIFETIME_IN_DAYS.toInt())
-                        tmpObj.UF_DISABLE = dateFormat.format(now.time)
+                        tmpObj.UF_DISABLE = now.timestamp.toString()
                         //modified date current
                         realm.copyToRealm(tmpObj)
 
@@ -180,14 +181,11 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                         if (objFromRealm != null)
                         //FOUND in REALM by APP_ID ()
                         {
-                            val objDate = dateFormat.parse(objFromRealm.UF_MODIFED!!)
-                            val itDate =
-                                if (objFromServer.UF_MODIFED == null) Date(0L)
-                                else dateFormat.parse(objFromServer.UF_MODIFED!!)
-
+                            val objDate = getDate(objFromRealm.UF_MODIFED)
+                            val itDate = getDate(objFromServer.UF_MODIFED)
 
                             //itDate from JSON
-                            if (itDate!! > objDate)
+                            if (itDate > objDate)
                             // rewrite to REALM all params from WEB and UF_APP_JOB_ID
                             {
                                 //NEW DATA FROM WEB
@@ -254,7 +252,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                 val data = vocations
                             .map { it.toBasicVersion() }
                             .filter {  !it.isHided }
-                            .sortedBy { (dateFormat.parse(it.UF_MODIFED ?: "") ?: Date(0L)) }
+                            .sortedBy { getDate(it.UF_MODIFED) }
                 setList(data)
             } catch (e: Exception) { setList(list) }
         }
