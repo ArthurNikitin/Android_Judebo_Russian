@@ -147,7 +147,7 @@ class VocationsAdapter(
                 UF_MODIFED = now.timestamp
                 UF_APP_JOB_ID = getNewJobAppId().toLong()
 
-                now.add(Calendar.DATE, Setting.JOB_LIFETIME_IN_DAYS.toInt())
+                now.add(Calendar.DATE, Setting.JOB_LIFETIME_IN_DAYS)
                 UF_DISABLE = now.timestamp.toString()
             }
             it.copyToRealm(newVocation)
