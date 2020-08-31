@@ -18,11 +18,12 @@
         android:roundIcon="@mipmap/ic_app_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activities.SubscribesActivity"></activity>
         <activity android:name=".activities.LanguagesActivity" />
         <activity android:name=".activities.SkillsActivity" />
-        <activity android:name=".activities.VocationEditActivity"
-            android:windowSoftInputMode="stateHidden"
-            />
+        <activity
+            android:name=".activities.VocationEditActivity"
+            android:windowSoftInputMode="stateHidden" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"

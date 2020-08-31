@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.byte4b.judebo.R
+import com.byte4b.judebo.activities.SubscribesActivity
 import com.byte4b.judebo.activities.VocationEditActivity
 import com.byte4b.judebo.adapters.VocationsAdapter
 import com.byte4b.judebo.models.Vocation
@@ -50,6 +51,10 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                             .filter { !it.isHided }
                     )
             } catch (e: Exception) {}
+        }
+
+        subscribe_button.setOnClickListener {
+            requireContext().startActivity<SubscribesActivity>()
         }
 
         createNew.setOnClickListener {

@@ -10,13 +10,13 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.byte4b.judebo.R
 import com.byte4b.judebo.activities.MainActivity
+import com.byte4b.judebo.activities.SubscribesActivity
 import com.byte4b.judebo.adapters.CurrencyAdapter
 import com.byte4b.judebo.adapters.LanguageAdapter
 import com.byte4b.judebo.getLangFromLocale
 import com.byte4b.judebo.models.currencies
 import com.byte4b.judebo.models.languages
-import com.byte4b.judebo.setLeftDrawable
-import com.byte4b.judebo.setRightDrawable
+import com.byte4b.judebo.startActivity
 import com.byte4b.judebo.utils.Setting
 import kotlinx.android.synthetic.main.fragment_setting.*
 import java.util.*
@@ -68,6 +68,7 @@ class SettingFragment : Fragment(R.layout.fragment_setting) {
             emailIntent.data = Uri.parse("mailto: ${getString(R.string.settings_title_support_email)}")
             startActivity(emailIntent)
         }
+        subsClickable.setOnClickListener { requireContext().startActivity<SubscribesActivity>() }
     }
 
     private fun showCurrencyDialog() {
