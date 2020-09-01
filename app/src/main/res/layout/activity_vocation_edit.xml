@@ -77,7 +77,7 @@
 
 
             <EditText
-                android:hint="Name"
+                android:hint="@string/edit_item_title"
                 android:id="@+id/name_tv"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -107,7 +107,7 @@
                         android:layout_height="wrap_content" />
 
                     <EditText
-                        android:hint="Company"
+                        android:hint="@string/edit_item_company"
                         android:textSize="17sp"
                         android:id="@+id/company_tv"
                         android:layout_marginBottom="8dp"
@@ -159,6 +159,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5dp"
                     android:gravity="right"
+                    android:hint="@string/edit_item_gross"
                     android:inputType="number"
                     android:text="10 000"
                     android:textSize="16sp" />
@@ -190,7 +191,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:layout_weight="1"
-                    android:hint="Phone"
+                    android:hint="@string/edit_item_phone"
                     android:inputType="phone"
                     android:text="+7 800 555 55 55"
                     android:textSize="16sp" />
@@ -201,7 +202,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:layout_weight="1"
-                    android:hint="Email"
+                    android:hint="@string/edit_item_email"
                     android:inputType="textEmailAddress"
                     android:text="send_me_mail@gmail.com"
                     android:textSize="16sp" />
@@ -263,7 +264,7 @@
                 android:layout_height="250dp" />
 
             <EditText
-                android:hint="Details info"
+                android:hint="@string/edit_item_detail"
                 android:layout_marginBottom="8dp"
                 android:id="@+id/details_tv"
                 android:textSize="18sp"
