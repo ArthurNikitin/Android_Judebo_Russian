@@ -2,6 +2,11 @@ package com.byte4b.judebo.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.BitmapFactory
+import android.graphics.drawable.Drawable
+import android.os.Build
+import android.os.Handler
+import android.util.Base64.decode
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +14,10 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.byte4b.judebo.R
 import com.byte4b.judebo.activities.VocationEditActivity
 import com.byte4b.judebo.fragments.CreatorFragment
@@ -29,6 +38,7 @@ import kotlinx.android.synthetic.main.item_vocation.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.random.Random
+
 
 class VocationsAdapter(
     private val ctx: Context,
@@ -115,9 +125,38 @@ class VocationsAdapter(
                             .load(UF_LOGO_IMAGE)
                             .circleCrop()
                             .placeholder(R.drawable.map_default_marker)
+                            .addListener(object : RequestListener<Drawable> {
+                                override fun onLoadFailed(
+                                    e: GlideException?,
+                                    model: Any?,
+                                    target: Target<Drawable>?,
+                                    isFirstResource: Boolean
+                                ): Boolean {
+                                    try {
+                                        val btm = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                                            Base64.getDecoder().decode(UF_LOGO_IMAGE!!)
+                                        else
+                                            decode(UF_LOGO_IMAGE!!, android.util.Base64.DEFAULT)
+                                        Handler().postDelayed({
+                                            Glide.with(ctx)
+                                                .load(BitmapFactory.decodeByteArray(btm, 0, btm.size))
+                                                .circleCrop()
+                                                .into(holder.iconView)
+                                        }, 12)
+                                    } catch (e: Exception) {
+                                        Log.e("test", "base64 error: ${e.message}")
+                                    }
+                                    return true
+                                }
+
+                                override fun onResourceReady(r: Drawable?, m: Any?,
+                                                             t: Target<Drawable>?, d: DataSource?,
+                                                             i: Boolean) = false
+                            })
                             .into(holder.iconView)
                     }
                 } catch (e: Exception) {
+                    Log.e("test", "base64 error")
                 }
                 val editDate = getDate(UF_MODIFED)
                 val editString =

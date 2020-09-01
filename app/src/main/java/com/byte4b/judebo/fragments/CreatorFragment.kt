@@ -40,19 +40,6 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
         super.onViewCreated(view, savedInstanceState)
 
         refresher.setOnRefreshListener(this)
-        run {
-            try {
-                val vocations = vocationsFromRealm()
-                if (vocations.isEmpty())
-                    onRefresh()
-                else
-                    setList(
-                        vocations
-                            .map { it.toBasicVersion() }
-                            .filter { !it.isHided }
-                    )
-            } catch (e: Exception) {}
-        }
 
         subscribe_button.setOnClickListener {
             requireContext().startActivity<SubscribesActivity>()
@@ -75,6 +62,23 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                     handler.sendEmptyMessage(0)
             }
         }.start()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        run {
+            try {
+                val vocations = vocationsFromRealm()
+                if (vocations.isEmpty())
+                    onRefresh()
+                else
+                    setList(
+                        vocations
+                            .map { it.toBasicVersion() }
+                            .filter { !it.isHided }
+                    )
+            } catch (e: Exception) {}
+        }
     }
 
     private fun getNewJobAppId(): String {
