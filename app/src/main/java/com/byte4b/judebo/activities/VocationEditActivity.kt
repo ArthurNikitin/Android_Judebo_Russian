@@ -384,7 +384,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                         if (job!!.UF_SKILLS_ID_ALL.isNullOrEmpty()) Setting.DEFAULT_SKILL_ID_ALWAYS_HIDDEN
                         else job!!.UF_SKILLS_ID_ALL
 
-                    currentVocationRealm.UF_GOLD_PER_MONTH = salary_tv.data?.trim()
+                    currentVocationRealm.UF_GROSS_PER_MONTH = salary_tv.data?.trim()
                     currentVocationRealm.UF_GROSS_CURRENCY_ID =
                         currencies[salaryVal_tv.selectedItemPosition].id
 
