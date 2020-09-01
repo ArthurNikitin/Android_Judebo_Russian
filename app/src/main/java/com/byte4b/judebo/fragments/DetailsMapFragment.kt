@@ -46,7 +46,12 @@ class DetailsMapFragment(
         map?.clear()
         map?.addMarker(target)
         latLng = target.position
-        map?.animateCamera(CameraUpdateFactory.newLatLngZoom(target.position, Setting.BASIC_ZOOM))
+
+        map?.uiSettings?.isMapToolbarEnabled = true
+        map?.uiSettings?.isZoomGesturesEnabled = true
+        map?.uiSettings?.isTiltGesturesEnabled = true
+        map?.uiSettings?.isZoomControlsEnabled = true
+        map?.animateCamera(CameraUpdateFactory.newLatLngZoom(target.position, Setting.DEFAULT_EDIT_PAGE_ZOOM))
     }
 
     private fun setMarker(drawable: Drawable? = null) {
