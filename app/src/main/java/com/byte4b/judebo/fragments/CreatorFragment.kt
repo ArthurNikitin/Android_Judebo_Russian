@@ -164,7 +164,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                         tmpObj.UF_MODIFED = Calendar.getInstance().timestamp
                         val now = Calendar.getInstance()
                         now.add(Calendar.DATE, Setting.JOB_LIFETIME_IN_DAYS)
-                        tmpObj.UF_DISABLE = now.timestamp.toString()
+                        tmpObj.UF_DISABLE = now.timestamp
                         //modified date current
                         realm.copyToRealm(tmpObj)
 

@@ -145,7 +145,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                                     COMPANY ?: "", DETAIL_TEXT ?: "", (UF_JOBS_ID ?: 0).toInt(),
                                     NAME ?: "", UF_CONTACT_EMAIL ?: "",
                                     UF_CONTACT_PHONE ?: "",
-                                    UF_DETAIL_IMAGE ?: "", UF_DISABLE ?: "",
+                                    UF_DETAIL_IMAGE ?: "", "",
                                     UF_GOLD_GROSS_MONTH ?: "",
                                     UF_GOLD_PER_MONTH ?: "",
                                     UF_GROSS_CURRENCY_ID ?: 0,
@@ -351,8 +351,31 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
             .show()
     }
 
+    private fun isValidForm(): Boolean {
+        if (name_tv.data?.trim().isNullOrEmpty()) {
+            name_tv.error = ""
+            return false
+        }
+
+        if (phone_tv.data?.trim().isNullOrEmpty() && email_tv.data?.trim().isNullOrEmpty()) {
+            phone_tv.error = ""
+            email_tv.error = ""
+            return false
+        }
+
+        if (details_tv.data?.trim().isNullOrEmpty()) {
+            details_tv.error = ""
+            return false
+        }
+
+
+        return true
+    }
+
     @SuppressLint("SimpleDateFormat")
     fun saveClick(v: View) {
+        if (!isValidForm()) return
+
         realm.executeTransaction {
             if (job != null && job!!.UF_APP_JOB_ID != null) {
                 job?.apply {
@@ -376,8 +399,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                     val time = Calendar.getInstance()
                     currentVocationRealm.UF_MODIFED = time.timestamp
                     time.add(Calendar.DATE, Setting.JOB_LIFETIME_IN_DAYS)
-                    currentVocationRealm.UF_DISABLE =
-                        java.text.SimpleDateFormat("dd.mm.yyyy hh:mm:ss").format(time.time)
+                    currentVocationRealm.UF_DISABLE = time.timestamp
 
                     currentVocationRealm.UF_LANGUAGE_ID_ALL = job!!.UF_LANGUAGE_ID_ALL
                     currentVocationRealm.UF_SKILLS_ID_ALL =
@@ -447,8 +469,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
         val time = Calendar.getInstance()
         currentVocationRealm.UF_MODIFED = time.timestamp
         time.add(Calendar.DATE, Setting.JOB_LIFETIME_IN_DAYS)
-        currentVocationRealm.UF_DISABLE =
-            java.text.SimpleDateFormat("dd.mm.yyyy hh:mm:ss").format(time.time)
+        currentVocationRealm.UF_DISABLE = time.timestamp
 
         currentVocationRealm.UF_LANGUAGE_ID_ALL = job!!.UF_LANGUAGE_ID_ALL
         currentVocationRealm.UF_SKILLS_ID_ALL =

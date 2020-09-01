@@ -33,6 +33,12 @@
     <string name="edit_item_languages_list" translatable="false">languages</string>
     <string name="edit_item_tags_list" translatable="false">Skills</string>
     <string name="settings_title_subsription" translatable="false">Subsription</string>
+    <string name="edit_item_title" translatable="false">Title</string>
+    <string name="edit_item_company" translatable="false">company</string>
+    <string name="edit_item_gross" translatable="false">Gross</string>
+    <string name="edit_item_email" translatable="false">email</string>
+    <string name="edit_item_phone" translatable="false">phone</string>
+    <string name="edit_item_detail">Detail information</string>
 
 
 </resources>

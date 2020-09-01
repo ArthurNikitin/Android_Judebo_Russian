@@ -84,7 +84,13 @@ class VocationsAdapter(
                         holder.swiper.close()
                 }
                 holder.nameView.text = NAME
-                holder.idView.text = "#$UF_JOBS_ID"
+                if (UF_JOBS_ID == null) {
+                    holder.idView.visibility = View.INVISIBLE
+                } else {
+                    holder.idView.text = "#$UF_JOBS_ID"
+                    holder.idView.visibility = View.VISIBLE
+                }
+
                 with(holder.swiper) {
                     isLeftSwipeEnabled = true
                     isRightSwipeEnabled = true
@@ -160,7 +166,7 @@ class VocationsAdapter(
                 }
                 val editDate = getDate(UF_MODIFED)
                 val editString =
-                    SimpleDateFormat("dd MMM", Locale(Setting(ctx).getCurrentLanguage().locale)).format(editDate)
+                    SimpleDateFormat("dd MMM", Locale(setting.getCurrentLanguage().locale)).format(editDate)
 
                 holder.editDateView.text = editString
                 val currency = currencies.firstOrNull { it.id == UF_GROSS_CURRENCY_ID }
@@ -187,7 +193,7 @@ class VocationsAdapter(
                 UF_APP_JOB_ID = getNewJobAppId().toLong()
 
                 now.add(Calendar.DATE, Setting.JOB_LIFETIME_IN_DAYS)
-                UF_DISABLE = now.timestamp.toString()
+                UF_DISABLE = now.timestamp
             }
             it.copyToRealm(newVocation)
             ApiServiceImpl(this).addMyVocation(

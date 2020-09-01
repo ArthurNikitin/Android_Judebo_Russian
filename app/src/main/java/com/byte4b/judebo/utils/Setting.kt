@@ -66,6 +66,7 @@ class Setting(ctx: Context) {
         const val MIN_ZOOM = 2.0f
         const val MAX_ZOOM = 21.0f
 
+        const val DEFAULT_EDIT_PAGE_ZOOM = 15f
         const val DETAILS_MIN_ZOOM = MIN_ZOOM + 5
         const val DETAILS_MAX_ZOOM = MAX_ZOOM
 

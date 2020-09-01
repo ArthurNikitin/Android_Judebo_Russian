@@ -154,13 +154,14 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:layout_marginRight="5dp"
-                    android:textSize="16sp"
                     android:id="@+id/salary_tv"
-                    android:gravity="right"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:text="10 000" />
+                    android:layout_marginRight="5dp"
+                    android:gravity="right"
+                    android:inputType="number"
+                    android:text="10 000"
+                    android:textSize="16sp" />
 
                 <Spinner
                     android:id="@+id/salaryVal_tv"
@@ -184,24 +185,26 @@
                 </LinearLayout>
 
                 <EditText
-                    android:textSize="16sp"
-                    android:layout_marginBottom="8dp"
-                    android:hint="Phone"
                     android:id="@+id/phone_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
                     android:layout_weight="1"
-                    android:text="+7 800 555 55 55" />
+                    android:hint="Phone"
+                    android:inputType="phone"
+                    android:text="+7 800 555 55 55"
+                    android:textSize="16sp" />
 
                 <EditText
-                    android:textSize="16sp"
-                    android:layout_marginBottom="8dp"
-                    android:hint="Email"
                     android:id="@+id/email_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
                     android:layout_weight="1"
-                    android:text="send_me_mail@gmail.com" />
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"
+                    android:text="send_me_mail@gmail.com"
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -264,8 +267,9 @@
                 android:layout_marginBottom="8dp"
                 android:id="@+id/details_tv"
                 android:textSize="18sp"
+                android:gravity="left|top"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="750dp"
                 android:text="detail info about job" />
 
             <LinearLayout

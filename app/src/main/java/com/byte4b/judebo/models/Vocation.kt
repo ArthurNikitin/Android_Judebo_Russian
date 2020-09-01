@@ -6,6 +6,7 @@ import io.realm.RealmObject
 data class Vocation(
     @Transient var isHided: Boolean = false,
 
+    var UF_ACTIVE: Byte? = null,
     var AUTO_TRANSLATE: Int? = null,
     var COMPANY: String? = null,
     var DETAIL_TEXT: String? = null,
@@ -14,7 +15,7 @@ data class Vocation(
     var UF_CONTACT_EMAIL: String? = null,
     var UF_CONTACT_PHONE: String? = null,
     var UF_DETAIL_IMAGE: String? = null,
-    var UF_DISABLE: String? = null,
+    var UF_DISABLE: Long? = null,
     var UF_GOLD_GROSS_MONTH: String? = null,
     var UF_GOLD_PER_MONTH: String? = null,
     var UF_GROSS_CURRENCY_ID: Int? = null,
@@ -39,6 +40,7 @@ data class Vocation(
         result.COMPANY = COMPANY
         result.DETAIL_TEXT = DETAIL_TEXT
         result.NAME = NAME
+        result.UF_ACTIVE = UF_ACTIVE
         result.UF_APP_JOB_ID = UF_APP_JOB_ID
         result.UF_CONTACT_EMAIL = UF_CONTACT_EMAIL
         result.UF_CONTACT_PHONE = UF_CONTACT_PHONE
@@ -64,6 +66,7 @@ open class VocationRealm : RealmObject() {
     //system
     var isHided: Boolean = false
 
+    var UF_ACTIVE: Byte? = null
     var AUTO_TRANSLATE: Int? = null
     var COMPANY: String? = null
     var DETAIL_TEXT: String? = null
@@ -72,7 +75,7 @@ open class VocationRealm : RealmObject() {
     var UF_CONTACT_EMAIL: String? = null
     var UF_CONTACT_PHONE: String? = null
     var UF_DETAIL_IMAGE: String? = null
-    var UF_DISABLE: String? = null
+    var UF_DISABLE: Long? = null
     var UF_GOLD_GROSS_MONTH: String? = null
     var UF_GOLD_PER_MONTH: String? = null
     var UF_GROSS_CURRENCY_ID: Int? = null
@@ -106,6 +109,7 @@ open class VocationRealm : RealmObject() {
         UF_GROSS_CURRENCY_ID = UF_GROSS_CURRENCY_ID,
         UF_GROSS_PER_MONTH = UF_GROSS_PER_MONTH,
         UF_JOBS_ID = UF_JOBS_ID,
+        UF_ACTIVE = UF_ACTIVE,
         UF_LANGUAGE_ID_ALL = UF_LANGUAGE_ID_ALL,
         UF_LOGO_IMAGE = UF_LOGO_IMAGE,
         UF_MAP_POINT = UF_MAP_POINT,
