@@ -1,5 +1,6 @@
 package com.byte4b.judebo.models
 
+import com.byte4b.judebo.view.ServiceListener
 import io.realm.RealmObject
 
 data class Vocation(
@@ -26,7 +27,7 @@ data class Vocation(
     var UF_PREVIEW_IMAGE: String? = null,
     var UF_SKILLS_ID_ALL: String? = null,
     var UF_TYPE_OF_JOB_ID: Int? = null
-) {
+) : ServiceListener {
     var location
         get() = UF_MAP_POINT?.split(", ")?.map { it.toDouble() } ?: listOf(.0, .0)
         set(value) { UF_MAP_POINT = value.joinToString(", ") }

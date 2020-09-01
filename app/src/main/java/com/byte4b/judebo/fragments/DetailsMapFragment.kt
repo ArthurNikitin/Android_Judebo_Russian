@@ -28,6 +28,7 @@ class DetailsMapFragment(
 ) : Fragment(R.layout.fragment_maps) {
 
     private var map: GoogleMap? = null
+    var latLng: LatLng? = null
 
     private fun setDraggableMarker(
         lat: Double = marker.UF_MAP_POINT_LATITUDE,
@@ -44,6 +45,7 @@ class DetailsMapFragment(
 
         map?.clear()
         map?.addMarker(target)
+        latLng = target.position
         map?.animateCamera(CameraUpdateFactory.newLatLngZoom(target.position, Setting.BASIC_ZOOM))
     }
 
@@ -63,7 +65,7 @@ class DetailsMapFragment(
         }
 
         map?.clear()
-
+        latLng = target.position
         map?.addMarker(target)
         map?.animateCamera(CameraUpdateFactory.newLatLngZoom(target.position, Setting.BASIC_ZOOM))
     }

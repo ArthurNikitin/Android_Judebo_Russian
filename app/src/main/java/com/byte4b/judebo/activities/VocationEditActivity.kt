@@ -1,38 +1,49 @@
 package com.byte4b.judebo.activities
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.drawable.toBitmap
 import com.byte4b.judebo.*
 import com.byte4b.judebo.R
 import com.byte4b.judebo.adapters.LanguagesAdapter
 import com.byte4b.judebo.adapters.SkillsAdapter
 import com.byte4b.judebo.fragments.DetailsMapFragment
 import com.byte4b.judebo.models.*
+import com.byte4b.judebo.services.ApiServiceImpl
 import com.byte4b.judebo.utils.Setting
+import com.byte4b.judebo.view.ServiceListener
 import com.github.florent37.runtimepermission.kotlin.askPermission
 import com.google.android.flexbox.*
+import com.google.android.gms.maps.model.LatLng
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import io.realm.Realm
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.activity_vocation_edit.*
+import java.io.ByteArrayOutputStream
 import java.util.*
 
 
-class VocationEditActivity : AppCompatActivity() {
+class VocationEditActivity : AppCompatActivity(), ServiceListener {
 
     private val realm by lazy { Realm.getDefaultInstance() }
     private var job: Vocation? = null
     private val setting by lazy { Setting(this) }
-    private val skillsRealm by lazy { realm.where<SkillRealm>().findAll().map { it.toBasicVersion() } }
+    private val skillsRealm by lazy {
+        realm.where<SkillRealm>().findAll().map { it.toBasicVersion() }
+    }
 
     companion object {
         private const val REQUEST_CROP = 101
@@ -116,7 +127,6 @@ class VocationEditActivity : AppCompatActivity() {
             } catch (e: Exception) {
             }
 
-
             setSkillsList()
             setLanguagesList()
 
@@ -157,6 +167,8 @@ class VocationEditActivity : AppCompatActivity() {
                 logo_iv.setImageURI(data?.data)
             }
             REQUEST_PICTURE -> {
+                logo_iv.setImageURI(data?.data)//tmp stub
+                return
                 val cropIntent = Intent("com.android.camera.action.CROP")
                 cropIntent.setDataAndType(data?.data, "image/*")
                 cropIntent.putExtra("crop", "true")
@@ -165,7 +177,7 @@ class VocationEditActivity : AppCompatActivity() {
                 intent.putExtra("outputX", Setting.MAX_IMG_CROP_HEIGHT)
                 intent.putExtra("outputY", Setting.MAX_IMG_CROP_HEIGHT)
                 //image type
-                intent.putExtra("outputFormat", "JPEG");
+                intent.putExtra("outputFormat", "JPEG")
                 cropIntent.putExtra("return-data", true)
 
                 //val outputFileUri = Uri.fromFile(createCropFile())
@@ -241,6 +253,9 @@ class VocationEditActivity : AppCompatActivity() {
     }
 
     fun deleteClick(v: View) {
+        if (job == null) return
+
+        Log.e("test", "del")
         AlertDialog.Builder(this)
             .setTitle(R.string.request_request_delete_title)
             .setMessage(R.string.request_request_delete_message)
@@ -248,46 +263,180 @@ class VocationEditActivity : AppCompatActivity() {
 
                 Realm.getDefaultInstance().executeTransaction {
                     val vocationRealm = it.where<VocationRealm>()
-                        .equalTo("UF_JOBS_ID", job?.UF_JOBS_ID)
+                        .equalTo("UF_JOBS_ID", job!!.UF_JOBS_ID)
                         .findFirst()
-                    vocationRealm?.apply {
-                        isHided = true
-                        UF_MODIFED = Calendar.getInstance().timestamp
 
-                        AUTO_TRANSLATE = null
-                        COMPANY = null
-                        DETAIL_TEXT = null
-                        NAME = null
-                        UF_CONTACT_EMAIL = null
-                        UF_CONTACT_PHONE = null
-                        UF_DETAIL_IMAGE = null
-                        UF_DISABLE = null
-                        UF_GOLD_GROSS_MONTH = null
-                        UF_GOLD_PER_MONTH = null
-                        UF_GROSS_CURRENCY_ID = null
-                        UF_GROSS_PER_MONTH = null
-                        UF_LANGUAGE_ID_ALL = null
-                        UF_LOGO_IMAGE = null
-                        UF_MAP_POINT = null
-                        UF_PREVIEW_IMAGE = null
-                        UF_SKILLS_ID_ALL = null
-                        UF_TYPE_OF_JOB_ID = null
+                    try {
+                        vocationRealm?.isHided = true
+                        vocationRealm?.AUTO_TRANSLATE = null
+                        vocationRealm?.COMPANY = null
+                        vocationRealm?.DETAIL_TEXT = null
+                        vocationRealm?.NAME = null
+                        vocationRealm?.UF_CONTACT_EMAIL = null
+                        vocationRealm?.UF_CONTACT_PHONE = null
+                        vocationRealm?.UF_DETAIL_IMAGE = null
+                        vocationRealm?.UF_DISABLE = null
+                        vocationRealm?.UF_GOLD_GROSS_MONTH = null
+                        vocationRealm?.UF_GOLD_PER_MONTH = null
+                        vocationRealm?.UF_GROSS_CURRENCY_ID = null
+                        vocationRealm?.UF_GROSS_PER_MONTH = null
+                        vocationRealm?.UF_LOGO_IMAGE = null
+                        vocationRealm?.UF_MAP_POINT = null
+                        vocationRealm?.UF_PREVIEW_IMAGE = null
+
+                        vocationRealm?.UF_LANGUAGE_ID_ALL = null
+                        vocationRealm?.UF_SKILLS_ID_ALL = null
+                        vocationRealm?.UF_TYPE_OF_JOB_ID = null
+
+                        vocationRealm?.UF_MODIFED = Calendar.getInstance().timestamp
+                    } catch (e: Exception) {
+                        Log.e("test", e.localizedMessage ?: "ErrorMe")
+                    }
+                    try {
+                        ApiServiceImpl(this).deleteVocation(
+                            setting.getCurrentLanguage().locale,
+                            token = "Z4pjjs5t7rt6uJc2uOLWx5Zb",
+                            login = "judebo.com@gmail.com",
+                            vocation = vocationRealm!!.toBasicVersion()
+                        )
+                    } catch (e: Exception) {
+                        onVocationDeleted(false)
                     }
                 }
-                //todo: update query to server
-                //todo: reload list
-
                 dialog.dismiss()
             }
             .setNegativeButton(R.string.request_request_delete_cancel) { d, _ -> d.cancel() }
             .show()
     }
 
+    @SuppressLint("SimpleDateFormat")
     fun saveClick(v: View) {
-        //todo save changes to realm + send to server
-        //val currentVocationRealm = realm.where<VocationRealm>().equalTo("UF_APP_JOB_ID")
+        if (job != null) {
+            job?.apply {
+                val currentVocationRealm =
+                    realm.where<VocationRealm>()
+                        .equalTo("UF_APP_JOB_ID", job!!.UF_APP_JOB_ID)
+                        .findFirst() //if null - create new else edit
 
+                if (currentVocationRealm == null) {
+                    createNewVocation()
+                    return@apply
+                }
 
+                //edit current
+                currentVocationRealm.COMPANY = company_tv.data
+                currentVocationRealm.NAME = name_tv.data
+                currentVocationRealm.DETAIL_TEXT = details_tv.data
+                currentVocationRealm.UF_CONTACT_EMAIL = email_tv.data
+                currentVocationRealm.UF_CONTACT_PHONE = phone_tv.data
+
+                val time = Calendar.getInstance()
+                currentVocationRealm.UF_MODIFED = time.timestamp
+                time.add(Calendar.DATE, Setting.JOB_LIFETIME_IN_DAYS)
+                currentVocationRealm.UF_DISABLE =
+                    java.text.SimpleDateFormat("dd.mm.yyyy hh:mm:ss").format(time.time)
+
+                currentVocationRealm.UF_LANGUAGE_ID_ALL = job!!.UF_LANGUAGE_ID_ALL
+                currentVocationRealm.UF_SKILLS_ID_ALL =
+                    if (job!!.UF_SKILLS_ID_ALL.isNullOrEmpty()) Setting.DEFAULT_SKILL_ID_ALWAYS_HIDDEN
+                    else job!!.UF_SKILLS_ID_ALL
+
+                currentVocationRealm.UF_GOLD_PER_MONTH = salary_tv.data?.trim()
+                currentVocationRealm.UF_GROSS_CURRENCY_ID =
+                    currencies[salaryVal_tv.selectedItemPosition].id
+
+                val drawable = logo_iv.drawable
+                currentVocationRealm.UF_DETAIL_IMAGE = toBase64(
+                    drawable.toBitmap(Setting.MAX_IMG_CROP_HEIGHT, Setting.MAX_IMG_CROP_HEIGHT)
+                )
+                currentVocationRealm.UF_LOGO_IMAGE = toBase64(
+                    drawable.toBitmap(Setting.MAX_IMG_CROP_HEIGHT_LOGO, Setting.MAX_IMG_CROP_HEIGHT_LOGO)
+                )
+                currentVocationRealm.UF_PREVIEW_IMAGE = toBase64(
+                    drawable.toBitmap(Setting.MAX_IMG_CROP_HEIGHT_PREVIEW, Setting.MAX_IMG_CROP_HEIGHT_PREVIEW)
+                )
+
+                val latLng =
+                    (supportFragmentManager.fragments.last() as DetailsMapFragment).latLng ?:
+                    LatLng(Setting.DEFAULT_LATITUDE, Setting.DEFAULT_LONGITUDE)
+                currentVocationRealm.UF_MAP_POINT = "${latLng.latitude}, ${latLng.longitude}"
+                currentVocationRealm.UF_TYPE_OF_JOB_ID = realm
+                    .where<JobTypeRealm>().findAll()
+                    .filter { it.name.trim() != "" }[jobType_tv.selectedItemPosition].id
+
+                ApiServiceImpl(this).updateMyVocations(
+                    setting.getCurrentLanguage().locale,
+                    token = "Z4pjjs5t7rt6uJc2uOLWx5Zb",
+                    login = "judebo.com@gmail.com",
+                    vocations = listOf(currentVocationRealm.toBasicVersion())
+                )
+                finish()
+            }
+        } else
+            createNewVocation()
+    }
+
+    private fun toBase64(bitmap: Bitmap): String {
+        val stream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+            Base64.getEncoder().encodeToString(stream.toByteArray())
+        else
+            android.util.Base64.encodeToString(stream.toByteArray(), android.util.Base64.DEFAULT)
+    }
+
+    private fun createNewVocation() {
+        val currentVocationRealm = VocationRealm()
+        //set params
+        currentVocationRealm.COMPANY = company_tv.data
+        currentVocationRealm.NAME = name_tv.data
+        currentVocationRealm.DETAIL_TEXT = details_tv.data
+        currentVocationRealm.UF_CONTACT_EMAIL = email_tv.data
+        currentVocationRealm.UF_CONTACT_PHONE = phone_tv.data
+
+        val time = Calendar.getInstance()
+        currentVocationRealm.UF_MODIFED = time.timestamp
+        time.add(Calendar.DATE, Setting.JOB_LIFETIME_IN_DAYS)
+        currentVocationRealm.UF_DISABLE =
+            java.text.SimpleDateFormat("dd.mm.yyyy hh:mm:ss").format(time.time)
+
+        currentVocationRealm.UF_LANGUAGE_ID_ALL = job!!.UF_LANGUAGE_ID_ALL
+        currentVocationRealm.UF_SKILLS_ID_ALL =
+            if (job!!.UF_SKILLS_ID_ALL.isNullOrEmpty()) Setting.DEFAULT_SKILL_ID_ALWAYS_HIDDEN
+            else job!!.UF_SKILLS_ID_ALL
+
+        currentVocationRealm.UF_GOLD_PER_MONTH = salary_tv.data?.trim()
+        currentVocationRealm.UF_GROSS_CURRENCY_ID =
+            currencies[salaryVal_tv.selectedItemPosition].id
+
+        val drawable = logo_iv.drawable
+        currentVocationRealm.UF_DETAIL_IMAGE = toBase64(
+            drawable.toBitmap(Setting.MAX_IMG_CROP_HEIGHT, Setting.MAX_IMG_CROP_HEIGHT)
+        )
+        currentVocationRealm.UF_LOGO_IMAGE = toBase64(
+            drawable.toBitmap(Setting.MAX_IMG_CROP_HEIGHT_LOGO, Setting.MAX_IMG_CROP_HEIGHT_LOGO)
+        )
+        currentVocationRealm.UF_PREVIEW_IMAGE = toBase64(
+            drawable.toBitmap(Setting.MAX_IMG_CROP_HEIGHT_PREVIEW, Setting.MAX_IMG_CROP_HEIGHT_PREVIEW)
+        )
+
+        val latLng =
+            (supportFragmentManager.fragments.last() as DetailsMapFragment).latLng ?:
+            LatLng(Setting.DEFAULT_LATITUDE, Setting.DEFAULT_LONGITUDE)
+        currentVocationRealm.UF_MAP_POINT = "${latLng.latitude}, ${latLng.longitude}"
+        currentVocationRealm.UF_TYPE_OF_JOB_ID = realm
+            .where<JobTypeRealm>().findAll()
+            .filter { it.name.trim() != "" }[jobType_tv.selectedItemPosition].id
+
+        realm.executeTransaction { it.copyToRealm(currentVocationRealm) }
+
+        ApiServiceImpl(this).updateMyVocations(
+            setting.getCurrentLanguage().locale,
+            token = "Z4pjjs5t7rt6uJc2uOLWx5Zb",
+            login = "judebo.com@gmail.com",
+            vocations = listOf(currentVocationRealm.toBasicVersion())
+        )
+        finish()
     }
 
     fun toLanguagesClick(v: View) {
