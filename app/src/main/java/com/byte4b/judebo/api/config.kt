@@ -1,5 +1,6 @@
 package com.byte4b.judebo.api
 
+import com.byte4b.judebo.utils.Setting
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -18,8 +19,8 @@ fun getRetrofit(locale: String): Retrofit {
 
     val client = OkHttpClient.Builder()
         .addInterceptor(interceptor)
-        .connectTimeout(10, TimeUnit.SECONDS)
-        .readTimeout(30, TimeUnit.SECONDS)
+        .connectTimeout(Setting.JSON_REQUEST_TIMEOUT_IN_SECONDS, TimeUnit.SECONDS)
+        .readTimeout(Setting.JSON_REQUEST_TIMEOUT_IN_SECONDS, TimeUnit.SECONDS)
         .build()
 
 

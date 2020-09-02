@@ -89,7 +89,7 @@ class Setting(ctx: Context) {
         const val PERIOD_UPDATE_JOB_LIST_FOR_USER_IN_SECONDS = 3 * 60 * 1000L
 
         //Timeout of json request in Seconds
-        const val JSON_REQUEST_TIMEOUT_IN_SECONDS = 15
+        const val JSON_REQUEST_TIMEOUT_IN_SECONDS = 15L
 
         // 2020-08-10 b.2.5
         // const val CLUSTER_RADIUS = 165.0
