@@ -414,6 +414,13 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                     currentVocationRealm.UF_GROSS_PER_MONTH = salary_tv.data?.trim()
                     currentVocationRealm.UF_GROSS_CURRENCY_ID =
                         currencies[salaryVal_tv.selectedItemPosition].id
+                    if (!currentVocationRealm.UF_GROSS_PER_MONTH.isNullOrEmpty()) {
+                        currentVocationRealm.UF_GOLD_PER_MONTH =
+                            (currentVocationRealm.UF_GROSS_PER_MONTH!!.toDouble()
+                                    / currencies.first { it.id ==
+                                        currentVocationRealm.UF_GROSS_CURRENCY_ID}.rate)
+                                .toString()
+                    }
 
                     val drawable = logo_iv.drawable
                     currentVocationRealm.UF_DETAIL_IMAGE = toBase64(
