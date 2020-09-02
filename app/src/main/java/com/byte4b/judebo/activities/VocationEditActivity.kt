@@ -478,6 +478,11 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
             android.util.Base64.encodeToString(stream.toByteArray(), android.util.Base64.DEFAULT)
     }
 
+    override fun onMyVocationUpdated(success: Boolean) {
+        if (!success)
+            toast(R.string.error_no_internet)
+    }
+
     private fun createNewVocation() {
         val currentVocationRealm = VocationRealm()
         //set params
