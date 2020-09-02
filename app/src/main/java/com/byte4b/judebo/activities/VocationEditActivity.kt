@@ -9,6 +9,7 @@ import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.text.InputFilter
 import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
@@ -66,6 +67,13 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_vocation_edit)
         supportActionBar?.hide()
+
+        name_tv.filters =
+            arrayOf(InputFilter.LengthFilter(Setting.TEXT_LENGTH_MAX_SYMBOLS_JOB_TITLE))
+        company_tv.filters =
+            arrayOf(InputFilter.LengthFilter(Setting.TEXT_LENGTH_MAX_SYMBOLS_JOB_COMPANY))
+        details_tv.filters =
+            arrayOf(InputFilter.LengthFilter(Setting.TEXT_LENGTH_MAX_SYMBOLS_JOB_DETAIL))
 
         val jobInfo = Gson().fromJson(intent.getStringExtra("data"), Vocation::class.java)
         if (jobInfo.UF_APP_JOB_ID == null) {
