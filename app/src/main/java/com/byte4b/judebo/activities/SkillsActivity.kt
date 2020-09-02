@@ -37,8 +37,16 @@ class SkillsActivity : AppCompatActivity() {
     private fun initData() {
         val vocationSkills = vocation.UF_SKILLS_ID_ALL.splitToArray()
         val lists = skills.partition { it.id.toString() in vocationSkills }
-        selected_rv.adapter = EditSkillsAdapter(this, lists.first, true)
-        notSelected_rv.adapter = EditSkillsAdapter(this, lists.second, false)
+        selected_rv.adapter = EditSkillsAdapter(
+            this,
+            lists.first.filterNot { it.name.trim().isEmpty() },
+            true
+        )
+        notSelected_rv.adapter = EditSkillsAdapter(
+            this,
+            lists.second.filterNot { it.name.trim().isEmpty() },
+            false
+        )
     }
 
     fun deleteSkill(id: Int) {

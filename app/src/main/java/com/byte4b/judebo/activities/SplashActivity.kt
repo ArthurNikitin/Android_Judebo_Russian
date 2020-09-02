@@ -120,7 +120,7 @@ class SplashActivity : AppCompatActivity(), ServiceListener {
                     } catch (e: Exception) {
                         e.toLog("double")
                     }
-                    it.copyToRealm(list.map { it.toRealmVersion() })
+                    it.copyToRealm(list.filterNot { it.name.trim().isEmpty() }.map { it.toRealmVersion() })
                 }
             } catch (e: Exception) {
                 e.toLog("long")
