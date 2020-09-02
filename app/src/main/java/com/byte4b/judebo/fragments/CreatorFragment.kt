@@ -6,6 +6,7 @@ import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -51,6 +52,22 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
             }
         }
 
+        filter_et.doOnTextChanged { text, _, _, _ ->
+            val txt = text.toString()
+            val all = realm.where<VocationRealm>().findAll()
+                .map { it.toBasicVersion() }
+                .filter { !it.isHided }
+
+            if (txt.trim().isEmpty()) {
+                setList(all)
+            } else {
+                setList(all.filter {
+                    it.NAME?.contains(txt) == true
+                            || it.COMPANY?.contains("txt") == true
+                            || it.DETAIL_TEXT?.contains(txt) == true})
+            }
+        }
+
         val handler = Handler {
             onRefresh()
             true
@@ -63,6 +80,12 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
             }
         }.start()
     }
+
+
+
+    fun isFilterModeOn() = filter_et.text.toString().isNotEmpty()
+
+    fun filterOff() = filter_et.setText("")
 
     override fun onStart() {
         super.onStart()

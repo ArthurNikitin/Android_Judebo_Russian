@@ -2,7 +2,6 @@ package com.byte4b.judebo.activities
 
 import android.Manifest
 import android.os.Bundle
-import android.util.LayoutDirection
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -85,6 +84,14 @@ class MainActivity : AppCompatActivity() {
             .beginTransaction()
             .replace(R.id.frame, fragment)
             .commit()
+    }
+
+    override fun onBackPressed() {
+        if (supportFragmentManager.fragments.any { it is CreatorFragment }
+            && (supportFragmentManager.fragments.last { it is CreatorFragment } as CreatorFragment).isFilterModeOn())
+            (supportFragmentManager.fragments.last() as CreatorFragment).filterOff()
+        else
+            super.onBackPressed()
     }
 
 }
