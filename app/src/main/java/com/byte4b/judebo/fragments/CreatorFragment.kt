@@ -11,16 +11,13 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.byte4b.judebo.R
+import com.byte4b.judebo.*
 import com.byte4b.judebo.activities.SubscribesActivity
 import com.byte4b.judebo.activities.VocationEditActivity
 import com.byte4b.judebo.adapters.VocationsAdapter
-import com.byte4b.judebo.getDate
 import com.byte4b.judebo.models.Vocation
 import com.byte4b.judebo.models.VocationRealm
 import com.byte4b.judebo.services.ApiServiceImpl
-import com.byte4b.judebo.startActivity
-import com.byte4b.judebo.timestamp
 import com.byte4b.judebo.utils.Setting
 import com.byte4b.judebo.view.ServiceListener
 import com.google.gson.Gson
@@ -52,6 +49,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
             }
         }
 
+        filter_et.setLeftDrawable(R.drawable.item_detail_tags)
         filter_et.doOnTextChanged { text, _, _, _ ->
             val txt = text.toString()
             val all = realm.where<VocationRealm>().findAll()
@@ -60,11 +58,13 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
 
             if (txt.trim().isEmpty()) {
                 setList(all)
+                filter_et.setLeftDrawable(R.drawable.item_detail_tags)
             } else {
                 setList(all.filter {
                     it.NAME?.contains(txt) == true
                             || it.COMPANY?.contains("txt") == true
                             || it.DETAIL_TEXT?.contains(txt) == true})
+                filter_et.setLeftDrawable(R.drawable.button_delete)
             }
         }
 
