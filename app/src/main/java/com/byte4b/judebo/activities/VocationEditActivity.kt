@@ -68,6 +68,13 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
         supportActionBar?.hide()
 
         val jobInfo = Gson().fromJson(intent.getStringExtra("data"), Vocation::class.java)
+        if (jobInfo.UF_APP_JOB_ID == null) {
+            val loc = getLocation()
+            jobInfo.location = listOf(
+                loc?.latitude ?: Setting.DEFAULT_LATITUDE,
+                loc?.longitude ?: Setting.DEFAULT_LONGITUDE
+            )
+        }
         job = jobInfo
 
         initJobTypes()
@@ -133,8 +140,6 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                         return@forEach
                     }
                 }
-
-                //salary_tv.setRightDrawable(currency?.icon ?: R.drawable.iusd)
 
                 jobInfo.apply {
                     supportFragmentManager.beginTransaction()
@@ -578,6 +583,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                         e.askAgain()
                         dialog.dismiss()
                     }
+                    show()
                 }
             }
 
@@ -588,6 +594,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                         e.goToSettings()
                         dialog.dismiss()
                     }
+                    show()
                 }
             }
         }
