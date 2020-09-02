@@ -581,25 +581,23 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
             )
         }.onDeclined { e ->
             if (e.hasDenied()) {
-                AlertDialog.Builder(this).apply {
-                    setMessage("Accept permissions")
-                    setPositiveButton(AlertDialog.BUTTON_POSITIVE) { dialog, _ ->
+                AlertDialog.Builder(this)
+                    .setMessage("Accept permissions")
+                    .setPositiveButton(android.R.string.ok) { dialog, _ ->
                         e.askAgain()
                         dialog.dismiss()
                     }
-                    show()
-                }
+                    .show()
             }
 
             if (e.hasForeverDenied()) {
-                AlertDialog.Builder(this).apply {
-                    setMessage("Permission request")
-                    setPositiveButton(AlertDialog.BUTTON_POSITIVE) { dialog, _ ->
+                AlertDialog.Builder(this)
+                    .setMessage("Permission request")
+                    .setPositiveButton(android.R.string.ok) { dialog, _ ->
                         e.goToSettings()
                         dialog.dismiss()
                     }
-                    show()
-                }
+                    .show()
             }
         }
     }

@@ -12,7 +12,7 @@
         android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        android:background="@color/toolbar_background_color">
+        android:background="@drawable/toolbar_gradient">
 
         <ImageView
             android:layout_centerVertical="true"

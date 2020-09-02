@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:gravity="center_vertical"
-        android:background="@color/toolbar_background_color"
+        android:background="@drawable/toolbar_gradient"
         android:orientation="horizontal">
 
         <ImageView

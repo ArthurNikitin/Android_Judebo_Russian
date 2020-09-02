@@ -40,7 +40,9 @@
     <string name="edit_item_phone" translatable="false">phone</string>
     <string name="edit_item_detail" translatable="false">Detail information</string>
     <string name="user_jobs_list_search" translatable="false">Search</string>
-    <string name="error_label">Error</string>
+    <string name="error_label" translatable="false">Error</string>
+    <string name="request_image_access_title" translatable="false">Access</string>
+    <string name="request_image_access_message" translatable="false">Need access</string>
 
 
 </resources>
