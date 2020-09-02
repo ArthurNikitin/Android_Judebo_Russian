@@ -80,6 +80,8 @@
                 android:hint="@string/edit_item_title"
                 android:id="@+id/name_tv"
                 android:textSize="18sp"
+                android:gravity="top"
+                android:minLines="2"
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp"
                 android:layout_width="match_parent"
@@ -107,6 +109,8 @@
                         android:layout_height="wrap_content" />
 
                     <EditText
+                        android:gravity="top"
+                        android:minLines="2"
                         android:hint="@string/edit_item_company"
                         android:textSize="17sp"
                         android:id="@+id/company_tv"
