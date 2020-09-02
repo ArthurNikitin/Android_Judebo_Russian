@@ -46,11 +46,11 @@ class DetailsActivity : AppCompatActivity() {
             val currency = currencies.firstOrNull { it.id == jobInfo.UF_GROSS_CURRENCY_ID }
 
             if (!isRtl(this)) {
-                phone_tv.setLeftDrawable(R.drawable.phone, 50)
-                email_tv.setLeftDrawable(R.drawable.mail, 50)
+                phone_tv.setLeftDrawable(R.drawable.item_detail_phone, 50)
+                email_tv.setLeftDrawable(R.drawable.item_detail_email, 50)
             } else {
-                phone_tv.setRightDrawable(R.drawable.phone, 50)
-                email_tv.setRightDrawable(R.drawable.mail, 50)
+                phone_tv.setRightDrawable(R.drawable.item_detail_phone, 50)
+                email_tv.setRightDrawable(R.drawable.item_detail_email, 50)
             }
 
             name_tv.text = jobInfo.NAME

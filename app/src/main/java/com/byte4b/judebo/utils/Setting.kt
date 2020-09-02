@@ -88,6 +88,9 @@ class Setting(ctx: Context) {
         // how offen update job list from server in TAB vacancies
         const val PERIOD_UPDATE_JOB_LIST_FOR_USER_IN_SECONDS = 3 * 60 * 1000L
 
+        //Timeout of json request in Seconds
+        const val JSON_REQUEST_TIMEOUT_IN_SECONDS = 15
+
         // 2020-08-10 b.2.5
         // const val CLUSTER_RADIUS = 165.0
         const val CLUSTER_RADIUS = 100.0
@@ -111,6 +114,12 @@ class Setting(ctx: Context) {
         const val MAX_IMG_CROP_HEIGHT_PREVIEW = 100
         const val MAX_IMG_CROP_HEIGHT = 400
         const val DEFAULT_SKILL_ID_ALWAYS_HIDDEN = "32"
+
+        //How long text title/company/detail
+        const val TEXT_LENGTH_MAX_SYMBOLS_JOB_TITLE = 60
+        const val TEXT_LENGTH_MAX_SYMBOLS_JOB_COMPANY = 50
+        const val TEXT_LENGTH_MAX_SYMBOLS_JOB_DETAIL = 1500
+
 
     }
 

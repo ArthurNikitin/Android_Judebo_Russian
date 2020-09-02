@@ -34,7 +34,7 @@ class SkillsAdapter(
 
         holder.skillImage.setImageResource(
             if (isEditor && position == skills.lastIndex) R.drawable.button_plus_gray
-            else R.drawable.search
+            else R.drawable.item_detail_tags
         )
 
         holder.view.setOnClickListener {

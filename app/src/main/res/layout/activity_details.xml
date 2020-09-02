@@ -183,7 +183,7 @@
                     <TextView
                         android:textSize="16sp"
                         android:layout_marginBottom="8dp"
-                        android:drawableStart="@drawable/phone"
+                        android:drawableStart="@drawable/item_detail_phone"
                         android:id="@+id/phone_tv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -194,7 +194,7 @@
                     <TextView
                         android:textSize="16sp"
                         android:layout_marginBottom="8dp"
-                        android:drawableStart="@drawable/mail"
+                        android:drawableStart="@drawable/item_detail_email"
                         android:id="@+id/email_tv"
                         android:onClick="emailSend"
                         android:layout_width="match_parent"
