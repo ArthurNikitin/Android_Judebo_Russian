@@ -368,6 +368,11 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
             return false
         }
 
+        if (email_tv.data?.contains("@") == false
+            && email_tv.data?.contains(".") == false) {
+            email_tv.error = ""
+            return false
+        }
 
         return true
     }
