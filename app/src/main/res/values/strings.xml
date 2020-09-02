@@ -38,7 +38,9 @@
     <string name="edit_item_gross" translatable="false">Gross</string>
     <string name="edit_item_email" translatable="false">email</string>
     <string name="edit_item_phone" translatable="false">phone</string>
-    <string name="edit_item_detail">Detail information</string>
+    <string name="edit_item_detail" translatable="false">Detail information</string>
+    <string name="user_jobs_list_search" translatable="false">Search</string>
+    <string name="error_label">Error</string>
 
 
 </resources>

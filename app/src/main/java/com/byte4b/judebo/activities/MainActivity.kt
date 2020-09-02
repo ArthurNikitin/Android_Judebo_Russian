@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         if (supportFragmentManager.fragments.any { it is CreatorFragment }
             && (supportFragmentManager.fragments.last { it is CreatorFragment } as CreatorFragment).isFilterModeOn())
-            (supportFragmentManager.fragments.last() as CreatorFragment).filterOff()
+            (supportFragmentManager.fragments.last { it is CreatorFragment } as CreatorFragment).filterOff()
         else
             super.onBackPressed()
     }

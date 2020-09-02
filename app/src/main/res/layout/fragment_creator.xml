@@ -19,13 +19,32 @@
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/button_subscribe_setup" />
 
-        <TextView
-            android:gravity="center"
-            android:id="@+id/subcribe_stub"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_weight="1"
-            android:text="subcribe_stub" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_marginLeft="3dp"
+                android:id="@+id/subcribe_stub"
+                android:textColor="#fff"
+                android:textSize="12sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="subcribe_stub" />
+
+            <EditText
+                android:id="@+id/filter_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:textColorHint="#DAF5F5F5"
+                android:textColor="#fff"
+                android:inputType="textPersonName"
+                android:hint="@string/user_jobs_list_search" />
+
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/createNew"
@@ -34,18 +53,6 @@
             android:padding="12dp"
             app:srcCompat="@drawable/button_plus_vacancy" />
     </LinearLayout>
-
-    <EditText
-        android:id="@+id/filter_et"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:inputType="textPersonName"
-        android:hint="Name, Company or Detail info" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
     android:id="@+id/refresher"
