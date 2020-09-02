@@ -582,21 +582,25 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
         }.onDeclined { e ->
             if (e.hasDenied()) {
                 AlertDialog.Builder(this)
-                    .setMessage("Accept permissions")
-                    .setPositiveButton(android.R.string.ok) { dialog, _ ->
+                    .setTitle(R.string.request_image_access_title)
+                    .setMessage(R.string.request_image_access_message)
+                    .setPositiveButton(R.string.request_geolocation_ok) { dialog, _ ->
                         e.askAgain()
                         dialog.dismiss()
                     }
+                    .setNegativeButton(R.string.request_geolocation_cancel) { d, _ -> d.cancel()}
                     .show()
             }
 
             if (e.hasForeverDenied()) {
                 AlertDialog.Builder(this)
-                    .setMessage("Permission request")
-                    .setPositiveButton(android.R.string.ok) { dialog, _ ->
+                    .setTitle(R.string.request_image_access_title)
+                    .setMessage(R.string.request_image_access_message)
+                    .setPositiveButton(R.string.request_geolocation_ok) { dialog, _ ->
                         e.goToSettings()
                         dialog.dismiss()
                     }
+                    .setNegativeButton(R.string.request_geolocation_cancel) { d, _ -> d.cancel()}
                     .show()
             }
         }
