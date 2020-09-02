@@ -75,18 +75,25 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
-            <EditText
-                android:hint="@string/edit_item_title"
-                android:id="@+id/name_tv"
-                android:textSize="18sp"
-                android:gravity="top"
-                android:minLines="2"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp"
+            <com.google.android.material.textfield.TextInputLayout
+                app:counterEnabled="true"
+                android:id="@+id/name_field"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Vacancy name" />
+                android:layout_height="match_parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:hint="@string/edit_item_title"
+                    android:id="@+id/name_tv"
+                    android:textSize="18sp"
+                    android:gravity="top"
+                    android:background="#fff"
+                    android:minLines="2"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Vacancy name" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
                 android:gravity="center_vertical"
@@ -135,16 +142,24 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
 
-                    <EditText
-                        android:id="@+id/company_tv"
+                    <com.google.android.material.textfield.TextInputLayout
+                        app:counterEnabled="true"
+                        android:id="@+id/company_field"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:gravity="top"
-                        android:hint="@string/edit_item_company"
-                        android:minLines="2"
-                        android:text="Company name"
-                        android:textSize="17sp" />
+                        android:layout_height="match_parent">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/company_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:gravity="top"
+                            android:background="#fff"
+                            android:hint="@string/edit_item_company"
+                            android:minLines="2"
+                            android:text="Company name"
+                            android:textSize="17sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
                     <LinearLayout
                         android:id="@+id/salaryContainer"
@@ -266,15 +281,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="250dp" />
 
-            <EditText
-                android:hint="@string/edit_item_detail"
-                android:layout_marginBottom="8dp"
-                android:id="@+id/details_tv"
-                android:textSize="18sp"
-                android:gravity="left|top"
+            <com.google.android.material.textfield.TextInputLayout
+                app:counterEnabled="true"
+                android:id="@+id/detail_field"
                 android:layout_width="match_parent"
-                android:layout_height="750dp"
-                android:text="detail info about job" />
+                android:layout_height="match_parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:hint="@string/edit_item_detail"
+                    android:layout_marginBottom="8dp"
+                    android:id="@+id/details_tv"
+                    android:textSize="18sp"
+                    android:background="#fff"
+                    android:gravity="left|top"
+                    android:layout_width="match_parent"
+                    android:layout_height="750dp"
+                    android:text="detail info about job" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
                 android:layout_marginBottom="8dp"
