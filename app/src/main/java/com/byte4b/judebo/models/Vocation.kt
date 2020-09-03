@@ -7,7 +7,6 @@ data class Vocation(
     @Transient var isHided: Boolean = false,
 
     var UF_ACTIVE: Byte? = null,
-    var AUTO_TRANSLATE: Int? = null,
     var COMPANY: String? = null,
     var DETAIL_TEXT: String? = null,
     var NAME: String? = null,
@@ -16,10 +15,9 @@ data class Vocation(
     var UF_CONTACT_PHONE: String? = null,
     var UF_DETAIL_IMAGE: String? = null,
     var UF_DISABLE: Long? = null,
-    var UF_GOLD_GROSS_MONTH: String? = null,
-    var UF_GOLD_PER_MONTH: String? = null,
+    var UF_GOLD_PER_MONTH: Int? = null,
     var UF_GROSS_CURRENCY_ID: Int? = null,
-    var UF_GROSS_PER_MONTH: String? = null,
+    var UF_GROSS_PER_MONTH: Int? = null,
     var UF_JOBS_ID: Long? = null,
     var UF_LANGUAGE_ID_ALL: String? = null,
     var UF_LOGO_IMAGE: String? = null,
@@ -36,7 +34,6 @@ data class Vocation(
     fun toRealmVersion(): VocationRealm {
         val result = VocationRealm()
         result.isHided = isHided
-        result.AUTO_TRANSLATE = AUTO_TRANSLATE
         result.COMPANY = COMPANY
         result.DETAIL_TEXT = DETAIL_TEXT
         result.NAME = NAME
@@ -46,7 +43,6 @@ data class Vocation(
         result.UF_CONTACT_PHONE = UF_CONTACT_PHONE
         result.UF_DETAIL_IMAGE = UF_DETAIL_IMAGE
         result.UF_DISABLE = UF_DISABLE
-        result.UF_GOLD_GROSS_MONTH = UF_GOLD_GROSS_MONTH
         result.UF_GOLD_PER_MONTH = UF_GOLD_PER_MONTH
         result.UF_GROSS_CURRENCY_ID = UF_GROSS_CURRENCY_ID
         result.UF_GROSS_PER_MONTH = UF_GROSS_PER_MONTH
@@ -67,7 +63,6 @@ open class VocationRealm : RealmObject() {
     var isHided: Boolean = false
 
     var UF_ACTIVE: Byte? = null
-    var AUTO_TRANSLATE: Int? = null
     var COMPANY: String? = null
     var DETAIL_TEXT: String? = null
     var NAME: String? = null
@@ -76,10 +71,9 @@ open class VocationRealm : RealmObject() {
     var UF_CONTACT_PHONE: String? = null
     var UF_DETAIL_IMAGE: String? = null
     var UF_DISABLE: Long? = null
-    var UF_GOLD_GROSS_MONTH: String? = null
-    var UF_GOLD_PER_MONTH: String? = null
+    var UF_GOLD_PER_MONTH: Int? = null
     var UF_GROSS_CURRENCY_ID: Int? = null
-    var UF_GROSS_PER_MONTH: String? = null
+    var UF_GROSS_PER_MONTH: Int? = null
     var UF_JOBS_ID: Long? = null
     var UF_LANGUAGE_ID_ALL: String? = null
     var UF_LOGO_IMAGE: String? = null
@@ -95,7 +89,6 @@ open class VocationRealm : RealmObject() {
 
     fun toBasicVersion() = Vocation(
         isHided = isHided,
-        AUTO_TRANSLATE = AUTO_TRANSLATE,
         COMPANY = COMPANY,
         DETAIL_TEXT = DETAIL_TEXT,
         NAME = NAME,
@@ -104,7 +97,6 @@ open class VocationRealm : RealmObject() {
         UF_CONTACT_PHONE = UF_CONTACT_PHONE,
         UF_DETAIL_IMAGE = UF_DETAIL_IMAGE,
         UF_DISABLE = UF_DISABLE,
-        UF_GOLD_GROSS_MONTH = UF_GOLD_GROSS_MONTH,
         UF_GOLD_PER_MONTH = UF_GOLD_PER_MONTH,
         UF_GROSS_CURRENCY_ID = UF_GROSS_CURRENCY_ID,
         UF_GROSS_PER_MONTH = UF_GROSS_PER_MONTH,

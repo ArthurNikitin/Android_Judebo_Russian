@@ -137,7 +137,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
             }
 
             try {
-                salary_tv.data = jobInfo.UF_GROSS_PER_MONTH?.round()?.trim()
+                salary_tv.data = jobInfo.UF_GROSS_PER_MONTH?.toString()?.round()?.trim()?.toInt().toString()
                 val selectedCurrency = currency ?: setting.getCurrentCurrency()
                 currencies.indices.forEach {
                     if (currencies[it].id == selectedCurrency.id) {
@@ -151,15 +151,15 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                         .add(
                             R.id.containerFragment, DetailsMapFragment(
                                 MyMarker(
-                                    "", AUTO_TRANSLATE ?: 0,
+                                    "", 0,
                                     COMPANY ?: "", DETAIL_TEXT ?: "", (UF_JOBS_ID ?: 0).toInt(),
                                     NAME ?: "", UF_CONTACT_EMAIL ?: "",
                                     UF_CONTACT_PHONE ?: "",
                                     UF_DETAIL_IMAGE ?: "", "",
-                                    UF_GOLD_GROSS_MONTH ?: "",
-                                    UF_GOLD_PER_MONTH ?: "",
+                                    "",
+                                    (UF_GOLD_PER_MONTH?:0).toString(),
                                     UF_GROSS_CURRENCY_ID ?: 0,
-                                    UF_GROSS_PER_MONTH ?: "",
+                                    (UF_GROSS_PER_MONTH?:0).toString(),
                                     (UF_JOBS_ID?: 0L).toInt(), UF_LANGUAGE_ID_ALL ?: "",
                                     null, UF_LOGO_IMAGE, UF_MAP_POINT ?: "",
                                     location[0], location[1], 0,
@@ -324,7 +324,6 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
 
                     try {
                         vocationRealm?.isHided = true
-                        vocationRealm?.AUTO_TRANSLATE = null
                         vocationRealm?.COMPANY = null
                         vocationRealm?.DETAIL_TEXT = null
                         vocationRealm?.NAME = null
@@ -332,7 +331,6 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                         vocationRealm?.UF_CONTACT_PHONE = null
                         vocationRealm?.UF_DETAIL_IMAGE = null
                         vocationRealm?.UF_DISABLE = null
-                        vocationRealm?.UF_GOLD_GROSS_MONTH = null
                         vocationRealm?.UF_GOLD_PER_MONTH = null
                         vocationRealm?.UF_GROSS_CURRENCY_ID = null
                         vocationRealm?.UF_GROSS_PER_MONTH = null
@@ -440,15 +438,16 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                         if (job!!.UF_SKILLS_ID_ALL.isNullOrEmpty()) Setting.DEFAULT_SKILL_ID_ALWAYS_HIDDEN
                         else job!!.UF_SKILLS_ID_ALL
 
-                    currentVocationRealm.UF_GROSS_PER_MONTH = salary_tv.data?.trim()
+                    currentVocationRealm.UF_GROSS_PER_MONTH = salary_tv.data?.trim()?.toInt()
+                    if (currentVocationRealm.UF_GROSS_PER_MONTH == 0)
+                        currentVocationRealm.UF_GROSS_PER_MONTH = null
                     currentVocationRealm.UF_GROSS_CURRENCY_ID =
                         currencies[salaryVal_tv.selectedItemPosition].id
-                    if (!currentVocationRealm.UF_GROSS_PER_MONTH.isNullOrEmpty()) {
+                    if (currentVocationRealm.UF_GROSS_PER_MONTH != null) {
                         currentVocationRealm.UF_GOLD_PER_MONTH =
-                            (1000 * currentVocationRealm.UF_GROSS_PER_MONTH!!.toDouble()
+                            (1000 * currentVocationRealm.UF_GROSS_PER_MONTH!!
                                     / currencies.first { it.id ==
-                                        currentVocationRealm.UF_GROSS_CURRENCY_ID}.rate).toInt()
-                                .toString()
+                                        currentVocationRealm.UF_GROSS_CURRENCY_ID}.rate)
                     }
 
                     if (isLogoSelected) {
@@ -528,15 +527,16 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
             if (job!!.UF_SKILLS_ID_ALL.isNullOrEmpty()) Setting.DEFAULT_SKILL_ID_ALWAYS_HIDDEN
             else job!!.UF_SKILLS_ID_ALL
 
-        currentVocationRealm.UF_GOLD_PER_MONTH = salary_tv.data?.trim()
+        currentVocationRealm.UF_GOLD_PER_MONTH = salary_tv.data?.trim()?.toInt()
         currentVocationRealm.UF_GROSS_CURRENCY_ID =
             currencies[salaryVal_tv.selectedItemPosition].id
-        if (!currentVocationRealm.UF_GROSS_PER_MONTH.isNullOrEmpty()) {
+        if (currentVocationRealm.UF_GROSS_PER_MONTH == 0)
+            currentVocationRealm.UF_GROSS_PER_MONTH = null
+        if (currentVocationRealm.UF_GROSS_PER_MONTH != null) {
             currentVocationRealm.UF_GOLD_PER_MONTH =
-                (1000 * currentVocationRealm.UF_GROSS_PER_MONTH!!.toDouble()
+                (1000 * currentVocationRealm.UF_GROSS_PER_MONTH!!
                         / currencies.first { it.id ==
-                        currentVocationRealm.UF_GROSS_CURRENCY_ID}.rate).toInt()
-                    .toString()
+                        currentVocationRealm.UF_GROSS_CURRENCY_ID}.rate)
         }
 
         if (isLogoSelected) {

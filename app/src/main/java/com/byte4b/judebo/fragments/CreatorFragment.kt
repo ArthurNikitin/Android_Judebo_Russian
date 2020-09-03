@@ -137,7 +137,6 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                     // +++ Data updated on WEB
                     {
                         objFromRealm.apply {
-                            AUTO_TRANSLATE = objFromServer.AUTO_TRANSLATE
                             COMPANY = objFromServer.COMPANY
                             DETAIL_TEXT = objFromServer.DETAIL_TEXT
                             NAME = objFromServer.NAME
@@ -146,7 +145,6 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                             UF_CONTACT_PHONE = objFromServer.UF_CONTACT_PHONE
                             UF_DETAIL_IMAGE = objFromServer.UF_DETAIL_IMAGE
                             UF_DISABLE = objFromServer.UF_DISABLE
-                            UF_GOLD_GROSS_MONTH = objFromServer.UF_GOLD_GROSS_MONTH
                             UF_GOLD_PER_MONTH = objFromServer.UF_GOLD_PER_MONTH
                             UF_GROSS_CURRENCY_ID = objFromServer.UF_GROSS_CURRENCY_ID
                             UF_GROSS_PER_MONTH = objFromServer.UF_GROSS_PER_MONTH
@@ -216,7 +214,6 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                                 //NEW DATA FROM WEB
                                 //todo rewrite all ???? APP_ID
                                 objFromRealm.apply {
-                                    AUTO_TRANSLATE = objFromServer.AUTO_TRANSLATE
                                     COMPANY = objFromServer.COMPANY
                                     DETAIL_TEXT = objFromServer.DETAIL_TEXT
                                     NAME = objFromServer.NAME
@@ -225,7 +222,6 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                                     UF_CONTACT_PHONE = objFromServer.UF_CONTACT_PHONE
                                     UF_DETAIL_IMAGE = objFromServer.UF_DETAIL_IMAGE
                                     UF_DISABLE = objFromServer.UF_DISABLE
-                                    UF_GOLD_GROSS_MONTH = objFromServer.UF_GOLD_GROSS_MONTH
                                     UF_GOLD_PER_MONTH = objFromServer.UF_GOLD_PER_MONTH
                                     UF_GROSS_CURRENCY_ID = objFromServer.UF_GROSS_CURRENCY_ID
                                     UF_GROSS_PER_MONTH = objFromServer.UF_GROSS_PER_MONTH

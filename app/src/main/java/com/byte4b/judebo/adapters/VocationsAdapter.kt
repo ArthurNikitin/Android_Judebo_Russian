@@ -231,7 +231,6 @@ class VocationsAdapter(
 
                     try {
                         vocationRealm?.isHided = true
-                        vocationRealm?.AUTO_TRANSLATE = null
                         vocationRealm?.COMPANY = null
                         vocationRealm?.DETAIL_TEXT = null
                         vocationRealm?.NAME = null
@@ -239,7 +238,6 @@ class VocationsAdapter(
                         vocationRealm?.UF_CONTACT_PHONE = null
                         vocationRealm?.UF_DETAIL_IMAGE = null
                         vocationRealm?.UF_DISABLE = null
-                        vocationRealm?.UF_GOLD_GROSS_MONTH = null
                         vocationRealm?.UF_GOLD_PER_MONTH = null
                         vocationRealm?.UF_GROSS_CURRENCY_ID = null
                         vocationRealm?.UF_GROSS_PER_MONTH = null
