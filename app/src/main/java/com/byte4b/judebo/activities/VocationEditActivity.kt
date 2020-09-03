@@ -6,7 +6,6 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
@@ -18,10 +17,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.toBitmap
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.target.Target
 import com.byte4b.judebo.*
 import com.byte4b.judebo.R
 import com.byte4b.judebo.adapters.LanguagesAdapter
@@ -73,7 +68,18 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
         company_field.counterMaxLength = Setting.TEXT_LENGTH_MAX_SYMBOLS_JOB_COMPANY
         detail_field.counterMaxLength = Setting.TEXT_LENGTH_MAX_SYMBOLS_JOB_DETAIL
 
-        val jobInfo = Gson().fromJson(intent.getStringExtra("data"), Vocation::class.java)
+        val jobInfo: Vocation
+        try {
+            Log.e("test", intent.getLongExtra("appId", -1).toString())
+
+            jobInfo = realm.where<VocationRealm>().equalTo("UF_APP_JOB_ID",
+                intent.getLongExtra("appId", -1)
+            ).findFirst()!!.toBasicVersion()
+
+        } catch (e: Exception) {
+            Log.e("test", e.localizedMessage ?: "EERRRorr")
+            return
+        }
         if (jobInfo.UF_APP_JOB_ID == null) {
             val loc = getLocation()
             jobInfo.location = listOf(
@@ -99,38 +105,37 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
 
             name_tv.setText(jobInfo.NAME)
 
+            Log.e("test", jobInfo.UF_DETAIL_IMAGE.toString())
             try {
                 if (!jobInfo.UF_DETAIL_IMAGE.isNullOrEmpty()) {
-                    Glide.with(this)
-                        .load(jobInfo.UF_DETAIL_IMAGE)
-                        .placeholder(R.drawable.edit_page_default_logo)
-                        .addListener(object : RequestListener<Drawable> {
-                            override fun onLoadFailed(
-                                e: GlideException?,
-                                model: Any?,
-                                target: Target<Drawable>?,
-                                isFirstResource: Boolean
-                            ): Boolean {
-                                try {
-                                    val btm = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                                        Base64.getDecoder().decode(jobInfo.UF_DETAIL_IMAGE!!)
-                                    else
-                                        android.util.Base64.decode(
-                                            jobInfo.UF_DETAIL_IMAGE!!,
-                                            android.util.Base64.DEFAULT
-                                        )
-                                    logo_iv.setImageBitmap(BitmapFactory.decodeByteArray(btm, 0, btm.size))
-                                } catch (e: Exception) {
-                                    Log.e("test", "base64 error:")
-                                }
-                                return true
-                            }
-
-                            override fun onResourceReady(r: Drawable?, m: Any?,
-                                                         t: Target<Drawable>?, d: DataSource?,
-                                                         i: Boolean) = false
-                        })
-                        .into(logo_iv)
+                    if (jobInfo.UF_DETAIL_IMAGE!!.startsWith("http")) {
+                        Glide.with(this)
+                            .load(jobInfo.UF_DETAIL_IMAGE)
+                            .placeholder(R.drawable.edit_page_default_logo)
+                            .into(logo_iv)
+                    } else {
+                        try {
+                            Log.e("test", "start base64 decoding")
+                            val btm =
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                                    Base64.getDecoder()
+                                        .decode(jobInfo.UF_DETAIL_IMAGE!!)
+                                else
+                                    android.util.Base64.decode(
+                                        jobInfo.UF_DETAIL_IMAGE!!,
+                                        android.util.Base64.DEFAULT
+                                    )
+                            logo_iv.setImageBitmap(
+                                BitmapFactory.decodeByteArray(
+                                    btm,
+                                    0,
+                                    btm.size
+                                )
+                            )
+                        } catch (e: Exception) {
+                            Log.e("test", "base64 error:")
+                        }
+                    }
                 }
             } catch (e: Exception) {
                 Log.e("test", "base64 error")
@@ -157,10 +162,10 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                                     UF_CONTACT_PHONE ?: "",
                                     UF_DETAIL_IMAGE ?: "", "",
                                     "",
-                                    (UF_GOLD_PER_MONTH?:0).toString(),
+                                    (UF_GOLD_PER_MONTH ?: 0).toString(),
                                     UF_GROSS_CURRENCY_ID ?: 0,
-                                    (UF_GROSS_PER_MONTH?:0).toString(),
-                                    (UF_JOBS_ID?: 0L).toInt(), UF_LANGUAGE_ID_ALL ?: "",
+                                    (UF_GROSS_PER_MONTH ?: 0).toString(),
+                                    (UF_JOBS_ID ?: 0L).toInt(), UF_LANGUAGE_ID_ALL ?: "",
                                     null, UF_LOGO_IMAGE, UF_MAP_POINT ?: "",
                                     location[0], location[1], 0,
                                     UF_MODIFED.toString(), UF_PREVIEW_IMAGE ?: "",
@@ -186,11 +191,12 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                 realm.where<JobTypeRealm>().findAll().filter { it.name.trim() != "" }
 
             jobType_tv.setSelection(
-                types.indices.first {i -> types[i].id == jobInfo.UF_TYPE_OF_JOB_ID }
+                types.indices.first { i -> types[i].id == jobInfo.UF_TYPE_OF_JOB_ID }
             )
 
             details_tv.data = jobInfo.DETAIL_TEXT ?: ""
-        } catch (e: Exception) {}
+        } catch (e: Exception) {
+        }
 
         name_tv.hideKeyboard()
     }

@@ -31,7 +31,6 @@ import com.byte4b.judebo.timestamp
 import com.byte4b.judebo.utils.Setting
 import com.byte4b.judebo.view.ServiceListener
 import com.daimajia.swipe.SwipeLayout
-import com.google.gson.Gson
 import io.realm.Realm
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.item_vocation.view.*
@@ -78,7 +77,8 @@ class VocationsAdapter(
                 holder.main.setOnClickListener {
                     if (holder.swiper.openStatus == SwipeLayout.Status.Close) {
                         ctx.startActivity<VocationEditActivity> {
-                            putExtra("data", Gson().toJson(this@with))
+                            putExtra("appId", UF_APP_JOB_ID)
+                            putExtra("jobId", UF_JOBS_ID)
                         }
                     } else
                         holder.swiper.close()
