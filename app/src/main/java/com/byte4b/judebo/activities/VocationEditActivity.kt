@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
@@ -98,7 +99,6 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
 
             name_tv.setText(jobInfo.NAME)
 
-            Log.e("test", "to load")
             try {
                 if (!jobInfo.UF_DETAIL_IMAGE.isNullOrEmpty()) {
                     Glide.with(this)
@@ -112,14 +112,14 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                                 isFirstResource: Boolean
                             ): Boolean {
                                 try {
-                                    //val btm = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                                    //    Base64.getDecoder().decode(jobInfo.UF_DETAIL_IMAGE!!)
-                                    //else
-                                    //    android.util.Base64.decode(
-                                    //        jobInfo.UF_DETAIL_IMAGE!!,
-                                    //        android.util.Base64.DEFAULT
-                                    //    )
-                                    //logo_iv.setImageBitmap(BitmapFactory.decodeByteArray(btm, 0, btm.size))
+                                    val btm = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                                        Base64.getDecoder().decode(jobInfo.UF_DETAIL_IMAGE!!)
+                                    else
+                                        android.util.Base64.decode(
+                                            jobInfo.UF_DETAIL_IMAGE!!,
+                                            android.util.Base64.DEFAULT
+                                        )
+                                    logo_iv.setImageBitmap(BitmapFactory.decodeByteArray(btm, 0, btm.size))
                                 } catch (e: Exception) {
                                     Log.e("test", "base64 error:")
                                 }
@@ -137,7 +137,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
             }
 
             try {
-                salary_tv.data = jobInfo.UF_GROSS_PER_MONTH?.toString()?.round()?.trim()?.toInt().toString()
+                salary_tv.data = jobInfo.UF_GROSS_PER_MONTH?.toString()//?.round()
                 val selectedCurrency = currency ?: setting.getCurrentCurrency()
                 currencies.indices.forEach {
                     if (currencies[it].id == selectedCurrency.id) {
@@ -222,6 +222,8 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
             REQUEST_PICTURE -> {
                 if (resultCode == Activity.RESULT_OK) {
                     logo_iv.setImageURI(data?.data)
+                    val bitmap = logo_iv.drawable.toBitmap(100, 100)
+                    logo_iv.setImageBitmap(bitmap)
                     isLogoSelected = true
                 }//tmp stub
                 return
@@ -438,7 +440,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                         if (job!!.UF_SKILLS_ID_ALL.isNullOrEmpty()) Setting.DEFAULT_SKILL_ID_ALWAYS_HIDDEN
                         else job!!.UF_SKILLS_ID_ALL
 
-                    currentVocationRealm.UF_GROSS_PER_MONTH = salary_tv.data?.trim()?.toInt()
+                    currentVocationRealm.UF_GROSS_PER_MONTH = salary_tv.data?.trim()?.replace(" ", "")?.toInt()
                     if (currentVocationRealm.UF_GROSS_PER_MONTH == 0)
                         currentVocationRealm.UF_GROSS_PER_MONTH = null
                     currentVocationRealm.UF_GROSS_CURRENCY_ID =
@@ -527,7 +529,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
             if (job!!.UF_SKILLS_ID_ALL.isNullOrEmpty()) Setting.DEFAULT_SKILL_ID_ALWAYS_HIDDEN
             else job!!.UF_SKILLS_ID_ALL
 
-        currentVocationRealm.UF_GOLD_PER_MONTH = salary_tv.data?.trim()?.toInt()
+        currentVocationRealm.UF_GOLD_PER_MONTH = salary_tv.data?.trim()?.replace(" ", "")?.toInt()
         currentVocationRealm.UF_GROSS_CURRENCY_ID =
             currencies[salaryVal_tv.selectedItemPosition].id
         if (currentVocationRealm.UF_GROSS_PER_MONTH == 0)
