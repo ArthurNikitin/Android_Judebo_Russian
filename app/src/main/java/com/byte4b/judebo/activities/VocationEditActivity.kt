@@ -68,17 +68,14 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
         company_field.counterMaxLength = Setting.TEXT_LENGTH_MAX_SYMBOLS_JOB_COMPANY
         detail_field.counterMaxLength = Setting.TEXT_LENGTH_MAX_SYMBOLS_JOB_DETAIL
 
-        val jobInfo: Vocation
-        try {
+        val jobInfo: Vocation = try {
             Log.e("test", intent.getLongExtra("appId", -1).toString())
 
-            jobInfo = realm.where<VocationRealm>().equalTo("UF_APP_JOB_ID",
+            realm.where<VocationRealm>().equalTo("UF_APP_JOB_ID",
                 intent.getLongExtra("appId", -1)
             ).findFirst()!!.toBasicVersion()
-
         } catch (e: Exception) {
-            Log.e("test", e.localizedMessage ?: "EERRRorr")
-            return
+            Vocation()
         }
         if (jobInfo.UF_APP_JOB_ID == null) {
             val loc = getLocation()
@@ -413,91 +410,102 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
 
     @SuppressLint("SimpleDateFormat")
     fun saveClick(v: View) {
-        if (!validateForm()) return
+        try {
+            if (!validateForm()) return
 
-        realm.executeTransaction {
-            if (job != null && job!!.UF_APP_JOB_ID != null) {
-                job?.apply {
-                    val currentVocationRealm =
-                        it.where<VocationRealm>()
-                            .equalTo("UF_APP_JOB_ID", job!!.UF_APP_JOB_ID)
-                            .findFirst() //if null - create new else edit
+            realm.executeTransaction {
+                if (job != null && job!!.UF_APP_JOB_ID != null) {
+                    job?.apply {
+                        val currentVocationRealm =
+                            it.where<VocationRealm>()
+                                .equalTo("UF_APP_JOB_ID", job!!.UF_APP_JOB_ID)
+                                .findFirst() //if null - create new else edit
 
-                    if (currentVocationRealm == null) {
-                        createNewVocation()
-                        return@apply
-                    }
+                        if (currentVocationRealm == null) {
+                            createNewVocation()
+                            return@apply
+                        }
 
-                    //edit current
-                    currentVocationRealm.COMPANY = company_tv.data
-                    currentVocationRealm.NAME = name_tv.data
-                    currentVocationRealm.DETAIL_TEXT = details_tv.data
-                    currentVocationRealm.UF_CONTACT_EMAIL = email_tv.data
-                    currentVocationRealm.UF_CONTACT_PHONE = phone_tv.data
-                    currentVocationRealm.UF_ACTIVE = if (isValidForm()) 1 else 0
+                        //edit current
+                        currentVocationRealm.COMPANY = company_tv.data
+                        currentVocationRealm.NAME = name_tv.data
+                        currentVocationRealm.DETAIL_TEXT = details_tv.data
+                        currentVocationRealm.UF_CONTACT_EMAIL = email_tv.data
+                        currentVocationRealm.UF_CONTACT_PHONE = phone_tv.data
+                        currentVocationRealm.UF_ACTIVE = if (isValidForm()) 1 else 0
 
-                    val time = Calendar.getInstance()
-                    currentVocationRealm.UF_MODIFED = time.timestamp
-                    time.add(Calendar.DATE, Setting.JOB_LIFETIME_IN_DAYS)
-                    currentVocationRealm.UF_DISABLE = time.timestamp
+                        val time = Calendar.getInstance()
+                        currentVocationRealm.UF_MODIFED = time.timestamp
+                        time.add(Calendar.DATE, Setting.JOB_LIFETIME_IN_DAYS)
+                        currentVocationRealm.UF_DISABLE = time.timestamp
 
-                    currentVocationRealm.UF_LANGUAGE_ID_ALL = job!!.UF_LANGUAGE_ID_ALL
-                    currentVocationRealm.UF_SKILLS_ID_ALL =
-                        if (job!!.UF_SKILLS_ID_ALL.isNullOrEmpty()) Setting.DEFAULT_SKILL_ID_ALWAYS_HIDDEN
-                        else job!!.UF_SKILLS_ID_ALL
+                        currentVocationRealm.UF_LANGUAGE_ID_ALL = job!!.UF_LANGUAGE_ID_ALL
+                        currentVocationRealm.UF_SKILLS_ID_ALL =
+                            if (job!!.UF_SKILLS_ID_ALL.isNullOrEmpty()) Setting.DEFAULT_SKILL_ID_ALWAYS_HIDDEN
+                            else job!!.UF_SKILLS_ID_ALL
 
-                    currentVocationRealm.UF_GROSS_PER_MONTH = salary_tv.data?.trim()?.replace(" ", "")?.toInt()
-                    if (currentVocationRealm.UF_GROSS_PER_MONTH == 0)
-                        currentVocationRealm.UF_GROSS_PER_MONTH = null
-                    currentVocationRealm.UF_GROSS_CURRENCY_ID =
-                        currencies[salaryVal_tv.selectedItemPosition].id
-                    if (currentVocationRealm.UF_GROSS_PER_MONTH != null) {
-                        currentVocationRealm.UF_GOLD_PER_MONTH =
-                            (1000 * currentVocationRealm.UF_GROSS_PER_MONTH!!
-                                    / currencies.first { it.id ==
-                                        currentVocationRealm.UF_GROSS_CURRENCY_ID}.rate)
-                    }
+                        currentVocationRealm.UF_GROSS_PER_MONTH = try {
+                                salary_tv.data?.trim()?.replace(" ", "")?.toInt()
+                        } catch (e: Exception) {
+                            null
+                        }
+                        if (currentVocationRealm.UF_GROSS_PER_MONTH == 0)
+                            currentVocationRealm.UF_GROSS_PER_MONTH = null
+                        currentVocationRealm.UF_GROSS_CURRENCY_ID =
+                            currencies[salaryVal_tv.selectedItemPosition].id
+                        if (currentVocationRealm.UF_GROSS_PER_MONTH != null) {
+                            currentVocationRealm.UF_GOLD_PER_MONTH =
+                                (1000 * currentVocationRealm.UF_GROSS_PER_MONTH!!
+                                        / currencies.first {
+                                    it.id ==
+                                            currentVocationRealm.UF_GROSS_CURRENCY_ID
+                                }.rate)
+                        }
 
-                    if (isLogoSelected) {
-                        val drawable = logo_iv.drawable
-                        currentVocationRealm.UF_DETAIL_IMAGE = toBase64(
-                            drawable.toBitmap(
-                                Setting.MAX_IMG_CROP_HEIGHT,
-                                Setting.MAX_IMG_CROP_HEIGHT
+                        if (isLogoSelected) {
+                            val drawable = logo_iv.drawable
+                            currentVocationRealm.UF_DETAIL_IMAGE = toBase64(
+                                drawable.toBitmap(
+                                    Setting.MAX_IMG_CROP_HEIGHT,
+                                    Setting.MAX_IMG_CROP_HEIGHT
+                                )
                             )
-                        )
-                        currentVocationRealm.UF_LOGO_IMAGE = toBase64(
-                            drawable.toBitmap(
-                                Setting.MAX_IMG_CROP_HEIGHT_LOGO,
-                                Setting.MAX_IMG_CROP_HEIGHT_LOGO
+                            currentVocationRealm.UF_LOGO_IMAGE = toBase64(
+                                drawable.toBitmap(
+                                    Setting.MAX_IMG_CROP_HEIGHT_LOGO,
+                                    Setting.MAX_IMG_CROP_HEIGHT_LOGO
+                                )
                             )
-                        )
-                        currentVocationRealm.UF_PREVIEW_IMAGE = toBase64(
-                            drawable.toBitmap(
-                                Setting.MAX_IMG_CROP_HEIGHT_PREVIEW,
-                                Setting.MAX_IMG_CROP_HEIGHT_PREVIEW
+                            currentVocationRealm.UF_PREVIEW_IMAGE = toBase64(
+                                drawable.toBitmap(
+                                    Setting.MAX_IMG_CROP_HEIGHT_PREVIEW,
+                                    Setting.MAX_IMG_CROP_HEIGHT_PREVIEW
+                                )
                             )
+                        }
+
+                        val latLng =
+                            (supportFragmentManager.fragments.last() as DetailsMapFragment).latLng
+                                ?: LatLng(Setting.DEFAULT_LATITUDE, Setting.DEFAULT_LONGITUDE)
+                        currentVocationRealm.UF_MAP_POINT =
+                            "${latLng.latitude}, ${latLng.longitude}"
+                        currentVocationRealm.UF_TYPE_OF_JOB_ID = realm
+                            .where<JobTypeRealm>().findAll()
+                            .filter { it.name.trim() != "" }[jobType_tv.selectedItemPosition].id
+
+                        ApiServiceImpl(this).updateMyVocations(
+                            setting.getCurrentLanguage().locale,
+                            token = "Z4pjjs5t7rt6uJc2uOLWx5Zb",
+                            login = "judebo.com@gmail.com",
+                            vocations = listOf(currentVocationRealm.toBasicVersion())
                         )
+                        if (isValidForm()) finish()
                     }
-
-                    val latLng =
-                        (supportFragmentManager.fragments.last() as DetailsMapFragment).latLng
-                            ?: LatLng(Setting.DEFAULT_LATITUDE, Setting.DEFAULT_LONGITUDE)
-                    currentVocationRealm.UF_MAP_POINT = "${latLng.latitude}, ${latLng.longitude}"
-                    currentVocationRealm.UF_TYPE_OF_JOB_ID = realm
-                        .where<JobTypeRealm>().findAll()
-                        .filter { it.name.trim() != "" }[jobType_tv.selectedItemPosition].id
-
-                    ApiServiceImpl(this).updateMyVocations(
-                        setting.getCurrentLanguage().locale,
-                        token = "Z4pjjs5t7rt6uJc2uOLWx5Zb",
-                        login = "judebo.com@gmail.com",
-                        vocations = listOf(currentVocationRealm.toBasicVersion())
-                    )
-                    if (isValidForm()) finish()
-                }
-            } else
-                createNewVocation()
+                } else
+                    createNewVocation()
+            }
+        } catch (e: Exception) {
+            Log.e("test", e.localizedMessage?: "error")
         }
     }
 
@@ -535,7 +543,11 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
             if (job!!.UF_SKILLS_ID_ALL.isNullOrEmpty()) Setting.DEFAULT_SKILL_ID_ALWAYS_HIDDEN
             else job!!.UF_SKILLS_ID_ALL
 
-        currentVocationRealm.UF_GOLD_PER_MONTH = salary_tv.data?.trim()?.replace(" ", "")?.toInt()
+        currentVocationRealm.UF_GROSS_PER_MONTH = try {
+            salary_tv.data?.trim()?.replace(" ", "")?.toInt()
+        } catch (e: Exception) {
+            null
+        }
         currentVocationRealm.UF_GROSS_CURRENCY_ID =
             currencies[salaryVal_tv.selectedItemPosition].id
         if (currentVocationRealm.UF_GROSS_PER_MONTH == 0)

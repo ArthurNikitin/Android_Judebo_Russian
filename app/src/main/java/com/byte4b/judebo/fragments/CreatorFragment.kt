@@ -265,6 +265,39 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                 //проити по всем локальным элементам у которых JOB_ID не пустое, если такой элемент не пришел с сервера
                 //то удалить запись из REALM
             }
+
+            // update old data on web server
+            val vocationsForUploadToServer = mutableListOf<Vocation>()
+            realmList.forEach { vocationFromRealm ->
+                if (vocationFromRealm.UF_JOBS_ID == null)
+                //if JOBS_ID == null
+                {
+                    //that element save to array for send to server
+                    vocationsForUploadToServer.add(vocationFromRealm.toBasicVersion())
+                } else
+                //if JOBS_ID != null
+                {
+                    val vocationFromServer =
+                        list.firstOrNull { vocationFromRealm.UF_JOBS_ID == it.UF_JOBS_ID }
+                    if (vocationFromServer != null)
+                        //if ELEMENT exist in JSON
+                    {
+                        if (vocationFromRealm.UF_MODIFED ?: 0 > vocationFromServer.UF_MODIFED ?: 0)
+                        //if MODIF Realm > MODIF JSON
+                        {
+                            //that element save to array for send to server
+                            vocationsForUploadToServer.add(vocationFromRealm.toBasicVersion())
+                        }
+                    }
+                }
+            }
+
+            ApiServiceImpl(this).updateMyVocations(
+                setting.getCurrentLanguage().locale,
+                token = "Z4pjjs5t7rt6uJc2uOLWx5Zb",
+                login = "judebo.com@gmail.com",
+                vocations = vocationsForUploadToServer
+            )
         }
 
         run {

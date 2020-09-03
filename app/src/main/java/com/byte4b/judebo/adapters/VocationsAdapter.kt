@@ -170,7 +170,12 @@ class VocationsAdapter(
 
                 holder.editDateView.text = editString
                 val currency = currencies.firstOrNull { it.id == UF_GROSS_CURRENCY_ID }
-                holder.salaryView.text = "$UF_GROSS_PER_MONTH ${currency?.name ?: "USD"}"
+                if (UF_GROSS_PER_MONTH == null) {
+                    holder.salaryView.visibility = View.INVISIBLE
+                } else {
+                    holder.salaryView.visibility = View.VISIBLE
+                    holder.salaryView.text = "$UF_GROSS_PER_MONTH ${currency?.name ?: "USD"}"
+                }
             }
         } catch (e: Exception) {
             Log.e("test", "adapter: " + (e.localizedMessage ?: "error"))
