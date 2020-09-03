@@ -361,26 +361,40 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
     }
 
     private fun isValidForm(): Boolean {
+        return if (name_tv.data?.trim().isNullOrEmpty()) {
+            false
+        } else if (phone_tv.data?.trim().isNullOrEmpty() && email_tv.data?.trim().isNullOrEmpty()) {
+            false
+        } else if (details_tv.data?.trim().isNullOrEmpty()) {
+            false
+        } else if (email_tv.data?.contains("@") == false
+            && email_tv.data?.contains(".") == false) {
+            false
+        } else
+            true
+    }
+
+    private fun validateForm(): Boolean {
         if (name_tv.data?.trim().isNullOrEmpty()) {
             name_tv.error = ""
-            return false
+            //return false
         }
 
         if (phone_tv.data?.trim().isNullOrEmpty() && email_tv.data?.trim().isNullOrEmpty()) {
             phone_tv.error = ""
             email_tv.error = ""
-            return false
+            //return false
         }
 
         if (details_tv.data?.trim().isNullOrEmpty()) {
             details_tv.error = ""
-            return false
+            //return false
         }
 
         if (email_tv.data?.contains("@") == false
             && email_tv.data?.contains(".") == false) {
             email_tv.error = ""
-            return false
+            //return false
         }
 
         return true
@@ -388,7 +402,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
 
     @SuppressLint("SimpleDateFormat")
     fun saveClick(v: View) {
-        if (!isValidForm()) return
+        if (!validateForm()) return
 
         realm.executeTransaction {
             if (job != null && job!!.UF_APP_JOB_ID != null) {
@@ -409,6 +423,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                     currentVocationRealm.DETAIL_TEXT = details_tv.data
                     currentVocationRealm.UF_CONTACT_EMAIL = email_tv.data
                     currentVocationRealm.UF_CONTACT_PHONE = phone_tv.data
+                    currentVocationRealm.UF_ACTIVE = if (isValidForm()) 1 else 0
 
                     val time = Calendar.getInstance()
                     currentVocationRealm.UF_MODIFED = time.timestamp
@@ -425,9 +440,9 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                         currencies[salaryVal_tv.selectedItemPosition].id
                     if (!currentVocationRealm.UF_GROSS_PER_MONTH.isNullOrEmpty()) {
                         currentVocationRealm.UF_GOLD_PER_MONTH =
-                            (currentVocationRealm.UF_GROSS_PER_MONTH!!.toDouble()
+                            (1000 * currentVocationRealm.UF_GROSS_PER_MONTH!!.toDouble()
                                     / currencies.first { it.id ==
-                                        currentVocationRealm.UF_GROSS_CURRENCY_ID}.rate)
+                                        currentVocationRealm.UF_GROSS_CURRENCY_ID}.rate).toInt()
                                 .toString()
                     }
 
@@ -462,7 +477,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                         login = "judebo.com@gmail.com",
                         vocations = listOf(currentVocationRealm.toBasicVersion())
                     )
-                    finish()
+                    if (isValidForm()) finish()
                 }
             } else
                 createNewVocation()
@@ -491,6 +506,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
         currentVocationRealm.DETAIL_TEXT = details_tv.data
         currentVocationRealm.UF_CONTACT_EMAIL = email_tv.data
         currentVocationRealm.UF_CONTACT_PHONE = phone_tv.data
+        currentVocationRealm.UF_ACTIVE = if (isValidForm()) 1 else 0
 
         val time = Calendar.getInstance()
         currentVocationRealm.UF_MODIFED = time.timestamp
@@ -507,9 +523,9 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
             currencies[salaryVal_tv.selectedItemPosition].id
         if (!currentVocationRealm.UF_GROSS_PER_MONTH.isNullOrEmpty()) {
             currentVocationRealm.UF_GOLD_PER_MONTH =
-                (currentVocationRealm.UF_GROSS_PER_MONTH!!.toDouble()
+                (1000 * currentVocationRealm.UF_GROSS_PER_MONTH!!.toDouble()
                         / currencies.first { it.id ==
-                        currentVocationRealm.UF_GROSS_CURRENCY_ID}.rate)
+                        currentVocationRealm.UF_GROSS_CURRENCY_ID}.rate).toInt()
                     .toString()
         }
 
@@ -550,7 +566,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
             login = "judebo.com@gmail.com",
             vocations = listOf(currentVocationRealm.toBasicVersion())
         )
-        finish()
+        if (isValidForm()) finish()
     }
 
     private fun getNewJobAppId(): String {
