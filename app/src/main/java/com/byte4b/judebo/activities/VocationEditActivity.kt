@@ -50,6 +50,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
     private val skillsRealm by lazy {
         realm.where<SkillRealm>().findAll().map { it.toBasicVersion() }
     }
+    private var isLogoSelected = false
 
     companion object {
         private const val REQUEST_CROP = 101
@@ -206,8 +207,6 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
             android.R.layout.simple_spinner_dropdown_item,
             currencies.map { it.name }
         )
-
-        //UF_GROSS_CURRENCY_ID
     }
 
     fun closeClick(v: View) = finish()
@@ -215,10 +214,16 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         when (requestCode) {
             REQUEST_CROP -> {
-                logo_iv.setImageURI(data?.data)
+                if (resultCode == Activity.RESULT_OK) {
+                    logo_iv.setImageURI(data?.data)
+                    isLogoSelected = true
+                }
             }
             REQUEST_PICTURE -> {
-                logo_iv.setImageURI(data?.data)//tmp stub
+                if (resultCode == Activity.RESULT_OK) {
+                    logo_iv.setImageURI(data?.data)
+                    isLogoSelected = true
+                }//tmp stub
                 return
                 val cropIntent = Intent("com.android.camera.action.CROP")
                 cropIntent.setDataAndType(data?.data, "image/*")
@@ -446,22 +451,27 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                                 .toString()
                     }
 
-                    val drawable = logo_iv.drawable
-                    currentVocationRealm.UF_DETAIL_IMAGE = toBase64(
-                        drawable.toBitmap(Setting.MAX_IMG_CROP_HEIGHT, Setting.MAX_IMG_CROP_HEIGHT)
-                    )
-                    currentVocationRealm.UF_LOGO_IMAGE = toBase64(
-                        drawable.toBitmap(
-                            Setting.MAX_IMG_CROP_HEIGHT_LOGO,
-                            Setting.MAX_IMG_CROP_HEIGHT_LOGO
+                    if (isLogoSelected) {
+                        val drawable = logo_iv.drawable
+                        currentVocationRealm.UF_DETAIL_IMAGE = toBase64(
+                            drawable.toBitmap(
+                                Setting.MAX_IMG_CROP_HEIGHT,
+                                Setting.MAX_IMG_CROP_HEIGHT
+                            )
                         )
-                    )
-                    currentVocationRealm.UF_PREVIEW_IMAGE = toBase64(
-                        drawable.toBitmap(
-                            Setting.MAX_IMG_CROP_HEIGHT_PREVIEW,
-                            Setting.MAX_IMG_CROP_HEIGHT_PREVIEW
+                        currentVocationRealm.UF_LOGO_IMAGE = toBase64(
+                            drawable.toBitmap(
+                                Setting.MAX_IMG_CROP_HEIGHT_LOGO,
+                                Setting.MAX_IMG_CROP_HEIGHT_LOGO
+                            )
                         )
-                    )
+                        currentVocationRealm.UF_PREVIEW_IMAGE = toBase64(
+                            drawable.toBitmap(
+                                Setting.MAX_IMG_CROP_HEIGHT_PREVIEW,
+                                Setting.MAX_IMG_CROP_HEIGHT_PREVIEW
+                            )
+                        )
+                    }
 
                     val latLng =
                         (supportFragmentManager.fragments.last() as DetailsMapFragment).latLng
@@ -529,22 +539,24 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                     .toString()
         }
 
-        val drawable = logo_iv.drawable
-        currentVocationRealm.UF_DETAIL_IMAGE = toBase64(
-            drawable.toBitmap(Setting.MAX_IMG_CROP_HEIGHT, Setting.MAX_IMG_CROP_HEIGHT)
-        )
-        currentVocationRealm.UF_LOGO_IMAGE = toBase64(
-            drawable.toBitmap(
-                Setting.MAX_IMG_CROP_HEIGHT_LOGO,
-                Setting.MAX_IMG_CROP_HEIGHT_LOGO
+        if (isLogoSelected) {
+            val drawable = logo_iv.drawable
+            currentVocationRealm.UF_DETAIL_IMAGE = toBase64(
+                drawable.toBitmap(Setting.MAX_IMG_CROP_HEIGHT, Setting.MAX_IMG_CROP_HEIGHT)
             )
-        )
-        currentVocationRealm.UF_PREVIEW_IMAGE = toBase64(
-            drawable.toBitmap(
-                Setting.MAX_IMG_CROP_HEIGHT_PREVIEW,
-                Setting.MAX_IMG_CROP_HEIGHT_PREVIEW
+            currentVocationRealm.UF_LOGO_IMAGE = toBase64(
+                drawable.toBitmap(
+                    Setting.MAX_IMG_CROP_HEIGHT_LOGO,
+                    Setting.MAX_IMG_CROP_HEIGHT_LOGO
+                )
             )
-        )
+            currentVocationRealm.UF_PREVIEW_IMAGE = toBase64(
+                drawable.toBitmap(
+                    Setting.MAX_IMG_CROP_HEIGHT_PREVIEW,
+                    Setting.MAX_IMG_CROP_HEIGHT_PREVIEW
+                )
+            )
+        }
 
         val latLng =
             (supportFragmentManager.fragments.last() as DetailsMapFragment).latLng ?: LatLng(
