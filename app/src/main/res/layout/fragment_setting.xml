@@ -112,6 +112,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/param_background"
+                android:text="@string/settings_title_support"
+                android:textColor="#000" />
+
+            <TextView
+                android:id="@+id/support_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:paddingLeft="8dp"
+                android:paddingTop="5dp"
+                android:paddingRight="15dp"
+                android:paddingBottom="5dp"
+                android:text="@string/settings_title_support_email"
+                android:textColor="#000" />
+
+            <TextView
+                android:gravity="left"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/param_background"
                 android:text="@string/settings_title_subsription"
                 android:textColor="#000" />
 
@@ -144,19 +168,7 @@
             </LinearLayout>
 
             <TextView
-                android:gravity="left"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:paddingStart="15dp"
-                android:paddingEnd="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/param_background"
-                android:text="@string/settings_title_support"
-                android:textColor="#000" />
-
-            <TextView
-                android:id="@+id/support_tv"
+                android:id="@+id/myEmail_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
@@ -164,7 +176,19 @@
                 android:paddingTop="5dp"
                 android:paddingRight="15dp"
                 android:paddingBottom="5dp"
-                android:text="@string/settings_title_support_email"
+                android:text="judebo@gmail.com"
+                android:textColor="#000" />
+
+            <TextView
+                android:id="@+id/signOut_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:paddingLeft="8dp"
+                android:paddingTop="5dp"
+                android:paddingRight="15dp"
+                android:paddingBottom="5dp"
+                android:text="@string/settings_logout"
                 android:textColor="#000" />
 
         </LinearLayout>

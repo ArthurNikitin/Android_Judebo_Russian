@@ -14,6 +14,12 @@ class Setting(ctx: Context) {
 
     private val pref = ctx.getSharedPreferences("setting", Context.MODE_PRIVATE)
 
+    fun logout() {
+        isAuth = false
+        token = null
+        email = null
+    }
+
     var isAuth
         get() = pref.getBoolean("is_auth", false)
         set(value) = pref.edit().putBoolean("is_auth", value).apply()

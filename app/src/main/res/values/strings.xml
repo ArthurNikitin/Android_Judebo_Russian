@@ -47,6 +47,8 @@
     <string name="settings_login" translatable="false">Login</string>
     <string name="settings_email" translatable="false">Email</string>
     <string name="settings_password" translatable="false">Password</string>
+    <string name="request_logout_title" translatable="false">Logout</string>
+    <string name="request_logout_message" translatable="false">Logout?</string>
 
 
 </resources>

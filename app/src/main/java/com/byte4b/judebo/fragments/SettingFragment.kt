@@ -60,6 +60,17 @@ class SettingFragment : Fragment(R.layout.fragment_setting) {
             Log.e("test", "2: " + e.localizedMessage)
         }
 
+        signOut_tv.setOnClickListener {
+            AlertDialog.Builder(requireContext())
+                .setTitle(R.string.request_logout_title)
+                .setMessage(R.string.request_logout_message)
+                .setPositiveButton(R.string.request_geolocation_ok) { dialog, _ ->
+                    setting.logout()
+                    dialog.dismiss()
+                }
+                .setNegativeButton(R.string.request_geolocation_cancel) { d, _ -> d.cancel()}
+                .show()
+        }
         langClickable.setOnClickListener { showLanguageDialog() }
         currencyClickable.setOnClickListener { showCurrencyDialog() }
         support_tv.setOnClickListener {
@@ -84,6 +95,19 @@ class SettingFragment : Fragment(R.layout.fragment_setting) {
                 dialog.dismiss()
             }
             .show()
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        if (setting.isAuth) {
+            signOut_tv.visibility = View.VISIBLE
+            myEmail_tv.visibility = View.VISIBLE
+            myEmail_tv.text = setting.email
+        } else {
+            signOut_tv.visibility = View.GONE
+            myEmail_tv.visibility = View.GONE
+        }
     }
 
     private fun showLanguageDialog() {
