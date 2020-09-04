@@ -20,7 +20,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
-            android:hint="email stub"
+            android:hint="@string/settings_email"
             android:inputType="textEmailAddress" />
 
         <com.google.android.material.textfield.TextInputEditText
@@ -29,22 +29,27 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:gravity="center"
-            android:hint="password stub"
+            android:hint="@string/settings_password"
             android:layout_marginTop="5dp"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
             android:inputType="textPassword" />
 
-        <com.google.android.material.button.MaterialButton
+        <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
             android:layout_marginTop="5dp"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
             app:cornerRadius="15dp"
+            android:layout_gravity="center"
+            android:textColor="#fff"
+            app:spinning_bar_width="4dp"
+            app:spinning_bar_color="#FFF"
+            app:spinning_bar_padding="6dp"
             android:id="@+id/loginButton_b"
-            android:backgroundTint="@color/toolbar_background_color"
+            android:background="@drawable/button_background"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button stub" />
+            android:text="@string/settings_login" />
 
         <LinearLayout
             android:layout_marginTop="5dp"

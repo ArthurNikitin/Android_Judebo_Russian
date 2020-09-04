@@ -210,8 +210,8 @@ class VocationsAdapter(
                 it.copyToRealm(newVocation)
                 ApiServiceImpl(this).addMyVocation(
                     setting.getCurrentLanguage().locale,
-                    token = "Z4pjjs5t7rt6uJc2uOLWx5Zb",
-                    login = "judebo.com@gmail.com",
+                    token = setting.token ?: "",
+                    login = setting.email ?: "",
                     vocation = newVocation.toBasicVersion()
                 )
                 ctx.startActivity<VocationEditActivity> {
@@ -275,8 +275,8 @@ class VocationsAdapter(
                     try {
                         ApiServiceImpl(this).deleteVocation(
                             setting.getCurrentLanguage().locale,
-                            token = "Z4pjjs5t7rt6uJc2uOLWx5Zb",
-                            login = "judebo.com@gmail.com",
+                            token = setting.token ?: "",
+                            login = setting.email ?: "",
                             vocation = vocationRealm!!.toBasicVersion()
                         )
                     } catch (e: Exception) {

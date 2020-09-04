@@ -295,8 +295,8 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
 
             ApiServiceImpl(this).updateMyVocations(
                 setting.getCurrentLanguage().locale,
-                token = "Z4pjjs5t7rt6uJc2uOLWx5Zb",
-                login = "judebo.com@gmail.com",
+                token = setting.token ?: "",
+                login = setting.email ?: "",
                 vocations = vocationsForUploadToServer
             )
         }
@@ -347,8 +347,8 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
         refresher.isRefreshing = true
         ApiServiceImpl(this).getMyVocations(
             setting.getCurrentLanguage().locale,
-            token = "Z4pjjs5t7rt6uJc2uOLWx5Zb",
-            login = "judebo.com@gmail.com"
+            token = setting.token ?: "",
+            login = setting.email ?: ""
         )
     }
 

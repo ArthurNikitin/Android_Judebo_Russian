@@ -43,8 +43,10 @@
     <string name="error_label" translatable="false">Error</string>
     <string name="request_image_access_title" translatable="false">Access</string>
     <string name="request_image_access_message" translatable="false">Need access</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="settings_logout" translatable="false">Logout</string>
+    <string name="settings_login" translatable="false">Login</string>
+    <string name="settings_email" translatable="false">Email</string>
+    <string name="settings_password" translatable="false">Password</string>
 
 
 </resources>

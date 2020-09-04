@@ -81,7 +81,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun restartFragment(fragment: Fragment) {
+    fun restartFragment(fragment: Fragment) {
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.frame, fragment)

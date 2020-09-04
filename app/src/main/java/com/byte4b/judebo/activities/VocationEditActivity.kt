@@ -353,8 +353,8 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                     try {
                         ApiServiceImpl(this).deleteVocation(
                             setting.getCurrentLanguage().locale,
-                            token = "Z4pjjs5t7rt6uJc2uOLWx5Zb",
-                            login = "judebo.com@gmail.com",
+                            token = setting.token ?: "",
+                            login = setting.email ?: "",
                             vocation = vocationRealm!!.toBasicVersion()
                         )
                     } catch (e: Exception) {
@@ -499,8 +499,8 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
 
                         ApiServiceImpl(this).updateMyVocations(
                             setting.getCurrentLanguage().locale,
-                            token = "Z4pjjs5t7rt6uJc2uOLWx5Zb",
-                            login = "judebo.com@gmail.com",
+                            token = setting.token ?: "",
+                            login = setting.email ?: "",
                             vocations = listOf(currentVocationRealm.toBasicVersion())
                         )
                         if (isValidForm()) finish()
@@ -599,8 +599,8 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
 
         ApiServiceImpl(this).updateMyVocations(
             setting.getCurrentLanguage().locale,
-            token = "Z4pjjs5t7rt6uJc2uOLWx5Zb",
-            login = "judebo.com@gmail.com",
+            token = setting.token ?: "",
+            login = setting.email ?: "",
             vocations = listOf(currentVocationRealm.toBasicVersion())
         )
         if (isValidForm()) finish()
