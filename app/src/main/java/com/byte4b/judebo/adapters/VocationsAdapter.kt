@@ -46,7 +46,7 @@ class VocationsAdapter(
 ) : RecyclerView.Adapter<VocationsAdapter.Holder>(), ServiceListener {
 
     init {
-        vocations = vocations.sortedBy { it.UF_MODIFED }.reversed()
+        vocations = vocations.sortedByDescending { it.UF_MODIFED ?: 0 }
     }
 
     private val setting by lazy { Setting(ctx) }

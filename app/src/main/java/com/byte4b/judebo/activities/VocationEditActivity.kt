@@ -361,6 +361,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                     } catch (e: Exception) {
                         onVocationDeleted(false)
                     }
+                    finish()
                 }
                 dialog.dismiss()
             }
