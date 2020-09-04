@@ -66,6 +66,8 @@ class SettingFragment : Fragment(R.layout.fragment_setting) {
                 .setMessage(R.string.request_logout_message)
                 .setPositiveButton(R.string.request_geolocation_ok) { dialog, _ ->
                     setting.logout()
+                    signOut_tv.visibility = View.GONE
+                    myEmail_tv.visibility = View.GONE
                     dialog.dismiss()
                 }
                 .setNegativeButton(R.string.request_geolocation_cancel) { d, _ -> d.cancel()}
