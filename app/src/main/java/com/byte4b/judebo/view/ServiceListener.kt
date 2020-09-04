@@ -20,4 +20,6 @@ interface ServiceListener {
 
     fun onVocationAdded(success: Boolean) {}
 
+    fun onSignIn(result: AuthResult?) {}
+
 }

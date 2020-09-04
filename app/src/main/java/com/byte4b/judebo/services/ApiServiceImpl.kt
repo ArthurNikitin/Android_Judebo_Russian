@@ -196,4 +196,55 @@ class ApiServiceImpl(val listener: ServiceListener?) : ApiService {
             })
     }
 
+    override fun signInWithEmail(locale: String, login: String, password: String) {
+        getAPI(locale)
+            .signInWithEmail(login, password)
+            .enqueue(object : Callback<AuthResult> {
+                override fun onFailure(call: Call<AuthResult>, t: Throwable) {
+                    check { listener?.onSignIn(null) }
+                }
+
+                override fun onResponse(call: Call<AuthResult>, response: Response<AuthResult>) {
+                    check {
+                        if (response.isSuccessful) listener?.onSignIn(response.body())
+                        else listener?.onSignIn(null)
+                    }
+                }
+            })
+    }
+
+    override fun signInWithFb(locale: String, login: String) {
+        getAPI(locale)
+            .signInWithFb(login)
+            .enqueue(object : Callback<AuthResult> {
+                override fun onFailure(call: Call<AuthResult>, t: Throwable) {
+                    check { listener?.onSignIn(null) }
+                }
+
+                override fun onResponse(call: Call<AuthResult>, response: Response<AuthResult>) {
+                    check {
+                        if (response.isSuccessful) listener?.onSignIn(response.body())
+                        else listener?.onSignIn(null)
+                    }
+                }
+            })
+    }
+
+    override fun signInWithGoogle(locale: String, login: String) {
+        getAPI(locale)
+            .signInWithGoogle(login)
+            .enqueue(object : Callback<AuthResult> {
+                override fun onFailure(call: Call<AuthResult>, t: Throwable) {
+                    check { listener?.onSignIn(null) }
+                }
+
+                override fun onResponse(call: Call<AuthResult>, response: Response<AuthResult>) {
+                    check {
+                        if (response.isSuccessful) listener?.onSignIn(response.body())
+                        else listener?.onSignIn(null)
+                    }
+                }
+            })
+    }
+
 }

@@ -27,5 +27,10 @@ interface ApiService {
 
     fun addMyVocation(locale: String, token: String, login: String, vocation: Vocation)
 
+    fun signInWithEmail(locale: String, login: String, password: String)
+
+    fun signInWithFb(locale: String, login: String)
+
+    fun signInWithGoogle(locale: String, login: String)
 
 }

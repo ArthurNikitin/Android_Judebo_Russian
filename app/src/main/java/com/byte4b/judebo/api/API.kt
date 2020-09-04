@@ -55,4 +55,22 @@ interface API {
                      @Body list: List<Vocation>):
             Call<Result>
 
+    @GET("app_auth.php")
+    fun signInWithEmail(@Query("login") login: String,
+                        @Query("pass") password: String,
+                        @Query("key") key: String = secretKey):
+            Call<AuthResult>
+
+    @GET("app_auth.php")
+    fun signInWithFb(@Query("login") login: String,
+                     @Query("fb") fb: Int = 1,
+                     @Query("key") key: String = secretKey):
+            Call<AuthResult>
+
+    @GET("app_auth.php")
+    fun signInWithGoogle(@Query("login") login: String,
+                         @Query("gg") fb: Int = 1,
+                         @Query("key") key: String = secretKey):
+            Call<AuthResult>
+
 }
