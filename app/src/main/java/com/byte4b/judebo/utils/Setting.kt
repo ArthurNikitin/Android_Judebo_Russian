@@ -14,6 +14,18 @@ class Setting(ctx: Context) {
 
     private val pref = ctx.getSharedPreferences("setting", Context.MODE_PRIVATE)
 
+    var isAuth
+        get() = pref.getBoolean("is_auth", false)
+        set(value) = pref.edit().putBoolean("is_auth", value).apply()
+
+    var token
+        get() = pref.getString("token", null)
+        set(value) = pref.edit().putString("token", value).apply()
+
+    var email
+        get() = pref.getString("email", null)
+        set(value) = pref.edit().putString("email", value).apply()
+
     var lastUpdateDynamicDataFromServer
         get() = pref.getString("last_update", 0L.toString())!!
         set(value) = pref.edit().putString("last_update", value).apply()

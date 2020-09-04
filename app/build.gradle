@@ -55,6 +55,9 @@ dependencies {
     implementation 'com.google.android:flexbox:2.0.1'
     implementation 'com.android.billingclient:billing:3.0.0'
     implementation 'com.facebook.android:facebook-android-sdk:5.15.3'
+    implementation 'br.com.simplepass:loading-button-android:1.14.0'
+    implementation 'com.github.GrenderG:Toasty:1.5.0'
+
 
     //retrofit
     implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
