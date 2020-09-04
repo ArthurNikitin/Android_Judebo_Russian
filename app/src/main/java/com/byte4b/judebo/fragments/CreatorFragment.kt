@@ -89,6 +89,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
 
     override fun onStart() {
         super.onStart()
+
         run {
             try {
                 val vocations = vocationsFromRealm()
@@ -331,6 +332,10 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
             .addItemDecoration(DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL))
         vocations_rv.adapter =
             VocationsAdapter(requireContext(), (list ?: listOf()).filterNot { it.isHided }, this)
+
+        try {
+            subcribe_stub.text = (vocations_rv.adapter as VocationsAdapter).vocations.size.toString()
+        } catch (e: Exception) {}
 
         if (list == null)
             Toast.makeText(requireContext(), "Error", Toast.LENGTH_SHORT).show()

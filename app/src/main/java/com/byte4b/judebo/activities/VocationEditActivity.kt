@@ -454,17 +454,16 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                         } catch (e: Exception) {
                             null
                         }
-                        if (currentVocationRealm.UF_GROSS_PER_MONTH == 0)
-                            currentVocationRealm.UF_GROSS_PER_MONTH = null
                         currentVocationRealm.UF_GROSS_CURRENCY_ID =
                             currencies[salaryVal_tv.selectedItemPosition].id
+                        if (currentVocationRealm.UF_GROSS_PER_MONTH == 0)
+                            currentVocationRealm.UF_GROSS_PER_MONTH = null
                         if (currentVocationRealm.UF_GROSS_PER_MONTH != null) {
+                            val currency = currencies.first { it.id ==
+                                    currentVocationRealm.UF_GROSS_CURRENCY_ID}
                             currentVocationRealm.UF_GOLD_PER_MONTH =
-                                (1000000 * currentVocationRealm.UF_GROSS_PER_MONTH!!
-                                        / currencies.first {
-                                    it.id ==
-                                            currentVocationRealm.UF_GROSS_CURRENCY_ID
-                                }.rate)
+                                ((1000000L * currentVocationRealm.UF_GROSS_PER_MONTH!!)
+                                        / currency.rate).toInt()
                         }
 
                         if (isLogoSelected) {
@@ -558,10 +557,11 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
         if (currentVocationRealm.UF_GROSS_PER_MONTH == 0)
             currentVocationRealm.UF_GROSS_PER_MONTH = null
         if (currentVocationRealm.UF_GROSS_PER_MONTH != null) {
+            val currency = currencies.first { it.id ==
+                    currentVocationRealm.UF_GROSS_CURRENCY_ID}
             currentVocationRealm.UF_GOLD_PER_MONTH =
-                (1000000 * currentVocationRealm.UF_GROSS_PER_MONTH!!
-                        / currencies.first { it.id ==
-                        currentVocationRealm.UF_GROSS_CURRENCY_ID}.rate)
+                ((1000000L * currentVocationRealm.UF_GROSS_PER_MONTH!!)
+                        / currency.rate).toInt()
         }
 
         if (isLogoSelected) {

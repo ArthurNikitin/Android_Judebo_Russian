@@ -41,7 +41,7 @@ import kotlin.random.Random
 
 class VocationsAdapter(
     private val ctx: Context,
-    private var vocations: List<Vocation>,
+    var vocations: List<Vocation>,
     private val parent: CreatorFragment
 ) : RecyclerView.Adapter<VocationsAdapter.Holder>(), ServiceListener {
 
