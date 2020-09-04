@@ -324,14 +324,13 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
 
                 Realm.getDefaultInstance().executeTransaction {
                     val vocationRealm = it.where<VocationRealm>()
-                        .equalTo("UF_JOBS_ID", job!!.UF_JOBS_ID)
+                        .equalTo("UF_APP_JOB_ID", job!!.UF_APP_JOB_ID)
                         .findFirst()
 
                     try {
                         vocationRealm?.isHided = true
                         vocationRealm?.COMPANY = null
                         vocationRealm?.DETAIL_TEXT = null
-                        vocationRealm?.NAME = null
                         vocationRealm?.UF_CONTACT_EMAIL = null
                         vocationRealm?.UF_CONTACT_PHONE = null
                         vocationRealm?.UF_DETAIL_IMAGE = null
