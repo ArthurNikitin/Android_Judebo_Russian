@@ -460,7 +460,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                             currencies[salaryVal_tv.selectedItemPosition].id
                         if (currentVocationRealm.UF_GROSS_PER_MONTH != null) {
                             currentVocationRealm.UF_GOLD_PER_MONTH =
-                                (1000 * currentVocationRealm.UF_GROSS_PER_MONTH!!
+                                (1000000 * currentVocationRealm.UF_GROSS_PER_MONTH!!
                                         / currencies.first {
                                     it.id ==
                                             currentVocationRealm.UF_GROSS_CURRENCY_ID
@@ -559,7 +559,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
             currentVocationRealm.UF_GROSS_PER_MONTH = null
         if (currentVocationRealm.UF_GROSS_PER_MONTH != null) {
             currentVocationRealm.UF_GOLD_PER_MONTH =
-                (1000 * currentVocationRealm.UF_GROSS_PER_MONTH!!
+                (1000000 * currentVocationRealm.UF_GROSS_PER_MONTH!!
                         / currencies.first { it.id ==
                         currentVocationRealm.UF_GROSS_CURRENCY_ID}.rate)
         }
