@@ -41,9 +41,13 @@ import kotlin.random.Random
 
 class VocationsAdapter(
     private val ctx: Context,
-    private val vocations: List<Vocation>,
+    private var vocations: List<Vocation>,
     private val parent: CreatorFragment
 ) : RecyclerView.Adapter<VocationsAdapter.Holder>(), ServiceListener {
+
+    init {
+        vocations = vocations.sortedBy { it.UF_MODIFED }.reversed()
+    }
 
     private val setting by lazy { Setting(ctx) }
     private var lastSwipedPosition = -1
@@ -184,34 +188,43 @@ class VocationsAdapter(
 
     @SuppressLint("SimpleDateFormat")
     private fun copyVocations(vocation: Vocation) {
-        Realm.getDefaultInstance().executeTransaction {
-            val vocationRealm = it.where<VocationRealm>()
-                .equalTo("UF_JOBS_ID", vocation.UF_JOBS_ID)
-                .findFirst()
-                ?: return@executeTransaction
-            val newVocation = vocationRealm.toBasicVersion().toRealmVersion()
-            newVocation.apply {
-                val now = Calendar.getInstance()
+        Log.e("test", "start copy")
+        try {
+            Realm.getDefaultInstance().executeTransaction {
+                val vocationRealm = it.where<VocationRealm>()
+                    .equalTo("UF_APP_JOB_ID", vocation.UF_APP_JOB_ID)
+                    .findFirst()
+                    ?: return@executeTransaction
+                val newVocation = vocationRealm.toBasicVersion().toRealmVersion()
+                newVocation.apply {
+                    val now = Calendar.getInstance()
 
-                UF_JOBS_ID = null
-                UF_MODIFED = now.timestamp
-                UF_APP_JOB_ID = getNewJobAppId().toLong()
+                    UF_JOBS_ID = null
+                    UF_MODIFED = now.timestamp
+                    UF_APP_JOB_ID = getNewJobAppId().toLong()
 
-                now.add(Calendar.DATE, Setting.JOB_LIFETIME_IN_DAYS)
-                UF_DISABLE = now.timestamp
+                    now.add(Calendar.DATE, Setting.JOB_LIFETIME_IN_DAYS)
+                    UF_DISABLE = now.timestamp
+                }
+                it.copyToRealm(newVocation)
+                ApiServiceImpl(this).addMyVocation(
+                    setting.getCurrentLanguage().locale,
+                    token = "Z4pjjs5t7rt6uJc2uOLWx5Zb",
+                    login = "judebo.com@gmail.com",
+                    vocation = newVocation.toBasicVersion()
+                )
+                ctx.startActivity<VocationEditActivity> {
+                    putExtra("appId", newVocation.UF_APP_JOB_ID)
+                    putExtra("jobId", newVocation.UF_JOBS_ID)
+                }
             }
-            it.copyToRealm(newVocation)
-            ApiServiceImpl(this).addMyVocation(
-                setting.getCurrentLanguage().locale,
-                token = "Z4pjjs5t7rt6uJc2uOLWx5Zb",
-                login = "judebo.com@gmail.com",
-                vocation = newVocation.toBasicVersion()
-            )
+        } catch (e: Exception) {
+            Log.e("test", e.localizedMessage ?: "Error copy")
         }
     }
 
     override fun onVocationAdded(success: Boolean) {
-        Log.e("check", "is added: $success")
+        Log.e("api", "is added: $success")
         parent.onRefresh()
     }
 

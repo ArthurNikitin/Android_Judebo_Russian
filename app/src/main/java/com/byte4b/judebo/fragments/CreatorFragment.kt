@@ -306,7 +306,6 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                 val data = vocations
                             .map { it.toBasicVersion() }
                             .filter {  !it.isHided }
-                            .sortedBy { getDate(it.UF_MODIFED) }
                 setList(data)
             } catch (e: Exception) { setList(list) }
         }
