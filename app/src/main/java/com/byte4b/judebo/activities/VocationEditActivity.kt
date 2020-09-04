@@ -369,40 +369,45 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
     }
 
     private fun isValidForm(): Boolean {
-        return if (name_tv.data?.trim().isNullOrEmpty()) {
-            false
-        } else if (phone_tv.data?.trim().isNullOrEmpty() && email_tv.data?.trim().isNullOrEmpty()) {
-            false
-        } else if (details_tv.data?.trim().isNullOrEmpty()) {
-            false
-        } else if (email_tv.data?.contains("@") == false
-            && email_tv.data?.contains(".") == false) {
-            false
-        } else
-            true
+        return when {
+            name_tv.data?.trim().isNullOrEmpty() -> false
+
+            phone_tv.data?.trim().isNullOrEmpty() && email_tv.data?.trim().isNullOrEmpty() -> false
+
+            details_tv.data?.trim().isNullOrEmpty() -> false
+
+            email_tv.data?.contains("@") == false
+                && email_tv.data?.contains(".") == false
+                && email_tv.data?.trim()?.isEmpty() == false -> false
+
+            else -> true
+        }
     }
 
     private fun validateForm(): Boolean {
+        name_tv.error = null
+        phone_tv.error = null
+        email_tv.error = null
+        details_tv.error = null
+
+
         if (name_tv.data?.trim().isNullOrEmpty()) {
             name_tv.error = ""
-            //return false
         }
 
         if (phone_tv.data?.trim().isNullOrEmpty() && email_tv.data?.trim().isNullOrEmpty()) {
             phone_tv.error = ""
             email_tv.error = ""
-            //return false
         }
 
         if (details_tv.data?.trim().isNullOrEmpty()) {
             details_tv.error = ""
-            //return false
         }
 
         if (email_tv.data?.contains("@") == false
-            && email_tv.data?.contains(".") == false) {
+            && email_tv.data?.contains(".") == false
+            && email_tv.data?.trim()?.isEmpty() == false) {
             email_tv.error = ""
-            //return false
         }
 
         return true
@@ -599,6 +604,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
             vocations = listOf(currentVocationRealm.toBasicVersion())
         )
         if (isValidForm()) finish()
+        else job = currentVocationRealm.toBasicVersion()
     }
 
     private fun getNewJobAppId(): String {
