@@ -199,6 +199,7 @@ class VocationsAdapter(
                 newVocation.apply {
                     val now = Calendar.getInstance()
 
+                    NAME += "-2"
                     UF_JOBS_ID = null
                     UF_MODIFED = now.timestamp
                     UF_APP_JOB_ID = getNewJobAppId().toLong()
