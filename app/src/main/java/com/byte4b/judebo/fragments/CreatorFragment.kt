@@ -143,7 +143,6 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
         } catch (e: Exception) {}
         if (list == null) return
 
-        //val dateFormat = SimpleDateFormat("dd.mm.yyyy hh:mm:ss")
         val realmList = vocationsFromRealm() //read from db
 
         realm.executeTransaction {
