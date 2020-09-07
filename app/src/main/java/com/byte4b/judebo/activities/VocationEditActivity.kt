@@ -73,7 +73,9 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                 intent.getLongExtra("appId", -1)
             ).findFirst()!!.toBasicVersion()
         } catch (e: Exception) {
-            Vocation()
+            val tmp = Vocation()
+            tmp.UF_LANGUAGE_ID_ALL = setting.getCurrentLanguage().id.toString()
+            tmp
         }
         if (jobInfo.UF_APP_JOB_ID == null) {
             val loc = getLocation()
