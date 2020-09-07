@@ -43,12 +43,14 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up), ServiceListener {
     private fun isValid(): Boolean {
         return email_et.text.toString().trim().isNotEmpty()
                 && password_et.text.toString().isNotEmpty()
+                && passwordConfirm_et.text.toString() == password_et.text.toString()
     }
 
     private fun signUpEmail() {
         try {
             email_et.error = null
             password_et.error = null
+            passwordConfirm_et.error = null
 
             if (isValid()) {
                 requireActivity().hideKeyboard()
@@ -65,6 +67,8 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up), ServiceListener {
                     email_et.error = ""
                 else if ((password_et.text?:"").isEmpty())
                     password_et.error = ""
+                else if(passwordConfirm_et.text.toString() != password_et.text.toString())
+                    passwordConfirm_et.error = ""
             }
         } catch (e: Exception) {
             Log.e("error", "signInEmail: ${e.localizedMessage}")
