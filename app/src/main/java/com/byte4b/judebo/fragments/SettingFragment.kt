@@ -64,13 +64,13 @@ class SettingFragment : Fragment(R.layout.fragment_setting) {
             AlertDialog.Builder(requireContext())
                 .setTitle(R.string.request_logout_title)
                 .setMessage(R.string.request_logout_message)
-                .setPositiveButton(R.string.request_geolocation_ok) { dialog, _ ->
+                .setPositiveButton(R.string.settings_logout_ok) { dialog, _ ->
                     setting.logout()
                     signOut_tv.visibility = View.GONE
                     myEmail_tv.visibility = View.GONE
                     dialog.dismiss()
                 }
-                .setNegativeButton(R.string.request_geolocation_cancel) { d, _ -> d.cancel()}
+                .setNegativeButton(R.string.settings_logout_cancel) { d, _ -> d.cancel()}
                 .show()
         }
         langClickable.setOnClickListener { showLanguageDialog() }

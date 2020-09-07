@@ -49,12 +49,12 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
             AlertDialog.Builder(requireContext())
                 .setTitle(R.string.request_logout_title)
                 .setMessage(R.string.request_logout_message)
-                .setPositiveButton(R.string.request_geolocation_ok) { dialog, _ ->
+                .setPositiveButton(R.string.settings_logout_ok) { dialog, _ ->
                     setting.logout()
                     dialog.dismiss()
                     (requireActivity() as MainActivity).restartFragment(LoginFragment())
                 }
-                .setNegativeButton(R.string.request_geolocation_cancel) { d, _ -> d.cancel()}
+                .setNegativeButton(R.string.settings_logout_cancel) { d, _ -> d.cancel()}
                 .show()
         }
 
