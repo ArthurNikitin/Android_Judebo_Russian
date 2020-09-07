@@ -1,6 +1,7 @@
 package com.byte4b.judebo.activities
 
 import android.Manifest
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -9,7 +10,9 @@ import com.byte4b.judebo.R
 import com.byte4b.judebo.fragments.*
 import com.byte4b.judebo.isRtl
 import com.byte4b.judebo.utils.Setting
+import com.byte4b.judebo.utils.signers.GoogleAuth
 import com.github.florent37.runtimepermission.kotlin.askPermission
+import com.google.android.gms.auth.api.signin.GoogleSignIn
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -93,6 +96,26 @@ class MainActivity : AppCompatActivity() {
             restartFragment(LoginFragment())
         } else
             super.onBackPressed()
+    }
+
+    fun getLoginFragment(): LoginFragment? {
+        supportFragmentManager.fragments.forEach {
+            if (it is LoginFragment)
+                return it
+        }
+        return null
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        try {
+            if (getLoginFragment()?.facebookAuth != null && getLoginFragment()?.facebookAuth!!.isFB)
+                getLoginFragment()?.facebookAuth?.callbackManager?.onActivityResult(requestCode, resultCode, data);
+            else if (requestCode == GoogleAuth.SIGN_IN_RC) {
+                val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+                getLoginFragment()?.googleAuth?.handleSignInResult(task)
+            }
+        } catch (e: Exception) {}
     }
 
 }

@@ -11,8 +11,9 @@ import com.byte4b.judebo.activities.PolicyActivity
 import com.byte4b.judebo.models.AuthResult
 import com.byte4b.judebo.services.ApiServiceImpl
 import com.byte4b.judebo.startActivity
-import com.byte4b.judebo.toast
 import com.byte4b.judebo.utils.Setting
+import com.byte4b.judebo.utils.signers.FacebookAuth
+import com.byte4b.judebo.utils.signers.GoogleAuth
 import com.byte4b.judebo.view.ServiceListener
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_login.*
@@ -22,6 +23,9 @@ class LoginFragment : Fragment(R.layout.fragment_login), ServiceListener {
 
     private val setting by lazy { Setting(requireContext()) }
     private var email: String? = null
+
+    var facebookAuth: FacebookAuth? = null
+    var googleAuth: GoogleAuth? = null
 
     override fun onDestroy() {
         super.onDestroy()
@@ -79,11 +83,13 @@ class LoginFragment : Fragment(R.layout.fragment_login), ServiceListener {
     }
 
     private fun signInFb() {
-        requireContext().toast("stub")
+        facebookAuth = FacebookAuth(requireActivity())
+        facebookAuth?.start()
     }
 
     private fun signOnGoogle() {
-        requireContext().toast("stub")
+        googleAuth = GoogleAuth(requireActivity())
+        googleAuth?.start()
     }
 
     private fun isValid(): Boolean {
