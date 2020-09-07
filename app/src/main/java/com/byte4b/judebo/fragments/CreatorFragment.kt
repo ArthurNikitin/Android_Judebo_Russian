@@ -6,12 +6,14 @@ import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.byte4b.judebo.*
+import com.byte4b.judebo.activities.MainActivity
 import com.byte4b.judebo.activities.SubscribesActivity
 import com.byte4b.judebo.activities.VocationEditActivity
 import com.byte4b.judebo.adapters.VocationsAdapter
@@ -41,6 +43,19 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
 
         subscribe_button.setOnClickListener {
             requireContext().startActivity<SubscribesActivity>()
+        }
+
+        logout_ll.setOnClickListener {
+            AlertDialog.Builder(requireContext())
+                .setTitle(R.string.request_logout_title)
+                .setMessage(R.string.request_logout_message)
+                .setPositiveButton(R.string.request_geolocation_ok) { dialog, _ ->
+                    setting.logout()
+                    dialog.dismiss()
+                    (requireActivity() as MainActivity).restartFragment(LoginFragment())
+                }
+                .setNegativeButton(R.string.request_geolocation_cancel) { d, _ -> d.cancel()}
+                .show()
         }
 
         createNew.setOnClickListener {
