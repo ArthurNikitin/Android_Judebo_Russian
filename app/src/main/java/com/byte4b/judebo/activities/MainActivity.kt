@@ -6,10 +6,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.byte4b.judebo.R
-import com.byte4b.judebo.fragments.CreatorFragment
-import com.byte4b.judebo.fragments.LoginFragment
-import com.byte4b.judebo.fragments.MapsFragment
-import com.byte4b.judebo.fragments.SettingFragment
+import com.byte4b.judebo.fragments.*
 import com.byte4b.judebo.isRtl
 import com.byte4b.judebo.utils.Setting
 import com.github.florent37.runtimepermission.kotlin.askPermission
@@ -92,7 +89,9 @@ class MainActivity : AppCompatActivity() {
         if (supportFragmentManager.fragments.any { it is CreatorFragment }
             && (supportFragmentManager.fragments.last { it is CreatorFragment } as CreatorFragment).isFilterModeOn())
             (supportFragmentManager.fragments.last { it is CreatorFragment } as CreatorFragment).filterOff()
-        else
+        else if (supportFragmentManager.fragments.any { it is SignUpFragment }) {
+            restartFragment(LoginFragment())
+        } else
             super.onBackPressed()
     }
 

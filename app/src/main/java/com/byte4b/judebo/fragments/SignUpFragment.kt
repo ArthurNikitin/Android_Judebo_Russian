@@ -11,30 +11,18 @@ import com.byte4b.judebo.activities.PolicyActivity
 import com.byte4b.judebo.models.AuthResult
 import com.byte4b.judebo.services.ApiServiceImpl
 import com.byte4b.judebo.startActivity
-import com.byte4b.judebo.toast
 import com.byte4b.judebo.utils.Setting
 import com.byte4b.judebo.view.ServiceListener
 import es.dmoral.toasty.Toasty
-import kotlinx.android.synthetic.main.fragment_login.*
+import kotlinx.android.synthetic.main.fragment_sign_up.*
 
-
-class LoginFragment : Fragment(R.layout.fragment_login), ServiceListener {
+class SignUpFragment : Fragment(R.layout.fragment_sign_up), ServiceListener {
 
     private val setting by lazy { Setting(requireContext()) }
     private var email: String? = null
 
-    override fun onDestroy() {
-        super.onDestroy()
-
-        try { loginButton_b.dispose() } catch (e: Exception) {}
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        loginButton_b.setOnClickListener { signInEmail() }
-        google_iv.setOnClickListener { signOnGoogle() }
-        facebook_iv.setOnClickListener { signInFb() }
 
         privacy_tv.setOnClickListener {
             requireContext().startActivity<PolicyActivity> {
@@ -48,18 +36,21 @@ class LoginFragment : Fragment(R.layout.fragment_login), ServiceListener {
             }
         }
 
-        signUp_tv.setOnClickListener {
-            (requireActivity() as MainActivity).restartFragment(SignUpFragment())
-        }
+        loginButton_b.setOnClickListener { signUpEmail() }
     }
 
-    private fun signInEmail() {
+    private fun isValid(): Boolean {
+        return email_et.text.toString().trim().isNotEmpty()
+                && password_et.text.toString().isNotEmpty()
+    }
+
+    private fun signUpEmail() {
         try {
             email_et.error = null
             password_et.error = null
 
             if (isValid()) {
-                ApiServiceImpl(this).signInWithEmail(
+                ApiServiceImpl(this).signUpWithEmail(
                     setting.getCurrentLanguage().locale,
                     email_et.text.toString(),
                     password_et.text.toString()
@@ -78,20 +69,7 @@ class LoginFragment : Fragment(R.layout.fragment_login), ServiceListener {
         }
     }
 
-    private fun signInFb() {
-        requireContext().toast("stub")
-    }
-
-    private fun signOnGoogle() {
-        requireContext().toast("stub")
-    }
-
-    private fun isValid(): Boolean {
-        return email_et.text.toString().trim().isNotEmpty()
-                && password_et.text.toString().isNotEmpty()
-    }
-
-    override fun onSignIn(result: AuthResult?) {
+    override fun onSignUp(result: AuthResult?) {
         Handler().postDelayed({
             loginButton_b.revertAnimation()
             loginButton_b.isEnabled = true
@@ -105,7 +83,6 @@ class LoginFragment : Fragment(R.layout.fragment_login), ServiceListener {
             else
                 Toasty.error(requireContext(), R.string.error_no_internet).show()
         }, 1000)
-
     }
 
 }

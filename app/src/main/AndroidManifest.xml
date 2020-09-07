@@ -18,7 +18,8 @@
         android:roundIcon="@mipmap/ic_app_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.SubscribesActivity"></activity>
+        <activity android:name=".activities.PolicyActivity"></activity>
+        <activity android:name=".activities.SubscribesActivity" />
         <activity android:name=".activities.LanguagesActivity" />
         <activity android:name=".activities.SkillsActivity" />
         <activity
