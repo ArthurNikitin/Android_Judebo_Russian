@@ -89,18 +89,24 @@
         android:orientation="vertical">
 
         <TextView
+            android:textSize="18dp"
+            android:layout_marginBottom="8dp"
             android:id="@+id/signUp_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/user_registration_title" />
 
         <TextView
+            android:textSize="18dp"
+            android:layout_marginBottom="8dp"
             android:id="@+id/privacy_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/user_registration_privacy_title" />
 
         <TextView
+            android:textSize="18dp"
+            android:layout_marginBottom="8dp"
             android:id="@+id/agreement_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
