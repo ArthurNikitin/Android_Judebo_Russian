@@ -85,18 +85,14 @@ class LoginFragment : Fragment(R.layout.fragment_login), ServiceListener {
     }
 
     private fun signInFb() {
-        //loginButton_b.startAnimation()
-        //loginButton_b.isEnabled = false
         requireActivity().hideKeyboard()
-        facebookAuth = FacebookAuth(requireActivity())
+        facebookAuth = FacebookAuth(requireActivity(), this)
         facebookAuth?.start()
     }
 
     private fun signOnGoogle() {
-        //loginButton_b.startAnimation()
-        //loginButton_b.isEnabled = false
         requireActivity().hideKeyboard()
-        googleAuth = GoogleAuth(requireActivity())
+        googleAuth = GoogleAuth(requireActivity(), this)
         googleAuth?.start()
     }
 

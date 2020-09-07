@@ -3,6 +3,7 @@ package com.byte4b.judebo.utils.signers
 import android.app.Activity
 import android.util.Log
 import com.byte4b.judebo.R
+import com.byte4b.judebo.fragments.LoginFragment
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -10,7 +11,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 
-class GoogleAuth(ctx: Activity) : ParentAuth(ctx) {
+class GoogleAuth(ctx: Activity, parent: LoginFragment) : ParentAuth(ctx, parent) {
 
     init {
         isGoogleAuth = true

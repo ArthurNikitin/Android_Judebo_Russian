@@ -69,8 +69,6 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
         detail_field.counterMaxLength = Setting.TEXT_LENGTH_MAX_SYMBOLS_JOB_DETAIL
 
         val jobInfo: Vocation = try {
-            Log.e("test", intent.getLongExtra("appId", -1).toString())
-
             realm.where<VocationRealm>().equalTo("UF_APP_JOB_ID",
                 intent.getLongExtra("appId", -1)
             ).findFirst()!!.toBasicVersion()

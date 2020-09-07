@@ -2,12 +2,13 @@ package com.byte4b.judebo.utils.signers
 
 import android.app.Activity
 import android.os.Bundle
+import com.byte4b.judebo.fragments.LoginFragment
 import com.facebook.*
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import org.json.JSONObject
 
-class FacebookAuth(ctx: Activity) : ParentAuth(ctx) {
+class FacebookAuth(ctx: Activity, parent: LoginFragment) : ParentAuth(ctx, parent) {
 
     var callbackManager: CallbackManager? = null
     var isFB = false

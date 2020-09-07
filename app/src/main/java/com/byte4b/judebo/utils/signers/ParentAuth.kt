@@ -1,17 +1,18 @@
 package com.byte4b.judebo.utils.signers
 
 import android.app.Activity
-import android.util.Log
 import com.byte4b.judebo.R
 import com.byte4b.judebo.activities.MainActivity
 import com.byte4b.judebo.fragments.CreatorFragment
+import com.byte4b.judebo.fragments.LoginFragment
 import com.byte4b.judebo.models.AuthResult
 import com.byte4b.judebo.services.ApiServiceImpl
 import com.byte4b.judebo.utils.Setting
 import com.byte4b.judebo.view.ServiceListener
 import es.dmoral.toasty.Toasty
+import kotlinx.android.synthetic.main.fragment_login.*
 
-open class ParentAuth(val ctx: Activity) : ServiceListener {
+open class ParentAuth(val ctx: Activity, val parent: LoginFragment) : ServiceListener {
 
     private val service by lazy { ApiServiceImpl(this) }
     val setting by lazy { Setting(ctx) }
@@ -19,8 +20,14 @@ open class ParentAuth(val ctx: Activity) : ServiceListener {
     var email: String? = null
     var isGoogleAuth: Boolean = false
 
+    private fun stopAnimation() {
+        parent.loginButton_b.revertAnimation()
+        parent.loginButton_b.isEnabled = false
+    }
+
     fun auth() {
-        Log.e("test", "$email")
+        parent.loginButton_b.startAnimation()
+        parent.loginButton_b.isEnabled = false
         if (isGoogleAuth)
             service.signInWithGoogle(
                 setting.getCurrentLanguage().locale,
@@ -53,10 +60,14 @@ open class ParentAuth(val ctx: Activity) : ServiceListener {
                         email ?: ""
                     )
             }
-            else
+            else {
                 Toasty.error(ctx, result.data).show()
-        } else
+                stopAnimation()
+            }
+        } else {
             Toasty.error(ctx, R.string.error_no_internet).show()
+            stopAnimation()
+        }
     }
 
     override fun onSignUp(result: AuthResult?) {
@@ -65,10 +76,13 @@ open class ParentAuth(val ctx: Activity) : ServiceListener {
             setting.email = email
             setting.token = result.data
             (ctx as MainActivity).restartFragment(CreatorFragment())
-        } else if (result != null)
+        } else if (result != null) {
+            stopAnimation()
             Toasty.error(ctx, result.data).show()
-        else
+        } else {
             Toasty.error(ctx, R.string.error_no_internet).show()
+            stopAnimation()
+        }
     }
 
 }
