@@ -1,6 +1,7 @@
 package com.byte4b.judebo.utils.signers
 
 import android.app.Activity
+import android.util.Log
 import com.byte4b.judebo.R
 import com.byte4b.judebo.activities.MainActivity
 import com.byte4b.judebo.fragments.CreatorFragment
@@ -12,13 +13,14 @@ import es.dmoral.toasty.Toasty
 
 open class ParentAuth(val ctx: Activity) : ServiceListener {
 
-    val service by lazy { ApiServiceImpl(this) }
+    private val service by lazy { ApiServiceImpl(this) }
     val setting by lazy { Setting(ctx) }
     var serviceId: String? = null
     var email: String? = null
     var isGoogleAuth: Boolean = false
 
     fun auth() {
+        Log.e("test", "$email")
         if (isGoogleAuth)
             service.signInWithGoogle(
                 setting.getCurrentLanguage().locale,
@@ -51,9 +53,6 @@ open class ParentAuth(val ctx: Activity) : ServiceListener {
                         email ?: ""
                     )
             }
-            //if email is empty
-            //if (email.isNullOrEmpty())
-            //    Toasty.error(ctx, result.data)
             else
                 Toasty.error(ctx, result.data).show()
         } else
@@ -61,7 +60,15 @@ open class ParentAuth(val ctx: Activity) : ServiceListener {
     }
 
     override fun onSignUp(result: AuthResult?) {
-        //second
+        if (result?.status == "success") {
+            setting.isAuth = true
+            setting.email = email
+            setting.token = result.data
+            (ctx as MainActivity).restartFragment(CreatorFragment())
+        } else if (result != null)
+            Toasty.error(ctx, result.data).show()
+        else
+            Toasty.error(ctx, R.string.error_no_internet).show()
     }
 
 }

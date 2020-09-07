@@ -3,6 +3,7 @@ package com.byte4b.judebo.activities
 import android.Manifest
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -98,8 +99,8 @@ class MainActivity : AppCompatActivity() {
             super.onBackPressed()
     }
 
-    fun getLoginFragment(): LoginFragment? {
-        supportFragmentManager.fragments.forEach {
+    private fun getLoginFragment(): LoginFragment? {
+        supportFragmentManager.fragments.reversed().forEach {
             if (it is LoginFragment)
                 return it
         }
@@ -108,14 +109,20 @@ class MainActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        Log.e("test", "Main activity result")
         try {
-            if (getLoginFragment()?.facebookAuth != null && getLoginFragment()?.facebookAuth!!.isFB)
-                getLoginFragment()?.facebookAuth?.callbackManager?.onActivityResult(requestCode, resultCode, data);
-            else if (requestCode == GoogleAuth.SIGN_IN_RC) {
-                val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-                getLoginFragment()?.googleAuth?.handleSignInResult(task)
+            getLoginFragment()?.apply {
+                if (facebookAuth != null && facebookAuth!!.isFB)
+                    facebookAuth?.callbackManager
+                        ?.onActivityResult(requestCode, resultCode, data);
+                else if (requestCode == GoogleAuth.SIGN_IN_RC) {
+                    val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+                    googleAuth?.handleSignInResult(task)
+                }
             }
-        } catch (e: Exception) {}
+        } catch (e: Exception) {
+            Log.e("test", "onActivityResult: ${e.localizedMessage}")
+        }
     }
 
 }

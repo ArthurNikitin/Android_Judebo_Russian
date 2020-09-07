@@ -1,6 +1,7 @@
 package com.byte4b.judebo.utils.signers
 
 import android.app.Activity
+import android.util.Log
 import com.byte4b.judebo.R
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -29,6 +30,7 @@ class GoogleAuth(ctx: Activity) : ParentAuth(ctx) {
     private var mGoogleSignInClient: GoogleSignInClient
 
     init {
+        Log.e("test", "google init")
         mGoogleSignInClient = GoogleSignIn.getClient(ctx, gso)
         mGoogleSignInClient.signOut()
     }
@@ -36,13 +38,16 @@ class GoogleAuth(ctx: Activity) : ParentAuth(ctx) {
     fun start() = ctx.startActivityForResult(mGoogleSignInClient.signInIntent, SIGN_IN_RC)
 
     fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
+        Log.e("test", "google handleSignInResult")
         try {
             val account = completedTask.getResult(ApiException::class.java)
             email = account?.email
             serviceId = account?.id
             auth()
             mGoogleSignInClient.signOut()
-        } catch (e: ApiException) {}
+        } catch (e: ApiException) {
+            Log.e("test", "api error: ${e.localizedMessage}")
+        }
     }
 
 }

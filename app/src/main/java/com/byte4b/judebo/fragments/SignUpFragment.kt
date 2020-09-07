@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.byte4b.judebo.R
 import com.byte4b.judebo.activities.MainActivity
 import com.byte4b.judebo.activities.PolicyActivity
+import com.byte4b.judebo.hideKeyboard
 import com.byte4b.judebo.models.AuthResult
 import com.byte4b.judebo.services.ApiServiceImpl
 import com.byte4b.judebo.startActivity
@@ -50,6 +51,7 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up), ServiceListener {
             password_et.error = null
 
             if (isValid()) {
+                requireActivity().hideKeyboard()
                 ApiServiceImpl(this).signUpWithEmail(
                     setting.getCurrentLanguage().locale,
                     email_et.text.toString(),

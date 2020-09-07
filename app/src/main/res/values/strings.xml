@@ -54,5 +54,9 @@
     <string name="user_registration_privacy_url" translatable="false">https://ru.judebo.com/login/privacy.php</string>
     <string name="user_registration_agreement_title" translatable="false">Agreement</string>
     <string name="user_registration_agreement_url" translatable="false">https://ru.judebo.com/login/agreement.php</string>
+    <string name="user_registration_confirm_password" translatable="false">Confirm password</string>
+    <string name="user_registration_activate_account" translatable="false">Please check your email and activate account</string>
+    <string name="settings_logout_ok" translatable="false">Ok</string>
+    <string name="settings_logout_cancel" translatable="false">Cancel</string>
 
 </resources>
