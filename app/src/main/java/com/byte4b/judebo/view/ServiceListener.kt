@@ -22,4 +22,6 @@ interface ServiceListener {
 
     fun onSignIn(result: AuthResult?) {}
 
+    fun onSignUp(result: AuthResult?) {}
+
 }

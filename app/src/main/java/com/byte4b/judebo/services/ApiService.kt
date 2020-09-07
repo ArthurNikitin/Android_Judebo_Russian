@@ -33,4 +33,10 @@ interface ApiService {
 
     fun signInWithGoogle(locale: String, login: String)
 
+    fun signUpWithEmail(locale: String, login: String, password: String)
+
+    fun signUpWithFb(locale: String, login: String)
+
+    fun signUpWithGoogle(locale: String, login: String)
+
 }
