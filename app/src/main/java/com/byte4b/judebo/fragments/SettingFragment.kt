@@ -14,10 +14,14 @@ import com.byte4b.judebo.activities.SubscribesActivity
 import com.byte4b.judebo.adapters.CurrencyAdapter
 import com.byte4b.judebo.adapters.LanguageAdapter
 import com.byte4b.judebo.getLangFromLocale
+import com.byte4b.judebo.models.VocationRealm
 import com.byte4b.judebo.models.currencies
 import com.byte4b.judebo.models.languages
 import com.byte4b.judebo.startActivity
 import com.byte4b.judebo.utils.Setting
+import io.realm.Realm
+import io.realm.kotlin.createObject
+import io.realm.kotlin.delete
 import kotlinx.android.synthetic.main.fragment_setting.*
 import java.util.*
 
@@ -68,6 +72,14 @@ class SettingFragment : Fragment(R.layout.fragment_setting) {
                     setting.logout()
                     signOut_tv.visibility = View.GONE
                     myEmail_tv.visibility = View.GONE
+                    Realm.getDefaultInstance().executeTransaction {
+                        try {
+                            it.delete<VocationRealm>()
+                        } catch (e: Exception) {}
+                        try {
+                            it.createObject<VocationRealm>()
+                        } catch (e: Exception) {}
+                    }
                     dialog.dismiss()
                 }
                 .setNegativeButton(R.string.settings_logout_cancel) { d, _ -> d.cancel()}

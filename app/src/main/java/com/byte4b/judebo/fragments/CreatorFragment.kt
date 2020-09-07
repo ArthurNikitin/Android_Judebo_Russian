@@ -24,6 +24,8 @@ import com.byte4b.judebo.utils.Setting
 import com.byte4b.judebo.view.ServiceListener
 import com.google.gson.Gson
 import io.realm.Realm
+import io.realm.kotlin.createObject
+import io.realm.kotlin.delete
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.fragment_creator.*
 import java.util.*
@@ -52,6 +54,14 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                 .setPositiveButton(R.string.settings_logout_ok) { dialog, _ ->
                     setting.logout()
                     dialog.dismiss()
+                    realm.executeTransaction {
+                        try {
+                            it.delete<VocationRealm>()
+                        } catch (e: Exception) {}
+                        try {
+                            it.createObject<VocationRealm>()
+                        } catch (e: Exception) {}
+                    }
                     (requireActivity() as MainActivity).restartFragment(LoginFragment())
                 }
                 .setNegativeButton(R.string.settings_logout_cancel) { d, _ -> d.cancel()}
