@@ -56,6 +56,17 @@ data class Vocation(
         result.UF_TYPE_OF_JOB_ID = UF_TYPE_OF_JOB_ID
         return result
     }
+
+    //fun createNew() {
+    //    appid
+    //    map
+    //    lang,
+    //    skill
+    //    modifi,
+    //    disable,
+
+    //}
+
 }
 
 open class VocationRealm : RealmObject() {
