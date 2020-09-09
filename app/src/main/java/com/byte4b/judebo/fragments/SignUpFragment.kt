@@ -44,6 +44,8 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up), ServiceListener {
         return email_et.text.toString().trim().isNotEmpty()
                 && password_et.text.toString().isNotEmpty()
                 && passwordConfirm_et.text.toString() == password_et.text.toString()
+                && privacySwitch.isChecked
+                && agreementSwitch.isChecked
     }
 
     private fun signUpEmail() {
@@ -51,6 +53,8 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up), ServiceListener {
             email_et.error = null
             password_et.error = null
             passwordConfirm_et.error = null
+            privacySwitch.error = null
+            agreementSwitch.error = null
 
             if (isValid()) {
                 requireActivity().hideKeyboard()
@@ -69,6 +73,10 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up), ServiceListener {
                     password_et.error = ""
                 else if(passwordConfirm_et.text.toString() != password_et.text.toString())
                     passwordConfirm_et.error = ""
+                else if (!privacySwitch.isChecked)
+                    privacySwitch.error = ""
+                else if (!agreementSwitch.isChecked)
+                    agreementSwitch.error = ""
             }
         } catch (e: Exception) {
             Log.e("error", "signInEmail: ${e.localizedMessage}")
