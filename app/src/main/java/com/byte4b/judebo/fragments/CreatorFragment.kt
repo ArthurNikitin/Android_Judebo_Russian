@@ -71,9 +71,10 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
         }
 
         createNew.setOnClickListener {
-            requireContext().startActivity<VocationEditActivity> {
-                putExtra("data", Gson().toJson(Vocation()))
-            }
+            if (RealmDb.getVocationsCount(realm) != setting.maxVocations)
+                requireContext().startActivity<VocationEditActivity> {
+                    putExtra("data", Gson().toJson(Vocation()))
+                }
         }
 
         filter_et.setLeftDrawable(R.drawable.item_detail_tags)
@@ -115,16 +116,20 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
     fun filterOff() = filter_et.setText("")
 
     @SuppressLint("SetTextI18n")
-    private fun showVocationsCount() {
+    private fun showVocationsCount(): Boolean {
         val vocationsCount = RealmDb.getVocationsCount(realm)
         subscribe_limit.text = "Free: $vocationsCount/${setting.maxVocations}"
 
-        if (vocationsCount == setting.maxVocations) {
+        return if (vocationsCount == setting.maxVocations) {
             subscribe_limit.setTextColor(resources.getColor(android.R.color.holo_red_dark))
             subscribe_limit.setTypeface(subscribe_limit.typeface, Typeface.BOLD)
+            createNew.setImageResource(R.drawable.button_plus_vacancy_deny)
+            true
         } else {
             subscribe_limit.setTextColor(resources.getColor(android.R.color.white))
             subscribe_limit.setTypeface(subscribe_limit.typeface, Typeface.NORMAL)
+            createNew.setImageResource(R.drawable.button_plus_vacancy)
+            false
         }
     }
 
@@ -372,10 +377,12 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
         vocations_rv.layoutManager = LinearLayoutManager(requireContext())
         vocations_rv
             .addItemDecoration(DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL))
-        vocations_rv.adapter =
-            VocationsAdapter(requireContext(), (list ?: listOf()).filterNot { it.isHided }, this)
-
-        showVocationsCount()
+        vocations_rv.adapter = VocationsAdapter(
+            requireContext(),
+            (list ?: listOf()).filterNot { it.isHided },
+            this,
+            showVocationsCount()
+        )
 
         if (list == null)
             Toast.makeText(requireContext(), "Error", Toast.LENGTH_SHORT).show()

@@ -42,7 +42,8 @@ import kotlin.random.Random
 class VocationsAdapter(
     private val ctx: Context,
     var vocations: List<Vocation>,
-    private val parent: CreatorFragment
+    private val parent: CreatorFragment,
+    private val isMaxVocations: Boolean
 ) : RecyclerView.Adapter<VocationsAdapter.Holder>(), ServiceListener {
 
     init {
@@ -70,10 +71,16 @@ class VocationsAdapter(
     @SuppressLint("SetTextI18n", "SimpleDateFormat")
     override fun onBindViewHolder(holder: Holder, position: Int) {
         try {
+            if (isMaxVocations) {
+                holder.copyLeft.setImageResource(R.drawable.button_copy_deny)
+                holder.copyRight.setImageResource(R.drawable.button_copy_deny)
+            }
+
+
             with(vocations[position]) {
 
-                holder.copy1.setOnClickListener { copyVocations(this) }
-                holder.copy2.setOnClickListener { copyVocations(this) }
+                holder.copy1.setOnClickListener { if (!isMaxVocations) copyVocations(this) }
+                holder.copy2.setOnClickListener { if (!isMaxVocations) copyVocations(this) }
 
                 holder.del1.setOnClickListener { deleteVocation(this) }
                 holder.del2.setOnClickListener { deleteVocation(this) }
@@ -308,6 +315,10 @@ class VocationsAdapter(
         val copy2 = view.copy2!!
         val del1 = view.delete1!!
         val del2 = view.delete2!!
+
+        //for limit icon
+        val copyLeft = view.copy12!!
+        val copyRight = view.copy22!!
     }
 
 }
