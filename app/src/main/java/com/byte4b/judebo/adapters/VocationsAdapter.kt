@@ -176,8 +176,10 @@ class VocationsAdapter(
                     Log.e("test", "base64 error")
                 }
                 val editDate = getDate(UF_MODIFED)
+                val disableDate = getDate(UF_DISABLE)
+                val format = SimpleDateFormat("dd MMM", Locale(setting.getCurrentLanguage().locale))
                 val editString =
-                    SimpleDateFormat("dd MMM", Locale(setting.getCurrentLanguage().locale)).format(editDate)
+                    format.format(editDate) + " - " + format.format(disableDate)
 
                 holder.editDateView.text = editString
                 val currency = currencies.firstOrNull { it.id == UF_GROSS_CURRENCY_ID }
