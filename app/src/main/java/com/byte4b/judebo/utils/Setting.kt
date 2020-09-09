@@ -22,31 +22,39 @@ class Setting(ctx: Context) {
 
     var isAuth
         get() = pref.getBoolean("is_auth", false)
-        set(value) = pref.edit().putBoolean("is_auth", value).apply()
+        set(value) = pref.edit { putBoolean("is_auth", value) }
 
     var token
         get() = pref.getString("token", null)
-        set(value) = pref.edit().putString("token", value).apply()
+        set(value) = pref.edit { putString("token", value) }
+
+    var signUpFromGoogle
+        get() = pref.getBoolean("sign_up_google", false)
+        set(value) = pref.edit { putBoolean("sign_up_google", value) }
+
+    var signUpFromService
+        get() = pref.getBoolean("sign_up_service", false)
+        set(value) = pref.edit { putBoolean("sign_up_service", value) }
 
     var email
         get() = pref.getString("email", null)
-        set(value) = pref.edit().putString("email", value).apply()
+        set(value) = pref.edit { putString("email", value) }
 
     var lastUpdateDynamicDataFromServer
         get() = pref.getString("last_update", 0L.toString())!!
-        set(value) = pref.edit().putString("last_update", value).apply()
+        set(value) = pref.edit { putString("last_update", value) }
 
     var language
         get() = pref.getString("language", "")
-        set(value) = pref.edit().putString("language", value).apply()
+        set(value) = pref.edit { putString("language", value) }
 
     var currency
         get() = pref.getString("currency", "")
-        set(value) = pref.edit().putString("currency", value).apply()
+        set(value) = pref.edit { putString("currency", value) }
 
     var isFromRecreate
         get() = pref.getBoolean("is_from_recreate", false)
-        set(value) = pref.edit().putBoolean("is_from_recreate", value).apply()
+        set(value) = pref.edit { putBoolean("is_from_recreate", value) }
 
     var lastMapCameraPosition: LatLng
         get() {

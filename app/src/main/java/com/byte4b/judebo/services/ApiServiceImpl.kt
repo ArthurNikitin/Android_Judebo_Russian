@@ -263,9 +263,9 @@ class ApiServiceImpl(val listener: ServiceListener?) : ApiService {
                 }
             })    }
 
-    override fun signUpWithFb(locale: String, login: String) {
+    override fun signUpWithFb(locale: String, login: String, password: String) {
         getAPI(locale)
-            .signUpWithFb(login)
+            .signUpWithFb(login, password = password)
             .enqueue(object : Callback<AuthResult> {
                 override fun onFailure(call: Call<AuthResult>, t: Throwable) {
                     check { listener?.onSignUp(null) }
@@ -280,9 +280,9 @@ class ApiServiceImpl(val listener: ServiceListener?) : ApiService {
             })
     }
 
-    override fun signUpWithGoogle(locale: String, login: String) {
+    override fun signUpWithGoogle(locale: String, login: String, password: String) {
         getAPI(locale)
-            .signUpWithGoogle(login)
+            .signUpWithGoogle(login, password = password)
             .enqueue(object : Callback<AuthResult> {
                 override fun onFailure(call: Call<AuthResult>, t: Throwable) {
                     check { listener?.onSignUp(null) }

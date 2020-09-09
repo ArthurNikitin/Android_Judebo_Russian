@@ -35,8 +35,8 @@ interface ApiService {
 
     fun signUpWithEmail(locale: String, login: String, password: String)
 
-    fun signUpWithFb(locale: String, login: String)
+    fun signUpWithFb(locale: String, login: String, password: String)
 
-    fun signUpWithGoogle(locale: String, login: String)
+    fun signUpWithGoogle(locale: String, login: String, password: String)
 
 }

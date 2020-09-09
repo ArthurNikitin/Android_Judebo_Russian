@@ -5,6 +5,7 @@ import com.byte4b.judebo.R
 import com.byte4b.judebo.activities.MainActivity
 import com.byte4b.judebo.fragments.CreatorFragment
 import com.byte4b.judebo.fragments.LoginFragment
+import com.byte4b.judebo.fragments.SignUpFragment
 import com.byte4b.judebo.models.AuthResult
 import com.byte4b.judebo.services.ApiServiceImpl
 import com.byte4b.judebo.utils.Setting
@@ -21,13 +22,17 @@ open class ParentAuth(val ctx: Activity, val parent: LoginFragment) : ServiceLis
     var isGoogleAuth: Boolean = false
 
     private fun stopAnimation() {
-        parent.loginButton_b.revertAnimation()
-        parent.loginButton_b.isEnabled = false
+        parent.loginButton_b.apply {
+            revertAnimation()
+            isEnabled = false
+        }
     }
 
     fun auth() {
-        parent.loginButton_b.startAnimation()
-        parent.loginButton_b.isEnabled = false
+        parent.loginButton_b.apply {
+            startAnimation()
+            isEnabled = false
+        }
         if (isGoogleAuth)
             service.signInWithGoogle(
                 setting.getCurrentLanguage().locale,
@@ -47,38 +52,15 @@ open class ParentAuth(val ctx: Activity, val parent: LoginFragment) : ServiceLis
             setting.token = result.data
             (ctx as MainActivity).restartFragment(CreatorFragment())
         } else if (result != null) {
-            //if already exist
             if (result.data == "user not found") {
-                if (isGoogleAuth)
-                    service.signUpWithGoogle(
-                        setting.getCurrentLanguage().locale,
-                        email ?: ""
-                    )
-                else
-                    service.signUpWithFb(
-                        setting.getCurrentLanguage().locale,
-                        email ?: ""
-                    )
-            }
-            else {
+                setting.email = email
+                setting.signUpFromService = true
+                setting.signUpFromGoogle = isGoogleAuth
+                (ctx as MainActivity).restartFragment(SignUpFragment())
+            } else {
                 Toasty.error(ctx, result.data).show()
                 stopAnimation()
             }
-        } else {
-            Toasty.error(ctx, R.string.error_no_internet).show()
-            stopAnimation()
-        }
-    }
-
-    override fun onSignUp(result: AuthResult?) {
-        if (result?.status == "success") {
-            setting.isAuth = true
-            setting.email = email
-            setting.token = result.data
-            (ctx as MainActivity).restartFragment(CreatorFragment())
-        } else if (result != null) {
-            stopAnimation()
-            Toasty.error(ctx, result.data).show()
         } else {
             Toasty.error(ctx, R.string.error_no_internet).show()
             stopAnimation()

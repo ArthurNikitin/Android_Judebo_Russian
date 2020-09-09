@@ -82,12 +82,14 @@ interface API {
     @GET("app_reg_user.php")
     fun signUpWithFb(@Query("login") login: String,
                      @Query("fb") fb: Int = 1,
+                     @Query("pass") password: String,
                      @Query("key") key: String = secretKey):
             Call<AuthResult>
 
     @GET("app_reg_user.php")
     fun signUpWithGoogle(@Query("login") login: String,
                          @Query("gg") fb: Int = 1,
+                         @Query("pass") password: String,
                          @Query("key") key: String = secretKey):
             Call<AuthResult>
 

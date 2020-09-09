@@ -25,6 +25,11 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up), ServiceListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        if (setting.signUpFromService) {
+            email_et.isEnabled = false
+            email_et.setText(setting.email)
+        }
+
         privacy_tv.setOnClickListener {
             requireContext().startActivity<PolicyActivity> {
                 putExtra("url", getString(R.string.user_registration_privacy_url))
@@ -58,12 +63,29 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up), ServiceListener {
 
             if (isValid()) {
                 requireActivity().hideKeyboard()
-                ApiServiceImpl(this).signUpWithEmail(
-                    setting.getCurrentLanguage().locale,
-                    email_et.text.toString(),
-                    password_et.text.toString()
-                )
-                email = email_et.text.toString()
+
+                if (setting.signUpFromService) {
+                    if (setting.signUpFromGoogle)
+                        ApiServiceImpl(this).signUpWithGoogle(
+                            setting.getCurrentLanguage().locale,
+                            email_et.text.toString(),
+                            password_et.text.toString()
+                        )
+                    else
+                        ApiServiceImpl(this).signUpWithFb(
+                            setting.getCurrentLanguage().locale,
+                            email_et.text.toString(),
+                            password_et.text.toString()
+                        )
+                } else {
+
+                    ApiServiceImpl(this).signUpWithEmail(
+                        setting.getCurrentLanguage().locale,
+                        email_et.text.toString(),
+                        password_et.text.toString()
+                    )
+                    email = email_et.text.toString()
+                }
                 loginButton_b.startAnimation()
                 loginButton_b.isEnabled = false
             } else {
@@ -84,6 +106,8 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up), ServiceListener {
     }
 
     override fun onSignUp(result: AuthResult?) {
+        setting.signUpFromService = false
+
         Handler().postDelayed({
             loginButton_b.revertAnimation()
             loginButton_b.isEnabled = true
