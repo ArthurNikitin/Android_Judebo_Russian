@@ -49,7 +49,7 @@
     <string name="settings_password" translatable="false">Password</string>
     <string name="request_logout_title" translatable="false">Logout</string>
     <string name="request_logout_message" translatable="false">Logout?</string>
-    <string name="user_registration_title" translatable="false">registration</string>
+    <string name="user_registration_title" translatable="false">Registration</string>
     <string name="user_registration_privacy_title" translatable="false">Privacy rules</string>
     <string name="user_registration_privacy_url" translatable="false">https://ru.judebo.com/login/privacy.php</string>
     <string name="user_registration_agreement_title" translatable="false">Agreement</string>
@@ -58,5 +58,7 @@
     <string name="user_registration_activate_account" translatable="false">Please check your email and activate account</string>
     <string name="settings_logout_ok" translatable="false">Ok</string>
     <string name="settings_logout_cancel" translatable="false">Cancel</string>
+    <string name="user_registration_rules_accept" translatable="false">Accept</string>
+    <string name="user_registration_rules_cancel" translatable="false">Cancel</string>
 
 </resources>

@@ -102,7 +102,6 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
 
             name_tv.setText(jobInfo.NAME)
 
-            Log.e("test", jobInfo.UF_DETAIL_IMAGE.toString())
             try {
                 if (!jobInfo.UF_DETAIL_IMAGE.isNullOrEmpty()) {
                     if (jobInfo.UF_DETAIL_IMAGE!!.startsWith("http")) {
@@ -139,7 +138,10 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
             }
 
             try {
-                salary_tv.data = jobInfo.UF_GROSS_PER_MONTH?.toString()//?.round()
+                salary_tv.data = if (jobInfo.UF_GROSS_PER_MONTH == null
+                    || jobInfo.UF_GROSS_PER_MONTH == 0) ""
+                else
+                    jobInfo.UF_GROSS_PER_MONTH?.toString()
                 val selectedCurrency = currency ?: setting.getCurrentCurrency()
                 currencies.indices.forEach {
                     if (currencies[it].id == selectedCurrency.id) {
@@ -182,7 +184,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
             phone_tv.data = jobInfo.UF_CONTACT_PHONE
             email_tv.data = jobInfo.UF_CONTACT_EMAIL
 
-            lastUpdate_tv.text = "#${jobInfo.UF_JOBS_ID}\n${jobInfo.UF_MODIFED}"
+            lastUpdate_tv.text = "#${jobInfo.UF_JOBS_ID}\n#${jobInfo.UF_APP_JOB_ID}"
             company_tv.data = jobInfo.COMPANY ?: ""
             val types =
                 realm.where<JobTypeRealm>().findAll().filter { it.name.trim() != "" }

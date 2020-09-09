@@ -1,7 +1,9 @@
 package com.byte4b.judebo.fragments
 
+import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Typeface
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -18,6 +20,7 @@ import com.byte4b.judebo.models.VocationRealm
 import com.byte4b.judebo.models.currencies
 import com.byte4b.judebo.models.languages
 import com.byte4b.judebo.startActivity
+import com.byte4b.judebo.utils.RealmDb
 import com.byte4b.judebo.utils.Setting
 import io.realm.Realm
 import io.realm.kotlin.createObject
@@ -30,6 +33,7 @@ class SettingFragment : Fragment(R.layout.fragment_setting) {
     private val parent by lazy { requireActivity() as MainActivity }
     private val setting by lazy { Setting(requireActivity()) }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -41,6 +45,15 @@ class SettingFragment : Fragment(R.layout.fragment_setting) {
                 langIcon_iv.setImageResource(lang.flag)
         } catch (e: Exception) {
             Log.e("test", "1: " + e.localizedMessage)
+        }
+
+        subscribe_tv.text = "Free: ${setting.maxVocations}"
+        if (setting.maxVocations == RealmDb.getVocationsCount(Realm.getDefaultInstance())) {
+            subscribe_tv.setTextColor(resources.getColor(android.R.color.holo_red_dark))
+            subscribe_tv.setTypeface(subscribe_tv.typeface, Typeface.BOLD)
+        } else {
+            subscribe_tv.setTextColor(resources.getColor(android.R.color.black))
+            subscribe_tv.setTypeface(subscribe_tv.typeface, Typeface.NORMAL)
         }
 
         try {

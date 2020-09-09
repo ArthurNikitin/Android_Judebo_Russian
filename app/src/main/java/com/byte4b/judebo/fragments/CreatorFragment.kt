@@ -1,6 +1,7 @@
 package com.byte4b.judebo.fragments
 
 import android.annotation.SuppressLint
+import android.graphics.Typeface
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -20,6 +21,7 @@ import com.byte4b.judebo.adapters.VocationsAdapter
 import com.byte4b.judebo.models.Vocation
 import com.byte4b.judebo.models.VocationRealm
 import com.byte4b.judebo.services.ApiServiceImpl
+import com.byte4b.judebo.utils.RealmDb
 import com.byte4b.judebo.utils.Setting
 import com.byte4b.judebo.view.ServiceListener
 import com.google.gson.Gson
@@ -112,8 +114,24 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
 
     fun filterOff() = filter_et.setText("")
 
+    @SuppressLint("SetTextI18n")
+    private fun showVocationsCount() {
+        val vocationsCount = RealmDb.getVocationsCount(realm)
+        subscribe_limit.text = "Free: $vocationsCount/${setting.maxVocations}"
+
+        if (vocationsCount == setting.maxVocations) {
+            subscribe_limit.setTextColor(resources.getColor(android.R.color.holo_red_dark))
+            subscribe_limit.setTypeface(subscribe_limit.typeface, Typeface.BOLD)
+        } else {
+            subscribe_limit.setTextColor(resources.getColor(android.R.color.white))
+            subscribe_limit.setTypeface(subscribe_limit.typeface, Typeface.NORMAL)
+        }
+    }
+
     override fun onStart() {
         super.onStart()
+
+        showVocationsCount()
 
         run {
             try {
@@ -357,9 +375,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
         vocations_rv.adapter =
             VocationsAdapter(requireContext(), (list ?: listOf()).filterNot { it.isHided }, this)
 
-        try {
-            subcribe_stub.text = (vocations_rv.adapter as VocationsAdapter).vocations.size.toString()
-        } catch (e: Exception) {}
+        showVocationsCount()
 
         if (list == null)
             Toast.makeText(requireContext(), "Error", Toast.LENGTH_SHORT).show()

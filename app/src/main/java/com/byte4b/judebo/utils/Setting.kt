@@ -64,6 +64,8 @@ class Setting(ctx: Context) {
             }
         }
 
+    var maxVocations = 20
+
     fun getCurrentLanguage(): Language {
         return if (language == "") getLangFromLocale()
         else languages.first { it.locale == language!! }
@@ -104,7 +106,7 @@ class Setting(ctx: Context) {
         const val PERIOD_UPDATE_DYNAMIC_DATA_FROM_SERVER_IN_MINUTE = 60 * 24
 
         // how offen update job list from server in TAB vacancies
-        const val PERIOD_UPDATE_JOB_LIST_FOR_USER_IN_SECONDS = 3 * 60 * 1000L
+        const val PERIOD_UPDATE_JOB_LIST_FOR_USER_IN_SECONDS = 1 * 30 * 1000L
 
         //Timeout of json request in Seconds
         const val JSON_REQUEST_TIMEOUT_IN_SECONDS = 15L
@@ -131,7 +133,7 @@ class Setting(ctx: Context) {
         const val MAX_IMG_CROP_HEIGHT_LOGO = 32
         const val MAX_IMG_CROP_HEIGHT_PREVIEW = 100
         const val MAX_IMG_CROP_HEIGHT = 400
-        const val DEFAULT_SKILL_ID_ALWAYS_HIDDEN = "32"
+        const val DEFAULT_SKILL_ID_ALWAYS_HIDDEN = "284"
 
         //How long text title/company/detail
         const val TEXT_LENGTH_MAX_SYMBOLS_JOB_TITLE = 60
