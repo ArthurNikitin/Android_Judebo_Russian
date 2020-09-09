@@ -184,7 +184,16 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
             phone_tv.data = jobInfo.UF_CONTACT_PHONE
             email_tv.data = jobInfo.UF_CONTACT_EMAIL
 
-            lastUpdate_tv.text = "#${jobInfo.UF_JOBS_ID}\n#${jobInfo.UF_APP_JOB_ID}"
+            lastUpdate_tv.text =
+                if (jobInfo.UF_JOBS_ID == null && jobInfo.UF_APP_JOB_ID == null)
+                ""
+            else if (jobInfo.UF_JOBS_ID == null && jobInfo.UF_APP_JOB_ID != null)
+                jobInfo.UF_APP_JOB_ID.toString()
+            else if (jobInfo.UF_JOBS_ID != null && jobInfo.UF_APP_JOB_ID == null)
+                jobInfo.UF_JOBS_ID.toString()
+            else
+                "#${jobInfo.UF_JOBS_ID}\n#${jobInfo.UF_APP_JOB_ID}"
+
             company_tv.data = jobInfo.COMPANY ?: ""
             val types =
                 realm.where<JobTypeRealm>().findAll().filter { it.name.trim() != "" }
