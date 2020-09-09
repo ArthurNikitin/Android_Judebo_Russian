@@ -60,5 +60,12 @@
     <string name="settings_logout_cancel" translatable="false">Cancel</string>
     <string name="user_registration_rules_accept" translatable="false">Accept</string>
     <string name="user_registration_rules_cancel" translatable="false">Cancel</string>
+    <string name="settings_delete_account_title" translatable="false">Delete account</string>
+    <string name="settings_delete_account_button" translatable="false">Delete your account</string>
+    <string name="settings_delete_account_request_title" translatable="false">Title: Delete</string>
+    <string name="settings_delete_account_request_message" translatable="false">You sure?</string>
+    <string name="settings_delete_account_request_delete" translatable="false">Yes- delete</string>
+    <string name="settings_delete_account_request_cancel" translatable="false">Cancel</string>
+    <string name="settings_delete_account_message">Was deleted</string>
 
 </resources>

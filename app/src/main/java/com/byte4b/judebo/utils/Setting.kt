@@ -90,6 +90,8 @@ class Setting(ctx: Context) {
     }
 
     companion object {
+        const val LIMIT_VACANCIES_WITHOUT_SUBSCRIPTION = 15
+
         const val BASIC_ZOOM = 11.0f
         const val MIN_ZOOM = 2.0f
         const val MAX_ZOOM = 21.0f
