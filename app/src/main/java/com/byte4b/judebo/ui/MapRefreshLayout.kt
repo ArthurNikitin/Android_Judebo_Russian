@@ -3,7 +3,6 @@ package com.byte4b.judebo.ui
 import android.content.Context
 import android.util.AttributeSet
 import android.view.MotionEvent
-
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 
 

@@ -43,7 +43,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //refresher.setOnRefreshListener(this)
+        refresher.setOnRefreshListener(this)
 
         subscribe_button.setOnClickListener {
             requireContext().startActivity<SubscribesActivity>()
@@ -87,14 +87,19 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
             if (txt.trim().isEmpty()) {
                 setList(all)
                 filter_et.setLeftDrawable(R.drawable.item_detail_tags)
+                closeFilter_iv.visibility = View.GONE
+                filter_et.setPadding(0, 0, 0, 0)
             } else {
                 setList(all.filter {
                     it.NAME?.contains(txt) == true
                             || it.COMPANY?.contains("txt") == true
                             || it.DETAIL_TEXT?.contains(txt) == true})
                 filter_et.setLeftDrawable(R.drawable.button_delete)
+                closeFilter_iv.visibility = View.VISIBLE
+                filter_et.setPadding(0, 0, 15, 0)
             }
         }
+        closeFilter_iv.setOnClickListener { filterOff() }
 
         val handler = Handler {
             onRefresh()
@@ -162,7 +167,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
     @SuppressLint("SimpleDateFormat")
     override fun onMyVocationsLoaded(list: List<Vocation>?) {
         try {
-            //refresher.isRefreshing = false
+            refresher.isRefreshing = false
         } catch (e: Exception) {}
         if (list == null) return
 
@@ -371,7 +376,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
         }
 
         try {
-            //refresher.isRefreshing = false
+            refresher.isRefreshing = false
         } catch (e: Exception) {}
 
         vocations_rv.layoutManager = LinearLayoutManager(requireContext())
@@ -391,7 +396,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
     }
 
     override fun onRefresh() {
-        //refresher.isRefreshing = true
+        refresher.isRefreshing = true
         ApiServiceImpl(this).getMyVocations(
             setting.getCurrentLanguage().locale,
             token = setting.token ?: "",
