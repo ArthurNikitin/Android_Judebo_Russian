@@ -90,15 +90,15 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up), ServiceListener {
                 loginButton_b.isEnabled = false
             } else {
                 if ((email_et.text?:"").isEmpty())
-                    email_et.error = ""
+                    email_et.error = getString(R.string.user_registration_required_field)
                 else if ((password_et.text?:"").isEmpty())
-                    password_et.error = ""
+                    password_et.error = getString(R.string.user_registration_required_field)
                 else if(passwordConfirm_et.text.toString() != password_et.text.toString())
                     passwordConfirm_et.error = ""
                 else if (!privacySwitch.isChecked)
-                    privacySwitch.error = ""
+                    privacySwitch.error = getString(R.string.user_registration_required_field)
                 else if (!agreementSwitch.isChecked)
-                    agreementSwitch.error = ""
+                    agreementSwitch.error = getString(R.string.user_registration_required_field)
             }
         } catch (e: Exception) {
             Log.e("error", "signInEmail: ${e.localizedMessage}")

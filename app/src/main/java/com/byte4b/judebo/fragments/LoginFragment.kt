@@ -75,9 +75,9 @@ class LoginFragment : Fragment(R.layout.fragment_login), ServiceListener {
                 loginButton_b.isEnabled = false
             } else {
                 if ((email_et.text?:"").isEmpty())
-                    email_et.error = ""
+                    email_et.error = getString(R.string.user_registration_required_field)
                 else if ((password_et.text?:"").isEmpty())
-                    password_et.error = ""
+                    password_et.error = getString(R.string.user_registration_required_field)
             }
         } catch (e: Exception) {
             Log.e("error", "signInEmail: ${e.localizedMessage}")

@@ -412,16 +412,16 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
 
 
         if (name_tv.data?.trim().isNullOrEmpty()) {
-            name_tv.error = ""
+            name_tv.error = getString(R.string.edit_item_required_field)
         }
 
         if (phone_tv.data?.trim().isNullOrEmpty() && email_tv.data?.trim().isNullOrEmpty()) {
-            phone_tv.error = ""
-            email_tv.error = ""
+            phone_tv.error = getString(R.string.edit_item_required_field)
+            email_tv.error = getString(R.string.edit_item_required_field)
         }
 
         if (details_tv.data?.trim().isNullOrEmpty()) {
-            details_tv.error = ""
+            details_tv.error = getString(R.string.edit_item_required_field)
         }
 
         if (email_tv.data?.contains("@") == false
