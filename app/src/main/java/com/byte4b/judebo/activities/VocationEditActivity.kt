@@ -66,7 +66,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
             save1.setImageResource(R.drawable.button_save_deny)
             save2.setImageResource(R.drawable.button_save_deny)
         }
-        //name_tv.setHi
+
         name_field.counterMaxLength = Setting.TEXT_LENGTH_MAX_SYMBOLS_JOB_TITLE
         company_field.counterMaxLength = Setting.TEXT_LENGTH_MAX_SYMBOLS_JOB_COMPANY
         detail_field.counterMaxLength = Setting.TEXT_LENGTH_MAX_SYMBOLS_JOB_DETAIL
@@ -90,6 +90,11 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
         }
         job = jobInfo
 
+        Glide.with(this)
+            .load(R.drawable.edit_page_default_logo)
+            .circleCrop()
+            .into(logo_iv)
+
         initJobTypes()
         initCurrencies()
 
@@ -111,6 +116,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                     if (jobInfo.UF_DETAIL_IMAGE!!.startsWith("http")) {
                         Glide.with(this)
                             .load(jobInfo.UF_DETAIL_IMAGE)
+                            .circleCrop()
                             .placeholder(R.drawable.edit_page_default_logo)
                             .into(logo_iv)
                     } else {
@@ -237,6 +243,10 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                     logo_iv.setImageURI(result.uri)
                     val bitmap = logo_iv.drawable.toBitmap(100, 100)
                     logo_iv.setImageBitmap(bitmap)
+                    Glide.with(this)
+                        .load(bitmap)
+                        .circleCrop()
+                        .into(logo_iv)
                     isLogoSelected = true
                 }
             }
