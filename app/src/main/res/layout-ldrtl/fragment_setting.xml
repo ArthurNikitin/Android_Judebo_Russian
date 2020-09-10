@@ -196,6 +196,19 @@
                 android:textColor="#000" />
 
             <TextView
+                android:id="@+id/deleteTitle"
+                android:gravity="right"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/param_background"
+                android:text="@string/settings_delete_account_title"
+                android:textColor="#000" />
+
+            <TextView
                 android:id="@+id/deleteMe_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

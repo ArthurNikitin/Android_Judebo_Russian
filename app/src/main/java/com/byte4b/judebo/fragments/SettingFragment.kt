@@ -100,6 +100,7 @@ class SettingFragment : Fragment(R.layout.fragment_setting) {
                     deleteMe_tv.visibility = View.GONE
                     signOut_tv.visibility = View.GONE
                     myEmail_tv.visibility = View.GONE
+                    deleteTitle.visibility = View.GONE
                     Realm.getDefaultInstance().executeTransaction {
                         try {
                             it.delete<VocationRealm>()
@@ -145,11 +146,13 @@ class SettingFragment : Fragment(R.layout.fragment_setting) {
         super.onStart()
 
         if (setting.isAuth) {
+            deleteTitle.visibility = View.VISIBLE
             deleteMe_tv.visibility = View.VISIBLE
             signOut_tv.visibility = View.VISIBLE
             myEmail_tv.visibility = View.VISIBLE
             myEmail_tv.text = setting.email
         } else {
+            deleteTitle.visibility = View.GONE
             deleteMe_tv.visibility = View.GONE
             signOut_tv.visibility = View.GONE
             myEmail_tv.visibility = View.GONE
