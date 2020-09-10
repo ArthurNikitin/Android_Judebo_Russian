@@ -53,7 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_centerVertical="true"
-            android:layout_toLeftOf="@id/imageView6"
+            android:layout_toLeftOf="@id/save1"
             android:adjustViewBounds="true"
             android:onClick="deleteClick"
             app:srcCompat="@drawable/button_delete" />
@@ -61,7 +61,7 @@
         <ImageView
             android:paddingRight="5dp"
             android:paddingLeft="5dp"
-            android:id="@+id/imageView6"
+            android:id="@+id/save1"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_alignParentEnd="true"
@@ -324,6 +324,7 @@
                     android:layout_weight="1" />
 
                 <ImageView
+                    android:id="@+id/save2"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:onClick="saveClick"

@@ -23,6 +23,7 @@ import com.byte4b.judebo.adapters.SkillsAdapter
 import com.byte4b.judebo.fragments.DetailsMapFragment
 import com.byte4b.judebo.models.*
 import com.byte4b.judebo.services.ApiServiceImpl
+import com.byte4b.judebo.utils.RealmDb
 import com.byte4b.judebo.utils.Setting
 import com.byte4b.judebo.view.ServiceListener
 import com.github.florent37.runtimepermission.kotlin.askPermission
@@ -61,6 +62,11 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_vocation_edit)
         supportActionBar?.hide()
+
+        if (RealmDb.getVocationsCount(realm) > setting.maxVocations) {
+            save1.setImageResource(R.drawable.button_save_deny)
+            save2.setImageResource(R.drawable.button_save_deny)
+        }
 
         name_field.counterMaxLength = Setting.TEXT_LENGTH_MAX_SYMBOLS_JOB_TITLE
         company_field.counterMaxLength = Setting.TEXT_LENGTH_MAX_SYMBOLS_JOB_COMPANY

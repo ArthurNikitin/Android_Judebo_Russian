@@ -78,12 +78,26 @@ class SettingFragment : Fragment(R.layout.fragment_setting) {
             Log.e("test", "2: " + e.localizedMessage)
         }
 
+        deleteMe_tv.setOnClickListener {
+            AlertDialog.Builder(requireContext())
+                .setTitle(R.string.settings_delete_account_request_title)
+                .setMessage(R.string.settings_delete_account_request_message)
+                .setPositiveButton(R.string.settings_delete_account_request_delete) { dialog, _ ->
+                    //R.string.sett
+                }
+                .setNegativeButton(R.string.settings_delete_account_request_cancel) { d, _ ->
+                    d.cancel()
+                }
+                .show()
+        }
+
         signOut_tv.setOnClickListener {
             AlertDialog.Builder(requireContext())
                 .setTitle(R.string.request_logout_title)
                 .setMessage(R.string.request_logout_message)
                 .setPositiveButton(R.string.settings_logout_ok) { dialog, _ ->
                     setting.logout()
+                    deleteMe_tv.visibility = View.GONE
                     signOut_tv.visibility = View.GONE
                     myEmail_tv.visibility = View.GONE
                     Realm.getDefaultInstance().executeTransaction {
@@ -131,10 +145,12 @@ class SettingFragment : Fragment(R.layout.fragment_setting) {
         super.onStart()
 
         if (setting.isAuth) {
+            deleteMe_tv.visibility = View.VISIBLE
             signOut_tv.visibility = View.VISIBLE
             myEmail_tv.visibility = View.VISIBLE
             myEmail_tv.text = setting.email
         } else {
+            deleteMe_tv.visibility = View.GONE
             signOut_tv.visibility = View.GONE
             myEmail_tv.visibility = View.GONE
         }

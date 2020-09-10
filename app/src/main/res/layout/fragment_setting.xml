@@ -191,6 +191,19 @@
                 android:text="@string/settings_logout"
                 android:textColor="#000" />
 
+            <TextView
+                android:id="@+id/deleteMe_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:paddingLeft="8dp"
+                android:paddingTop="5dp"
+                android:paddingRight="15dp"
+                android:paddingBottom="5dp"
+                android:text="@string/settings_delete_account_button"
+                android:textStyle="bold"
+                android:textColor="@android:color/holo_red_dark" />
+
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
