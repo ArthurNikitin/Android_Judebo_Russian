@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CounterEditText">
+        <attr name="hint" format="string" />
+        <attr name="maxLength" format="integer" />
+        <attr name="android:minLines" format="integer"/>
+        <attr name="maxLines" format="integer" />
+        <attr name="text" format="string" />
+    </declare-styleable>
+
+</resources>

@@ -66,7 +66,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
             save1.setImageResource(R.drawable.button_save_deny)
             save2.setImageResource(R.drawable.button_save_deny)
         }
-
+        //name_tv.setHi
         name_field.counterMaxLength = Setting.TEXT_LENGTH_MAX_SYMBOLS_JOB_TITLE
         company_field.counterMaxLength = Setting.TEXT_LENGTH_MAX_SYMBOLS_JOB_COMPANY
         detail_field.counterMaxLength = Setting.TEXT_LENGTH_MAX_SYMBOLS_JOB_DETAIL

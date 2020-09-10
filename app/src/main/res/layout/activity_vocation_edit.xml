@@ -83,6 +83,14 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <com.byte4b.judebo.ui.CounterEditText
+                app:text="test"
+                app:maxLength="133"
+                app:hint="@string/settings_delete_account_button"
+                android:layout_width="match_parent"
+                android:minLines="2"
+                android:layout_height="wrap_content" />
+
             <com.google.android.material.textfield.TextInputLayout
                 app:counterEnabled="true"
                 android:id="@+id/name_field"
