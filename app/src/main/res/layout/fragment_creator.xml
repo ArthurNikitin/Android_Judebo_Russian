@@ -48,6 +48,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
+                        android:paddingStart="3dp"
                         android:hint="@string/user_jobs_list_search"
                         android:inputType="textPersonName"
                         android:textColor="#fff"
