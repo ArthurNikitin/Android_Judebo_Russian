@@ -430,6 +430,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
 
     @SuppressLint("SimpleDateFormat")
     fun saveClick(v: View) {
+        if (RealmDb.getVocationsCount(realm) > setting.maxVocations) return
         try {
             if (!validateForm()) return
 
