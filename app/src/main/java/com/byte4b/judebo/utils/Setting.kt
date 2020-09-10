@@ -138,7 +138,7 @@ class Setting(ctx: Context) {
         val CLUSTER_SIZES =
             listOf(2..3, 4..5, 6..7, 8..9, 10..11, 12..15, 16..20, 21..30, 31..50, 51..99)
 
-        const val JOB_LIFETIME_IN_DAYS = 90 //* 24 * 60 * 60 * 1000L
+        const val JOB_LIFETIME_IN_DAYS = 90
 
         const val MAX_IMG_CROP_HEIGHT_LOGO = 32
         const val MAX_IMG_CROP_HEIGHT_PREVIEW = 100

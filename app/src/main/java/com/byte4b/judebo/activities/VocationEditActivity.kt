@@ -7,7 +7,6 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
@@ -30,6 +29,7 @@ import com.github.florent37.runtimepermission.kotlin.askPermission
 import com.google.android.flexbox.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.gson.Gson
+import com.theartofdev.edmodo.cropper.CropImage
 import io.realm.Realm
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.activity_vocation_edit.*
@@ -48,7 +48,6 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
     private var isLogoSelected = false
 
     companion object {
-        private const val REQUEST_CROP = 101
         private const val REQUEST_PICTURE = 102
         const val REQUEST_LANGUAGES = 103
         const val REQUEST_SKILLS = 104
@@ -73,7 +72,8 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
         detail_field.counterMaxLength = Setting.TEXT_LENGTH_MAX_SYMBOLS_JOB_DETAIL
 
         val jobInfo: Vocation = try {
-            realm.where<VocationRealm>().equalTo("UF_APP_JOB_ID",
+            realm.where<VocationRealm>().equalTo(
+                "UF_APP_JOB_ID",
                 intent.getLongExtra("appId", -1)
             ).findFirst()!!.toBasicVersion()
         } catch (e: Exception) {
@@ -231,34 +231,20 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         when (requestCode) {
-            REQUEST_CROP -> {
+            CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE -> {
+                val result = CropImage.getActivityResult(data)
                 if (resultCode == Activity.RESULT_OK) {
-                    logo_iv.setImageURI(data?.data)
+                    logo_iv.setImageURI(result.uri)
+                    val bitmap = logo_iv.drawable.toBitmap(100, 100)
+                    logo_iv.setImageBitmap(bitmap)
                     isLogoSelected = true
                 }
             }
             REQUEST_PICTURE -> {
-                if (resultCode == Activity.RESULT_OK) {
-                    logo_iv.setImageURI(data?.data)
-                    val bitmap = logo_iv.drawable.toBitmap(100, 100)
-                    logo_iv.setImageBitmap(bitmap)
-                    isLogoSelected = true
-                }//tmp stub
-                return
-                val cropIntent = Intent("com.android.camera.action.CROP")
-                cropIntent.setDataAndType(data?.data, "image/*")
-                cropIntent.putExtra("crop", "true")
-                cropIntent.putExtra("aspectX", 1)
-                cropIntent.putExtra("aspectY", 1)
-                intent.putExtra("outputX", Setting.MAX_IMG_CROP_HEIGHT)
-                intent.putExtra("outputY", Setting.MAX_IMG_CROP_HEIGHT)
-                //image type
-                intent.putExtra("outputFormat", "JPEG")
-                cropIntent.putExtra("return-data", true)
-
-                //val outputFileUri = Uri.fromFile(createCropFile())
-                cropIntent.putExtra(MediaStore.EXTRA_OUTPUT, data?.data)
-                startActivityForResult(cropIntent, REQUEST_CROP)
+                CropImage
+                    .activity(data?.data)
+                    .setAspectRatio(1, 1)
+                    .start(this)
             }
             REQUEST_SKILLS -> {
                 if (resultCode == Activity.RESULT_OK) {
@@ -293,10 +279,13 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
             }
             lang_rv.layoutManager = layoutManager
             lang_rv.adapter =
-                LanguagesAdapter(this,
+                LanguagesAdapter(
+                    this,
                     (languagesList ?: listOf(setting.getCurrentLanguage())) +
-                            Language(name = getString(R.string.edit_item_add_language),
-                                flag = R.drawable.button_plus_gray),
+                            Language(
+                                name = getString(R.string.edit_item_add_language),
+                                flag = R.drawable.button_plus_gray
+                            ),
                     isDetails = true, isEditor = true, vocation = jobInfo
                 )
         } catch (e: Exception) {}
@@ -314,15 +303,17 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
 
         filters_tv.layoutManager = layoutManager
         if (jobInfo.UF_SKILLS_ID_ALL.isNullOrEmpty()) {
-            filters_tv.adapter = SkillsAdapter(this,
+            filters_tv.adapter = SkillsAdapter(
+                this,
                 listOf(getString(R.string.edit_item_add_tag)),
-                isDetails = true, isEditor = true, vocation = jobInfo)
+                isDetails = true, isEditor = true, vocation = jobInfo
+            )
         } else {
             val vocationSkillsIds = jobInfo.UF_SKILLS_ID_ALL!!
                 .split(",")
                 .filterNot { it == Setting.DEFAULT_SKILL_ID_ALWAYS_HIDDEN }
             filters_tv.adapter = SkillsAdapter(this,
-                 skillsRealm.filter { it.id.toString() in vocationSkillsIds }.map { it.name } +
+                skillsRealm.filter { it.id.toString() in vocationSkillsIds }.map { it.name } +
                         getString(R.string.edit_item_add_tag),
                 isDetails = true, isEditor = true, vocation = jobInfo)
         }
@@ -491,7 +482,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                     createNewVocation()
             }
         } catch (e: Exception) {
-            Log.e("test", e.localizedMessage?: "error")
+            Log.e("test", e.localizedMessage ?: "error")
         }
     }
 
