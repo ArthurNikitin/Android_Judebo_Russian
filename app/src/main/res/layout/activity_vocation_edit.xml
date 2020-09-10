@@ -83,14 +83,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.byte4b.judebo.ui.CounterEditText
-                app:text="test"
-                app:maxLength="133"
-                app:hint="@string/settings_delete_account_button"
-                android:layout_width="match_parent"
-                android:minLines="2"
-                android:layout_height="wrap_content" />
-
             <com.google.android.material.textfield.TextInputLayout
                 app:counterEnabled="true"
                 android:id="@+id/name_field"
@@ -340,13 +332,28 @@
                     android:layout_weight="1"
                     app:srcCompat="@drawable/button_save" />
 
-                <TextView
-                    android:id="@+id/lastUpdate_tv"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="end"
-                    android:text="#392 \n 10.05.2020" />
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/serverId_tv"
+                        android:gravity="end"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="#392" />
+
+                    <TextView
+                        android:id="@+id/appId_tv"
+                        android:textSize="12sp"
+                        android:gravity="end"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="#34123131432" />
+                </LinearLayout>
+
             </LinearLayout>
 
         </LinearLayout>
