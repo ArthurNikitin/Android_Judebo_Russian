@@ -77,8 +77,8 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                 }
         }
 
-        filter_et.setLeftDrawable(R.drawable.item_detail_tags)
-        filter_et.doOnTextChanged { text, _, _, _ ->
+        filters_tv.setLeftDrawable(R.drawable.item_detail_tags)
+        filters_tv.doOnTextChanged { text, _, _, _ ->
             val txt = text.toString()
             val all = realm.where<VocationRealm>().findAll()
                 .map { it.toBasicVersion() }
@@ -86,17 +86,17 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
 
             if (txt.trim().isEmpty()) {
                 setList(all)
-                filter_et.setLeftDrawable(R.drawable.item_detail_tags)
+                filters_tv.setLeftDrawable(R.drawable.item_detail_tags)
                 closeFilter_iv.visibility = View.GONE
-                filter_et.setPadding(0, 0, 0, 0)
+                filters_tv.setPadding(0, 0, 0, 0)
             } else {
                 setList(all.filter {
                     it.NAME?.contains(txt) == true
                             || it.COMPANY?.contains("txt") == true
                             || it.DETAIL_TEXT?.contains(txt) == true})
-                filter_et.setLeftDrawable(R.drawable.button_delete)
+                filters_tv.setLeftDrawable(R.drawable.button_delete)
                 closeFilter_iv.visibility = View.VISIBLE
-                filter_et.setPadding(0, 0, 15, 0)
+                filters_tv.setPadding(0, 0, 15, 0)
             }
         }
         closeFilter_iv.setOnClickListener { filterOff() }
@@ -116,9 +116,9 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
 
 
 
-    fun isFilterModeOn() = filter_et.text.toString().isNotEmpty()
+    fun isFilterModeOn() = filters_tv.text.toString().isNotEmpty()
 
-    fun filterOff() = filter_et.setText("")
+    fun filterOff() = filters_tv.setText("")
 
     @SuppressLint("SetTextI18n")
     private fun showVocationsCount(): Boolean {

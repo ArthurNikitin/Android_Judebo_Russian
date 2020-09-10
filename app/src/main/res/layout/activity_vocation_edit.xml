@@ -310,6 +310,7 @@
                     android:id="@+id/details_tv"
                     android:textSize="18sp"
                     android:minLines="8"
+                    android:maxLines="8"
                     android:background="#fff"
                     android:gravity="left|top"
                     android:layout_width="match_parent"

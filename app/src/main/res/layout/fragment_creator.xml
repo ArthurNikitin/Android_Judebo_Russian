@@ -35,28 +35,28 @@
                 android:text="subcribe_stub" />
 
             <RelativeLayout
-                android:layout_width="match_parent" 
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">  
 
-                <EditText 
-                    android:id="@+id/filter_et" 
-                    android:layout_width="match_parent" 
-                    android:layout_height="wrap_content" 
-                    android:ems="10" 
-                    android:paddingStart="3dp" 
+                <EditText
+                    android:id="@+id/filters_tv"
+                    android:ems="10"
+                    android:paddingStart="3dp"
                     android:hint="@string/user_jobs_list_search"
-                    android:inputType="textPersonName" 
-                    android:textColor="#fff" 
-                    android:textColorHint="#DAF5F5F5" />  
+                    android:inputType="textPersonName"
+                    android:textColor="#fff"
+                    android:textColorHint="#DAF5F5F5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-                <ImageView 
-                    android:visibility="gone" 
-                    android:layout_centerVertical="true" 
-                    android:layout_alignParentEnd="true" 
-                    android:id="@+id/closeFilter_iv" 
-                    android:layout_width="wrap_content" 
-                    android:layout_height="20dp" 
-                    app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />  
+                <ImageView
+                    android:visibility="gone"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:id="@+id/closeFilter_iv"
+                    android:layout_width="wrap_content"
+                    app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"
+                    android:layout_height="20dp" />
 
             </RelativeLayout>
 
