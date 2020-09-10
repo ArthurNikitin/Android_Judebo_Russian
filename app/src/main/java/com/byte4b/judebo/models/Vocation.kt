@@ -1,7 +1,15 @@
 package com.byte4b.judebo.models
 
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
+import android.os.Build
+import androidx.core.graphics.drawable.toBitmap
+import com.byte4b.judebo.timestamp
+import com.byte4b.judebo.utils.Setting
 import com.byte4b.judebo.view.ServiceListener
 import io.realm.RealmObject
+import java.io.ByteArrayOutputStream
+import java.util.*
 
 data class Vocation(
     @Transient var isHided: Boolean = false,
@@ -94,9 +102,58 @@ open class VocationRealm : RealmObject() {
     var UF_SKILLS_ID_ALL: String? = null
     var UF_TYPE_OF_JOB_ID: Int? = null
 
-    var location
-        get() = UF_MAP_POINT?.split(", ")?.map { it.toDouble() } ?: listOf(.0, .0)
-        set(value) { UF_MAP_POINT = value.joinToString(", ") }
+    fun setDateModifiedAndDisable() {
+        val time = Calendar.getInstance()
+        UF_MODIFED = time.timestamp
+        time.add(Calendar.DATE, Setting.JOB_LIFETIME_IN_DAYS)
+        UF_DISABLE = time.timestamp
+    }
+
+    fun setSalary(currencyId: Int, salary: String?) {
+        UF_GROSS_CURRENCY_ID = currencyId
+        UF_GROSS_PER_MONTH = try {
+            salary?.trim()?.replace(" ", "")?.toInt()
+        } catch (e: Exception) {
+            null
+        }
+
+        if (UF_GROSS_PER_MONTH == 0)
+            UF_GROSS_PER_MONTH = null
+        if (UF_GROSS_PER_MONTH != null) {
+            val currency = currencies.first { it.id == UF_GROSS_CURRENCY_ID }
+            UF_GOLD_PER_MONTH = ((1000000L * UF_GROSS_PER_MONTH!!) / currency.rate).toInt()
+        }
+    }
+
+    fun setIcons(drawable: Drawable) {
+        UF_DETAIL_IMAGE = toBase64(
+            drawable.toBitmap(
+                Setting.MAX_IMG_CROP_HEIGHT,
+                Setting.MAX_IMG_CROP_HEIGHT
+            )
+        )
+        UF_LOGO_IMAGE = toBase64(
+            drawable.toBitmap(
+                Setting.MAX_IMG_CROP_HEIGHT_LOGO,
+                Setting.MAX_IMG_CROP_HEIGHT_LOGO
+            )
+        )
+        UF_PREVIEW_IMAGE = toBase64(
+            drawable.toBitmap(
+                Setting.MAX_IMG_CROP_HEIGHT_PREVIEW,
+                Setting.MAX_IMG_CROP_HEIGHT_PREVIEW
+            )
+        )
+    }
+
+    private fun toBase64(bitmap: Bitmap): String {
+        val stream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+            Base64.getEncoder().encodeToString(stream.toByteArray())
+        else
+            android.util.Base64.encodeToString(stream.toByteArray(), android.util.Base64.DEFAULT)
+    }
 
     fun toBasicVersion() = Vocation(
         isHided = isHided,

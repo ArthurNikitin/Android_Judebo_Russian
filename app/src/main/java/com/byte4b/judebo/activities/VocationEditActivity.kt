@@ -4,7 +4,6 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
@@ -33,7 +32,6 @@ import com.google.gson.Gson
 import io.realm.Realm
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.activity_vocation_edit.*
-import java.io.ByteArrayOutputStream
 import java.util.*
 import kotlin.random.Random
 
@@ -450,54 +448,20 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                         currentVocationRealm.UF_CONTACT_PHONE = phone_tv.data
                         currentVocationRealm.UF_ACTIVE = if (isValidForm()) 1 else 0
 
-                        val time = Calendar.getInstance()
-                        currentVocationRealm.UF_MODIFED = time.timestamp
-                        time.add(Calendar.DATE, Setting.JOB_LIFETIME_IN_DAYS)
-                        currentVocationRealm.UF_DISABLE = time.timestamp
+                        currentVocationRealm.setDateModifiedAndDisable()
 
                         currentVocationRealm.UF_LANGUAGE_ID_ALL = job!!.UF_LANGUAGE_ID_ALL
                         currentVocationRealm.UF_SKILLS_ID_ALL =
                             if (job!!.UF_SKILLS_ID_ALL.isNullOrEmpty()) Setting.DEFAULT_SKILL_ID_ALWAYS_HIDDEN
                             else job!!.UF_SKILLS_ID_ALL
 
-                        currentVocationRealm.UF_GROSS_PER_MONTH = try {
-                                salary_tv.data?.trim()?.replace(" ", "")?.toInt()
-                        } catch (e: Exception) {
-                            null
-                        }
-                        currentVocationRealm.UF_GROSS_CURRENCY_ID =
-                            currencies[salaryVal_tv.selectedItemPosition].id
-                        if (currentVocationRealm.UF_GROSS_PER_MONTH == 0)
-                            currentVocationRealm.UF_GROSS_PER_MONTH = null
-                        if (currentVocationRealm.UF_GROSS_PER_MONTH != null) {
-                            val currency = currencies.first { it.id ==
-                                    currentVocationRealm.UF_GROSS_CURRENCY_ID}
-                            currentVocationRealm.UF_GOLD_PER_MONTH =
-                                ((1000000L * currentVocationRealm.UF_GROSS_PER_MONTH!!)
-                                        / currency.rate).toInt()
-                        }
+                        currentVocationRealm.setSalary(
+                            currencies[salaryVal_tv.selectedItemPosition].id,
+                            salary_tv.data
+                        )
 
-                        if (isLogoSelected) {
-                            val drawable = logo_iv.drawable
-                            currentVocationRealm.UF_DETAIL_IMAGE = toBase64(
-                                drawable.toBitmap(
-                                    Setting.MAX_IMG_CROP_HEIGHT,
-                                    Setting.MAX_IMG_CROP_HEIGHT
-                                )
-                            )
-                            currentVocationRealm.UF_LOGO_IMAGE = toBase64(
-                                drawable.toBitmap(
-                                    Setting.MAX_IMG_CROP_HEIGHT_LOGO,
-                                    Setting.MAX_IMG_CROP_HEIGHT_LOGO
-                                )
-                            )
-                            currentVocationRealm.UF_PREVIEW_IMAGE = toBase64(
-                                drawable.toBitmap(
-                                    Setting.MAX_IMG_CROP_HEIGHT_PREVIEW,
-                                    Setting.MAX_IMG_CROP_HEIGHT_PREVIEW
-                                )
-                            )
-                        }
+                        if (isLogoSelected)
+                            currentVocationRealm.setIcons(logo_iv.drawable)
 
                         val latLng =
                             (supportFragmentManager.fragments.last() as DetailsMapFragment).latLng
@@ -524,15 +488,6 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
         }
     }
 
-    private fun toBase64(bitmap: Bitmap): String {
-        val stream = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-            Base64.getEncoder().encodeToString(stream.toByteArray())
-        else
-            android.util.Base64.encodeToString(stream.toByteArray(), android.util.Base64.DEFAULT)
-    }
-
     override fun onMyVocationUpdated(success: Boolean) {
         if (!success)
             toast(R.string.error_no_internet)
@@ -548,51 +503,20 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
         currentVocationRealm.UF_CONTACT_PHONE = phone_tv.data
         currentVocationRealm.UF_ACTIVE = if (isValidForm()) 1 else 0
 
-        val time = Calendar.getInstance()
-        currentVocationRealm.UF_MODIFED = time.timestamp
-        time.add(Calendar.DATE, Setting.JOB_LIFETIME_IN_DAYS)
-        currentVocationRealm.UF_DISABLE = time.timestamp
+        currentVocationRealm.setDateModifiedAndDisable()
 
         currentVocationRealm.UF_LANGUAGE_ID_ALL = job!!.UF_LANGUAGE_ID_ALL
         currentVocationRealm.UF_SKILLS_ID_ALL =
             if (job!!.UF_SKILLS_ID_ALL.isNullOrEmpty()) Setting.DEFAULT_SKILL_ID_ALWAYS_HIDDEN
             else job!!.UF_SKILLS_ID_ALL
 
-        currentVocationRealm.UF_GROSS_PER_MONTH = try {
-            salary_tv.data?.trim()?.replace(" ", "")?.toInt()
-        } catch (e: Exception) {
-            null
-        }
-        currentVocationRealm.UF_GROSS_CURRENCY_ID =
-            currencies[salaryVal_tv.selectedItemPosition].id
-        if (currentVocationRealm.UF_GROSS_PER_MONTH == 0)
-            currentVocationRealm.UF_GROSS_PER_MONTH = null
-        if (currentVocationRealm.UF_GROSS_PER_MONTH != null) {
-            val currency = currencies.first { it.id ==
-                    currentVocationRealm.UF_GROSS_CURRENCY_ID}
-            currentVocationRealm.UF_GOLD_PER_MONTH =
-                ((1000000L * currentVocationRealm.UF_GROSS_PER_MONTH!!)
-                        / currency.rate).toInt()
-        }
+        currentVocationRealm.setSalary(
+            currencies[salaryVal_tv.selectedItemPosition].id,
+            salary_tv.data
+        )
 
-        if (isLogoSelected) {
-            val drawable = logo_iv.drawable
-            currentVocationRealm.UF_DETAIL_IMAGE = toBase64(
-                drawable.toBitmap(Setting.MAX_IMG_CROP_HEIGHT, Setting.MAX_IMG_CROP_HEIGHT)
-            )
-            currentVocationRealm.UF_LOGO_IMAGE = toBase64(
-                drawable.toBitmap(
-                    Setting.MAX_IMG_CROP_HEIGHT_LOGO,
-                    Setting.MAX_IMG_CROP_HEIGHT_LOGO
-                )
-            )
-            currentVocationRealm.UF_PREVIEW_IMAGE = toBase64(
-                drawable.toBitmap(
-                    Setting.MAX_IMG_CROP_HEIGHT_PREVIEW,
-                    Setting.MAX_IMG_CROP_HEIGHT_PREVIEW
-                )
-            )
-        }
+        if (isLogoSelected)
+            currentVocationRealm.setIcons(logo_iv.drawable)
 
         val latLng =
             (supportFragmentManager.fragments.last() as DetailsMapFragment).latLng ?: LatLng(

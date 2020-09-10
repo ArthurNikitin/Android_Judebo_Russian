@@ -25,6 +25,7 @@ import com.byte4b.judebo.utils.Setting
 import io.realm.Realm
 import io.realm.kotlin.createObject
 import io.realm.kotlin.delete
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_setting.*
 import java.util.*
 
@@ -94,6 +95,8 @@ class SettingFragment : Fragment(R.layout.fragment_setting) {
                         } catch (e: Exception) {}
                     }
                     dialog.dismiss()
+                    (requireActivity() as MainActivity).navBar_bnv.selectedItemId = R.id.bottom_item_creator
+                    (requireActivity() as MainActivity).restartFragment(LoginFragment())
                 }
                 .setNegativeButton(R.string.settings_logout_cancel) { d, _ -> d.cancel()}
                 .show()
