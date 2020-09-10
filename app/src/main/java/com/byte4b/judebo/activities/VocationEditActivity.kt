@@ -7,6 +7,7 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
@@ -131,13 +132,16 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                                         jobInfo.UF_DETAIL_IMAGE!!,
                                         android.util.Base64.DEFAULT
                                     )
-                            logo_iv.setImageBitmap(
-                                BitmapFactory.decodeByteArray(
-                                    btm,
-                                    0,
-                                    btm.size
-                                )
-                            )
+                            Handler().postDelayed({
+                                Glide.with(this)
+                                    .load(BitmapFactory.decodeByteArray(
+                                        btm,
+                                        0,
+                                        btm.size
+                                    ))
+                                    .circleCrop()
+                                    .into(logo_iv)
+                            }, 200)
                         } catch (e: Exception) {
                             Log.e("test", "base64 error:")
                         }
