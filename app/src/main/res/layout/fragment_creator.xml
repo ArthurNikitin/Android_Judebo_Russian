@@ -39,6 +39,7 @@
                 android:layout_height="wrap_content">  
 
                 <EditText
+                    android:background="@drawable/filter_background"
                     android:id="@+id/filters_tv"
                     android:ems="10"
                     android:paddingStart="3dp"
