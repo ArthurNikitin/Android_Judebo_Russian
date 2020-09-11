@@ -84,8 +84,10 @@
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
-                app:counterEnabled="true"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:id="@+id/name_field"
+                app:counterEnabled="true"
+                app:boxStrokeColor="@color/toolbar_background_color"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -94,7 +96,6 @@
                     android:id="@+id/name_tv"
                     android:textSize="18sp"
                     android:gravity="top"
-                    android:background="#fff"
                     android:minLines="2"
                     android:textStyle="bold"
                     android:layout_marginBottom="8dp"
@@ -103,29 +104,21 @@
                     android:text="Vacancy name" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <LinearLayout
-                android:gravity="center_vertical"
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                app:boxStrokeColor="@color/toolbar_background_color"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content">
 
-                <LinearLayout
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:layout_marginBottom="8dp"
+                android:textSize="17sp"
+                android:layout_weight="1"
+                android:id="@+id/jobType_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-                    <Spinner
-                        android:layout_marginBottom="8dp"
-                        android:textSize="17sp"
-                        android:layout_weight="1"
-                        android:id="@+id/jobType_tv"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-            </LinearLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -151,7 +144,9 @@
                     android:orientation="vertical">
 
                     <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         app:counterEnabled="true"
+                        app:boxStrokeColor="@color/toolbar_background_color"
                         android:id="@+id/company_field"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
@@ -160,9 +155,7 @@
                             android:id="@+id/company_tv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
                             android:gravity="top"
-                            android:background="#fff"
                             android:hint="@string/edit_item_company"
                             android:minLines="2"
                             android:text="Company name"
@@ -175,17 +168,25 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <EditText
-                            android:id="@+id/salary_tv"
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            app:boxStrokeColor="@color/toolbar_background_color"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
+                            android:layout_height="wrap_content">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/salary_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
                             android:gravity="right"
+                            android:minLines="2"
                             android:hint="@string/edit_item_gross"
                             android:inputType="number"
                             android:text="10 000"
                             android:textSize="16sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
                         <Spinner
                             android:id="@+id/salaryVal_tv"
@@ -194,6 +195,7 @@
                             android:textSize="16sp" />
 
                     </LinearLayout>
+
                 </LinearLayout>
 
             </LinearLayout>
@@ -211,27 +213,41 @@
                     android:orientation="horizontal">
                 </LinearLayout>
 
-                <EditText
-                    android:id="@+id/phone_tv"
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:layout_weight="1"
-                    android:hint="@string/edit_item_phone"
-                    android:inputType="phone"
-                    android:text="+7 800 555 55 55"
-                    android:textSize="16sp" />
+                    app:boxStrokeColor="@color/toolbar_background_color"
+                    android:layout_height="wrap_content">
 
-                <EditText
-                    android:id="@+id/email_tv"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/phone_tv"
+                        android:paddingStart="6dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:hint="@string/edit_item_phone"
+                        android:inputType="phone"
+                        android:text="+7 800 555 55 55"
+                        android:textSize="16sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:layout_weight="1"
-                    android:hint="@string/edit_item_email"
-                    android:inputType="textEmailAddress"
-                    android:text="send_me_mail@gmail.com"
-                    android:textSize="16sp" />
+                    app:boxStrokeColor="@color/toolbar_background_color"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/email_tv"
+                        android:paddingStart="6dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:hint="@string/edit_item_email"
+                        android:inputType="textEmailAddress"
+                        android:text="send_me_mail@gmail.com"
+                        android:textSize="16sp" />
+                </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
 
@@ -290,6 +306,8 @@
                 android:layout_height="250dp" />
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:boxStrokeColor="@color/toolbar_background_color"
                 app:counterEnabled="true"
                 android:id="@+id/detail_field"
                 android:layout_width="match_parent"
@@ -302,7 +320,6 @@
                     android:textSize="18sp"
                     android:minLines="8"
                     android:maxLines="8"
-                    android:background="#fff"
                     android:gravity="left|top"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

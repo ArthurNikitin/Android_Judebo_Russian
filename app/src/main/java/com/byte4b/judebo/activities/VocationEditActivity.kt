@@ -225,10 +225,10 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
     }
 
     private fun initJobTypes() {
-        jobType_tv.adapter = ArrayAdapter<String>(this,
+        jobType_tv.setAdapter(ArrayAdapter<String>(this,
             android.R.layout.simple_spinner_dropdown_item,
             realm.where<JobTypeRealm>().findAll().map { it.name }.filter { it.trim() != "" }
-        )
+        ))
     }
 
     private fun initCurrencies() {
@@ -481,9 +481,9 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                                 ?: LatLng(Setting.DEFAULT_LATITUDE, Setting.DEFAULT_LONGITUDE)
                         currentVocationRealm.UF_MAP_POINT =
                             "${latLng.latitude}, ${latLng.longitude}"
-                        currentVocationRealm.UF_TYPE_OF_JOB_ID = realm
-                            .where<JobTypeRealm>().findAll()
-                            .filter { it.name.trim() != "" }[jobType_tv.selectedItemPosition].id
+                        //currentVocationRealm.UF_TYPE_OF_JOB_ID = realm
+                            //.where<JobTypeRealm>().findAll()
+                            //.filter { it.name.trim() != "" }[jobType_tv.selectedItemPosition].id///
 
                         ApiServiceImpl(this).updateMyVocations(
                             setting.getCurrentLanguage().locale,
@@ -537,9 +537,9 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                 Setting.DEFAULT_LONGITUDE
             )
         currentVocationRealm.UF_MAP_POINT = "${latLng.latitude}, ${latLng.longitude}"
-        currentVocationRealm.UF_TYPE_OF_JOB_ID = realm
-            .where<JobTypeRealm>().findAll()
-            .filter { it.name.trim() != "" }[jobType_tv.selectedItemPosition].id
+        //currentVocationRealm.UF_TYPE_OF_JOB_ID = realm
+        //    .where<JobTypeRealm>().findAll()
+        //    .filter { it.name.trim() != "" }[jobType_tv.selectedItemPosition].id
 
         currentVocationRealm.UF_APP_JOB_ID = getNewJobAppId().toLongOrNull()
 
