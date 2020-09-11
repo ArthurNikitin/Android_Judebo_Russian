@@ -160,10 +160,14 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                 val selectedCurrency = currency ?: setting.getCurrentCurrency()
                 currencies.indices.forEach {
                     if (currencies[it].id == selectedCurrency.id) {
-                        salaryVal_tv.setSelection(it)
+                        //salaryVal_tv.setSelection(it)
+                        salaryIcon_iv.setImageResource(currencies[it].icon)
                         return@forEach
                     }
                 }
+
+                salaryIcon_iv.setOnClickListener { showCurrencyDialog() }
+                salaryVal_tv.setOnClickListener { showCurrencyDialog() }
 
                 jobInfo.apply {
                     supportFragmentManager.beginTransaction()
@@ -223,6 +227,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
         }
 
         validateForm()
+        mainContainer.setOnClickListener { hideKeyboard() }
         name_tv.hideKeyboard()
     }
 
@@ -233,8 +238,9 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
         ))
     }
 
+    var currencyAdapter: ArrayAdapter<String>? = null
     private fun initCurrencies() {
-        salaryVal_tv.adapter = ArrayAdapter<String>(this,
+        currencyAdapter = ArrayAdapter<String>(this,
             android.R.layout.simple_spinner_dropdown_item,
             currencies.map { it.name }
         )
@@ -306,6 +312,17 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                     isDetails = true, isEditor = true, vocation = jobInfo
                 )
         } catch (e: Exception) {}
+    }
+
+    fun showCurrencyDialog() {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.settings_title_currency)
+            .setAdapter(currencyAdapter!!) { dialog, index ->
+                salaryVal_tv.text = currencies[index].name
+                salaryIcon_iv.setImageResource(currencies[index].icon)
+                dialog.dismiss()
+            }
+            .show()
     }
 
     private fun setSkillsList() {
@@ -470,10 +487,10 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                             if (job!!.UF_SKILLS_ID_ALL.isNullOrEmpty()) Setting.DEFAULT_SKILL_ID_ALWAYS_HIDDEN
                             else job!!.UF_SKILLS_ID_ALL
 
-                        currentVocationRealm.setSalary(
-                            currencies[salaryVal_tv.selectedItemPosition].id,
-                            salary_tv.data
-                        )
+                        //currentVocationRealm.setSalary(
+                        //    currencies[salaryVal_tv.selectedItemPosition].id,
+                        //    salary_tv.data
+                        //)
 
                         if (isLogoSelected)
                             currentVocationRealm.setIcons(logo_iv.drawable)
@@ -526,10 +543,10 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
             if (job!!.UF_SKILLS_ID_ALL.isNullOrEmpty()) Setting.DEFAULT_SKILL_ID_ALWAYS_HIDDEN
             else job!!.UF_SKILLS_ID_ALL
 
-        currentVocationRealm.setSalary(
-            currencies[salaryVal_tv.selectedItemPosition].id,
-            salary_tv.data
-        )
+        //currentVocationRealm.setSalary(
+        //    currencies[salaryVal_tv.selectedItemPosition].id,
+        //    salary_tv.data
+        //)
 
         if (isLogoSelected)
             currentVocationRealm.setIcons(logo_iv.drawable)
@@ -578,6 +595,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
     }
 
     fun setAvatar(v: View) {
+        hideKeyboard()
         askPermission(
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE

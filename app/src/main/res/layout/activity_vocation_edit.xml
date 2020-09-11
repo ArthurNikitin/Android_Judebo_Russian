@@ -6,6 +6,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/mainContainer"
     tools:context=".activities.VocationEditActivity">
 
     <RelativeLayout
@@ -162,39 +163,50 @@
                             android:textSize="17sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
+                    <com.google.android.material.card.MaterialCardView
+                        app:cardCornerRadius="0dp"
+                        app:strokeWidth="0dp"
+                        app:cardBackgroundColor="#fff"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
                     <LinearLayout
+                        android:background="@drawable/salary_container_background"
                         android:id="@+id/salaryContainer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <com.google.android.material.textfield.TextInputLayout
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                            app:boxStrokeColor="@color/toolbar_background_color"
-                            android:layout_width="wrap_content"
-                            android:layout_marginRight="5dp"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_marginStart="6dp"
+                            android:layout_marginEnd="6dp"
+                            android:id="@+id/salaryIcon_iv"
+                            android:layout_width="20dp"
+                            android:layout_height="match_parent"
+                            app:srcCompat="@drawable/ar" />
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/salary_tv"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="right"
-                            android:minLines="2"
-                            android:hint="@string/edit_item_gross"
-                            android:inputType="number"
-                            android:text="10 000"
-                            android:textSize="16sp" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                        <Spinner
+                        <TextView
                             android:id="@+id/salaryVal_tv"
+                            android:gravity="center_vertical"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:textSize="16sp" />
 
+                        <EditText
+                            android:id="@+id/salary_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="1"
+                            android:hint="@string/edit_item_gross"
+                            android:inputType="number"
+                            android:minLines="2"
+                            android:text="10 000"
+                            android:textSize="16sp" />
+
                     </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
 
                 </LinearLayout>
 
