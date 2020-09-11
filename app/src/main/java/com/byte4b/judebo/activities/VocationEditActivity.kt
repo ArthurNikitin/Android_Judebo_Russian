@@ -80,6 +80,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
         } catch (e: Exception) {
             val tmp = Vocation()
             tmp.UF_LANGUAGE_ID_ALL = setting.getCurrentLanguage().id.toString()
+            realm.executeTransaction { it.copyToRealm(tmp.toRealmVersion()) }
             tmp
         }
         if (jobInfo.UF_APP_JOB_ID == null) {
