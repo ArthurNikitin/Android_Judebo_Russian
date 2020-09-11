@@ -40,7 +40,7 @@ class DetailsMapFragment(
             requireContext().resources.getDrawable(R.drawable.map_default_marker)
                 .toBitmap(100, 100)
         target.icon(BitmapDescriptorFactory.fromBitmap(icon))
-        //todo: if location is empty - show user location or default location
+
         target.draggable(true)
 
         map?.clear()
