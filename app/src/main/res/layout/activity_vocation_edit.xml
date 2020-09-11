@@ -174,8 +174,23 @@
                         android:background="@drawable/salary_container_background"
                         android:id="@+id/salaryContainer"
                         android:layout_width="match_parent"
+                        android:paddingEnd="5dp"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
+
+                        <EditText
+                            android:background="@null"
+                            android:id="@+id/salary_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="1"
+                            android:hint="@string/edit_item_gross"
+                            android:inputType="number"
+                            android:gravity="end|center_vertical"
+                            android:minLines="2"
+                            android:text="10 000"
+                            android:textSize="16sp" />
 
                         <ImageView
                             android:layout_marginStart="6dp"
@@ -187,21 +202,10 @@
 
                         <TextView
                             android:id="@+id/salaryVal_tv"
+                            android:layout_marginRight="5dp"
                             android:gravity="center_vertical"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:textSize="16sp" />
-
-                        <EditText
-                            android:id="@+id/salary_tv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="5dp"
-                            android:layout_weight="1"
-                            android:hint="@string/edit_item_gross"
-                            android:inputType="number"
-                            android:minLines="2"
-                            android:text="10 000"
                             android:textSize="16sp" />
 
                     </LinearLayout>
