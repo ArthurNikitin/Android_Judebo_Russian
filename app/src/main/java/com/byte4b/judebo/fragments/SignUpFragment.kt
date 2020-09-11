@@ -113,7 +113,7 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up), ServiceListener {
             if (result?.status == "success") {
                 setting.isAuth = true
                 setting.email = email
-                setting.token = result.data
+                setting.token = result.token
                 (requireActivity() as MainActivity).restartFragment(CreatorFragment())
             } else if (result != null)
                 Toasty.error(requireContext(), result.data).show()
