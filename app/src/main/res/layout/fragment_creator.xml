@@ -46,11 +46,12 @@
                     android:layout_marginStart="6dp"
                     android:paddingStart="6dp"
                     android:hint="@string/user_jobs_list_search"
+                    android:background="@null"
                     android:inputType="textPersonName"
                     android:textColor="#fff"
                     android:textColorHint="#DAF5F5F5"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="30dp" />
 
                 <ImageView
                     android:visibility="gone"
