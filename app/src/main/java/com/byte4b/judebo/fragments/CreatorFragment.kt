@@ -86,7 +86,6 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
 
             if (txt.trim().isEmpty()) {
                 setList(all)
-                filters_tv.setLeftDrawable(R.drawable.item_detail_tags)
                 closeFilter_iv.visibility = View.GONE
                 filters_tv.setPadding(0, 0, 0, 0)
             } else {
@@ -94,7 +93,6 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                     it.NAME?.contains(txt, ignoreCase = true) == true
                             || it.COMPANY?.contains(txt, ignoreCase = true) == true
                             || it.DETAIL_TEXT?.contains(txt, ignoreCase = true) == true})
-                filters_tv.setLeftDrawable(R.drawable.button_delete)
                 closeFilter_iv.visibility = View.VISIBLE
                 filters_tv.setPadding(0, 0, 15, 0)
             }

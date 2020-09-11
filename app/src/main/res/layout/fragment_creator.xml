@@ -35,14 +35,16 @@
                 android:text="subcribe_stub" />
 
             <RelativeLayout
+                android:background="@drawable/filter_background"
                 android:layout_width="match_parent"
+                android:layout_marginBottom="2dp"
                 android:layout_height="wrap_content">  
 
                 <EditText
-                    android:background="@drawable/filter_background"
                     android:id="@+id/filters_tv"
                     android:ems="10"
-                    android:paddingStart="3dp"
+                    android:layout_marginStart="6dp"
+                    android:paddingStart="6dp"
                     android:hint="@string/user_jobs_list_search"
                     android:inputType="textPersonName"
                     android:textColor="#fff"
