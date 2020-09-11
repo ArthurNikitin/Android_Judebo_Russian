@@ -78,14 +78,13 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up), ServiceListener {
                             password_et.text.toString()
                         )
                 } else {
-
                     ApiServiceImpl(this).signUpWithEmail(
                         setting.getCurrentLanguage().locale,
                         email_et.text.toString(),
                         password_et.text.toString()
                     )
-                    email = email_et.text.toString()
                 }
+                email = email_et.text.toString()
                 loginButton_b.startAnimation()
                 loginButton_b.isEnabled = false
             } else {
