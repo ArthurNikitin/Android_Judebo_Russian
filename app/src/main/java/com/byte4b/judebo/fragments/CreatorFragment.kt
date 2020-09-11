@@ -91,9 +91,9 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                 filters_tv.setPadding(0, 0, 0, 0)
             } else {
                 setList(all.filter {
-                    it.NAME?.contains(txt) == true
-                            || it.COMPANY?.contains("txt") == true
-                            || it.DETAIL_TEXT?.contains(txt) == true})
+                    it.NAME?.contains(txt, ignoreCase = true) == true
+                            || it.COMPANY?.contains(txt, ignoreCase = true) == true
+                            || it.DETAIL_TEXT?.contains(txt, ignoreCase = true) == true})
                 filters_tv.setLeftDrawable(R.drawable.button_delete)
                 closeFilter_iv.visibility = View.VISIBLE
                 filters_tv.setPadding(0, 0, 15, 0)
