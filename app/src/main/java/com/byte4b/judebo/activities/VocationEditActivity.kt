@@ -80,6 +80,16 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
         } catch (e: Exception) {
             val tmp = Vocation()
             tmp.UF_LANGUAGE_ID_ALL = setting.getCurrentLanguage().id.toString()
+            val time = Calendar.getInstance()
+            tmp.UF_MODIFED = time.timestamp
+            time.add(Calendar.DATE, Setting.JOB_LIFETIME_IN_DAYS)
+            tmp.UF_DISABLE = time.timestamp
+            tmp.UF_APP_JOB_ID = getNewJobAppId().toLongOrNull()
+            val latLng = LatLng(
+                    getLocation()?.latitude ?: Setting.DEFAULT_LATITUDE,
+                    getLocation()?.longitude ?: Setting.DEFAULT_LONGITUDE
+                )
+            tmp.UF_MAP_POINT = "${latLng.latitude}, ${latLng.longitude}"
             realm.executeTransaction { it.copyToRealm(tmp.toRealmVersion()) }
             tmp
         }
@@ -160,7 +170,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                 val selectedCurrency = currency ?: setting.getCurrentCurrency()
                 currencies.indices.forEach {
                     if (currencies[it].id == selectedCurrency.id) {
-                        //salaryVal_tv.setSelection(it)
+                        salaryVal_tv.text = currencies[it].name
                         salaryIcon_iv.setImageResource(currencies[it].icon)
                         return@forEach
                     }
@@ -215,15 +225,18 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
             }
 
             company_tv.data = jobInfo.COMPANY ?: ""
-            val types =
-                realm.where<JobTypeRealm>().findAll().filter { it.name.trim() != "" }
 
-            jobType_tv.setSelection(
-                types.indices.first { i -> types[i].id == jobInfo.UF_TYPE_OF_JOB_ID }
-            )
+            try {
+                val types =
+                    realm.where<JobTypeRealm>().findAll().filter { it.name.trim() != "" }
+                jobType_tv.setText(types.first { it.id == jobInfo.UF_TYPE_OF_JOB_ID }.name, false)
+            } catch (e: Exception) {
+                jobType_tv.setText(jobType_tv.adapter.getItem(0).toString())
+            }
 
             details_tv.data = jobInfo.DETAIL_TEXT ?: ""
         } catch (e: Exception) {
+            Log.e("test", e.localizedMessage ?: "errrrrror")
         }
 
         validateForm()
@@ -240,7 +253,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
 
     var currencyAdapter: ArrayAdapter<String>? = null
     private fun initCurrencies() {
-        currencyAdapter = ArrayAdapter<String>(this,
+        currencyAdapter = ArrayAdapter(this,
             android.R.layout.simple_spinner_dropdown_item,
             currencies.map { it.name }
         )
@@ -500,10 +513,15 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                                 ?: LatLng(Setting.DEFAULT_LATITUDE, Setting.DEFAULT_LONGITUDE)
                         currentVocationRealm.UF_MAP_POINT =
                             "${latLng.latitude}, ${latLng.longitude}"
-                        currentVocationRealm.UF_TYPE_OF_JOB_ID = realm
-                            .where<JobTypeRealm>().findAll()
-                            .filter { it.name.trim() != "" }
-                            .first { it.name == jobType_tv.text?.trim() }.id
+                        try {
+                            currentVocationRealm.UF_TYPE_OF_JOB_ID = realm
+                                .where<JobTypeRealm>().findAll()
+                                .filter { it.name.trim() != "" }
+                                .first { it.name == jobType_tv.text?.trim() }.id
+                        } catch (e: Exception) {
+                            currentVocationRealm.UF_TYPE_OF_JOB_ID = realm
+                                .where<JobTypeRealm>().findFirst()?.id
+                        }
 
                         ApiServiceImpl(this).updateMyVocations(
                             setting.getCurrentLanguage().locale,
