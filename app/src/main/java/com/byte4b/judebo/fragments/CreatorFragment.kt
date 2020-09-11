@@ -112,8 +112,6 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
         }.start()
     }
 
-
-
     fun isFilterModeOn() = filters_tv.text.toString().isNotEmpty()
 
     fun filterOff() = filters_tv.setText("")
@@ -386,6 +384,14 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
             this,
             showVocationsCount()
         )
+
+        if ((list?: listOf()).size > 3) {
+            logout_ll.visibility = View.VISIBLE
+            logout2_ll.visibility = View.GONE
+        } else {
+            logout_ll.visibility = View.GONE
+            logout2_ll.visibility = View.VISIBLE
+        }
 
         if (list == null)
             Toast.makeText(requireContext(), "Error", Toast.LENGTH_SHORT).show()
