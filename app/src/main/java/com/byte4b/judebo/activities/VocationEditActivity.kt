@@ -221,6 +221,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
         } catch (e: Exception) {
         }
 
+        validateForm()
         name_tv.hideKeyboard()
     }
 
