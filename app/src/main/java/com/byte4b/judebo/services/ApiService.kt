@@ -39,4 +39,6 @@ interface ApiService {
 
     fun signUpWithGoogle(locale: String, login: String, password: String)
 
+    fun deleteMe(locale: String, login: String, token: String)
+
 }

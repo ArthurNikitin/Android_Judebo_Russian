@@ -297,4 +297,23 @@ class ApiServiceImpl(val listener: ServiceListener?) : ApiService {
             })
     }
 
+    override fun deleteMe(locale: String, login: String, token: String) {
+        getAPI(locale)
+            .deleteMe(secretKey, token, login)
+            .enqueue(object : Callback<Result> {
+                override fun onFailure(call: Call<Result>, t: Throwable) {
+                    check { listener?.onAccountDeleted(null) }
+                }
+
+                override fun onResponse(call: Call<Result>, response: Response<Result>) {
+                    check {
+                        if (response.isSuccessful)
+                            listener?.onAccountDeleted(response.body())
+                        else
+                            listener?.onAccountDeleted(null)
+                    }
+                }
+            })
+    }
+
 }

@@ -16,23 +16,30 @@ import com.byte4b.judebo.activities.SubscribesActivity
 import com.byte4b.judebo.adapters.CurrencyAdapter
 import com.byte4b.judebo.adapters.LanguageAdapter
 import com.byte4b.judebo.getLangFromLocale
+import com.byte4b.judebo.models.Result
 import com.byte4b.judebo.models.VocationRealm
 import com.byte4b.judebo.models.currencies
 import com.byte4b.judebo.models.languages
+import com.byte4b.judebo.services.ApiServiceImpl
 import com.byte4b.judebo.startActivity
+import com.byte4b.judebo.timestamp
 import com.byte4b.judebo.utils.RealmDb
 import com.byte4b.judebo.utils.Setting
+import com.byte4b.judebo.view.ServiceListener
+import es.dmoral.toasty.Toasty
 import io.realm.Realm
 import io.realm.kotlin.createObject
 import io.realm.kotlin.delete
+import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_setting.*
 import java.util.*
 
-class SettingFragment : Fragment(R.layout.fragment_setting) {
+class SettingFragment : Fragment(R.layout.fragment_setting), ServiceListener {
 
     private val parent by lazy { requireActivity() as MainActivity }
     private val setting by lazy { Setting(requireActivity()) }
+    private val realm by lazy { Realm.getDefaultInstance() }
 
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -83,7 +90,23 @@ class SettingFragment : Fragment(R.layout.fragment_setting) {
                 .setTitle(R.string.settings_delete_account_request_title)
                 .setMessage(R.string.settings_delete_account_request_message)
                 .setPositiveButton(R.string.settings_delete_account_request_delete) { dialog, _ ->
-                    //R.string.sett
+                    realm.executeTransaction {
+                        val vocations = it.where<VocationRealm>().findAll()
+                        vocations.forEach {
+                            //set main field null for delete
+                            //map, modif, isHidden
+                            it.isHided = true
+                            it.UF_MAP_POINT = null
+                            it.UF_MODIFED = Calendar.getInstance().timestamp
+                        }
+                        ApiServiceImpl(this).updateMyVocations(
+                            setting.getCurrentLanguage().locale,
+                            setting.token ?: "",
+                            setting.email ?: "",
+                            vocations.map { it.toBasicVersion() }
+                        )
+                    }
+                    dialog.dismiss()
                 }
                 .setNegativeButton(R.string.settings_delete_account_request_cancel) { d, _ ->
                     d.cancel()
@@ -125,6 +148,28 @@ class SettingFragment : Fragment(R.layout.fragment_setting) {
             startActivity(emailIntent)
         }
         subsClickable.setOnClickListener { requireContext().startActivity<SubscribesActivity>() }
+    }
+
+    override fun onMyVocationUpdated(success: Boolean) {
+        if (success) {
+            ApiServiceImpl(this).deleteMe(
+                setting.getCurrentLanguage().locale,
+                setting.email ?: "",
+                setting.token ?: ""
+            )
+        } else
+            Toasty.error(requireContext(), R.string.error_no_internet).show()
+    }
+
+    override fun onAccountDeleted(result: Result?) {
+        if (result?.status == "success") {
+            setting.logout()
+            Toasty.success(requireContext(), R.string.settings_delete_account_message).show()
+            parent.restartFragment(LoginFragment())
+        } else if (result != null) {
+            Toasty.error(requireContext(), result.data).show()
+        } else
+            Toasty.error(requireContext(), R.string.error_no_internet)
     }
 
     private fun showCurrencyDialog() {

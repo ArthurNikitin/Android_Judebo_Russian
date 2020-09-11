@@ -24,4 +24,6 @@ interface ServiceListener {
 
     fun onSignUp(result: AuthResult?) {}
 
+    fun onAccountDeleted(result: Result?) {}
+
 }

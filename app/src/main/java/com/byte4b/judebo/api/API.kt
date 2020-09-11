@@ -93,5 +93,10 @@ interface API {
                          @Query("key") key: String = secretKey):
             Call<AuthResult>
 
+    @GET("app_user_delete.php")
+    fun deleteMe(@Query("key") secretKey: String,
+                 @Query("token") token: String,
+                 @Query("login") login: String):
+            Call<Result>
 
 }
