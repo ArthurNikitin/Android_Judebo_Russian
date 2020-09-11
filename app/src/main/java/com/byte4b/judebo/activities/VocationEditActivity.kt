@@ -487,10 +487,10 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                             if (job!!.UF_SKILLS_ID_ALL.isNullOrEmpty()) Setting.DEFAULT_SKILL_ID_ALWAYS_HIDDEN
                             else job!!.UF_SKILLS_ID_ALL
 
-                        //currentVocationRealm.setSalary(
-                        //    currencies[salaryVal_tv.selectedItemPosition].id,
-                        //    salary_tv.data
-                        //)
+                        currentVocationRealm.setSalary(
+                            currencies.firstOrNull { it.name == salaryVal_tv.text }?.id ?: 0,
+                            salary_tv.data
+                        )
 
                         if (isLogoSelected)
                             currentVocationRealm.setIcons(logo_iv.drawable)
@@ -543,10 +543,10 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
             if (job!!.UF_SKILLS_ID_ALL.isNullOrEmpty()) Setting.DEFAULT_SKILL_ID_ALWAYS_HIDDEN
             else job!!.UF_SKILLS_ID_ALL
 
-        //currentVocationRealm.setSalary(
-        //    currencies[salaryVal_tv.selectedItemPosition].id,
-        //    salary_tv.data
-        //)
+        currentVocationRealm.setSalary(
+            currencies.firstOrNull { it.name == salaryVal_tv.text }?.id ?: 0,
+            salary_tv.data
+        )
 
         if (isLogoSelected)
             currentVocationRealm.setIcons(logo_iv.drawable)
