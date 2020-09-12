@@ -234,12 +234,13 @@
                     android:layout_width="match_parent"
                     app:errorEnabled="true"
                     app:helperTextEnabled="true"
+                    app:prefixText="  "
                     app:boxStrokeColor="@color/toolbar_background_color"
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/phone_tv"
-                        android:paddingStart="6dp"
+                        android:paddingLeft="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"

@@ -114,11 +114,11 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
             val currency = currencies.firstOrNull { it.id == jobInfo.UF_GROSS_CURRENCY_ID }
 
             if (!isRtl(this)) {
-                phone_tv.setLeftDrawable(R.drawable.edit_page_phone, 50)
-                email_tv.setLeftDrawable(R.drawable.edit_page_mail, 50)
+                phone_tv.setLeftDrawable(R.drawable.edit_page_phone)
+                email_tv.setLeftDrawable(R.drawable.edit_page_mail)
             } else {
-                phone_tv.setRightDrawable(R.drawable.edit_page_phone, 50)
-                email_tv.setRightDrawable(R.drawable.edit_page_mail, 50)
+                phone_tv.setRightDrawable(R.drawable.edit_page_phone)
+                email_tv.setRightDrawable(R.drawable.edit_page_mail)
             }
 
             name_tv.setText(jobInfo.NAME)
