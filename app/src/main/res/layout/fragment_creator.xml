@@ -97,6 +97,8 @@
                     android:layout_height="wrap_content" />
 
                 <LinearLayout
+                    android:layout_marginTop="20dp"
+                    android:visibility="gone"
                     android:id="@+id/logout_ll"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -128,7 +130,7 @@
         </ScrollView>
 
             <LinearLayout
-                android:visibility="gone"
+                android:layout_marginBottom="20dp"
                 android:layout_alignParentBottom="true"
                 android:id="@+id/logout2_ll"
                 android:layout_width="match_parent"

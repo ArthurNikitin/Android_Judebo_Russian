@@ -254,14 +254,13 @@ class VocationsAdapter(
 
                 Realm.getDefaultInstance().executeTransaction {
                     val vocationRealm = it.where<VocationRealm>()
-                        .equalTo("UF_JOBS_ID", vocation.UF_JOBS_ID)
+                        .equalTo("UF_APP_JOB_ID", vocation.UF_APP_JOB_ID)
                         .findFirst()
 
                     try {
                         vocationRealm?.isHided = true
                         vocationRealm?.COMPANY = null
                         vocationRealm?.DETAIL_TEXT = null
-                        vocationRealm?.NAME = null
                         vocationRealm?.UF_CONTACT_EMAIL = null
                         vocationRealm?.UF_CONTACT_PHONE = null
                         vocationRealm?.UF_DETAIL_IMAGE = null
@@ -300,7 +299,7 @@ class VocationsAdapter(
 
     override fun onVocationDeleted(success: Boolean) {
         Log.e("check", "is deleted: $success")
-        parent.onRefresh()
+        parent.showList()
     }
 
     class Holder(val view: View) : RecyclerView.ViewHolder(view) {

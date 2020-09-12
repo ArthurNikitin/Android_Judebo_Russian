@@ -2,8 +2,10 @@ package com.byte4b.judebo.fragments
 
 import android.annotation.SuppressLint
 import android.graphics.Typeface
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -37,7 +39,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
 
     private val realm by lazy { Realm.getDefaultInstance() }
     private val setting by lazy { Setting(requireContext()) }
-    private fun vocationsFromRealm() = realm.where<VocationRealm>().findAll()
+    private fun vocationsFromRealm() = realm.where<VocationRealm>().findAll().filter { !it.isHided }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -364,15 +366,15 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
     }
 
     private fun setList(list: List<Vocation>?) {
-        //Log.e("check", "for show")
-        //list?.forEach {
-        //    Log.e("check", "${it.UF_JOBS_ID}: ${Gson().toJson(it)}")
-        //}
+        Log.e("check", "for show")
+        list?.forEach {
+            Log.e("check", "${it.UF_JOBS_ID}: ${Gson().toJson(it)}")
+        }
 
-        //Log.e("check", "in realm")
-        //realm.where<VocationRealm>().findAll().map { it.toBasicVersion() }.forEach {
-        //    Log.e("check", "${it.UF_JOBS_ID}: ${Gson().toJson(it)}")
-        //}
+        Log.e("check", "in realm")
+        realm.where<VocationRealm>().findAll().map { it.toBasicVersion() }.forEach {
+            Log.e("check", "${it.UF_JOBS_ID}: ${Gson().toJson(it)}")
+        }
 
         try {
             refresher.isRefreshing = false
@@ -383,7 +385,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
             .addItemDecoration(DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL))
         vocations_rv.adapter = VocationsAdapter(
             requireContext(),
-            (list ?: listOf()).filterNot { it.isHided },
+            (list ?: listOf()).filterNot { it.isHided }.filter { it.UF_APP_JOB_ID != null },
             this,
             showVocationsCount()
         )
@@ -402,7 +404,12 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
             Toast.makeText(requireContext(), "Empty", Toast.LENGTH_SHORT).show()
     }
 
+    fun showList() {
+        setList(realm.where<VocationRealm>().findAll().filter { !it.isHided }.map { it.toBasicVersion() })
+    }
+
     override fun onRefresh() {
+        Log.e("test", ""+Build.VERSION.SDK_INT )
         refresher.isRefreshing = true
         ApiServiceImpl(this).getMyVocations(
             setting.getCurrentLanguage().locale,
