@@ -5,6 +5,9 @@ import android.app.Activity
 import android.content.Context
 import android.content.Context.LOCATION_SERVICE
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Paint
 import android.location.Location
 import android.location.LocationManager
 import android.view.View
@@ -52,11 +55,10 @@ fun Context.getLocation(): Location? {
 }
 
 fun TextView.setLeftDrawable(@DrawableRes drawable: Int, size: Int = Setting.CURRENCY_ICON_SIZE) {
-    val drawable = resources
-        .getDrawable( drawable)
-        .toBitmap(size, size)
-        .toDrawable(resources)
-   setCompoundDrawablesWithIntrinsicBounds(if (!isRtl) drawable else null,null, if (isRtl) drawable else null, null)
+    val drawabl = Bitmap.createBitmap(size * 2, size, Bitmap.Config.ARGB_8888)
+    val canvas = Canvas(drawabl)
+    canvas.drawBitmap(resources.getDrawable(drawable).toBitmap(size, size), size / 2f, 0f, Paint())
+    setCompoundDrawables(if (!isRtl) drawabl.toDrawable(resources) else null,null, if (isRtl) drawabl.toDrawable(resources) else null, null)
 }
 
 val isRtl get() =
@@ -72,11 +74,10 @@ fun isRtl(ctx: Context): Boolean {
 }
 
 fun TextView.setRightDrawable(@DrawableRes drawable: Int, size: Int = Setting.CURRENCY_ICON_SIZE) {
-    val drawable = resources
-        .getDrawable( drawable)
-        .toBitmap(size, size)
-        .toDrawable(resources)
-    setCompoundDrawablesWithIntrinsicBounds(if (isRtl) drawable else null ,null, if (!isRtl) drawable else null, null)
+    val drawabl = Bitmap.createBitmap(size * 2, size, Bitmap.Config.ARGB_8888)
+    val canvas = Canvas(drawabl)
+    canvas.drawBitmap(resources.getDrawable(drawable).toBitmap(size, size), size / 2f, 0f, Paint())
+    setCompoundDrawables(if (isRtl) drawabl.toDrawable(resources) else null ,null, if (!isRtl) drawabl.toDrawable(resources) else null, null)
 }
 
 fun String.round(): String {
