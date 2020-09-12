@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.graphics.Typeface
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -161,7 +160,11 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
     }
 
     @SuppressLint("SimpleDateFormat")
-    override fun onMyVocationsLoaded(list: List<Vocation>?) {
+    override fun onMyVocationsLoaded(list: List<Vocation>?, isNeedLogout: Boolean) {
+        if (isNeedLogout) {
+            setting.logout()
+            (requireActivity() as MainActivity).restartFragment(LoginFragment())
+        }
         try {
             refresher.isRefreshing = false
         } catch (e: Exception) {}
@@ -361,15 +364,15 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
     }
 
     private fun setList(list: List<Vocation>?) {
-        Log.e("check", "for show")
-        list?.forEach {
-            Log.e("check", "${it.UF_JOBS_ID}: ${Gson().toJson(it)}")
-        }
+        //Log.e("check", "for show")
+        //list?.forEach {
+        //    Log.e("check", "${it.UF_JOBS_ID}: ${Gson().toJson(it)}")
+        //}
 
-        Log.e("check", "in realm")
-        realm.where<VocationRealm>().findAll().map { it.toBasicVersion() }.forEach {
-            Log.e("check", "${it.UF_JOBS_ID}: ${Gson().toJson(it)}")
-        }
+        //Log.e("check", "in realm")
+        //realm.where<VocationRealm>().findAll().map { it.toBasicVersion() }.forEach {
+        //    Log.e("check", "${it.UF_JOBS_ID}: ${Gson().toJson(it)}")
+        //}
 
         try {
             refresher.isRefreshing = false

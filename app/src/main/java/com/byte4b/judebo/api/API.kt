@@ -32,7 +32,7 @@ interface API {
     fun getMyVocations(@Query("key") secretKey: String,
                        @Query("tok") token: String,
                        @Query("login") login: String):
-            Call<List<Vocation>>
+            Call<JsonObject>
 
     @POST("app_add_job.php")
     fun deleteVocation(@Query("key") secretKey: String,

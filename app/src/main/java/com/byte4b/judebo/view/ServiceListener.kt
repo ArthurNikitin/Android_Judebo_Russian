@@ -12,7 +12,7 @@ interface ServiceListener {
 
     fun onRatesLoaded(list: List<CurrencyRate>?) {}
 
-    fun onMyVocationsLoaded(list: List<Vocation>?) {}
+    fun onMyVocationsLoaded(list: List<Vocation>?, isNeedLogout: Boolean = false) {}
 
     fun onVocationDeleted(success: Boolean) {}
 

@@ -116,16 +116,33 @@ class ApiServiceImpl(val listener: ServiceListener?) : ApiService {
     override fun getMyVocations(locale: String, token: String, login: String) {
         getAPI(locale)
             .getMyVocations(secretKey, token, login)
-            .enqueue(object : Callback<List<Vocation>> {
-                override fun onFailure(call: Call<List<Vocation>>, t: Throwable) {
+            .enqueue(object : Callback<JsonObject> {
+                override fun onFailure(call: Call<JsonObject>, t: Throwable) {
                     check { listener?.onMyVocationsLoaded(null) }
                 }
 
-                override fun onResponse(call: Call<List<Vocation>>, response: Response<List<Vocation>>) {
+                override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                     check {
-                        if (response.isSuccessful)
-                            listener?.onMyVocationsLoaded(response.body())
-                        else
+                        if (response.isSuccessful) {
+                            try {
+                                val list = Gson().fromJson(
+                                    Gson().toJson(response.body()), listOf<Vocation>()::class.java
+                                )
+                                val isLogout = Gson().fromJson(response.body(), Result::class.java)
+                                    ?.data == "wrong token"
+                                listener?.onMyVocationsLoaded(list, isLogout)
+                            } catch (e: Exception) {
+                                try {
+                                    Log.e("test", e.localizedMessage ?: "api parse error")
+                                    val isLogout =
+                                        Gson().fromJson(response.body(), Result::class.java)
+                                            ?.data == "wrong token"
+                                    listener?.onMyVocationsLoaded(null, isLogout)
+                                } catch (e: Exception) {
+                                    listener?.onMyVocationsLoaded(null)
+                                }
+                            }
+                        } else
                             listener?.onMyVocationsLoaded(null)
                     }
                 }
