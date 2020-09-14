@@ -7,6 +7,7 @@ import com.byte4b.judebo.models.*
 import com.byte4b.judebo.utils.Setting
 import com.byte4b.judebo.view.ServiceListener
 import com.google.gson.Gson
+import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -50,7 +51,6 @@ class ApiServiceImpl(val listener: ServiceListener?) : ApiService {
                                 result.UF_MAP_POINT_LONGITUDE +=
                                     2 * Random.nextInt(-8, 8) * Setting.VALUE_INFINITESIMAL
 
-                                Log.e("test", "parsed + ${it.value}")
                                 result
                             }
                             listener?.onNearbyMarkersLoaded(objects)
@@ -119,21 +119,25 @@ class ApiServiceImpl(val listener: ServiceListener?) : ApiService {
     override fun getMyVocations(locale: String, token: String, login: String) {
         getAPI(locale)
             .getMyVocations(secretKey, token, login)
-            .enqueue(object : Callback<JsonObject> {
-                override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+            .enqueue(object : Callback<JsonArray> {
+                override fun onFailure(call: Call<JsonArray>, t: Throwable) {
+
+                    Log.e("test", t.localizedMessage)
                     check { listener?.onMyVocationsLoaded(null) }
                 }
 
-                override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
+                override fun onResponse(call: Call<JsonArray>, response: Response<JsonArray>) {
                     check {
                         if (response.isSuccessful) {
                             try {
-                                val list = Gson().fromJson(
-                                    Gson().toJson(response.body()), listOf<Vocation>()::class.java
-                                )
-                                val isLogout = Gson().fromJson(response.body(), Result::class.java)
-                                    ?.data == "wrong token"
-                                listener?.onMyVocationsLoaded(list, isLogout)
+                                val data = Gson().toJson(response.body().toString())
+                                val list = Gson().fromJson(data,
+                                    mutableListOf<Vocation>()::class.java)!!
+
+                                list.forEach {
+                                    Log.e("test", it.UF_JOBS_ID.toString())
+                                }
+                                listener?.onMyVocationsLoaded(list)
                             } catch (e: Exception) {
                                 try {
                                     Log.e("test", e.localizedMessage ?: "api parse error")

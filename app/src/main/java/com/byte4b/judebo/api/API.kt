@@ -1,6 +1,7 @@
 package com.byte4b.judebo.api
 
 import com.byte4b.judebo.models.*
+import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.http.Body
@@ -32,7 +33,7 @@ interface API {
     fun getMyVocations(@Query("key") secretKey: String,
                        @Query("tok") token: String,
                        @Query("login") login: String):
-            Call<JsonObject>
+            Call<JsonArray>
 
     @POST("app_add_job.php")
     fun deleteVocation(@Query("key") secretKey: String,

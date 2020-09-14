@@ -144,6 +144,7 @@ class Setting(ctx: Context) {
         const val MAX_IMG_CROP_HEIGHT_PREVIEW = 100
         const val MAX_IMG_CROP_HEIGHT = 400
         const val DEFAULT_SKILL_ID_ALWAYS_HIDDEN = "284"
+        const val DEFAULT_JOB_ID_SERVICE_USED = 1
 
         //How long text title/company/detail
         const val TEXT_LENGTH_MAX_SYMBOLS_JOB_TITLE = 60
