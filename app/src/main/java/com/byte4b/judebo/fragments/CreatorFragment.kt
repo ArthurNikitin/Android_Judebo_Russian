@@ -117,9 +117,11 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 filters_tv.clearFocus()
+                vocations_rv.requestFocus()
             }
         })
         filters_tv.clearFocus()
+        vocations_rv.requestFocus()
     }
 
     fun isFilterModeOn() = filters_tv.text.toString().isNotEmpty()
@@ -252,12 +254,11 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                         //modified date current
                         realm.copyToRealm(tmpObj)
 
-                        //todo: ID in REALM
                         // Generate APP_ID = BIGINT
                         // Timestamp (10 digit)  + 000 000 01 (Random 8 digit)
                         // = DEVICE ID (exclude special symbols) + a(int)=1, before A 00000, a = XX XXX XXX
                         // found  in REALM  APP_ID, if found, A++
-                        // todo: add to REALM all params from WEB and UF_APP_JOB_ID
+                        // add to REALM all params from WEB and UF_APP_JOB_ID
                     } else
                     // --- JOB CREATED IN APP (may be another device)
                     {
@@ -275,7 +276,6 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                             // rewrite to REALM all params from WEB and UF_APP_JOB_ID
                             {
                                 //NEW DATA FROM WEB
-                                //todo rewrite all ???? APP_ID
                                 objFromRealm.apply {
                                     COMPANY = objFromServer.COMPANY
                                     DETAIL_TEXT = objFromServer.DETAIL_TEXT
@@ -312,7 +312,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                             //
                             val tmpObj = objFromServer.toRealmVersion()
                             realm.copyToRealm(tmpObj)
-                            // todo: add to REALM all params from WEB and UF_APP_JOB_ID
+                            // add to REALM all params from WEB and UF_APP_JOB_ID
                         }
                     }
                 }

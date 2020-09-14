@@ -12,7 +12,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.byte4b.judebo.R
 import com.byte4b.judebo.activities.MainActivity
-import com.byte4b.judebo.activities.SelectActivity
 import com.byte4b.judebo.activities.SubscribesActivity
 import com.byte4b.judebo.adapters.CurrencyAdapter
 import com.byte4b.judebo.adapters.LanguageAdapter
@@ -206,7 +205,7 @@ class SettingFragment : Fragment(R.layout.fragment_setting), ServiceListener {
     }
 
     private fun showLanguageDialog() {
-        requireActivity().startActivity<SelectActivity>()
+        //requireActivity().startActivity<SelectActivity>()
         val locales = languages.map { it.locale } //название этих локализаций
         val lang = setting.getCurrentLanguage().locale
         AlertDialog.Builder(requireContext())
