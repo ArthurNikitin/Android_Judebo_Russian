@@ -60,14 +60,16 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                     realm.executeTransaction {
                         try {
                             it.delete<VocationRealm>()
-                        } catch (e: Exception) {}
+                        } catch (e: Exception) {
+                        }
                         try {
                             it.createObject<VocationRealm>()
-                        } catch (e: Exception) {}
+                        } catch (e: Exception) {
+                        }
                     }
                     (requireActivity() as MainActivity).restartFragment(LoginFragment())
                 }
-                .setNegativeButton(R.string.settings_logout_cancel) { d, _ -> d.cancel()}
+                .setNegativeButton(R.string.settings_logout_cancel) { d, _ -> d.cancel() }
                 .show()
         }
 
@@ -93,7 +95,8 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                 setList(all.filter {
                     it.NAME?.contains(txt, ignoreCase = true) == true
                             || it.COMPANY?.contains(txt, ignoreCase = true) == true
-                            || it.DETAIL_TEXT?.contains(txt, ignoreCase = true) == true})
+                            || it.DETAIL_TEXT?.contains(txt, ignoreCase = true) == true
+                })
                 closeFilter_iv.visibility = View.VISIBLE
                 filters_tv.setPadding(0, 0, 15, 0)
             }
@@ -162,7 +165,8 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                             .map { it.toBasicVersion() }
                             .filter { !it.isHided }
                     )
-            } catch (e: Exception) {}
+            } catch (e: Exception) {
+            }
         }
     }
 
@@ -174,15 +178,20 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
 
     @SuppressLint("SimpleDateFormat")
     override fun onMyVocationsLoaded(list: List<Vocation>?, isNeedLogout: Boolean) {
+        Log.e(
+            "test",
+            "onMyVocationsLoaded: vocations size = ${(list ?: listOf()).size}, isNeedLogout = $isNeedLogout"
+        )
+
         if (isNeedLogout) {
             setting.logout()
             (requireActivity() as MainActivity).restartFragment(LoginFragment())
         }
         try {
             refresher.isRefreshing = false
-        } catch (e: Exception) {}
+        } catch (e: Exception) {
+        }
 
-        Log.e("test", "onMyVocationsLoaded: " + Gson().toJson(list))
         if (list == null) return
 
         val realmList = vocationsFromRealm() //read from db
@@ -356,7 +365,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                     val vocationFromServer =
                         list.firstOrNull { vocationFromRealm.UF_JOBS_ID == it.UF_JOBS_ID }
                     if (vocationFromServer != null)
-                        //if ELEMENT exist in JSON
+                    //if ELEMENT exist in JSON
                     {
                         if (vocationFromRealm.UF_MODIFED ?: 0 > vocationFromServer.UF_MODIFED ?: 0)
                         //if MODIF Realm > MODIF JSON
@@ -380,23 +389,25 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
             try {
                 val vocations = realm.where<VocationRealm>().findAll()
                 val data = vocations
-                            .map { it.toBasicVersion() }
-                            .filter {  !it.isHided }
+                    .map { it.toBasicVersion() }
+                    .filter { !it.isHided }
                 setList(data)
-            } catch (e: Exception) { setList(list) }
+            } catch (e: Exception) {
+                setList(list)
+            }
         }
     }
 
     private fun setList(list: List<Vocation>?) {
-        Log.e("check", "for show")
-        list?.forEach {
-            Log.e("check", "${it.UF_JOBS_ID}: ${Gson().toJson(it)}")
-        }
+        //Log.e("check", "for show")
+        //list?.forEach {
+        //    Log.e("check", "${it.UF_JOBS_ID}: ${Gson().toJson(it)}")
+        //}
 
-        Log.e("check", "in realm")
-        realm.where<VocationRealm>().findAll().map { it.toBasicVersion() }.forEach {
-            Log.e("check", "${it.UF_JOBS_ID}: ${Gson().toJson(it)}")
-        }
+        //Log.e("check", "in realm")
+        //realm.where<VocationRealm>().findAll().map { it.toBasicVersion() }.forEach {
+        //    Log.e("check", "${it.UF_JOBS_ID}: ${Gson().toJson(it)}")
+        //}
 
         try {
             refresher.isRefreshing = false
