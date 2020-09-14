@@ -236,6 +236,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/phone_field"
                     app:boxStrokeColor="@color/toolbar_background_color"
                     app:errorEnabled="true"
                     app:helperTextEnabled="true">
@@ -256,6 +257,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
+                    android:id="@+id/email_field"
                     android:layout_height="wrap_content"
                     app:boxStrokeColor="@color/toolbar_background_color">
 

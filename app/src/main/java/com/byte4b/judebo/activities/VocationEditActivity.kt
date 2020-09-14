@@ -453,31 +453,29 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
     }
 
     private fun validateForm(): Boolean {
-        name_tv.error = null
-        phone_tv.error = null
-        email_tv.error = null
-        details_tv.error = null
-
+        name_field.error = null
+        phone_field.error = null
+        email_field.error = null
+        detail_field.error = null
 
         if (name_tv.data?.trim().isNullOrEmpty()) {
-            name_tv.error = getString(R.string.edit_item_required_field)
+            name_field.error = getString(R.string.edit_item_required_field)
         }
 
         if (phone_tv.data?.trim().isNullOrEmpty() && email_tv.data?.trim().isNullOrEmpty()) {
-            phone_tv.error = getString(R.string.edit_item_required_field)
+            phone_field.error = getString(R.string.edit_item_required_field)
         }
 
         if (details_tv.data?.trim().isNullOrEmpty()) {
-            details_tv.error = getString(R.string.edit_item_required_field)
+            detail_field.error = getString(R.string.edit_item_required_field)
         }
 
         if (email_tv.data?.contains("@") == false
             && email_tv.data?.contains(".") == false
             && email_tv.data?.trim()?.isEmpty() == false) {
-            email_tv.error = ""
+            email_field.error = ""
         }
         //
-        //hideKeyboard()
         if (name_tv.data?.trim().isNullOrEmpty()) {
             name_tv.requestFocus()
             scroll.post { scroll.smoothScrollTo(0, name_tv.bottom) }
