@@ -49,10 +49,12 @@ class ApiServiceImpl(val listener: ServiceListener?) : ApiService {
                                 result.UF_MAP_POINT_LONGITUDE +=
                                     2 * Random.nextInt(-8, 8) * Setting.VALUE_INFINITESIMAL
 
+                                Log.e("test", "parsed + ${it.value}")
                                 result
                             }
                             listener?.onNearbyMarkersLoaded(objects)
                         } catch (e: Exception) {
+                            Log.e("test", e.localizedMessage ?: "parse error" + " ${Gson().toJson(response.body())}")
                             check { listener?.onNearbyMarkersLoaded(null) }
                         }
                     } else

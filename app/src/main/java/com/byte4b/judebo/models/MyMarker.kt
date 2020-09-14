@@ -3,7 +3,7 @@ package com.byte4b.judebo.models
 data class MyMarker(
     val ALL_SKILLS_NAME: String,
     val AUTO_TRANSLATE: Int,
-    val COMPANY: String,
+    val COMPANY: String = "",
     val DETAIL_TEXT: String,
     val ID: Int,
     val NAME: String,

@@ -44,7 +44,7 @@
                     android:id="@+id/filters_tv"
                     android:ems="10"
                     android:layout_marginStart="6dp"
-                    android:paddingStart="10dp"
+                    android:drawablePadding="5dp"
                     android:hint="@string/user_jobs_list_search"
                     android:background="@null"
                     android:inputType="textPersonName"
