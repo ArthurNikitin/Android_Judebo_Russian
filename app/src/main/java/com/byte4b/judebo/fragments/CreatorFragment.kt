@@ -12,6 +12,7 @@ import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.byte4b.judebo.*
 import com.byte4b.judebo.activities.MainActivity
@@ -110,6 +111,15 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                     handler.sendEmptyMessage(0)
             }
         }.start()
+
+
+        vocations_rv.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                filters_tv.clearFocus()
+            }
+        })
+        filters_tv.clearFocus()
     }
 
     fun isFilterModeOn() = filters_tv.text.toString().isNotEmpty()
