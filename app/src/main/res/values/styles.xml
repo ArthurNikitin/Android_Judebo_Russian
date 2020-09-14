@@ -12,6 +12,14 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="AppThemeTranslucent.NoActionBar" parent="@android:style/Theme.Translucent.NoTitleBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">#000</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
     <style name="SCBSwitch" parent="Theme.AppCompat.Light">
         <item name="colorControlActivated">#4CAF50</item>
         <item name="colorSwitchThumbNormal">#f1f1f1</item>

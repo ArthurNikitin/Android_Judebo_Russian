@@ -78,7 +78,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                 }
         }
 
-        filters_tv.setLeftDrawable(R.drawable.item_detail_tags)
+        filters_tv.setLeftDrawable(R.drawable.jobs_list_filter)
         filters_tv.doOnTextChanged { text, _, _, _ ->
             val txt = text.toString()
             val all = realm.where<VocationRealm>().findAll()
