@@ -2,7 +2,6 @@ package com.byte4b.judebo.fragments
 
 import android.annotation.SuppressLint
 import android.graphics.Typeface
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -409,7 +408,6 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
     }
 
     override fun onRefresh() {
-        Log.e("test", ""+Build.VERSION.SDK_INT )
         refresher.isRefreshing = true
         ApiServiceImpl(this).getMyVocations(
             setting.getCurrentLanguage().locale,

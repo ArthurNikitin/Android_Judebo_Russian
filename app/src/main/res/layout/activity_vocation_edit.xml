@@ -105,21 +105,20 @@
                     android:text="Vacancy name" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
-                app:boxStrokeColor="@color/toolbar_background_color"
+            <LinearLayout
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/salary_container_background"
+                android:id="@+id/jobType_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-            <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                android:layout_marginBottom="8dp"
-                android:textSize="17sp"
-                android:layout_weight="1"
-                android:id="@+id/jobType_tv"
+            <com.jaredrummler.materialspinner.MaterialSpinner
+                android:id="@+id/spinner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:textSize="17sp"
+                android:layout_height="wrap_content"/>
 
-            </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

@@ -229,9 +229,9 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
             try {
                 val types =
                     realm.where<JobTypeRealm>().findAll().filter { it.name.trim() != "" }
-                jobType_tv.setText(types.first { it.id == jobInfo.UF_TYPE_OF_JOB_ID }.name, false)
+                spinner.selectedIndex = types.indices
+                    .firstOrNull { types[it].id == jobInfo.UF_TYPE_OF_JOB_ID } ?: 0
             } catch (e: Exception) {
-                jobType_tv.setText(jobType_tv.adapter.getItem(0).toString())
             }
 
             details_tv.data = jobInfo.DETAIL_TEXT ?: ""
@@ -245,10 +245,15 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
     }
 
     private fun initJobTypes() {
-        jobType_tv.setAdapter(ArrayAdapter<String>(this,
-            android.R.layout.simple_spinner_dropdown_item,
+        spinner.setItems(
             realm.where<JobTypeRealm>().findAll().map { it.name }.filter { it.trim() != "" }
-        ))
+        )
+        spinner.setOnFocusChangeListener { _, b ->
+            jobType_container.setBackgroundResource(
+                if (spinner.isFocused) R.drawable.green_container
+                else R.drawable.salary_container_background
+            )
+        }
     }
 
     var currencyAdapter: ArrayAdapter<String>? = null
@@ -516,8 +521,8 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                         try {
                             currentVocationRealm.UF_TYPE_OF_JOB_ID = realm
                                 .where<JobTypeRealm>().findAll()
-                                .filter { it.name.trim() != "" }
-                                .first { it.name == jobType_tv.text?.trim() }.id
+                                .filter { it.name.trim() != "" }[spinner.selectedIndex]
+                                ?.id
                         } catch (e: Exception) {
                             currentVocationRealm.UF_TYPE_OF_JOB_ID = realm
                                 .where<JobTypeRealm>().findFirst()?.id
@@ -575,10 +580,11 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                 Setting.DEFAULT_LONGITUDE
             )
         currentVocationRealm.UF_MAP_POINT = "${latLng.latitude}, ${latLng.longitude}"
+
         currentVocationRealm.UF_TYPE_OF_JOB_ID = realm
             .where<JobTypeRealm>().findAll()
-            .filter { it.name.trim() != "" }
-            .first { it.name == jobType_tv.text?.trim() }.id
+            .filter { it.name.trim() != "" }[spinner.selectedIndex]
+            ?.id
 
         currentVocationRealm.UF_APP_JOB_ID = getNewJobAppId().toLongOrNull()
 
