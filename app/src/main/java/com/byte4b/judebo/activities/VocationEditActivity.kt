@@ -86,9 +86,9 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
             tmp.UF_DISABLE = time.timestamp
             tmp.UF_APP_JOB_ID = getNewJobAppId().toLongOrNull()
             val latLng = LatLng(
-                    getLocation()?.latitude ?: Setting.DEFAULT_LATITUDE,
-                    getLocation()?.longitude ?: Setting.DEFAULT_LONGITUDE
-                )
+                getLocation()?.latitude ?: Setting.DEFAULT_LATITUDE,
+                getLocation()?.longitude ?: Setting.DEFAULT_LONGITUDE
+            )
             tmp.UF_MAP_POINT = "${latLng.latitude}, ${latLng.longitude}"
             realm.executeTransaction { it.copyToRealm(tmp.toRealmVersion()) }
             tmp
@@ -145,11 +145,13 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                                     )
                             Handler().postDelayed({
                                 Glide.with(this)
-                                    .load(BitmapFactory.decodeByteArray(
-                                        btm,
-                                        0,
-                                        btm.size
-                                    ))
+                                    .load(
+                                        BitmapFactory.decodeByteArray(
+                                            btm,
+                                            0,
+                                            btm.size
+                                        )
+                                    )
                                     .circleCrop()
                                     .into(logo_iv)
                             }, 200)
@@ -451,23 +453,46 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
 
         if (name_tv.data?.trim().isNullOrEmpty()) {
             name_tv.error = getString(R.string.edit_item_required_field)
+            name_tv.requestFocus()
         }
 
         if (phone_tv.data?.trim().isNullOrEmpty() && email_tv.data?.trim().isNullOrEmpty()) {
             phone_tv.error = getString(R.string.edit_item_required_field)
-            email_tv.error = getString(R.string.edit_item_required_field)
+            phone_tv.requestFocus()
         }
 
         if (details_tv.data?.trim().isNullOrEmpty()) {
             details_tv.error = getString(R.string.edit_item_required_field)
+            details_tv.requestFocus()
         }
 
         if (email_tv.data?.contains("@") == false
             && email_tv.data?.contains(".") == false
             && email_tv.data?.trim()?.isEmpty() == false) {
             email_tv.error = ""
+            email_tv.requestFocus()
+        }
+        //
+        if (name_tv.data?.trim().isNullOrEmpty()) {
+            //name_tv.requestFocus()
+            scroll.post { scroll.smoothScrollTo(0, name_tv.bottom) }
+        } else if (phone_tv.data?.trim().isNullOrEmpty() && email_tv.data?.trim().isNullOrEmpty()) {
+            //phone_tv.requestFocus()
+            scroll.post { scroll.smoothScrollTo(0, phone_tv.bottom) }
+        } else if (details_tv.data?.trim().isNullOrEmpty()) {
+            //details_tv.requestFocus()
+            scroll.post { scroll.smoothScrollTo(0, details_tv.bottom) }
+        } else if (email_tv.data?.contains("@") == false
+            && email_tv.data?.contains(".") == false
+            && email_tv.data?.trim()?.isEmpty() == false) {
+            //email_tv.requestFocus()
+            scroll.post { scroll.smoothScrollTo(0, email_tv.bottom) }
         }
 
+        //scroll.post { scroll.smoothScrollTo(0, ) }
+        //scroll.post { scroll.fullScroll(View.FOCUS_DOWN) }
+
+        hideKeyboard()
         return true
     }
 
