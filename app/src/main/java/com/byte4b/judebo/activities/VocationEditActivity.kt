@@ -40,6 +40,9 @@ import kotlin.random.Random
 
 class VocationEditActivity : AppCompatActivity(), ServiceListener {
 
+
+    val SERVER_ANIMATION_REQUEST_TIME_IN_MILLISECONDS = 1000L
+
     private val realm by lazy { Realm.getDefaultInstance() }
     private var job: Vocation? = null
     private val setting by lazy { Setting(this) }
@@ -417,6 +420,11 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                             login = setting.email ?: "",
                             vocation = vocationRealm!!.toBasicVersion()
                         )
+                        try {
+                            refresher.isRefreshing = true
+                            Handler().postDelayed({ refresher.isRefreshing = false },
+                                SERVER_ANIMATION_REQUEST_TIME_IN_MILLISECONDS)
+                        } catch (e: Exception) {}
                     } catch (e: Exception) {
                         onVocationDeleted(false)
                     }
@@ -552,6 +560,11 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                             login = setting.email ?: "",
                             vocations = listOf(currentVocationRealm.toBasicVersion())
                         )
+                        try {
+                            refresher.isRefreshing = true
+                            Handler().postDelayed({ refresher.isRefreshing = false },
+                            SERVER_ANIMATION_REQUEST_TIME_IN_MILLISECONDS)
+                        } catch (e: Exception) {}
                         if (isValidForm()) finish()
                     }
                 } else
@@ -562,9 +575,25 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
         }
     }
 
+    override fun onVocationDeleted(success: Boolean) {
+        Log.e("test", "deleted")
+        try { refresher.isRefreshing = false } catch (e: Exception) { e.toLog() }
+    }
+
+    override fun onVocationAdded(success: Boolean) {
+        Log.e("test", "added")
+        try { refresher.isRefreshing = false } catch (e: Exception) { e.toLog() }
+    }
+
     override fun onMyVocationUpdated(success: Boolean) {
+        Log.e("test", "updated")
+        try { refresher.isRefreshing = false } catch (e: Exception) { e.toLog() }
         if (!success)
             toast(R.string.error_no_internet)
+    }
+
+    private fun Exception.toLog(tag: String = "test") {
+        Log.e(tag, localizedMessage?: message ?: "toLogHaveEmptyErrorMessage")
     }
 
     private fun createNewVocation() {
@@ -614,6 +643,11 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
             login = setting.email ?: "",
             vocations = listOf(currentVocationRealm.toBasicVersion())
         )
+        try {
+            refresher.isRefreshing = true
+            Handler().postDelayed({ refresher.isRefreshing = false },
+                SERVER_ANIMATION_REQUEST_TIME_IN_MILLISECONDS)
+        } catch (e: Exception) {}
         if (isValidForm()) finish()
         else job = currentVocationRealm.toBasicVersion()
     }

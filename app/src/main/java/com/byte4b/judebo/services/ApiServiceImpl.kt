@@ -18,6 +18,7 @@ class ApiServiceImpl(val listener: ServiceListener?) : ApiService {
     private fun check(action: () -> Unit) {
         try {
             action()
+            Log.e("test", "check complited")
         } catch (e: Exception) {
             Log.e("test", e.localizedMessage ?: "Error")
         }

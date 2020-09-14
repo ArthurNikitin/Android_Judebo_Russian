@@ -73,6 +73,10 @@
 
     </RelativeLayout>
 
+    <com.byte4b.judebo.ui.MapRefreshLayout
+        android:id="@+id/refresher"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <ScrollView
         android:id="@+id/scroll"
         android:layout_width="match_parent"
@@ -394,5 +398,7 @@
         </LinearLayout>
 
     </ScrollView>
+
+    </com.byte4b.judebo.ui.MapRefreshLayout>
 
 </LinearLayout>
