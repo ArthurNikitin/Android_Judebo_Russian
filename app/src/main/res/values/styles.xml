@@ -12,6 +12,10 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="right_error" parent="@android:style/TextAppearance">
+        <item name="android:gravity">right</item>
+    </style>
+
     <style name="AppThemeTranslucent.NoActionBar" parent="@android:style/Theme.Translucent.NoTitleBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">#000</item>

@@ -1,7 +1,6 @@
 package com.byte4b.judebo.fragments
 
 import android.annotation.SuppressLint
-import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Typeface
 import android.net.Uri
@@ -12,9 +11,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.byte4b.judebo.R
 import com.byte4b.judebo.activities.MainActivity
+import com.byte4b.judebo.activities.SelectAppLanguage
 import com.byte4b.judebo.activities.SubscribesActivity
 import com.byte4b.judebo.adapters.CurrencyAdapter
-import com.byte4b.judebo.adapters.LanguageAdapter
 import com.byte4b.judebo.getLangFromLocale
 import com.byte4b.judebo.models.Result
 import com.byte4b.judebo.models.VocationRealm
@@ -36,6 +35,11 @@ import kotlinx.android.synthetic.main.fragment_setting.*
 import java.util.*
 
 class SettingFragment : Fragment(R.layout.fragment_setting), ServiceListener {
+
+    companion object {
+        const val SELECT_LANGUAGE_REQUEST = 11
+        const val SELECT_CURRENCY_REQUEST = 12
+    }
 
     private val parent by lazy { requireActivity() as MainActivity }
     private val setting by lazy { Setting(requireActivity()) }
@@ -204,22 +208,20 @@ class SettingFragment : Fragment(R.layout.fragment_setting), ServiceListener {
         }
     }
 
+    fun setLanguage(id: Int) {
+        val locale = languages.first { it.id == id }.locale
+        if (setting.language != locale) {
+            setting.language = locale
+            setLocale(locale)
+            setting.isFromRecreate = true
+            parent.recreate()
+        }
+    }
+
     private fun showLanguageDialog() {
-        //requireActivity().startActivity<SelectActivity>()
-        val locales = languages.map { it.locale } //название этих локализаций
-        val lang = setting.getCurrentLanguage().locale
-        AlertDialog.Builder(requireContext())
-            .setTitle(R.string.settings_title_language)
-            .setAdapter(LanguageAdapter(requireContext(), languages.toTypedArray(), lang)) { dialogInterface: DialogInterface, i: Int ->
-                if (setting.language != locales[i]) {
-                    setting.language = locales[i]
-                    setLocale(locales[i])
-                    dialogInterface.dismiss()
-                    setting.isFromRecreate = true
-                    parent.recreate()
-                }
-            }
-            .show()
+        requireActivity().startActivityForResult(
+            Intent(requireActivity(), SelectAppLanguage::class.java), SELECT_LANGUAGE_REQUEST
+        )
     }
 
     private fun showCurrentCurrency() {

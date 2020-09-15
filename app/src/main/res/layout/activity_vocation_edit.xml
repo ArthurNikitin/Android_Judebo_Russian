@@ -95,6 +95,7 @@
                 android:layout_width="match_parent"
                 android:layout_marginBottom="8dp"
                 android:layout_height="match_parent"
+                app:errorTextAppearance="@style/right_error"
                 app:boxStrokeColor="@color/toolbar_background_color"
                 app:counterEnabled="true">
 
