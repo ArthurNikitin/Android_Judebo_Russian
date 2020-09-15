@@ -88,7 +88,7 @@ class VocationsAdapter(
                 holder.main.setOnClickListener {
                     if (holder.swiper.openStatus == SwipeLayout.Status.Close) {
                         ctx.startActivity<VocationEditActivity> {
-                            putExtra("appId", UF_APP_JOB_ID)
+                            putExtra("appId", UF_APP_JOB_ID?.toLongOrNull())
                             putExtra("jobId", UF_JOBS_ID)
                         }
                     } else

@@ -506,7 +506,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                     job?.apply {
                         val currentVocationRealm =
                             it.where<VocationRealm>()
-                                .equalTo("UF_APP_JOB_ID", job!!.UF_APP_JOB_ID)
+                                .equalTo("UF_APP_JOB_ID", job!!.UF_APP_JOB_ID!!.toLong())
                                 .findFirst() //if null - create new else edit
 
                         if (currentVocationRealm == null) {
