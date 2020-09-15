@@ -11,9 +11,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.byte4b.judebo.R
 import com.byte4b.judebo.activities.MainActivity
+import com.byte4b.judebo.activities.SelectAppCurrency
 import com.byte4b.judebo.activities.SelectAppLanguage
 import com.byte4b.judebo.activities.SubscribesActivity
-import com.byte4b.judebo.adapters.CurrencyAdapter
 import com.byte4b.judebo.getLangFromLocale
 import com.byte4b.judebo.models.Result
 import com.byte4b.judebo.models.VocationRealm
@@ -176,19 +176,15 @@ class SettingFragment : Fragment(R.layout.fragment_setting), ServiceListener {
             Toasty.error(requireContext(), R.string.error_no_internet)
     }
 
+    fun setCurrency(id: Int) {
+        setting.currency = currencies.first { it.id == id }.name
+        showCurrentCurrency()
+    }
+
     private fun showCurrencyDialog() {
-        val titles = currencies.map { it.name }
-
-        val currency = setting.getCurrentCurrency()
-
-        AlertDialog.Builder(requireContext())
-            .setTitle(R.string.settings_title_currency)
-            .setAdapter(CurrencyAdapter(requireContext(), currencies.toTypedArray(), currency.name)) { dialog, index ->
-                setting.currency = titles[index]
-                showCurrentCurrency()
-                dialog.dismiss()
-            }
-            .show()
+        requireActivity().startActivityForResult(
+            Intent(requireActivity(), SelectAppCurrency::class.java), SELECT_CURRENCY_REQUEST
+        )
     }
 
     override fun onStart() {

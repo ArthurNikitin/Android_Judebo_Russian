@@ -25,6 +25,7 @@
             android:theme="@style/AppThemeTranslucent.NoActionBar" />
         <activity android:name=".activities.PolicyActivity" />
         <activity android:name=".activities.SelectAppLanguage" />
+        <activity android:name=".activities.SelectAppCurrency" />
         <activity android:name=".activities.SubscribesActivity" />
         <activity android:name=".activities.LanguagesActivity" />
         <activity android:name=".activities.SkillsActivity" />

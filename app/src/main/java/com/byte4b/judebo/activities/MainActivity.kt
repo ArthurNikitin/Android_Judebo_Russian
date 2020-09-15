@@ -108,18 +108,25 @@ class MainActivity : AppCompatActivity() {
         return null
     }
 
+    private inline fun <reified F : Fragment> getLastFragment(): F? {
+        return supportFragmentManager.fragments.lastOrNull { it is F } as F
+    }
+
     private fun getSettingFragment(): SettingFragment? {
         return supportFragmentManager.fragments.lastOrNull { it is SettingFragment } as SettingFragment
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        Log.e("test", "Main activity result")
         try {
             if (requestCode == SettingFragment.SELECT_LANGUAGE_REQUEST) {
                 if (resultCode == Activity.RESULT_OK)
-                 getSettingFragment()
-                     ?.setLanguage(data?.getIntExtra("langs", -1) ?: -1)
+                    getLastFragment<SettingFragment>()
+                        ?.setLanguage(data?.getIntExtra("langs", -1) ?: -1)
+            } else if (requestCode == SettingFragment.SELECT_CURRENCY_REQUEST) {
+                if (resultCode == Activity.RESULT_OK)
+                    getLastFragment<SettingFragment>()
+                        ?.setCurrency(data?.getIntExtra("currency", -1) ?: -1)
             } else {
                 getLoginFragment()?.apply {
                     if (facebookAuth != null && facebookAuth!!.isFB)
