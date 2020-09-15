@@ -23,10 +23,6 @@ class EditLanguagesAdapter(
         languages[position].apply {
             holder.name.text = first.name
             holder.icon.setImageResource(first.flag)
-            holder.action.setImageResource(
-                if (second) R.drawable.edit_tags_search_delete
-                else R.drawable.edit_jobs_add_tags_and_langs
-            )
             holder.view.setBackgroundColor(
                 ctx.resources.getColor(
                     if (second) R.color.settings_backgroud_active_line
@@ -49,7 +45,6 @@ class EditLanguagesAdapter(
 
     class Holder(val view: View) : RecyclerView.ViewHolder(view) {
         val check = view.check!!
-        val action = view.action!!
         val name = view.name!!
         val icon = view.icon!!
     }

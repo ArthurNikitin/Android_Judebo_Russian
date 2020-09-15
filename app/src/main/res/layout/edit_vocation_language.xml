@@ -29,11 +29,4 @@
         android:padding="5dp"
         android:text="@string/app_name" />
 
-    <ImageView
-        android:id="@+id/action"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
-        android:layout_marginStart="5dp"
-        android:src="@drawable/accept" />
-
 </LinearLayout>
