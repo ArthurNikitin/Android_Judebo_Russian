@@ -10,7 +10,7 @@ import com.byte4b.judebo.R
 import com.byte4b.judebo.adapters.SelectOneCurrencyAdapter
 import com.byte4b.judebo.models.currencies
 import com.byte4b.judebo.utils.Setting
-import kotlinx.android.synthetic.main.activity_languages_activitiy.*
+import kotlinx.android.synthetic.main.setting_select.*
 
 class SelectAppCurrency : AppCompatActivity() {
 
@@ -18,7 +18,7 @@ class SelectAppCurrency : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_languages_activitiy)
+        setContentView(R.layout.setting_select)
         supportActionBar?.hide()
 
         try {
