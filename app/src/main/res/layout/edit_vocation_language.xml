@@ -12,7 +12,7 @@
         android:layout_width="16dp"
         android:layout_height="16dp"
         android:layout_marginStart="5dp"
-        android:src="@drawable/accept" />
+        android:src="@drawable/edit_languages_choiced" />
 
     <ImageView
         android:id="@+id/icon"

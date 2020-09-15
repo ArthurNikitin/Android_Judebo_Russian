@@ -15,7 +15,7 @@
     <color name="tab_icon_active">#2CBC62</color>
     <color name="navigate_background_color_center">@color/toolbar_background_color</color>
     <color name="navigate_background_color_edge">#FF79D17D</color>
-    <color name="settings_backgroud_active_line">#8BC34A</color>
+    <color name="settings_backgroud_active_line">#7fdda3</color>
     <color name="white">#fff</color>
 
 </resources>

@@ -327,11 +327,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
             lang_rv.adapter =
                 LanguagesAdapter(
                     this,
-                    (languagesList ?: listOf(setting.getCurrentLanguage())) +
-                            Language(
-                                name = getString(R.string.edit_item_add_language),
-                                flag = R.drawable.button_plus_gray
-                            ),
+                    (languagesList ?: listOf(setting.getCurrentLanguage())),
                     isDetails = true, isEditor = true, vocation = jobInfo
                 )
         } catch (e: Exception) {}
@@ -362,7 +358,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
         if (jobInfo.UF_SKILLS_ID_ALL.isNullOrEmpty()) {
             filters_tv.adapter = SkillsAdapter(
                 this,
-                listOf(getString(R.string.edit_item_add_tag)),
+                listOf(),
                 isDetails = true, isEditor = true, vocation = jobInfo
             )
         } else {
@@ -370,8 +366,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                 .split(",")
                 .filterNot { it == Setting.DEFAULT_SKILL_ID_ALWAYS_HIDDEN }
             filters_tv.adapter = SkillsAdapter(this,
-                skillsRealm.filter { it.id.toString() in vocationSkillsIds }.map { it.name } +
-                        getString(R.string.edit_item_add_tag),
+                skillsRealm.filter { it.id.toString() in vocationSkillsIds }.map { it.name },
                 isDetails = true, isEditor = true, vocation = jobInfo)
         }
     }

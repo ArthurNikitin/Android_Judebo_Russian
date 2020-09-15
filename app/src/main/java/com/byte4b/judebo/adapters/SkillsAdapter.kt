@@ -32,10 +32,7 @@ class SkillsAdapter(
         holder.skillTitle.text = skills[position]
         if (isDetails) holder.skillTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
 
-        holder.skillImage.setImageResource(
-            if (isEditor && position == skills.lastIndex) R.drawable.button_plus_gray
-            else R.drawable.item_detail_tags
-        )
+        holder.skillImage.setImageResource(R.drawable.item_detail_tags)
 
         holder.view.setOnClickListener {
             if (!isEditor) return@setOnClickListener

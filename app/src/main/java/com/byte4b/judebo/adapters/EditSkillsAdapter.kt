@@ -24,8 +24,8 @@ class EditSkillsAdapter(
         skills[position].apply {
             holder.name.text = name
             holder.check.setImageResource(
-                if (isSelectedItems) R.drawable.button_delete
-                else R.drawable.button_plus_gray
+                if (isSelectedItems) R.drawable.edit_tags_search_delete
+                else R.drawable.edit_tags_search_add
             )
 
             holder.view.setOnClickListener {
