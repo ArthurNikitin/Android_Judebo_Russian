@@ -293,12 +293,28 @@
                 android:onClick="toLanguagesClick"
                 android:text="@string/edit_item_languages_list" />
 
+            <RelativeLayout
+                android:layout_marginBottom="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/lang_rv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginBottom="50dp"
                 android:onClick="toLanguagesClick" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+                    android:onClick="toLanguagesClick"
+                    android:layout_alignParentBottom="true"
+                    android:src="@drawable/edit_jobs_add_tags_and_langs" />
+
+            </RelativeLayout>
 
             <TextView
                 android:layout_width="match_parent"
@@ -307,12 +323,28 @@
                 android:onClick="toSkillsClick"
                 android:text="@string/edit_item_tags_list" />
 
+            <RelativeLayout
+                android:layout_marginBottom="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/filters_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginBottom="50dp"
                 android:onClick="toSkillsClick" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:layout_width="50dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:onClick="toSkillsClick"
+                    android:src="@drawable/edit_jobs_add_tags_and_langs"
+                    android:layout_height="50dp" />
+
+            </RelativeLayout>
 
             <ImageView
                 android:id="@+id/imageView4"
