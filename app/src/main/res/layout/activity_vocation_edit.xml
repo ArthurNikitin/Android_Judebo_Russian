@@ -286,6 +286,13 @@
                 android:visibility="gone"
                 app:srcCompat="@drawable/en" />
 
+            <LinearLayout
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/salary_container_background"
+                android:orientation="vertical">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -316,6 +323,16 @@
 
             </RelativeLayout>
 
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="8dp"
+                android:padding="8dp"
+                android:orientation="vertical"
+                android:background="@drawable/salary_container_background"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -345,6 +362,7 @@
                     android:layout_height="50dp" />
 
             </RelativeLayout>
+            </LinearLayout>
 
             <ImageView
                 android:id="@+id/imageView4"
