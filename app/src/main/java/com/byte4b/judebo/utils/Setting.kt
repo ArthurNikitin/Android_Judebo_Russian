@@ -121,7 +121,7 @@ class Setting(ctx: Context) {
         //Timeout of json request in Seconds
         const val JSON_REQUEST_TIMEOUT_IN_SECONDS = 15L
 
-        const val TAGS_SLEEP_AFTER_SAVE_IN_SECONDS = 7L
+        const val TAGS_SLEEP_AFTER_SAVE_IN_SECONDS = 10L
 
         // 2020-08-10 b.2.5
         // const val CLUSTER_RADIUS = 165.0
