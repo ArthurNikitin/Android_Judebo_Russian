@@ -132,7 +132,6 @@ class ApiServiceImpl(val listener: ServiceListener?) : ApiService {
                             val (serviceList, workList) = (response.body() ?: listOf()).partition {
                                 it.UF_JOBS_ID.toString() == Setting.DEFAULT_JOB_ID_SERVICE_USED.toString()
                             }
-                            Log.e("test", Gson().toJson(serviceList[0]))
                             listener?.onMyVocationsLoaded(
                                 workList,
                                 serviceList.isNotEmpty()
