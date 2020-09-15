@@ -15,31 +15,24 @@
         android:background="@drawable/toolbar_gradient">
 
         <ImageView
-            android:layout_centerVertical="true"
-            android:onClick="closeClick"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:adjustViewBounds="true"
+            android:paddingLeft="5dp"
+            android:scaleType="fitStart"
+            android:onClick="closeClick"
             app:srcCompat="@drawable/navigate_arrow_back"
             tools:ignore="VectorDrawableCompat" />
 
-        <LinearLayout
+        <TextView
+            android:layout_centerInParent="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:paddingRight="40dp">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginEnd="10dp"
-                app:srcCompat="@drawable/default_logo_preview" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                app:srcCompat="@drawable/default_log_name" />
-        </LinearLayout>
+            android:textSize="28sp"
+            android:textColor="#8BC34A"
+            android:textStyle="bold"
+            android:text="@string/edit_item_tags_list" />
 
         <ImageView
             android:adjustViewBounds="true"
@@ -48,28 +41,87 @@
             android:layout_width="wrap_content"
             android:onClick="saveClick"
             android:layout_height="35dp"
-            app:srcCompat="@drawable/button_save" />
+            app:srcCompat="@drawable/edit_tags_search_save" />
 
     </RelativeLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <com.byte4b.judebo.ui.MapRefreshLayout
+        android:id="@+id/refresher"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/selected_rv"
-        android:layout_weight="1" >
+        android:layout_height="match_parent">
 
-    </androidx.recyclerview.widget.RecyclerView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="?android:attr/listDivider" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/selected_rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/notSelected_rv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1" />
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_weight="1">
+
+                    <EditText
+                        android:id="@+id/filters_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:drawablePadding="5dp"
+                        android:ems="10"
+                        android:hint="@string/user_jobs_list_search"
+                        android:inputType="textPersonName" />
+
+                    <ImageView
+                        android:id="@+id/closeFilter_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:visibility="gone"
+                        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/add_new_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="8dp"
+                    android:adjustViewBounds="true"
+                    android:onClick="createNewSkill"
+                    android:visibility="gone"
+                    app:srcCompat="@drawable/edit_tags_search_save" />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/notSelected_rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+
+    </com.byte4b.judebo.ui.MapRefreshLayout>
+
 
 </LinearLayout>
