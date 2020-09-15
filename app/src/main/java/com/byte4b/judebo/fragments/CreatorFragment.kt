@@ -219,7 +219,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                             COMPANY = objFromServer.COMPANY
                             DETAIL_TEXT = objFromServer.DETAIL_TEXT
                             NAME = objFromServer.NAME
-                            UF_APP_JOB_ID = objFromServer.UF_APP_JOB_ID
+                            UF_APP_JOB_ID = objFromServer.UF_APP_JOB_ID?.toLongOrNull()
                             UF_CONTACT_EMAIL = objFromServer.UF_CONTACT_EMAIL
                             UF_CONTACT_PHONE = objFromServer.UF_CONTACT_PHONE
                             UF_DETAIL_IMAGE = objFromServer.UF_DETAIL_IMAGE
@@ -280,7 +280,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                     {
                         Log.e("test", "objFromServer.UF_APP_JOB_ID != null")
                         objFromRealm =
-                            realmList.firstOrNull { it.UF_APP_JOB_ID == objFromServer.UF_APP_JOB_ID }
+                            realmList.firstOrNull { it.UF_APP_JOB_ID?.toString() == objFromServer.UF_APP_JOB_ID }
                         //try found  in REALM  by APP_ID ()
                         if (objFromRealm != null)
                         //FOUND in REALM by APP_ID ()
@@ -299,7 +299,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                                     COMPANY = objFromServer.COMPANY
                                     DETAIL_TEXT = objFromServer.DETAIL_TEXT
                                     NAME = objFromServer.NAME
-                                    UF_APP_JOB_ID = objFromServer.UF_APP_JOB_ID
+                                    UF_APP_JOB_ID = objFromServer.UF_APP_JOB_ID?.toLongOrNull()
                                     UF_CONTACT_EMAIL = objFromServer.UF_CONTACT_EMAIL
                                     UF_CONTACT_PHONE = objFromServer.UF_CONTACT_PHONE
                                     UF_DETAIL_IMAGE = objFromServer.UF_DETAIL_IMAGE

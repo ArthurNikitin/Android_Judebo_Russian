@@ -87,7 +87,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
             tmp.UF_MODIFED = time.timestamp
             time.add(Calendar.DATE, Setting.JOB_LIFETIME_IN_DAYS)
             tmp.UF_DISABLE = time.timestamp
-            tmp.UF_APP_JOB_ID = getNewJobAppId().toLongOrNull()
+            tmp.UF_APP_JOB_ID = getNewJobAppId()
             val latLng = LatLng(
                 getLocation()?.latitude ?: Setting.DEFAULT_LATITUDE,
                 getLocation()?.longitude ?: Setting.DEFAULT_LONGITUDE

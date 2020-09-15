@@ -18,7 +18,7 @@ data class Vocation(
     var COMPANY: String? = null,
     var DETAIL_TEXT: String? = null,
     var NAME: String? = null,
-    var UF_APP_JOB_ID: Long? = null,
+    var UF_APP_JOB_ID: String? = null,
     var UF_CONTACT_EMAIL: String? = null,
     var UF_CONTACT_PHONE: String? = null,
     var UF_DETAIL_IMAGE: String? = null,
@@ -46,7 +46,7 @@ data class Vocation(
         result.DETAIL_TEXT = DETAIL_TEXT
         result.NAME = NAME
         result.UF_ACTIVE = UF_ACTIVE
-        result.UF_APP_JOB_ID = UF_APP_JOB_ID
+        result.UF_APP_JOB_ID = UF_APP_JOB_ID?.toLongOrNull()
         result.UF_CONTACT_EMAIL = UF_CONTACT_EMAIL
         result.UF_CONTACT_PHONE = UF_CONTACT_PHONE
         result.UF_DETAIL_IMAGE = UF_DETAIL_IMAGE
@@ -160,7 +160,7 @@ open class VocationRealm : RealmObject() {
         COMPANY = COMPANY,
         DETAIL_TEXT = DETAIL_TEXT,
         NAME = NAME,
-        UF_APP_JOB_ID = UF_APP_JOB_ID,
+        UF_APP_JOB_ID = UF_APP_JOB_ID?.toString(),
         UF_CONTACT_EMAIL = UF_CONTACT_EMAIL,
         UF_CONTACT_PHONE = UF_CONTACT_PHONE,
         UF_DETAIL_IMAGE = UF_DETAIL_IMAGE,
