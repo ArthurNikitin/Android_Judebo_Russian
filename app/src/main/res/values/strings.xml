@@ -71,5 +71,6 @@
     <string name="action_settings" translatable="false">Settings</string>
     <string name="user_registration_required_field" translatable="false">Required</string>
     <string name="edit_item_required_field" translatable="false">Required</string>
+    <string name="edit_item_tags_search">Search</string>
 
 </resources>

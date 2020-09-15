@@ -25,7 +25,6 @@ class LanguagesActivity : AppCompatActivity() {
 
         try {
             selected_rv.layoutManager = LinearLayoutManager(this)
-            notSelected_rv.layoutManager = LinearLayoutManager(this)
 
             vocation = Gson().fromJson(intent.getStringExtra("data"), Vocation::class.java)
             initData()
@@ -36,13 +35,11 @@ class LanguagesActivity : AppCompatActivity() {
 
     private fun initData() {
         try {
-            val vocationSkills = vocation.UF_LANGUAGE_ID_ALL.splitToArray()
-            val lists = languages.partition { it.id.toString() in vocationSkills }
-            selected_rv.adapter = EditLanguagesAdapter(this, lists.first, true)
-            notSelected_rv.adapter = EditLanguagesAdapter(this, lists.second, false)
-        } catch (e: Exception) {
-            Log.e("test2", e.localizedMessage ?: "Error")
-        }
+            val vocationLanguages = vocation.UF_LANGUAGE_ID_ALL.splitToArray()
+            selected_rv.adapter = EditLanguagesAdapter(this,
+                languages.map { Pair(it, it.id.toString() in vocationLanguages) }
+            )
+        } catch (e: Exception) {}
     }
 
     fun deleteSkill(id: Int) {
@@ -81,7 +78,7 @@ class LanguagesActivity : AppCompatActivity() {
 
     private fun String?.splitToArray(): MutableList<String> {
         if (this == null) return mutableListOf()
-        return this.split(",")
+        return split(",")
             .map { it.trim() }
             .filterNot { it.isEmpty() }
             .toMutableList()
