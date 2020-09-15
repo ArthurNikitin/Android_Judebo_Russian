@@ -387,7 +387,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
 
                 Realm.getDefaultInstance().executeTransaction {
                     val vocationRealm = it.where<VocationRealm>()
-                        .equalTo("UF_APP_JOB_ID", job!!.UF_APP_JOB_ID)
+                        .equalTo("UF_APP_JOB_ID", job!!.UF_APP_JOB_ID?.toLong())
                         .findFirst()
 
                     try {

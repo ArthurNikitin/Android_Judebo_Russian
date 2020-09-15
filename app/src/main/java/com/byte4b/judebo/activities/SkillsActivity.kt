@@ -32,7 +32,7 @@ class SkillsActivity : AppCompatActivity(), ServiceListener {
     private val setting by lazy { Setting(this) }
     private val realm by lazy { Realm.getDefaultInstance() }
     lateinit var vocation: Vocation
-    private val skills by lazy { realm.where<SkillRealm>().findAll().map { it.toBasicVersion() } }
+    private val skills get() = realm.where<SkillRealm>().findAll().map { it.toBasicVersion() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
