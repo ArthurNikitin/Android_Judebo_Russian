@@ -15,6 +15,7 @@ import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.toBitmap
+import androidx.core.graphics.drawable.toDrawable
 import com.bumptech.glide.Glide
 import com.byte4b.judebo.*
 import com.byte4b.judebo.R
@@ -40,9 +41,6 @@ import kotlin.random.Random
 
 class VocationEditActivity : AppCompatActivity(), ServiceListener {
 
-
-    val SERVER_ANIMATION_REQUEST_TIME_IN_MILLISECONDS = 1000L
-
     private val realm by lazy { Realm.getDefaultInstance() }
     private var job: Vocation? = null
     private val setting by lazy { Setting(this) }
@@ -52,6 +50,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
     private var isLogoSelected = false
 
     companion object {
+        const val SERVER_ANIMATION_REQUEST_TIME_IN_MILLISECONDS = 1000L
         private const val REQUEST_PICTURE = 102
         const val REQUEST_LANGUAGES = 103
         const val REQUEST_SKILLS = 104
@@ -116,13 +115,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
         try {
             val currency = currencies.firstOrNull { it.id == jobInfo.UF_GROSS_CURRENCY_ID }
 
-            if (!isRtl(this)) {
-                phone_tv.setLeftDrawable(R.drawable.edit_page_phone)
-                email_tv.setLeftDrawable(R.drawable.edit_page_mail)
-            } else {
-                phone_tv.setRightDrawable(R.drawable.edit_page_phone)
-                email_tv.setRightDrawable(R.drawable.edit_page_mail)
-            }
+            showSystemIcons()
 
             name_tv.setText(jobInfo.NAME)
 
@@ -487,7 +480,26 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
             scroll.post { scroll.smoothScrollTo(0, email_tv.bottom) }
         }
 
+        showSystemIcons()
         return true
+    }
+
+    private fun showSystemIcons() {
+        val phone = resources.getDrawable(R.drawable.edit_page_phone)
+            .toBitmap(Setting.CURRENCY_ICON_SIZE * 2, Setting.CURRENCY_ICON_SIZE * 2)
+            .toDrawable(resources)
+
+        val email = resources.getDrawable(R.drawable.edit_page_mail)
+            .toBitmap(Setting.CURRENCY_ICON_SIZE * 2, Setting.CURRENCY_ICON_SIZE * 2)
+            .toDrawable(resources)
+
+        if (!isRtl(this)) {
+            phone_field.startIconDrawable = phone
+            email_field.startIconDrawable = email
+        } else {
+            phone_field.endIconDrawable = phone
+            email_field.endIconDrawable = email
+        }
     }
 
     @SuppressLint("SimpleDateFormat")
