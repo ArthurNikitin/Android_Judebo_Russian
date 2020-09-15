@@ -4,6 +4,7 @@ import android.util.Log
 import com.byte4b.judebo.api.getAPI
 import com.byte4b.judebo.api.secretKey
 import com.byte4b.judebo.models.*
+import com.byte4b.judebo.models.request.CreateSkillRequest
 import com.byte4b.judebo.utils.Setting
 import com.byte4b.judebo.view.ServiceListener
 import com.google.gson.Gson
@@ -326,6 +327,25 @@ class ApiServiceImpl(val listener: ServiceListener?) : ApiService {
                         else
                             listener?.onAccountDeleted(null)
                     }
+                }
+            })
+    }
+
+    override fun createSkill(locale: String, name: String, token: String, login: String) {
+        getAPI(locale)
+            .createSkill(secretKey, token, login, listOf(CreateSkillRequest(name)))
+            .enqueue(object : Callback<AuthResult> {
+                override fun onResponse(call: Call<AuthResult>, response: Response<AuthResult>) {
+                    check {
+                        if (response.isSuccessful)
+                            listener?.onSkillCreated(response.body())
+                        else
+                            listener?.onSkillCreated(null)
+                    }
+                }
+
+                override fun onFailure(call: Call<AuthResult>, t: Throwable) {
+                    check { listener?.onSkillCreated(null) }
                 }
             })
     }

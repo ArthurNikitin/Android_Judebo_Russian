@@ -41,4 +41,6 @@ interface ApiService {
 
     fun deleteMe(locale: String, login: String, token: String)
 
+    fun createSkill(locale: String, name: String, token: String, login: String)
+
 }

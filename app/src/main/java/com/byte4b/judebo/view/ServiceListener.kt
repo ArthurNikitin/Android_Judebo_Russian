@@ -26,4 +26,6 @@ interface ServiceListener {
 
     fun onAccountDeleted(result: Result?) {}
 
+    fun onSkillCreated(result: AuthResult?) {}
+
 }

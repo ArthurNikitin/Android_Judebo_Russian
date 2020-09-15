@@ -1,6 +1,7 @@
 package com.byte4b.judebo.api
 
 import com.byte4b.judebo.models.*
+import com.byte4b.judebo.models.request.CreateSkillRequest
 import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.http.Body
@@ -98,5 +99,12 @@ interface API {
                  @Query("token") token: String,
                  @Query("login") login: String):
             Call<Result>
+
+    @POST("app_add_tag.php")
+    fun createSkill(@Query("key") secretKey: String,
+                    @Query("tok") token: String,
+                    @Query("login") login: String,
+                    @Body listsSingleSkill: List<CreateSkillRequest>):
+            Call<AuthResult>
 
 }
