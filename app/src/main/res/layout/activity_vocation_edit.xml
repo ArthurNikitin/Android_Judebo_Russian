@@ -93,6 +93,7 @@
                 android:id="@+id/name_field"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
+                android:layout_marginBottom="8dp"
                 android:layout_height="match_parent"
                 app:boxStrokeColor="@color/toolbar_background_color"
                 app:counterEnabled="true">
@@ -101,7 +102,6 @@
                     android:id="@+id/name_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
                     android:gravity="top"
                     android:hint="@string/edit_item_title"
                     android:minLines="2"
@@ -385,6 +385,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="8dp"
                 app:boxStrokeColor="@color/toolbar_background_color"
                 app:counterEnabled="true">
 
@@ -392,7 +393,6 @@
                     android:id="@+id/details_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
                     android:gravity="left|top"
                     android:hint="@string/edit_item_detail"
                     android:maxLines="8"

@@ -108,6 +108,7 @@ class DetailsMapFragment(
                     }
                 })
         } else {
+            googleMap.isMyLocationEnabled = true
             googleMap.setOnMapClickListener {
                 setDraggableMarker(it.latitude, it.longitude)
             }
