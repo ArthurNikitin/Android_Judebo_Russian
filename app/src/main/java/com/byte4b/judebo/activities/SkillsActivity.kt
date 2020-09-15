@@ -3,6 +3,7 @@ package com.byte4b.judebo.activities
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
@@ -148,9 +149,9 @@ class SkillsActivity : AppCompatActivity(), ServiceListener {
 
     override fun onSkillCreated(result: AuthResult?) {
         if (result?.status == "success") {
-            ApiServiceImpl(this).getSkills(
-                setting.getCurrentLanguage().locale
-            )
+            Handler().postDelayed({
+                ApiServiceImpl(this).getSkills(setting.getCurrentLanguage().locale)
+            }, Setting.TAGS_SLEEP_AFTER_SAVE_IN_SECONDS * 1000)
         } else if (result != null) {
             Toasty.error(this, result.data).show()
             stopAnimation()
