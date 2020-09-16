@@ -545,7 +545,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                             currentVocationRealm.setIcons(logo_iv.drawable)
 
                         val latLng =
-                            (supportFragmentManager.fragments.last() as DetailsMapFragment).latLng
+                            getMapFragment()?.latLng
                                 ?: LatLng(Setting.DEFAULT_LATITUDE, Setting.DEFAULT_LONGITUDE)
                         currentVocationRealm.UF_MAP_POINT =
                             "${latLng.latitude}, ${latLng.longitude}"
@@ -601,6 +601,9 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
         Log.e(tag, localizedMessage?: message ?: "toLogHaveEmptyErrorMessage")
     }
 
+    private fun getMapFragment(): DetailsMapFragment? =
+        supportFragmentManager.fragments.lastOrNull { it is DetailsMapFragment } as DetailsMapFragment?
+
     private fun createNewVocation() {
         val currentVocationRealm = VocationRealm()
         //set params
@@ -627,7 +630,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
             currentVocationRealm.setIcons(logo_iv.drawable)
 
         val latLng =
-            (supportFragmentManager.fragments.last() as DetailsMapFragment).latLng ?: LatLng(
+            getMapFragment()?.latLng ?: LatLng(
                 Setting.DEFAULT_LATITUDE,
                 Setting.DEFAULT_LONGITUDE
             )
