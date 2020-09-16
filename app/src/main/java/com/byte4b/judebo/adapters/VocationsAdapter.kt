@@ -182,11 +182,21 @@ class VocationsAdapter(
                     holder.editDateView
                         .setTextColor(ctx.resources.getColor(android.R.color.holo_red_dark))
                     holder.editDateView.setTypeface(null, Typeface.BOLD)
+
+                    holder.disableLabel
+                        .setTextColor(ctx.resources.getColor(android.R.color.holo_red_dark))
+                    holder.disableLabel.setTypeface(null, Typeface.BOLD)
+
                     holder.errorView.visibility = View.VISIBLE
                 } else {
                     holder.editDateView
                         .setTextColor(ctx.resources.getColor(android.R.color.background_dark))
                     holder.editDateView.setTypeface(null, Typeface.NORMAL)
+
+                    holder.disableLabel
+                        .setTextColor(ctx.resources.getColor(android.R.color.background_dark))
+                    holder.disableLabel.setTypeface(null, Typeface.NORMAL)
+
                     holder.errorView.visibility = View.GONE
                 }
 
