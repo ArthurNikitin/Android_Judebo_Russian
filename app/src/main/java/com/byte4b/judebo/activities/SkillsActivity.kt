@@ -59,6 +59,8 @@ class SkillsActivity : AppCompatActivity(), ServiceListener {
             }
         }
         closeFilter_iv.setOnClickListener { filterOff() }
+
+        refresher.setOnRefreshListener { refresher.isRefreshing = false }
     }
 
     private fun filterOff() = filters_tv.setText("")
@@ -74,7 +76,7 @@ class SkillsActivity : AppCompatActivity(), ServiceListener {
         notSelected_rv.adapter = EditSkillsAdapter(
             this,
             lists.second
-                .filterNot { it.name.trim().isEmpty() }
+                .filterNot { it.name.trim().isEmpty() }.reversed()
                 .filter { it.name.contains(filters_tv.text.toString(), ignoreCase = true) },
             false
         )
@@ -128,6 +130,7 @@ class SkillsActivity : AppCompatActivity(), ServiceListener {
         return split(",")
             .map { it.trim() }
             .filterNot { it.isEmpty() }
+            .filterNot { it == "284" }
             .filterNot { it == Setting.DEFAULT_SKILL_ID_ALWAYS_HIDDEN }
             .toMutableList()
     }
