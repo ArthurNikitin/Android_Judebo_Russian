@@ -89,7 +89,7 @@
             android:orientation="vertical"
             android:padding="8dp">
 
-            <com.byte4b.judebo.ui.CustomTextInputLayout
+            <com.byte4b.judebo.ui.CenterErrorTextInputLayout
                 android:id="@+id/name_field"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
@@ -109,7 +109,7 @@
                     android:text="Vacancy name"
                     android:textSize="18sp"
                     android:textStyle="bold" />
-            </com.byte4b.judebo.ui.CustomTextInputLayout>
+            </com.byte4b.judebo.ui.CenterErrorTextInputLayout>
 
             <LinearLayout
                 android:id="@+id/jobType_container"

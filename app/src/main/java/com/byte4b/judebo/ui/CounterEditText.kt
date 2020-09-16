@@ -5,7 +5,7 @@ import android.text.InputFilter
 import android.util.AttributeSet
 import android.view.Gravity
 import android.view.LayoutInflater
-import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.core.widget.doOnTextChanged
@@ -55,26 +55,12 @@ class CounterEditText(context: Context, attributeSet: AttributeSet) :
 
 }
 
-class CustomTextInputLayout(context: Context?, attrs: AttributeSet?) :
-    TextInputLayout(context!!, attrs) {
-    override fun setErrorEnabled(enabled: Boolean) {
-        super.setErrorEnabled(enabled)
-        if (!enabled) {
-            return
-        }
-        try {
-            val field = TextInputLayout::class.java.getDeclaredField("mErrorView")
-            field.isAccessible = true
-            val errorView = field.get(this) as TextView
-            errorView.gravity = Gravity.RIGHT
-            val params = LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            )
-            params.gravity = Gravity.END
-            errorView.layoutParams = params
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-    }
-}
+class CenterErrorTextInputLayout(context: Context, attrs: AttributeSet) : TextInputLayout(context, attrs) {
+    override fun setErrorTextAppearance(resId: Int) {
+        super.setErrorTextAppearance(resId)
+        val errorTextView = this.findViewById<TextView>(R.id.textinput_error)
+        val errorFrameLayout = errorTextView.parent as FrameLayout
+
+        errorTextView.gravity = Gravity.END
+        errorFrameLayout.layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
+    }}
