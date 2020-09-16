@@ -183,7 +183,9 @@ class SettingFragment : Fragment(R.layout.fragment_setting), ServiceListener {
 
     private fun showCurrencyDialog() {
         requireActivity().startActivityForResult(
-            Intent(requireActivity(), SelectAppCurrency::class.java), SELECT_CURRENCY_REQUEST
+            Intent(requireActivity(), SelectAppCurrency::class.java).apply {
+                putExtra("id", setting.getCurrentCurrency().id)
+            }, SELECT_CURRENCY_REQUEST
         )
     }
 

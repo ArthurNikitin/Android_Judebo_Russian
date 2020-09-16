@@ -31,7 +31,7 @@ class SelectAppCurrency : AppCompatActivity() {
     private fun initData() {
         try {
             selected_rv.adapter =
-                SelectOneCurrencyAdapter(this, currencies, setting.getCurrentCurrency().id)
+                SelectOneCurrencyAdapter(this, currencies, intent.getIntExtra("id", 2))
         } catch (e: Exception) {}
     }
 

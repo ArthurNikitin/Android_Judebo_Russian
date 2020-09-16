@@ -50,6 +50,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
     private var isLogoSelected = false
 
     companion object {
+        const val SELECT_CURRENCY_VOCATION_REQUEST = 101
         const val SERVER_ANIMATION_REQUEST_TIME_IN_MILLISECONDS = 1000L
         private const val REQUEST_PICTURE = 102
         const val REQUEST_LANGUAGES = 103
@@ -266,6 +267,15 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         when (requestCode) {
+            SELECT_CURRENCY_VOCATION_REQUEST -> {
+                if (resultCode == Activity.RESULT_OK) {
+                    val currency = currencies.first {
+                        it.id == data?.getIntExtra("currency", 1) ?: 1
+                    }
+                    salaryVal_tv.text = currency.name
+                    salaryIcon_iv.setImageResource(currency.icon)
+                }
+            }
             CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE -> {
                 val result = CropImage.getActivityResult(data)
                 if (resultCode == Activity.RESULT_OK) {
@@ -327,14 +337,9 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
     }
 
     private fun showCurrencyDialog() {
-        AlertDialog.Builder(this)
-            .setTitle(R.string.settings_title_currency)
-            .setAdapter(currencyAdapter!!) { dialog, index ->
-                salaryVal_tv.text = currencies[index].name
-                salaryIcon_iv.setImageResource(currencies[index].icon)
-                dialog.dismiss()
-            }
-            .show()
+        startActivityForResult(Intent(this, SelectAppCurrency::class.java).apply {
+           putExtra("id", job?.UF_GROSS_CURRENCY_ID ?: setting.getCurrentCurrency().id)
+        }, SELECT_CURRENCY_VOCATION_REQUEST)
     }
 
     private fun setSkillsList() {
