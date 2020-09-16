@@ -240,6 +240,7 @@
                     android:id="@+id/phone_field"
                     app:boxStrokeColor="@color/toolbar_background_color"
                     app:errorEnabled="true"
+                    android:layout_marginBottom="8dp"
                     app:startIconTint="@color/toolbar_background_color"
                     app:helperTextEnabled="true">
 
@@ -247,7 +248,6 @@
                         android:id="@+id/phone_tv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
                         android:hint="@string/edit_item_phone"
                         android:inputType="phone"
                         android:text="+7 800 555 55 55"
@@ -258,6 +258,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:id="@+id/email_field"
+                    android:layout_marginBottom="8dp"
                     app:startIconTint="@color/toolbar_background_color"
                     android:layout_height="wrap_content"
                     app:boxStrokeColor="@color/toolbar_background_color">
@@ -266,7 +267,6 @@
                         android:id="@+id/email_tv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
                         android:drawablePadding="5dp"
                         android:hint="@string/edit_item_email"
                         android:inputType="textEmailAddress"

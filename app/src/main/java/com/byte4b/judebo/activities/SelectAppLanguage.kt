@@ -20,7 +20,7 @@ class SelectAppLanguage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.setting_select)
         supportActionBar?.hide()
-
+        title1.text = getString(R.string.settings_title_current_language)
         try {
             selected_rv.layoutManager = LinearLayoutManager(this)
             initData()

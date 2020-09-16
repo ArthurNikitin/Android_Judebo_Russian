@@ -20,6 +20,7 @@ class SelectAppCurrency : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.setting_select)
         supportActionBar?.hide()
+        title1.text = getString(R.string.settings_title_current_currency)
 
         try {
             selected_rv.layoutManager = LinearLayoutManager(this)
