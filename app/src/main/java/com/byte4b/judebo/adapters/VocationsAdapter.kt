@@ -3,11 +3,11 @@ package com.byte4b.judebo.adapters
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.BitmapFactory
+import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Handler
 import android.util.Base64.decode
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,7 +41,7 @@ import kotlin.random.Random
 
 class VocationsAdapter(
     private val ctx: Context,
-    var vocations: List<Vocation>,
+    private var vocations: List<Vocation>,
     private val parent: CreatorFragment,
     private val isMaxVocations: Boolean
 ) : RecyclerView.Adapter<VocationsAdapter.Holder>(), ServiceListener {
@@ -160,9 +160,7 @@ class VocationsAdapter(
                                                 .circleCrop()
                                                 .into(holder.iconView)
                                         }, 12)
-                                    } catch (e: Exception) {
-                                        Log.e("test", "base64 error: ${e.message}")
-                                    }
+                                    } catch (e: Exception) {}
                                     return true
                                 }
 
@@ -172,16 +170,31 @@ class VocationsAdapter(
                             })
                             .into(holder.iconView)
                     }
-                } catch (e: Exception) {
-                    Log.e("test", "base64 error")
-                }
+                } catch (e: Exception) {}
                 val editDate = getDate(UF_MODIFED)
                 val disableDate = getDate(UF_DISABLE)
                 val format = SimpleDateFormat("dd MMM", Locale(setting.getCurrentLanguage().locale))
-                val editString =
-                    format.format(editDate) + " - " + format.format(disableDate)
 
-                holder.editDateView.text = editString
+                holder.editDateView.text = format.format(editDate) + " - "
+                holder.disableLabel.text = format.format(disableDate)
+
+                if (UF_DISABLE ?: 0 < Calendar.getInstance().timestamp) {
+                    holder.editDateView
+                        .setTextColor(ctx.resources.getColor(android.R.color.holo_red_dark))
+                    holder.editDateView.setTypeface(null, Typeface.BOLD)
+                    holder.errorView.visibility = View.VISIBLE
+                } else {
+                    holder.editDateView
+                        .setTextColor(ctx.resources.getColor(android.R.color.background_dark))
+                    holder.editDateView.setTypeface(null, Typeface.NORMAL)
+                    holder.errorView.visibility = View.GONE
+                }
+
+                if (UF_ACTIVE != 1.toByte() || UF_DISABLE?:0 < Calendar.getInstance().timestamp)
+                    holder.isNotActiveView.visibility = View.VISIBLE
+                else
+                    holder.isNotActiveView.visibility = View.GONE
+
                 val currency = currencies.firstOrNull { it.id == UF_GROSS_CURRENCY_ID }
                 if (UF_GROSS_PER_MONTH == null) {
                     holder.salaryView.visibility = View.INVISIBLE
@@ -190,14 +203,11 @@ class VocationsAdapter(
                     holder.salaryView.text = "$UF_GROSS_PER_MONTH ${currency?.name ?: "USD"}"
                 }
             }
-        } catch (e: Exception) {
-            Log.e("test", "adapter: " + (e.localizedMessage ?: "error"))
-        }
+        } catch (e: Exception) {}
     }
 
     @SuppressLint("SimpleDateFormat")
     private fun copyVocations(vocation: Vocation) {
-        Log.e("test", "start copy")
         try {
             Realm.getDefaultInstance().executeTransaction {
                 val vocationRealm = it.where<VocationRealm>()
@@ -228,15 +238,10 @@ class VocationsAdapter(
                     putExtra("jobId", newVocation.UF_JOBS_ID)
                 }
             }
-        } catch (e: Exception) {
-            Log.e("test", e.localizedMessage ?: "Error copy")
-        }
+        } catch (e: Exception) {}
     }
 
-    override fun onVocationAdded(success: Boolean) {
-        Log.e("api", "is added: $success")
-        parent.onRefresh()
-    }
+    override fun onVocationAdded(success: Boolean) = parent.onRefresh()
 
     private fun getNewJobAppId(): String {
         var random = Random.nextLong(0, 99999999).toString()
@@ -246,7 +251,6 @@ class VocationsAdapter(
 
     @SuppressLint("SimpleDateFormat")
     private fun deleteVocation(vocation: Vocation) {
-        Log.e("test", "del")
         AlertDialog.Builder(ctx)
             .setTitle(R.string.request_request_delete_title)
             .setMessage(R.string.request_request_delete_message)
@@ -277,9 +281,7 @@ class VocationsAdapter(
                         vocationRealm?.UF_TYPE_OF_JOB_ID = null
 
                         vocationRealm?.UF_MODIFED = Calendar.getInstance().timestamp
-                    } catch (e: Exception) {
-                        Log.e("test", e.localizedMessage ?: "ErrorMe")
-                    }
+                    } catch (e: Exception) {}
                     try {
                         ApiServiceImpl(this).deleteVocation(
                             setting.getCurrentLanguage().locale,
@@ -297,10 +299,7 @@ class VocationsAdapter(
             .show()
     }
 
-    override fun onVocationDeleted(success: Boolean) {
-        Log.e("check", "is deleted: $success")
-        parent.showList()
-    }
+    override fun onVocationDeleted(success: Boolean) = parent.showList()
 
     class Holder(val view: View) : RecyclerView.ViewHolder(view) {
         val iconView = view.icon_iv!!
@@ -320,6 +319,10 @@ class VocationsAdapter(
         //for limit icon
         val copyLeft = view.copy12!!
         val copyRight = view.copy22!!
+
+        val errorView = view.error_tv!!
+        val isNotActiveView = view.notActive_iv!!
+        val disableLabel = view.disable_tv!!
     }
 
 }

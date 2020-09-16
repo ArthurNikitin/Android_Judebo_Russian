@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="wrap_content"
+    android:layout_height="110dp"
     android:layout_width="match_parent"
     android:background="#999"
     xmlns:android="http://schemas.android.com/apk/res/android">
@@ -85,7 +85,7 @@
         app:leftEdgeSwipeOffset="0dp"
         app:rightEdgeSwipeOffset="0dp"
         android:layout_width="match_parent"
-        android:layout_height="100dp">
+        android:layout_height="110dp">
 
         <LinearLayout
             android:id="@+id/right1"
@@ -158,7 +158,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:padding="10dp"
+            android:padding="5dp"
             android:background="#fff"
             android:id="@+id/container"
             android:layout_width="match_parent"
@@ -194,7 +194,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="8dp"
+                        android:layout_margin="5dp"
                         android:layout_weight="50"
                         android:orientation="vertical">
 
@@ -210,22 +210,63 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="bottom"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="5dp"
                         android:layout_weight="50"
                         android:gravity="bottom"
                         android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/edit_tv"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="right"
-                            android:text="15 авг" />
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/jobs_list_date_update" />
+
+                            <TextView
+                                android:textSize="14sp"
+                                android:id="@+id/edit_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="right"
+                                android:text="15 авг - " />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/jobs_list_date_disable" />
+
+                            <TextView
+                                android:textSize="14sp"
+                                android:id="@+id/disable_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="right"
+                                android:text="15 авг" />
+
+                        </LinearLayout>
 
                         <TextView
+                            android:visibility="gone"
+                            android:id="@+id/error_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right"
+                            android:textSize="12sp"
+                            android:text="@string/user_jobs_list_error_please_update"
+                            android:textColor="@android:color/holo_red_dark" />
+
+                        <TextView
+                            android:textColor="#000"
                             android:id="@+id/id_tv"
+                            android:textSize="13sp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="right"
@@ -239,5 +280,13 @@
         </LinearLayout>
 
     </com.daimajia.swipe.SwipeLayout>
+
+    <ImageView
+        android:id="@+id/notActive_iv"
+        android:layout_margin="10dp"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:srcCompat="@drawable/jobs_list_not_active_item" />
 
 </RelativeLayout>

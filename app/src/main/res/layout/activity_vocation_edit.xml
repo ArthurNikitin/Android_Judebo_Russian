@@ -89,13 +89,13 @@
             android:orientation="vertical"
             android:padding="8dp">
 
-            <com.google.android.material.textfield.TextInputLayout
+            <com.byte4b.judebo.ui.CustomTextInputLayout
                 android:id="@+id/name_field"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_marginBottom="8dp"
                 android:layout_height="match_parent"
-                app:errorTextAppearance="@style/right_error"
+                app:errorEnabled="true"
                 app:boxStrokeColor="@color/toolbar_background_color"
                 app:counterEnabled="true">
 
@@ -109,7 +109,7 @@
                     android:text="Vacancy name"
                     android:textSize="18sp"
                     android:textStyle="bold" />
-            </com.google.android.material.textfield.TextInputLayout>
+            </com.byte4b.judebo.ui.CustomTextInputLayout>
 
             <LinearLayout
                 android:id="@+id/jobType_container"
@@ -376,6 +376,7 @@
                 app:srcCompat="@drawable/en" />
 
             <FrameLayout
+                android:layout_marginTop="10dp"
                 android:id="@+id/containerFragment"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
@@ -412,6 +413,8 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
+                    android:paddingStart="5dp"
+                    android:scaleType="fitStart"
                     android:layout_weight="1"
                     android:onClick="deleteClick"
                     app:srcCompat="@drawable/button_delete" />

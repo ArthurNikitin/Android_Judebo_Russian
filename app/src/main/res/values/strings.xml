@@ -72,5 +72,6 @@
     <string name="user_registration_required_field" translatable="false">Required</string>
     <string name="edit_item_required_field" translatable="false">Required</string>
     <string name="edit_item_tags_search">Search</string>
+    <string name="user_jobs_list_error_please_update">Need update!</string>
 
 </resources>
