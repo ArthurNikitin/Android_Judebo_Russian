@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import com.byte4b.judebo.R
 import com.byte4b.judebo.fragments.*
 import com.byte4b.judebo.isRtl
@@ -81,6 +82,28 @@ class MainActivity : AppCompatActivity() {
                 else -> true
             }
         }
+        supportFragmentManager.commit {
+            when (setting.lastOpenedFragmentName) {
+                LoginFragment::class.java.simpleName -> replace(R.id.frame,
+                    if (setting.isAuth) CreatorFragment() else LoginFragment()
+                )
+                SignUpFragment::class.java.simpleName -> replace(R.id.frame,
+                    if (setting.isAuth) CreatorFragment() else LoginFragment()
+                )
+                CreatorFragment::class.java.simpleName -> replace(R.id.frame,
+                    if (setting.isAuth) CreatorFragment() else LoginFragment()
+                )
+                SettingFragment::class.java.simpleName ->
+                    replace(R.id.frame, SettingFragment())
+            }
+        }
+    }
+
+    override fun onDestroy() {
+        supportFragmentManager.fragments.lastOrNull()?.apply {
+            setting.lastOpenedFragmentName = this::class.java.simpleName
+        }
+        super.onDestroy()
     }
 
     fun restartFragment(fragment: Fragment) {
@@ -110,10 +133,6 @@ class MainActivity : AppCompatActivity() {
 
     private inline fun <reified F : Fragment> getLastFragment(): F? {
         return supportFragmentManager.fragments.lastOrNull { it is F } as F
-    }
-
-    private fun getSettingFragment(): SettingFragment? {
-        return supportFragmentManager.fragments.lastOrNull { it is SettingFragment } as SettingFragment
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

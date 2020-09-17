@@ -45,6 +45,8 @@ class SplashActivity : AppCompatActivity(), ServiceListener {
         if (setting.currency == "")
             setting.currency = setting.getCurrentCurrency().name
 
+        setting.lastOpenedFragmentName = null
+
         Handler().postDelayed({
             isAnimationEnded = true
             if (isCanOpenMap)
