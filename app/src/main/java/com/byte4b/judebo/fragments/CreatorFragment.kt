@@ -117,9 +117,11 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
 
 
         vocations_rv.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+
                 filters_tv.clearFocus()
+                requireActivity().hideKeyboard()
                 vocations_rv.requestFocus()
             }
         })
@@ -399,15 +401,15 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
     }
 
     private fun setList(list: List<Vocation>?) {
-        Log.e("check", "for show")
-        list?.forEach {
-            Log.e("check", "${it.UF_JOBS_ID}: ${Gson().toJson(it)}")
-        }
+        //Log.e("check", "for show")
+        //list?.forEach {
+        //    Log.e("check", "${it.UF_JOBS_ID}: ${Gson().toJson(it)}")
+        //}
 
-        Log.e("check", "in realm")
-        realm.where<VocationRealm>().findAll().map { it.toBasicVersion() }.forEach {
-            Log.e("check", "${it.UF_JOBS_ID}: ${Gson().toJson(it)}")
-        }
+        //Log.e("check", "in realm")
+        //realm.where<VocationRealm>().findAll().map { it.toBasicVersion() }.forEach {
+        //    Log.e("check", "${it.UF_JOBS_ID}: ${Gson().toJson(it)}")
+        //}
 
         try {
             refresher.isRefreshing = false
