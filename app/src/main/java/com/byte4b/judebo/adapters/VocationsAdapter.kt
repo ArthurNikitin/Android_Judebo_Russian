@@ -96,7 +96,7 @@ class VocationsAdapter(
                 }
                 holder.nameView.text = NAME
                 if (UF_JOBS_ID == null) {
-                    holder.idView.visibility = View.INVISIBLE
+                    holder.idView.visibility = View.GONE
                 } else {
                     holder.idView.text = "#$UF_JOBS_ID"
                     holder.idView.visibility = View.VISIBLE
@@ -178,7 +178,8 @@ class VocationsAdapter(
                 holder.editDateView.text = format.format(editDate) + " - "
                 holder.disableLabel.text = format.format(disableDate)
 
-                if (UF_DISABLE ?: 0 < Calendar.getInstance().timestamp) {
+                if ((UF_ACTIVE != 1.toByte()) || ((UF_DISABLE?:0) < Calendar.getInstance().timestamp)) {
+                    holder.isNotActiveView.visibility = View.VISIBLE
                     holder.editDateView
                         .setTextColor(ctx.resources.getColor(android.R.color.holo_red_dark))
                     holder.editDateView.setTypeface(null, Typeface.BOLD)
@@ -188,7 +189,9 @@ class VocationsAdapter(
                     holder.disableLabel.setTypeface(null, Typeface.BOLD)
 
                     holder.errorView.visibility = View.VISIBLE
+
                 } else {
+                    holder.isNotActiveView.visibility = View.GONE
                     holder.editDateView
                         .setTextColor(ctx.resources.getColor(android.R.color.background_dark))
                     holder.editDateView.setTypeface(null, Typeface.NORMAL)
@@ -199,11 +202,6 @@ class VocationsAdapter(
 
                     holder.errorView.visibility = View.GONE
                 }
-
-                if (UF_ACTIVE != 1.toByte() || UF_DISABLE?:0 < Calendar.getInstance().timestamp)
-                    holder.isNotActiveView.visibility = View.VISIBLE
-                else
-                    holder.isNotActiveView.visibility = View.GONE
 
                 val currency = currencies.firstOrNull { it.id == UF_GROSS_CURRENCY_ID }
                 if (UF_GROSS_PER_MONTH == null) {

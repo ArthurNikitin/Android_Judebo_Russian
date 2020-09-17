@@ -224,13 +224,12 @@
                             android:orientation="horizontal">
 
                             <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="20dp"
+                                android:layout_width="15dp"
+                                android:layout_height="wrap_content"
                                 android:adjustViewBounds="true"
                                 android:src="@drawable/jobs_list_date_update" />
 
                             <TextView
-                                android:textSize="14sp"
                                 android:id="@+id/edit_tv"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -238,13 +237,12 @@
                                 android:text="15 авг - " />
 
                             <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="20dp"
+                                android:layout_width="15dp"
+                                android:layout_height="match_parent"
                                 android:adjustViewBounds="true"
                                 android:src="@drawable/jobs_list_date_disable" />
 
                             <TextView
-                                android:textSize="14sp"
                                 android:id="@+id/disable_tv"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -253,24 +251,30 @@
 
                         </LinearLayout>
 
+                        <LinearLayout
+                            android:gravity="right"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
                         <TextView
                             android:visibility="gone"
                             android:id="@+id/error_tv"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="right"
-                            android:textSize="12sp"
                             android:text="@string/user_jobs_list_error_please_update"
                             android:textColor="@android:color/holo_red_dark" />
 
                         <TextView
+                            android:layout_marginLeft="5dp"
                             android:textColor="#000"
                             android:id="@+id/id_tv"
-                            android:textSize="13sp"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="right"
                             android:text="#345" />
+                        </LinearLayout>
+
 
                     </LinearLayout>
 
@@ -283,7 +287,7 @@
 
     <ImageView
         android:id="@+id/notActive_iv"
-        android:layout_margin="10dp"
+        android:layout_margin="15dp"
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

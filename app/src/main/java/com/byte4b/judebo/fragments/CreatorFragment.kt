@@ -335,7 +335,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                             //
                             Log.e("test", "${objFromServer.UF_JOBS_ID}, ${objFromServer.NAME}")
                             val tmpObj = objFromServer.toRealmVersion()
-                            realm.copyToRealm(tmpObj)
+                            realm.insertOrUpdate(tmpObj)
                             // add to REALM all params from WEB and UF_APP_JOB_ID
                         }
                     }
