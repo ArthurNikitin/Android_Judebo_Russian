@@ -73,21 +73,21 @@ class SkillsActivity : AppCompatActivity(), ServiceListener {
             lists.first.filterNot { it.name.trim().isEmpty() },
             true
         )
-        notSelected_rv.adapter = EditSkillsAdapter(
-            this,
-            lists.second
-                .filterNot { it.name.trim().isEmpty() }.reversed()
-                .filter { it.name.contains(filters_tv.text.toString(), ignoreCase = true) },
-            false
-        )
 
-        if (lists.second
-                .filterNot { it.name.trim().isEmpty() }
-                .none { it.name.contains(filters_tv.text.toString(), ignoreCase = true) })
+        var notSelectedList = lists.second
+            .filterNot { it.name.trim().isEmpty() }.reversed()
+            .filter { it.name.contains(filters_tv.text.toString(), ignoreCase = true) }
+
+        if (filters_tv.text.toString().isEmpty())
+            notSelectedList = notSelectedList
+                .filter { it.popularity?:0 > Setting.TAGS_POPULARITY_MINIMUM }
+
+        notSelected_rv.adapter = EditSkillsAdapter(this, notSelectedList, false)
+
+        if (notSelectedList.isEmpty())
             add_new_iv.visibility = View.VISIBLE
         else
             add_new_iv.visibility = View.GONE
-
     }
 
     fun deleteSkill(id: Int) {

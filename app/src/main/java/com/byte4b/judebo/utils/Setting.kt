@@ -153,7 +153,7 @@ class Setting(ctx: Context) {
         const val TEXT_LENGTH_MAX_SYMBOLS_JOB_COMPANY = 50
         const val TEXT_LENGTH_MAX_SYMBOLS_JOB_DETAIL = 1500
 
-
+        const val TAGS_POPULARITY_MINIMUM = 2
     }
 
 }
