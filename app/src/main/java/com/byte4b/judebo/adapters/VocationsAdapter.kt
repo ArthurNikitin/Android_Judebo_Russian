@@ -180,25 +180,31 @@ class VocationsAdapter(
 
                 if ((UF_ACTIVE != 1.toByte()) || ((UF_DISABLE?:0) < Calendar.getInstance().timestamp)) {
                     holder.isNotActiveView.visibility = View.VISIBLE
-                    holder.editDateView
-                        .setTextColor(ctx.resources.getColor(android.R.color.holo_red_dark))
-                    holder.editDateView.setTypeface(null, Typeface.BOLD)
 
-                    holder.disableLabel
-                        .setTextColor(ctx.resources.getColor(android.R.color.holo_red_dark))
-                    holder.disableLabel.setTypeface(null, Typeface.BOLD)
+                    if ((UF_DISABLE?:0) < Calendar.getInstance().timestamp) {
+                        holder.editDateView
+                            .setTextColor(ctx.resources.getColor(android.R.color.holo_red_dark))
+                        holder.editDateView.setTypeface(null, Typeface.BOLD)
+
+                        holder.disableLabel
+                            .setTextColor(ctx.resources.getColor(android.R.color.holo_red_dark))
+                        holder.disableLabel.setTypeface(null, Typeface.BOLD)
+                    }
 
                     holder.errorView.visibility = View.VISIBLE
 
                 } else {
                     holder.isNotActiveView.visibility = View.GONE
-                    holder.editDateView
-                        .setTextColor(ctx.resources.getColor(android.R.color.background_dark))
-                    holder.editDateView.setTypeface(null, Typeface.NORMAL)
 
-                    holder.disableLabel
-                        .setTextColor(ctx.resources.getColor(android.R.color.background_dark))
-                    holder.disableLabel.setTypeface(null, Typeface.NORMAL)
+                    if ((UF_DISABLE?:0) < Calendar.getInstance().timestamp) {
+                        holder.editDateView
+                            .setTextColor(ctx.resources.getColor(android.R.color.background_dark))
+                        holder.editDateView.setTypeface(null, Typeface.NORMAL)
+
+                        holder.disableLabel
+                            .setTextColor(ctx.resources.getColor(android.R.color.background_dark))
+                        holder.disableLabel.setTypeface(null, Typeface.NORMAL)
+                    }
 
                     holder.errorView.visibility = View.GONE
                 }
