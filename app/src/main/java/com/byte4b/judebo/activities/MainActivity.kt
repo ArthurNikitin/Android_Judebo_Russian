@@ -84,17 +84,28 @@ class MainActivity : AppCompatActivity() {
         }
         supportFragmentManager.commit {
             when (setting.lastOpenedFragmentName) {
-                LoginFragment::class.java.simpleName -> replace(R.id.frame,
-                    if (setting.isAuth) CreatorFragment() else LoginFragment()
-                )
-                SignUpFragment::class.java.simpleName -> replace(R.id.frame,
-                    if (setting.isAuth) CreatorFragment() else LoginFragment()
-                )
-                CreatorFragment::class.java.simpleName -> replace(R.id.frame,
-                    if (setting.isAuth) CreatorFragment() else LoginFragment()
-                )
-                SettingFragment::class.java.simpleName ->
+                LoginFragment::class.java.simpleName -> {
+                    navBar_bnv.selectedItemId = R.id.bottom_item_creator
+                    replace(R.id.frame,
+                        if (setting.isAuth) CreatorFragment() else LoginFragment()
+                    )
+                }
+                SignUpFragment::class.java.simpleName -> {
+                    navBar_bnv.selectedItemId = R.id.bottom_item_creator
+                    replace(R.id.frame,
+                        if (setting.isAuth) CreatorFragment() else LoginFragment()
+                    )
+                }
+                CreatorFragment::class.java.simpleName -> {
+                    navBar_bnv.selectedItemId = R.id.bottom_item_creator
+                    replace(R.id.frame,
+                        if (setting.isAuth) CreatorFragment() else LoginFragment()
+                    )
+                }
+                SettingFragment::class.java.simpleName -> {
+                    navBar_bnv.selectedItemId = R.id.bottom_item_setting
                     replace(R.id.frame, SettingFragment())
+                }
             }
         }
     }
