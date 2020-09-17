@@ -51,6 +51,22 @@ fun Context.getLocation(): Location? {
     }
 }
 
+fun TextView.setLeftDrawableMap(@DrawableRes drawable: Int, size: Int = Setting.CURRENCY_ICON_SIZE / 3) {
+    val drawable = resources
+        .getDrawable( drawable)
+        .toBitmap(size, size)
+        .toDrawable(resources)
+    setCompoundDrawablesWithIntrinsicBounds(if (!isRtl) drawable else null,null, if (isRtl) drawable else null, null)
+}
+
+fun TextView.setRightDrawableMap(@DrawableRes drawable: Int, size: Int = Setting.CURRENCY_ICON_SIZE / 3) {
+    val drawable = resources
+        .getDrawable( drawable)
+        .toBitmap(size, size)
+        .toDrawable(resources)
+    setCompoundDrawablesWithIntrinsicBounds(if (isRtl) drawable else null ,null, if (!isRtl) drawable else null, null)
+}
+
 fun TextView.setLeftDrawable(@DrawableRes drawable: Int, size: Int = Setting.CURRENCY_ICON_SIZE) {
     val drawable = resources
         .getDrawable( drawable)

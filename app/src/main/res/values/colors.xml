@@ -17,5 +17,6 @@
     <color name="navigate_background_color_edge">#FF79D17D</color>
     <color name="settings_backgroud_active_line">#7fdda3</color>
     <color name="white">#fff</color>
+    <color name="jobs_list_not_active_background">#ffcdcd</color>
 
 </resources>

@@ -10,6 +10,6 @@ object RealmDb {
         realm.where<VocationRealm>().findAll()
 
     fun getVocationsCount(realm: Realm) =
-        realm.where<VocationRealm>().findAll().filterNot { it.isHided }.count()
+        realm.where<VocationRealm>().findAll().filterNot { it.isHided }.filter { it.UF_APP_JOB_ID != null }.count()
 
 }

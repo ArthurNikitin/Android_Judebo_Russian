@@ -191,6 +191,9 @@ class VocationsAdapter(
                         holder.disableLabel.setTypeface(null, Typeface.BOLD)
                     }
 
+                    holder.leftCorners.setImageResource(R.drawable.corners_left_red)
+                    holder.rightCorners.setImageResource(R.drawable.corners_right_red)
+                    holder.main.setBackgroundResource(R.color.jobs_list_not_active_background)
                     holder.errorView.visibility = View.VISIBLE
 
                 } else {
@@ -206,6 +209,9 @@ class VocationsAdapter(
                         holder.disableLabel.setTypeface(null, Typeface.NORMAL)
                     }
 
+                    holder.rightCorners.setImageResource(R.drawable.corners_right)
+                    holder.leftCorners.setImageResource(R.drawable.corners_left)
+                    holder.main.setBackgroundResource(R.color.white)
                     holder.errorView.visibility = View.GONE
                 }
 
@@ -337,6 +343,9 @@ class VocationsAdapter(
         val errorView = view.error_tv!!
         val isNotActiveView = view.notActive_iv!!
         val disableLabel = view.disable_tv!!
+
+        val leftCorners = view.left_corners!!
+        val rightCorners = view.right_corners!!
     }
 
 }

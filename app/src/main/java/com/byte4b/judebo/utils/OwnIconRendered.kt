@@ -9,7 +9,6 @@ import android.graphics.drawable.Drawable
 import android.os.Handler
 import android.text.Html
 import android.util.LayoutDirection
-import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -25,7 +24,6 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
-import com.google.gson.Gson
 import com.google.maps.android.clustering.Cluster
 import com.google.maps.android.clustering.ClusterManager
 import com.google.maps.android.clustering.view.DefaultClusterRenderer
@@ -142,17 +140,17 @@ class OwnIconRendered(
                 view.salary_tv2.text = data.UF_GROSS_PER_MONTH.round()
                 view.salaryVal_tv2.text = " ${currency.name}"
                 if (isRtl(context!!))
-                    view.salary_tv2.setLeftDrawable(currency.icon)
+                    view.salary_tv2.setLeftDrawableMap(currency.icon)
                 else
-                    view.salary_tv2.setRightDrawable(currency.icon)
+                    view.salary_tv2.setRightDrawableMap(currency.icon)
                 view.secondContainer2.visibility = View.GONE
             } else {
                 view.salary_tv2.text = data.UF_GROSS_PER_MONTH.round().trim()
                 view.salaryVal_tv2.text = " ${currency?.name ?: ""}"
                 if (isRtl(context!!))
-                    view.salary_tv2.setLeftDrawable(currency?.icon ?: R.drawable.iusd)
+                    view.salary_tv2.setLeftDrawableMap(currency?.icon ?: R.drawable.iusd)
                 else
-                    view.salary_tv2.setRightDrawable(currency?.icon ?: R.drawable.iusd)
+                    view.salary_tv2.setRightDrawableMap(currency?.icon ?: R.drawable.iusd)
 
                 view.secondContainer2.visibility = View.VISIBLE
 
@@ -167,9 +165,9 @@ class OwnIconRendered(
                 view.secondSalaryVal_tv2.text = currency2.name
 
                 if (isRtl(context))
-                    view.secondSalary_tv2.setLeftDrawable(currency2.icon)
+                    view.secondSalary_tv2.setLeftDrawableMap(currency2.icon)
                 else
-                    view.secondSalary_tv2.setRightDrawable(currency2.icon)
+                    view.secondSalary_tv2.setRightDrawableMap(currency2.icon)
             }
         } catch (e: Exception) {
         }
