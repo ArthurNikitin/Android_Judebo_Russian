@@ -247,11 +247,15 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
         spinner.setItems(
             realm.where<JobTypeRealm>().findAll().map { it.name }.filter { it.trim() != "" }
         )
-        spinner.setOnFocusChangeListener { _, b ->
-            jobType_container.setBackgroundResource(
-                if (spinner.isFocused) R.drawable.green_container
-                else R.drawable.salary_container_background
-            )
+
+        spinner.setOnClickListener {
+            jobType_container.setBackgroundResource(R.drawable.green_container)
+        }
+        spinner.setOnItemSelectedListener { _, _, _, _ ->
+            jobType_container.setBackgroundResource(R.drawable.salary_container_background)
+        }
+        spinner.setOnNothingSelectedListener {
+            jobType_container.setBackgroundResource(R.drawable.salary_container_background)
         }
     }
 
