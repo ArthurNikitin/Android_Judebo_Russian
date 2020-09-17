@@ -62,5 +62,8 @@ class CenterErrorTextInputLayout(context: Context, attrs: AttributeSet) : TextIn
         val errorFrameLayout = errorTextView.parent as FrameLayout
 
         errorTextView.gravity = Gravity.END
-        errorFrameLayout.layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
+        errorFrameLayout.layoutParams =
+            LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT).apply {
+                marginStart = 670
+            }
     }}

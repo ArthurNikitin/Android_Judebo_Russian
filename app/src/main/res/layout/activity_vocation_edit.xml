@@ -231,9 +231,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:orientation="horizontal"></LinearLayout>
+                    android:orientation="horizontal" />
 
-                <com.google.android.material.textfield.TextInputLayout
+                <com.byte4b.judebo.ui.CenterErrorTextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -252,13 +252,14 @@
                         android:inputType="phone"
                         android:text="+7 800 555 55 55"
                         android:textSize="16sp" />
-                </com.google.android.material.textfield.TextInputLayout>
+                </com.byte4b.judebo.ui.CenterErrorTextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
+                <com.byte4b.judebo.ui.CenterErrorTextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:id="@+id/email_field"
                     android:layout_marginBottom="8dp"
+                    app:errorEnabled="true"
                     app:startIconTint="@color/toolbar_background_color"
                     android:layout_height="wrap_content"
                     app:boxStrokeColor="@color/toolbar_background_color">
@@ -273,7 +274,7 @@
                         android:paddingStart="6dp"
                         android:text="send_me_mail@gmail.com"
                         android:textSize="16sp" />
-                </com.google.android.material.textfield.TextInputLayout>
+                </com.byte4b.judebo.ui.CenterErrorTextInputLayout>
 
             </LinearLayout>
 
@@ -382,8 +383,9 @@
                 android:layout_height="250dp"
                 android:layout_marginBottom="10dp" />
 
-            <com.google.android.material.textfield.TextInputLayout
+            <com.byte4b.judebo.ui.CenterErrorTextInputLayout
                 android:id="@+id/detail_field"
+                app:errorEnabled="true"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -401,7 +403,7 @@
                     android:minLines="8"
                     android:text="detail info about job"
                     android:textSize="18sp" />
-            </com.google.android.material.textfield.TextInputLayout>
+            </com.byte4b.judebo.ui.CenterErrorTextInputLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
