@@ -107,4 +107,13 @@ interface API {
                     @Body listsSingleSkill: List<CreateSkillRequest>):
             Call<AuthResult>
 
+    @GET("app_user_subs.php")
+    fun setMySubs(@Query("key") secretKey: String,
+                  @Query("tok") token: String,
+                  @Query("login") login: String,
+                  @Query("subsid") subsId: String,
+                  @Query("subsend") subsEnd: String,
+                  @Query("storetoken") storeToken: String):
+            Call<AuthResult>
+
 }

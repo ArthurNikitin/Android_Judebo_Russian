@@ -349,4 +349,26 @@ class ApiServiceImpl(val listener: ServiceListener?) : ApiService {
             })
     }
 
+    override fun setSubs(
+        locale: String,
+        token: String,
+        login: String,
+        subsId: String,
+        subsEnd: String,
+        storeToken: String
+    ) {
+        getAPI(locale)
+            .setMySubs(secretKey, token, login, subsId, subsEnd, storeToken)
+            .enqueue(object : Callback<AuthResult> {
+                override fun onResponse(call: Call<AuthResult>, response: Response<AuthResult>) {
+                    check { listener?.onSubsInstalled(response.body()) }
+                }
+
+                override fun onFailure(call: Call<AuthResult>, t: Throwable) {
+                    check { listener?.onSubsInstalled(null) }
+                }
+
+            })
+    }
+
 }

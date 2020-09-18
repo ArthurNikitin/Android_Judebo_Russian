@@ -28,4 +28,6 @@ interface ServiceListener {
 
     fun onSkillCreated(result: AuthResult?) {}
 
+    fun onSubsInstalled(result: AuthResult?) {}
+
 }
