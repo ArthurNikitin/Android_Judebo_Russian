@@ -1,28 +1,101 @@
 <resources>
 
 
-    <string name="settings_title_current_language">език</string>
+    <string name="settings_title_support_email">bg@judebo.com</string>
+    <string name="add_job_link">https://bg.judebo.com/jobs/</string>
+    <string name="user_registration_privacy_url">https://bg.judebo.com/login/privacy.php</string>
+    <string name="user_registration_agreement_url">https://bg.judebo.com/login/agreement.php</string>
+    <string name="user_registration_forgot_pass_url">https://bg.judebo.com/login/agreement.php</string>
+    <string name="facebook_app_id">443190969835868</string>
+
+    <string name="settings_title_current_language">Език</string>
 
     <string name="settings_title_settings">Настройки</string>
 
     <string name="settings_title_currency">Валута</string>
     <string name="settings_title_current_currency">Валута</string>
     <string name="settings_title_support">поддържа</string>
-    <string name="settings_title_support_email">bg@judebo.com</string>
+
     <string name="button_detail_title">детайл</string>
 
-    <string name="add_job_title">Можете да добавите свободни работни места от уеб браузър</string>
-    <string name="add_job_link">https://bg.judebo.com/jobs/</string>
+    <string name="add_job_title">Можете да добавяте свободни работни места от уеб браузър</string>
+
 
 
     <string name="search_title_search">Търсене</string>
     <string name="button_share">Дял</string>
+    <string name="error_label">Грешка</string>
     <string name="error_no_internet">Няма интернет връзка!</string>
-    <string name="settings_title_language">език</string>
-    <string name="request_geolocation_title">геолокация</string>
+    <string name="settings_title_language">Език</string>
+    <string name="settings_title_subsription">Абонамент</string>
+    <string name="settings_logout">Излез от профила си</string>
+    <string name="settings_logout_ok">Добре</string>
+    <string name="settings_logout_cancel">Отказ</string>
+    <string name="settings_login">Влизам</string>
+    <string name="settings_email">електронна поща</string>
+    <string name="settings_password">Пароли</string>
+    <string name="settings_delete_account_title">Изтрийте акаунт и изтрийте данни</string>
+    <string name="settings_delete_account_button">Изтрий</string>
+    <string name="settings_delete_account_request_title">Потвърдете изтриването</string>
+    <string name="settings_delete_account_request_message">Моля, потвърдете, за да изтриете данните си и да изтриете акаунта си!</string>
+    <string name="settings_delete_account_request_delete">Изтрий</string>
+    <string name="settings_delete_account_request_cancel">Отказ</string>
+    <string name="settings_delete_account_message">Вашите данни и акаунт бяха изтрити.</string>
+    <string name="action_settings">Action</string>
+    <string name="request_logout_title">Излез от профила си</string>
+    <string name="request_logout_message">Сигурен ли си?</string>
+    <string name="request_geolocation_title">Геолокация</string>
     <string name="request_geolocation_message">Моля, активирайте геолокацията</string>
     <string name="request_geolocation_ok">Добре</string>
     <string name="request_geolocation_cancel">Отказ</string>
+    <string name="request_image_access_title">Достъп</string>
+    <string name="request_image_access_message">Нуждаете се от достъп</string>
+    <string name="request_request_delete_title">Изтрий</string>
+    <string name="request_request_delete_message">Сигурен ли си?</string>
+    <string name="request_request_delete_ok">Изтрий</string>
+    <string name="request_request_delete_cancel">Отказ</string>
+    <string name="user_jobs_list_delete">Изтрий</string>
+    <string name="user_jobs_list_copy">копие</string>
+    <string name="user_jobs_list_search">Търсене</string>
+    <string name="user_jobs_list_have_not_subsription">Няма абонамент</string>
+    <string name="user_jobs_list_error_please_update">Моля обновете!</string>
+    <string name="user_registration_title">Регистрация</string>
+    <string name="user_registration_confirm_password">Потвърди парола</string>
+    <string name="user_registration_activate_account">Моля, активирайте акаунта си. На имейла е изпратен имейл с код за активиране.</string>
+    <string name="user_registration_required_field">Задължително!</string>
+    <string name="user_registration_privacy_title">поверителност</string>
+    <string name="user_registration_agreement_title">Споразумение</string>
+    <string name="user_registration_forgot_pass">Забравена парола</string>
+    <string name="user_registration_rules_accept">Приемете</string>
+    <string name="user_registration_rules_cancel">Отказ</string>
+    <string name="user_registration_activate_code">Код</string>
+    <string name="user_registration_activate_code_resend">Изпратете отново</string>
+    <string name="user_registration_activate_code_activate">Активирате</string>
+    <string name="user_registration_activate_code_wrong">Грешен код</string>
+    <string name="user_registration_activate_code_success">Успех</string>
+    <string name="edit_item_title">Позиция на заеманата длъжност</string>
+    <string name="edit_item_company">Търговско дружество</string>
+    <string name="edit_item_gross">Брутно</string>
+    <string name="edit_item_email">електронна поща</string>
+    <string name="edit_item_phone">Телефон</string>
+    <string name="edit_item_detail">Подробна информация</string>
+    <string name="edit_item_required_field">Задължително!</string>
+    <string name="edit_item_languages_list">Езици</string>
+    <string name="edit_item_add_language">Добавяне</string>
+    <string name="edit_item_tags_list">Етикети</string>
+    <string name="edit_item_add_tag">Добавяне на таг</string>
+    <string name="subsription_limit_10_title">Малък бизнес</string>
+    <string name="subsription_limit_10_description">Ограничението е 10 свободни места.</string>
+    <string name="subsription_limit_50_title">Среден бизнес</string>
+    <string name="subsription_limit_50_description">Ограничението е 50 свободни места.</string>
+    <string name="subsription_limit_200_title">Голямо предприятие</string>
+    <string name="subsription_limit_200_description">Ограничението е 200 свободни места.</string>
+    <string name="subsription_period_save_6month_at">6 месец в</string>
+    <string name="subsription_period_save_12month_at">12 месеца в</string>
+    <string name="subsription_period_save_month">месец</string>
+    <string name="subsription_period_save_is">Запазете</string>
+    <string name="edit_item_tags_search">Търсене</string>
+
 
 
 

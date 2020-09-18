@@ -1,6 +1,13 @@
 <resources>
 
 
+    <string name="settings_title_support_email">be@judebo.com</string>
+    <string name="add_job_link">https://be.judebo.com/jobs/</string>
+    <string name="user_registration_privacy_url">https://be.judebo.com/login/privacy.php</string>
+    <string name="user_registration_agreement_url">https://be.judebo.com/login/agreement.php</string>
+    <string name="user_registration_forgot_pass_url">https://be.judebo.com/login/agreement.php</string>
+    <string name="facebook_app_id">443190969835868</string>
+
     <string name="settings_title_current_language">Мова</string>
 
     <string name="settings_title_settings">Налады</string>
@@ -8,21 +15,87 @@
     <string name="settings_title_currency">Валюта</string>
     <string name="settings_title_current_currency">Валюта</string>
     <string name="settings_title_support">Падтрымка</string>
-    <string name="settings_title_support_email">be@judebo.com</string>
-    <string name="button_detail_title">падрабязна</string>
 
-    <string name="add_job_title">Вы можаце дадаць вакансіі праз вэб-браўзэр</string>
-    <string name="add_job_link">https://be.judebo.com/jobs/</string>
+    <string name="button_detail_title">дэталь</string>
+
+    <string name="add_job_title">Дадаць вакансіі можна з дапамогай вэб-аглядальніка</string>
+
 
 
     <string name="search_title_search">Пошук</string>
-    <string name="button_share">Падзяліцца</string>
-    <string name="error_no_internet">Няма падлучэння да Інтэрнэту!</string>
+    <string name="button_share">Падзяліцеся</string>
+    <string name="error_label">Памылка</string>
+    <string name="error_no_internet">Няма падключэння да Інтэрнэту!</string>
     <string name="settings_title_language">Мова</string>
+    <string name="settings_title_subsription">Падпіска</string>
+    <string name="settings_logout">Выхад</string>
+    <string name="settings_logout_ok">Добра</string>
+    <string name="settings_logout_cancel">Адмяніць</string>
+    <string name="settings_login">Увайсці</string>
+    <string name="settings_email">электронная пошта</string>
+    <string name="settings_password">Паролі</string>
+    <string name="settings_delete_account_title">Выдаліць уліковы запіс і сцерці дадзеныя</string>
+    <string name="settings_delete_account_button">Выдаліць</string>
+    <string name="settings_delete_account_request_title">Пацвердзіце выдаленне</string>
+    <string name="settings_delete_account_request_message">Калі ласка, пацвердзіце выдаленне дадзеных і выдаленне ўліковага запісу!</string>
+    <string name="settings_delete_account_request_delete">Выдаліць</string>
+    <string name="settings_delete_account_request_cancel">Адмяніць</string>
+    <string name="settings_delete_account_message">Вашы дадзеныя і ўліковы запіс былі выдалены.</string>
+    <string name="action_settings">Action</string>
+    <string name="request_logout_title">Выхад</string>
+    <string name="request_logout_message">Вы ўпэўнены?</string>
     <string name="request_geolocation_title">Геалакацыя</string>
-    <string name="request_geolocation_message">Уключыце геолокацию</string>
+    <string name="request_geolocation_message">Уключыце геалакацыю</string>
     <string name="request_geolocation_ok">Добра</string>
     <string name="request_geolocation_cancel">Адмяніць</string>
+    <string name="request_image_access_title">Доступ</string>
+    <string name="request_image_access_message">Патрэбен доступ</string>
+    <string name="request_request_delete_title">Выдаліць</string>
+    <string name="request_request_delete_message">Вы ўпэўнены?</string>
+    <string name="request_request_delete_ok">Выдаліць</string>
+    <string name="request_request_delete_cancel">Адмяніць</string>
+    <string name="user_jobs_list_delete">Выдаліць</string>
+    <string name="user_jobs_list_copy">Капіяваць</string>
+    <string name="user_jobs_list_search">Пошук</string>
+    <string name="user_jobs_list_have_not_subsription">Няма падпіскі</string>
+    <string name="user_jobs_list_error_please_update">Калі ласка, абнавіце!</string>
+    <string name="user_registration_title">Рэгістрацыя</string>
+    <string name="user_registration_confirm_password">Пацвердзіце пароль</string>
+    <string name="user_registration_activate_account">Актывуйце свой рахунак. На пошту быў адпраўлены ліст з кодам актывацыі.</string>
+    <string name="user_registration_required_field">Патрабуецца!</string>
+    <string name="user_registration_privacy_title">Прыватнасць</string>
+    <string name="user_registration_agreement_title">Пагадненне</string>
+    <string name="user_registration_forgot_pass">Забыліся на пароль</string>
+    <string name="user_registration_rules_accept">Прыняць</string>
+    <string name="user_registration_rules_cancel">Адмяніць</string>
+    <string name="user_registration_activate_code">Кодэкс</string>
+    <string name="user_registration_activate_code_resend">Адправіць зноў</string>
+    <string name="user_registration_activate_code_activate">Актывуйце</string>
+    <string name="user_registration_activate_code_wrong">Няправільны код</string>
+    <string name="user_registration_activate_code_success">Поспех</string>
+    <string name="edit_item_title">Пасада</string>
+    <string name="edit_item_company">Кампанія</string>
+    <string name="edit_item_gross">Валавы</string>
+    <string name="edit_item_email">электронная пошта</string>
+    <string name="edit_item_phone">Тэлефон</string>
+    <string name="edit_item_detail">Падрабязная інфармацыя</string>
+    <string name="edit_item_required_field">Патрабуецца!</string>
+    <string name="edit_item_languages_list">Мовы</string>
+    <string name="edit_item_add_language">Дадаць</string>
+    <string name="edit_item_tags_list">Тэгі</string>
+    <string name="edit_item_add_tag">Дадаць тэг</string>
+    <string name="subsription_limit_10_title">Малы бізнес</string>
+    <string name="subsription_limit_10_description">Ліміт - 10 вакансій.</string>
+    <string name="subsription_limit_50_title">Сярэдні бізнес</string>
+    <string name="subsription_limit_50_description">Ліміт - 50 вакансій.</string>
+    <string name="subsription_limit_200_title">Буйнае прадпрыемства</string>
+    <string name="subsription_limit_200_description">Ліміт - 200 вакансій.</string>
+    <string name="subsription_period_save_6month_at">6 месяцаў у</string>
+    <string name="subsription_period_save_12month_at">12 месяцаў у</string>
+    <string name="subsription_period_save_month">месяц</string>
+    <string name="subsription_period_save_is">Захаваць</string>
+    <string name="edit_item_tags_search">Пошук</string>
+
 
 
 

@@ -1,6 +1,13 @@
 <resources>
 
 
+    <string name="settings_title_support_email">ja@judebo.com</string>
+    <string name="add_job_link">https://ja.judebo.com/jobs/</string>
+    <string name="user_registration_privacy_url">https://ja.judebo.com/login/privacy.php</string>
+    <string name="user_registration_agreement_url">https://ja.judebo.com/login/agreement.php</string>
+    <string name="user_registration_forgot_pass_url">https://ja.judebo.com/login/agreement.php</string>
+    <string name="facebook_app_id">443190969835868</string>
+
     <string name="settings_title_current_language">言語</string>
 
     <string name="settings_title_settings">設定</string>
@@ -8,21 +15,87 @@
     <string name="settings_title_currency">通貨</string>
     <string name="settings_title_current_currency">通貨</string>
     <string name="settings_title_support">サポート</string>
-    <string name="settings_title_support_email">ja@judebo.com</string>
+
     <string name="button_detail_title">細部</string>
 
     <string name="add_job_title">ウェブブラウザで空席を追加できます</string>
-    <string name="add_job_link">https://ja.judebo.com/jobs/</string>
+
 
 
     <string name="search_title_search">探す</string>
     <string name="button_share">共有</string>
+    <string name="error_label">エラー</string>
     <string name="error_no_internet">インターネットに接続されていません！</string>
     <string name="settings_title_language">言語</string>
+    <string name="settings_title_subsription">サブスクリプション</string>
+    <string name="settings_logout">ログアウト</string>
+    <string name="settings_logout_ok">OK</string>
+    <string name="settings_logout_cancel">キャンセル</string>
+    <string name="settings_login">ログインする</string>
+    <string name="settings_email">Eメール</string>
+    <string name="settings_password">パスワード</string>
+    <string name="settings_delete_account_title">アカウントを削除してデータを消去</string>
+    <string name="settings_delete_account_button">削除する</string>
+    <string name="settings_delete_account_request_title">削除を確認</string>
+    <string name="settings_delete_account_request_message">データを消去してアカウントを削除することを確認してください！</string>
+    <string name="settings_delete_account_request_delete">削除する</string>
+    <string name="settings_delete_account_request_cancel">キャンセル</string>
+    <string name="settings_delete_account_message">データとアカウントが削除されました。</string>
+    <string name="action_settings">Action</string>
+    <string name="request_logout_title">ログアウト</string>
+    <string name="request_logout_message">本気ですか？</string>
     <string name="request_geolocation_title">ジオロケーション</string>
     <string name="request_geolocation_message">地理位置情報を有効にしてください</string>
     <string name="request_geolocation_ok">OK</string>
     <string name="request_geolocation_cancel">キャンセル</string>
+    <string name="request_image_access_title">アクセス</string>
+    <string name="request_image_access_message">アクセスが必要</string>
+    <string name="request_request_delete_title">削除する</string>
+    <string name="request_request_delete_message">本気ですか？</string>
+    <string name="request_request_delete_ok">削除する</string>
+    <string name="request_request_delete_cancel">キャンセル</string>
+    <string name="user_jobs_list_delete">削除する</string>
+    <string name="user_jobs_list_copy">コピーする</string>
+    <string name="user_jobs_list_search">探す</string>
+    <string name="user_jobs_list_have_not_subsription">サブスクリプションなし</string>
+    <string name="user_jobs_list_error_please_update">更新してください！</string>
+    <string name="user_registration_title">登録</string>
+    <string name="user_registration_confirm_password">パスワードを認証する</string>
+    <string name="user_registration_activate_account">アカウントを有効にしてください。アクティベーションコードを記載したメールをメールに送信しました。</string>
+    <string name="user_registration_required_field">必須！</string>
+    <string name="user_registration_privacy_title">プライバシー</string>
+    <string name="user_registration_agreement_title">契約</string>
+    <string name="user_registration_forgot_pass">パスワードをお忘れですか</string>
+    <string name="user_registration_rules_accept">受け入れる</string>
+    <string name="user_registration_rules_cancel">キャンセル</string>
+    <string name="user_registration_activate_code">コード</string>
+    <string name="user_registration_activate_code_resend">再送</string>
+    <string name="user_registration_activate_code_activate">活性化</string>
+    <string name="user_registration_activate_code_wrong">不正なコード</string>
+    <string name="user_registration_activate_code_success">成功</string>
+    <string name="edit_item_title">職名</string>
+    <string name="edit_item_company">会社</string>
+    <string name="edit_item_gross">キモい</string>
+    <string name="edit_item_email">Eメール</string>
+    <string name="edit_item_phone">電話</string>
+    <string name="edit_item_detail">詳細情報</string>
+    <string name="edit_item_required_field">必須！</string>
+    <string name="edit_item_languages_list">言語</string>
+    <string name="edit_item_add_language">追加</string>
+    <string name="edit_item_tags_list">タグ</string>
+    <string name="edit_item_add_tag">タグ付けする</string>
+    <string name="subsription_limit_10_title">小規模なビジネス</string>
+    <string name="subsription_limit_10_description">制限は10の空席です。</string>
+    <string name="subsription_limit_50_title">中規模ビジネス</string>
+    <string name="subsription_limit_50_description">制限は50の空席です。</string>
+    <string name="subsription_limit_200_title">大企業</string>
+    <string name="subsription_limit_200_description">制限は200の空席です。</string>
+    <string name="subsription_period_save_6month_at">6か月</string>
+    <string name="subsription_period_save_12month_at">12か月</string>
+    <string name="subsription_period_save_month">月</string>
+    <string name="subsription_period_save_is">保存する</string>
+    <string name="edit_item_tags_search">探す</string>
+
 
 
 

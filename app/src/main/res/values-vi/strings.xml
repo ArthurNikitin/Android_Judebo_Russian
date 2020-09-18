@@ -1,6 +1,13 @@
 <resources>
 
 
+    <string name="settings_title_support_email">vi@judebo.com</string>
+    <string name="add_job_link">https://vi.judebo.com/jobs/</string>
+    <string name="user_registration_privacy_url">https://vi.judebo.com/login/privacy.php</string>
+    <string name="user_registration_agreement_url">https://vi.judebo.com/login/agreement.php</string>
+    <string name="user_registration_forgot_pass_url">https://vi.judebo.com/login/agreement.php</string>
+    <string name="facebook_app_id">443190969835868</string>
+
     <string name="settings_title_current_language">Ngôn ngữ</string>
 
     <string name="settings_title_settings">Cài đặt</string>
@@ -8,21 +15,87 @@
     <string name="settings_title_currency">Tiền tệ</string>
     <string name="settings_title_current_currency">Tiền tệ</string>
     <string name="settings_title_support">Ủng hộ</string>
-    <string name="settings_title_support_email">vi@judebo.com</string>
+
     <string name="button_detail_title">chi tiết</string>
 
     <string name="add_job_title">Bạn có thể thêm vị trí tuyển dụng bằng trình duyệt web</string>
-    <string name="add_job_link">https://vi.judebo.com/jobs/</string>
+
 
 
     <string name="search_title_search">Tìm kiếm</string>
     <string name="button_share">Chia sẻ</string>
+    <string name="error_label">lỗi</string>
     <string name="error_no_internet">Không có kết nối Internet!</string>
     <string name="settings_title_language">Ngôn ngữ</string>
+    <string name="settings_title_subsription">Đăng ký</string>
+    <string name="settings_logout">Đăng xuất</string>
+    <string name="settings_logout_ok">Đồng ý</string>
+    <string name="settings_logout_cancel">Huỷ bỏ</string>
+    <string name="settings_login">Đăng nhập</string>
+    <string name="settings_email">e-mail</string>
+    <string name="settings_password">Mật khẩu</string>
+    <string name="settings_delete_account_title">Xóa tài khoản và xóa dữ liệu</string>
+    <string name="settings_delete_account_button">Xóa bỏ</string>
+    <string name="settings_delete_account_request_title">Xác nhận xóa</string>
+    <string name="settings_delete_account_request_message">Vui lòng xác nhận để xóa dữ liệu và xóa tài khoản của bạn!</string>
+    <string name="settings_delete_account_request_delete">Xóa bỏ</string>
+    <string name="settings_delete_account_request_cancel">Huỷ bỏ</string>
+    <string name="settings_delete_account_message">Dữ liệu và tài khoản của bạn đã bị xóa.</string>
+    <string name="action_settings">Action</string>
+    <string name="request_logout_title">Đăng xuất</string>
+    <string name="request_logout_message">Bạn có chắc không?</string>
     <string name="request_geolocation_title">Vị trí địa lý</string>
     <string name="request_geolocation_message">Vui lòng bật định vị địa lý</string>
     <string name="request_geolocation_ok">Đồng ý</string>
     <string name="request_geolocation_cancel">Huỷ bỏ</string>
+    <string name="request_image_access_title">Truy cập</string>
+    <string name="request_image_access_message">Cần quyền truy cập</string>
+    <string name="request_request_delete_title">Xóa bỏ</string>
+    <string name="request_request_delete_message">Bạn có chắc không?</string>
+    <string name="request_request_delete_ok">Xóa bỏ</string>
+    <string name="request_request_delete_cancel">Huỷ bỏ</string>
+    <string name="user_jobs_list_delete">Xóa bỏ</string>
+    <string name="user_jobs_list_copy">Sao chép</string>
+    <string name="user_jobs_list_search">Tìm kiếm</string>
+    <string name="user_jobs_list_have_not_subsription">Không có đăng ký</string>
+    <string name="user_jobs_list_error_please_update">Vui lòng cập nhật!</string>
+    <string name="user_registration_title">Đăng ký</string>
+    <string name="user_registration_confirm_password">Xác nhận mật khẩu</string>
+    <string name="user_registration_activate_account">Hãy kích hoạt tài khoản của bạn. Một email có mã kích hoạt đã được gửi đến thư.</string>
+    <string name="user_registration_required_field">Cần thiết!</string>
+    <string name="user_registration_privacy_title">Riêng tư</string>
+    <string name="user_registration_agreement_title">Hợp đồng</string>
+    <string name="user_registration_forgot_pass">Quên mật khẩu</string>
+    <string name="user_registration_rules_accept">Chấp nhận</string>
+    <string name="user_registration_rules_cancel">Huỷ bỏ</string>
+    <string name="user_registration_activate_code">Mã</string>
+    <string name="user_registration_activate_code_resend">Gửi lại</string>
+    <string name="user_registration_activate_code_activate">Kích hoạt</string>
+    <string name="user_registration_activate_code_wrong">Sai mã</string>
+    <string name="user_registration_activate_code_success">Sự thành công</string>
+    <string name="edit_item_title">Chức vụ</string>
+    <string name="edit_item_company">Công ty</string>
+    <string name="edit_item_gross">Tổng</string>
+    <string name="edit_item_email">e-mail</string>
+    <string name="edit_item_phone">Điện thoại</string>
+    <string name="edit_item_detail">Thông tin chi tiết</string>
+    <string name="edit_item_required_field">Cần thiết!</string>
+    <string name="edit_item_languages_list">Ngôn ngữ</string>
+    <string name="edit_item_add_language">Thêm vào</string>
+    <string name="edit_item_tags_list">Thẻ</string>
+    <string name="edit_item_add_tag">Thêm thẻ</string>
+    <string name="subsription_limit_10_title">Doanh nghiệp nhỏ</string>
+    <string name="subsription_limit_10_description">Giới hạn là 10 vị trí tuyển dụng.</string>
+    <string name="subsription_limit_50_title">Doanh nghiệp vừa</string>
+    <string name="subsription_limit_50_description">Giới hạn là 50 vị trí tuyển dụng.</string>
+    <string name="subsription_limit_200_title">Doanh nghiệp lớn</string>
+    <string name="subsription_limit_200_description">Giới hạn là 200 vị trí tuyển dụng.</string>
+    <string name="subsription_period_save_6month_at">6 tháng tại</string>
+    <string name="subsription_period_save_12month_at">12 tháng tại</string>
+    <string name="subsription_period_save_month">tháng</string>
+    <string name="subsription_period_save_is">Tiết kiệm</string>
+    <string name="edit_item_tags_search">Tìm kiếm</string>
+
 
 
 

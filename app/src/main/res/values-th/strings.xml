@@ -1,28 +1,101 @@
 <resources>
 
 
+    <string name="settings_title_support_email">th@judebo.com</string>
+    <string name="add_job_link">https://th.judebo.com/jobs/</string>
+    <string name="user_registration_privacy_url">https://th.judebo.com/login/privacy.php</string>
+    <string name="user_registration_agreement_url">https://th.judebo.com/login/agreement.php</string>
+    <string name="user_registration_forgot_pass_url">https://th.judebo.com/login/agreement.php</string>
+    <string name="facebook_app_id">443190969835868</string>
+
     <string name="settings_title_current_language">ภาษา</string>
 
     <string name="settings_title_settings">การตั้งค่า</string>
 
-    <string name="settings_title_currency">เงินตรา</string>
-    <string name="settings_title_current_currency">เงินตรา</string>
+    <string name="settings_title_currency">สกุลเงิน</string>
+    <string name="settings_title_current_currency">สกุลเงิน</string>
     <string name="settings_title_support">สนับสนุน</string>
-    <string name="settings_title_support_email">th@judebo.com</string>
+
     <string name="button_detail_title">รายละเอียด</string>
 
-    <string name="add_job_title">คุณสามารถเพิ่มตำแหน่งงานว่างได้ด้วยเว็บเบราว์เซอร์</string>
-    <string name="add_job_link">https://th.judebo.com/jobs/</string>
+    <string name="add_job_title">คุณสามารถเพิ่มตำแหน่งงานว่างโดยใช้เว็บเบราว์เซอร์</string>
+
 
 
     <string name="search_title_search">ค้นหา</string>
-    <string name="button_share">หุ้น</string>
+    <string name="button_share">แบ่งปัน</string>
+    <string name="error_label">ข้อผิดพลาด</string>
     <string name="error_no_internet">ไม่มีการเชื่อมต่ออินเทอร์เน็ต!</string>
     <string name="settings_title_language">ภาษา</string>
-    <string name="request_geolocation_title">Geolocation</string>
+    <string name="settings_title_subsription">การสมัครสมาชิก</string>
+    <string name="settings_logout">ออกจากระบบ</string>
+    <string name="settings_logout_ok">ตกลง</string>
+    <string name="settings_logout_cancel">ยกเลิก</string>
+    <string name="settings_login">เข้าสู่ระบบ</string>
+    <string name="settings_email">อีเมล์</string>
+    <string name="settings_password">รหัสผ่าน</string>
+    <string name="settings_delete_account_title">ลบบัญชีและลบข้อมูล</string>
+    <string name="settings_delete_account_button">ลบ</string>
+    <string name="settings_delete_account_request_title">ยืนยันการลบ</string>
+    <string name="settings_delete_account_request_message">โปรดยืนยันเพื่อลบข้อมูลของคุณและลบบัญชีของคุณ!</string>
+    <string name="settings_delete_account_request_delete">ลบ</string>
+    <string name="settings_delete_account_request_cancel">ยกเลิก</string>
+    <string name="settings_delete_account_message">ข้อมูลและบัญชีของคุณถูกลบ</string>
+    <string name="action_settings">Action</string>
+    <string name="request_logout_title">ออกจากระบบ</string>
+    <string name="request_logout_message">คุณแน่ใจไหม?</string>
+    <string name="request_geolocation_title">ตำแหน่งทางภูมิศาสตร์</string>
     <string name="request_geolocation_message">โปรดเปิดใช้งาน geolocaltion</string>
     <string name="request_geolocation_ok">ตกลง</string>
     <string name="request_geolocation_cancel">ยกเลิก</string>
+    <string name="request_image_access_title">เข้าไป</string>
+    <string name="request_image_access_message">ต้องการการเข้าถึง</string>
+    <string name="request_request_delete_title">ลบ</string>
+    <string name="request_request_delete_message">คุณแน่ใจไหม?</string>
+    <string name="request_request_delete_ok">ลบ</string>
+    <string name="request_request_delete_cancel">ยกเลิก</string>
+    <string name="user_jobs_list_delete">ลบ</string>
+    <string name="user_jobs_list_copy">สำเนา</string>
+    <string name="user_jobs_list_search">ค้นหา</string>
+    <string name="user_jobs_list_have_not_subsription">ไม่มีการสมัครสมาชิก</string>
+    <string name="user_jobs_list_error_please_update">โปรดอัปเดต!</string>
+    <string name="user_registration_title">การลงทะเบียน</string>
+    <string name="user_registration_confirm_password">ยืนยันรหัสผ่าน</string>
+    <string name="user_registration_activate_account">กรุณาเปิดใช้งานบัญชีของคุณ อีเมลที่มีรหัสเปิดใช้งานถูกส่งไปที่เมล</string>
+    <string name="user_registration_required_field">จำเป็น!</string>
+    <string name="user_registration_privacy_title">ความเป็นส่วนตัว</string>
+    <string name="user_registration_agreement_title">ข้อตกลง</string>
+    <string name="user_registration_forgot_pass">ลืมรหัสผ่าน</string>
+    <string name="user_registration_rules_accept">ยอมรับ</string>
+    <string name="user_registration_rules_cancel">ยกเลิก</string>
+    <string name="user_registration_activate_code">รหัส</string>
+    <string name="user_registration_activate_code_resend">ส่งซ้ำ</string>
+    <string name="user_registration_activate_code_activate">เปิดใช้งาน</string>
+    <string name="user_registration_activate_code_wrong">รหัสผิด</string>
+    <string name="user_registration_activate_code_success">ประสบความสำเร็จ</string>
+    <string name="edit_item_title">ตำแหน่งงาน</string>
+    <string name="edit_item_company">บริษัท</string>
+    <string name="edit_item_gross">ขั้นต้น</string>
+    <string name="edit_item_email">อีเมล์</string>
+    <string name="edit_item_phone">โทรศัพท์</string>
+    <string name="edit_item_detail">ข้อมูลรายละเอียด</string>
+    <string name="edit_item_required_field">จำเป็น!</string>
+    <string name="edit_item_languages_list">ภาษา</string>
+    <string name="edit_item_add_language">เพิ่ม</string>
+    <string name="edit_item_tags_list">แท็ก</string>
+    <string name="edit_item_add_tag">เพิ่มแท็ก</string>
+    <string name="subsription_limit_10_title">ธุรกิจขนาดเล็ก</string>
+    <string name="subsription_limit_10_description">จำกัด คือ 10 ตำแหน่งงานว่าง</string>
+    <string name="subsription_limit_50_title">ธุรกิจขนาดกลาง</string>
+    <string name="subsription_limit_50_description">จำกัด 50 ตำแหน่ง</string>
+    <string name="subsription_limit_200_title">องค์กรขนาดใหญ่</string>
+    <string name="subsription_limit_200_description">จำกัด 200 ตำแหน่ง</string>
+    <string name="subsription_period_save_6month_at">6 เดือนที่</string>
+    <string name="subsription_period_save_12month_at">12 เดือนที่</string>
+    <string name="subsription_period_save_month">เดือน</string>
+    <string name="subsription_period_save_is">บันทึก</string>
+    <string name="edit_item_tags_search">ค้นหา</string>
+
 
 
 

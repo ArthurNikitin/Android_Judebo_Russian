@@ -1,6 +1,13 @@
 <resources>
 
 
+    <string name="settings_title_support_email">uk@judebo.com</string>
+    <string name="add_job_link">https://uk.judebo.com/jobs/</string>
+    <string name="user_registration_privacy_url">https://uk.judebo.com/login/privacy.php</string>
+    <string name="user_registration_agreement_url">https://uk.judebo.com/login/agreement.php</string>
+    <string name="user_registration_forgot_pass_url">https://uk.judebo.com/login/agreement.php</string>
+    <string name="facebook_app_id">443190969835868</string>
+
     <string name="settings_title_current_language">Мова</string>
 
     <string name="settings_title_settings">Налаштування</string>
@@ -8,21 +15,87 @@
     <string name="settings_title_currency">Валюта</string>
     <string name="settings_title_current_currency">Валюта</string>
     <string name="settings_title_support">Підтримка</string>
-    <string name="settings_title_support_email">uk@judebo.com</string>
-    <string name="button_detail_title">докладно</string>
 
-    <string name="add_job_title">Ви можете додати вакансії через веб-браузер</string>
-    <string name="add_job_link">https://uk.judebo.com/jobs/</string>
+    <string name="button_detail_title">деталь</string>
+
+    <string name="add_job_title">Ви можете додати вакансії за допомогою веб-браузера</string>
+
 
 
     <string name="search_title_search">Пошук</string>
-    <string name="button_share">Поділитися</string>
-    <string name="error_no_internet">No internet connection!</string>
+    <string name="button_share">Поділіться</string>
+    <string name="error_label">Помилка</string>
+    <string name="error_no_internet">Немає підключення до Інтернету!</string>
     <string name="settings_title_language">Мова</string>
+    <string name="settings_title_subsription">Підписка</string>
+    <string name="settings_logout">Вийти</string>
+    <string name="settings_logout_ok">Гаразд</string>
+    <string name="settings_logout_cancel">Скасувати</string>
+    <string name="settings_login">Увійти</string>
+    <string name="settings_email">електронною поштою</string>
+    <string name="settings_password">Паролі</string>
+    <string name="settings_delete_account_title">Видалити обліковий запис і стерти дані</string>
+    <string name="settings_delete_account_button">Видалити</string>
+    <string name="settings_delete_account_request_title">Підтвердьте видалення</string>
+    <string name="settings_delete_account_request_message">Підтвердьте, щоб стерти свої дані та видалити свій рахунок!</string>
+    <string name="settings_delete_account_request_delete">Видалити</string>
+    <string name="settings_delete_account_request_cancel">Скасувати</string>
+    <string name="settings_delete_account_message">Ваші дані та обліковий запис видалено.</string>
+    <string name="action_settings">Action</string>
+    <string name="request_logout_title">Вийти</string>
+    <string name="request_logout_message">Ти впевнений?</string>
     <string name="request_geolocation_title">Геолокація</string>
     <string name="request_geolocation_message">Увімкніть геолокацію</string>
     <string name="request_geolocation_ok">Гаразд</string>
     <string name="request_geolocation_cancel">Скасувати</string>
+    <string name="request_image_access_title">Доступ</string>
+    <string name="request_image_access_message">Потрібен доступ</string>
+    <string name="request_request_delete_title">Видалити</string>
+    <string name="request_request_delete_message">Ти впевнений?</string>
+    <string name="request_request_delete_ok">Видалити</string>
+    <string name="request_request_delete_cancel">Скасувати</string>
+    <string name="user_jobs_list_delete">Видалити</string>
+    <string name="user_jobs_list_copy">Копіювати</string>
+    <string name="user_jobs_list_search">Пошук</string>
+    <string name="user_jobs_list_have_not_subsription">Немає передплати</string>
+    <string name="user_jobs_list_error_please_update">Будь ласка, оновіть!</string>
+    <string name="user_registration_title">Реєстрація</string>
+    <string name="user_registration_confirm_password">Підтвердьте пароль</string>
+    <string name="user_registration_activate_account">Будь ласка, активуйте свій рахунок. На пошту надіслано електронне повідомлення з кодом активації.</string>
+    <string name="user_registration_required_field">Вимагається!</string>
+    <string name="user_registration_privacy_title">Конфіденційність</string>
+    <string name="user_registration_agreement_title">Угоду</string>
+    <string name="user_registration_forgot_pass">Забули пароль</string>
+    <string name="user_registration_rules_accept">Прийняти</string>
+    <string name="user_registration_rules_cancel">Скасувати</string>
+    <string name="user_registration_activate_code">Код</string>
+    <string name="user_registration_activate_code_resend">Повторно відправити</string>
+    <string name="user_registration_activate_code_activate">Активувати</string>
+    <string name="user_registration_activate_code_wrong">Невірний код</string>
+    <string name="user_registration_activate_code_success">Успіху</string>
+    <string name="edit_item_title">Назва посади</string>
+    <string name="edit_item_company">Компанія</string>
+    <string name="edit_item_gross">Валовий</string>
+    <string name="edit_item_email">електронною поштою</string>
+    <string name="edit_item_phone">Телефон</string>
+    <string name="edit_item_detail">Детальна інформація</string>
+    <string name="edit_item_required_field">Вимагається!</string>
+    <string name="edit_item_languages_list">Мови</string>
+    <string name="edit_item_add_language">Додати</string>
+    <string name="edit_item_tags_list">Теги</string>
+    <string name="edit_item_add_tag">Додати тег</string>
+    <string name="subsription_limit_10_title">Малий бізнес</string>
+    <string name="subsription_limit_10_description">Ліміт - 10 вакансій.</string>
+    <string name="subsription_limit_50_title">Середній бізнес</string>
+    <string name="subsription_limit_50_description">Ліміт - 50 вакансій.</string>
+    <string name="subsription_limit_200_title">Велике підприємство</string>
+    <string name="subsription_limit_200_description">Ліміт - 200 вакансій.</string>
+    <string name="subsription_period_save_6month_at">6 місяців о</string>
+    <string name="subsription_period_save_12month_at">12 місяців о</string>
+    <string name="subsription_period_save_month">місяць</string>
+    <string name="subsription_period_save_is">Зберегти</string>
+    <string name="edit_item_tags_search">Пошук</string>
+
 
 
 

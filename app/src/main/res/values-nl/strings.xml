@@ -1,6 +1,13 @@
 <resources>
 
 
+    <string name="settings_title_support_email">nl@judebo.com</string>
+    <string name="add_job_link">https://nl.judebo.com/jobs/</string>
+    <string name="user_registration_privacy_url">https://nl.judebo.com/login/privacy.php</string>
+    <string name="user_registration_agreement_url">https://nl.judebo.com/login/agreement.php</string>
+    <string name="user_registration_forgot_pass_url">https://nl.judebo.com/login/agreement.php</string>
+    <string name="facebook_app_id">443190969835868</string>
+
     <string name="settings_title_current_language">Taal</string>
 
     <string name="settings_title_settings">Instellingen</string>
@@ -8,21 +15,87 @@
     <string name="settings_title_currency">Valuta</string>
     <string name="settings_title_current_currency">Valuta</string>
     <string name="settings_title_support">Ondersteuning</string>
-    <string name="settings_title_support_email">nl@judebo.com</string>
+
     <string name="button_detail_title">detail</string>
 
     <string name="add_job_title">U kunt vacatures toevoegen via een webbrowser</string>
-    <string name="add_job_link">https://nl.judebo.com/jobs/</string>
+
 
 
     <string name="search_title_search">Zoeken</string>
     <string name="button_share">Delen</string>
+    <string name="error_label">Fout</string>
     <string name="error_no_internet">Geen internet verbinding!</string>
     <string name="settings_title_language">Taal</string>
+    <string name="settings_title_subsription">Abonnement</string>
+    <string name="settings_logout">Uitloggen</string>
+    <string name="settings_logout_ok">OK</string>
+    <string name="settings_logout_cancel">Annuleer</string>
+    <string name="settings_login">Log in</string>
+    <string name="settings_email">e-mail</string>
+    <string name="settings_password">Wachtwoorden</string>
+    <string name="settings_delete_account_title">Account verwijderen en gegevens wissen</string>
+    <string name="settings_delete_account_button">Verwijderen</string>
+    <string name="settings_delete_account_request_title">Bevestig verwijderen</string>
+    <string name="settings_delete_account_request_message">Bevestig a.u.b. om uw gegevens te wissen en uw account te verwijderen!</string>
+    <string name="settings_delete_account_request_delete">Verwijderen</string>
+    <string name="settings_delete_account_request_cancel">Annuleer</string>
+    <string name="settings_delete_account_message">Uw gegevens en account zijn verwijderd.</string>
+    <string name="action_settings">Action</string>
+    <string name="request_logout_title">Uitloggen</string>
+    <string name="request_logout_message">Weet je het zeker?</string>
     <string name="request_geolocation_title">Geolocatie</string>
     <string name="request_geolocation_message">Schakel geolocaltie in</string>
     <string name="request_geolocation_ok">OK</string>
     <string name="request_geolocation_cancel">Annuleer</string>
+    <string name="request_image_access_title">Toegang</string>
+    <string name="request_image_access_message">Toegang nodig</string>
+    <string name="request_request_delete_title">Verwijderen</string>
+    <string name="request_request_delete_message">Weet je het zeker?</string>
+    <string name="request_request_delete_ok">Verwijderen</string>
+    <string name="request_request_delete_cancel">Annuleer</string>
+    <string name="user_jobs_list_delete">Verwijderen</string>
+    <string name="user_jobs_list_copy">Kopiëren</string>
+    <string name="user_jobs_list_search">Zoeken</string>
+    <string name="user_jobs_list_have_not_subsription">Geen abonnement</string>
+    <string name="user_jobs_list_error_please_update">Update alstublieft!</string>
+    <string name="user_registration_title">Registratie</string>
+    <string name="user_registration_confirm_password">Bevestig wachtwoord</string>
+    <string name="user_registration_activate_account">Activeer alstublieft uw account. Er is een e-mail met een activeringscode naar de mail gestuurd.</string>
+    <string name="user_registration_required_field">Verplicht!</string>
+    <string name="user_registration_privacy_title">Privacy</string>
+    <string name="user_registration_agreement_title">Overeenkomst</string>
+    <string name="user_registration_forgot_pass">Wachtwoord vergeten</string>
+    <string name="user_registration_rules_accept">Aanvaarden</string>
+    <string name="user_registration_rules_cancel">Annuleer</string>
+    <string name="user_registration_activate_code">Code</string>
+    <string name="user_registration_activate_code_resend">Opnieuw versturen</string>
+    <string name="user_registration_activate_code_activate">Activeren</string>
+    <string name="user_registration_activate_code_wrong">Verkeerde code</string>
+    <string name="user_registration_activate_code_success">Succes</string>
+    <string name="edit_item_title">Functietitel</string>
+    <string name="edit_item_company">Bedrijf</string>
+    <string name="edit_item_gross">Bruto</string>
+    <string name="edit_item_email">e-mail</string>
+    <string name="edit_item_phone">Telefoon</string>
+    <string name="edit_item_detail">Gedetailleerde informatie</string>
+    <string name="edit_item_required_field">Verplicht!</string>
+    <string name="edit_item_languages_list">Talen</string>
+    <string name="edit_item_add_language">Toevoegen</string>
+    <string name="edit_item_tags_list">Tags</string>
+    <string name="edit_item_add_tag">Tag toevoegen</string>
+    <string name="subsription_limit_10_title">Klein bedrijf</string>
+    <string name="subsription_limit_10_description">De limiet is 10 vacatures.</string>
+    <string name="subsription_limit_50_title">Middelgrote onderneming</string>
+    <string name="subsription_limit_50_description">De limiet is 50 vacatures.</string>
+    <string name="subsription_limit_200_title">Grote onderneming</string>
+    <string name="subsription_limit_200_description">De limiet is 200 vacatures.</string>
+    <string name="subsription_period_save_6month_at">6 maanden om</string>
+    <string name="subsription_period_save_12month_at">12 maanden op</string>
+    <string name="subsription_period_save_month">maand</string>
+    <string name="subsription_period_save_is">Sparen</string>
+    <string name="edit_item_tags_search">Zoeken</string>
+
 
 
 

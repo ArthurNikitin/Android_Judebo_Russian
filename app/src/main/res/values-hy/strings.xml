@@ -1,6 +1,13 @@
 <resources>
 
 
+    <string name="settings_title_support_email">hy@judebo.com</string>
+    <string name="add_job_link">https://hy.judebo.com/jobs/</string>
+    <string name="user_registration_privacy_url">https://hy.judebo.com/login/privacy.php</string>
+    <string name="user_registration_agreement_url">https://hy.judebo.com/login/agreement.php</string>
+    <string name="user_registration_forgot_pass_url">https://hy.judebo.com/login/agreement.php</string>
+    <string name="facebook_app_id">443190969835868</string>
+
     <string name="settings_title_current_language">Լեզու</string>
 
     <string name="settings_title_settings">Կարգավորումներ</string>
@@ -8,21 +15,87 @@
     <string name="settings_title_currency">Արժույթ</string>
     <string name="settings_title_current_currency">Արժույթ</string>
     <string name="settings_title_support">Աջակցություն</string>
-    <string name="settings_title_support_email">hy@judebo.com</string>
-    <string name="button_detail_title">մանրամասնություն</string>
 
-    <string name="add_job_title">Դուք կարող եք ավելացնել թափուր աշխատատեղեր վեբ զննարկչի կողմից</string>
-    <string name="add_job_link">https://hy.judebo.com/jobs/</string>
+    <string name="button_detail_title">մանրուք</string>
+
+    <string name="add_job_title">Դուք թափուր տեղեր կարող եք ավելացնել վեբ զննարկչի միջոցով</string>
 
 
-    <string name="search_title_search">Որոնել</string>
-    <string name="button_share">Կիսվիր</string>
-    <string name="error_no_internet">Ոչ մի ինտերնետային կապ:</string>
+
+    <string name="search_title_search">Որոնում</string>
+    <string name="button_share">Կիսվել</string>
+    <string name="error_label">Սխալ</string>
+    <string name="error_no_internet">Ինտերնետ կապ չկա:</string>
     <string name="settings_title_language">Լեզու</string>
-    <string name="request_geolocation_title">Երկրաբաշխում</string>
-    <string name="request_geolocation_message">Խնդրում ենք միացնել երկրաչափումը</string>
+    <string name="settings_title_subsription">Բաժանորդագրում</string>
+    <string name="settings_logout">Դուրս գալ</string>
+    <string name="settings_logout_ok">Լավ</string>
+    <string name="settings_logout_cancel">Չեղարկել</string>
+    <string name="settings_login">Մուտք</string>
+    <string name="settings_email">էլ</string>
+    <string name="settings_password">Գաղտնաբառեր</string>
+    <string name="settings_delete_account_title">Deleteնջել հաշիվը և ջնջել տվյալները</string>
+    <string name="settings_delete_account_button">Նջել</string>
+    <string name="settings_delete_account_request_title">Հաստատեք ջնջումը</string>
+    <string name="settings_delete_account_request_message">Խնդրում ենք հաստատել ՝ ձեր տվյալները ջնջելու և ձեր հաշիվը ջնջելու համար:</string>
+    <string name="settings_delete_account_request_delete">Նջել</string>
+    <string name="settings_delete_account_request_cancel">Չեղարկել</string>
+    <string name="settings_delete_account_message">Ձեր տվյալները և հաշիվը ջնջվել են:</string>
+    <string name="action_settings">Action</string>
+    <string name="request_logout_title">Դուրս գալ</string>
+    <string name="request_logout_message">Համոզված ես?</string>
+    <string name="request_geolocation_title">Աշխարհագրական դիրքը</string>
+    <string name="request_geolocation_message">Խնդրում ենք միացնել աշխարհաբաշխումը</string>
     <string name="request_geolocation_ok">Լավ</string>
     <string name="request_geolocation_cancel">Չեղարկել</string>
+    <string name="request_image_access_title">Մուտք</string>
+    <string name="request_image_access_message">Մուտք է պետք</string>
+    <string name="request_request_delete_title">Նջել</string>
+    <string name="request_request_delete_message">Համոզված ես?</string>
+    <string name="request_request_delete_ok">Նջել</string>
+    <string name="request_request_delete_cancel">Չեղարկել</string>
+    <string name="user_jobs_list_delete">Նջել</string>
+    <string name="user_jobs_list_copy">Պատճենել</string>
+    <string name="user_jobs_list_search">Որոնում</string>
+    <string name="user_jobs_list_have_not_subsription">Բաժանորդագրություն չկա</string>
+    <string name="user_jobs_list_error_please_update">Խնդրում ենք թարմացնել:</string>
+    <string name="user_registration_title">Գրանցում</string>
+    <string name="user_registration_confirm_password">Հաստատել գաղտնաբառը</string>
+    <string name="user_registration_activate_account">Խնդրում ենք ակտիվացնել ձեր հաշիվը: Ակտիվացման կոդով էլ-նամակ է ուղարկվել փոստին:</string>
+    <string name="user_registration_required_field">Պարտադիր է</string>
+    <string name="user_registration_privacy_title">Գաղտնիություն</string>
+    <string name="user_registration_agreement_title">Համաձայնագիր</string>
+    <string name="user_registration_forgot_pass">Մոռացել եք գաղտնաբառը</string>
+    <string name="user_registration_rules_accept">Ընդունել</string>
+    <string name="user_registration_rules_cancel">Չեղարկել</string>
+    <string name="user_registration_activate_code">Ծածկագիր</string>
+    <string name="user_registration_activate_code_resend">Վեր ուղարկել</string>
+    <string name="user_registration_activate_code_activate">Ակտիվացնել</string>
+    <string name="user_registration_activate_code_wrong">Սխալ կոդ</string>
+    <string name="user_registration_activate_code_success">Հաջողություն</string>
+    <string name="edit_item_title">Աշխատանքի անվանումը</string>
+    <string name="edit_item_company">Ընկերություն</string>
+    <string name="edit_item_gross">Համախառն</string>
+    <string name="edit_item_email">էլ</string>
+    <string name="edit_item_phone">Հեռախոս</string>
+    <string name="edit_item_detail">Մանրամասն տեղեկություններ</string>
+    <string name="edit_item_required_field">Պարտադիր է</string>
+    <string name="edit_item_languages_list">Լեզուներ</string>
+    <string name="edit_item_add_language">Ավելացնել</string>
+    <string name="edit_item_tags_list">Պիտակները</string>
+    <string name="edit_item_add_tag">Ավելացնել պիտակ</string>
+    <string name="subsription_limit_10_title">Փոքր բիզնես</string>
+    <string name="subsription_limit_10_description">Սահմանը 10 թափուր է:</string>
+    <string name="subsription_limit_50_title">Միջին բիզնես</string>
+    <string name="subsription_limit_50_description">Սահմանը 50 թափուր աշխատատեղ է:</string>
+    <string name="subsription_limit_200_title">Խոշոր ձեռնարկություն</string>
+    <string name="subsription_limit_200_description">Սահմանը 200 թափուր է:</string>
+    <string name="subsription_period_save_6month_at">6 ամիս ժամը</string>
+    <string name="subsription_period_save_12month_at">12 ամիս ժամը</string>
+    <string name="subsription_period_save_month">ամիս</string>
+    <string name="subsription_period_save_is">Խնայել</string>
+    <string name="edit_item_tags_search">Որոնում</string>
+
 
 
 

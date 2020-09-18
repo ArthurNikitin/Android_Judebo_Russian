@@ -1,28 +1,101 @@
 <resources>
 
 
+    <string name="settings_title_support_email">jv@judebo.com</string>
+    <string name="add_job_link">https://jv.judebo.com/jobs/</string>
+    <string name="user_registration_privacy_url">https://jv.judebo.com/login/privacy.php</string>
+    <string name="user_registration_agreement_url">https://jv.judebo.com/login/agreement.php</string>
+    <string name="user_registration_forgot_pass_url">https://jv.judebo.com/login/agreement.php</string>
+    <string name="facebook_app_id">443190969835868</string>
+
     <string name="settings_title_current_language">Basa</string>
 
     <string name="settings_title_settings">Setelan</string>
 
-    <string name="settings_title_currency">Dhuwit</string>
-    <string name="settings_title_current_currency">Dhuwit</string>
+    <string name="settings_title_currency">Currency</string>
+    <string name="settings_title_current_currency">Currency</string>
     <string name="settings_title_support">Dhukungan</string>
-    <string name="settings_title_support_email">jv@judebo.com</string>
+
     <string name="button_detail_title">rinci</string>
 
-    <string name="add_job_title">Sampeyan bisa nambah lowongan dening browser web</string>
-    <string name="add_job_link">https://jv.judebo.com/jobs/</string>
+    <string name="add_job_title">Sampeyan bisa nambah lowongan nganggo browser web</string>
 
 
-    <string name="search_title_search">Telusuri</string>
+
+    <string name="search_title_search">Nggoleki</string>
     <string name="button_share">Nuduhake</string>
+    <string name="error_label">Kesalahan</string>
     <string name="error_no_internet">Ora ana sambungan internet!</string>
     <string name="settings_title_language">Basa</string>
+    <string name="settings_title_subsription">Langganan</string>
+    <string name="settings_logout">Metu</string>
+    <string name="settings_logout_ok">Ok</string>
+    <string name="settings_logout_cancel">Batal</string>
+    <string name="settings_login">Login</string>
+    <string name="settings_email">email</string>
+    <string name="settings_password">Tembung sandhi</string>
+    <string name="settings_delete_account_title">Mbusak akun lan mbusak data</string>
+    <string name="settings_delete_account_button">Mbusak</string>
+    <string name="settings_delete_account_request_title">Konfirmasi mbusak</string>
+    <string name="settings_delete_account_request_message">Mangga konfirmasi kanggo mbusak data lan mbusak akun!</string>
+    <string name="settings_delete_account_request_delete">Mbusak</string>
+    <string name="settings_delete_account_request_cancel">Batal</string>
+    <string name="settings_delete_account_message">Data lan akun sampeyan wis dibusak.</string>
+    <string name="action_settings">Action</string>
+    <string name="request_logout_title">Metu</string>
+    <string name="request_logout_message">Apa sampeyan yakin?</string>
     <string name="request_geolocation_title">Geolokasi</string>
-    <string name="request_geolocation_message">Mangga ngaktifake geolokokal</string>
+    <string name="request_geolocation_message">Ngaktifake geolocaltion</string>
     <string name="request_geolocation_ok">Ok</string>
     <string name="request_geolocation_cancel">Batal</string>
+    <string name="request_image_access_title">Akses</string>
+    <string name="request_image_access_message">Butuh akses</string>
+    <string name="request_request_delete_title">Mbusak</string>
+    <string name="request_request_delete_message">Apa sampeyan yakin?</string>
+    <string name="request_request_delete_ok">Mbusak</string>
+    <string name="request_request_delete_cancel">Batal</string>
+    <string name="user_jobs_list_delete">Mbusak</string>
+    <string name="user_jobs_list_copy">Salin</string>
+    <string name="user_jobs_list_search">Nggoleki</string>
+    <string name="user_jobs_list_have_not_subsription">Ora langganan</string>
+    <string name="user_jobs_list_error_please_update">Mangga nganyari!</string>
+    <string name="user_registration_title">Registrasi</string>
+    <string name="user_registration_confirm_password">Konfirmasi sandhi</string>
+    <string name="user_registration_activate_account">Mangga aktifake akun sampeyan. Email kanthi kode aktivasi wis dikirim menyang email.</string>
+    <string name="user_registration_required_field">Dibutuhake!</string>
+    <string name="user_registration_privacy_title">Privasi</string>
+    <string name="user_registration_agreement_title">Kesepakatan</string>
+    <string name="user_registration_forgot_pass">Kelalen sandhi</string>
+    <string name="user_registration_rules_accept">Nampa</string>
+    <string name="user_registration_rules_cancel">Batal</string>
+    <string name="user_registration_activate_code">Kode</string>
+    <string name="user_registration_activate_code_resend">Ngirim maneh</string>
+    <string name="user_registration_activate_code_activate">Aktifake</string>
+    <string name="user_registration_activate_code_wrong">Kode salah</string>
+    <string name="user_registration_activate_code_success">Sukses</string>
+    <string name="edit_item_title">Judhul proyek</string>
+    <string name="edit_item_company">Kumpeni</string>
+    <string name="edit_item_gross">Kasar</string>
+    <string name="edit_item_email">email</string>
+    <string name="edit_item_phone">Telpon</string>
+    <string name="edit_item_detail">Informasi rinci</string>
+    <string name="edit_item_required_field">Dibutuhake!</string>
+    <string name="edit_item_languages_list">Basa</string>
+    <string name="edit_item_add_language">Tambah</string>
+    <string name="edit_item_tags_list">Tags</string>
+    <string name="edit_item_add_tag">Tambahake tag</string>
+    <string name="subsription_limit_10_title">Usaha cilik</string>
+    <string name="subsription_limit_10_description">Watesane 10 lowongan.</string>
+    <string name="subsription_limit_50_title">Bisnis menengah</string>
+    <string name="subsription_limit_50_description">Watesane 50 lowongan.</string>
+    <string name="subsription_limit_200_title">Perusahaan gedhe</string>
+    <string name="subsription_limit_200_description">Watesane 200 lowongan.</string>
+    <string name="subsription_period_save_6month_at">6 wulan jam</string>
+    <string name="subsription_period_save_12month_at">12 wulan jam</string>
+    <string name="subsription_period_save_month">wulan</string>
+    <string name="subsription_period_save_is">Ngirit</string>
+    <string name="edit_item_tags_search">Nggoleki</string>
+
 
 
 

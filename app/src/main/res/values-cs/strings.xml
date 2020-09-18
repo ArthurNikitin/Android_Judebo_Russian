@@ -1,6 +1,13 @@
 <resources>
 
 
+    <string name="settings_title_support_email">cs@judebo.com</string>
+    <string name="add_job_link">https://cs.judebo.com/jobs/</string>
+    <string name="user_registration_privacy_url">https://cs.judebo.com/login/privacy.php</string>
+    <string name="user_registration_agreement_url">https://cs.judebo.com/login/agreement.php</string>
+    <string name="user_registration_forgot_pass_url">https://cs.judebo.com/login/agreement.php</string>
+    <string name="facebook_app_id">443190969835868</string>
+
     <string name="settings_title_current_language">Jazyk</string>
 
     <string name="settings_title_settings">Nastavení</string>
@@ -8,21 +15,87 @@
     <string name="settings_title_currency">Měna</string>
     <string name="settings_title_current_currency">Měna</string>
     <string name="settings_title_support">Podpěra, podpora</string>
-    <string name="settings_title_support_email">cs@judebo.com</string>
+
     <string name="button_detail_title">detail</string>
 
     <string name="add_job_title">Volná místa můžete přidat pomocí webového prohlížeče</string>
-    <string name="add_job_link">https://cs.judebo.com/jobs/</string>
+
 
 
     <string name="search_title_search">Vyhledávání</string>
     <string name="button_share">Podíl</string>
+    <string name="error_label">Chyba</string>
     <string name="error_no_internet">Žádné internetové připojení!</string>
     <string name="settings_title_language">Jazyk</string>
+    <string name="settings_title_subsription">Předplatné</string>
+    <string name="settings_logout">Odhlásit se</string>
+    <string name="settings_logout_ok">OK</string>
+    <string name="settings_logout_cancel">zrušení</string>
+    <string name="settings_login">Přihlásit se</string>
+    <string name="settings_email">e-mailem</string>
+    <string name="settings_password">Hesla</string>
+    <string name="settings_delete_account_title">Smažte účet a vymažte data</string>
+    <string name="settings_delete_account_button">Vymazat</string>
+    <string name="settings_delete_account_request_title">Potvrďte smazání</string>
+    <string name="settings_delete_account_request_message">Potvrďte, že chcete smazat svá data a smazat svůj účet!</string>
+    <string name="settings_delete_account_request_delete">Vymazat</string>
+    <string name="settings_delete_account_request_cancel">zrušení</string>
+    <string name="settings_delete_account_message">Vaše data a účet byly smazány.</string>
+    <string name="action_settings">Action</string>
+    <string name="request_logout_title">Odhlásit se</string>
+    <string name="request_logout_message">Jsi si jistá?</string>
     <string name="request_geolocation_title">Geolokace</string>
     <string name="request_geolocation_message">Povolte geolokaci</string>
     <string name="request_geolocation_ok">OK</string>
     <string name="request_geolocation_cancel">zrušení</string>
+    <string name="request_image_access_title">Přístup</string>
+    <string name="request_image_access_message">Potřebujete přístup</string>
+    <string name="request_request_delete_title">Vymazat</string>
+    <string name="request_request_delete_message">Jsi si jistá?</string>
+    <string name="request_request_delete_ok">Vymazat</string>
+    <string name="request_request_delete_cancel">zrušení</string>
+    <string name="user_jobs_list_delete">Vymazat</string>
+    <string name="user_jobs_list_copy">kopírovat</string>
+    <string name="user_jobs_list_search">Vyhledávání</string>
+    <string name="user_jobs_list_have_not_subsription">Žádné předplatné</string>
+    <string name="user_jobs_list_error_please_update">Prosím aktualizujte!</string>
+    <string name="user_registration_title">Registrace</string>
+    <string name="user_registration_confirm_password">Potvrďte heslo</string>
+    <string name="user_registration_activate_account">Aktivujte prosím svůj účet. Na e-mail byl zaslán e-mail s aktivačním kódem.</string>
+    <string name="user_registration_required_field">Požadované!</string>
+    <string name="user_registration_privacy_title">Soukromí</string>
+    <string name="user_registration_agreement_title">Dohoda</string>
+    <string name="user_registration_forgot_pass">zapomenuté heslo</string>
+    <string name="user_registration_rules_accept">Přijmout</string>
+    <string name="user_registration_rules_cancel">zrušení</string>
+    <string name="user_registration_activate_code">Kód</string>
+    <string name="user_registration_activate_code_resend">Přeposlat</string>
+    <string name="user_registration_activate_code_activate">aktivovat</string>
+    <string name="user_registration_activate_code_wrong">Špatný kód</string>
+    <string name="user_registration_activate_code_success">Úspěch</string>
+    <string name="edit_item_title">Pracovní pozice</string>
+    <string name="edit_item_company">Společnost</string>
+    <string name="edit_item_gross">Hrubý</string>
+    <string name="edit_item_email">e-mailem</string>
+    <string name="edit_item_phone">Telefon</string>
+    <string name="edit_item_detail">Detailní informace</string>
+    <string name="edit_item_required_field">Požadované!</string>
+    <string name="edit_item_languages_list">Jazyky</string>
+    <string name="edit_item_add_language">Přidat</string>
+    <string name="edit_item_tags_list">Značky</string>
+    <string name="edit_item_add_tag">Přidat značku</string>
+    <string name="subsription_limit_10_title">Malý podnik</string>
+    <string name="subsription_limit_10_description">Limit je 10 volných míst.</string>
+    <string name="subsription_limit_50_title">Střední podnikání</string>
+    <string name="subsription_limit_50_description">Limit je 50 volných míst.</string>
+    <string name="subsription_limit_200_title">Velký podnik</string>
+    <string name="subsription_limit_200_description">Limit je 200 volných míst.</string>
+    <string name="subsription_period_save_6month_at">6 měsíců v</string>
+    <string name="subsription_period_save_12month_at">12 měsíců v</string>
+    <string name="subsription_period_save_month">Měsíc</string>
+    <string name="subsription_period_save_is">Uložit</string>
+    <string name="edit_item_tags_search">Vyhledávání</string>
+
 
 
 

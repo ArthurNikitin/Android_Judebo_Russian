@@ -1,28 +1,101 @@
 <resources>
 
 
+    <string name="settings_title_support_email">lt@judebo.com</string>
+    <string name="add_job_link">https://lt.judebo.com/jobs/</string>
+    <string name="user_registration_privacy_url">https://lt.judebo.com/login/privacy.php</string>
+    <string name="user_registration_agreement_url">https://lt.judebo.com/login/agreement.php</string>
+    <string name="user_registration_forgot_pass_url">https://lt.judebo.com/login/agreement.php</string>
+    <string name="facebook_app_id">443190969835868</string>
+
     <string name="settings_title_current_language">Kalba</string>
 
     <string name="settings_title_settings">Nustatymai</string>
 
     <string name="settings_title_currency">Valiuta</string>
     <string name="settings_title_current_currency">Valiuta</string>
-    <string name="settings_title_support">Palaikymas</string>
-    <string name="settings_title_support_email">lt@judebo.com</string>
+    <string name="settings_title_support">Parama</string>
+
     <string name="button_detail_title">detalė</string>
 
-    <string name="add_job_title">Galite pridėti laisvų darbo vietų naudodamiesi interneto naršykle</string>
-    <string name="add_job_link">https://lt.judebo.com/jobs/</string>
+    <string name="add_job_title">Galite pridėti laisvų vietų naudodamiesi interneto naršykle</string>
+
 
 
     <string name="search_title_search">Paieška</string>
     <string name="button_share">Dalintis</string>
+    <string name="error_label">Klaida</string>
     <string name="error_no_internet">Nėra interneto ryšio!</string>
     <string name="settings_title_language">Kalba</string>
-    <string name="request_geolocation_title">Geografinė vieta</string>
-    <string name="request_geolocation_message">Įgalinkite geolokalizaciją</string>
+    <string name="settings_title_subsription">Prenumerata</string>
+    <string name="settings_logout">Atsijungti</string>
+    <string name="settings_logout_ok">Gerai</string>
+    <string name="settings_logout_cancel">Atšaukti</string>
+    <string name="settings_login">Prisijungti</string>
+    <string name="settings_email">paštu</string>
+    <string name="settings_password">Slaptažodžiai</string>
+    <string name="settings_delete_account_title">Ištrinkite paskyrą ir ištrinkite duomenis</string>
+    <string name="settings_delete_account_button">Ištrinti</string>
+    <string name="settings_delete_account_request_title">Patvirtinkite ištrynimą</string>
+    <string name="settings_delete_account_request_message">Prašome patvirtinti, kad ištrinsite savo duomenis ir ištrinsite savo paskyrą!</string>
+    <string name="settings_delete_account_request_delete">Ištrinti</string>
+    <string name="settings_delete_account_request_cancel">Atšaukti</string>
+    <string name="settings_delete_account_message">Jūsų duomenys ir paskyra buvo ištrinti.</string>
+    <string name="action_settings">Action</string>
+    <string name="request_logout_title">Atsijungti</string>
+    <string name="request_logout_message">Ar tu tuo tikras?</string>
+    <string name="request_geolocation_title">Geolokacija</string>
+    <string name="request_geolocation_message">Įgalinkite geolokaltavimą</string>
     <string name="request_geolocation_ok">Gerai</string>
     <string name="request_geolocation_cancel">Atšaukti</string>
+    <string name="request_image_access_title">Prieiga</string>
+    <string name="request_image_access_message">Reikia prieigos</string>
+    <string name="request_request_delete_title">Ištrinti</string>
+    <string name="request_request_delete_message">Ar tu tuo tikras?</string>
+    <string name="request_request_delete_ok">Ištrinti</string>
+    <string name="request_request_delete_cancel">Atšaukti</string>
+    <string name="user_jobs_list_delete">Ištrinti</string>
+    <string name="user_jobs_list_copy">Kopijuoti</string>
+    <string name="user_jobs_list_search">Paieška</string>
+    <string name="user_jobs_list_have_not_subsription">Nėra prenumeratos</string>
+    <string name="user_jobs_list_error_please_update">Prašau atnaujinti!</string>
+    <string name="user_registration_title">Registracija</string>
+    <string name="user_registration_confirm_password">Patvirtinti slaptažodį</string>
+    <string name="user_registration_activate_account">Suaktyvinkite savo sąskaitą. Paštas buvo išsiųstas el. Laiškas su aktyvinimo kodu.</string>
+    <string name="user_registration_required_field">Būtina!</string>
+    <string name="user_registration_privacy_title">Privatumas</string>
+    <string name="user_registration_agreement_title">Susitarimas</string>
+    <string name="user_registration_forgot_pass">Pamiršote slaptažodį</string>
+    <string name="user_registration_rules_accept">Priimti</string>
+    <string name="user_registration_rules_cancel">Atšaukti</string>
+    <string name="user_registration_activate_code">Kodas</string>
+    <string name="user_registration_activate_code_resend">Persiūsti</string>
+    <string name="user_registration_activate_code_activate">Suaktyvinti</string>
+    <string name="user_registration_activate_code_wrong">Neteisingas kodas</string>
+    <string name="user_registration_activate_code_success">Sėkmė</string>
+    <string name="edit_item_title">Darbo pavadinimas</string>
+    <string name="edit_item_company">Bendrovė</string>
+    <string name="edit_item_gross">Bendras</string>
+    <string name="edit_item_email">paštu</string>
+    <string name="edit_item_phone">Telefonas</string>
+    <string name="edit_item_detail">Išsami informacija</string>
+    <string name="edit_item_required_field">Būtina!</string>
+    <string name="edit_item_languages_list">Kalbos</string>
+    <string name="edit_item_add_language">Papildyti</string>
+    <string name="edit_item_tags_list">Žymos</string>
+    <string name="edit_item_add_tag">Pridėti žymą</string>
+    <string name="subsription_limit_10_title">Smulkus verslas</string>
+    <string name="subsription_limit_10_description">Riba yra 10 laisvų vietų.</string>
+    <string name="subsription_limit_50_title">Vidutinis verslas</string>
+    <string name="subsription_limit_50_description">Riba yra 50 laisvų vietų.</string>
+    <string name="subsription_limit_200_title">Didelė įmonė</string>
+    <string name="subsription_limit_200_description">Riba yra 200 laisvų vietų.</string>
+    <string name="subsription_period_save_6month_at">6 mėn</string>
+    <string name="subsription_period_save_12month_at">12 mėn</string>
+    <string name="subsription_period_save_month">mėnesį</string>
+    <string name="subsription_period_save_is">Sutaupyti</string>
+    <string name="edit_item_tags_search">Paieška</string>
+
 
 
 

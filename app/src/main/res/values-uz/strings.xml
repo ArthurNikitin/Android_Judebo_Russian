@@ -1,28 +1,101 @@
 <resources>
 
 
+    <string name="settings_title_support_email">uz@judebo.com</string>
+    <string name="add_job_link">https://uz.judebo.com/jobs/</string>
+    <string name="user_registration_privacy_url">https://uz.judebo.com/login/privacy.php</string>
+    <string name="user_registration_agreement_url">https://uz.judebo.com/login/agreement.php</string>
+    <string name="user_registration_forgot_pass_url">https://uz.judebo.com/login/agreement.php</string>
+    <string name="facebook_app_id">443190969835868</string>
+
     <string name="settings_title_current_language">Til</string>
 
     <string name="settings_title_settings">Sozlamalar</string>
 
-    <string name="settings_title_currency">Pul birligi</string>
-    <string name="settings_title_current_currency">Pul birligi</string>
+    <string name="settings_title_currency">Valyuta</string>
+    <string name="settings_title_current_currency">Valyuta</string>
     <string name="settings_title_support">Qo\'llab-quvvatlash</string>
-    <string name="settings_title_support_email">uz@judebo.com</string>
-    <string name="button_detail_title">batafsil</string>
 
-    <string name="add_job_title">Bo\'sh ish o\'rinlarini veb-brauzer orqali qo\'shishingiz mumkin</string>
-    <string name="add_job_link">https://uz.judebo.com/jobs/</string>
+    <string name="button_detail_title">tafsilot</string>
+
+    <string name="add_job_title">Siz bo\'sh ish o\'rinlarini veb-brauzer orqali qo\'shishingiz mumkin</string>
+
 
 
     <string name="search_title_search">Qidirmoq</string>
-    <string name="button_share">Ulashish</string>
+    <string name="button_share">Baham ko\'ring</string>
+    <string name="error_label">Xato</string>
     <string name="error_no_internet">Internet aloqasi yo\'q!</string>
     <string name="settings_title_language">Til</string>
+    <string name="settings_title_subsription">Obuna</string>
+    <string name="settings_logout">Chiqish</string>
+    <string name="settings_logout_ok">Ok</string>
+    <string name="settings_logout_cancel">Bekor qilish</string>
+    <string name="settings_login">Kirish</string>
+    <string name="settings_email">elektron pochta</string>
+    <string name="settings_password">Parollar</string>
+    <string name="settings_delete_account_title">Hisobni o\'chiring va ma\'lumotlarni o\'chirib tashlang</string>
+    <string name="settings_delete_account_button">O\'chirish</string>
+    <string name="settings_delete_account_request_title">O\'chirishni tasdiqlang</string>
+    <string name="settings_delete_account_request_message">Ma\'lumotlaringizni o\'chirib tashlaganingizni va hisobingizni o\'chirib tashlaganingizni tasdiqlang!</string>
+    <string name="settings_delete_account_request_delete">O\'chirish</string>
+    <string name="settings_delete_account_request_cancel">Bekor qilish</string>
+    <string name="settings_delete_account_message">Ma\'lumotlaringiz va hisob qaydnomangiz o\'chirildi.</string>
+    <string name="action_settings">Action</string>
+    <string name="request_logout_title">Chiqish</string>
+    <string name="request_logout_message">Ishonchingiz komilmi?</string>
     <string name="request_geolocation_title">Geolokatsiya</string>
-    <string name="request_geolocation_message">Iltimos, geolocaltion-ni yoqing</string>
+    <string name="request_geolocation_message">Iltimos, geolokalatsiyani yoqing</string>
     <string name="request_geolocation_ok">Ok</string>
     <string name="request_geolocation_cancel">Bekor qilish</string>
+    <string name="request_image_access_title">Kirish</string>
+    <string name="request_image_access_message">Kirish kerak</string>
+    <string name="request_request_delete_title">O\'chirish</string>
+    <string name="request_request_delete_message">Ishonchingiz komilmi?</string>
+    <string name="request_request_delete_ok">O\'chirish</string>
+    <string name="request_request_delete_cancel">Bekor qilish</string>
+    <string name="user_jobs_list_delete">O\'chirish</string>
+    <string name="user_jobs_list_copy">Nusxalash</string>
+    <string name="user_jobs_list_search">Qidirmoq</string>
+    <string name="user_jobs_list_have_not_subsription">Obuna yo\'q</string>
+    <string name="user_jobs_list_error_please_update">Iltimos, yangilang!</string>
+    <string name="user_registration_title">Ro\'yxatdan o\'tish</string>
+    <string name="user_registration_confirm_password">Parolni tasdiqlang</string>
+    <string name="user_registration_activate_account">Iltimos, hisobingizni faollashtiring. Faollashtirish kodi bo\'lgan elektron pochta xabariga pochta orqali xabar yuborildi.</string>
+    <string name="user_registration_required_field">Kerak!</string>
+    <string name="user_registration_privacy_title">Maxfiylik</string>
+    <string name="user_registration_agreement_title">Shartnoma</string>
+    <string name="user_registration_forgot_pass">Parolni unutdingizmi</string>
+    <string name="user_registration_rules_accept">Qabul qiling</string>
+    <string name="user_registration_rules_cancel">Bekor qilish</string>
+    <string name="user_registration_activate_code">Kod</string>
+    <string name="user_registration_activate_code_resend">Qayta yuboring</string>
+    <string name="user_registration_activate_code_activate">Faollashtirish</string>
+    <string name="user_registration_activate_code_wrong">Kod noto‘g‘ri</string>
+    <string name="user_registration_activate_code_success">Muvaffaqiyat</string>
+    <string name="edit_item_title">Lavozim</string>
+    <string name="edit_item_company">Kompaniya</string>
+    <string name="edit_item_gross">Yalpi</string>
+    <string name="edit_item_email">elektron pochta</string>
+    <string name="edit_item_phone">Telefon</string>
+    <string name="edit_item_detail">Batafsil ma\'lumot</string>
+    <string name="edit_item_required_field">Kerak!</string>
+    <string name="edit_item_languages_list">Tillar</string>
+    <string name="edit_item_add_language">Qo\'shish</string>
+    <string name="edit_item_tags_list">Teglar</string>
+    <string name="edit_item_add_tag">Teg qo\'shish</string>
+    <string name="subsription_limit_10_title">Kichik biznes</string>
+    <string name="subsription_limit_10_description">Cheklov - 10 ta bo\'sh ish o\'rinlari.</string>
+    <string name="subsription_limit_50_title">O\'rta biznes</string>
+    <string name="subsription_limit_50_description">Limit - 50 ta bo\'sh ish o\'rinlari.</string>
+    <string name="subsription_limit_200_title">Yirik korxona</string>
+    <string name="subsription_limit_200_description">Cheklov - 200 ta bo\'sh ish o\'rinlari.</string>
+    <string name="subsription_period_save_6month_at">6 oy soat</string>
+    <string name="subsription_period_save_12month_at">12 oy</string>
+    <string name="subsription_period_save_month">oy</string>
+    <string name="subsription_period_save_is">Saqlash</string>
+    <string name="edit_item_tags_search">Qidirmoq</string>
+
 
 
 

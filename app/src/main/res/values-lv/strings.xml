@@ -1,28 +1,101 @@
 <resources>
 
 
-    <string name="settings_title_current_language">Basa</string>
-
-    <string name="settings_title_settings">Setelan</string>
-
-    <string name="settings_title_currency">Dhuwit</string>
-    <string name="settings_title_current_currency">Dhuwit</string>
-    <string name="settings_title_support">Dhukungan</string>
     <string name="settings_title_support_email">lv@judebo.com</string>
-    <string name="button_detail_title">rinci</string>
-
-    <string name="add_job_title">Sampeyan bisa nambah lowongan dening browser web</string>
     <string name="add_job_link">https://lv.judebo.com/jobs/</string>
+    <string name="user_registration_privacy_url">https://lv.judebo.com/login/privacy.php</string>
+    <string name="user_registration_agreement_url">https://lv.judebo.com/login/agreement.php</string>
+    <string name="user_registration_forgot_pass_url">https://lv.judebo.com/login/agreement.php</string>
+    <string name="facebook_app_id">443190969835868</string>
+
+    <string name="settings_title_current_language">Valoda</string>
+
+    <string name="settings_title_settings">Iestatījumi</string>
+
+    <string name="settings_title_currency">Valūta</string>
+    <string name="settings_title_current_currency">Valūta</string>
+    <string name="settings_title_support">Atbalsts</string>
+
+    <string name="button_detail_title">detaļa</string>
+
+    <string name="add_job_title">Vakances varat pievienot, izmantojot tīmekļa pārlūkprogrammu</string>
 
 
-    <string name="search_title_search">Telusuri</string>
-    <string name="button_share">Nuduhake</string>
-    <string name="error_no_internet">Ora ana sambungan internet!</string>
-    <string name="settings_title_language">Basa</string>
+
+    <string name="search_title_search">Meklēt</string>
+    <string name="button_share">Dalīties</string>
+    <string name="error_label">Kļūda</string>
+    <string name="error_no_internet">Nav interneta savienojuma!</string>
+    <string name="settings_title_language">Valoda</string>
+    <string name="settings_title_subsription">Abonēšana</string>
+    <string name="settings_logout">Izlogoties</string>
+    <string name="settings_logout_ok">Labi</string>
+    <string name="settings_logout_cancel">Atcelt</string>
+    <string name="settings_login">Pieslēgties</string>
+    <string name="settings_email">e-pasts</string>
+    <string name="settings_password">Paroles</string>
+    <string name="settings_delete_account_title">Dzēst kontu un dzēst datus</string>
+    <string name="settings_delete_account_button">Dzēst</string>
+    <string name="settings_delete_account_request_title">Apstipriniet dzēšanu</string>
+    <string name="settings_delete_account_request_message">Lūdzu, apstipriniet savu datu dzēšanu un konta dzēšanu!</string>
+    <string name="settings_delete_account_request_delete">Dzēst</string>
+    <string name="settings_delete_account_request_cancel">Atcelt</string>
+    <string name="settings_delete_account_message">Jūsu dati un konts tika izdzēsti.</string>
+    <string name="action_settings">Action</string>
+    <string name="request_logout_title">Izlogoties</string>
+    <string name="request_logout_message">Vai tu esi pārliecināts?</string>
     <string name="request_geolocation_title">Ģeogrāfiskā atrašanās vieta</string>
-    <string name="request_geolocation_message">Lūdzu, iespējojiet ģeogrāfisko atrašanās vietu</string>
+    <string name="request_geolocation_message">Lūdzu, iespējojiet ģeolokaltēšanu</string>
     <string name="request_geolocation_ok">Labi</string>
     <string name="request_geolocation_cancel">Atcelt</string>
+    <string name="request_image_access_title">Piekļuve</string>
+    <string name="request_image_access_message">Nepieciešama piekļuve</string>
+    <string name="request_request_delete_title">Dzēst</string>
+    <string name="request_request_delete_message">Vai tu esi pārliecināts?</string>
+    <string name="request_request_delete_ok">Dzēst</string>
+    <string name="request_request_delete_cancel">Atcelt</string>
+    <string name="user_jobs_list_delete">Dzēst</string>
+    <string name="user_jobs_list_copy">Kopēt</string>
+    <string name="user_jobs_list_search">Meklēt</string>
+    <string name="user_jobs_list_have_not_subsription">Nav abonementa</string>
+    <string name="user_jobs_list_error_please_update">Lūdzu, atjauniniet!</string>
+    <string name="user_registration_title">Reģistrācija</string>
+    <string name="user_registration_confirm_password">Apstipriniet paroli</string>
+    <string name="user_registration_activate_account">Lūdzu, aktivizējiet savu kontu. Uz pastu ir nosūtīts e-pasts ar aktivizācijas kodu.</string>
+    <string name="user_registration_required_field">Obligāti!</string>
+    <string name="user_registration_privacy_title">Privātums</string>
+    <string name="user_registration_agreement_title">Nolīgums</string>
+    <string name="user_registration_forgot_pass">Aizmirsi paroli</string>
+    <string name="user_registration_rules_accept">Pieņemt</string>
+    <string name="user_registration_rules_cancel">Atcelt</string>
+    <string name="user_registration_activate_code">Kods</string>
+    <string name="user_registration_activate_code_resend">Nosūtīt vēlreiz</string>
+    <string name="user_registration_activate_code_activate">Aktivizēt</string>
+    <string name="user_registration_activate_code_wrong">Nepareizs kods</string>
+    <string name="user_registration_activate_code_success">Panākumi</string>
+    <string name="edit_item_title">Amata nosaukums</string>
+    <string name="edit_item_company">Uzņēmums</string>
+    <string name="edit_item_gross">Bruto</string>
+    <string name="edit_item_email">e-pasts</string>
+    <string name="edit_item_phone">Tālrunis</string>
+    <string name="edit_item_detail">Detalizēta informācija</string>
+    <string name="edit_item_required_field">Obligāti!</string>
+    <string name="edit_item_languages_list">Valodas</string>
+    <string name="edit_item_add_language">Pievienot</string>
+    <string name="edit_item_tags_list">Tagi</string>
+    <string name="edit_item_add_tag">Pievienojiet tagu</string>
+    <string name="subsription_limit_10_title">Mazs bizness</string>
+    <string name="subsription_limit_10_description">Ierobežojums ir 10 vakances.</string>
+    <string name="subsription_limit_50_title">Vidējs bizness</string>
+    <string name="subsription_limit_50_description">Ierobežojums ir 50 vakances.</string>
+    <string name="subsription_limit_200_title">Liels uzņēmums</string>
+    <string name="subsription_limit_200_description">Ierobežojums ir 200 vakances.</string>
+    <string name="subsription_period_save_6month_at">6 mēnešus plkst</string>
+    <string name="subsription_period_save_12month_at">12 mēnešus plkst</string>
+    <string name="subsription_period_save_month">mēnesī</string>
+    <string name="subsription_period_save_is">Saglabāt</string>
+    <string name="edit_item_tags_search">Meklēt</string>
+
 
 
 

@@ -1,28 +1,101 @@
 <resources>
 
 
+    <string name="settings_title_support_email">nn@judebo.com</string>
+    <string name="add_job_link">https://nn.judebo.com/jobs/</string>
+    <string name="user_registration_privacy_url">https://nn.judebo.com/login/privacy.php</string>
+    <string name="user_registration_agreement_url">https://nn.judebo.com/login/agreement.php</string>
+    <string name="user_registration_forgot_pass_url">https://nn.judebo.com/login/agreement.php</string>
+    <string name="facebook_app_id">443190969835868</string>
+
     <string name="settings_title_current_language">Språk</string>
 
-    <string name="settings_title_settings">innstillinger</string>
+    <string name="settings_title_settings">Innstillinger</string>
 
     <string name="settings_title_currency">Valuta</string>
     <string name="settings_title_current_currency">Valuta</string>
     <string name="settings_title_support">Brukerstøtte</string>
-    <string name="settings_title_support_email">no@judebo.com</string>
+
     <string name="button_detail_title">detalj</string>
 
-    <string name="add_job_title">Du kan legge til ledige stillinger med en nettleser</string>
-    <string name="add_job_link">https://no.judebo.com/jobs/</string>
+    <string name="add_job_title">Du kan legge til ledige stillinger via en nettleser</string>
+
 
 
     <string name="search_title_search">Søk</string>
     <string name="button_share">Dele</string>
+    <string name="error_label">Feil</string>
     <string name="error_no_internet">Ingen internettforbindelse!</string>
     <string name="settings_title_language">Språk</string>
-    <string name="request_geolocation_title">geolocation</string>
-    <string name="request_geolocation_message">Vennligst aktiver geolocaltion</string>
-    <string name="request_geolocation_ok">ok</string>
+    <string name="settings_title_subsription">Subskripsjon</string>
+    <string name="settings_logout">Logg ut</string>
+    <string name="settings_logout_ok">Ok</string>
+    <string name="settings_logout_cancel">Avbryt</string>
+    <string name="settings_login">Logg Inn</string>
+    <string name="settings_email">e-post</string>
+    <string name="settings_password">Passord</string>
+    <string name="settings_delete_account_title">Slett konto og slett data</string>
+    <string name="settings_delete_account_button">Slett</string>
+    <string name="settings_delete_account_request_title">Bekreft sletting</string>
+    <string name="settings_delete_account_request_message">Bekreft for å slette dataene dine og slette kontoen din!</string>
+    <string name="settings_delete_account_request_delete">Slett</string>
+    <string name="settings_delete_account_request_cancel">Avbryt</string>
+    <string name="settings_delete_account_message">Dataene og kontoen din ble slettet.</string>
+    <string name="action_settings">Action</string>
+    <string name="request_logout_title">Logg ut</string>
+    <string name="request_logout_message">Er du sikker?</string>
+    <string name="request_geolocation_title">Geolokalisering</string>
+    <string name="request_geolocation_message">Aktiver geolokalisering</string>
+    <string name="request_geolocation_ok">Ok</string>
     <string name="request_geolocation_cancel">Avbryt</string>
+    <string name="request_image_access_title">Adgang</string>
+    <string name="request_image_access_message">Trenger tilgang</string>
+    <string name="request_request_delete_title">Slett</string>
+    <string name="request_request_delete_message">Er du sikker?</string>
+    <string name="request_request_delete_ok">Slett</string>
+    <string name="request_request_delete_cancel">Avbryt</string>
+    <string name="user_jobs_list_delete">Slett</string>
+    <string name="user_jobs_list_copy">Kopiere</string>
+    <string name="user_jobs_list_search">Søk</string>
+    <string name="user_jobs_list_have_not_subsription">Ingen abonnement</string>
+    <string name="user_jobs_list_error_please_update">Vennligst oppdater!</string>
+    <string name="user_registration_title">Registrering</string>
+    <string name="user_registration_confirm_password">Bekreft passord</string>
+    <string name="user_registration_activate_account">Vennligst aktiver kontoen din. En e-post med en aktiveringskode er sendt til posten.</string>
+    <string name="user_registration_required_field">Påkrevd!</string>
+    <string name="user_registration_privacy_title">Personvern</string>
+    <string name="user_registration_agreement_title">Avtale</string>
+    <string name="user_registration_forgot_pass">Glemt passord</string>
+    <string name="user_registration_rules_accept">Aksepterer</string>
+    <string name="user_registration_rules_cancel">Avbryt</string>
+    <string name="user_registration_activate_code">Kode</string>
+    <string name="user_registration_activate_code_resend">Send på nytt</string>
+    <string name="user_registration_activate_code_activate">Aktiver</string>
+    <string name="user_registration_activate_code_wrong">Feil kode</string>
+    <string name="user_registration_activate_code_success">Suksess</string>
+    <string name="edit_item_title">Jobbtittel</string>
+    <string name="edit_item_company">Selskap</string>
+    <string name="edit_item_gross">Ekkelt</string>
+    <string name="edit_item_email">e-post</string>
+    <string name="edit_item_phone">Telefon</string>
+    <string name="edit_item_detail">Detaljinformasjon</string>
+    <string name="edit_item_required_field">Påkrevd!</string>
+    <string name="edit_item_languages_list">Språk</string>
+    <string name="edit_item_add_language">Legg til</string>
+    <string name="edit_item_tags_list">Merker</string>
+    <string name="edit_item_add_tag">Legg til tag</string>
+    <string name="subsription_limit_10_title">Lite firma</string>
+    <string name="subsription_limit_10_description">Grensen er 10 ledige stillinger.</string>
+    <string name="subsription_limit_50_title">Middels virksomhet</string>
+    <string name="subsription_limit_50_description">Grensen er 50 ledige stillinger.</string>
+    <string name="subsription_limit_200_title">Stor bedrift</string>
+    <string name="subsription_limit_200_description">Grensen er 200 ledige stillinger.</string>
+    <string name="subsription_period_save_6month_at">6 måneder kl</string>
+    <string name="subsription_period_save_12month_at">12 måneder kl</string>
+    <string name="subsription_period_save_month">måned</string>
+    <string name="subsription_period_save_is">Lagre</string>
+    <string name="edit_item_tags_search">Søk</string>
+
 
 
 

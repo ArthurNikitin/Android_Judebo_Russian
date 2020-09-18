@@ -1,6 +1,13 @@
 <resources>
 
 
+    <string name="settings_title_support_email">ko@judebo.com</string>
+    <string name="add_job_link">https://ko.judebo.com/jobs/</string>
+    <string name="user_registration_privacy_url">https://ko.judebo.com/login/privacy.php</string>
+    <string name="user_registration_agreement_url">https://ko.judebo.com/login/agreement.php</string>
+    <string name="user_registration_forgot_pass_url">https://ko.judebo.com/login/agreement.php</string>
+    <string name="facebook_app_id">443190969835868</string>
+
     <string name="settings_title_current_language">언어</string>
 
     <string name="settings_title_settings">설정</string>
@@ -8,21 +15,87 @@
     <string name="settings_title_currency">통화</string>
     <string name="settings_title_current_currency">통화</string>
     <string name="settings_title_support">지원하다</string>
-    <string name="settings_title_support_email">ko@judebo.com</string>
+
     <string name="button_detail_title">세부 묘사</string>
 
-    <string name="add_job_title">웹 브라우저로 공석을 추가 할 수 있습니다</string>
-    <string name="add_job_link">https://ko.judebo.com/jobs/</string>
+    <string name="add_job_title">웹 브라우저로 공석을 추가 할 수 있습니다.</string>
+
 
 
     <string name="search_title_search">검색</string>
     <string name="button_share">공유</string>
+    <string name="error_label">오류</string>
     <string name="error_no_internet">인터넷에 연결되지 않음!</string>
     <string name="settings_title_language">언어</string>
+    <string name="settings_title_subsription">구독</string>
+    <string name="settings_logout">로그 아웃</string>
+    <string name="settings_logout_ok">확인</string>
+    <string name="settings_logout_cancel">취소</string>
+    <string name="settings_login">로그인</string>
+    <string name="settings_email">이메일</string>
+    <string name="settings_password">비밀번호</string>
+    <string name="settings_delete_account_title">계정 삭제 및 데이터 삭제</string>
+    <string name="settings_delete_account_button">지우다</string>
+    <string name="settings_delete_account_request_title">삭제 확인</string>
+    <string name="settings_delete_account_request_message">데이터 삭제를 확인하고 계정을 삭제하십시오!</string>
+    <string name="settings_delete_account_request_delete">지우다</string>
+    <string name="settings_delete_account_request_cancel">취소</string>
+    <string name="settings_delete_account_message">귀하의 데이터와 계정이 삭제되었습니다.</string>
+    <string name="action_settings">Action</string>
+    <string name="request_logout_title">로그 아웃</string>
+    <string name="request_logout_message">확실합니까?</string>
     <string name="request_geolocation_title">지리적 위치</string>
     <string name="request_geolocation_message">지리적 위치를 활성화하십시오</string>
     <string name="request_geolocation_ok">확인</string>
     <string name="request_geolocation_cancel">취소</string>
+    <string name="request_image_access_title">접속하다</string>
+    <string name="request_image_access_message">액세스 필요</string>
+    <string name="request_request_delete_title">지우다</string>
+    <string name="request_request_delete_message">확실합니까?</string>
+    <string name="request_request_delete_ok">지우다</string>
+    <string name="request_request_delete_cancel">취소</string>
+    <string name="user_jobs_list_delete">지우다</string>
+    <string name="user_jobs_list_copy">부</string>
+    <string name="user_jobs_list_search">검색</string>
+    <string name="user_jobs_list_have_not_subsription">구독 없음</string>
+    <string name="user_jobs_list_error_please_update">업데이트하십시오!</string>
+    <string name="user_registration_title">기재</string>
+    <string name="user_registration_confirm_password">비밀번호 확인</string>
+    <string name="user_registration_activate_account">계정을 활성화하십시오. 활성화 코드가 포함 된 이메일이 메일로 전송되었습니다.</string>
+    <string name="user_registration_required_field">필수!</string>
+    <string name="user_registration_privacy_title">은둔</string>
+    <string name="user_registration_agreement_title">협정</string>
+    <string name="user_registration_forgot_pass">비밀번호를 잊으 셨나요</string>
+    <string name="user_registration_rules_accept">동의하기</string>
+    <string name="user_registration_rules_cancel">취소</string>
+    <string name="user_registration_activate_code">암호</string>
+    <string name="user_registration_activate_code_resend">재전송</string>
+    <string name="user_registration_activate_code_activate">활성화</string>
+    <string name="user_registration_activate_code_wrong">잘못된 코드</string>
+    <string name="user_registration_activate_code_success">성공</string>
+    <string name="edit_item_title">직책</string>
+    <string name="edit_item_company">회사</string>
+    <string name="edit_item_gross">심한</string>
+    <string name="edit_item_email">이메일</string>
+    <string name="edit_item_phone">전화</string>
+    <string name="edit_item_detail">자세한 정보</string>
+    <string name="edit_item_required_field">필수!</string>
+    <string name="edit_item_languages_list">언어</string>
+    <string name="edit_item_add_language">더하다</string>
+    <string name="edit_item_tags_list">태그</string>
+    <string name="edit_item_add_tag">태그 추가</string>
+    <string name="subsription_limit_10_title">중소기업</string>
+    <string name="subsription_limit_10_description">한도는 10 명입니다.</string>
+    <string name="subsription_limit_50_title">중기업</string>
+    <string name="subsription_limit_50_description">한도는 50 명입니다.</string>
+    <string name="subsription_limit_200_title">대기업</string>
+    <string name="subsription_limit_200_description">한도는 200 개의 공석입니다.</string>
+    <string name="subsription_period_save_6month_at">6 개월</string>
+    <string name="subsription_period_save_12month_at">12 개월</string>
+    <string name="subsription_period_save_month">달</string>
+    <string name="subsription_period_save_is">저장</string>
+    <string name="edit_item_tags_search">검색</string>
+
 
 
 

@@ -1,6 +1,13 @@
 <resources>
 
 
+    <string name="settings_title_support_email">ro@judebo.com</string>
+    <string name="add_job_link">https://ro.judebo.com/jobs/</string>
+    <string name="user_registration_privacy_url">https://ro.judebo.com/login/privacy.php</string>
+    <string name="user_registration_agreement_url">https://ro.judebo.com/login/agreement.php</string>
+    <string name="user_registration_forgot_pass_url">https://ro.judebo.com/login/agreement.php</string>
+    <string name="facebook_app_id">443190969835868</string>
+
     <string name="settings_title_current_language">Limba</string>
 
     <string name="settings_title_settings">Setări</string>
@@ -8,21 +15,87 @@
     <string name="settings_title_currency">Valută</string>
     <string name="settings_title_current_currency">Valută</string>
     <string name="settings_title_support">A sustine</string>
-    <string name="settings_title_support_email">ro@judebo.com</string>
+
     <string name="button_detail_title">detaliu</string>
 
-    <string name="add_job_title">Puteți adăuga posturi vacante de către un browser web</string>
-    <string name="add_job_link">https://ro.judebo.com/jobs/</string>
+    <string name="add_job_title">Puteți adăuga posturi vacante cu ajutorul unui browser web</string>
+
 
 
     <string name="search_title_search">Căutare</string>
     <string name="button_share">Acțiune</string>
+    <string name="error_label">Eroare</string>
     <string name="error_no_internet">Fără conexiune internet!</string>
     <string name="settings_title_language">Limba</string>
-    <string name="request_geolocation_title">Localizarea geografică</string>
+    <string name="settings_title_subsription">Subscriere</string>
+    <string name="settings_logout">Deconectați-vă</string>
+    <string name="settings_logout_ok">O.K</string>
+    <string name="settings_logout_cancel">Anulare</string>
+    <string name="settings_login">Autentificare</string>
+    <string name="settings_email">e-mail</string>
+    <string name="settings_password">Parole</string>
+    <string name="settings_delete_account_title">Ștergeți contul și ștergeți datele</string>
+    <string name="settings_delete_account_button">Șterge</string>
+    <string name="settings_delete_account_request_title">Confirmă ștergerea</string>
+    <string name="settings_delete_account_request_message">Vă rugăm să confirmați pentru a vă șterge datele și a vă șterge contul!</string>
+    <string name="settings_delete_account_request_delete">Șterge</string>
+    <string name="settings_delete_account_request_cancel">Anulare</string>
+    <string name="settings_delete_account_message">Datele și contul dvs. au fost șterse.</string>
+    <string name="action_settings">Action</string>
+    <string name="request_logout_title">Deconectați-vă</string>
+    <string name="request_logout_message">Esti sigur?</string>
+    <string name="request_geolocation_title">Geolocalizare</string>
     <string name="request_geolocation_message">Vă rugăm să activați geolocalizarea</string>
     <string name="request_geolocation_ok">O.K</string>
     <string name="request_geolocation_cancel">Anulare</string>
+    <string name="request_image_access_title">Acces</string>
+    <string name="request_image_access_message">Am nevoie de acces</string>
+    <string name="request_request_delete_title">Șterge</string>
+    <string name="request_request_delete_message">Esti sigur?</string>
+    <string name="request_request_delete_ok">Șterge</string>
+    <string name="request_request_delete_cancel">Anulare</string>
+    <string name="user_jobs_list_delete">Șterge</string>
+    <string name="user_jobs_list_copy">Copie</string>
+    <string name="user_jobs_list_search">Căutare</string>
+    <string name="user_jobs_list_have_not_subsription">Fără abonament</string>
+    <string name="user_jobs_list_error_please_update">Te rog actualizează!</string>
+    <string name="user_registration_title">Înregistrare</string>
+    <string name="user_registration_confirm_password">Confirmă parola</string>
+    <string name="user_registration_activate_account">Vă rugăm să vă activați contul. Un e-mail cu un cod de activare a fost trimis la e-mail.</string>
+    <string name="user_registration_required_field">Necesar!</string>
+    <string name="user_registration_privacy_title">Confidențialitate</string>
+    <string name="user_registration_agreement_title">Acord</string>
+    <string name="user_registration_forgot_pass">Ați uitat parola</string>
+    <string name="user_registration_rules_accept">Accept</string>
+    <string name="user_registration_rules_cancel">Anulare</string>
+    <string name="user_registration_activate_code">Cod</string>
+    <string name="user_registration_activate_code_resend">Retrimiteți</string>
+    <string name="user_registration_activate_code_activate">Activati</string>
+    <string name="user_registration_activate_code_wrong">Cod greșit</string>
+    <string name="user_registration_activate_code_success">Succes</string>
+    <string name="edit_item_title">Denumirea funcției</string>
+    <string name="edit_item_company">Companie</string>
+    <string name="edit_item_gross">Brut</string>
+    <string name="edit_item_email">e-mail</string>
+    <string name="edit_item_phone">Telefon</string>
+    <string name="edit_item_detail">Informații detaliate</string>
+    <string name="edit_item_required_field">Necesar!</string>
+    <string name="edit_item_languages_list">Limbi</string>
+    <string name="edit_item_add_language">Adăuga</string>
+    <string name="edit_item_tags_list">Etichete</string>
+    <string name="edit_item_add_tag">Adaugă etichetă</string>
+    <string name="subsription_limit_10_title">Mici afaceri</string>
+    <string name="subsription_limit_10_description">Limita este de 10 posturi vacante.</string>
+    <string name="subsription_limit_50_title">Afaceri medii</string>
+    <string name="subsription_limit_50_description">Limita este de 50 de posturi vacante.</string>
+    <string name="subsription_limit_200_title">Întreprindere mare</string>
+    <string name="subsription_limit_200_description">Limita este de 200 de posturi vacante.</string>
+    <string name="subsription_period_save_6month_at">6 luni la</string>
+    <string name="subsription_period_save_12month_at">12 luni la</string>
+    <string name="subsription_period_save_month">lună</string>
+    <string name="subsription_period_save_is">Salvați</string>
+    <string name="edit_item_tags_search">Căutare</string>
+
 
 
 

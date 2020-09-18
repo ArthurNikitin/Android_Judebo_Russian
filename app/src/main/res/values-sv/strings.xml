@@ -1,6 +1,13 @@
 <resources>
 
 
+    <string name="settings_title_support_email">sv@judebo.com</string>
+    <string name="add_job_link">https://sv.judebo.com/jobs/</string>
+    <string name="user_registration_privacy_url">https://sv.judebo.com/login/privacy.php</string>
+    <string name="user_registration_agreement_url">https://sv.judebo.com/login/agreement.php</string>
+    <string name="user_registration_forgot_pass_url">https://sv.judebo.com/login/agreement.php</string>
+    <string name="facebook_app_id">443190969835868</string>
+
     <string name="settings_title_current_language">Språk</string>
 
     <string name="settings_title_settings">inställningar</string>
@@ -8,21 +15,87 @@
     <string name="settings_title_currency">Valuta</string>
     <string name="settings_title_current_currency">Valuta</string>
     <string name="settings_title_support">Stöd</string>
-    <string name="settings_title_support_email">sv@judebo.com</string>
+
     <string name="button_detail_title">detalj</string>
 
-    <string name="add_job_title">Du kan lägga till lediga platser med en webbläsare</string>
-    <string name="add_job_link">https://sv.judebo.com/jobs/</string>
+    <string name="add_job_title">Du kan lägga till lediga platser via en webbläsare</string>
+
 
 
     <string name="search_title_search">Sök</string>
     <string name="button_share">Dela med sig</string>
+    <string name="error_label">Fel</string>
     <string name="error_no_internet">Ingen internetanslutning!</string>
     <string name="settings_title_language">Språk</string>
-    <string name="request_geolocation_title">Geolocation</string>
-    <string name="request_geolocation_message">Aktivera geolocaltion</string>
+    <string name="settings_title_subsription">Underskrift</string>
+    <string name="settings_logout">Logga ut</string>
+    <string name="settings_logout_ok">Ok</string>
+    <string name="settings_logout_cancel">Annullera</string>
+    <string name="settings_login">Logga in</string>
+    <string name="settings_email">e-post</string>
+    <string name="settings_password">Lösenord</string>
+    <string name="settings_delete_account_title">Ta bort konto och radera data</string>
+    <string name="settings_delete_account_button">Radera</string>
+    <string name="settings_delete_account_request_title">Bekräfta radering</string>
+    <string name="settings_delete_account_request_message">Bekräfta för att radera dina data och radera ditt konto!</string>
+    <string name="settings_delete_account_request_delete">Radera</string>
+    <string name="settings_delete_account_request_cancel">Annullera</string>
+    <string name="settings_delete_account_message">Dina uppgifter och ditt konto raderades.</string>
+    <string name="action_settings">Action</string>
+    <string name="request_logout_title">Logga ut</string>
+    <string name="request_logout_message">Är du säker?</string>
+    <string name="request_geolocation_title">Geolokalisering</string>
+    <string name="request_geolocation_message">Aktivera geolokalisering</string>
     <string name="request_geolocation_ok">Ok</string>
     <string name="request_geolocation_cancel">Annullera</string>
+    <string name="request_image_access_title">Tillgång</string>
+    <string name="request_image_access_message">Behöver tillgång</string>
+    <string name="request_request_delete_title">Radera</string>
+    <string name="request_request_delete_message">Är du säker?</string>
+    <string name="request_request_delete_ok">Radera</string>
+    <string name="request_request_delete_cancel">Annullera</string>
+    <string name="user_jobs_list_delete">Radera</string>
+    <string name="user_jobs_list_copy">Kopiera</string>
+    <string name="user_jobs_list_search">Sök</string>
+    <string name="user_jobs_list_have_not_subsription">Ingen prenumeration</string>
+    <string name="user_jobs_list_error_please_update">Snälla uppdatera!</string>
+    <string name="user_registration_title">Registrering</string>
+    <string name="user_registration_confirm_password">Bekräfta lösenord</string>
+    <string name="user_registration_activate_account">Vänligen aktivera ditt konto. Ett e-postmeddelande med en aktiveringskod har skickats till posten.</string>
+    <string name="user_registration_required_field">Nödvändig!</string>
+    <string name="user_registration_privacy_title">Integritet</string>
+    <string name="user_registration_agreement_title">Avtal</string>
+    <string name="user_registration_forgot_pass">glömt ditt lösenord</string>
+    <string name="user_registration_rules_accept">Acceptera</string>
+    <string name="user_registration_rules_cancel">Annullera</string>
+    <string name="user_registration_activate_code">Koda</string>
+    <string name="user_registration_activate_code_resend">Skicka igen</string>
+    <string name="user_registration_activate_code_activate">Aktivera</string>
+    <string name="user_registration_activate_code_wrong">Fel kod</string>
+    <string name="user_registration_activate_code_success">Framgång</string>
+    <string name="edit_item_title">Jobbtitel</string>
+    <string name="edit_item_company">Företag</string>
+    <string name="edit_item_gross">Äckligt</string>
+    <string name="edit_item_email">e-post</string>
+    <string name="edit_item_phone">Telefon</string>
+    <string name="edit_item_detail">Detaljinformation</string>
+    <string name="edit_item_required_field">Nödvändig!</string>
+    <string name="edit_item_languages_list">språk</string>
+    <string name="edit_item_add_language">Lägg till</string>
+    <string name="edit_item_tags_list">Taggar</string>
+    <string name="edit_item_add_tag">Lägg till tagg</string>
+    <string name="subsription_limit_10_title">Litet företag</string>
+    <string name="subsription_limit_10_description">Gränsen är 10 lediga platser.</string>
+    <string name="subsription_limit_50_title">Medium företag</string>
+    <string name="subsription_limit_50_description">Gränsen är 50 lediga platser.</string>
+    <string name="subsription_limit_200_title">Stort företag</string>
+    <string name="subsription_limit_200_description">Gränsen är 200 lediga platser.</string>
+    <string name="subsription_period_save_6month_at">6 månader kl</string>
+    <string name="subsription_period_save_12month_at">12 månader kl</string>
+    <string name="subsription_period_save_month">månad</string>
+    <string name="subsription_period_save_is">Spara</string>
+    <string name="edit_item_tags_search">Sök</string>
+
 
 
 

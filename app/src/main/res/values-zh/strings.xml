@@ -1,6 +1,13 @@
 <resources>
 
 
+    <string name="settings_title_support_email">zh@judebo.com</string>
+    <string name="add_job_link">https://zh.judebo.com/jobs/</string>
+    <string name="user_registration_privacy_url">https://zh.judebo.com/login/privacy.php</string>
+    <string name="user_registration_agreement_url">https://zh.judebo.com/login/agreement.php</string>
+    <string name="user_registration_forgot_pass_url">https://zh.judebo.com/login/agreement.php</string>
+    <string name="facebook_app_id">443190969835868</string>
+
     <string name="settings_title_current_language">語言</string>
 
     <string name="settings_title_settings">設定值</string>
@@ -8,21 +15,87 @@
     <string name="settings_title_currency">貨幣</string>
     <string name="settings_title_current_currency">貨幣</string>
     <string name="settings_title_support">支持</string>
-    <string name="settings_title_support_email">zh@judebo.com</string>
+
     <string name="button_detail_title">詳情</string>
 
     <string name="add_job_title">您可以通過網絡瀏覽器添加職位空缺</string>
-    <string name="add_job_link">https://zh.judebo.com/jobs/</string>
+
 
 
     <string name="search_title_search">搜索</string>
     <string name="button_share">分享</string>
+    <string name="error_label">錯誤</string>
     <string name="error_no_internet">沒有網絡連接！</string>
     <string name="settings_title_language">語言</string>
+    <string name="settings_title_subsription">訂閱</string>
+    <string name="settings_logout">登出</string>
+    <string name="settings_logout_ok">好</string>
+    <string name="settings_logout_cancel">取消</string>
+    <string name="settings_login">登錄</string>
+    <string name="settings_email">電子郵件</string>
+    <string name="settings_password">密碼</string>
+    <string name="settings_delete_account_title">刪除帳戶並清除數據</string>
+    <string name="settings_delete_account_button">刪除</string>
+    <string name="settings_delete_account_request_title">確認刪除</string>
+    <string name="settings_delete_account_request_message">請確認刪除您的數據並刪除您的帳戶！</string>
+    <string name="settings_delete_account_request_delete">刪除</string>
+    <string name="settings_delete_account_request_cancel">取消</string>
+    <string name="settings_delete_account_message">您的數據和帳戶已刪除。</string>
+    <string name="action_settings">Action</string>
+    <string name="request_logout_title">登出</string>
+    <string name="request_logout_message">你確定嗎？</string>
     <string name="request_geolocation_title">地理位置</string>
     <string name="request_geolocation_message">請啟用地理定位</string>
     <string name="request_geolocation_ok">好</string>
     <string name="request_geolocation_cancel">取消</string>
+    <string name="request_image_access_title">訪問</string>
+    <string name="request_image_access_message">需要訪問</string>
+    <string name="request_request_delete_title">刪除</string>
+    <string name="request_request_delete_message">你確定嗎？</string>
+    <string name="request_request_delete_ok">刪除</string>
+    <string name="request_request_delete_cancel">取消</string>
+    <string name="user_jobs_list_delete">刪除</string>
+    <string name="user_jobs_list_copy">複製</string>
+    <string name="user_jobs_list_search">搜索</string>
+    <string name="user_jobs_list_have_not_subsription">沒有訂閱</string>
+    <string name="user_jobs_list_error_please_update">請更新！</string>
+    <string name="user_registration_title">註冊</string>
+    <string name="user_registration_confirm_password">確認密碼</string>
+    <string name="user_registration_activate_account">請激活您的帳戶。帶有激活碼的電子郵件已發送到該郵件。</string>
+    <string name="user_registration_required_field">需要！</string>
+    <string name="user_registration_privacy_title">隱私</string>
+    <string name="user_registration_agreement_title">協議</string>
+    <string name="user_registration_forgot_pass">忘記密碼</string>
+    <string name="user_registration_rules_accept">接受</string>
+    <string name="user_registration_rules_cancel">取消</string>
+    <string name="user_registration_activate_code">碼</string>
+    <string name="user_registration_activate_code_resend">重發</string>
+    <string name="user_registration_activate_code_activate">啟用</string>
+    <string name="user_registration_activate_code_wrong">錯誤代碼</string>
+    <string name="user_registration_activate_code_success">成功</string>
+    <string name="edit_item_title">職稱</string>
+    <string name="edit_item_company">公司</string>
+    <string name="edit_item_gross">毛</string>
+    <string name="edit_item_email">電子郵件</string>
+    <string name="edit_item_phone">電話</string>
+    <string name="edit_item_detail">詳細信息</string>
+    <string name="edit_item_required_field">需要！</string>
+    <string name="edit_item_languages_list">語言能力</string>
+    <string name="edit_item_add_language">加</string>
+    <string name="edit_item_tags_list">標籤</string>
+    <string name="edit_item_add_tag">添加標籤</string>
+    <string name="subsription_limit_10_title">小本生意</string>
+    <string name="subsription_limit_10_description">最多只能有10個職位空缺。</string>
+    <string name="subsription_limit_50_title">中型企業</string>
+    <string name="subsription_limit_50_description">最多只能有50個職位空缺。</string>
+    <string name="subsription_limit_200_title">大型企業</string>
+    <string name="subsription_limit_200_description">最多只能有200個職位空缺。</string>
+    <string name="subsription_period_save_6month_at">6個月</string>
+    <string name="subsription_period_save_12month_at">12個月</string>
+    <string name="subsription_period_save_month">月</string>
+    <string name="subsription_period_save_is">保存</string>
+    <string name="edit_item_tags_search">搜索</string>
+
 
 
 

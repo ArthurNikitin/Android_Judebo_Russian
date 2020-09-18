@@ -1,6 +1,13 @@
 <resources>
 
-    <string name="facebook_app_id" translatable="false">443190969835868</string>
+
+    <string name="settings_title_support_email">en@judebo.com</string>
+    <string name="add_job_link">https://en.judebo.com/jobs/</string>
+    <string name="user_registration_privacy_url">https://en.judebo.com/login/privacy.php</string>
+    <string name="user_registration_agreement_url">https://en.judebo.com/login/agreement.php</string>
+    <string name="user_registration_forgot_pass_url">https://en.judebo.com/login/agreement.php</string>
+    <string name="facebook_app_id">443190969835868</string>
+
     <string name="settings_title_current_language">Language</string>
 
     <string name="settings_title_settings">Settings</string>
@@ -8,70 +15,88 @@
     <string name="settings_title_currency">Currency</string>
     <string name="settings_title_current_currency">Currency</string>
     <string name="settings_title_support">Support</string>
-    <string name="settings_title_support_email">en@judebo.com</string>
+
     <string name="button_detail_title">detail</string>
 
     <string name="add_job_title">You can add vacancies by a web browser</string>
-    <string name="add_job_link">https://en.judebo.com/jobs/</string>
+
 
 
     <string name="search_title_search">Search</string>
     <string name="button_share">Share</string>
+    <string name="error_label">Error</string>
     <string name="error_no_internet">No internet connection!</string>
     <string name="settings_title_language">Language</string>
+    <string name="settings_title_subsription">Subsription</string>
+    <string name="settings_logout">Logout</string>
+    <string name="settings_logout_ok">Ok</string>
+    <string name="settings_logout_cancel">Cancel</string>
+    <string name="settings_login">Login</string>
+    <string name="settings_email">email</string>
+    <string name="settings_password">Passwords</string>
+    <string name="settings_delete_account_title">Delete account and erase data</string>
+    <string name="settings_delete_account_button">Delete</string>
+    <string name="settings_delete_account_request_title">Confirm delete</string>
+    <string name="settings_delete_account_request_message">Please confirm to erase your data and  delete your account!</string>
+    <string name="settings_delete_account_request_delete">Delete</string>
+    <string name="settings_delete_account_request_cancel">Cancel</string>
+    <string name="settings_delete_account_message">Your data and account was deleted.</string>
+    <string name="action_settings">Settings</string>
+    <string name="request_logout_title">Logout</string>
+    <string name="request_logout_message">Are you sure?</string>
     <string name="request_geolocation_title">Geolocation</string>
     <string name="request_geolocation_message">Please enable geolocaltion</string>
     <string name="request_geolocation_ok">Ok</string>
     <string name="request_geolocation_cancel">Cancel</string>
-    <string name="app_name" translatable="false">Judebo</string>
-    <string name="request_request_delete_title" translatable="false">Delete?</string>
-    <string name="request_request_delete_message" translatable="false">Are you sure?</string>
-    <string name="request_request_delete_ok" translatable="false">Delete</string>
-    <string name="request_request_delete_cancel" translatable="false">Cancel</string>
-    <string name="edit_item_add_language" translatable="false">Add language</string>
-    <string name="edit_item_add_tag" translatable="false">Add skill</string>
-    <string name="edit_item_languages_list" translatable="false">languages</string>
-    <string name="edit_item_tags_list" translatable="false">Skills</string>
-    <string name="settings_title_subsription" translatable="false">Subsription</string>
-    <string name="edit_item_title" translatable="false">Title</string>
-    <string name="edit_item_company" translatable="false">company</string>
-    <string name="edit_item_gross" translatable="false">Gross</string>
-    <string name="edit_item_email" translatable="false">email</string>
-    <string name="edit_item_phone" translatable="false">phone</string>
-    <string name="edit_item_detail" translatable="false">Detail information</string>
-    <string name="user_jobs_list_search" translatable="false">Search</string>
-    <string name="error_label" translatable="false">Error</string>
-    <string name="request_image_access_title" translatable="false">Access</string>
-    <string name="request_image_access_message" translatable="false">Need access</string>
-    <string name="settings_logout" translatable="false">Logout</string>
-    <string name="settings_login" translatable="false">Login</string>
-    <string name="settings_email" translatable="false">Email</string>
-    <string name="settings_password" translatable="false">Password</string>
-    <string name="request_logout_title" translatable="false">Logout</string>
-    <string name="request_logout_message" translatable="false">Logout?</string>
-    <string name="user_registration_title" translatable="false">Registration</string>
-    <string name="user_registration_privacy_title" translatable="false">Privacy rules</string>
-    <string name="user_registration_privacy_url" translatable="false">https://ru.judebo.com/login/privacy.php</string>
-    <string name="user_registration_agreement_title" translatable="false">Agreement</string>
-    <string name="user_registration_agreement_url" translatable="false">https://ru.judebo.com/login/agreement.php</string>
-    <string name="user_registration_confirm_password" translatable="false">Confirm password</string>
-    <string name="user_registration_activate_account" translatable="false">Please check your email and activate account</string>
-    <string name="settings_logout_ok" translatable="false">Ok</string>
-    <string name="settings_logout_cancel" translatable="false">Cancel</string>
-    <string name="user_registration_rules_accept" translatable="false">Accept</string>
-    <string name="user_registration_rules_cancel" translatable="false">Cancel</string>
-    <string name="settings_delete_account_title" translatable="false">Delete account</string>
-    <string name="settings_delete_account_button" translatable="false">Delete your account</string>
-    <string name="settings_delete_account_request_title" translatable="false">Title: Delete</string>
-    <string name="settings_delete_account_request_message" translatable="false">You sure?</string>
-    <string name="settings_delete_account_request_delete" translatable="false">Yes- delete</string>
-    <string name="settings_delete_account_request_cancel" translatable="false">Cancel</string>
-    <string name="settings_delete_account_message" translatable="false">Was deleted</string>
-    <string name="title_activity_scrolling" translatable="false">ScrollingActivity</string>
-    <string name="action_settings" translatable="false">Settings</string>
-    <string name="user_registration_required_field" translatable="false">Required</string>
-    <string name="edit_item_required_field" translatable="false">Required</string>
+    <string name="request_image_access_title">Access</string>
+    <string name="request_image_access_message">Need access</string>
+    <string name="request_request_delete_title">Delete</string>
+    <string name="request_request_delete_message">Are you sure?</string>
+    <string name="request_request_delete_ok">Delete</string>
+    <string name="request_request_delete_cancel">Cancel</string>
+    <string name="user_jobs_list_delete">Delete</string>
+    <string name="user_jobs_list_copy">Copy</string>
+    <string name="user_jobs_list_search">Search</string>
+    <string name="user_jobs_list_have_not_subsription">No subscription</string>
+    <string name="user_jobs_list_error_please_update">Please update!</string>
+    <string name="user_registration_title">Registration</string>
+    <string name="user_registration_confirm_password">Confirm password</string>
+    <string name="user_registration_activate_account">Please activate your account. An email with an activation code has been sent to the mail.</string>
+    <string name="user_registration_required_field">Required!</string>
+    <string name="user_registration_privacy_title">Privacy</string>
+    <string name="user_registration_agreement_title">Agreement</string>
+    <string name="user_registration_forgot_pass">Forgot password</string>
+    <string name="user_registration_rules_accept">Accept</string>
+    <string name="user_registration_rules_cancel">Cancel</string>
+    <string name="user_registration_activate_code">Code</string>
+    <string name="user_registration_activate_code_resend">Resend</string>
+    <string name="user_registration_activate_code_activate">Activate</string>
+    <string name="user_registration_activate_code_wrong">Wrong code</string>
+    <string name="user_registration_activate_code_success">Success</string>
+    <string name="edit_item_title">Job title</string>
+    <string name="edit_item_company">Company</string>
+    <string name="edit_item_gross">Gross</string>
+    <string name="edit_item_email">email</string>
+    <string name="edit_item_phone">Phone</string>
+    <string name="edit_item_detail">Detail information</string>
+    <string name="edit_item_required_field">Required!</string>
+    <string name="edit_item_languages_list">Languages</string>
+    <string name="edit_item_add_language">Add</string>
+    <string name="edit_item_tags_list">Tags</string>
+    <string name="edit_item_add_tag">Add tag</string>
+    <string name="subsription_limit_10_title">Small business</string>
+    <string name="subsription_limit_10_description">The limit is 10 vacancies.</string>
+    <string name="subsription_limit_50_title">Medium business</string>
+    <string name="subsription_limit_50_description">The limit is 50 vacancies.</string>
+    <string name="subsription_limit_200_title">Large enterprise</string>
+    <string name="subsription_limit_200_description">The limit is 200 vacancies.</string>
+    <string name="subsription_period_save_6month_at">6 month at</string>
+    <string name="subsription_period_save_12month_at">12 month at</string>
+    <string name="subsription_period_save_month">month</string>
+    <string name="subsription_period_save_is">Save</string>
     <string name="edit_item_tags_search">Search</string>
-    <string name="user_jobs_list_error_please_update">Need update!</string>
+
+
+
 
 </resources>

@@ -1,28 +1,101 @@
 <resources>
 
 
+    <string name="settings_title_support_email">et@judebo.com</string>
+    <string name="add_job_link">https://et.judebo.com/jobs/</string>
+    <string name="user_registration_privacy_url">https://et.judebo.com/login/privacy.php</string>
+    <string name="user_registration_agreement_url">https://et.judebo.com/login/agreement.php</string>
+    <string name="user_registration_forgot_pass_url">https://et.judebo.com/login/agreement.php</string>
+    <string name="facebook_app_id">443190969835868</string>
+
     <string name="settings_title_current_language">Keel</string>
 
-    <string name="settings_title_settings">Seadistused</string>
+    <string name="settings_title_settings">Seaded</string>
 
     <string name="settings_title_currency">Valuuta</string>
     <string name="settings_title_current_currency">Valuuta</string>
     <string name="settings_title_support">Toetus</string>
-    <string name="settings_title_support_email">et@judebo.com</string>
+
     <string name="button_detail_title">detail</string>
 
-    <string name="add_job_title">Vabade töökohtade lisamiseks saate kasutada veebibrauserit</string>
-    <string name="add_job_link">https://et.judebo.com/jobs/</string>
+    <string name="add_job_title">Vabu kohti saate lisada veebibrauseri abil</string>
+
 
 
     <string name="search_title_search">Otsing</string>
     <string name="button_share">Jaga</string>
+    <string name="error_label">Viga</string>
     <string name="error_no_internet">Interneti-ühendust pole!</string>
     <string name="settings_title_language">Keel</string>
-    <string name="request_geolocation_title">Geograafiline asukoht</string>
-    <string name="request_geolocation_message">Lubage geograafiline asukoha määramine</string>
+    <string name="settings_title_subsription">Liitumine</string>
+    <string name="settings_logout">Logi välja</string>
+    <string name="settings_logout_ok">Okei</string>
+    <string name="settings_logout_cancel">Tühista</string>
+    <string name="settings_login">Logi sisse</string>
+    <string name="settings_email">e-post</string>
+    <string name="settings_password">Paroolid</string>
+    <string name="settings_delete_account_title">Kustutage konto ja kustutage andmed</string>
+    <string name="settings_delete_account_button">Kustuta</string>
+    <string name="settings_delete_account_request_title">Kinnitage kustutamine</string>
+    <string name="settings_delete_account_request_message">Kinnitage oma andmete kustutamine ja konto kustutamine!</string>
+    <string name="settings_delete_account_request_delete">Kustuta</string>
+    <string name="settings_delete_account_request_cancel">Tühista</string>
+    <string name="settings_delete_account_message">Teie andmed ja konto kustutati.</string>
+    <string name="action_settings">Action</string>
+    <string name="request_logout_title">Logi välja</string>
+    <string name="request_logout_message">Oled sa kindel?</string>
+    <string name="request_geolocation_title">Geolokatsioon</string>
+    <string name="request_geolocation_message">Lubage geolokatsioon</string>
     <string name="request_geolocation_ok">Okei</string>
     <string name="request_geolocation_cancel">Tühista</string>
+    <string name="request_image_access_title">Juurdepääs</string>
+    <string name="request_image_access_message">Vajad juurdepääsu</string>
+    <string name="request_request_delete_title">Kustuta</string>
+    <string name="request_request_delete_message">Oled sa kindel?</string>
+    <string name="request_request_delete_ok">Kustuta</string>
+    <string name="request_request_delete_cancel">Tühista</string>
+    <string name="user_jobs_list_delete">Kustuta</string>
+    <string name="user_jobs_list_copy">Kopeeri</string>
+    <string name="user_jobs_list_search">Otsing</string>
+    <string name="user_jobs_list_have_not_subsription">Tellimust pole</string>
+    <string name="user_jobs_list_error_please_update">Palun uuenda!</string>
+    <string name="user_registration_title">Registreerimine</string>
+    <string name="user_registration_confirm_password">Kinnita salasõna</string>
+    <string name="user_registration_activate_account">Aktiveerige oma konto. Meilis on saadetud aktiveerimiskoodiga e-kiri.</string>
+    <string name="user_registration_required_field">Nõutud!</string>
+    <string name="user_registration_privacy_title">Privaatsus</string>
+    <string name="user_registration_agreement_title">Leping</string>
+    <string name="user_registration_forgot_pass">Unustasid parooli</string>
+    <string name="user_registration_rules_accept">Nõus</string>
+    <string name="user_registration_rules_cancel">Tühista</string>
+    <string name="user_registration_activate_code">Kood</string>
+    <string name="user_registration_activate_code_resend">Saada uuesti</string>
+    <string name="user_registration_activate_code_activate">Aktiveeri</string>
+    <string name="user_registration_activate_code_wrong">Vale kood</string>
+    <string name="user_registration_activate_code_success">Edu</string>
+    <string name="edit_item_title">Töö nimetus</string>
+    <string name="edit_item_company">Firma</string>
+    <string name="edit_item_gross">Gross</string>
+    <string name="edit_item_email">e-post</string>
+    <string name="edit_item_phone">Telefon</string>
+    <string name="edit_item_detail">Üksikasjalik teave</string>
+    <string name="edit_item_required_field">Nõutud!</string>
+    <string name="edit_item_languages_list">Keeled</string>
+    <string name="edit_item_add_language">Lisama</string>
+    <string name="edit_item_tags_list">Sildid</string>
+    <string name="edit_item_add_tag">Lisa silt</string>
+    <string name="subsription_limit_10_title">Väikeettevõte</string>
+    <string name="subsription_limit_10_description">Limiit on 10 vaba kohta.</string>
+    <string name="subsription_limit_50_title">Keskmine äri</string>
+    <string name="subsription_limit_50_description">Limiit on 50 vaba kohta.</string>
+    <string name="subsription_limit_200_title">Suurettevõte</string>
+    <string name="subsription_limit_200_description">Limiit on 200 vaba kohta.</string>
+    <string name="subsription_period_save_6month_at">6 kuud kl</string>
+    <string name="subsription_period_save_12month_at">12 kuud kl</string>
+    <string name="subsription_period_save_month">kuu</string>
+    <string name="subsription_period_save_is">Salvesta</string>
+    <string name="edit_item_tags_search">Otsing</string>
+
 
 
 

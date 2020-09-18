@@ -1,6 +1,13 @@
 <resources>
 
 
+    <string name="settings_title_support_email">hu@judebo.com</string>
+    <string name="add_job_link">https://hu.judebo.com/jobs/</string>
+    <string name="user_registration_privacy_url">https://hu.judebo.com/login/privacy.php</string>
+    <string name="user_registration_agreement_url">https://hu.judebo.com/login/agreement.php</string>
+    <string name="user_registration_forgot_pass_url">https://hu.judebo.com/login/agreement.php</string>
+    <string name="facebook_app_id">443190969835868</string>
+
     <string name="settings_title_current_language">Nyelv</string>
 
     <string name="settings_title_settings">Beállítások</string>
@@ -8,21 +15,87 @@
     <string name="settings_title_currency">Valuta</string>
     <string name="settings_title_current_currency">Valuta</string>
     <string name="settings_title_support">Támogatás</string>
-    <string name="settings_title_support_email">hu@judebo.com</string>
+
     <string name="button_detail_title">Részlet</string>
 
-    <string name="add_job_title">A megüresedett helyeket egy webböngésző segítségével adhatja hozzá</string>
-    <string name="add_job_link">https://hu.judebo.com/jobs/</string>
+    <string name="add_job_title">Üreseket webböngészővel adhat hozzá</string>
+
 
 
     <string name="search_title_search">Keresés</string>
     <string name="button_share">Ossza meg</string>
+    <string name="error_label">Hiba</string>
     <string name="error_no_internet">Nincs internetkapcsolat!</string>
     <string name="settings_title_language">Nyelv</string>
-    <string name="request_geolocation_title">Geolocation</string>
-    <string name="request_geolocation_message">Kérjük, engedélyezze a helymeghatározást</string>
+    <string name="settings_title_subsription">Előfizetés</string>
+    <string name="settings_logout">Kijelentkezés</string>
+    <string name="settings_logout_ok">Rendben</string>
+    <string name="settings_logout_cancel">Megszünteti</string>
+    <string name="settings_login">Belépés</string>
+    <string name="settings_email">email</string>
+    <string name="settings_password">Jelszavak</string>
+    <string name="settings_delete_account_title">Fiók törlése és adatok törlése</string>
+    <string name="settings_delete_account_button">Töröl</string>
+    <string name="settings_delete_account_request_title">Törlés megerősítése</string>
+    <string name="settings_delete_account_request_message">Kérjük, erősítse meg adatainak törlését és fiókjának törlését!</string>
+    <string name="settings_delete_account_request_delete">Töröl</string>
+    <string name="settings_delete_account_request_cancel">Megszünteti</string>
+    <string name="settings_delete_account_message">Adatait és fiókját törölték.</string>
+    <string name="action_settings">Action</string>
+    <string name="request_logout_title">Kijelentkezés</string>
+    <string name="request_logout_message">biztos vagy ebben?</string>
+    <string name="request_geolocation_title">Földrajzi helymeghatározás</string>
+    <string name="request_geolocation_message">Kérjük, engedélyezze a geolokaltációt</string>
     <string name="request_geolocation_ok">Rendben</string>
     <string name="request_geolocation_cancel">Megszünteti</string>
+    <string name="request_image_access_title">Hozzáférés</string>
+    <string name="request_image_access_message">Hozzáférésre van szükség</string>
+    <string name="request_request_delete_title">Töröl</string>
+    <string name="request_request_delete_message">biztos vagy ebben?</string>
+    <string name="request_request_delete_ok">Töröl</string>
+    <string name="request_request_delete_cancel">Megszünteti</string>
+    <string name="user_jobs_list_delete">Töröl</string>
+    <string name="user_jobs_list_copy">Másolat</string>
+    <string name="user_jobs_list_search">Keresés</string>
+    <string name="user_jobs_list_have_not_subsription">Nincs előfizetés</string>
+    <string name="user_jobs_list_error_please_update">Kérem frissítsen!</string>
+    <string name="user_registration_title">Bejegyzés</string>
+    <string name="user_registration_confirm_password">Jelszó megerősítése</string>
+    <string name="user_registration_activate_account">Kérjük, aktiválja a fiókját. Aktiváló kódot tartalmazó e-mailt küldtünk a levélre.</string>
+    <string name="user_registration_required_field">Kívánt!</string>
+    <string name="user_registration_privacy_title">Magánélet</string>
+    <string name="user_registration_agreement_title">Megegyezés</string>
+    <string name="user_registration_forgot_pass">Elfelejtette a jelszavát</string>
+    <string name="user_registration_rules_accept">Elfogad</string>
+    <string name="user_registration_rules_cancel">Megszünteti</string>
+    <string name="user_registration_activate_code">Kód</string>
+    <string name="user_registration_activate_code_resend">Újraküldés</string>
+    <string name="user_registration_activate_code_activate">Aktiválja</string>
+    <string name="user_registration_activate_code_wrong">Rossz kód</string>
+    <string name="user_registration_activate_code_success">Siker</string>
+    <string name="edit_item_title">Munka megnevezése</string>
+    <string name="edit_item_company">Vállalat</string>
+    <string name="edit_item_gross">Bruttó</string>
+    <string name="edit_item_email">email</string>
+    <string name="edit_item_phone">Telefon</string>
+    <string name="edit_item_detail">Részletes információ</string>
+    <string name="edit_item_required_field">Kívánt!</string>
+    <string name="edit_item_languages_list">Nyelvek</string>
+    <string name="edit_item_add_language">Hozzáadás</string>
+    <string name="edit_item_tags_list">Címkék</string>
+    <string name="edit_item_add_tag">Címke hozzáadása</string>
+    <string name="subsription_limit_10_title">Kis vállalkozás</string>
+    <string name="subsription_limit_10_description">A korlát 10 szabad hely.</string>
+    <string name="subsription_limit_50_title">Közepes vállalkozás</string>
+    <string name="subsription_limit_50_description">A korlát 50 szabad hely.</string>
+    <string name="subsription_limit_200_title">Nagyvállalkozás</string>
+    <string name="subsription_limit_200_description">A korlát 200 szabad hely.</string>
+    <string name="subsription_period_save_6month_at">6 hónap</string>
+    <string name="subsription_period_save_12month_at">12 hónap</string>
+    <string name="subsription_period_save_month">hónap</string>
+    <string name="subsription_period_save_is">Mentés</string>
+    <string name="edit_item_tags_search">Keresés</string>
+
 
 
 

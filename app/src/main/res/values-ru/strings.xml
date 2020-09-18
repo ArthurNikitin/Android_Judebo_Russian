@@ -1,6 +1,13 @@
 <resources>
 
 
+    <string name="settings_title_support_email">ru@judebo.com</string>
+    <string name="add_job_link">https://ru.judebo.com/jobs/</string>
+    <string name="user_registration_privacy_url">https://ru.judebo.com/login/privacy.php</string>
+    <string name="user_registration_agreement_url">https://ru.judebo.com/login/agreement.php</string>
+    <string name="user_registration_forgot_pass_url">https://ru.judebo.com/login/agreement.php</string>
+    <string name="facebook_app_id">443190969835868</string>
+
     <string name="settings_title_current_language">Язык</string>
 
     <string name="settings_title_settings">Настройки</string>
@@ -8,21 +15,87 @@
     <string name="settings_title_currency">Валюта</string>
     <string name="settings_title_current_currency">Валюта</string>
     <string name="settings_title_support">Техническая поддержка</string>
-    <string name="settings_title_support_email">ru@judebo.com</string>
+
     <string name="button_detail_title">подробнее</string>
 
     <string name="add_job_title">Вы можете добавить вакансии через браузер</string>
-    <string name="add_job_link">https://ru.judebo.com/jobs/</string>
+
 
 
     <string name="search_title_search">Поиск</string>
     <string name="button_share">Поделиться</string>
-    <string name="error_no_internet">Нет интернет соединения</string>
+    <string name="error_label">Ошибка</string>
+    <string name="error_no_internet">Проверьте интернет соединение</string>
     <string name="settings_title_language">Язык</string>
+    <string name="settings_title_subsription">Подписка</string>
+    <string name="settings_logout">Выход</string>
+    <string name="settings_logout_ok">Ок</string>
+    <string name="settings_logout_cancel">Отмена</string>
+    <string name="settings_login">Войти</string>
+    <string name="settings_email">email</string>
+    <string name="settings_password">Пароль</string>
+    <string name="settings_delete_account_title">Удалить аккаунт и все данные</string>
+    <string name="settings_delete_account_button">Удалить</string>
+    <string name="settings_delete_account_request_title">Подтвердите удаление</string>
+    <string name="settings_delete_account_request_message">Подтвердите удаление аккаунта и данных!</string>
+    <string name="settings_delete_account_request_delete">Удалить</string>
+    <string name="settings_delete_account_request_cancel">Отмена</string>
+    <string name="settings_delete_account_message">Ваши данные и аккаунт были удалены</string>
+    <string name="action_settings">Action</string>
+    <string name="request_logout_title">Выход</string>
+    <string name="request_logout_message">Подтвердите выход из аккаунта!</string>
     <string name="request_geolocation_title">Геолокация</string>
     <string name="request_geolocation_message">Пожалуйста, включите геолокацию</string>
     <string name="request_geolocation_ok">Включить</string>
     <string name="request_geolocation_cancel">Отмена</string>
+    <string name="request_image_access_title">Доступ</string>
+    <string name="request_image_access_message">Требуется доступ к изображениям</string>
+    <string name="request_request_delete_title">Подтверждение</string>
+    <string name="request_request_delete_message">Удалить?</string>
+    <string name="request_request_delete_ok">Удалить</string>
+    <string name="request_request_delete_cancel">Отмена</string>
+    <string name="user_jobs_list_delete">Удалить</string>
+    <string name="user_jobs_list_copy">Копировать</string>
+    <string name="user_jobs_list_search">Поиск</string>
+    <string name="user_jobs_list_have_not_subsription">Нет подписки</string>
+    <string name="user_jobs_list_error_please_update">Обновите информацию!</string>
+    <string name="user_registration_title">Регистрация</string>
+    <string name="user_registration_confirm_password">Подтвердите пароль</string>
+    <string name="user_registration_activate_account">Пожалуйста, активируйте аккаунт. Письмо с кодом активации было отправлено на почту.</string>
+    <string name="user_registration_required_field">Требуется!</string>
+    <string name="user_registration_privacy_title">Политика конфиденциальности</string>
+    <string name="user_registration_agreement_title">Пользовательское соглашение</string>
+    <string name="user_registration_forgot_pass">Пароль</string>
+    <string name="user_registration_rules_accept">Согласен</string>
+    <string name="user_registration_rules_cancel">Отмена</string>
+    <string name="user_registration_activate_code">Код</string>
+    <string name="user_registration_activate_code_resend">Выслать</string>
+    <string name="user_registration_activate_code_activate">Активировать</string>
+    <string name="user_registration_activate_code_wrong">Неправильный код</string>
+    <string name="user_registration_activate_code_success">Согласен</string>
+    <string name="edit_item_title">Название вакансии</string>
+    <string name="edit_item_company">Компания</string>
+    <string name="edit_item_gross">ЗП</string>
+    <string name="edit_item_email">email</string>
+    <string name="edit_item_phone">Телефон</string>
+    <string name="edit_item_detail">Подробная информация</string>
+    <string name="edit_item_required_field">Требуется!</string>
+    <string name="edit_item_languages_list">Языки</string>
+    <string name="edit_item_add_language">Добавить</string>
+    <string name="edit_item_tags_list">Теги</string>
+    <string name="edit_item_add_tag">Добавить тег</string>
+    <string name="subsription_limit_10_title">Малый бизнес</string>
+    <string name="subsription_limit_10_description">Ограничение - 10 вакансий</string>
+    <string name="subsription_limit_50_title">Средний бизнес</string>
+    <string name="subsription_limit_50_description">Ограничение - 50 вакансий</string>
+    <string name="subsription_limit_200_title">Крупный бизнес</string>
+    <string name="subsription_limit_200_description">Ограничение - 200 вакансий</string>
+    <string name="subsription_period_save_6month_at">6 месяцев по</string>
+    <string name="subsription_period_save_12month_at">12 месяцев по</string>
+    <string name="subsription_period_save_month">месяц</string>
+    <string name="subsription_period_save_is">Экономия</string>
+    <string name="edit_item_tags_search">Поиск</string>
+
 
 
 

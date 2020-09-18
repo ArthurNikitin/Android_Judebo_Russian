@@ -1,6 +1,13 @@
 <resources>
 
 
+    <string name="settings_title_support_email">tg@judebo.com</string>
+    <string name="add_job_link">https://tg.judebo.com/jobs/</string>
+    <string name="user_registration_privacy_url">https://tg.judebo.com/login/privacy.php</string>
+    <string name="user_registration_agreement_url">https://tg.judebo.com/login/agreement.php</string>
+    <string name="user_registration_forgot_pass_url">https://tg.judebo.com/login/agreement.php</string>
+    <string name="facebook_app_id">443190969835868</string>
+
     <string name="settings_title_current_language">Забон</string>
 
     <string name="settings_title_settings">Танзимот</string>
@@ -8,21 +15,87 @@
     <string name="settings_title_currency">Асъор</string>
     <string name="settings_title_current_currency">Асъор</string>
     <string name="settings_title_support">Дастгирӣ</string>
-    <string name="settings_title_support_email">tg@judebo.com</string>
-    <string name="button_detail_title">муфассал</string>
 
-    <string name="add_job_title">Шумо метавонед ҷойҳои кории холиро тавассути веб-браузер илова кунед</string>
-    <string name="add_job_link">https://tg.judebo.com/jobs/</string>
+    <string name="button_detail_title">тафсилот</string>
+
+    <string name="add_job_title">Шумо метавонед ҷойҳои холии кориро тавассути веб-браузер илова кунед</string>
+
 
 
     <string name="search_title_search">Ҷустуҷӯ</string>
-    <string name="button_share">Ҳиссаи</string>
-    <string name="error_no_internet">Пайвастшавӣ ба интернет!</string>
+    <string name="button_share">Мубодила</string>
+    <string name="error_label">Хатогӣ</string>
+    <string name="error_no_internet">Пайвасти интернетӣ нест!</string>
     <string name="settings_title_language">Забон</string>
+    <string name="settings_title_subsription">Обуна</string>
+    <string name="settings_logout">Баромадан</string>
+    <string name="settings_logout_ok">Хуб</string>
+    <string name="settings_logout_cancel">Бекор кардан</string>
+    <string name="settings_login">Даромадан</string>
+    <string name="settings_email">почтаи электронӣ</string>
+    <string name="settings_password">Гузарвожаҳо</string>
+    <string name="settings_delete_account_title">Ҳисобро нест кунед ва маълумотро нест кунед</string>
+    <string name="settings_delete_account_button">Нест кардан</string>
+    <string name="settings_delete_account_request_title">Нобудкуниро тасдиқ кунед</string>
+    <string name="settings_delete_account_request_message">Лутфан маълумоти шуморо нест кунед ва ҳисоби худро нест кунед!</string>
+    <string name="settings_delete_account_request_delete">Нест кардан</string>
+    <string name="settings_delete_account_request_cancel">Бекор кардан</string>
+    <string name="settings_delete_account_message">Маълумот ва ҳисоби шумо нест карда шуд.</string>
+    <string name="action_settings">Action</string>
+    <string name="request_logout_title">Баромадан</string>
+    <string name="request_logout_message">Шумо мутмаъин ҳастед?</string>
     <string name="request_geolocation_title">Ҷойгиршавӣ</string>
-    <string name="request_geolocation_message">Лутфан геолокалионро фаъол кунед</string>
+    <string name="request_geolocation_message">Лутфан геолокалсияро фаъол созед</string>
     <string name="request_geolocation_ok">Хуб</string>
     <string name="request_geolocation_cancel">Бекор кардан</string>
+    <string name="request_image_access_title">Дастрасӣ</string>
+    <string name="request_image_access_message">Дастрасӣ лозим аст</string>
+    <string name="request_request_delete_title">Нест кардан</string>
+    <string name="request_request_delete_message">Шумо мутмаъин ҳастед?</string>
+    <string name="request_request_delete_ok">Нест кардан</string>
+    <string name="request_request_delete_cancel">Бекор кардан</string>
+    <string name="user_jobs_list_delete">Нест кардан</string>
+    <string name="user_jobs_list_copy">Нусха</string>
+    <string name="user_jobs_list_search">Ҷустуҷӯ</string>
+    <string name="user_jobs_list_have_not_subsription">Обуна нест</string>
+    <string name="user_jobs_list_error_please_update">Лутфан навсозӣ кунед!</string>
+    <string name="user_registration_title">Бақайдгирӣ</string>
+    <string name="user_registration_confirm_password">Калидвожаро Тасдиқ Кунед</string>
+    <string name="user_registration_activate_account">Лутфан ҳисоби худро фаъол кунед. Почтаи электронӣ бо коди фаъолсозӣ ба почта фиристода шудааст.</string>
+    <string name="user_registration_required_field">Ҳатмист!</string>
+    <string name="user_registration_privacy_title">Махфият</string>
+    <string name="user_registration_agreement_title">Созишнома</string>
+    <string name="user_registration_forgot_pass">Калидвожа фаромӯш шуд</string>
+    <string name="user_registration_rules_accept">Қабул кунед</string>
+    <string name="user_registration_rules_cancel">Бекор кардан</string>
+    <string name="user_registration_activate_code">Кодекс</string>
+    <string name="user_registration_activate_code_resend">Ирсол</string>
+    <string name="user_registration_activate_code_activate">Фаъол кунед</string>
+    <string name="user_registration_activate_code_wrong">Рамзи нодуруст</string>
+    <string name="user_registration_activate_code_success">Муваффақият</string>
+    <string name="edit_item_title">Вазифа</string>
+    <string name="edit_item_company">Ширкат</string>
+    <string name="edit_item_gross">Умумӣ</string>
+    <string name="edit_item_email">почтаи электронӣ</string>
+    <string name="edit_item_phone">Телефон</string>
+    <string name="edit_item_detail">Маълумоти муфассал</string>
+    <string name="edit_item_required_field">Ҳатмист!</string>
+    <string name="edit_item_languages_list">Забонҳо</string>
+    <string name="edit_item_add_language">Илова кунед</string>
+    <string name="edit_item_tags_list">Тегҳо</string>
+    <string name="edit_item_add_tag">Тег илова кунед</string>
+    <string name="subsription_limit_10_title">Соҳибкории хурд</string>
+    <string name="subsription_limit_10_description">Маҳдуд 10 ҷои корӣ мебошад.</string>
+    <string name="subsription_limit_50_title">Соҳибкории миёна</string>
+    <string name="subsription_limit_50_description">Маҳдудият 50 ҷои корӣ мебошад.</string>
+    <string name="subsription_limit_200_title">Корхонаи калон</string>
+    <string name="subsription_limit_200_description">Маҳдудият 200 ҷои корӣ мебошад.</string>
+    <string name="subsription_period_save_6month_at">6 моҳ дар</string>
+    <string name="subsription_period_save_12month_at">12 моҳ дар</string>
+    <string name="subsription_period_save_month">моҳ</string>
+    <string name="subsription_period_save_is">Захира кунед</string>
+    <string name="edit_item_tags_search">Ҷустуҷӯ</string>
+
 
 
 

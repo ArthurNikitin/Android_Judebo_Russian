@@ -1,6 +1,13 @@
 <resources>
 
 
+    <string name="settings_title_support_email">sl@judebo.com</string>
+    <string name="add_job_link">https://sl.judebo.com/jobs/</string>
+    <string name="user_registration_privacy_url">https://sl.judebo.com/login/privacy.php</string>
+    <string name="user_registration_agreement_url">https://sl.judebo.com/login/agreement.php</string>
+    <string name="user_registration_forgot_pass_url">https://sl.judebo.com/login/agreement.php</string>
+    <string name="facebook_app_id">443190969835868</string>
+
     <string name="settings_title_current_language">Jezik</string>
 
     <string name="settings_title_settings">Nastavitve</string>
@@ -8,21 +15,87 @@
     <string name="settings_title_currency">Valuta</string>
     <string name="settings_title_current_currency">Valuta</string>
     <string name="settings_title_support">Podpora</string>
-    <string name="settings_title_support_email">sl@judebo.com</string>
-    <string name="button_detail_title">podrobnost</string>
 
-    <string name="add_job_title">Prosta delovna mesta lahko dodate s spletnim brskalnikom</string>
-    <string name="add_job_link">https://sl.judebo.com/jobs/</string>
+    <string name="button_detail_title">podrobnosti</string>
+
+    <string name="add_job_title">Prosta delovna mesta lahko dodate v spletnem brskalniku</string>
+
 
 
     <string name="search_title_search">Iskanje</string>
     <string name="button_share">Deliti</string>
+    <string name="error_label">Napaka</string>
     <string name="error_no_internet">Brez internetne povezave!</string>
     <string name="settings_title_language">Jezik</string>
+    <string name="settings_title_subsription">Naročnina</string>
+    <string name="settings_logout">Odjava</string>
+    <string name="settings_logout_ok">V redu</string>
+    <string name="settings_logout_cancel">Prekliči</string>
+    <string name="settings_login">Vpiši se</string>
+    <string name="settings_email">E-naslov</string>
+    <string name="settings_password">Gesla</string>
+    <string name="settings_delete_account_title">Izbrišite račun in izbrišite podatke</string>
+    <string name="settings_delete_account_button">Izbriši</string>
+    <string name="settings_delete_account_request_title">Potrdite brisanje</string>
+    <string name="settings_delete_account_request_message">Potrdite, da želite izbrisati podatke in izbrisati račun!</string>
+    <string name="settings_delete_account_request_delete">Izbriši</string>
+    <string name="settings_delete_account_request_cancel">Prekliči</string>
+    <string name="settings_delete_account_message">Vaši podatki in račun so bili izbrisani.</string>
+    <string name="action_settings">Action</string>
+    <string name="request_logout_title">Odjava</string>
+    <string name="request_logout_message">Ali si prepričan?</string>
     <string name="request_geolocation_title">Geolokacija</string>
-    <string name="request_geolocation_message">Prosimo, omogočite geolokalcijo</string>
+    <string name="request_geolocation_message">Prosimo, omogočite geolokacijo</string>
     <string name="request_geolocation_ok">V redu</string>
     <string name="request_geolocation_cancel">Prekliči</string>
+    <string name="request_image_access_title">Dostop</string>
+    <string name="request_image_access_message">Potrebujete dostop</string>
+    <string name="request_request_delete_title">Izbriši</string>
+    <string name="request_request_delete_message">Ali si prepričan?</string>
+    <string name="request_request_delete_ok">Izbriši</string>
+    <string name="request_request_delete_cancel">Prekliči</string>
+    <string name="user_jobs_list_delete">Izbriši</string>
+    <string name="user_jobs_list_copy">Kopirati</string>
+    <string name="user_jobs_list_search">Iskanje</string>
+    <string name="user_jobs_list_have_not_subsription">Ni naročnine</string>
+    <string name="user_jobs_list_error_please_update">Prosimo, posodobite!</string>
+    <string name="user_registration_title">Registracija</string>
+    <string name="user_registration_confirm_password">Potrdi geslo</string>
+    <string name="user_registration_activate_account">Aktivirajte svoj račun. Na pošto je bilo poslano e-poštno sporočilo z aktivacijsko kodo.</string>
+    <string name="user_registration_required_field">Obvezno!</string>
+    <string name="user_registration_privacy_title">Zasebnost</string>
+    <string name="user_registration_agreement_title">Sporazum</string>
+    <string name="user_registration_forgot_pass">Ste pozabili geslo</string>
+    <string name="user_registration_rules_accept">Sprejmi</string>
+    <string name="user_registration_rules_cancel">Prekliči</string>
+    <string name="user_registration_activate_code">Koda</string>
+    <string name="user_registration_activate_code_resend">Ponovno poslati</string>
+    <string name="user_registration_activate_code_activate">Aktivirajte</string>
+    <string name="user_registration_activate_code_wrong">Napačna koda</string>
+    <string name="user_registration_activate_code_success">Uspeh</string>
+    <string name="edit_item_title">Naziv delovnega mesta</string>
+    <string name="edit_item_company">Podjetje</string>
+    <string name="edit_item_gross">Bruto</string>
+    <string name="edit_item_email">E-naslov</string>
+    <string name="edit_item_phone">Telefon</string>
+    <string name="edit_item_detail">Podrobne informacije</string>
+    <string name="edit_item_required_field">Obvezno!</string>
+    <string name="edit_item_languages_list">Jeziki</string>
+    <string name="edit_item_add_language">Dodaj</string>
+    <string name="edit_item_tags_list">Oznake</string>
+    <string name="edit_item_add_tag">Dodaj oznako</string>
+    <string name="subsription_limit_10_title">Malo podjetje</string>
+    <string name="subsription_limit_10_description">Omejitev je 10 prostih mest.</string>
+    <string name="subsription_limit_50_title">Srednje podjetje</string>
+    <string name="subsription_limit_50_description">Omejitev je 50 prostih mest.</string>
+    <string name="subsription_limit_200_title">Veliko podjetje</string>
+    <string name="subsription_limit_200_description">Omejitev je 200 prostih mest.</string>
+    <string name="subsription_period_save_6month_at">6 mesecev ob</string>
+    <string name="subsription_period_save_12month_at">12 mesecev ob</string>
+    <string name="subsription_period_save_month">mesec</string>
+    <string name="subsription_period_save_is">Shrani</string>
+    <string name="edit_item_tags_search">Iskanje</string>
+
 
 
 

@@ -1,6 +1,13 @@
 <resources>
 
 
+    <string name="settings_title_support_email">az@judebo.com</string>
+    <string name="add_job_link">https://az.judebo.com/jobs/</string>
+    <string name="user_registration_privacy_url">https://az.judebo.com/login/privacy.php</string>
+    <string name="user_registration_agreement_url">https://az.judebo.com/login/agreement.php</string>
+    <string name="user_registration_forgot_pass_url">https://az.judebo.com/login/agreement.php</string>
+    <string name="facebook_app_id">443190969835868</string>
+
     <string name="settings_title_current_language">Dil</string>
 
     <string name="settings_title_settings">Parametrlər</string>
@@ -8,21 +15,87 @@
     <string name="settings_title_currency">Valyuta</string>
     <string name="settings_title_current_currency">Valyuta</string>
     <string name="settings_title_support">Dəstək</string>
-    <string name="settings_title_support_email">az@judebo.com</string>
+
     <string name="button_detail_title">detal</string>
 
-    <string name="add_job_title">Veb brauzer tərəfindən vakansiyalar əlavə edə bilərsiniz</string>
-    <string name="add_job_link">https://az.judebo.com/jobs/</string>
+    <string name="add_job_title">Bir veb brauzer ilə vakansiya əlavə edə bilərsiniz</string>
+
 
 
     <string name="search_title_search">Axtarış</string>
-    <string name="button_share">Paylaşın</string>
+    <string name="button_share">Paylaş</string>
+    <string name="error_label">Xəta</string>
     <string name="error_no_internet">İnternet bağlantısı yoxdur!</string>
     <string name="settings_title_language">Dil</string>
-    <string name="request_geolocation_title">Geolokasiya</string>
-    <string name="request_geolocation_message">Zəhmət olmasa geolokaltionu aktivləşdirin</string>
+    <string name="settings_title_subsription">Abunə</string>
+    <string name="settings_logout">Çıxış</string>
+    <string name="settings_logout_ok">Tamam</string>
+    <string name="settings_logout_cancel">Ləğv et</string>
+    <string name="settings_login">Daxil ol</string>
+    <string name="settings_email">e-poçt</string>
+    <string name="settings_password">Parollar</string>
+    <string name="settings_delete_account_title">Hesabı silin və məlumatları silin</string>
+    <string name="settings_delete_account_button">Sil</string>
+    <string name="settings_delete_account_request_title">Silin təsdiq edin</string>
+    <string name="settings_delete_account_request_message">Xahiş edirəm məlumatlarınızı silmək və hesabınızı silmək üçün təsdiqləyin!</string>
+    <string name="settings_delete_account_request_delete">Sil</string>
+    <string name="settings_delete_account_request_cancel">Ləğv et</string>
+    <string name="settings_delete_account_message">Məlumatlarınız və hesabınız silindi.</string>
+    <string name="action_settings">Action</string>
+    <string name="request_logout_title">Çıxış</string>
+    <string name="request_logout_message">Sən əminsən?</string>
+    <string name="request_geolocation_title">Coğrafi yerləşmə</string>
+    <string name="request_geolocation_message">Xahiş edirəm coğrafi yerləşməni aktiv edin</string>
     <string name="request_geolocation_ok">Tamam</string>
     <string name="request_geolocation_cancel">Ləğv et</string>
+    <string name="request_image_access_title">Giriş</string>
+    <string name="request_image_access_message">Giriş lazımdır</string>
+    <string name="request_request_delete_title">Sil</string>
+    <string name="request_request_delete_message">Sən əminsən?</string>
+    <string name="request_request_delete_ok">Sil</string>
+    <string name="request_request_delete_cancel">Ləğv et</string>
+    <string name="user_jobs_list_delete">Sil</string>
+    <string name="user_jobs_list_copy">Kopyala</string>
+    <string name="user_jobs_list_search">Axtarış</string>
+    <string name="user_jobs_list_have_not_subsription">Abunə yoxdur</string>
+    <string name="user_jobs_list_error_please_update">Zəhmət olmasa yeniləyin!</string>
+    <string name="user_registration_title">Qeydiyyat</string>
+    <string name="user_registration_confirm_password">Şifrəni təsdiq edin</string>
+    <string name="user_registration_activate_account">Zəhmət olmasa hesabınızı aktivləşdirin. Aktivasiya kodu olan bir e-poçt poçtaya göndərildi.</string>
+    <string name="user_registration_required_field">Lazımdır!</string>
+    <string name="user_registration_privacy_title">Məxfilik</string>
+    <string name="user_registration_agreement_title">Razılaşma</string>
+    <string name="user_registration_forgot_pass">Şifrəni unutmusunuz</string>
+    <string name="user_registration_rules_accept">Qəbul et</string>
+    <string name="user_registration_rules_cancel">Ləğv et</string>
+    <string name="user_registration_activate_code">Kod</string>
+    <string name="user_registration_activate_code_resend">Yenidən göndərmək</string>
+    <string name="user_registration_activate_code_activate">Aktivləşdirin</string>
+    <string name="user_registration_activate_code_wrong">Səhv kod</string>
+    <string name="user_registration_activate_code_success">Uğur</string>
+    <string name="edit_item_title">Vəzifə</string>
+    <string name="edit_item_company">Şirkət</string>
+    <string name="edit_item_gross">Ümumi</string>
+    <string name="edit_item_email">e-poçt</string>
+    <string name="edit_item_phone">Telefon</string>
+    <string name="edit_item_detail">Ətraflı məlumat</string>
+    <string name="edit_item_required_field">Lazımdır!</string>
+    <string name="edit_item_languages_list">Dillər</string>
+    <string name="edit_item_add_language">Əlavə et</string>
+    <string name="edit_item_tags_list">Teqlər</string>
+    <string name="edit_item_add_tag">Etiket əlavə edin</string>
+    <string name="subsription_limit_10_title">Kiçik biznes</string>
+    <string name="subsription_limit_10_description">Limit 10 vakansiyadır.</string>
+    <string name="subsription_limit_50_title">Orta biznes</string>
+    <string name="subsription_limit_50_description">Limit 50 vakansiyadır.</string>
+    <string name="subsription_limit_200_title">Böyük müəssisə</string>
+    <string name="subsription_limit_200_description">Limit 200 vakansiyadır.</string>
+    <string name="subsription_period_save_6month_at">6 ay</string>
+    <string name="subsription_period_save_12month_at">12 ay</string>
+    <string name="subsription_period_save_month">ay</string>
+    <string name="subsription_period_save_is">Yadda saxla</string>
+    <string name="edit_item_tags_search">Axtarış</string>
+
 
 
 

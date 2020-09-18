@@ -1,6 +1,13 @@
 <resources>
 
 
+    <string name="settings_title_support_email">es@judebo.com</string>
+    <string name="add_job_link">https://es.judebo.com/jobs/</string>
+    <string name="user_registration_privacy_url">https://es.judebo.com/login/privacy.php</string>
+    <string name="user_registration_agreement_url">https://es.judebo.com/login/agreement.php</string>
+    <string name="user_registration_forgot_pass_url">https://es.judebo.com/login/agreement.php</string>
+    <string name="facebook_app_id">443190969835868</string>
+
     <string name="settings_title_current_language">Idioma</string>
 
     <string name="settings_title_settings">Configuraciones</string>
@@ -8,21 +15,87 @@
     <string name="settings_title_currency">Moneda</string>
     <string name="settings_title_current_currency">Moneda</string>
     <string name="settings_title_support">Apoyo</string>
-    <string name="settings_title_support_email">es@judebo.com</string>
+
     <string name="button_detail_title">detalle</string>
 
     <string name="add_job_title">Puede agregar vacantes mediante un navegador web</string>
-    <string name="add_job_link">https://es.judebo.com/jobs/</string>
+
 
 
     <string name="search_title_search">Buscar</string>
     <string name="button_share">Compartir</string>
+    <string name="error_label">Error</string>
     <string name="error_no_internet">¡Sin conexión a Internet!</string>
     <string name="settings_title_language">Idioma</string>
+    <string name="settings_title_subsription">Subscripción</string>
+    <string name="settings_logout">Cerrar sesión</string>
+    <string name="settings_logout_ok">Okay</string>
+    <string name="settings_logout_cancel">Cancelar</string>
+    <string name="settings_login">Iniciar sesión</string>
+    <string name="settings_email">correo electrónico</string>
+    <string name="settings_password">Contraseñas</string>
+    <string name="settings_delete_account_title">Eliminar cuenta y borrar datos</string>
+    <string name="settings_delete_account_button">Eliminar</string>
+    <string name="settings_delete_account_request_title">Confirmar eliminación</string>
+    <string name="settings_delete_account_request_message">¡Confirme para borrar sus datos y eliminar su cuenta!</string>
+    <string name="settings_delete_account_request_delete">Eliminar</string>
+    <string name="settings_delete_account_request_cancel">Cancelar</string>
+    <string name="settings_delete_account_message">Se eliminaron sus datos y su cuenta.</string>
+    <string name="action_settings">Action</string>
+    <string name="request_logout_title">Cerrar sesión</string>
+    <string name="request_logout_message">¿Estás seguro?</string>
     <string name="request_geolocation_title">Geolocalización</string>
     <string name="request_geolocation_message">Habilite la geolocalización</string>
     <string name="request_geolocation_ok">Okay</string>
     <string name="request_geolocation_cancel">Cancelar</string>
+    <string name="request_image_access_title">Acceso</string>
+    <string name="request_image_access_message">Necesita acceso</string>
+    <string name="request_request_delete_title">Eliminar</string>
+    <string name="request_request_delete_message">¿Estás seguro?</string>
+    <string name="request_request_delete_ok">Eliminar</string>
+    <string name="request_request_delete_cancel">Cancelar</string>
+    <string name="user_jobs_list_delete">Eliminar</string>
+    <string name="user_jobs_list_copy">Copiar</string>
+    <string name="user_jobs_list_search">Buscar</string>
+    <string name="user_jobs_list_have_not_subsription">Sin subscripción</string>
+    <string name="user_jobs_list_error_please_update">¡Por favor actualice!</string>
+    <string name="user_registration_title">Registro</string>
+    <string name="user_registration_confirm_password">Confirmar contraseña</string>
+    <string name="user_registration_activate_account">Active su cuenta. Se ha enviado un correo electrónico con un código de activación al correo.</string>
+    <string name="user_registration_required_field">¡Necesario!</string>
+    <string name="user_registration_privacy_title">Intimidad</string>
+    <string name="user_registration_agreement_title">Acuerdo</string>
+    <string name="user_registration_forgot_pass">Se te olvidó tu contraseña</string>
+    <string name="user_registration_rules_accept">Aceptar</string>
+    <string name="user_registration_rules_cancel">Cancelar</string>
+    <string name="user_registration_activate_code">Código</string>
+    <string name="user_registration_activate_code_resend">Reenviar</string>
+    <string name="user_registration_activate_code_activate">Activar</string>
+    <string name="user_registration_activate_code_wrong">Codigo erroneo</string>
+    <string name="user_registration_activate_code_success">Éxito</string>
+    <string name="edit_item_title">Título profesional</string>
+    <string name="edit_item_company">Empresa</string>
+    <string name="edit_item_gross">Bruto</string>
+    <string name="edit_item_email">correo electrónico</string>
+    <string name="edit_item_phone">Teléfono</string>
+    <string name="edit_item_detail">Información detallada</string>
+    <string name="edit_item_required_field">¡Necesario!</string>
+    <string name="edit_item_languages_list">Idiomas</string>
+    <string name="edit_item_add_language">Añadir</string>
+    <string name="edit_item_tags_list">Etiquetas</string>
+    <string name="edit_item_add_tag">Añadir etiqueta</string>
+    <string name="subsription_limit_10_title">Pequeños negocios</string>
+    <string name="subsription_limit_10_description">El límite es de 10 vacantes.</string>
+    <string name="subsription_limit_50_title">Mediana empresa</string>
+    <string name="subsription_limit_50_description">El límite es de 50 vacantes.</string>
+    <string name="subsription_limit_200_title">Gran empresa</string>
+    <string name="subsription_limit_200_description">El límite es de 200 vacantes.</string>
+    <string name="subsription_period_save_6month_at">6 meses en</string>
+    <string name="subsription_period_save_12month_at">12 meses en</string>
+    <string name="subsription_period_save_month">mes</string>
+    <string name="subsription_period_save_is">Salvar</string>
+    <string name="edit_item_tags_search">Buscar</string>
+
 
 
 

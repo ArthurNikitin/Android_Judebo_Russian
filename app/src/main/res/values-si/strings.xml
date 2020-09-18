@@ -1,6 +1,13 @@
 <resources>
 
 
+    <string name="settings_title_support_email">si@judebo.com</string>
+    <string name="add_job_link">https://si.judebo.com/jobs/</string>
+    <string name="user_registration_privacy_url">https://si.judebo.com/login/privacy.php</string>
+    <string name="user_registration_agreement_url">https://si.judebo.com/login/agreement.php</string>
+    <string name="user_registration_forgot_pass_url">https://si.judebo.com/login/agreement.php</string>
+    <string name="facebook_app_id">443190969835868</string>
+
     <string name="settings_title_current_language">භාෂාව</string>
 
     <string name="settings_title_settings">සැකසුම්</string>
@@ -8,21 +15,87 @@
     <string name="settings_title_currency">මුදල්</string>
     <string name="settings_title_current_currency">මුදල්</string>
     <string name="settings_title_support">සහාය</string>
-    <string name="settings_title_support_email">si@judebo.com</string>
+
     <string name="button_detail_title">විස්තර</string>
 
     <string name="add_job_title">වෙබ් බ්‍රව්සරයකින් ඔබට පුරප්පාඩු එකතු කළ හැකිය</string>
-    <string name="add_job_link">https://si.judebo.com/jobs/</string>
+
 
 
     <string name="search_title_search">සෙවීම</string>
     <string name="button_share">බෙදාගන්න</string>
+    <string name="error_label">දෝෂයකි</string>
     <string name="error_no_internet">අන්තර්ජාල සම්බන්ධතාවයක් නොමැත!</string>
     <string name="settings_title_language">භාෂාව</string>
+    <string name="settings_title_subsription">දායකත්වය</string>
+    <string name="settings_logout">ලොග්අවුට්</string>
+    <string name="settings_logout_ok">හරි</string>
+    <string name="settings_logout_cancel">අවලංගු කරන්න</string>
+    <string name="settings_login">ඇතුල් වන්න</string>
+    <string name="settings_email">විද්යුත් තැපෑල</string>
+    <string name="settings_password">මුරපද</string>
+    <string name="settings_delete_account_title">ගිණුම මකා දමා දත්ත මකන්න</string>
+    <string name="settings_delete_account_button">මකන්න</string>
+    <string name="settings_delete_account_request_title">මකාදැමීම තහවුරු කරන්න</string>
+    <string name="settings_delete_account_request_message">කරුණාකර ඔබගේ දත්ත මකා දමා ඔබගේ ගිණුම මකා දැමීමට තහවුරු කරන්න!</string>
+    <string name="settings_delete_account_request_delete">මකන්න</string>
+    <string name="settings_delete_account_request_cancel">අවලංගු කරන්න</string>
+    <string name="settings_delete_account_message">ඔබගේ දත්ත සහ ගිණුම මකා දමන ලදි.</string>
+    <string name="action_settings">Action</string>
+    <string name="request_logout_title">ලොග්අවුට්</string>
+    <string name="request_logout_message">ඔබට විශ්වාසද?</string>
     <string name="request_geolocation_title">භූ පිහිටීම</string>
     <string name="request_geolocation_message">කරුණාකර භූ-ස්ථානගත කිරීම සක්‍රීය කරන්න</string>
     <string name="request_geolocation_ok">හරි</string>
     <string name="request_geolocation_cancel">අවලංගු කරන්න</string>
+    <string name="request_image_access_title">ප්රවේශ</string>
+    <string name="request_image_access_message">ප්‍රවේශය අවශ්‍යයි</string>
+    <string name="request_request_delete_title">මකන්න</string>
+    <string name="request_request_delete_message">ඔබට විශ්වාසද?</string>
+    <string name="request_request_delete_ok">මකන්න</string>
+    <string name="request_request_delete_cancel">අවලංගු කරන්න</string>
+    <string name="user_jobs_list_delete">මකන්න</string>
+    <string name="user_jobs_list_copy">පිටපත් කරන්න</string>
+    <string name="user_jobs_list_search">සෙවීම</string>
+    <string name="user_jobs_list_have_not_subsription">දායකත්වයක් නොමැත</string>
+    <string name="user_jobs_list_error_please_update">කරුණාකර යාවත්කාලීන කරන්න!</string>
+    <string name="user_registration_title">ලියාපදිංචි කිරීම</string>
+    <string name="user_registration_confirm_password">මුරපදය තහවුරු කරන්න</string>
+    <string name="user_registration_activate_account">කරුණාකර ඔබගේ ගිණුම සක්‍රිය කරන්න. සක්‍රීය කිරීමේ කේතයක් සහිත විද්‍යුත් ලිපියක් තැපෑලට යවා ඇත.</string>
+    <string name="user_registration_required_field">අවශ්‍යයි!</string>
+    <string name="user_registration_privacy_title">පෞද්ගලිකත්වය</string>
+    <string name="user_registration_agreement_title">ගිවිසුම</string>
+    <string name="user_registration_forgot_pass">මුරපදය අමතක වුණා ද</string>
+    <string name="user_registration_rules_accept">පිළිගන්න</string>
+    <string name="user_registration_rules_cancel">අවලංගු කරන්න</string>
+    <string name="user_registration_activate_code">කේතය</string>
+    <string name="user_registration_activate_code_resend">නැවත යවන්න</string>
+    <string name="user_registration_activate_code_activate">සක්‍රිය කරන්න</string>
+    <string name="user_registration_activate_code_wrong">වැරදි කේතය</string>
+    <string name="user_registration_activate_code_success">සාර්ථකත්වය</string>
+    <string name="edit_item_title">රැකියා තනතුර</string>
+    <string name="edit_item_company">සමාගම</string>
+    <string name="edit_item_gross">දළ</string>
+    <string name="edit_item_email">විද්යුත් තැපෑල</string>
+    <string name="edit_item_phone">දුරකථන</string>
+    <string name="edit_item_detail">විස්තර තොරතුරු</string>
+    <string name="edit_item_required_field">අවශ්‍යයි!</string>
+    <string name="edit_item_languages_list">භාෂා</string>
+    <string name="edit_item_add_language">එකතු කරන්න</string>
+    <string name="edit_item_tags_list">ටැග්</string>
+    <string name="edit_item_add_tag">ටැගය එක් කරන්න</string>
+    <string name="subsription_limit_10_title">කුඩා ව්‍යාපාර</string>
+    <string name="subsription_limit_10_description">සීමාව පුරප්පාඩු 10 කි.</string>
+    <string name="subsription_limit_50_title">මධ්යම ව්යාපාර</string>
+    <string name="subsription_limit_50_description">සීමාව පුරප්පාඩු 50 කි.</string>
+    <string name="subsription_limit_200_title">විශාල ව්යවසාය</string>
+    <string name="subsription_limit_200_description">සීමාව පුරප්පාඩු 200 කි.</string>
+    <string name="subsription_period_save_6month_at">මාස 6 යි</string>
+    <string name="subsription_period_save_12month_at">මාස 12 යි</string>
+    <string name="subsription_period_save_month">මාසය</string>
+    <string name="subsription_period_save_is">සුරකින්න</string>
+    <string name="edit_item_tags_search">සෙවීම</string>
+
 
 
 

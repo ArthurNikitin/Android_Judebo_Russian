@@ -1,28 +1,101 @@
 <resources>
 
 
-    <string name="settings_title_current_language"> لغة</string>
+    <string name="settings_title_support_email">ar@judebo.com</string>
+    <string name="add_job_link">https://ar.judebo.com/jobs/</string>
+    <string name="user_registration_privacy_url">https://ar.judebo.com/login/privacy.php</string>
+    <string name="user_registration_agreement_url">https://ar.judebo.com/login/agreement.php</string>
+    <string name="user_registration_forgot_pass_url">https://ar.judebo.com/login/agreement.php</string>
+    <string name="facebook_app_id">443190969835868</string>
 
-    <string name="settings_title_settings"> الإعدادات</string>
+    <string name="settings_title_current_language">لغة</string>
+
+    <string name="settings_title_settings">الإعدادات</string>
 
     <string name="settings_title_currency">عملة</string>
-    <string name="settings_title_current_currency"> عملة</string>
+    <string name="settings_title_current_currency">عملة</string>
     <string name="settings_title_support">الدعم</string>
-    <string name="settings_title_support_email">ar@judebo.com</string>
+
     <string name="button_detail_title">التفاصيل</string>
 
-    <string name="add_job_title">يمكنك إضافة وظائف شاغرة عن طريق متصفح الويب</string>
-    <string name="add_job_link">https://ar.judebo.com/jobs/</string>
+    <string name="add_job_title">يمكنك إضافة الوظائف الشاغرة عن طريق متصفح الويب</string>
+
 
 
     <string name="search_title_search">بحث</string>
     <string name="button_share">شارك</string>
-    <string name="error_no_internet">No internet connection!</string>
-    <string name="settings_title_language"> لغة</string>
-    <string name="request_geolocation_title">موقعك</string>
-    <string name="request_geolocation_message">الرجاء تمكين الموقع</string>
+    <string name="error_label">خطأ</string>
+    <string name="error_no_internet">لا يوجد اتصال بالإنترنت!</string>
+    <string name="settings_title_language">لغة</string>
+    <string name="settings_title_subsription">الاشتراك</string>
+    <string name="settings_logout">تسجيل خروج</string>
+    <string name="settings_logout_ok">حسنا</string>
+    <string name="settings_logout_cancel">إلغاء</string>
+    <string name="settings_login">تسجيل الدخول</string>
+    <string name="settings_email">البريد الإلكتروني</string>
+    <string name="settings_password">كلمات السر</string>
+    <string name="settings_delete_account_title">حذف الحساب ومسح البيانات</string>
+    <string name="settings_delete_account_button">حذف</string>
+    <string name="settings_delete_account_request_title">تأكيد الحذف</string>
+    <string name="settings_delete_account_request_message">يرجى التأكيد لمسح بياناتك وحذف حسابك!</string>
+    <string name="settings_delete_account_request_delete">حذف</string>
+    <string name="settings_delete_account_request_cancel">إلغاء</string>
+    <string name="settings_delete_account_message">تم حذف بياناتك وحسابك.</string>
+    <string name="action_settings">Action</string>
+    <string name="request_logout_title">تسجيل خروج</string>
+    <string name="request_logout_message">هل أنت واثق؟</string>
+    <string name="request_geolocation_title">تحديد الموقع الجغرافي</string>
+    <string name="request_geolocation_message">الرجاء تمكين تحديد الموقع الجغرافي</string>
     <string name="request_geolocation_ok">حسنا</string>
     <string name="request_geolocation_cancel">إلغاء</string>
+    <string name="request_image_access_title">التمكن من</string>
+    <string name="request_image_access_message">تحتاج الوصول</string>
+    <string name="request_request_delete_title">حذف</string>
+    <string name="request_request_delete_message">هل أنت واثق؟</string>
+    <string name="request_request_delete_ok">حذف</string>
+    <string name="request_request_delete_cancel">إلغاء</string>
+    <string name="user_jobs_list_delete">حذف</string>
+    <string name="user_jobs_list_copy">نسخ</string>
+    <string name="user_jobs_list_search">بحث</string>
+    <string name="user_jobs_list_have_not_subsription">لا اشتراك</string>
+    <string name="user_jobs_list_error_please_update">يرجى تحديث!</string>
+    <string name="user_registration_title">التسجيل</string>
+    <string name="user_registration_confirm_password">تأكيد كلمة المرور</string>
+    <string name="user_registration_activate_account">يرجى تفعيل حسابك. تم إرسال بريد إلكتروني مع رمز التفعيل إلى البريد.</string>
+    <string name="user_registration_required_field">مطلوب!</string>
+    <string name="user_registration_privacy_title">خصوصية</string>
+    <string name="user_registration_agreement_title">الاتفاق</string>
+    <string name="user_registration_forgot_pass">هل نسيت كلمة المرور</string>
+    <string name="user_registration_rules_accept">قبول</string>
+    <string name="user_registration_rules_cancel">إلغاء</string>
+    <string name="user_registration_activate_code">الشفرة</string>
+    <string name="user_registration_activate_code_resend">إعادة إرسال</string>
+    <string name="user_registration_activate_code_activate">تفعيل</string>
+    <string name="user_registration_activate_code_wrong">رمز خاطئ</string>
+    <string name="user_registration_activate_code_success">نجاح</string>
+    <string name="edit_item_title">عنوان وظيفي</string>
+    <string name="edit_item_company">شركة</string>
+    <string name="edit_item_gross">إجمالي</string>
+    <string name="edit_item_email">البريد الإلكتروني</string>
+    <string name="edit_item_phone">هاتف</string>
+    <string name="edit_item_detail">معلومات مفصلة</string>
+    <string name="edit_item_required_field">مطلوب!</string>
+    <string name="edit_item_languages_list">اللغات</string>
+    <string name="edit_item_add_language">أضف</string>
+    <string name="edit_item_tags_list">العلامات</string>
+    <string name="edit_item_add_tag">إضافة علامة</string>
+    <string name="subsription_limit_10_title">أعمال صغيرة</string>
+    <string name="subsription_limit_10_description">الحد الأقصى هو 10 شواغر.</string>
+    <string name="subsription_limit_50_title">الأعمال المتوسطة</string>
+    <string name="subsription_limit_50_description">الحد الأقصى هو 50 وظيفة شاغرة.</string>
+    <string name="subsription_limit_200_title">مشروع كبير</string>
+    <string name="subsription_limit_200_description">الحد الأقصى هو 200 وظيفة شاغرة.</string>
+    <string name="subsription_period_save_6month_at">6 شهر في</string>
+    <string name="subsription_period_save_12month_at">12 شهر في</string>
+    <string name="subsription_period_save_month">شهر</string>
+    <string name="subsription_period_save_is">حفظ</string>
+    <string name="edit_item_tags_search">بحث</string>
+
 
 
 

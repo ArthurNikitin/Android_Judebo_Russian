@@ -1,6 +1,13 @@
 <resources>
 
 
+    <string name="settings_title_support_email">el@judebo.com</string>
+    <string name="add_job_link">https://el.judebo.com/jobs/</string>
+    <string name="user_registration_privacy_url">https://el.judebo.com/login/privacy.php</string>
+    <string name="user_registration_agreement_url">https://el.judebo.com/login/agreement.php</string>
+    <string name="user_registration_forgot_pass_url">https://el.judebo.com/login/agreement.php</string>
+    <string name="facebook_app_id">443190969835868</string>
+
     <string name="settings_title_current_language">Γλώσσα</string>
 
     <string name="settings_title_settings">Ρυθμίσεις</string>
@@ -8,21 +15,87 @@
     <string name="settings_title_currency">Νόμισμα</string>
     <string name="settings_title_current_currency">Νόμισμα</string>
     <string name="settings_title_support">Υποστήριξη</string>
-    <string name="settings_title_support_email">el@judebo.com</string>
+
     <string name="button_detail_title">λεπτομέρεια</string>
 
     <string name="add_job_title">Μπορείτε να προσθέσετε κενές θέσεις από ένα πρόγραμμα περιήγησης ιστού</string>
-    <string name="add_job_link">https://el.judebo.com/jobs/</string>
+
 
 
     <string name="search_title_search">Αναζήτηση</string>
     <string name="button_share">Μερίδιο</string>
+    <string name="error_label">Λάθος</string>
     <string name="error_no_internet">Δεν υπάρχει σύνδεση στο διαδίκτυο!</string>
     <string name="settings_title_language">Γλώσσα</string>
+    <string name="settings_title_subsription">Συνδρομή</string>
+    <string name="settings_logout">Αποσύνδεση</string>
+    <string name="settings_logout_ok">Εντάξει</string>
+    <string name="settings_logout_cancel">Ματαίωση</string>
+    <string name="settings_login">Σύνδεση</string>
+    <string name="settings_email">ΗΛΕΚΤΡΟΝΙΚΗ ΔΙΕΥΘΥΝΣΗ</string>
+    <string name="settings_password">Κωδικοί πρόσβασης</string>
+    <string name="settings_delete_account_title">Διαγραφή λογαριασμού και διαγραφή δεδομένων</string>
+    <string name="settings_delete_account_button">Διαγράφω</string>
+    <string name="settings_delete_account_request_title">Επιβεβαίωση διαγραφής</string>
+    <string name="settings_delete_account_request_message">Επιβεβαιώστε για να διαγράψετε τα δεδομένα σας και να διαγράψετε τον λογαριασμό σας!</string>
+    <string name="settings_delete_account_request_delete">Διαγράφω</string>
+    <string name="settings_delete_account_request_cancel">Ματαίωση</string>
+    <string name="settings_delete_account_message">Τα δεδομένα και ο λογαριασμός σας διαγράφηκαν.</string>
+    <string name="action_settings">Action</string>
+    <string name="request_logout_title">Αποσύνδεση</string>
+    <string name="request_logout_message">Είσαι σίγουρος?</string>
     <string name="request_geolocation_title">Γεωγραφική τοποθεσία</string>
     <string name="request_geolocation_message">Ενεργοποιήστε το geolocaltion</string>
     <string name="request_geolocation_ok">Εντάξει</string>
     <string name="request_geolocation_cancel">Ματαίωση</string>
+    <string name="request_image_access_title">Πρόσβαση</string>
+    <string name="request_image_access_message">Χρειάζεστε πρόσβαση</string>
+    <string name="request_request_delete_title">Διαγράφω</string>
+    <string name="request_request_delete_message">Είσαι σίγουρος?</string>
+    <string name="request_request_delete_ok">Διαγράφω</string>
+    <string name="request_request_delete_cancel">Ματαίωση</string>
+    <string name="user_jobs_list_delete">Διαγράφω</string>
+    <string name="user_jobs_list_copy">αντίγραφο</string>
+    <string name="user_jobs_list_search">Αναζήτηση</string>
+    <string name="user_jobs_list_have_not_subsription">Χωρίς συνδρομή</string>
+    <string name="user_jobs_list_error_please_update">ΠΑΡΑΚΑΛΩ ενημερωσε!</string>
+    <string name="user_registration_title">Εγγραφή</string>
+    <string name="user_registration_confirm_password">Επιβεβαίωση Κωδικού</string>
+    <string name="user_registration_activate_account">Ενεργοποιήστε τον λογαριασμό σας. Ένα email με κωδικό ενεργοποίησης έχει σταλεί στο email.</string>
+    <string name="user_registration_required_field">Απαιτείται!</string>
+    <string name="user_registration_privacy_title">Μυστικότητα</string>
+    <string name="user_registration_agreement_title">Συμφωνία</string>
+    <string name="user_registration_forgot_pass">Ξεχάσατε τον κωδικό</string>
+    <string name="user_registration_rules_accept">Αποδέχομαι</string>
+    <string name="user_registration_rules_cancel">Ματαίωση</string>
+    <string name="user_registration_activate_code">Κώδικας</string>
+    <string name="user_registration_activate_code_resend">Στείλτε ξανά</string>
+    <string name="user_registration_activate_code_activate">Θέτω εις ενέργειαν</string>
+    <string name="user_registration_activate_code_wrong">Λάθος κωδικός</string>
+    <string name="user_registration_activate_code_success">Επιτυχία</string>
+    <string name="edit_item_title">Τίτλος εργασίας</string>
+    <string name="edit_item_company">Εταιρία</string>
+    <string name="edit_item_gross">Ακαθάριστο</string>
+    <string name="edit_item_email">ΗΛΕΚΤΡΟΝΙΚΗ ΔΙΕΥΘΥΝΣΗ</string>
+    <string name="edit_item_phone">Τηλέφωνο</string>
+    <string name="edit_item_detail">Λεπτομερής πληροφορία</string>
+    <string name="edit_item_required_field">Απαιτείται!</string>
+    <string name="edit_item_languages_list">Γλώσσες</string>
+    <string name="edit_item_add_language">Προσθήκη</string>
+    <string name="edit_item_tags_list">Ετικέτες</string>
+    <string name="edit_item_add_tag">Προσθήκη ετικέτας</string>
+    <string name="subsription_limit_10_title">Μικρή επιχείρηση</string>
+    <string name="subsription_limit_10_description">Το όριο είναι 10 κενές θέσεις.</string>
+    <string name="subsription_limit_50_title">Μεσαία επιχείρηση</string>
+    <string name="subsription_limit_50_description">Το όριο είναι 50 κενές θέσεις.</string>
+    <string name="subsription_limit_200_title">Μεγάλη επιχείρηση</string>
+    <string name="subsription_limit_200_description">Το όριο είναι 200 ​​κενές θέσεις.</string>
+    <string name="subsription_period_save_6month_at">6 μήνες στις</string>
+    <string name="subsription_period_save_12month_at">12 μήνες στις</string>
+    <string name="subsription_period_save_month">μήνας</string>
+    <string name="subsription_period_save_is">Αποθηκεύσετε</string>
+    <string name="edit_item_tags_search">Αναζήτηση</string>
+
 
 
 

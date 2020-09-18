@@ -1,6 +1,13 @@
 <resources>
 
 
+    <string name="settings_title_support_email">de@judebo.com</string>
+    <string name="add_job_link">https://de.judebo.com/jobs/</string>
+    <string name="user_registration_privacy_url">https://de.judebo.com/login/privacy.php</string>
+    <string name="user_registration_agreement_url">https://de.judebo.com/login/agreement.php</string>
+    <string name="user_registration_forgot_pass_url">https://de.judebo.com/login/agreement.php</string>
+    <string name="facebook_app_id">443190969835868</string>
+
     <string name="settings_title_current_language">Sprache</string>
 
     <string name="settings_title_settings">die Einstellungen</string>
@@ -8,21 +15,87 @@
     <string name="settings_title_currency">Währung</string>
     <string name="settings_title_current_currency">Währung</string>
     <string name="settings_title_support">Unterstützung</string>
-    <string name="settings_title_support_email">de@judebo.com</string>
+
     <string name="button_detail_title">Detail</string>
 
     <string name="add_job_title">Sie können freie Stellen über einen Webbrowser hinzufügen</string>
-    <string name="add_job_link">https://de.judebo.com/jobs/</string>
+
 
 
     <string name="search_title_search">Suche</string>
     <string name="button_share">Aktie</string>
+    <string name="error_label">Error</string>
     <string name="error_no_internet">Keine Internetverbindung!</string>
     <string name="settings_title_language">Sprache</string>
+    <string name="settings_title_subsription">Abonnement</string>
+    <string name="settings_logout">Ausloggen</string>
+    <string name="settings_logout_ok">OK</string>
+    <string name="settings_logout_cancel">Stornieren</string>
+    <string name="settings_login">Anmeldung</string>
+    <string name="settings_email">Email</string>
+    <string name="settings_password">Passwörter</string>
+    <string name="settings_delete_account_title">Konto löschen und Daten löschen</string>
+    <string name="settings_delete_account_button">Löschen</string>
+    <string name="settings_delete_account_request_title">Löschen bestätigen</string>
+    <string name="settings_delete_account_request_message">Bitte bestätigen Sie, um Ihre Daten zu löschen und Ihr Konto zu löschen!</string>
+    <string name="settings_delete_account_request_delete">Löschen</string>
+    <string name="settings_delete_account_request_cancel">Stornieren</string>
+    <string name="settings_delete_account_message">Ihre Daten und Ihr Konto wurden gelöscht.</string>
+    <string name="action_settings">Action</string>
+    <string name="request_logout_title">Ausloggen</string>
+    <string name="request_logout_message">Bist du sicher?</string>
     <string name="request_geolocation_title">Geolocation</string>
     <string name="request_geolocation_message">Bitte aktivieren Sie Geolocaltion</string>
     <string name="request_geolocation_ok">OK</string>
     <string name="request_geolocation_cancel">Stornieren</string>
+    <string name="request_image_access_title">Zugriff</string>
+    <string name="request_image_access_message">Benötigen Sie Zugang</string>
+    <string name="request_request_delete_title">Löschen</string>
+    <string name="request_request_delete_message">Bist du sicher?</string>
+    <string name="request_request_delete_ok">Löschen</string>
+    <string name="request_request_delete_cancel">Stornieren</string>
+    <string name="user_jobs_list_delete">Löschen</string>
+    <string name="user_jobs_list_copy">Kopieren</string>
+    <string name="user_jobs_list_search">Suche</string>
+    <string name="user_jobs_list_have_not_subsription">Kein Abonnement</string>
+    <string name="user_jobs_list_error_please_update">Bitte aktualisieren!</string>
+    <string name="user_registration_title">Anmeldung</string>
+    <string name="user_registration_confirm_password">Bestätige das Passwort</string>
+    <string name="user_registration_activate_account">Bitte aktiviere deinen Account. Eine E-Mail mit einem Aktivierungscode wurde an die E-Mail gesendet.</string>
+    <string name="user_registration_required_field">Erforderlich!</string>
+    <string name="user_registration_privacy_title">Privatsphäre</string>
+    <string name="user_registration_agreement_title">Zustimmung</string>
+    <string name="user_registration_forgot_pass">Passwort vergessen</string>
+    <string name="user_registration_rules_accept">Akzeptieren</string>
+    <string name="user_registration_rules_cancel">Stornieren</string>
+    <string name="user_registration_activate_code">Code</string>
+    <string name="user_registration_activate_code_resend">Erneut senden</string>
+    <string name="user_registration_activate_code_activate">aktivieren Sie</string>
+    <string name="user_registration_activate_code_wrong">Falscher Code</string>
+    <string name="user_registration_activate_code_success">Erfolg</string>
+    <string name="edit_item_title">Berufsbezeichnung</string>
+    <string name="edit_item_company">Unternehmen</string>
+    <string name="edit_item_gross">Brutto</string>
+    <string name="edit_item_email">Email</string>
+    <string name="edit_item_phone">Telefon</string>
+    <string name="edit_item_detail">Detail Information</string>
+    <string name="edit_item_required_field">Erforderlich!</string>
+    <string name="edit_item_languages_list">Sprachen</string>
+    <string name="edit_item_add_language">Hinzufügen</string>
+    <string name="edit_item_tags_list">Stichworte</string>
+    <string name="edit_item_add_tag">Tag hinzufügen</string>
+    <string name="subsription_limit_10_title">Kleinunternehmen</string>
+    <string name="subsription_limit_10_description">Das Limit liegt bei 10 offenen Stellen.</string>
+    <string name="subsription_limit_50_title">Mittleres Geschäft</string>
+    <string name="subsription_limit_50_description">Das Limit liegt bei 50 offenen Stellen.</string>
+    <string name="subsription_limit_200_title">Großunternehmen</string>
+    <string name="subsription_limit_200_description">Das Limit liegt bei 200 offenen Stellen.</string>
+    <string name="subsription_period_save_6month_at">6 Monate bei</string>
+    <string name="subsription_period_save_12month_at">12 Monate bei</string>
+    <string name="subsription_period_save_month">Monat</string>
+    <string name="subsription_period_save_is">sparen</string>
+    <string name="edit_item_tags_search">Suche</string>
+
 
 
 

@@ -1,6 +1,13 @@
 <resources>
 
 
+    <string name="settings_title_support_email">tl@judebo.com</string>
+    <string name="add_job_link">https://tl.judebo.com/jobs/</string>
+    <string name="user_registration_privacy_url">https://tl.judebo.com/login/privacy.php</string>
+    <string name="user_registration_agreement_url">https://tl.judebo.com/login/agreement.php</string>
+    <string name="user_registration_forgot_pass_url">https://tl.judebo.com/login/agreement.php</string>
+    <string name="facebook_app_id">443190969835868</string>
+
     <string name="settings_title_current_language">Wika</string>
 
     <string name="settings_title_settings">Mga setting</string>
@@ -8,21 +15,87 @@
     <string name="settings_title_currency">Pera</string>
     <string name="settings_title_current_currency">Pera</string>
     <string name="settings_title_support">Suporta</string>
-    <string name="settings_title_support_email">tl@judebo.com</string>
+
     <string name="button_detail_title">detalye</string>
 
     <string name="add_job_title">Maaari kang magdagdag ng mga bakante sa pamamagitan ng isang web browser</string>
-    <string name="add_job_link">https://tl.judebo.com/jobs/</string>
 
 
-    <string name="search_title_search">Paghahanap</string>
-    <string name="button_share">Ibahagi</string>
+
+    <string name="search_title_search">Maghanap</string>
+    <string name="button_share">Magbahagi</string>
+    <string name="error_label">Error</string>
     <string name="error_no_internet">Walang koneksyon sa internet!</string>
     <string name="settings_title_language">Wika</string>
+    <string name="settings_title_subsription">Subsr ngirim</string>
+    <string name="settings_logout">Pag-logout</string>
+    <string name="settings_logout_ok">Sige</string>
+    <string name="settings_logout_cancel">Kanselahin</string>
+    <string name="settings_login">Mag log in</string>
+    <string name="settings_email">email</string>
+    <string name="settings_password">Mga password</string>
+    <string name="settings_delete_account_title">Tanggalin ang account at burahin ang data</string>
+    <string name="settings_delete_account_button">Tanggalin</string>
+    <string name="settings_delete_account_request_title">Kumpirmahin ang tanggalin</string>
+    <string name="settings_delete_account_request_message">Mangyaring kumpirmahing burahin ang iyong data at tanggalin ang iyong account!</string>
+    <string name="settings_delete_account_request_delete">Tanggalin</string>
+    <string name="settings_delete_account_request_cancel">Kanselahin</string>
+    <string name="settings_delete_account_message">Ang iyong data at account ay tinanggal.</string>
+    <string name="action_settings">Action</string>
+    <string name="request_logout_title">Pag-logout</string>
+    <string name="request_logout_message">Sigurado ka ba?</string>
     <string name="request_geolocation_title">Geolocation</string>
     <string name="request_geolocation_message">Mangyaring paganahin ang geolocaltion</string>
-    <string name="request_geolocation_ok">Ok</string>
-    <string name="request_geolocation_cancel">Pagkansela</string>
+    <string name="request_geolocation_ok">Sige</string>
+    <string name="request_geolocation_cancel">Kanselahin</string>
+    <string name="request_image_access_title">Pag-access</string>
+    <string name="request_image_access_message">Kailangan ng access</string>
+    <string name="request_request_delete_title">Tanggalin</string>
+    <string name="request_request_delete_message">Sigurado ka ba?</string>
+    <string name="request_request_delete_ok">Tanggalin</string>
+    <string name="request_request_delete_cancel">Kanselahin</string>
+    <string name="user_jobs_list_delete">Tanggalin</string>
+    <string name="user_jobs_list_copy">Kopya</string>
+    <string name="user_jobs_list_search">Maghanap</string>
+    <string name="user_jobs_list_have_not_subsription">Walang subscription</string>
+    <string name="user_jobs_list_error_please_update">Paki-update!</string>
+    <string name="user_registration_title">Pagpaparehistro</string>
+    <string name="user_registration_confirm_password">Kumpirmahin ang password</string>
+    <string name="user_registration_activate_account">Mangyaring i-aktibo ang iyong account. Ang isang email na may isang activation code ay naipadala sa koreo.</string>
+    <string name="user_registration_required_field">Kailangan!</string>
+    <string name="user_registration_privacy_title">Pagkapribado</string>
+    <string name="user_registration_agreement_title">Kasunduan</string>
+    <string name="user_registration_forgot_pass">Nakalimutan ang password</string>
+    <string name="user_registration_rules_accept">Tanggapin</string>
+    <string name="user_registration_rules_cancel">Kanselahin</string>
+    <string name="user_registration_activate_code">Code</string>
+    <string name="user_registration_activate_code_resend">Ipadala muli</string>
+    <string name="user_registration_activate_code_activate">Buhayin</string>
+    <string name="user_registration_activate_code_wrong">Maling code</string>
+    <string name="user_registration_activate_code_success">Tagumpay</string>
+    <string name="edit_item_title">Titulo sa trabaho</string>
+    <string name="edit_item_company">Kumpanya</string>
+    <string name="edit_item_gross">Gross</string>
+    <string name="edit_item_email">email</string>
+    <string name="edit_item_phone">Telepono</string>
+    <string name="edit_item_detail">Detalyeng impormasyon</string>
+    <string name="edit_item_required_field">Kailangan!</string>
+    <string name="edit_item_languages_list">Mga Wika</string>
+    <string name="edit_item_add_language">Idagdag pa</string>
+    <string name="edit_item_tags_list">Mga tag</string>
+    <string name="edit_item_add_tag">Magdagdag ng tag</string>
+    <string name="subsription_limit_10_title">Maliit na negosyo</string>
+    <string name="subsription_limit_10_description">Ang hangganan ay 10 mga bakante.</string>
+    <string name="subsription_limit_50_title">Katamtamang negosyo</string>
+    <string name="subsription_limit_50_description">Ang hangganan ay 50 mga bakante.</string>
+    <string name="subsription_limit_200_title">Malaking negosyo</string>
+    <string name="subsription_limit_200_description">Ang hangganan ay 200 na bakante.</string>
+    <string name="subsription_period_save_6month_at">6 buwan sa</string>
+    <string name="subsription_period_save_12month_at">12 buwan sa</string>
+    <string name="subsription_period_save_month">buwan</string>
+    <string name="subsription_period_save_is">Magtipid</string>
+    <string name="edit_item_tags_search">Maghanap</string>
+
 
 
 
