@@ -9,20 +9,20 @@
     tools:context=".activities.SubscribesActivity">
 
     <RelativeLayout
-        android:padding="8dp"
-        android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        android:background="@drawable/toolbar_gradient">
+        android:background="@drawable/toolbar_gradient"
+        android:gravity="center_vertical"
+        android:padding="8dp">
 
         <ImageView
-            android:layout_centerVertical="true"
-            android:onClick="closeClick"
-            android:adjustViewBounds="true"
-            android:paddingLeft="5dp"
-            android:scaleType="fitStart"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:adjustViewBounds="true"
+            android:onClick="closeClick"
+            android:paddingLeft="5dp"
+            android:scaleType="fitStart"
             app:srcCompat="@drawable/navigate_arrow_back"
             tools:ignore="VectorDrawableCompat" />
 
@@ -48,5 +48,86 @@
         </LinearLayout>
 
     </RelativeLayout>
+
+    <RelativeLayout
+        android:background="#ECE3E3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.rbrooks.indefinitepagerindicator.IndefinitePagerIndicator
+            android:id="@+id/indicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dp"
+            app:dotRadius="4dp"
+            app:selectedDotRadius="4dp"
+            app:dotColor="@android:color/darker_gray"
+            app:selectedDotColor="@android:color/secondary_text_light" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:padding="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="#ECE3E3"
+        android:orientation="vertical">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/month_subs_b"
+            app:cornerRadius="10dp"
+            android:textSize="18sp"
+            android:backgroundTint="@android:color/secondary_text_light"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="$4.99 / Month" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/month6_subs_b"
+            android:layout_marginTop="8dp"
+            android:textSize="18sp"
+            app:cornerRadius="10dp"
+            android:backgroundTint="@android:color/secondary_text_light"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="$23.99 / 6 Months" />
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/discount_6month_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/year_subs_b"
+            android:layout_marginTop="8dp"
+            android:textSize="18sp"
+            app:cornerRadius="10dp"
+            android:backgroundTint="@android:color/secondary_text_light"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="$29.99 / Year" />
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/discount_year_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+    </LinearLayout>
 
 </LinearLayout>
