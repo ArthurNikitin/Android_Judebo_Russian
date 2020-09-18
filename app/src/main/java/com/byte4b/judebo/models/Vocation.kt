@@ -65,16 +65,6 @@ data class Vocation(
         return result
     }
 
-    //fun createNew() {
-    //    appid
-    //    map
-    //    lang,
-    //    skill
-    //    modifi,
-    //    disable,
-
-    //}
-
 }
 
 open class VocationRealm : RealmObject() {

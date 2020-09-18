@@ -371,4 +371,19 @@ class ApiServiceImpl(val listener: ServiceListener?) : ApiService {
             })
     }
 
+    override fun checkMySub(locale: String, token: String, login: String) {
+        getAPI(locale)
+            .getMySub(secretKey, token, login)
+            .enqueue(object : Callback<SubAnswer> {
+                override fun onResponse(call: Call<SubAnswer>, response: Response<SubAnswer>) {
+                    check { listener?.onMySubLoaded(response.body()) }
+                }
+
+                override fun onFailure(call: Call<SubAnswer>, t: Throwable) {
+                    check { listener?.onMySubLoaded(null) }
+                }
+
+            })
+    }
+
 }

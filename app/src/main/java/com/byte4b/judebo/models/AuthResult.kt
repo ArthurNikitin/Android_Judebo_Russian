@@ -4,6 +4,7 @@ data class AuthResult(
     val data: String,
     val message: String,
     val status: String,
+    val token: String?,
     val SUBSCRIPTION_ID: String?,
     val SUBSCRIPTION_LIMIT: Int?,
     val SUBSCRIPTION_END: Long?,

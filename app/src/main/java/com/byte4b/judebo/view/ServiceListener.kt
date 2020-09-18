@@ -30,4 +30,6 @@ interface ServiceListener {
 
     fun onSubsInstalled(result: AuthResult?) {}
 
+    fun onMySubLoaded(result: SubAnswer?) {}
+
 }

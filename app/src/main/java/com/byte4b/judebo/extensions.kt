@@ -10,7 +10,6 @@ import android.location.LocationManager
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
-import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.graphics.drawable.toDrawable
@@ -21,13 +20,6 @@ import com.byte4b.judebo.models.languages
 import com.byte4b.judebo.utils.Setting
 import java.util.*
 import kotlin.math.roundToInt
-
-
-fun Context.toast(text: String, duration: Int = Toast.LENGTH_SHORT) =
-    Toast.makeText(this, text, duration).show()
-
-fun Context.toast(message: Int, duration: Int = Toast.LENGTH_SHORT) =
-    Toast.makeText(this, message, duration).show()
 
 inline fun <reified A : Activity> Context.startActivity(configIntent: Intent.() -> Unit = {}) {
     startActivity(Intent(this, A::class.java).apply(configIntent))

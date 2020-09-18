@@ -6,10 +6,10 @@ import io.realm.kotlin.where
 
 object RealmDb {
 
-    fun getAllVocations(realm: Realm) =
-        realm.where<VocationRealm>().findAll()
-
     fun getVocationsCount(realm: Realm) =
-        realm.where<VocationRealm>().findAll().filterNot { it.isHided }.filter { it.UF_APP_JOB_ID != null }.count()
+        realm.where<VocationRealm>().findAll()
+            .filterNot { it.isHided }
+            .filter { it.UF_APP_JOB_ID != null }
+            .count()
 
 }

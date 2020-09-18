@@ -116,4 +116,10 @@ interface API {
                   @Query("storetoken") storeToken: String):
             Call<AuthResult>
 
+    @GET("app_user_have_subs.php")
+    fun getMySub(@Query("key") secretKey: String,
+                 @Query("tok") token: String,
+                 @Query("login") login: String):
+            Call<SubAnswer>
+
 }

@@ -7,7 +7,6 @@ class AbstractMarker(
     var latitude: Double = 0.0,
     var longitude: Double = 0.0,
     val marker: MyMarker
-    //val id: Int
 ) : ClusterItem {
 
     override fun getSnippet(): String? = null

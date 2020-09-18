@@ -32,6 +32,7 @@ import com.google.android.flexbox.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.gson.Gson
 import com.theartofdev.edmodo.cropper.CropImage
+import es.dmoral.toasty.Toasty
 import io.realm.Realm
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.activity_vocation_edit.*
@@ -599,15 +600,13 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
     }
 
     override fun onVocationAdded(success: Boolean) {
-        Log.e("test", "added")
         try { refresher.isRefreshing = false } catch (e: Exception) { e.toLog() }
     }
 
     override fun onMyVocationUpdated(success: Boolean) {
-        Log.e("test", "updated")
         try { refresher.isRefreshing = false } catch (e: Exception) { e.toLog() }
         if (!success)
-            toast(R.string.error_no_internet)
+            Toasty.error(this, R.string.error_no_internet).show()
     }
 
     private fun Exception.toLog(tag: String = "test") {
