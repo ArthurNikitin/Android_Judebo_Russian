@@ -494,20 +494,24 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
     }
 
     private fun showSystemIcons() {
-        val phone = resources.getDrawable(R.drawable.edit_page_phone)
-            .toBitmap(Setting.CURRENCY_ICON_SIZE * 2, Setting.CURRENCY_ICON_SIZE * 2)
-            .toDrawable(resources)
+        try {
+            val phone = resources.getDrawable(R.drawable.edit_page_phone)
+                .toBitmap(Setting.CURRENCY_ICON_SIZE * 2, Setting.CURRENCY_ICON_SIZE * 2)
+                .toDrawable(resources)
 
-        val email = resources.getDrawable(R.drawable.edit_page_mail)
-            .toBitmap(Setting.CURRENCY_ICON_SIZE * 2, Setting.CURRENCY_ICON_SIZE * 2)
-            .toDrawable(resources)
+            val email = resources.getDrawable(R.drawable.edit_page_mail)
+                .toBitmap(Setting.CURRENCY_ICON_SIZE * 2, Setting.CURRENCY_ICON_SIZE * 2)
+                .toDrawable(resources)
 
-        if (!isRtl(this)) {
-            phone_field.startIconDrawable = phone
-            email_field.startIconDrawable = email
-        } else {
-            phone_field.endIconDrawable = phone
-            email_field.endIconDrawable = email
+            if (!isRtl(this)) {
+                phone_field.startIconDrawable = phone
+                email_field.startIconDrawable = email
+            } else {
+                phone_field.endIconDrawable = phone
+                email_field.endIconDrawable = email
+            }
+        } catch (e: Exception) {
+            Log.e("test", e.localizedMessage ?: "showSystemIcons error")
         }
     }
 
