@@ -1,5 +1,5 @@
 <resources>
-
+    <string name="name_app" translatable="false">Judebo</string>
 
     <string name="settings_title_support_email">en@judebo.com</string>
     <string name="add_job_link">https://en.judebo.com/jobs/</string>
