@@ -14,23 +14,24 @@
 
     <LinearLayout
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical">
 
-        <com.byte4b.judebo.ui.StrokeTextView
+        <TextView
             android:id="@+id/title_tv"
-            android:textSize="26sp"
+            android:textSize="24sp"
             android:gravity="center"
-            android:textStyle="bold"
+            android:textColor="#000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="title" />
 
-        <com.byte4b.judebo.ui.StrokeTextView
-            android:textSize="20sp"
+        <TextView
+            android:textSize="18sp"
+            android:textColor="#000"
             android:gravity="center"
             android:id="@+id/description_tv"
             android:layout_width="match_parent"
