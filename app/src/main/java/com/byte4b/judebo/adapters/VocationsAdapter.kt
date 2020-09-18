@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Handler
 import android.util.Base64.decode
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -231,7 +232,7 @@ class VocationsAdapter(
         try {
             Realm.getDefaultInstance().executeTransaction {
                 val vocationRealm = it.where<VocationRealm>()
-                    .equalTo("UF_APP_JOB_ID", vocation.UF_APP_JOB_ID)
+                    .equalTo("UF_APP_JOB_ID", vocation.UF_APP_JOB_ID?.toLong())
                     .findFirst()
                     ?: return@executeTransaction
                 val newVocation = vocationRealm.toBasicVersion().toRealmVersion()
@@ -258,7 +259,9 @@ class VocationsAdapter(
                     putExtra("jobId", newVocation.UF_JOBS_ID)
                 }
             }
-        } catch (e: Exception) {}
+        } catch (e: Exception) {
+            Log.e("test", e.localizedMessage ?: "copy error")
+        }
     }
 
     override fun onVocationAdded(success: Boolean) = parent.onRefresh()
