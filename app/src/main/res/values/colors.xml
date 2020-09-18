@@ -18,5 +18,6 @@
     <color name="settings_backgroud_active_line">#7fdda3</color>
     <color name="white">#fff</color>
     <color name="jobs_list_not_active_background">#ffcdcd</color>
+    <color name="grey">@android:color/secondary_text_dark</color>
 
 </resources>

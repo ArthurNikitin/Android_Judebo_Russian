@@ -94,7 +94,7 @@ class Setting(ctx: Context) {
     }
 
     companion object {
-        const val LIMIT_VACANCIES_WITHOUT_SUBSCRIPTION = 15
+        const val LIMIT_VACANCIES_WITHOUT_SUBSCRIPTION = 1
 
         const val BASIC_ZOOM = 11.0f
         const val MIN_ZOOM = 2.0f
@@ -120,7 +120,7 @@ class Setting(ctx: Context) {
         const val PERIOD_UPDATE_DYNAMIC_DATA_FROM_SERVER_IN_MINUTE = 60 * 24
 
         // how offen update job list from server in TAB vacancies
-        const val PERIOD_UPDATE_JOB_LIST_FOR_USER_IN_SECONDS = 1 * 15 * 1000L
+        const val PERIOD_UPDATE_JOB_LIST_FOR_USER_IN_SECONDS = 1 * 15
 
         //Timeout of json request in Seconds
         const val JSON_REQUEST_TIMEOUT_IN_SECONDS = 15L

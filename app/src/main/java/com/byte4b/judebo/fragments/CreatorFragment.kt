@@ -10,7 +10,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -50,6 +49,28 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
             requireContext().startActivity<SubscribesActivity>()
         }
 
+        logout2_ll.setOnClickListener {
+            AlertDialog.Builder(requireContext())
+                .setTitle(R.string.request_logout_title)
+                .setMessage(R.string.request_logout_message)
+                .setPositiveButton(R.string.settings_logout_ok) { dialog, _ ->
+                    setting.logout()
+                    dialog.dismiss()
+                    realm.executeTransaction {
+                        try {
+                            it.delete<VocationRealm>()
+                        } catch (e: Exception) {
+                        }
+                        try {
+                            it.createObject<VocationRealm>()
+                        } catch (e: Exception) {
+                        }
+                    }
+                    (requireActivity() as MainActivity).restartFragment(LoginFragment())
+                }
+                .setNegativeButton(R.string.settings_logout_cancel) { d, _ -> d.cancel() }
+                .show()
+        }
         logout_ll.setOnClickListener {
             AlertDialog.Builder(requireContext())
                 .setTitle(R.string.request_logout_title)
@@ -416,8 +437,6 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
         } catch (e: Exception) {}
 
         vocations_rv.layoutManager = LinearLayoutManager(requireContext())
-        vocations_rv
-            .addItemDecoration(DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL))
         vocations_rv.adapter = VocationsAdapter(
             requireContext(),
             (list ?: listOf()).filterNot { it.isHided }.filter { it.UF_APP_JOB_ID != null },

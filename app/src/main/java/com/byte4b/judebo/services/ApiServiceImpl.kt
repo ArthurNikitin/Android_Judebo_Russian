@@ -135,7 +135,8 @@ class ApiServiceImpl(val listener: ServiceListener?) : ApiService {
                             listener?.onMyVocationsLoaded(
                                 workList,
                                 serviceList.isNotEmpty()
-                                        && serviceList[0].DETAIL_TEXT == "wrong token"
+                                        && (serviceList[0].DETAIL_TEXT == "wrong token"
+                                        || serviceList[0].DETAIL_TEXT == "user not found")
                             )
                         } else {
                             Log.e("test","onResp tt")

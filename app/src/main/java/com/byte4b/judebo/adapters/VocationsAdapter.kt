@@ -178,6 +178,7 @@ class VocationsAdapter(
 
                 holder.editDateView.text = format.format(editDate) + " - "
                 holder.disableLabel.text = format.format(disableDate)
+                holder.company.text = COMPANY
 
                 if ((UF_ACTIVE != 1.toByte()) || ((UF_DISABLE?:0) < Calendar.getInstance().timestamp)) {
                     holder.isNotActiveView.visibility = View.VISIBLE
@@ -198,22 +199,22 @@ class VocationsAdapter(
                     holder.errorView.visibility = View.VISIBLE
 
                 } else {
-                    holder.isNotActiveView.visibility = View.GONE
+                    holder.isNotActiveView.visibility = View.INVISIBLE
 
                     if ((UF_DISABLE?:0) < Calendar.getInstance().timestamp) {
                         holder.editDateView
-                            .setTextColor(ctx.resources.getColor(android.R.color.background_dark))
+                            .setTextColor(ctx.resources.getColor(R.color.grey))
                         holder.editDateView.setTypeface(null, Typeface.NORMAL)
 
                         holder.disableLabel
-                            .setTextColor(ctx.resources.getColor(android.R.color.background_dark))
+                            .setTextColor(ctx.resources.getColor(R.color.grey))
                         holder.disableLabel.setTypeface(null, Typeface.NORMAL)
                     }
 
                     holder.rightCorners.setImageResource(R.drawable.corners_right)
                     holder.leftCorners.setImageResource(R.drawable.corners_left)
                     holder.main.setBackgroundResource(R.color.white)
-                    holder.errorView.visibility = View.GONE
+                    holder.errorView.visibility = View.INVISIBLE
                 }
 
                 val currency = currencies.firstOrNull { it.id == UF_GROSS_CURRENCY_ID }
@@ -338,7 +339,7 @@ class VocationsAdapter(
         val copy2 = view.copy2!!
         val del1 = view.delete1!!
         val del2 = view.delete2!!
-
+        val company = view.company_tv!!
         //for limit icon
         val copyLeft = view.copy12!!
         val copyRight = view.copy22!!
