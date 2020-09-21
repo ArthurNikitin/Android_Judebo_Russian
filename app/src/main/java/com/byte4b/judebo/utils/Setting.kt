@@ -4,11 +4,9 @@ import android.content.Context
 import android.os.Build
 import androidx.core.content.edit
 import com.byte4b.judebo.getLangFromLocale
-import com.byte4b.judebo.models.Currency
-import com.byte4b.judebo.models.Language
-import com.byte4b.judebo.models.currencies
-import com.byte4b.judebo.models.languages
+import com.byte4b.judebo.models.*
 import com.google.android.gms.maps.model.LatLng
+import com.google.gson.Gson
 
 class Setting(ctx: Context) {
 
@@ -76,7 +74,9 @@ class Setting(ctx: Context) {
             }
         }
 
-    var maxVocations = 10
+    var maxVocations
+        get() = pref.getInt("limit", LIMIT_VACANCIES_WITHOUT_SUBSCRIPTION)
+        set(value) = pref.edit { putInt("limit", value) }
 
     fun getCurrentLanguage(): Language {
         return if (language == "") getLangFromLocale()
@@ -92,6 +92,13 @@ class Setting(ctx: Context) {
         } else
             currencies.firstOrNull { it.name == currency } ?: currencies.first()
     }
+
+    var subscribeInfo
+        get() = Gson().fromJson(pref.getString("sub", "{}"), SubAnswer::class.java)
+        set(value) {
+            pref.edit { putString("sub", Gson().toJson(value)) }
+            maxVocations = value.SUBSCRIPTION_LIMIT ?: LIMIT_VACANCIES_WITHOUT_SUBSCRIPTION
+        }
 
     companion object {
         const val LIMIT_VACANCIES_WITHOUT_SUBSCRIPTION = 1

@@ -9,16 +9,24 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
+import com.android.billingclient.api.BillingClient
+import com.android.billingclient.api.BillingClientStateListener
+import com.android.billingclient.api.BillingResult
+import com.android.billingclient.api.PurchasesUpdatedListener
 import com.byte4b.judebo.R
 import com.byte4b.judebo.fragments.*
 import com.byte4b.judebo.isRtl
+import com.byte4b.judebo.models.SubAnswer
+import com.byte4b.judebo.services.ApiServiceImpl
 import com.byte4b.judebo.utils.Setting
 import com.byte4b.judebo.utils.signers.GoogleAuth
+import com.byte4b.judebo.view.ServiceListener
 import com.github.florent37.runtimepermission.kotlin.askPermission
 import com.google.android.gms.auth.api.signin.GoogleSignIn
+import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ServiceListener {
 
     private val setting by lazy { Setting(this) }
 
@@ -108,6 +116,54 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+        billingClient.startConnection(object : BillingClientStateListener {
+            override fun onBillingSetupFinished(billingResult: BillingResult) {}
+            override fun onBillingServiceDisconnected() {}
+        })
+        ApiServiceImpl(this).checkMySub(
+            setting.getCurrentLanguage().locale,
+            setting.token ?: "",
+            setting.email ?: ""
+        )
+    }
+
+    private val billingClient by lazy {
+        BillingClient.newBuilder(this)
+            .setListener(purchaseUpdateListener)
+            .enablePendingPurchases()
+            .build()
+    }
+
+    private val purchaseUpdateListener by lazy {
+        PurchasesUpdatedListener { _, _ -> }
+    }
+
+    private fun queryPurchases() =
+        billingClient.queryPurchases(BillingClient.SkuType.SUBS).purchasesList
+
+    override fun onMySubLoaded(result: SubAnswer?) {
+        if (result?.STATUS == "success") {
+            if (result.SUBSCRIPTION_STORE_ID?.startsWith("playmarket") == true) {
+                val mySub = queryPurchases()?.firstOrNull {
+                    it.sku == result.SUBSCRIPTION_STORE_ID && it.purchaseToken == result.SUBSCRIPTION_BILL_TOKEN
+                }
+                if (mySub != null) {
+                    setting.subscribeInfo = result
+                } else {
+                    ApiServiceImpl(this).setSubs(
+                        setting.getCurrentLanguage().locale,
+                        setting.token ?: "",
+                        setting.email ?: "",
+                        null, null, null
+                    )
+                }
+            } else {
+                setting.subscribeInfo = result
+            }
+        } else if (result != null) {
+            Toasty.error(this, result.MESSAGE).show()
+        } else
+            Toasty.error(this, R.string.error_no_internet).show()
     }
 
     override fun onDestroy() {

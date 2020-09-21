@@ -111,9 +111,9 @@ interface API {
     fun setMySubs(@Query("key") secretKey: String,
                   @Query("tok") token: String,
                   @Query("login") login: String,
-                  @Query("subsid") subsId: String,
-                  @Query("subsend") subsEnd: String,
-                  @Query("storetoken") storeToken: String):
+                  @Query("subsid") subsId: String?,
+                  @Query("subsend") subsEnd: String?,
+                  @Query("storetoken") storeToken: String?):
             Call<AuthResult>
 
     @GET("app_user_have_subs.php")

@@ -10,10 +10,16 @@ import com.android.billingclient.api.*
 import com.byte4b.judebo.R
 import com.byte4b.judebo.adapters.SubscribesViewPagerAdapter
 import com.byte4b.judebo.fragments.SubscribeFragment
+import com.byte4b.judebo.models.SubAnswer
+import com.byte4b.judebo.services.ApiServiceImpl
+import com.byte4b.judebo.utils.Setting
+import com.byte4b.judebo.view.ServiceListener
+import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.activity_subscribes.*
 import java.util.*
 
-class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes) {
+
+class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes), ServiceListener {
 
     private val subs10PeriodVariantsIds = listOf(
         "playmarket_month_limit_00010",
@@ -32,12 +38,13 @@ class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes) {
     )
 
     var subs: MutableList<SkuDetails>? = null
+    private val setting by lazy { Setting(this) }
 
     private fun SubsTry(action: () -> Unit) {
         try {
             action()
         } catch (e: Exception) {
-            Log.e("testsubs", e.localizedMessage?: "subs unknow error")
+            Log.e("testsubs", e.localizedMessage ?: "subs unknow error")
         }
     }
 
@@ -49,33 +56,45 @@ class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes) {
     }
 
     private val purchaseUpdateListener by lazy {
-        PurchasesUpdatedListener { billingResult, purchases ->
+        PurchasesUpdatedListener { _, purchases ->
             purchases?.forEach {
-                /*val purchase = Gson().fromJson(Gson().toJson(it), PurchaseMy::class.java)
-                if (purchase.zzc.nameValuePairs.productId == "subscribe_disable_ads1") {
-                }*/
+                    if (it != null) {
+                        setting.subscribeInfo = SubAnswer(
+                            MESSAGE = "SUCCESS",
+                            STATUS = "SUCCESS",
+                            SUBSCRIPTION_BILL_TOKEN = it.purchaseToken,
+                            SUBSCRIPTION_END = it.purchaseTime + when {
+                                it.sku.contains("year") -> 12 * 30 * 24 * 60 * 60 * 1000L
+                                it.sku.contains("half") -> 6 * 30 * 24 * 60 * 60 * 1000L
+                                else -> 30 * 24 * 60 * 60 * 1000L
+                            },
+                            SUBSCRIPTION_STORE_ID = it.sku,
+                            SUBSCRIPTION_LIMIT = it.sku.substringAfter("0").toIntOrNull(),
+                            SUBSCRIPTION_NAME = ""
+                        )
+                    } else {
+                        ApiServiceImpl(this).setSubs(
+                            setting.getCurrentLanguage().locale,
+                            setting.token ?: "",
+                            setting.email ?: "",
+                            null, null, it?.purchaseToken
+                        )
+                    }
             }
         }
-    }
-
-    private fun queryPurchases(): List<Purchase>? {
-        val purchasesResult =
-            billingClient.queryPurchases(BillingClient.SkuType.SUBS)
-        return purchasesResult.purchasesList
     }
 
     fun closeClick(v: View) = finish()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         supportActionBar?.hide()
 
         billingClient.startConnection(object : BillingClientStateListener {
 
             override fun onBillingSetupFinished(billingResult: BillingResult) {
                 Log.e("test", "onBillingSetupFinished: ${billingResult.responseCode}")
-                if (billingResult.responseCode ==  BillingClient.BillingResponseCode.OK) {
+                if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
                     val skuDetailsParamsBuilder = SkuDetailsParams.newBuilder()
                     val skuList =
                         subs10PeriodVariantsIds + subs50PeriodVariantsIds + subs200PeriodVariantsIds
@@ -86,32 +105,23 @@ class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes) {
                         .querySkuDetailsAsync(skuDetailsParamsBuilder.build()) { result, params ->
                             if (result.responseCode == 0) {
                                 subs = params
-
                                 fillPriceForSubs(0)
-                                //params?.forEach {
-                                    /*val billingFlowParams = BillingFlowParams.newBuilder()
-                                        .setSkuDetails(it)
-                                        .build()
-                                    billingClient.launchBillingFlow(this@SubscribesActivity,
-                                        billingFlowParams)*/
-                                //}
                             }
                         }
                 }
             }
+
             override fun onBillingServiceDisconnected() {}
         })
 
-        //get my sub
-        //load subs from store
-        //check valid token if sub from playstore
-        //  if error - send to server + show free sub
-        //load subs prices + hint for 6 and 12 months
-        //setOnClickListeners for buttons
-        //(if > subs - delete old sub and add new)
-        //else add new
+        ApiServiceImpl(this).checkMySub(
+            setting.getCurrentLanguage().locale,
+            setting.token ?: "",
+            setting.email ?: ""
+        )
 
-        val viewPagerPendingAdapter = SubscribesViewPagerAdapter(supportFragmentManager, listOf(
+        val viewPagerPendingAdapter = SubscribesViewPagerAdapter(
+            supportFragmentManager, listOf(
                 SubscribeFragment(
                     R.drawable.subscription_picture_010,
                     R.string.subsription_limit_10_title,
@@ -130,7 +140,8 @@ class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes) {
                     R.string.subsription_limit_200_description,
                     subs200PeriodVariantsIds
                 )
-        ))
+            )
+        )
         viewpager.adapter = viewPagerPendingAdapter
         indicator.attachToViewPager(viewpager)
         viewpager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
@@ -138,11 +149,42 @@ class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes) {
                 position: Int,
                 positionOffset: Float,
                 positionOffsetPixels: Int
-            ) {}
+            ) {
+            }
 
             override fun onPageSelected(position: Int) = fillPriceForSubs(position)
             override fun onPageScrollStateChanged(state: Int) {}
         })
+    }
+
+    private fun queryPurchases() =
+        billingClient.queryPurchases(BillingClient.SkuType.SUBS).purchasesList
+
+    override fun onMySubLoaded(result: SubAnswer?) {
+        if (result?.STATUS == "success") {
+            if (result.SUBSCRIPTION_STORE_ID?.startsWith("playmarket") == true) {
+                val mySub = queryPurchases()?.firstOrNull {
+                    it.sku == result.SUBSCRIPTION_STORE_ID && it.purchaseToken == result.SUBSCRIPTION_BILL_TOKEN
+                }
+                if (mySub != null) {
+                    setting.subscribeInfo = result
+                } else {
+                    ApiServiceImpl(this).setSubs(
+                        setting.getCurrentLanguage().locale,
+                        setting.token ?: "",
+                        setting.email ?: "",
+                        null, null, null
+                    )
+                }
+            } else {
+                setting.subscribeInfo = result
+            }
+
+            //add it to main activity for each onCreate
+        } else if (result != null) {
+            Toasty.error(this, result.MESSAGE).show()
+        } else
+            Toasty.error(this, R.string.error_no_internet).show()
     }
 
     @SuppressLint("SetTextI18n")
@@ -188,6 +230,51 @@ class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes) {
 
     private fun Double.rounded(): Double {
         return (this * 100).toInt().toDouble() / 100
+    }
+
+    fun monthClick(v: View) {
+        SubsTry {
+            val currentFragment =
+                (viewpager.adapter as SubscribesViewPagerAdapter).fragments[viewpager.currentItem]
+                    as SubscribeFragment
+            val billingFlowParams = BillingFlowParams.newBuilder()
+                .setSkuDetails(subs!!.first { it.sku == currentFragment.mySubs[0] })
+                .build()
+            billingClient.launchBillingFlow(
+                this@SubscribesActivity,
+                billingFlowParams
+            )
+        }
+    }
+
+    fun halfYearClick(v: View) {
+        SubsTry {
+            val currentFragment =
+                (viewpager.adapter as SubscribesViewPagerAdapter).fragments[viewpager.currentItem]
+                        as SubscribeFragment
+            val billingFlowParams = BillingFlowParams.newBuilder()
+                .setSkuDetails(subs!!.first { it.sku == currentFragment.mySubs[1] })
+                .build()
+            billingClient.launchBillingFlow(
+                this@SubscribesActivity,
+                billingFlowParams
+            )
+        }
+    }
+
+    fun yearClick(v: View) {
+        SubsTry {
+            val currentFragment =
+                (viewpager.adapter as SubscribesViewPagerAdapter).fragments[viewpager.currentItem]
+                        as SubscribeFragment
+            val billingFlowParams = BillingFlowParams.newBuilder()
+                .setSkuDetails(subs!!.first { it.sku == currentFragment.mySubs[2] })
+                .build()
+            billingClient.launchBillingFlow(
+                this@SubscribesActivity,
+                billingFlowParams
+            )
+        }
     }
 
 }

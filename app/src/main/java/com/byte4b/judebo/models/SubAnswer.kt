@@ -5,7 +5,7 @@ data class SubAnswer(
     val STATUS: String,
     val SUBSCRIPTION_BILL_TOKEN: String?,
     val SUBSCRIPTION_END: Long?,
-    val SUBSCRIPTION_ID: String?,
+    val SUBSCRIPTION_STORE_ID: String?,
     val SUBSCRIPTION_LIMIT: Int?,
     val SUBSCRIPTION_NAME: String?
 )

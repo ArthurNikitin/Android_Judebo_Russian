@@ -44,7 +44,7 @@ interface ApiService {
     fun createSkill(locale: String, name: String, token: String, login: String)
 
     fun setSubs(locale: String, token: String, login: String,
-                subsId: String, subsEnd: String, storeToken: String)
+                subsId: String?, subsEnd: String?, storeToken: String?)
 
     fun checkMySub(locale: String, token: String, login: String)
 
