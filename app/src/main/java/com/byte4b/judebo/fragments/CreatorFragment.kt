@@ -157,9 +157,9 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
     @SuppressLint("SetTextI18n")
     private fun showVocationsCount(): Boolean {
         val vocationsCount = RealmDb.getVocationsCount(realm)
-        subscribe_limit.text = "Free: $vocationsCount/${setting.maxVocations}"
+        subscribe_limit.text = "${setting.subscribeInfo?.SUBSCRIPTION_NAME ?: "Free"}: $vocationsCount/${setting.maxVocations}"
 
-        return if (vocationsCount == setting.maxVocations) {
+        return if (vocationsCount >= setting.maxVocations) {
             subscribe_limit.setTextColor(resources.getColor(android.R.color.holo_red_dark))
             subscribe_limit.setTypeface(subscribe_limit.typeface, Typeface.BOLD)
             createNew.setImageResource(R.drawable.button_plus_vacancy_deny)
@@ -422,16 +422,6 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
     }
 
     private fun setList(list: List<Vocation>?) {
-        //Log.e("check", "for show")
-        //list?.forEach {
-        //    Log.e("check", "${it.UF_JOBS_ID}: ${Gson().toJson(it)}")
-        //}
-
-        //Log.e("check", "in realm")
-        //realm.where<VocationRealm>().findAll().map { it.toBasicVersion() }.forEach {
-        //    Log.e("check", "${it.UF_JOBS_ID}: ${Gson().toJson(it)}")
-        //}
-
         try {
             refresher.isRefreshing = false
         } catch (e: Exception) {}

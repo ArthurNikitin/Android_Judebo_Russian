@@ -154,8 +154,9 @@ class MainActivity : AppCompatActivity(), ServiceListener {
                         setting.getCurrentLanguage().locale,
                         setting.token ?: "",
                         setting.email ?: "",
-                        null, null, null
+                        "0", "0", "0"
                     )
+                    setting.subscribeInfo = null
                 }
             } else {
                 setting.subscribeInfo = result

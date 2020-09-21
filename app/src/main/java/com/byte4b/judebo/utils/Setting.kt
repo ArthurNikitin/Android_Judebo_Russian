@@ -93,11 +93,11 @@ class Setting(ctx: Context) {
             currencies.firstOrNull { it.name == currency } ?: currencies.first()
     }
 
-    var subscribeInfo
-        get() = Gson().fromJson(pref.getString("sub", "{}"), SubAnswer::class.java)
+    var subscribeInfo: SubAnswer?
+        get() = Gson().fromJson(pref.getString("sub", null), SubAnswer::class.java)
         set(value) {
             pref.edit { putString("sub", Gson().toJson(value)) }
-            maxVocations = value.SUBSCRIPTION_LIMIT ?: LIMIT_VACANCIES_WITHOUT_SUBSCRIPTION
+            maxVocations = value?.SUBSCRIPTION_LIMIT ?: LIMIT_VACANCIES_WITHOUT_SUBSCRIPTION
         }
 
     companion object {
