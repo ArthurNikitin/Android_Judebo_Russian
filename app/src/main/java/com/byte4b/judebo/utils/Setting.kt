@@ -100,6 +100,10 @@ class Setting(ctx: Context) {
             maxVocations = value?.SUBSCRIPTION_LIMIT ?: LIMIT_VACANCIES_WITHOUT_SUBSCRIPTION
         }
 
+    var toLogin
+        get() = pref.getBoolean("to_login", false)
+        set(value) = pref.edit { putBoolean("to_login", value) }
+
     companion object {
         const val LIMIT_VACANCIES_WITHOUT_SUBSCRIPTION = 1
 

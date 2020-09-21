@@ -9,16 +9,14 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import com.android.billingclient.api.BillingClient
 import com.byte4b.judebo.R
 import com.byte4b.judebo.activities.MainActivity
 import com.byte4b.judebo.activities.SelectAppCurrency
 import com.byte4b.judebo.activities.SelectAppLanguage
 import com.byte4b.judebo.activities.SubscribesActivity
 import com.byte4b.judebo.getLangFromLocale
-import com.byte4b.judebo.models.Result
-import com.byte4b.judebo.models.VocationRealm
-import com.byte4b.judebo.models.currencies
-import com.byte4b.judebo.models.languages
+import com.byte4b.judebo.models.*
 import com.byte4b.judebo.services.ApiServiceImpl
 import com.byte4b.judebo.startActivity
 import com.byte4b.judebo.timestamp
@@ -43,7 +41,14 @@ class SettingFragment : Fragment(R.layout.fragment_setting), ServiceListener {
 
     private val parent by lazy { requireActivity() as MainActivity }
     private val setting by lazy { Setting(requireActivity()) }
-    private val realm by lazy { Realm.getDefaultInstance() }
+    private val realm by lazy {
+        try {
+            Realm.getDefaultInstance()
+        } catch (e: Exception) {
+            Realm.init(requireContext())
+            Realm.getDefaultInstance()
+        }
+    }
 
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -57,6 +62,12 @@ class SettingFragment : Fragment(R.layout.fragment_setting), ServiceListener {
                 langIcon_iv.setImageResource(lang.flag)
         } catch (e: Exception) {
             Log.e("test", "1: " + e.localizedMessage)
+        }
+
+        try {
+            RealmDb.getVocationsCount(realm)
+        } catch (e: Exception) {
+            Realm.init(requireContext())
         }
 
         subscribe_tv.text = "Free: ${setting.maxVocations}"
@@ -152,6 +163,51 @@ class SettingFragment : Fragment(R.layout.fragment_setting), ServiceListener {
             startActivity(emailIntent)
         }
         subsClickable.setOnClickListener { requireContext().startActivity<SubscribesActivity>() }
+
+        if (setting.toLogin) {
+            ApiServiceImpl(this).checkMySub(
+                setting.getCurrentLanguage().locale,
+                setting.token ?: "",
+                setting.email ?: ""
+            )
+            setting.toLogin = false
+        }
+    }
+
+    private val billingClient by lazy {
+        BillingClient.newBuilder(requireContext())
+            .setListener { _, _ -> }
+            .enablePendingPurchases()
+            .build()
+    }
+
+    private fun queryPurchases() =
+        billingClient.queryPurchases(BillingClient.SkuType.SUBS).purchasesList
+
+    override fun onMySubLoaded(result: SubAnswer?) {
+        if (result?.STATUS == "success") {
+            if (result.SUBSCRIPTION_STORE_ID?.startsWith("playmarket") == true) {
+                val mySub = queryPurchases()?.firstOrNull {
+                    it.sku == result.SUBSCRIPTION_STORE_ID && it.purchaseToken == result.SUBSCRIPTION_BILL_TOKEN
+                }
+                if (mySub != null) {
+                    setting.subscribeInfo = result
+                    Toasty.success(requireActivity(), R.string.subsription_restore_subs_success).show()
+                } else {
+                    ApiServiceImpl(this).setSubs(
+                        setting.getCurrentLanguage().locale,
+                        setting.token ?: "",
+                        setting.email ?: "",
+                        "0", "0", "0"
+                    )
+                    setting.subscribeInfo = null
+                    Toasty.error(requireContext(), R.string.subsription_restore_subs_error).show()
+                }
+            } else {
+                Toasty.success(requireActivity(), R.string.subsription_restore_subs_success).show()
+            }
+        } else
+            Toasty.error(requireContext(), R.string.subsription_restore_subs_error).show()
     }
 
     override fun onMyVocationUpdated(success: Boolean) {

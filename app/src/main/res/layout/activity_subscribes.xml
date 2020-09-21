@@ -50,10 +50,10 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:background="#ECE3E3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_weight="100"
+        android:background="#ECE3E3">
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewpager"
@@ -67,75 +67,85 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="5dp"
-            app:dotRadius="4dp"
-            app:selectedDotRadius="4dp"
             app:dotColor="@android:color/darker_gray"
-            app:selectedDotColor="@android:color/secondary_text_light" />
+            app:dotRadius="4dp"
+            app:selectedDotColor="@android:color/secondary_text_light"
+            app:selectedDotRadius="4dp" />
 
     </RelativeLayout>
 
     <ScrollView
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    <LinearLayout
-        android:padding="25dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#ECE3E3"
-        android:orientation="vertical">
+        android:layout_weight="60">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/month_subs_b"
-            app:cornerRadius="10dp"
-            android:textSize="18sp"
-            android:onClick="monthClick"
-            android:backgroundTint="@android:color/secondary_text_light"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:text="$0.00 / Month" />
+            android:layout_height="match_parent"
+            android:background="#ECE3E3"
+            android:orientation="vertical"
+            android:padding="25dp">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/month_subs_b"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:backgroundTint="@android:color/secondary_text_light"
+                android:onClick="monthClick"
+                android:text="$0.00 / Month"
+                android:textSize="18sp"
+                app:cornerRadius="10dp" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/month6_subs_b"
-            android:layout_marginTop="8dp"
-            android:textSize="18sp"
-            app:cornerRadius="10dp"
-            android:onClick="halfYearClick"
-            android:backgroundTint="@android:color/secondary_text_light"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:text="$00.00 / 6 Months" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="\n" />
 
-        <TextView
-            android:gravity="center"
-            android:id="@+id/discount_6month_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/month6_subs_b"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@android:color/secondary_text_light"
+                android:onClick="halfYearClick"
+                android:text="$00.00 / 6 Months"
+                android:textSize="18sp"
+                app:cornerRadius="10dp" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/year_subs_b"
-            android:layout_marginTop="8dp"
-            android:textSize="18sp"
-            app:cornerRadius="10dp"
-            android:onClick="yearClick"
-            android:backgroundTint="@android:color/secondary_text_light"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:text="$00.00 / Year" />
+            <TextView
+                android:id="@+id/discount_6month_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="TextView" />
 
-        <TextView
-            android:gravity="center"
-            android:id="@+id/discount_year_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
-    </LinearLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/year_subs_b"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@android:color/secondary_text_light"
+                android:onClick="yearClick"
+                android:text="$00.00 / Year"
+                android:textSize="18sp"
+                app:cornerRadius="10dp" />
+
+            <TextView
+                android:id="@+id/discount_year_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/restore_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:onClick="restoreClick"
+                android:text="@string/subsription_restore_subs" />
+        </LinearLayout>
     </ScrollView>
 
 </LinearLayout>

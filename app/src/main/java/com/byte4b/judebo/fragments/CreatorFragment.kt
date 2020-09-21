@@ -36,7 +36,14 @@ import kotlin.random.Random
 class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
     SwipeRefreshLayout.OnRefreshListener {
 
-    private val realm by lazy { Realm.getDefaultInstance() }
+    private val realm by lazy {
+        try {
+            Realm.getDefaultInstance()
+        } catch (e: Exception) {
+            Realm.init(requireContext())
+            Realm.getDefaultInstance()
+        }
+    }
     private val setting by lazy { Setting(requireContext()) }
     private fun vocationsFromRealm() = realm.where<VocationRealm>().findAll().filter { !it.isHided }
 

@@ -167,6 +167,12 @@ class MainActivity : AppCompatActivity(), ServiceListener {
             Toasty.error(this, R.string.error_no_internet).show()
     }
 
+    override fun onStart() {
+        super.onStart()
+        if (setting.toLogin)
+            restartFragment(LoginFragment())
+    }
+
     override fun onDestroy() {
         supportFragmentManager.fragments.lastOrNull()?.apply {
             setting.lastOpenedFragmentName = this::class.java.simpleName

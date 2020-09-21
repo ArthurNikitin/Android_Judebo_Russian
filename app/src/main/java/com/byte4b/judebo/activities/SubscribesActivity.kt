@@ -12,6 +12,7 @@ import com.byte4b.judebo.adapters.SubscribesViewPagerAdapter
 import com.byte4b.judebo.fragments.SubscribeFragment
 import com.byte4b.judebo.models.SubAnswer
 import com.byte4b.judebo.services.ApiServiceImpl
+import com.byte4b.judebo.startActivity
 import com.byte4b.judebo.utils.Setting
 import com.byte4b.judebo.view.ServiceListener
 import es.dmoral.toasty.Toasty
@@ -212,7 +213,7 @@ class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes), Serv
                         100
             discount_6month_tv.text =
                 "${getString(R.string.subsription_period_save_6month_at)} " +
-                        "${discountHalfYearInMonth.rounded()} ${currencySymbol}/${getString(R.string.subsription_period_save_month)}. " +
+                        "${discountHalfYearInMonth.rounded()} ${currencySymbol}/${getString(R.string.subsription_period_save_month)}.\n" +
                         "${getString(R.string.subsription_period_save_is)} ${100 - discountHalfYearPercent.toInt()}%."
 
             val thirdSub = subs?.firstOrNull { it.sku == currentFragment.mySubs[2] }
@@ -224,7 +225,7 @@ class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes), Serv
                         100
             discount_year_tv.text =
                 "${getString(R.string.subsription_period_save_12month_at)} " +
-                    "${discountYearInMonth.rounded()} ${currencySymbol}/${getString(R.string.subsription_period_save_month)}. " +
+                    "${discountYearInMonth.rounded()} ${currencySymbol}/${getString(R.string.subsription_period_save_month)}.\n" +
                     "${getString(R.string.subsription_period_save_is)} ${100 - discountYearPercent.toInt()}%."
         }
     }
@@ -275,6 +276,17 @@ class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes), Serv
                 this@SubscribesActivity,
                 billingFlowParams
             )
+        }
+    }
+
+    fun restoreClick(v: View) {
+        if (setting.isAuth) {
+            startActivity<SubscribesActivity> { }
+            setting.toLogin = true
+            finish()
+        } else {
+            setting.toLogin = true
+            finish()
         }
     }
 

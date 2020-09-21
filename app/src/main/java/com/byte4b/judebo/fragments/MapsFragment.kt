@@ -105,7 +105,7 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
         googleMap.isBuildingsEnabled = true
         googleMap.isIndoorEnabled = false
 
-        clusterManager = ClusterManager(activity!!.applicationContext, map)
+        clusterManager = ClusterManager(requireActivity().applicationContext, map)
         renderer = OwnIconRendered(ctx, map, clusterManager)
         clusterManager?.renderer = renderer
         val alg = clusterManager!!.algorithm

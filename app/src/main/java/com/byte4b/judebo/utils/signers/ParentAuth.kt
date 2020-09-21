@@ -5,6 +5,7 @@ import com.byte4b.judebo.R
 import com.byte4b.judebo.activities.MainActivity
 import com.byte4b.judebo.fragments.CreatorFragment
 import com.byte4b.judebo.fragments.LoginFragment
+import com.byte4b.judebo.fragments.SettingFragment
 import com.byte4b.judebo.fragments.SignUpFragment
 import com.byte4b.judebo.models.AuthResult
 import com.byte4b.judebo.services.ApiServiceImpl
@@ -50,8 +51,13 @@ open class ParentAuth(val ctx: Activity, val parent: LoginFragment) : ServiceLis
             setting.isAuth = true
             setting.email = email
             setting.token = result.data
-            (ctx as MainActivity).restartFragment(CreatorFragment())
+            val nav = setting.toLogin
+            (ctx as MainActivity).restartFragment(
+                if (nav) SettingFragment()
+                else CreatorFragment()
+            )
         } else if (result != null) {
+            setting.toLogin = false
             if (result.data == "user not found") {
                 setting.email = email
                 setting.signUpFromService = true
@@ -62,6 +68,7 @@ open class ParentAuth(val ctx: Activity, val parent: LoginFragment) : ServiceLis
                 stopAnimation()
             }
         } else {
+            setting.toLogin = false
             Toasty.error(ctx, R.string.error_no_internet).show()
             stopAnimation()
         }

@@ -109,7 +109,11 @@ class LoginFragment : Fragment(R.layout.fragment_login), ServiceListener {
                 setting.isAuth = true
                 setting.email = email
                 setting.token = result.data
-                (requireActivity() as MainActivity).restartFragment(CreatorFragment())
+                val nav = setting.toLogin
+                (requireActivity() as MainActivity).restartFragment(
+                    if (nav) SettingFragment()
+                    else CreatorFragment()
+                )
             } else if (result != null)
                 Toasty.error(requireContext(), result.data).show()
             else
