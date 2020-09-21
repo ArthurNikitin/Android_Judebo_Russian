@@ -99,6 +99,9 @@
     <string name="subsription_period_01_month">month</string>
     <string name="subsription_period_06_month">6 month</string>
     <string name="subsription_period_12_month">12 month</string>
+    <string name="subsription_restore_subs">Restore your subscription.</string>
+    <string name="subsription_restore_subs_success">Your subs was restored</string>
+    <string name="subsription_restore_subs_error">Your subs was not restored. Error.</string>
 
 
 </resources>

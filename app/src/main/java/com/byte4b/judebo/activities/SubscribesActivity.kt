@@ -17,6 +17,7 @@ import com.byte4b.judebo.view.ServiceListener
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.activity_subscribes.*
 import java.util.*
+import kotlin.math.roundToInt
 
 
 class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes), ServiceListener {
@@ -212,24 +213,24 @@ class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes), Serv
             discount_6month_tv.text =
                 "${getString(R.string.subsription_period_save_6month_at)} " +
                         "${discountHalfYearInMonth.rounded()} ${currencySymbol}/${getString(R.string.subsription_period_save_month)}. " +
-                        "${getString(R.string.subsription_period_save_is)} ${discountHalfYearPercent.rounded()}%."
+                        "${getString(R.string.subsription_period_save_is)} ${100 - discountHalfYearPercent.toInt()}%."
 
             val thirdSub = subs?.firstOrNull { it.sku == currentFragment.mySubs[2] }
             year_subs_b.text =
                 "${thirdSub?.price} / ${getString(R.string.subsription_period_12_month)}"
-            val discountYearInMonth = (thirdSub!!.priceAmountMicros / 6.0) / 1_000_000
+            val discountYearInMonth = (thirdSub!!.priceAmountMicros / 12.0) / 1_000_000
             val discountYearPercent =
                 (discountHalfYearInMonth / (firstSub.priceAmountMicros.toDouble() / 1_000_000)) *
                         100
             discount_year_tv.text =
                 "${getString(R.string.subsription_period_save_12month_at)} " +
                     "${discountYearInMonth.rounded()} ${currencySymbol}/${getString(R.string.subsription_period_save_month)}. " +
-                    "${getString(R.string.subsription_period_save_is)} ${discountYearPercent.rounded()}%."
+                    "${getString(R.string.subsription_period_save_is)} ${100 - discountYearPercent.toInt()}%."
         }
     }
 
     private fun Double.rounded(): Double {
-        return (this * 100).toInt().toDouble() / 100
+        return (this * 100).roundToInt().toDouble() / 100
     }
 
     fun monthClick(v: View) {
