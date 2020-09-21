@@ -96,6 +96,9 @@
     <string name="edit_item_tags_search">Search</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="subsription_period_01_month">month</string>
+    <string name="subsription_period_06_month">6 month</string>
+    <string name="subsription_period_12_month">12 month</string>
 
 
 </resources>

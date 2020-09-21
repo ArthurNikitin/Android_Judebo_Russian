@@ -93,7 +93,7 @@
             android:backgroundTint="@android:color/secondary_text_light"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="$4.99 / Month" />
+            android:text="$0.00 / Month" />
 
         <TextView
             android:layout_width="match_parent"
@@ -107,7 +107,7 @@
             android:backgroundTint="@android:color/secondary_text_light"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="$23.99 / 6 Months" />
+            android:text="$00.00 / 6 Months" />
 
         <TextView
             android:gravity="center"
@@ -124,7 +124,7 @@
             android:backgroundTint="@android:color/secondary_text_light"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="$29.99 / Year" />
+            android:text="$00.00 / Year" />
 
         <TextView
             android:gravity="center"
