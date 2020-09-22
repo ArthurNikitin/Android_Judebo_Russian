@@ -6,6 +6,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.android.billingclient.api.*
@@ -323,11 +324,18 @@ class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes), Serv
     }
 
     private fun showCancelDialog() {
-        startActivity(
-            Intent(Intent.ACTION_VIEW).apply {
-                data = Uri.parse("https://play.google.com/store/apps/details?id=com.byte4b.judebo")
+        AlertDialog.Builder(this)
+            .setTitle(R.string.subscription_need_cancel_current_subs)
+            .setPositiveButton(R.string.request_geolocation_ok) { dialog, _ ->
+                dialog.dismiss()
+                startActivity(
+                    Intent(Intent.ACTION_VIEW).apply {
+                        data = Uri.parse("https://play.google.com/store/apps/details?id=com.byte4b.judebo")
+                    }
+                )
             }
-        )
+            .setNegativeButton(R.string.request_geolocation_cancel) { d, _ -> d.cancel() }
+            .show()
     }
 
     private fun checkSubs() = queryPurchases().isNullOrEmpty()
