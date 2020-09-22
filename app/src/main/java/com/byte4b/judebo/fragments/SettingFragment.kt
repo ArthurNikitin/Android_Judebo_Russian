@@ -185,6 +185,7 @@ class SettingFragment : Fragment(R.layout.fragment_setting), ServiceListener {
         billingClient.queryPurchases(BillingClient.SkuType.SUBS).purchasesList
 
     override fun onMySubLoaded(result: SubAnswer?) {
+        setting.toLogin = false
         if (result?.STATUS == "success") {
             if (result.SUBSCRIPTION_STORE_ID?.startsWith("playmarket") == true) {
                 val mySub = queryPurchases()?.firstOrNull {

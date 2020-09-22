@@ -175,6 +175,7 @@ class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes), Serv
             } else
                 Toasty.error(this, R.string.error_no_internet).show()
         } else {
+            setting.toLogin = false
             if (result?.STATUS == "success") {
                 if (result.SUBSCRIPTION_STORE_ID?.startsWith("playmarket") == true) {
                     val mySub = queryPurchases()?.firstOrNull {
