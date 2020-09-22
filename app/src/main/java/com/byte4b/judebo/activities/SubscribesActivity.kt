@@ -149,30 +149,57 @@ class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes), Serv
         billingClient.queryPurchases(BillingClient.SkuType.SUBS).purchasesList
 
     override fun onMySubLoaded(result: SubAnswer?) {
-        if (result?.STATUS == "success") {
-            if (result.SUBSCRIPTION_STORE_ID?.startsWith("playmarket") == true) {
-                val mySub = queryPurchases()?.firstOrNull {
-                    it.sku == result.SUBSCRIPTION_STORE_ID && it.purchaseToken == result.SUBSCRIPTION_BILL_TOKEN
-                }
-                if (mySub != null) {
-                    setting.subscribeInfo = result
+        if (!setting.toLogin) {
+            if (result?.STATUS == "success") {
+                if (result.SUBSCRIPTION_STORE_ID?.startsWith("playmarket") == true) {
+                    val mySub = queryPurchases()?.firstOrNull {
+                        it.sku == result.SUBSCRIPTION_STORE_ID && it.purchaseToken == result.SUBSCRIPTION_BILL_TOKEN
+                    }
+                    if (mySub != null) {
+                        setting.subscribeInfo = result
+                    } else {
+                        ApiServiceImpl(this).setSubs(
+                            setting.getCurrentLanguage().locale,
+                            setting.token ?: "",
+                            setting.email ?: "",
+                            null, null, null
+                        )
+                    }
                 } else {
-                    ApiServiceImpl(this).setSubs(
-                        setting.getCurrentLanguage().locale,
-                        setting.token ?: "",
-                        setting.email ?: "",
-                        null, null, null
-                    )
+                    setting.subscribeInfo = result
                 }
-            } else {
-                setting.subscribeInfo = result
-            }
 
-            //add it to main activity for each onCreate
-        } else if (result != null) {
-            Toasty.error(this, result.MESSAGE).show()
-        } else
-            Toasty.error(this, R.string.error_no_internet).show()
+                //add it to main activity for each onCreate
+            } else if (result != null) {
+                Toasty.error(this, result.MESSAGE).show()
+            } else
+                Toasty.error(this, R.string.error_no_internet).show()
+        } else {
+            if (result?.STATUS == "success") {
+                if (result.SUBSCRIPTION_STORE_ID?.startsWith("playmarket") == true) {
+                    val mySub = queryPurchases()?.firstOrNull {
+                        it.sku == result.SUBSCRIPTION_STORE_ID
+                                && it.purchaseToken == result.SUBSCRIPTION_BILL_TOKEN
+                    }
+                    if (mySub != null) {
+                        setting.subscribeInfo = result
+                        Toasty.success(this, R.string.subsription_restore_subs_success).show()
+                    } else {
+                        ApiServiceImpl(this).setSubs(
+                            setting.getCurrentLanguage().locale,
+                            setting.token ?: "",
+                            setting.email ?: "",
+                            "0", "0", "0"
+                        )
+                        setting.subscribeInfo = null
+                        Toasty.error(this, R.string.subsription_restore_subs_error).show()
+                    }
+                } else {
+                    Toasty.success(this, R.string.subsription_restore_subs_success).show()
+                }
+            } else
+                Toasty.error(this, R.string.subsription_restore_subs_error).show()
+        }
     }
 
     @SuppressLint("SetTextI18n")
