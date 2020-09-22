@@ -1,6 +1,8 @@
 package com.byte4b.judebo.activities
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -257,49 +259,55 @@ class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes), Serv
 
     fun monthClick(v: View) {
         SubsTry {
-            if (!checkSubs()) return@SubsTry
-            val currentFragment =
-                (viewpager.adapter as SubscribesViewPagerAdapter).fragments[viewpager.currentItem]
-                    as SubscribeFragment
-            val billingFlowParams = BillingFlowParams.newBuilder()
-                .setSkuDetails(subs!!.first { it.sku == currentFragment.mySubs[0] })
-                .build()
-            billingClient.launchBillingFlow(
-                this@SubscribesActivity,
-                billingFlowParams
-            )
+            if (!checkSubs()) showCancelDialog()
+            else {
+                val currentFragment =
+                    (viewpager.adapter as SubscribesViewPagerAdapter).fragments[viewpager.currentItem]
+                            as SubscribeFragment
+                val billingFlowParams = BillingFlowParams.newBuilder()
+                    .setSkuDetails(subs!!.first { it.sku == currentFragment.mySubs[0] })
+                    .build()
+                billingClient.launchBillingFlow(
+                    this@SubscribesActivity,
+                    billingFlowParams
+                )
+            }
         }
     }
 
     fun halfYearClick(v: View) {
         SubsTry {
-            if (!checkSubs()) return@SubsTry
-            val currentFragment =
-                (viewpager.adapter as SubscribesViewPagerAdapter).fragments[viewpager.currentItem]
-                        as SubscribeFragment
-            val billingFlowParams = BillingFlowParams.newBuilder()
-                .setSkuDetails(subs!!.first { it.sku == currentFragment.mySubs[1] })
-                .build()
-            billingClient.launchBillingFlow(
-                this@SubscribesActivity,
-                billingFlowParams
-            )
+            if (!checkSubs()) showCancelDialog()
+            else {
+                val currentFragment =
+                    (viewpager.adapter as SubscribesViewPagerAdapter).fragments[viewpager.currentItem]
+                            as SubscribeFragment
+                val billingFlowParams = BillingFlowParams.newBuilder()
+                    .setSkuDetails(subs!!.first { it.sku == currentFragment.mySubs[1] })
+                    .build()
+                billingClient.launchBillingFlow(
+                    this@SubscribesActivity,
+                    billingFlowParams
+                )
+            }
         }
     }
 
     fun yearClick(v: View) {
         SubsTry {
-            if (!checkSubs()) return@SubsTry
-            val currentFragment =
-                (viewpager.adapter as SubscribesViewPagerAdapter).fragments[viewpager.currentItem]
-                        as SubscribeFragment
-            val billingFlowParams = BillingFlowParams.newBuilder()
-                .setSkuDetails(subs!!.first { it.sku == currentFragment.mySubs[2] })
-                .build()
-            billingClient.launchBillingFlow(
-                this@SubscribesActivity,
-                billingFlowParams
-            )
+            if (!checkSubs()) showCancelDialog()
+            else {
+                val currentFragment =
+                    (viewpager.adapter as SubscribesViewPagerAdapter).fragments[viewpager.currentItem]
+                            as SubscribeFragment
+                val billingFlowParams = BillingFlowParams.newBuilder()
+                    .setSkuDetails(subs!!.first { it.sku == currentFragment.mySubs[2] })
+                    .build()
+                billingClient.launchBillingFlow(
+                    this@SubscribesActivity,
+                    billingFlowParams
+                )
+            }
         }
     }
 
@@ -314,8 +322,14 @@ class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes), Serv
         }
     }
 
-    private fun checkSubs(): Boolean {
-        return true
+    private fun showCancelDialog() {
+        startActivity(
+            Intent(Intent.ACTION_VIEW).apply {
+                data = Uri.parse("https://play.google.com/store/apps/details?id=com.byte4b.judebo")
+            }
+        )
     }
+
+    private fun checkSubs() = queryPurchases().isNullOrEmpty()
 
 }
