@@ -43,6 +43,7 @@ class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes), Serv
 
     private val purchaseUpdateListener by lazy {
         PurchasesUpdatedListener { _, purchases ->
+            Log.e("test", "add sub: purchase size = ${purchases?.size}")
             purchases?.forEach {
                     if (it != null) {
                         setting.subscribeInfo = SubAnswer(
@@ -57,6 +58,12 @@ class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes), Serv
                             SUBSCRIPTION_STORE_ID = it.sku,
                             SUBSCRIPTION_LIMIT = it.sku.substringAfter("0").toIntOrNull(),
                             SUBSCRIPTION_NAME = ""
+                        )
+                        ApiServiceImpl(this).setSubs(
+                            setting.getCurrentLanguage().locale,
+                            setting.token ?: "",
+                            setting.email ?: "",
+                            it.sku, setting.subscribeInfo?.SUBSCRIPTION_END.toString(), it.purchaseToken
                         )
                     } else {
                         ApiServiceImpl(this).setSubs(
@@ -250,6 +257,7 @@ class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes), Serv
 
     fun monthClick(v: View) {
         SubsTry {
+            if (!checkSubs()) return@SubsTry
             val currentFragment =
                 (viewpager.adapter as SubscribesViewPagerAdapter).fragments[viewpager.currentItem]
                     as SubscribeFragment
@@ -265,6 +273,7 @@ class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes), Serv
 
     fun halfYearClick(v: View) {
         SubsTry {
+            if (!checkSubs()) return@SubsTry
             val currentFragment =
                 (viewpager.adapter as SubscribesViewPagerAdapter).fragments[viewpager.currentItem]
                         as SubscribeFragment
@@ -280,6 +289,7 @@ class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes), Serv
 
     fun yearClick(v: View) {
         SubsTry {
+            if (!checkSubs()) return@SubsTry
             val currentFragment =
                 (viewpager.adapter as SubscribesViewPagerAdapter).fragments[viewpager.currentItem]
                         as SubscribeFragment
@@ -302,6 +312,10 @@ class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes), Serv
             setting.toLogin = true
             finish()
         }
+    }
+
+    private fun checkSubs(): Boolean {
+        return true
     }
 
 }
