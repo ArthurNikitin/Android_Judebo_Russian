@@ -169,6 +169,22 @@ class Setting(ctx: Context) {
         const val TEXT_LENGTH_MAX_SYMBOLS_JOB_DETAIL = 1500
 
         const val TAGS_POPULARITY_MINIMUM = 2
+
+        val subs10PeriodVariantsIds = listOf(
+            "playmarket_month_limit_00010",
+            "playmarket_halfyear_limit_00010",
+            "playmarket_year_limit_00010"
+        )
+        val subs50PeriodVariantsIds = listOf(
+            "playmarket_month_limit_00050",
+            "playmarket_halfyear_limit_00050",
+            "playmarket_year_limit_00050"
+        )
+        val subs200PeriodVariantsIds = listOf(
+            "playmarket_month_limit_00200",
+            "playmarket_halfyear_limit_00200",
+            "playmarket_year_limit_00200"
+        )
     }
 
 }

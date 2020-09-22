@@ -23,22 +23,6 @@ import kotlin.math.roundToInt
 
 class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes), ServiceListener {
 
-    private val subs10PeriodVariantsIds = listOf(
-        "playmarket_month_limit_00010",
-        "playmarket_halfyear_limit_00010",
-        "playmarket_year_limit_00010"
-    )
-    private val subs50PeriodVariantsIds = listOf(
-        "playmarket_month_limit_00050",
-        "playmarket_halfyear_limit_00050",
-        "playmarket_year_limit_00050"
-    )
-    private val subs200PeriodVariantsIds = listOf(
-        "playmarket_month_limit_00200",
-        "playmarket_halfyear_limit_00200",
-        "playmarket_year_limit_00200"
-    )
-
     var subs: MutableList<SkuDetails>? = null
     private val setting by lazy { Setting(this) }
 
@@ -99,7 +83,9 @@ class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes), Serv
                 if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
                     val skuDetailsParamsBuilder = SkuDetailsParams.newBuilder()
                     val skuList =
-                        subs10PeriodVariantsIds + subs50PeriodVariantsIds + subs200PeriodVariantsIds
+                        Setting.subs10PeriodVariantsIds +
+                                Setting.subs50PeriodVariantsIds +
+                                Setting.subs200PeriodVariantsIds
                     skuDetailsParamsBuilder.setSkusList(skuList).setType(BillingClient.SkuType.SUBS)
                     skuDetailsParamsBuilder.build()
 
@@ -128,19 +114,19 @@ class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes), Serv
                     R.drawable.subscription_picture_010,
                     R.string.subsription_limit_10_title,
                     R.string.subsription_limit_10_description,
-                    subs10PeriodVariantsIds
+                    Setting.subs10PeriodVariantsIds
                 ),
                 SubscribeFragment(
                     R.drawable.subscription_picture_050,
                     R.string.subsription_limit_50_title,
                     R.string.subsription_limit_50_description,
-                    subs50PeriodVariantsIds
+                    Setting.subs50PeriodVariantsIds
                 ),
                 SubscribeFragment(
                     R.drawable.subscription_picture_200,
                     R.string.subsription_limit_200_title,
                     R.string.subsription_limit_200_description,
-                    subs200PeriodVariantsIds
+                    Setting.subs200PeriodVariantsIds
                 )
             )
         )
