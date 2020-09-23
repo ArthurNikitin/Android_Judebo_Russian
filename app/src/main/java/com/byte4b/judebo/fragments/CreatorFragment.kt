@@ -164,7 +164,8 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
     @SuppressLint("SetTextI18n")
     private fun showVocationsCount(): Boolean {
         val vocationsCount = RealmDb.getVocationsCount(realm)
-        subscribe_limit.text = "${setting.subscribeInfo?.SUBSCRIPTION_NAME 
+        Log.e("test", "show sku ${setting.subscribeInfo?.SUBSCRIPTION_STORE_ID}")
+        subscribe_limit.text = "${setting.subscribeInfo?.SUBSCRIPTION_STORE_ID?.toSubscribeName(realm)
             ?: getString(R.string.user_jobs_list_have_not_subsription)}: $vocationsCount/${setting.maxVocations}"
 
         return if (vocationsCount > setting.maxVocations) {

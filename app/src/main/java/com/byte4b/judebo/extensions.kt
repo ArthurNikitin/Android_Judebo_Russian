@@ -16,8 +16,11 @@ import androidx.core.graphics.drawable.toDrawable
 import androidx.core.text.TextUtilsCompat
 import androidx.core.view.ViewCompat
 import com.byte4b.judebo.models.Language
+import com.byte4b.judebo.models.SubscriptionRealm
 import com.byte4b.judebo.models.languages
 import com.byte4b.judebo.utils.Setting
+import io.realm.Realm
+import io.realm.kotlin.where
 import java.util.*
 import kotlin.math.roundToInt
 
@@ -142,3 +145,16 @@ val Calendar.timestamp get() = timeInMillis / 1000
 
 fun getDate(timestampString: Long?) =
     Date((timestampString ?: 0L) * 1000L)
+
+
+fun String.toServerId(realm: Realm) = realm
+    .where<SubscriptionRealm>()
+    .equalTo("UF_STORE_ID", this)
+    .findFirst()
+    ?.UF_NAME
+
+fun String.toSubscribeName(realm: Realm) = realm
+    .where<SubscriptionRealm>()
+    .equalTo("UF_STORE_ID", this)
+    .findFirst()
+    ?.UF_NAME

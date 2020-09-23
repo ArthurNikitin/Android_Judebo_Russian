@@ -5,11 +5,12 @@ import com.byte4b.judebo.api.getAPI
 import com.byte4b.judebo.api.secretKey
 import com.byte4b.judebo.models.*
 import com.byte4b.judebo.models.request.CreateSkillRequest
+import com.byte4b.judebo.toServerId
 import com.byte4b.judebo.utils.Setting
-import com.byte4b.judebo.utils.toServerId
 import com.byte4b.judebo.view.ServiceListener
 import com.google.gson.Gson
 import com.google.gson.JsonObject
+import io.realm.Realm
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -377,7 +378,7 @@ class ApiServiceImpl(val listener: ServiceListener?) : ApiService {
     ) {
         val time = if (subsEnd == null) null else (subsEnd.toLong() / 1000).toString()
         getAPI(locale)
-            .setMySubs(secretKey, token, login, subsId?.toServerId(), time, storeToken)
+            .setMySubs(secretKey, token, login, subsId?.toServerId(Realm.getDefaultInstance()), time, storeToken)
             .enqueue(object : Callback<AuthResult> {
                 override fun onResponse(call: Call<AuthResult>, response: Response<AuthResult>) {
                     check { listener?.onSubsInstalled(response.body()) }

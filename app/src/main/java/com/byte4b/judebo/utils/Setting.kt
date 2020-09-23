@@ -186,23 +186,6 @@ class Setting(ctx: Context) {
             "playmarket_year_limit_00200"
         )
 
-        val idLayer = listOf(
-            Pair(12, "playmarket_year_limit_00010"),
-            Pair(11, "playmarket_year_limit_00100"),
-            Pair(10, "playmarket_month_limit_00100"),
-            Pair(9, "playmarket_halfyear_limit_00100"),
-            Pair(8, "playmarket_year_limit_00200"),
-            Pair(7, "playmarket_year_limit_00050"),
-            Pair(6, "playmarket_halfyear_limit_00010"),
-            Pair(5, "playmarket_month_limit_00200"),
-            Pair(4, "playmarket_month_limit_00010"),
-            Pair(3, "playmarket_month_limit_00050"),
-            Pair(2, "playmarket_halfyear_limit_00050"),
-            Pair(1, "playmarket_halfyear_limit_00200")
-        )
-
     }
 
 }
-
-fun String.toServerId() = Setting.idLayer.first { it.second == this }.first.toString()

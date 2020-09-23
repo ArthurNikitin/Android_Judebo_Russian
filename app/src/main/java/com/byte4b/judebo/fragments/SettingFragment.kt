@@ -10,16 +10,13 @@ import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.android.billingclient.api.BillingClient
-import com.byte4b.judebo.R
+import com.byte4b.judebo.*
 import com.byte4b.judebo.activities.MainActivity
 import com.byte4b.judebo.activities.SelectAppCurrency
 import com.byte4b.judebo.activities.SelectAppLanguage
 import com.byte4b.judebo.activities.SubscribesActivity
-import com.byte4b.judebo.getLangFromLocale
 import com.byte4b.judebo.models.*
 import com.byte4b.judebo.services.ApiServiceImpl
-import com.byte4b.judebo.startActivity
-import com.byte4b.judebo.timestamp
 import com.byte4b.judebo.utils.RealmDb
 import com.byte4b.judebo.utils.Setting
 import com.byte4b.judebo.view.ServiceListener
@@ -70,8 +67,9 @@ class SettingFragment : Fragment(R.layout.fragment_setting), ServiceListener {
             Realm.init(requireContext())
         }
 
-        val count = RealmDb.getVocationsCount(Realm.getDefaultInstance())
-        subscribe_tv.text = "${setting.subscribeInfo?.SUBSCRIPTION_NAME
+        val count = RealmDb.getVocationsCount(realm)
+        Log.e("test", "show sku ${setting.subscribeInfo?.SUBSCRIPTION_STORE_ID}")
+        subscribe_tv.text = "${setting.subscribeInfo?.SUBSCRIPTION_STORE_ID?.toSubscribeName(realm)
             ?: getString(R.string.user_jobs_list_have_not_subsription)}: ${setting.maxVocations}"
         if (setting.maxVocations < count) {
             subscribe_tv.setTextColor(resources.getColor(android.R.color.holo_red_dark))

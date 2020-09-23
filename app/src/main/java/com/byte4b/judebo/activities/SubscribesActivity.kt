@@ -49,6 +49,7 @@ class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes), Serv
             Log.e("test", "add sub: purchase size = ${purchases?.size}")
             purchases?.forEach {
                     if (it != null) {
+                        Log.e("test", "purchase: sku = ${it.sku}")
                         setting.subscribeInfo = SubAnswer(
                             MESSAGE = "SUCCESS",
                             STATUS = "SUCCESS",
@@ -60,8 +61,11 @@ class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes), Serv
                             },
                             SUBSCRIPTION_STORE_ID = it.sku,
                             SUBSCRIPTION_LIMIT = it.sku.substringAfter("0").toIntOrNull(),
-                            SUBSCRIPTION_NAME =
-                            getString(((viewpager.adapter as SubscribesViewPagerAdapter).fragments[viewpager.currentItem] as SubscribeFragment).title)
+                            SUBSCRIPTION_NAME = getString(
+                                ((viewpager.adapter as SubscribesViewPagerAdapter)
+                                    .fragments[viewpager.currentItem] as SubscribeFragment)
+                                    .title
+                            )
                         )
                         ApiServiceImpl(this).setSubs(
                             setting.getCurrentLanguage().locale,
