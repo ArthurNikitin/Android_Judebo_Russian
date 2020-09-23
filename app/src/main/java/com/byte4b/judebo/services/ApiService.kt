@@ -19,6 +19,8 @@ interface ApiService {
 
     fun getRates(locale: String)
 
+    fun getSubscriptions(locale: String)
+
     fun getMyVocations(locale: String, token: String, login: String)
 
     fun deleteVocation(locale: String, token: String, login: String, vocation: Vocation)

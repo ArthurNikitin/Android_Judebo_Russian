@@ -117,6 +117,22 @@ class ApiServiceImpl(val listener: ServiceListener?) : ApiService {
             })
     }
 
+    override fun getSubscriptions(locale: String) {
+        getAPI(locale)
+            .getSubscriptions(secretKey)
+            .enqueue(object : Callback<List<Subscription>> {
+                override fun onFailure(call: Call<List<Subscription>>, t: Throwable) {
+                    listener?.onSubscriptionsLoaded(null)
+                }
+
+                override fun onResponse(call: Call<List<Subscription>>, response: Response<List<Subscription>>) {
+                    if (response.isSuccessful)
+                        listener?.onSubscriptionsLoaded(response.body())
+                    else
+                        listener?.onSubscriptionsLoaded(null)
+                }
+            })    }
+
     override fun getMyVocations(locale: String, token: String, login: String) {
         getAPI(locale)
             .getMyVocations(secretKey, token, login)

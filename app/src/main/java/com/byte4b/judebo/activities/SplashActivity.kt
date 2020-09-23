@@ -24,11 +24,13 @@ class SplashActivity : AppCompatActivity(), ServiceListener {
     private var isJobTypesLoaded = false
     private var isAnimationEnded = false
     private var isRatesUpdated = false
+    private var isSubscriptionUpdated = false
     private val isCanOpenMap get() =
         isJobTypesLoaded
                 && isSkillsLoaded
                 && isAnimationEnded
                 && isRatesUpdated
+                && isSubscriptionUpdated
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,8 +64,10 @@ class SplashActivity : AppCompatActivity(), ServiceListener {
                 getSkills(locale)
                 getJobTypes(locale)
                 getRates(locale)
+                getSubscriptions(locale)
                 setting.lastUpdateDynamicDataFromServer = nowMillis.toString()
             } else {
+                isSubscriptionUpdated = true
                 isRatesUpdated = true
                 isJobTypesLoaded = true
                 isSkillsLoaded = true
@@ -74,6 +78,35 @@ class SplashActivity : AppCompatActivity(), ServiceListener {
     private fun toNext() {
         startActivity<MainActivity>()
         finish()
+    }
+
+    override fun onSubscriptionsLoaded(list: List<Subscription>?) {
+        if (list != null) {
+            try {
+                realm.executeTransaction {
+                    it.createObject<SubscriptionRealm>()
+                }
+            } catch (e: Exception) {
+                e.toLog("init")
+            }
+            try {
+                realm.executeTransaction {
+                    it.delete<SubscriptionRealm>()
+                    try {
+                        it.createObject<SubscriptionRealm>()
+                    } catch (e: Exception) {
+                        e.toLog("double")
+                    }
+                    it.copyToRealm(list.map { it.toRealmVersion() })
+                }
+            } catch (e: Exception) {
+                e.toLog("long")
+            }
+        }
+
+        isSubscriptionUpdated = true
+        if (isCanOpenMap)
+            toNext()
     }
 
     override fun onRatesLoaded(list: List<CurrencyRate>?) {

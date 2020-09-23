@@ -8,6 +8,8 @@ interface ServiceListener {
 
     fun onSkillsLoaded(list: List<Skill>?) {}
 
+    fun onSubscriptionsLoaded(list: List<Subscription>?) {}
+
     fun onJobTypesLoaded(list: List<JobType>?) {}
 
     fun onRatesLoaded(list: List<CurrencyRate>?) {}

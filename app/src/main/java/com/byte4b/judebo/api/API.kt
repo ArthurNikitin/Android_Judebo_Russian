@@ -122,4 +122,8 @@ interface API {
                  @Query("login") login: String):
             Call<SubAnswer>
 
+    @GET("app_subs_list.php")
+    fun getSubscriptions(@Query("key") secretKey: String):
+            Call<List<Subscription>>
+
 }
