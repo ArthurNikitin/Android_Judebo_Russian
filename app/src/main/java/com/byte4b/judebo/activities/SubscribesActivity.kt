@@ -245,7 +245,7 @@ class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes), Serv
                 "${thirdSub?.price} / ${getString(R.string.subsription_period_12_month)}"
             val discountYearInMonth = (thirdSub!!.priceAmountMicros / 12.0) / 1_000_000
             val discountYearPercent =
-                (discountHalfYearInMonth / (firstSub.priceAmountMicros.toDouble() / 1_000_000)) *
+                (discountYearInMonth / (firstSub.priceAmountMicros.toDouble() / 1_000_000)) *
                         100
             discount_year_tv.text =
                 "${getString(R.string.subsription_period_save_12month_at)} " +
