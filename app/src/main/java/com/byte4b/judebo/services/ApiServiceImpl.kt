@@ -359,8 +359,9 @@ class ApiServiceImpl(val listener: ServiceListener?) : ApiService {
         subsEnd: String?,
         storeToken: String?
     ) {
+        val time = if (subsEnd == null) null else (subsEnd.toLong() / 1000).toString()
         getAPI(locale)
-            .setMySubs(secretKey, token, login, subsId?.toServerId(), subsEnd, storeToken)
+            .setMySubs(secretKey, token, login, subsId?.toServerId(), time, storeToken)
             .enqueue(object : Callback<AuthResult> {
                 override fun onResponse(call: Call<AuthResult>, response: Response<AuthResult>) {
                     check { listener?.onSubsInstalled(response.body()) }

@@ -14,8 +14,8 @@ android {
         applicationId "com.byte4b.judebo"
         minSdkVersion 19
         targetSdkVersion 30
-        versionCode 23
-        versionName "2.20.2"
+        versionCode 24
+        versionName "2.20.3"
         multiDexEnabled true
     }
     compileOptions {

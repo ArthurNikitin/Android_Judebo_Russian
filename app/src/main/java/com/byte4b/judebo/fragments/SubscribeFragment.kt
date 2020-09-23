@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.fragment_subscribe.*
 
 class SubscribeFragment(
     @DrawableRes private val bitmap: Int,
-    @StringRes private val title: Int,
+    @StringRes val title: Int,
     @StringRes private val description: Int,
     val mySubs: List<String>
 ) : Fragment(R.layout.fragment_subscribe) {

@@ -60,7 +60,8 @@ class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes), Serv
                             },
                             SUBSCRIPTION_STORE_ID = it.sku,
                             SUBSCRIPTION_LIMIT = it.sku.substringAfter("0").toIntOrNull(),
-                            SUBSCRIPTION_NAME = ""
+                            SUBSCRIPTION_NAME =
+                            getString(((viewpager.adapter as SubscribesViewPagerAdapter).fragments[viewpager.currentItem] as SubscribeFragment).title)
                         )
                         ApiServiceImpl(this).setSubs(
                             setting.getCurrentLanguage().locale,
@@ -163,7 +164,8 @@ class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes), Serv
             if (result?.STATUS == "success") {
                 if (result.SUBSCRIPTION_STORE_ID?.startsWith("playmarket") == true) {
                     val mySub = queryPurchases()?.firstOrNull {
-                        it.sku == result.SUBSCRIPTION_STORE_ID && it.purchaseToken == result.SUBSCRIPTION_BILL_TOKEN
+                        Log.e("test", it.purchaseToken + "==" + result.SUBSCRIPTION_BILL_TOKEN)
+                        it.sku == result.SUBSCRIPTION_STORE_ID //&& it.purchaseToken == result.SUBSCRIPTION_BILL_TOKEN
                     }
                     if (mySub != null) {
                         setting.subscribeInfo = result
@@ -190,7 +192,7 @@ class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes), Serv
                 if (result.SUBSCRIPTION_STORE_ID?.startsWith("playmarket") == true) {
                     val mySub = queryPurchases()?.firstOrNull {
                         it.sku == result.SUBSCRIPTION_STORE_ID
-                                && it.purchaseToken == result.SUBSCRIPTION_BILL_TOKEN
+                                //&& it.purchaseToken == result.SUBSCRIPTION_BILL_TOKEN
                     }
                     if (mySub != null) {
                         setting.subscribeInfo = result
