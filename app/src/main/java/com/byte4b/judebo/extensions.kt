@@ -151,7 +151,7 @@ fun String.toServerId(realm: Realm) = realm
     .where<SubscriptionRealm>()
     .equalTo("UF_STORE_ID", this)
     .findFirst()
-    ?.UF_NAME
+    ?.ID.toString()
 
 fun String.toSubscribeName(realm: Realm) = realm
     .where<SubscriptionRealm>()

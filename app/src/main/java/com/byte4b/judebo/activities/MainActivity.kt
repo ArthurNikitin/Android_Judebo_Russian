@@ -145,7 +145,8 @@ class MainActivity : AppCompatActivity(), ServiceListener {
         if (result?.STATUS == "success") {
             if (result.SUBSCRIPTION_STORE_ID?.startsWith("playmarket") == true) {
                 val mySub = queryPurchases()?.firstOrNull {
-                    it.sku == result.SUBSCRIPTION_STORE_ID && it.purchaseToken == result.SUBSCRIPTION_BILL_TOKEN
+                    it.sku == result.SUBSCRIPTION_STORE_ID
+                            //&& it.purchaseToken == result.SUBSCRIPTION_BILL_TOKEN
                 }
                 if (mySub != null) {
                     setting.subscribeInfo = result
