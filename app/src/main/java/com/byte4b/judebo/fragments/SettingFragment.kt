@@ -70,9 +70,14 @@ class SettingFragment : Fragment(R.layout.fragment_setting), ServiceListener {
             Realm.init(requireContext())
         }
 
-        subscribe_tv.text = "Free: ${setting.maxVocations}"
-        if (setting.maxVocations == RealmDb.getVocationsCount(Realm.getDefaultInstance())) {
+        val count = RealmDb.getVocationsCount(Realm.getDefaultInstance())
+        subscribe_tv.text = "${setting.subscribeInfo?.SUBSCRIPTION_NAME
+            ?: getString(R.string.user_jobs_list_have_not_subsription)}: ${setting.maxVocations}"
+        if (setting.maxVocations < count) {
             subscribe_tv.setTextColor(resources.getColor(android.R.color.holo_red_dark))
+            subscribe_tv.setTypeface(subscribe_tv.typeface, Typeface.BOLD)
+        } else if (setting.maxVocations == count) {
+            subscribe_tv.setTextColor(resources.getColor(android.R.color.holo_orange_dark))
             subscribe_tv.setTypeface(subscribe_tv.typeface, Typeface.BOLD)
         } else {
             subscribe_tv.setTextColor(resources.getColor(android.R.color.black))

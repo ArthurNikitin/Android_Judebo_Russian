@@ -164,10 +164,16 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
     @SuppressLint("SetTextI18n")
     private fun showVocationsCount(): Boolean {
         val vocationsCount = RealmDb.getVocationsCount(realm)
-        subscribe_limit.text = "${setting.subscribeInfo?.SUBSCRIPTION_NAME ?: "Free"}: $vocationsCount/${setting.maxVocations}"
+        subscribe_limit.text = "${setting.subscribeInfo?.SUBSCRIPTION_NAME 
+            ?: getString(R.string.user_jobs_list_have_not_subsription)}: $vocationsCount/${setting.maxVocations}"
 
-        return if (vocationsCount >= setting.maxVocations) {
+        return if (vocationsCount > setting.maxVocations) {
             subscribe_limit.setTextColor(resources.getColor(android.R.color.holo_red_dark))
+            subscribe_limit.setTypeface(subscribe_limit.typeface, Typeface.BOLD)
+            createNew.setImageResource(R.drawable.button_plus_vacancy_deny)
+            true
+        } else if (vocationsCount == setting.maxVocations) {
+            subscribe_limit.setTextColor(resources.getColor(android.R.color.holo_orange_dark))
             subscribe_limit.setTypeface(subscribe_limit.typeface, Typeface.BOLD)
             createNew.setImageResource(R.drawable.button_plus_vacancy_deny)
             true
