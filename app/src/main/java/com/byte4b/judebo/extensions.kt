@@ -7,6 +7,7 @@ import android.content.Context.LOCATION_SERVICE
 import android.content.Intent
 import android.location.Location
 import android.location.LocationManager
+import android.net.Uri
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
@@ -158,3 +159,9 @@ fun String.toSubscribeName(realm: Realm) = realm
     .equalTo("UF_STORE_ID", this)
     .findFirst()
     ?.UF_NAME
+
+fun Context.openBaseUrl(url: String) {
+    val intent = Intent(Intent.ACTION_VIEW)
+    intent.data = Uri.parse(url)
+    startActivity(intent)
+}

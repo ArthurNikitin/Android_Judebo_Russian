@@ -2,7 +2,7 @@ package com.byte4b.judebo.models
 
 data class CustomAd(
     val format: String?,
-    val time: Int?,
+    val time: Long?,
     val url_link: String?,
     val url_source: String?
 ) {

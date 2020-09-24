@@ -93,6 +93,14 @@ class Setting(ctx: Context) {
             currencies.firstOrNull { it.name == currency } ?: currencies.first()
     }
 
+    var lastAdShowTimeStamp
+        get() = pref.getLong("lastAdShowTimeStamp", 0L)
+        set(value) = pref.edit { putLong("lastAdShowTimeStamp", value) }
+
+    var isLastTryShowAdHaveError
+        get() = pref.getBoolean("isLastTryShowAdHaveError", false)
+        set(value) = pref.edit { putBoolean("isLastTryShowAdHaveError", value) }
+
     var subscribeInfo: SubAnswer?
         get() = Gson().fromJson(pref.getString("sub", null), SubAnswer::class.java)
         set(value) {
@@ -171,10 +179,11 @@ class Setting(ctx: Context) {
         const val TAGS_POPULARITY_MINIMUM = 2
 
         // disable adv after show
-        const val JSON_REQUEST_ADV_PERIOD_IN_SECONDS = 30
+        const val JSON_REQUEST_ADV_PERIOD_IN_SECONDS = 20
 
-        // resend request after null/error answer
-        const val JSON_REQUEST_REPEAT_EMPTY_REQUEST_IN_SECONDS = 10
+
+        // resend request after null/error answer AND checking time interval
+        const val JSON_REQUEST_REPEAT_EMPTY_REQUEST_IN_SECONDS = 15
 
         val subs10PeriodVariantsIds = listOf(
             "playmarket_month_limit_00010",
