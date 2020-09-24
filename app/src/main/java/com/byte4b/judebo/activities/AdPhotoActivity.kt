@@ -2,6 +2,7 @@ package com.byte4b.judebo.activities
 
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.byte4b.judebo.R
@@ -17,6 +18,7 @@ class AdPhotoActivity : AppCompatActivity(R.layout.ad_photo) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.e("ad", "PhotoLoadedAcivity")
         ad = Gson().fromJson(intent.getStringExtra("ad"), CustomAd::class.java)
 
         if (ad?.url_source != null)
@@ -30,7 +32,7 @@ class AdPhotoActivity : AppCompatActivity(R.layout.ad_photo) {
                 isCanClose = true
                 cancel_icon.setImageResource(R.drawable.advertising_interstial_close_enable)
             },
-            (ad?.time ?: 5) * 1000
+            ((ad?.time ?: 5) * 1000L)
         )
     }
 

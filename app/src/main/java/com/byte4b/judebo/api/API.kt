@@ -126,7 +126,7 @@ interface API {
     fun getSubscriptions(@Query("key") secretKey: String):
             Call<List<Subscription>>
 
-    @GET("app_adv.php?lang=ru&type=1&key=DSFRGVergbewrbh")
+    @GET("app_adv.php")
     fun loadAd(@Query("key") secretKey: String,
                @Query("lang") locale: String,
                @Query("type") mediaType: Int):

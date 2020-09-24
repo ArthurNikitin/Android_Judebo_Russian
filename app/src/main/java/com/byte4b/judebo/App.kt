@@ -1,7 +1,9 @@
 package com.byte4b.judebo
 
 import android.app.Application
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Handler
+import android.util.Log
 import com.byte4b.judebo.activities.AdPhotoActivity
 import com.byte4b.judebo.activities.AdVideoActivity
 import com.byte4b.judebo.models.CustomAd
@@ -47,18 +49,25 @@ class App : Application(), ServiceListener {
     }
 
     override fun onAdLoaded(result: CustomAd?) {
+        Log.e("ad", "onAdLoaded")
+        Log.e("ad", Gson().toJson(result))
         if (result != null && !result.isEmpty) {
+            Log.e("ad", "custom ads")
             setting.lastAdShowTimeStamp = Calendar.getInstance().timestamp
+            Log.e("ad", "photo = ${result.isPhoto}, video = ${result.isVideo}")
             if (result.isPhoto)
                 startActivity<AdPhotoActivity> {
+                    addFlags(FLAG_ACTIVITY_NEW_TASK)
                     putExtra("ad", Gson().toJson(result))
                 }
             else if (result.isVideo)
                 startActivity<AdVideoActivity> {
+                    addFlags(FLAG_ACTIVITY_NEW_TASK)
                     putExtra("ad", Gson().toJson(result))
                 }
 
         } else if (setting.maxVocations != Setting.LIMIT_VACANCIES_WITHOUT_SUBSCRIPTION) {
+            Log.e("ad", "google ads")
             MobileAds.initialize(this) {}
             val mInterstitialAd = InterstitialAd(this)
             mInterstitialAd.adUnitId = "ca-app-pub-5400099956888878/3325823769"
@@ -78,8 +87,10 @@ class App : Application(), ServiceListener {
             rc.setTestDeviceIds(mutableListOf("7B95E5B1FF96A171FD6EFFBBC0FB7518"))
             MobileAds.setRequestConfiguration(rc.build())
             mInterstitialAd.loadAd(AdRequest.Builder().build())
-        } else
+        } else {
+            Log.e("ad", "error load")
             setting.isLastTryShowAdHaveError = true
+        }
     }
 
 }
