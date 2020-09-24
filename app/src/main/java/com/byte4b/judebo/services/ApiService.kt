@@ -50,4 +50,6 @@ interface ApiService {
 
     fun checkMySub(locale: String, token: String, login: String)
 
+    fun loadAd(locale: String)
+
 }

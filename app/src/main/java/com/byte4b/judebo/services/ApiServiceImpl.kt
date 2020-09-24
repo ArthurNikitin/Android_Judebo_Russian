@@ -406,4 +406,19 @@ class ApiServiceImpl(val listener: ServiceListener?) : ApiService {
             })
     }
 
+    override fun loadAd(locale: String) {
+        getAPI(locale)
+            .loadAd(secretKey, locale, if (Random.nextBoolean()) 1 else 0)
+            .enqueue(object : Callback<CustomAd> {
+                override fun onResponse(call: Call<CustomAd>, response: Response<CustomAd>) {
+                    check { listener?.onAdLoaded(response.body()) }
+                }
+
+                override fun onFailure(call: Call<CustomAd>, t: Throwable) {
+                    check { listener?.onAdLoaded(null) }
+                }
+
+            })
+    }
+
 }

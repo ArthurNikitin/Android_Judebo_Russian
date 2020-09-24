@@ -34,4 +34,6 @@ interface ServiceListener {
 
     fun onMySubLoaded(result: SubAnswer?) {}
 
+    fun onAdLoaded(result: CustomAd?) {}
+
 }
