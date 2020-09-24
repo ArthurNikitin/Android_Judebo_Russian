@@ -170,6 +170,12 @@ class Setting(ctx: Context) {
 
         const val TAGS_POPULARITY_MINIMUM = 2
 
+        // disable adv after show
+        const val JSON_REQUEST_ADV_PERIOD_IN_SECONDS = 30
+
+        // resend request after null/error answer
+        const val JSON_REQUEST_REPEAT_EMPTY_REQUEST_IN_SECONDS = 10
+
         val subs10PeriodVariantsIds = listOf(
             "playmarket_month_limit_00010",
             "playmarket_halfyear_limit_00010",
