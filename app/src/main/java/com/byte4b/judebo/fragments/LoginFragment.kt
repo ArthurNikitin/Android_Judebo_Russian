@@ -110,6 +110,7 @@ class LoginFragment : Fragment(R.layout.fragment_login), ServiceListener {
                 setting.email = email
                 setting.token = result.data
                 val nav = setting.toLogin
+                (requireActivity() as MainActivity).checkMySubscription()
                 (requireActivity() as MainActivity).restartFragment(
                     if (nav) SettingFragment()
                     else CreatorFragment()

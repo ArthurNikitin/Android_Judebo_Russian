@@ -120,6 +120,10 @@ class MainActivity : AppCompatActivity(), ServiceListener {
             override fun onBillingSetupFinished(billingResult: BillingResult) {}
             override fun onBillingServiceDisconnected() {}
         })
+        checkMySubscription()
+    }
+
+    fun checkMySubscription() {
         ApiServiceImpl(this).checkMySub(
             setting.getCurrentLanguage().locale,
             setting.token ?: "",
