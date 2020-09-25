@@ -18,6 +18,7 @@ class AdPhotoActivity : AppCompatActivity(R.layout.ad_photo) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide()
         Log.e("ad", "PhotoLoadedAcivity")
         ad = Gson().fromJson(intent.getStringExtra("ad"), CustomAd::class.java)
 
@@ -31,9 +32,14 @@ class AdPhotoActivity : AppCompatActivity(R.layout.ad_photo) {
             {
                 isCanClose = true
                 cancel_icon.setImageResource(R.drawable.advertising_interstial_close_enable)
+                try {
+                    Handler().postDelayed({ finish() }, ((ad?.time ?: 5) * 1000L))
+                } catch (e: Exception) {}
             },
             ((ad?.time ?: 5) * 1000L)
         )
     }
+
+    override fun onBackPressed() {}
 
 }

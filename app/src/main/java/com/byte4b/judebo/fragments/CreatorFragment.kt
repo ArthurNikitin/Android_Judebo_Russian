@@ -1,6 +1,7 @@
 package com.byte4b.judebo.fragments
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
 import android.os.Handler
@@ -51,6 +52,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
         super.onViewCreated(view, savedInstanceState)
 
         refresher.setOnRefreshListener(this)
+        refresher.setColorSchemeColors(Color.parseColor("#027E3C"))
 
         subscribe_button.setOnClickListener {
             requireContext().startActivity<SubscribesActivity>()

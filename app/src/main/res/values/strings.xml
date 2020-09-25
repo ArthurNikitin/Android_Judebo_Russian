@@ -94,8 +94,7 @@
     <string name="subsription_period_save_month">month</string>
     <string name="subsription_period_save_is">Save</string>
     <string name="edit_item_tags_search">Search</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+
     <string name="subsription_period_01_month" translatable="false">month</string>
     <string name="subsription_period_06_month" translatable="false">6 month</string>
     <string name="subsription_period_12_month" translatable="false">12 month</string>
@@ -103,6 +102,7 @@
     <string name="subsription_restore_subs_success" translatable="false">Your subs was restored</string>
     <string name="subsription_restore_subs_error" translatable="false">Your subs was not restored. Error.</string>
     <string name="subscription_need_cancel_current_subs" translatable="false">Please cancel current subscription!</string>
+    <string name="subscription_buy_success">Success!</string>
 
 
 </resources>

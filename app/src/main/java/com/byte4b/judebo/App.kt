@@ -25,7 +25,7 @@ class App : Application(), ServiceListener {
         val handler = Handler {
             if (setting.isLastTryShowAdHaveError) {
                 if (Calendar.getInstance().timestamp >
-                    setting.lastAdShowTimeStamp + Setting.JSON_REQUEST_REPEAT_EMPTY_REQUEST_IN_SECONDS
+                    setting.lastAdShowTimeStamp + Setting.APP_CRON_FREQUENCY_IN_SECONDS
                 ) {
                     ApiServiceImpl(this).loadAd(setting.getCurrentLanguage().locale)
                 }
@@ -42,7 +42,7 @@ class App : Application(), ServiceListener {
 
         Thread {
             while (true) {
-                Thread.sleep(Setting.JSON_REQUEST_REPEAT_EMPTY_REQUEST_IN_SECONDS * 1000L)
+                Thread.sleep(Setting.APP_CRON_FREQUENCY_IN_SECONDS * 1000L)
                 handler.sendEmptyMessage(0)
             }
         }.start()

@@ -113,6 +113,11 @@ class Setting(ctx: Context) {
         set(value) = pref.edit { putBoolean("to_login", value) }
 
     companion object {
+        //Cron in app
+        //and
+        // resend request after null/error answer AND checking time interval
+        const val APP_CRON_FREQUENCY_IN_SECONDS = 15
+
         const val LIMIT_VACANCIES_WITHOUT_SUBSCRIPTION = 1
 
         const val BASIC_ZOOM = 11.0f
@@ -180,10 +185,6 @@ class Setting(ctx: Context) {
 
         // disable adv after show
         const val JSON_REQUEST_ADV_PERIOD_IN_SECONDS = 20
-
-
-        // resend request after null/error answer AND checking time interval
-        const val JSON_REQUEST_REPEAT_EMPTY_REQUEST_IN_SECONDS = 15
 
         val subs10PeriodVariantsIds = listOf(
             "playmarket_month_limit_00010",

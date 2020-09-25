@@ -18,6 +18,7 @@ class AdVideoActivity : AppCompatActivity(R.layout.ad_video) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide()
         Log.e("ad", "VideoLoadedAcivity")
         ad = Gson().fromJson(intent.getStringExtra("ad"), CustomAd::class.java)
 
@@ -26,6 +27,7 @@ class AdVideoActivity : AppCompatActivity(R.layout.ad_video) {
             requestFocus()
             start()
             setOnCompletionListener { repeat(0) {} }
+            setOnPreparedListener { it.isLooping = true }
         }
 
         cancel_icon.setOnClickListener { if (isCanClose) finish() }
@@ -34,8 +36,13 @@ class AdVideoActivity : AppCompatActivity(R.layout.ad_video) {
             {
                 isCanClose = true
                 cancel_icon.setImageResource(R.drawable.advertising_interstial_close_enable)
+                try {
+                    Handler().postDelayed({ finish() }, ((ad?.time ?: 5) * 1000L))
+                } catch (e: Exception) {}
             },
             (ad?.time ?: 5) * 1000L
         )
     }
+
+    override fun onBackPressed() {}
 }

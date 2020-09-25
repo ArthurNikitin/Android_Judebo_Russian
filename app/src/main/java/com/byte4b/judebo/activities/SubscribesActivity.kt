@@ -13,6 +13,7 @@ import com.android.billingclient.api.*
 import com.byte4b.judebo.R
 import com.byte4b.judebo.adapters.SubscribesViewPagerAdapter
 import com.byte4b.judebo.fragments.SubscribeFragment
+import com.byte4b.judebo.models.AuthResult
 import com.byte4b.judebo.models.SubAnswer
 import com.byte4b.judebo.services.ApiServiceImpl
 import com.byte4b.judebo.startActivity
@@ -26,6 +27,7 @@ import kotlin.math.roundToInt
 
 class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes), ServiceListener {
 
+    private var isFromPurchase = false
     var subs: MutableList<SkuDetails>? = null
     private val setting by lazy { Setting(this) }
 
@@ -67,6 +69,7 @@ class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes), Serv
                                     .title
                             )
                         )
+                        isFromPurchase = true
                         ApiServiceImpl(this).setSubs(
                             setting.getCurrentLanguage().locale,
                             setting.token ?: "",
@@ -82,6 +85,13 @@ class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes), Serv
                         )
                     }
             }
+        }
+    }
+
+    override fun onSubsInstalled(result: AuthResult?) {
+        if (isFromPurchase) {
+            Toasty.success(this, R.string.subscription_buy_success).show()
+            finish()
         }
     }
 

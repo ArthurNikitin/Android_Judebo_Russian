@@ -269,6 +269,7 @@ class SettingFragment : Fragment(R.layout.fragment_setting), ServiceListener {
     fun setLanguage(id: Int) {
         val locale = languages.first { it.id == id }.locale
         if (setting.language != locale) {
+            setting.lastUpdateDynamicDataFromServer = (0L).toString()
             setting.language = locale
             setLocale(locale)
             setting.isFromRecreate = true
