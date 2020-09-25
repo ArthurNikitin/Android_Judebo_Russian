@@ -8,5 +8,5 @@ data class CustomAd(
 ) {
     val isPhoto get() = format?.contains("png", ignoreCase = true) ?: false
     val isVideo get() = format?.contains("mp4", ignoreCase = true) ?: false
-    val isEmpty = url_source == null || url_link == null
+    val isEmpty get() = url_source == null || url_link == null
 }

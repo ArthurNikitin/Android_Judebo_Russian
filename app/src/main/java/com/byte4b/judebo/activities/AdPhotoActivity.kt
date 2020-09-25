@@ -28,14 +28,19 @@ class AdPhotoActivity : AppCompatActivity(R.layout.ad_photo) {
                 .load(ad!!.url_source!!)
                 .into(image_iv)
         cancel_icon.setOnClickListener { if (isCanClose) finish() }
-        image_iv.setOnClickListener { openBaseUrl(ad?.url_link ?: "") }
+        image_iv.setOnClickListener {
+            if (!isCanClose)
+                openBaseUrl(ad?.url_link ?: "")
+            else
+                finish()
+        }
 
         var time = 0
         val period = (ad?.time ?: 5) * 1000L
         progressBar.max = ad?.time ?: 5
         val handler = Handler {
             time++
-            progressBar.setDonut_progress((period/1000 - time).toInt().toString())
+            progressBar.setDonut_progress(time.toString())
             timerView.text = (period/1000 - time).toString()
 
             if (time.toLong() == period/1000) {
@@ -45,19 +50,23 @@ class AdPhotoActivity : AppCompatActivity(R.layout.ad_photo) {
                 cancel_icon.alpha = 1f
                 cancel_icon.setImageResource(R.drawable.advertising_interstial_close_enable)
             }
-            if (time.toLong() == period/1000 * 2)
+            if (time.toLong() == period/1000 * 3)
                 finish()
             true
         }
 
         Thread {
-            while (time <= period * 2) {
+            while (time <= period * 3) {
                 handler.sendEmptyMessage(0)
                 Thread.sleep(1000)
             }
         }.start()
     }
 
-    override fun onBackPressed() {}
+    override fun onBackPressed() { if (isCanClose) finish() }
+
+    fun close(v: View) {
+        if (isCanClose) finish()
+    }
 
 }

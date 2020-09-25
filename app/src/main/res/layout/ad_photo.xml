@@ -4,61 +4,80 @@
     android:layout_width="match_parent"
     xmlns:custom="http://schemas.android.com/tools"
     android:background="#000"
+    android:onClick="close"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activities.AdPhotoActivity"
     android:layout_height="match_parent">
 
     <com.google.android.material.card.MaterialCardView
-        android:layout_margin="4dp"
+        android:layout_width="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_height="270dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
+        android:background="#000"
+        app:cardBackgroundColor="#000"
         app:cardCornerRadius="8dp"
         app:cardElevation="5dp"
         app:strokeColor="@color/toolbar_background_color"
-        app:strokeWidth="4dp"
-        app:cardBackgroundColor="#000"
-        android:background="#000"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        app:strokeWidth="4dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/image_iv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/corners_right" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_margin="4dp"
+                android:layout_alignParentEnd="true"
+                app:cardBackgroundColor="#BF090909"
+                app:cardCornerRadius="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:padding="10dp">
 
                 <ImageView
-                    android:id="@+id/image_iv"
+                    android:id="@+id/cancel_icon"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:srcCompat="@drawable/corners_right" />
+                    android:alpha="0.6"
+                    android:padding="2dp"
+                    app:srcCompat="@drawable/advertising_interstial_close_disable" />
 
-                <RelativeLayout
-                    android:layout_alignParentEnd="true"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp">
+                <com.github.lzyzsd.circleprogress.DonutProgress
+                    android:id="@+id/progressBar"
+                    android:rotation="-90"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:donut_unfinished_color="@color/grey"
+                    app:donut_finished_color="@color/toolbar_background_color"
+                    app:donut_finished_stroke_width="4dp"
+                    app:donut_text=""
+                    app:donut_unfinished_stroke_width="4dp"
+                    custom:donut_progress="30" />
 
-                    <com.github.lzyzsd.circleprogress.DonutProgress
-                        android:id="@+id/progressBar"
-                        app:donut_text=""
-                        app:donut_finished_stroke_width="4dp"
-                        app:donut_unfinished_stroke_width="4dp"
-                        app:donut_finished_color="@color/toolbar_background_color"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        custom:donut_progress="30"/>
+                <TextView
+                    android:id="@+id/timerView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="30"
+                    android:textColor="#fff"
+                    android:textStyle="bold" />
 
-                    <ImageView
-                        android:padding="8dp"
-                        android:alpha="0.6"
-                        android:id="@+id/cancel_icon"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        app:srcCompat="@drawable/advertising_interstial_close_disable" />
-
-                    <TextView
-                        android:layout_centerInParent="true"
-                        android:id="@+id/timerView"
-                        android:textColor="#000"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="30" />
-
-                </RelativeLayout>
+            </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>
 </RelativeLayout>
