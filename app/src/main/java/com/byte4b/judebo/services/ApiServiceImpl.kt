@@ -408,7 +408,7 @@ class ApiServiceImpl(val listener: ServiceListener?) : ApiService {
 
     override fun loadAd(locale: String) {
         getAPI(locale)
-            .loadAd(secretKey, locale, if (Random.nextBoolean()) 1 else 1)
+            .loadAd(secretKey, locale, if (Random.nextBoolean()) 2 else 2)
             .enqueue(object : Callback<CustomAd> {
                 override fun onResponse(call: Call<CustomAd>, response: Response<CustomAd>) {
                     check { listener?.onAdLoaded(response.body()) }

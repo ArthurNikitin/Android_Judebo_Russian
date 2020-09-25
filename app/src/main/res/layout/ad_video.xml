@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:custom="http://schemas.android.com/tools"
     android:background="#000"
     android:layout_height="match_parent">
 
@@ -33,13 +33,33 @@
         android:layout_width="40dp"
         android:layout_height="40dp">
 
+        <com.github.lzyzsd.circleprogress.DonutProgress
+            android:id="@+id/progressBar"
+            app:donut_text=""
+            app:donut_finished_stroke_width="4dp"
+            app:donut_unfinished_stroke_width="4dp"
+            app:donut_finished_color="@color/toolbar_background_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:donut_progress="30"/>
+
         <ImageView
             android:id="@+id/cancel_icon"
             android:padding="8dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:srcCompat="@drawable/advertising_interstial_close_disable" />
+
+        <TextView
+            android:layout_centerInParent="true"
+            android:id="@+id/timerView"
+            android:textColor="#000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="30" />
+
     </RelativeLayout>
+
 </RelativeLayout>
 
     </com.google.android.material.card.MaterialCardView>

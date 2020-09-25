@@ -3,6 +3,7 @@ package com.byte4b.judebo.activities
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.byte4b.judebo.R
@@ -28,16 +29,33 @@ class AdPhotoActivity : AppCompatActivity(R.layout.ad_photo) {
                 .into(image_iv)
         cancel_icon.setOnClickListener { if (isCanClose) finish() }
         image_iv.setOnClickListener { openBaseUrl(ad?.url_link ?: "") }
-        Handler().postDelayed(
-            {
+
+        var time = 0
+        val period = (ad?.time ?: 5) * 1000L
+        progressBar.max = ad?.time ?: 5
+        val handler = Handler {
+            time++
+            progressBar.setDonut_progress((period/1000 - time).toInt().toString())
+            timerView.text = (period/1000 - time).toString()
+
+            if (time.toLong() == period/1000) {
                 isCanClose = true
+                timerView.visibility = View.GONE
+                progressBar.visibility = View.GONE
+                cancel_icon.alpha = 1f
                 cancel_icon.setImageResource(R.drawable.advertising_interstial_close_enable)
-                try {
-                    Handler().postDelayed({ finish() }, ((ad?.time ?: 5) * 1000L))
-                } catch (e: Exception) {}
-            },
-            ((ad?.time ?: 5) * 1000L)
-        )
+            }
+            if (time.toLong() == period/1000 * 2)
+                finish()
+            true
+        }
+
+        Thread {
+            while (time <= period * 2) {
+                handler.sendEmptyMessage(0)
+                Thread.sleep(1000)
+            }
+        }.start()
     }
 
     override fun onBackPressed() {}
