@@ -37,6 +37,22 @@ class App : Application(), ServiceListener {
                     ApiServiceImpl(this).loadAd(setting.getCurrentLanguage().locale)
                 }
             }
+            ApiServiceImpl(this).apply {
+                val locale = setting.getCurrentLanguage().locale
+                val nowMillis = Calendar.getInstance().timeInMillis
+                val lastUpdateMillis = setting.lastUpdateDynamicDataFromServer.toLong()
+
+                if (nowMillis > lastUpdateMillis +
+                    Setting.PERIOD_UPDATE_DYNAMIC_DATA_FROM_SERVER_IN_MINUTE * 60L * 1000) {
+
+                    getSkills(locale)
+                    getJobTypes(locale)
+                    getRates(locale)
+                    getSubscriptions(locale)
+                    setting.lastUpdateDynamicDataFromServer = nowMillis.toString()
+                }
+            }
+
             true
         }
 
