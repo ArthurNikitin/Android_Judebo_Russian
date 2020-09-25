@@ -167,7 +167,8 @@ class MainActivity : AppCompatActivity(), ServiceListener {
                 setting.subscribeInfo = result
             }
         } else if (result != null) {
-            Toasty.error(this, result.MESSAGE).show()
+            if (!result.MESSAGE.contains("wrong token", ignoreCase = true))
+                Toasty.error(this, result.MESSAGE).show()
         } else
             Toasty.error(this, R.string.error_no_internet).show()
     }
