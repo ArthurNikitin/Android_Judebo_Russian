@@ -18,10 +18,11 @@
         android:roundIcon="@mipmap/ic_app_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activities.AdBannerActivity"></activity>
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-5400099956888878~4779384548"/>
+            android:value="ca-app-pub-5400099956888878~4779384548" />
 
         <activity android:name=".activities.AdVideoActivity" />
         <activity android:name=".activities.AdPhotoActivity" />

@@ -116,7 +116,7 @@ class Setting(ctx: Context) {
         //Cron in app
         //and
         // resend request after null/error answer AND checking time interval
-        const val APP_CRON_FREQUENCY_IN_SECONDS = 15
+        const val APP_CRON_FREQUENCY_IN_SECONDS = 120
 
         const val LIMIT_VACANCIES_WITHOUT_SUBSCRIPTION = 1
 
@@ -184,7 +184,7 @@ class Setting(ctx: Context) {
         const val TAGS_POPULARITY_MINIMUM = 2
 
         // disable adv after show
-        const val JSON_REQUEST_ADV_PERIOD_IN_SECONDS = 20
+        const val JSON_REQUEST_ADV_PERIOD_IN_SECONDS = 60_000
 
         val subs10PeriodVariantsIds = listOf(
             "playmarket_month_limit_00010",

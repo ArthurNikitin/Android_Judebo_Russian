@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Handler
 import android.util.Log
+import com.byte4b.judebo.activities.AdBannerActivity
 import com.byte4b.judebo.activities.AdPhotoActivity
 import com.byte4b.judebo.activities.AdVideoActivity
 import com.byte4b.judebo.models.CustomAd
@@ -21,7 +22,7 @@ class App : Application(), ServiceListener {
 
     override fun onCreate() {
         super.onCreate()
-
+        MobileAds.initialize(this) {}
         val handler = Handler {
             if (setting.isLastTryShowAdHaveError) {
                 if (Calendar.getInstance().timestamp >
@@ -84,25 +85,9 @@ class App : Application(), ServiceListener {
 
         } else if (setting.maxVocations != Setting.LIMIT_VACANCIES_WITHOUT_SUBSCRIPTION) {
             Log.e("ad", "google ads")
-            MobileAds.initialize(this) {}
-            val mInterstitialAd = InterstitialAd(this)
-            mInterstitialAd.adUnitId = "ca-app-pub-5400099956888878/3325823769"
-            mInterstitialAd.adListener = object : AdListener() {
-                override fun onAdLoaded() {
-                    super.onAdLoaded()
-                    setting.lastAdShowTimeStamp = Calendar.getInstance().timestamp
-                    mInterstitialAd.show()
-                }
-
-                override fun onAdFailedToLoad(p0: Int) {
-                    super.onAdFailedToLoad(p0)
-                    setting.isLastTryShowAdHaveError = false
-                }
+            startActivity<AdBannerActivity> {
+                addFlags(FLAG_ACTIVITY_NEW_TASK)
             }
-            val rc = RequestConfiguration.Builder()
-            rc.setTestDeviceIds(mutableListOf("7B95E5B1FF96A171FD6EFFBBC0FB7518"))
-            MobileAds.setRequestConfiguration(rc.build())
-            mInterstitialAd.loadAd(AdRequest.Builder().build())
         } else {
             Log.e("ad", "error load")
             setting.isLastTryShowAdHaveError = true
