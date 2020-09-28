@@ -26,6 +26,7 @@ import com.google.android.flexbox.*
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_details.*
+import java.text.SimpleDateFormat
 
 
 class DetailsActivity : AppCompatActivity() {
@@ -143,7 +144,11 @@ class DetailsActivity : AppCompatActivity() {
             phone_tv.text = jobInfo.UF_CONTACT_PHONE + " "
             email_tv.text = jobInfo.UF_CONTACT_EMAIL + " "
 
-            lastUpdate_tv.text = "#${jobInfo.UF_JOBS_ID}\n${jobInfo.UF_MODIFED}"
+            val format = SimpleDateFormat("dd.MM.yyyy hh:mm:ss")
+            val modifiedDate = format.parse(jobInfo.UF_MODIFED)
+            val showFormat = SimpleDateFormat("dd.MM")
+
+            lastUpdate_tv.text = "#${jobInfo.UF_JOBS_ID}\n${showFormat.format(modifiedDate)}"
             company_tv.text = jobInfo.COMPANY
             jobType_tv.text = jobInfo.UF_TYPE_OF_JOB_NAME ?: ""
 
