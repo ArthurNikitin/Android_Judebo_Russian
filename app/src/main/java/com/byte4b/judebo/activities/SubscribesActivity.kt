@@ -342,7 +342,7 @@ class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes), Serv
     private fun showCancelDialog() {
         AlertDialog.Builder(this)
             .setTitle(R.string.subscription_need_cancel_current_subs)
-            .setPositiveButton(R.string.request_geolocation_ok) { dialog, _ ->
+            .setPositiveButton(R.string.subscription_need_cancel_current_subs_ok) { dialog, _ ->
                 dialog.dismiss()
                 startActivity(
                     Intent(Intent.ACTION_VIEW).apply {
@@ -350,7 +350,7 @@ class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes), Serv
                     }
                 )
             }
-            .setNegativeButton(R.string.request_geolocation_cancel) { d, _ -> d.cancel() }
+            .setNegativeButton(R.string.subscription_need_cancel_current_subs_cancel) { d, _ -> d.cancel() }
             .show()
     }
 

@@ -103,6 +103,8 @@
     <string name="subsription_restore_subs_error" translatable="false">Your subs was not restored. Error.</string>
     <string name="subscription_need_cancel_current_subs" translatable="false">Please cancel current subscription!</string>
     <string name="subscription_buy_success">Success!</string>
+    <string name="subscription_need_cancel_current_subs_ok" translatable="false">Ok</string>
+    <string name="subscription_need_cancel_current_subs_cancel" translatable="false">Cancel</string>
 
 
 </resources>

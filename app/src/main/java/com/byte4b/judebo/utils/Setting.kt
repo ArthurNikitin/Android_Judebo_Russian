@@ -185,6 +185,7 @@ class Setting(ctx: Context) {
 
         // disable adv after show
         const val JSON_REQUEST_ADV_PERIOD_IN_SECONDS = 60_000
+        const val ADV_DEFAULT_SHOW_ADV_IN_SECONDS = 7
 
         val subs10PeriodVariantsIds = listOf(
             "playmarket_month_limit_00010",
