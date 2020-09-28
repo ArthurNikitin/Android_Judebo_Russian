@@ -8,7 +8,6 @@ import android.location.Location
 import android.location.LocationManager
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
@@ -61,7 +60,6 @@ class SettingFragment : Fragment(R.layout.fragment_setting), ServiceListener {
                 lang_tv.text = lang.title
                 langIcon_iv.setImageResource(lang.flag)
         } catch (e: Exception) {
-            Log.e("test", "1: " + e.localizedMessage)
         }
 
         try {
@@ -86,7 +84,6 @@ class SettingFragment : Fragment(R.layout.fragment_setting), ServiceListener {
         }
 
         val count = RealmDb.getVocationsCount(realm)
-        Log.e("test", "show sku ${setting.subscribeInfo?.SUBSCRIPTION_STORE_ID}")
         subscribe_tv.text = "${setting.subscribeInfo?.SUBSCRIPTION_STORE_ID?.toSubscribeName(realm)
             ?: getString(R.string.user_jobs_list_have_not_subsription)}: ${setting.maxVocations}"
         if (setting.maxVocations < count) {
@@ -118,7 +115,6 @@ class SettingFragment : Fragment(R.layout.fragment_setting), ServiceListener {
                 currencyIcon_iv.setImageResource(currentCurrency.icon)
             }
         } catch (e: Exception) {
-            Log.e("test", "2: " + e.localizedMessage)
         }
 
         deleteMe_tv.setOnClickListener {
@@ -321,7 +317,6 @@ class SettingFragment : Fragment(R.layout.fragment_setting), ServiceListener {
                 }
             }
         } catch (e: Exception) {
-            Log.e("test", e.localizedMessage?:"error")
         }
     }
 

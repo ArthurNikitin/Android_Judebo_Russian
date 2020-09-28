@@ -2,7 +2,6 @@ package com.byte4b.judebo.activities
 
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.byte4b.judebo.R
 import com.byte4b.judebo.getLangFromLocale
@@ -168,7 +167,6 @@ class SplashActivity : AppCompatActivity(), ServiceListener {
     }
 
     private fun Exception.toLog(attachment: String = "") {
-        Log.e("test", "$attachment: $localizedMessage")
     }
 
     override fun onJobTypesLoaded(list: List<JobType>?) {

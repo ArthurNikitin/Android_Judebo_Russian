@@ -2,7 +2,6 @@ package com.byte4b.judebo.activities
 
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.byte4b.judebo.R
@@ -23,21 +22,18 @@ class AdBannerActivity : AppCompatActivity(R.layout.ad_banner) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
-        Log.e("ad", "BannerAcivity")
         try {
 
             var isLoaded = false
             adView.adListener = object : AdListener() {
                 override fun onAdFailedToLoad(p0: LoadAdError?) {
                     super.onAdFailedToLoad(p0)
-                    Log.e("ad", "fail load google ad")
                     setting.isLastTryShowAdHaveError = true
                     finish()
                 }
 
                 override fun onAdLoaded() {
                     super.onAdLoaded()
-                    Log.e("ad", "success load google ad")
                     isLoaded = true
                 }
             }

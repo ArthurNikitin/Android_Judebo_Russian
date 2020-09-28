@@ -8,7 +8,6 @@ import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Handler
 import android.util.Base64.decode
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -261,7 +260,6 @@ class VocationsAdapter(
                 }
             }
         } catch (e: Exception) {
-            Log.e("test", e.localizedMessage ?: "copy error")
         }
     }
 

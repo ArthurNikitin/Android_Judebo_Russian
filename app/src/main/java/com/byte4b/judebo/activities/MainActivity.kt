@@ -4,7 +4,6 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -237,9 +236,7 @@ class MainActivity : AppCompatActivity(), ServiceListener {
                     }
                 }
             }
-        } catch (e: Exception) {
-            Log.e("test", "onActivityResult: ${e.localizedMessage}")
-        }
+        } catch (e: Exception) {}
     }
 
 }

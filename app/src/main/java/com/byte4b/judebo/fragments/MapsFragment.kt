@@ -8,7 +8,6 @@ import android.location.LocationManager
 import android.os.Bundle
 import android.os.Handler
 import android.provider.Settings
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
@@ -182,7 +181,6 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
                     position.longitude - Setting.MAX_SEARCH_LONGITUDE_SIZE / 1
                 )
                 } catch (e: Exception) {
-                    Log.e("debug", e.localizedMessage ?: "error retrofit")
                 }
             }
             true
@@ -286,7 +284,6 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
                 )
             }
         } catch (e: Exception) {
-            Log.e("test", e.localizedMessage?: "error")
         }
         return view
     }

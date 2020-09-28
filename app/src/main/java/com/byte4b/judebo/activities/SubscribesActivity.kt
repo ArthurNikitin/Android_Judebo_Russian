@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -34,9 +33,7 @@ class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes), Serv
     private fun SubsTry(action: () -> Unit) {
         try {
             action()
-        } catch (e: Exception) {
-            Log.e("testsubs", e.localizedMessage ?: "subs unknow error")
-        }
+        } catch (e: Exception) {}
     }
 
     private val billingClient by lazy {
@@ -48,10 +45,8 @@ class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes), Serv
 
     private val purchaseUpdateListener by lazy {
         PurchasesUpdatedListener { _, purchases ->
-            Log.e("test", "add sub: purchase size = ${purchases?.size}")
             purchases?.forEach {
                     if (it != null) {
-                        Log.e("test", "purchase: sku = ${it.sku}")
                         setting.subscribeInfo = SubAnswer(
                             MESSAGE = "SUCCESS",
                             STATUS = "SUCCESS",
@@ -104,7 +99,6 @@ class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes), Serv
         billingClient.startConnection(object : BillingClientStateListener {
 
             override fun onBillingSetupFinished(billingResult: BillingResult) {
-                Log.e("test", "onBillingSetupFinished: ${billingResult.responseCode}")
                 if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
                     val skuDetailsParamsBuilder = SkuDetailsParams.newBuilder()
                     val skuList =
@@ -178,7 +172,6 @@ class SubscribesActivity : AppCompatActivity(R.layout.activity_subscribes), Serv
             if (result?.STATUS == "success") {
                 if (result.SUBSCRIPTION_STORE_ID?.startsWith("playmarket") == true) {
                     val mySub = queryPurchases()?.firstOrNull {
-                        Log.e("test", it.purchaseToken + "==" + result.SUBSCRIPTION_BILL_TOKEN)
                         it.sku == result.SUBSCRIPTION_STORE_ID //&& it.purchaseToken == result.SUBSCRIPTION_BILL_TOKEN
                     }
                     if (mySub != null) {

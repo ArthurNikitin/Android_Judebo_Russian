@@ -5,7 +5,6 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -166,7 +165,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
     @SuppressLint("SetTextI18n")
     private fun showVocationsCount(): Boolean {
         val vocationsCount = RealmDb.getVocationsCount(realm)
-        Log.e("test", "show sku ${setting.subscribeInfo?.SUBSCRIPTION_STORE_ID}")
+
         subscribe_limit.text = "${setting.subscribeInfo?.SUBSCRIPTION_STORE_ID?.toSubscribeName(realm)
             ?: getString(R.string.user_jobs_list_have_not_subsription)}: $vocationsCount/${setting.maxVocations}"
 
@@ -217,10 +216,6 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
 
     @SuppressLint("SimpleDateFormat")
     override fun onMyVocationsLoaded(list: List<Vocation>?, isNeedLogout: Boolean) {
-        Log.e(
-            "test",
-            "onMyVocationsLoaded: vocations size = ${(list ?: listOf()).size}, isNeedLogout = $isNeedLogout"
-        )
 
         if (isNeedLogout) {
             setting.logout()
@@ -237,7 +232,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
 
         realm.executeTransaction {
             list.forEach { objFromServer ->
-                Log.e("test", "start logic ${objFromServer.UF_JOBS_ID}, ${objFromServer.NAME}")
+                //Log.e("test", "start logic ${objFromServer.UF_JOBS_ID}, ${objFromServer.NAME}")
 
                 // Element have UF_JOBS_ID
                 var objFromRealm =
@@ -245,7 +240,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                 if (objFromRealm != null)
                 //Element founded in Realm by ID
                 {
-                    Log.e("test", "objFromRealm != null")
+                    //Log.e("test", "objFromRealm != null")
                     val objDate = getDate(objFromRealm.UF_MODIFED)
                     val itDate = getDate(objFromServer.UF_MODIFED)
 
@@ -253,7 +248,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                     if (itDate > objDate)
                     // +++ Data updated on WEB
                     {
-                        Log.e("test", "itDate > objDate")
+                        //Log.e("test", "itDate > objDate")
                         objFromRealm.apply {
                             COMPANY = objFromServer.COMPANY
                             DETAIL_TEXT = objFromServer.DETAIL_TEXT
@@ -289,17 +284,17 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                     } else
                     // +++ Web data not actual nothing do
                     {
-                        Log.e("test", "itDate <= objDate")
+                        //Log.e("test", "itDate <= objDate")
                     }
 
                 } else
                 //Element NOT founded in Realm by ID
                 {
-                    Log.e("test", "objFromRealm == null")
+                    //Log.e("test", "objFromRealm == null")
                     if (objFromServer.UF_APP_JOB_ID == null)
                     // +++ JOB CREATED ON WEB
                     {
-                        Log.e("test", "objFromServer.UF_APP_JOB_ID == null")
+                        //Log.e("test", "objFromServer.UF_APP_JOB_ID == null")
                         val tmpObj = objFromServer.toRealmVersion()
                         tmpObj.UF_APP_JOB_ID = getNewJobAppId().toLong()
                         tmpObj.UF_MODIFED = Calendar.getInstance().timestamp
@@ -317,14 +312,14 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                     } else
                     // --- JOB CREATED IN APP (may be another device)
                     {
-                        Log.e("test", "objFromServer.UF_APP_JOB_ID != null")
+                        //Log.e("test", "objFromServer.UF_APP_JOB_ID != null")
                         objFromRealm =
                             realmList.firstOrNull { it.UF_APP_JOB_ID?.toString() == objFromServer.UF_APP_JOB_ID }
                         //try found  in REALM  by APP_ID ()
                         if (objFromRealm != null)
                         //FOUND in REALM by APP_ID ()
                         {
-                            Log.e("test", "objFromRealm != null")
+                            //Log.e("test", "objFromRealm != null")
                             val objDate = getDate(objFromRealm.UF_MODIFED)
                             val itDate = getDate(objFromServer.UF_MODIFED)
 
@@ -332,7 +327,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                             if (itDate > objDate)
                             // rewrite to REALM all params from WEB and UF_APP_JOB_ID
                             {
-                                Log.e("test", "itDate > objDate")
+                                //Log.e("test", "itDate > objDate")
                                 //NEW DATA FROM WEB
                                 objFromRealm.apply {
                                     COMPANY = objFromServer.COMPANY
@@ -359,7 +354,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                             } else
                             //OLD DATA from WEB, need write only JOBS_ID, (not need: DATA MODIFED, DISABLE)
                             {
-                                Log.e("test", "itDate <= objDate")
+                                //Log.e("test", "itDate <= objDate")
                                 // rewrite only JOB_ID
                                 objFromRealm.UF_JOBS_ID = objFromServer.UF_JOBS_ID
                             }
@@ -367,10 +362,10 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                         } else
                         //+++ NOT FOUND in REALM by APP_ID ()
                         {
-                            Log.e("test", "objFromRealm == null")
+                            //Log.e("test", "objFromRealm == null")
                             // Write element to local DB
                             //
-                            Log.e("test", "${objFromServer.UF_JOBS_ID}, ${objFromServer.NAME}")
+                            //Log.e("test", "${objFromServer.UF_JOBS_ID}, ${objFromServer.NAME}")
                             val tmpObj = objFromServer.toRealmVersion()
                             realm.insertOrUpdate(tmpObj)
                             // add to REALM all params from WEB and UF_APP_JOB_ID

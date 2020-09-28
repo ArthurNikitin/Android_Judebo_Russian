@@ -3,7 +3,6 @@ package com.byte4b.judebo.activities
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.byte4b.judebo.R
@@ -21,7 +20,6 @@ class AdVideoActivity : AppCompatActivity(R.layout.ad_video) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
-        Log.e("ad", "VideoLoadedAcivity")
         ad = Gson().fromJson(intent.getStringExtra("ad"), CustomAd::class.java)
 
         videoView.apply {

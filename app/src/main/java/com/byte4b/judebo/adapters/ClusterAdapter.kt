@@ -1,7 +1,6 @@
 package com.byte4b.judebo.adapters
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,8 +18,6 @@ import com.byte4b.judebo.utils.Setting
 import com.google.android.flexbox.*
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.item_skill.view.*
-import kotlinx.android.synthetic.main.preview.*
 import kotlinx.android.synthetic.main.preview.view.*
 
 class ClusterAdapter(
@@ -121,7 +118,6 @@ class ClusterAdapter(
                     holder.filtersList.adapter = SkillsAdapter(ctx, ALL_SKILLS_NAME.split(","))
                 }
             } catch (e: Exception) {
-                Log.e("test", e.localizedMessage ?: "error")
             }
         }
     }

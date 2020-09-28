@@ -2,7 +2,6 @@ package com.byte4b.judebo.activities
 
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
@@ -21,7 +20,6 @@ class AdPhotoActivity : AppCompatActivity(R.layout.ad_photo) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
-        Log.e("ad", "PhotoLoadedAcivity")
         ad = Gson().fromJson(intent.getStringExtra("ad"), CustomAd::class.java)
 
         if (ad?.url_source != null)

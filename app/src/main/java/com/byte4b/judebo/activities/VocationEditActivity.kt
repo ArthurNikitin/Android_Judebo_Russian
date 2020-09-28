@@ -8,7 +8,6 @@ import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.EditText
@@ -131,7 +130,6 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                             .into(logo_iv)
                     } else {
                         try {
-                            Log.e("test", "start base64 decoding")
                             val btm =
                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
                                     Base64.getDecoder()
@@ -154,12 +152,10 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                                     .into(logo_iv)
                             }, 200)
                         } catch (e: Exception) {
-                            Log.e("test", "base64 error:")
                         }
                     }
                 }
             } catch (e: Exception) {
-                Log.e("test", "base64 error")
             }
 
             try {
@@ -236,7 +232,6 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
 
             details_tv.data = jobInfo.DETAIL_TEXT ?: ""
         } catch (e: Exception) {
-            Log.e("test", e.localizedMessage ?: "errrrrror")
         }
 
         validateForm()
@@ -377,7 +372,6 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
     fun deleteClick(v: View) {
         if (job == null) return
 
-        Log.e("test", "del")
         AlertDialog.Builder(this)
             .setTitle(R.string.request_request_delete_title)
             .setMessage(R.string.request_request_delete_message)
@@ -409,7 +403,6 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
 
                         vocationRealm?.UF_MODIFED = Calendar.getInstance().timestamp
                     } catch (e: Exception) {
-                        Log.e("test", e.localizedMessage ?: "ErrorMe")
                     }
                     try {
                         ApiServiceImpl(this).deleteVocation(
@@ -512,7 +505,6 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                 email_field.endIconDrawable = email
             }
         } catch (e: Exception) {
-            Log.e("test", e.localizedMessage ?: "showSystemIcons error")
         }
     }
 
@@ -590,12 +582,10 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                     createNewVocation()
             }
         } catch (e: Exception) {
-            Log.e("test", e.localizedMessage ?: "error")
         }
     }
 
     override fun onVocationDeleted(success: Boolean) {
-        Log.e("test", "deleted")
         try { refresher.isRefreshing = false } catch (e: Exception) { e.toLog() }
     }
 
@@ -609,9 +599,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
             Toasty.error(this, R.string.error_no_internet).show()
     }
 
-    private fun Exception.toLog(tag: String = "test") {
-        Log.e(tag, localizedMessage?: message ?: "toLogHaveEmptyErrorMessage")
-    }
+    private fun Exception.toLog(tag: String = "test") {}
 
     private fun getMapFragment(): DetailsMapFragment? =
         supportFragmentManager.fragments.lastOrNull { it is DetailsMapFragment } as DetailsMapFragment?

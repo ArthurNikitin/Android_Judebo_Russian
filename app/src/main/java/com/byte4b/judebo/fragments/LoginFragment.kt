@@ -2,7 +2,6 @@ package com.byte4b.judebo.fragments
 
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.byte4b.judebo.R
@@ -80,7 +79,6 @@ class LoginFragment : Fragment(R.layout.fragment_login), ServiceListener {
                     password_et.error = getString(R.string.user_registration_required_field)
             }
         } catch (e: Exception) {
-            Log.e("error", "signInEmail: ${e.localizedMessage}")
         }
     }
 

@@ -3,7 +3,6 @@ package com.byte4b.judebo
 import android.app.Application
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Handler
-import android.util.Log
 import com.byte4b.judebo.activities.AdBannerActivity
 import com.byte4b.judebo.activities.AdPhotoActivity
 import com.byte4b.judebo.activities.AdVideoActivity
@@ -11,7 +10,7 @@ import com.byte4b.judebo.models.CustomAd
 import com.byte4b.judebo.services.ApiServiceImpl
 import com.byte4b.judebo.utils.Setting
 import com.byte4b.judebo.view.ServiceListener
-import com.google.android.gms.ads.*
+import com.google.android.gms.ads.MobileAds
 import com.google.gson.Gson
 import java.util.*
 
@@ -66,12 +65,8 @@ class App : Application(), ServiceListener {
     }
 
     override fun onAdLoaded(result: CustomAd?) {
-        Log.e("ad", "onAdLoaded")
-        Log.e("ad", Gson().toJson(result))
         if (result != null && !result.isEmpty) {
-            Log.e("ad", "custom ads")
             setting.lastAdShowTimeStamp = Calendar.getInstance().timestamp
-            Log.e("ad", "photo = ${result.isPhoto}, video = ${result.isVideo}")
             if (result.isPhoto)
                 startActivity<AdPhotoActivity> {
                     addFlags(FLAG_ACTIVITY_NEW_TASK)
@@ -84,12 +79,10 @@ class App : Application(), ServiceListener {
                 }
 
         } else if (setting.maxVocations != Setting.LIMIT_VACANCIES_WITHOUT_SUBSCRIPTION) {
-            Log.e("ad", "google ads")
             startActivity<AdBannerActivity> {
                 addFlags(FLAG_ACTIVITY_NEW_TASK)
             }
         } else {
-            Log.e("ad", "error load")
             setting.isLastTryShowAdHaveError = true
         }
     }

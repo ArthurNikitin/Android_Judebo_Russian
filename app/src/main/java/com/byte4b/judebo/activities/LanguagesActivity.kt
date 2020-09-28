@@ -3,7 +3,6 @@ package com.byte4b.judebo.activities
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,9 +27,7 @@ class LanguagesActivity : AppCompatActivity() {
 
             vocation = Gson().fromJson(intent.getStringExtra("data"), Vocation::class.java)
             initData()
-        } catch (e: Exception) {
-            Log.e("test1", e.localizedMessage?: "error")
-        }
+        } catch (e: Exception) {}
     }
 
     private fun initData() {

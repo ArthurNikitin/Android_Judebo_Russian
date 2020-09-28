@@ -1,5 +1,6 @@
 package com.byte4b.judebo.api
 
+import com.byte4b.judebo.BuildConfig
 import com.byte4b.judebo.utils.Setting
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
@@ -14,7 +15,9 @@ fun getRetrofit(locale: String): Retrofit {
     val gson = GsonBuilder().setLenient().create()
 
     val interceptor = HttpLoggingInterceptor()
-    interceptor.level = HttpLoggingInterceptor.Level.BODY
+    interceptor.level =
+        if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY
+        else HttpLoggingInterceptor.Level.NONE
 
 
     val client = OkHttpClient.Builder()

@@ -7,7 +7,6 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -153,9 +152,7 @@ class DetailsActivity : AppCompatActivity() {
             jobType_tv.text = jobInfo.UF_TYPE_OF_JOB_NAME ?: ""
 
             details_tv.text = jobInfo.DETAIL_TEXT
-        } catch (e: Exception) {
-            Log.e("debug", e.localizedMessage ?: "Details error")
-        }
+        } catch (e: Exception) {}
     }
 
     fun closeClick(v: View) = finish()

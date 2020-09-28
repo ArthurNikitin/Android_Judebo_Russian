@@ -1,6 +1,5 @@
 package com.byte4b.judebo.services
 
-import android.util.Log
 import com.byte4b.judebo.api.getAPI
 import com.byte4b.judebo.api.secretKey
 import com.byte4b.judebo.models.*
@@ -21,9 +20,7 @@ class ApiServiceImpl(val listener: ServiceListener?) : ApiService {
     private fun check(action: () -> Unit) {
         try {
             action()
-            Log.e("test", "check complited")
         } catch (e: Exception) {
-            Log.e("test", e.localizedMessage ?: "Error")
         }
     }
 
@@ -57,7 +54,6 @@ class ApiServiceImpl(val listener: ServiceListener?) : ApiService {
                             }
                             listener?.onNearbyMarkersLoaded(objects)
                         } catch (e: Exception) {
-                            Log.e("test", e.localizedMessage ?: "parse error" + " ${Gson().toJson(response.body())}")
                             check { listener?.onNearbyMarkersLoaded(null) }
                         }
                     } else
@@ -140,12 +136,10 @@ class ApiServiceImpl(val listener: ServiceListener?) : ApiService {
             .enqueue(object : Callback<List<Vocation>> {
                 override fun onFailure(call: Call<List<Vocation>>, t: Throwable) {
                     check { listener?.onMyVocationsLoaded(null) }
-                    Log.e("test","throw tt")
                 }
 
                 override fun onResponse(call: Call<List<Vocation>>, response: Response<List<Vocation>>) {
                     check {
-                        Log.e("test","onResp tt success")
                         if (response.isSuccessful) {
                             val (serviceList, workList) = (response.body() ?: listOf()).partition {
                                 it.UF_JOBS_ID.toString() == Setting.DEFAULT_JOB_ID_SERVICE_USED.toString()
@@ -157,7 +151,6 @@ class ApiServiceImpl(val listener: ServiceListener?) : ApiService {
                                         || serviceList[0].DETAIL_TEXT == "user not found")
                             )
                         } else {
-                            Log.e("test","onResp tt")
                             listener?.onMyVocationsLoaded(null)
                         }
                     }
@@ -171,7 +164,6 @@ class ApiServiceImpl(val listener: ServiceListener?) : ApiService {
             .enqueue(object : Callback<Result> {
                 override fun onFailure(call: Call<Result>, t: Throwable) {
                     check { listener?.onVocationDeleted(false) }
-                    Log.e("check", t.localizedMessage ?: "Error")
                 }
 
                 override fun onResponse(call: Call<Result>, response: Response<Result>) {
@@ -180,7 +172,6 @@ class ApiServiceImpl(val listener: ServiceListener?) : ApiService {
                             listener?.onVocationDeleted(response.body()?.status == "success")
                         else
                             listener?.onVocationDeleted(false)
-                        Log.e("check", Gson().toJson(response.body()))
                     }
                 }
             })
