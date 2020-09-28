@@ -123,11 +123,12 @@ class MainActivity : AppCompatActivity(), ServiceListener {
     }
 
     fun checkMySubscription() {
-        ApiServiceImpl(this).checkMySub(
-            setting.getCurrentLanguage().locale,
-            setting.token ?: "",
-            setting.email ?: ""
-        )
+        if (setting.isAuth)
+            ApiServiceImpl(this).checkMySub(
+                setting.getCurrentLanguage().locale,
+                setting.token ?: "",
+                setting.email ?: ""
+            )
     }
 
     private val billingClient by lazy {
