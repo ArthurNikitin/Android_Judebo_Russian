@@ -1,8 +1,11 @@
 package com.byte4b.judebo.fragments
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.graphics.Typeface
+import android.location.Location
+import android.location.LocationManager
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -60,6 +63,21 @@ class SettingFragment : Fragment(R.layout.fragment_setting), ServiceListener {
         } catch (e: Exception) {
             Log.e("test", "1: " + e.localizedMessage)
         }
+
+        try {
+            val mLocationManager =
+                requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+            val providers = mLocationManager.getProviders(true)
+            var bestLocation: Location? = null
+            var result = ""
+            for (provider in providers) {
+                val l = mLocationManager.getLastKnownLocation(provider) ?: continue
+                if (bestLocation == null || l.accuracy < bestLocation.accuracy)
+                    bestLocation = l
+                result += "${l.latitude}=${l.longitude}=${l.accuracy}\n"
+            }
+            textView2?.text = result
+        } catch (e: Exception) {}
 
         try {
             RealmDb.getVocationsCount(realm)
@@ -187,6 +205,7 @@ class SettingFragment : Fragment(R.layout.fragment_setting), ServiceListener {
     private fun queryPurchases() =
         billingClient.queryPurchases(BillingClient.SkuType.SUBS).purchasesList
 
+    @SuppressLint("MissingPermission")
     override fun onMySubLoaded(result: SubAnswer?) {
         setting.toLogin = false
         if (result?.STATUS == "success") {
