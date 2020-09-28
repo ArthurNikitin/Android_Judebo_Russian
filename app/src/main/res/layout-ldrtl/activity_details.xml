@@ -62,6 +62,8 @@
 
 
             <TextView
+                android:focusableInTouchMode="true"
+                android:textIsSelectable="true"
                 android:id="@+id/name_tv"
                 android:gravity="right"
                 android:textSize="18sp"
@@ -84,6 +86,8 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:focusableInTouchMode="true"
+                    android:textIsSelectable="true"
                     android:layout_marginBottom="8dp"
                     android:textSize="17sp"
                     android:gravity="right"
@@ -94,6 +98,8 @@
                     android:text="Full time" />
 
             <TextView
+                android:focusableInTouchMode="true"
+                android:textIsSelectable="true"
                 android:gravity="end"
                 android:textSize="17sp"
                 android:id="@+id/company_tv"
@@ -266,6 +272,8 @@
 
             <TextView
                 android:textSize="18sp"
+                android:focusableInTouchMode="true"
+                android:textIsSelectable="true"
                 android:layout_marginBottom="8dp"
                 android:id="@+id/details_tv"
                 android:layout_width="match_parent"
@@ -294,6 +302,8 @@
                     app:srcCompat="@drawable/facebook_share_big" />
 
                 <TextView
+                    android:focusableInTouchMode="true"
+                    android:textIsSelectable="true"
                     android:id="@+id/lastUpdate_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

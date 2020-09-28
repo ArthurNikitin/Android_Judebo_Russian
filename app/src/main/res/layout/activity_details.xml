@@ -61,6 +61,8 @@
 
 
             <TextView
+                android:focusableInTouchMode="true"
+                android:textIsSelectable="true"
                 android:id="@+id/name_tv"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -82,6 +84,8 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:focusableInTouchMode="true"
+                    android:textIsSelectable="true"
                     android:layout_marginBottom="8dp"
                     android:textSize="17sp"
                     android:id="@+id/jobType_tv"
@@ -91,6 +95,8 @@
                     android:text="Full time" />
 
                 <TextView
+                    android:focusableInTouchMode="true"
+                    android:textIsSelectable="true"
                     android:textSize="17sp"
                     android:id="@+id/company_tv"
                     android:layout_marginBottom="8dp"
@@ -132,6 +138,8 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:focusableInTouchMode="true"
+                    android:textIsSelectable="true"
                     android:textSize="16sp"
                     android:layout_marginStart="5dp"
                     android:id="@+id/secondSalary_tv"
@@ -140,6 +148,8 @@
                     android:text="230" />
 
                 <TextView
+                    android:focusableInTouchMode="true"
+                    android:textIsSelectable="true"
                     android:textSize="16sp"
                     android:id="@+id/secondSalaryVal_tv"
                     android:layout_width="wrap_content"
@@ -155,6 +165,8 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:focusableInTouchMode="true"
+                    android:textIsSelectable="true"
                     android:textSize="16sp"
                     android:id="@+id/salary_tv"
                     android:layout_width="wrap_content"
@@ -162,6 +174,8 @@
                     android:text="10 000" />
 
                 <TextView
+                    android:focusableInTouchMode="true"
+                    android:textIsSelectable="true"
                     android:textSize="16sp"
                     android:id="@+id/salaryVal_tv"
                     android:layout_width="wrap_content"
@@ -257,6 +271,8 @@
                 android:layout_height="250dp" />
 
             <TextView
+                android:focusableInTouchMode="true"
+                android:textIsSelectable="true"
                 android:layout_marginBottom="8dp"
                 android:id="@+id/details_tv"
                 android:textSize="18sp"
@@ -286,6 +302,8 @@
                     app:srcCompat="@drawable/facebook_share_big" />
 
                 <TextView
+                    android:focusableInTouchMode="true"
+                    android:textIsSelectable="true"
                     android:id="@+id/lastUpdate_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
