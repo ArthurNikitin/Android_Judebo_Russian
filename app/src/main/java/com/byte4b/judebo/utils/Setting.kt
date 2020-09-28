@@ -26,10 +26,6 @@ class Setting(ctx: Context) {
         get() = pref.getString("token", null)
         set(value) = pref.edit { putString("token", value) }
 
-    var lastOpenedFragmentName
-        get() = pref.getString("last_fragment", null)
-        set(value) = pref.edit { putString("last_fragment", value) }
-
     var signUpFromGoogle
         get() = pref.getBoolean("sign_up_google", false)
         set(value) = pref.edit { putBoolean("sign_up_google", value) }

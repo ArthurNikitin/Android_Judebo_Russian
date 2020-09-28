@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
 import com.android.billingclient.api.BillingClient
 import com.android.billingclient.api.BillingClientStateListener
 import com.android.billingclient.api.BillingResult
@@ -89,32 +88,6 @@ class MainActivity : AppCompatActivity(), ServiceListener {
                 else -> true
             }
         }
-        supportFragmentManager.commit {
-            when (setting.lastOpenedFragmentName) {
-                LoginFragment::class.java.simpleName -> {
-                    navBar_bnv.selectedItemId = R.id.bottom_item_creator
-                    replace(R.id.frame,
-                        if (setting.isAuth) CreatorFragment() else LoginFragment()
-                    )
-                }
-                SignUpFragment::class.java.simpleName -> {
-                    navBar_bnv.selectedItemId = R.id.bottom_item_creator
-                    replace(R.id.frame,
-                        if (setting.isAuth) CreatorFragment() else LoginFragment()
-                    )
-                }
-                CreatorFragment::class.java.simpleName -> {
-                    navBar_bnv.selectedItemId = R.id.bottom_item_creator
-                    replace(R.id.frame,
-                        if (setting.isAuth) CreatorFragment() else LoginFragment()
-                    )
-                }
-                SettingFragment::class.java.simpleName -> {
-                    navBar_bnv.selectedItemId = R.id.bottom_item_setting
-                    replace(R.id.frame, SettingFragment())
-                }
-            }
-        }
         billingClient.startConnection(object : BillingClientStateListener {
             override fun onBillingSetupFinished(billingResult: BillingResult) {}
             override fun onBillingServiceDisconnected() {}
@@ -177,13 +150,6 @@ class MainActivity : AppCompatActivity(), ServiceListener {
         super.onStart()
         if (setting.toLogin)
             restartFragment(LoginFragment())
-    }
-
-    override fun onDestroy() {
-        supportFragmentManager.fragments.lastOrNull()?.apply {
-            setting.lastOpenedFragmentName = this::class.java.simpleName
-        }
-        super.onDestroy()
     }
 
     fun restartFragment(fragment: Fragment) {
