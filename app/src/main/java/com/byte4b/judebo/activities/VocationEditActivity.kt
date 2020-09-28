@@ -468,7 +468,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
         //
         if (name_tv.data?.trim().isNullOrEmpty()) {
             name_tv.requestFocus()
-            scroll.post { scroll.smoothScrollTo(0, name_tv.bottom) }
+            scroll.post { scroll.smoothScrollTo(0, name_tv.top) }
         } else if (email_tv.data?.trim().isNullOrEmpty()) {
             email_tv.requestFocus()
             scroll.post { scroll.smoothScrollTo(0, email_tv.bottom) }

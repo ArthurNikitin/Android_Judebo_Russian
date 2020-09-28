@@ -124,6 +124,9 @@ class OwnIconRendered(
         super.onBeforeClusterItemRendered(item, marker)
     }
 
+    val k = 0.7
+    val size = (Setting.CURRENCY_ICON_SIZE * k).toInt()
+
     @SuppressLint("SetTextI18n")
     private fun getViewWithSalaryMath(view: View, data: MyMarker): View {
         try {
@@ -140,17 +143,17 @@ class OwnIconRendered(
                 view.salary_tv2.text = data.UF_GROSS_PER_MONTH.round()
                 view.salaryVal_tv2.text = " ${currency.name}"
                 if (isRtl(context!!))
-                    view.salary_tv2.setLeftDrawableMap(currency.icon)
+                    view.salary_tv2.setLeftDrawableMap(currency.icon, size)
                 else
-                    view.salary_tv2.setRightDrawableMap(currency.icon)
+                    view.salary_tv2.setRightDrawableMap(currency.icon, size)
                 view.secondContainer2.visibility = View.GONE
             } else {
                 view.salary_tv2.text = data.UF_GROSS_PER_MONTH.round().trim()
                 view.salaryVal_tv2.text = " ${currency?.name ?: ""}"
                 if (isRtl(context!!))
-                    view.salary_tv2.setLeftDrawableMap(currency?.icon ?: R.drawable.iusd)
+                    view.salary_tv2.setLeftDrawableMap(currency?.icon ?: R.drawable.iusd, size)
                 else
-                    view.salary_tv2.setRightDrawableMap(currency?.icon ?: R.drawable.iusd)
+                    view.salary_tv2.setRightDrawableMap(currency?.icon ?: R.drawable.iusd, size)
 
                 view.secondContainer2.visibility = View.VISIBLE
 
@@ -165,9 +168,9 @@ class OwnIconRendered(
                 view.secondSalaryVal_tv2.text = currency2.name
 
                 if (isRtl(context))
-                    view.secondSalary_tv2.setLeftDrawableMap(currency2.icon)
+                    view.secondSalary_tv2.setLeftDrawableMap(currency2.icon, size)
                 else
-                    view.secondSalary_tv2.setRightDrawableMap(currency2.icon)
+                    view.secondSalary_tv2.setRightDrawableMap(currency2.icon, size)
             }
         } catch (e: Exception) {
         }

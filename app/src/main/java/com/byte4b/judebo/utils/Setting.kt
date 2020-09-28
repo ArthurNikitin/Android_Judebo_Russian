@@ -156,7 +156,7 @@ class Setting(ctx: Context) {
             when (Build.VERSION.SDK_INT) {
                 26 -> (1.2 * 24).toInt() //8.0 android
                 27 -> (1.2 * 24).toInt() //8.1
-                28 -> (24.0 * 1.2).toInt() //9
+                28 -> (24.0 * 0.6).toInt() //9
 
                 else -> 24//other versions
             }
