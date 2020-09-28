@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.byte4b.judebo.R
 import com.byte4b.judebo.models.CustomAd
 import com.byte4b.judebo.openBaseUrl
+import com.byte4b.judebo.utils.Setting
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.ad_photo.*
 
@@ -36,8 +37,8 @@ class AdPhotoActivity : AppCompatActivity(R.layout.ad_photo) {
         }
 
         var time = 0
-        val period = (ad?.time ?: 5) * 1000L
-        progressBar.max = ad?.time ?: 5
+        val period = (ad?.time ?: Setting.ADV_DEFAULT_SHOW_ADV_IN_SECONDS) * 1000L
+        progressBar.max = ad?.time ?: Setting.ADV_DEFAULT_SHOW_ADV_IN_SECONDS
         val handler = Handler {
             time++
             progressBar.setDonut_progress(time.toString())

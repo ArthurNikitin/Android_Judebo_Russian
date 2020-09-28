@@ -1,26 +1,16 @@
 package com.byte4b.judebo.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.View
-import android.view.ViewGroup
-import android.view.ViewGroup.LayoutParams.MATCH_PARENT
-import androidx.core.view.updateLayoutParams
-import com.bumptech.glide.Glide
-import com.byte4b.judebo.App
+import androidx.appcompat.app.AppCompatActivity
 import com.byte4b.judebo.R
-import com.byte4b.judebo.models.CustomAd
-import com.byte4b.judebo.openBaseUrl
 import com.byte4b.judebo.utils.Setting
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.LoadAdError
-import com.google.gson.Gson
 import kotlinx.android.synthetic.main.ad_banner.*
-import kotlinx.android.synthetic.main.ad_photo.*
 import kotlinx.android.synthetic.main.ad_photo.cancel_icon
 import kotlinx.android.synthetic.main.ad_photo.progressBar
 import kotlinx.android.synthetic.main.ad_photo.timerView
@@ -58,14 +48,14 @@ class AdBannerActivity : AppCompatActivity(R.layout.ad_banner) {
                         setting.isLastTryShowAdHaveError = true
                         finish()
                     }
-                }, 5000L
+                }, Setting.ADV_DEFAULT_SHOW_ADV_IN_SECONDS * 1000L
             )
 
             adView.loadAd(AdRequest.Builder().build())
 
             var time = 0
-            val period = 5 * 1000L
-            progressBar.max = 5
+            val period = Setting.ADV_DEFAULT_SHOW_ADV_IN_SECONDS * 1000L
+            progressBar.max = Setting.ADV_DEFAULT_SHOW_ADV_IN_SECONDS
             val handler = Handler {
                 time++
                 progressBar.setDonut_progress(time.toString())
