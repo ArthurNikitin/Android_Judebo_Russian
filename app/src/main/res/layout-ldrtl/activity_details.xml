@@ -196,6 +196,8 @@
                 </LinearLayout>
 
                 <TextView
+                    android:focusableInTouchMode="true"
+                    android:textIsSelectable="true"
                     android:layoutDirection="ltr"
                     android:textSize="16sp"
                     android:gravity="end"
@@ -208,6 +210,8 @@
                     android:text="+7 800 555 55 55" />
 
                 <TextView
+                    android:focusableInTouchMode="true"
+                    android:textIsSelectable="true"
                     android:layoutDirection="ltr"
                     android:textSize="16sp"
                     android:gravity="end"

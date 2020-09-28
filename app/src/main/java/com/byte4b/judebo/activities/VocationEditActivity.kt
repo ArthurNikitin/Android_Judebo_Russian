@@ -431,7 +431,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
         return when {
             name_tv.data?.trim().isNullOrEmpty() -> false
 
-            phone_tv.data?.trim().isNullOrEmpty() && email_tv.data?.trim().isNullOrEmpty() -> false
+            email_tv.data?.trim().isNullOrEmpty() -> false
 
             details_tv.data?.trim().isNullOrEmpty() -> false
 
@@ -445,7 +445,6 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
 
     private fun validateForm(): Boolean {
         name_field.error = null
-        phone_field.error = null
         email_field.error = null
         detail_field.error = null
 
@@ -453,8 +452,8 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
             name_field.error = getString(R.string.edit_item_required_field)
         }
 
-        if (phone_tv.data?.trim().isNullOrEmpty() && email_tv.data?.trim().isNullOrEmpty()) {
-            phone_field.error = getString(R.string.edit_item_required_field)
+        if (email_tv.data?.trim().isNullOrEmpty()) {
+            email_field.error = getString(R.string.edit_item_required_field)
         }
 
         if (details_tv.data?.trim().isNullOrEmpty()) {
@@ -470,9 +469,9 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
         if (name_tv.data?.trim().isNullOrEmpty()) {
             name_tv.requestFocus()
             scroll.post { scroll.smoothScrollTo(0, name_tv.bottom) }
-        } else if (phone_tv.data?.trim().isNullOrEmpty() && email_tv.data?.trim().isNullOrEmpty()) {
-            phone_tv.requestFocus()
-            scroll.post { scroll.smoothScrollTo(0, phone_tv.bottom) }
+        } else if (email_tv.data?.trim().isNullOrEmpty()) {
+            email_tv.requestFocus()
+            scroll.post { scroll.smoothScrollTo(0, email_tv.bottom) }
         } else if (details_tv.data?.trim().isNullOrEmpty()) {
             details_tv.requestFocus()
             scroll.post { scroll.smoothScrollTo(0, details_tv.bottom) }
