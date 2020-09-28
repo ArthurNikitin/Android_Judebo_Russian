@@ -10,6 +10,9 @@ import com.byte4b.judebo.models.CustomAd
 import com.byte4b.judebo.services.ApiServiceImpl
 import com.byte4b.judebo.utils.Setting
 import com.byte4b.judebo.view.ServiceListener
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.InterstitialAd
 import com.google.android.gms.ads.MobileAds
 import com.google.gson.Gson
 import java.util.*
@@ -78,9 +81,28 @@ class App : Application(), ServiceListener {
                     putExtra("ad", Gson().toJson(result))
                 }
 
-        } else if (setting.maxVocations != Setting.LIMIT_VACANCIES_WITHOUT_SUBSCRIPTION) {
-            startActivity<AdBannerActivity> {
-                addFlags(FLAG_ACTIVITY_NEW_TASK)
+        } else if (setting.maxVocations == Setting.LIMIT_VACANCIES_WITHOUT_SUBSCRIPTION) {
+            if (Setting.ADV_GOOGLE_ADV_ADMOB_TYPE == "fullscreen") {
+                InterstitialAd(this).apply {
+                    adUnitId = "ca-app-pub-5400099956888878/3325823769"
+                    adListener = object : AdListener() {
+                        override fun onAdLoaded() {
+                            super.onAdLoaded()
+                            setting.lastAdShowTimeStamp = Calendar.getInstance().timestamp
+                            show()
+                        }
+
+                        override fun onAdFailedToLoad(p0: Int) {
+                            super.onAdFailedToLoad(p0)
+                            setting.isLastTryShowAdHaveError = false
+                        }
+                    }
+                    loadAd(AdRequest.Builder().build())
+                }
+            } else if (Setting.ADV_GOOGLE_ADV_ADMOB_TYPE == "banner") {
+                startActivity<AdBannerActivity> {
+                    addFlags(FLAG_ACTIVITY_NEW_TASK)
+                }
             }
         } else {
             setting.isLastTryShowAdHaveError = true
