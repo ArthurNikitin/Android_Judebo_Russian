@@ -14,8 +14,8 @@ android {
         applicationId "com.byte4b.judebo"
         minSdkVersion 19
         targetSdkVersion 30
-        versionCode 26
-        versionName "2.20.5"
+        versionCode 29
+        versionName "2.21.2"
         multiDexEnabled true
     }
     compileOptions {
@@ -27,6 +27,9 @@ android {
     }
     buildTypes {
         release {
+            //release mode
+            //minifyEnabled true
+            //developing mode
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
