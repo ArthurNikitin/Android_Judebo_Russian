@@ -85,7 +85,7 @@ class SettingFragment : Fragment(R.layout.fragment_setting), ServiceListener {
 
         val count = RealmDb.getVocationsCount(realm)
         subscribe_tv.text = "${setting.subscribeInfo?.SUBSCRIPTION_STORE_ID?.toSubscribeName(realm)
-            ?: getString(R.string.user_jobs_list_have_not_subsription)}: ${setting.maxVocations}"
+            ?: getString(R.string.user_jobs_list_have_not_subsription)}: $count/${setting.maxVocations}"
         if (setting.maxVocations < count) {
             subscribe_tv.setTextColor(resources.getColor(android.R.color.holo_red_dark))
             subscribe_tv.setTypeface(subscribe_tv.typeface, Typeface.BOLD)
@@ -201,7 +201,6 @@ class SettingFragment : Fragment(R.layout.fragment_setting), ServiceListener {
     private fun queryPurchases() =
         billingClient.queryPurchases(BillingClient.SkuType.SUBS).purchasesList
 
-    @SuppressLint("MissingPermission")
     override fun onMySubLoaded(result: SubAnswer?) {
         setting.toLogin = false
         if (result?.STATUS == "success") {
