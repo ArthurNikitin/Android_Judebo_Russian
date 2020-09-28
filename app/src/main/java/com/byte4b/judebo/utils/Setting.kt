@@ -173,9 +173,9 @@ class Setting(ctx: Context) {
         const val DEFAULT_JOB_ID_SERVICE_USED = 1L
 
         //How long text title/company/detail
-        const val TEXT_LENGTH_MAX_SYMBOLS_JOB_TITLE = 60
-        const val TEXT_LENGTH_MAX_SYMBOLS_JOB_COMPANY = 50
-        const val TEXT_LENGTH_MAX_SYMBOLS_JOB_DETAIL = 1500
+        const val TEXT_LENGTH_MAX_SYMBOLS_JOB_TITLE = 70
+        const val TEXT_LENGTH_MAX_SYMBOLS_JOB_COMPANY = 40
+        const val TEXT_LENGTH_MAX_SYMBOLS_JOB_DETAIL = 3500
 
         const val TAGS_POPULARITY_MINIMUM = 2
 
