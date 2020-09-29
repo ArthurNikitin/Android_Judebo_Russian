@@ -31,7 +31,17 @@
         android:adjustViewBounds="true"
         app:srcCompat="@drawable/default_log_name" />
 
-    <ImageView
+            <ImageView
+                android:layout_marginTop="40dp"
+                android:layout_marginStart="15dp"
+                android:id="@+id/filter_iv"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:adjustViewBounds="true"
+                android:cropToPadding="false"
+                app:srcCompat="@drawable/search_filter_not_active" />
+
+            <ImageView
         android:id="@+id/myGeo_iv"
         android:layout_width="30dp"
         android:layout_height="30dp"

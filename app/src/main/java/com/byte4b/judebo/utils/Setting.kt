@@ -89,6 +89,22 @@ class Setting(ctx: Context) {
             currencies.firstOrNull { it.name == currency } ?: currencies.first()
     }
 
+    var isFilterActive
+        get() = pref.getBoolean("filter_active", false)
+        set(value) = pref.edit { putBoolean("filter_active", value) }
+
+    var filterJobType
+        get() = pref.getString("filter_job_type", null)
+        set(value) = pref.edit { putString("filter_job_type", value) }
+
+    var filterLanguagesIds
+        get() = pref.getString("filter_languages_ids", "")!!.split(",").filterNot { it == "" }
+        set(value) = pref.edit { putString("filter_languages_ids", value.joinToString(",")) }
+
+    var filterSkillsIds
+        get() = pref.getString("filter_skills_ids", "")!!.split(",").filterNot { it == "" }
+        set(value) = pref.edit { putString("filter_skills_ids", value.joinToString(",")) }
+
     var lastAdShowTimeStamp
         get() = pref.getLong("lastAdShowTimeStamp", 0L)
         set(value) = pref.edit { putLong("lastAdShowTimeStamp", value) }
@@ -171,6 +187,10 @@ class Setting(ctx: Context) {
         const val MAX_IMG_CROP_HEIGHT = 400
         const val DEFAULT_SKILL_ID_ALWAYS_HIDDEN = "284"
         const val DEFAULT_JOB_ID_SERVICE_USED = 1L
+
+        //Search filter settings
+        const val SEARCH_GROSS_GOLD_MAX = 1000
+        const val SEARCH_GROSS_STEPS = 100
 
         //How long text title/company/detail
         const val TEXT_LENGTH_MAX_SYMBOLS_JOB_TITLE = 70

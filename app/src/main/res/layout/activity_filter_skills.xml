@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".activities.filter.FilterSkillsActivity">
+
+    <RelativeLayout
+        android:padding="8dp"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@drawable/toolbar_gradient">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:adjustViewBounds="true"
+            android:paddingLeft="5dp"
+            android:scaleType="fitStart"
+            android:onClick="closeClick"
+            app:srcCompat="@drawable/navigate_arrow_back"
+            tools:ignore="VectorDrawableCompat" />
+
+        <TextView
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="28sp"
+            android:textColor="#8BC34A"
+            android:textStyle="bold"
+            android:text="@string/search_tags" />
+
+        <ImageView
+            android:adjustViewBounds="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:onClick="saveClick"
+            android:layout_height="35dp"
+            app:srcCompat="@drawable/search_save" />
+
+    </RelativeLayout>
+
+    <com.byte4b.judebo.ui.MapRefreshLayout
+        android:id="@+id/refresher"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/selected_rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <LinearLayout
+                android:background="@drawable/toolbar_gradient"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:background="@drawable/filter_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_weight="1">
+
+                    <EditText
+                        android:id="@+id/filters_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:textColor="#fff"
+                        android:textColorHint="#DAF5F5F5"
+                        android:drawablePadding="5dp"
+                        android:ems="10"
+                        android:background="@null"
+                        android:hint="@string/search_tags_search"
+                        android:inputType="textPersonName" />
+
+                    <ImageView
+                        android:id="@+id/closeFilter_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:visibility="gone"
+                        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/add_new_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:paddingRight="8dp"
+                    android:adjustViewBounds="true"
+                    android:onClick="createNewSkill"
+                    android:visibility="gone"
+                    app:srcCompat="@drawable/edit_tags_search_save" />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/notSelected_rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+
+    </com.byte4b.judebo.ui.MapRefreshLayout>
+
+
+</LinearLayout>

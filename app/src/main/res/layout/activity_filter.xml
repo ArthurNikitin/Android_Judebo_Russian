@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".activities.filter.FilterActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@drawable/toolbar_gradient"
+        android:gravity="center_vertical"
+        android:padding="8dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:adjustViewBounds="true"
+            android:onClick="closeClick"
+            android:paddingLeft="5dp"
+            android:scaleType="fitStart"
+            app:srcCompat="@drawable/navigate_arrow_back"
+            tools:ignore="VectorDrawableCompat" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/search_title_filter"
+            android:textColor="#8BC34A"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:onClick="clearFilter"
+            android:layout_marginEnd="50dp"
+            android:adjustViewBounds="true"
+            app:srcCompat="@drawable/search_delete" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:adjustViewBounds="true"
+            android:onClick="saveClick"
+            app:srcCompat="@drawable/search_save" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:padding="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="bottom"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/minRange_tv"
+                    android:textColor="@color/toolbar_background_color"
+                    android:textSize="22sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0" />
+
+                <com.appyvet.materialrangebar.RangeBar
+                    android:id="@+id/salary_range"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:mrb_barWeight="2dp"
+                    app:mrb_connectingLineWeight="4dp"
+                    app:mrb_leftThumbColor="@color/toolbar_background_color"
+                    app:mrb_minThumbDistance="-1"
+                    app:mrb_pinColor="@color/toolbar_background_color"
+                    app:mrb_pinMaxFont="15sp"
+                    app:mrb_pinMinFont="12sp"
+                    app:mrb_pinRadius="14dp"
+                    app:mrb_pinTextColor="@color/white"
+                    app:mrb_rangeBar="true"
+                    app:mrb_rangeBar_rounded="true"
+                    app:mrb_rightThumbColor="@color/toolbar_background_color"
+                    app:mrb_temporaryPins="true"
+                    app:mrb_thumbBoundaryColor="@color/toolbar_background_color"
+                    app:mrb_thumbBoundarySize="2dp"
+                    app:mrb_thumbSize="10dp"
+                    app:mrb_tickDefaultLabel=""
+                    app:mrb_connectingLineColor="@color/toolbar_background_color"
+                    app:mrb_tickEnd="10"
+                    app:mrb_tickHeight="0dp"
+                    app:mrb_tickInterval="1"
+                    app:mrb_tickLabelSize="4sp"
+                    app:mrb_tickStart="1" />
+
+                <TextView
+                    android:id="@+id/maxRange_tv"
+                    android:textColor="@color/toolbar_background_color"
+                    android:textSize="22sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="00" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/jobType_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/salary_container_background">
+
+                <com.jaredrummler.materialspinner.MaterialSpinner
+                    android:id="@+id/spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:textSize="17sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/salary_container_background"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:onClick="toLanguagesClick"
+                    android:text="@string/edit_item_languages_list" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/lang_rv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="50dp"
+                        android:layout_marginBottom="50dp"
+                        android:onClick="toLanguagesClick" />
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:adjustViewBounds="true"
+                        android:onClick="toLanguagesClick"
+                        android:src="@drawable/edit_jobs_add_tags_and_langs" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/salary_container_background"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:onClick="toSkillsClick"
+                    android:text="@string/edit_item_tags_list" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/filters_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="50dp"
+                        android:layout_marginBottom="50dp"
+                        android:onClick="toSkillsClick" />
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:onClick="toSkillsClick"
+                        android:src="@drawable/edit_jobs_add_tags_and_langs" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="bottom|center_horizontal"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:onClick="clearFilter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:adjustViewBounds="true"
+                    android:layout_marginEnd="15dp"
+                    app:srcCompat="@drawable/search_delete" />
+
+                <ImageView
+                    android:onClick="saveClick"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:adjustViewBounds="true"
+                    app:srcCompat="@drawable/search_save" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

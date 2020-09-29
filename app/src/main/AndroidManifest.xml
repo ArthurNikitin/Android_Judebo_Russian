@@ -18,7 +18,9 @@
         android:roundIcon="@mipmap/ic_app_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".activities.filter.FilterSkillsActivity"></activity>
+        <activity android:name=".activities.filter.FilterLanguagesActivity" />
+        <activity android:name=".activities.filter.FilterActivity" />
         <activity android:name=".activities.AdBannerActivity" />
 
         <meta-data

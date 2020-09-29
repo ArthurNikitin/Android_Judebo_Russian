@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.byte4b.judebo.*
 import com.byte4b.judebo.R
 import com.byte4b.judebo.activities.DetailsActivity
+import com.byte4b.judebo.activities.filter.FilterActivity
 import com.byte4b.judebo.adapters.ClusterAdapter
 import com.byte4b.judebo.adapters.LanguagesAdapter
 import com.byte4b.judebo.adapters.SkillsAdapter
@@ -347,6 +348,12 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
             if (it.hasForeverDenied())
                 it.goToSettings()
         }
+
+        filter_iv.setImageResource(
+            if (setting.isFilterActive) R.drawable.search_filter_active
+            else R.drawable.search_filter_not_active
+        )
+        filter_iv.setOnClickListener { requireActivity().startActivity<FilterActivity>() }
     }
 
     override fun onStop() {
