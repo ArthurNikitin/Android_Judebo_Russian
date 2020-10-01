@@ -9,6 +9,7 @@ import android.location.LocationManager
 import android.os.Bundle
 import android.os.Handler
 import android.provider.Settings
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
@@ -363,27 +364,48 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
     }
 
     private fun showMarkers(isFilterEnabled: Boolean) {
-        val settingLangs = setting.filterLanguagesIds
-        val settingSkills = setting.filterSkillsIds
-        val isJobTypeFilterEnabled = setting.filterJobType != ""
-        val jobType = setting.filterJobType!!
-        clusterManager?.clearItems()
-        clusterManager?.addItems((markers ?: listOf()).filter { marker ->
-            val languagesIds = marker.UF_LANGUAGE_ID_ALL.split(",")
-            val skillsIds = marker.UF_SKILLS_ID_ALL.split(",")
+        try {
+            val settingLangs = setting.filterLanguagesIds
+            val settingSkills = setting.filterSkillsIds
+            val isJobTypeFilterEnabled = setting.filterJobType != ""
+            val jobType = setting.filterJobType!!
+            val isSalaryFilterEnabled =
+                (setting.filterSalary != "") && (setting.filterSalary != "0-10")
+            val minSalary = setting.filterSalary.split("-").first().toInt() *
+                    Setting.SEARCH_GROSS_STEPS.toDouble() * setting.getCurrentCurrency().rate
+            val maxData = setting.filterSalary.split("-").last()
+            val maxSalary =
+                (if (maxData == "∞") 1000000.0
+                else maxData.toInt() * Setting.SEARCH_GROSS_STEPS.toDouble()) *
+                        setting.getCurrentCurrency().rate
 
-            //predicates for filter
-            (isFilterEnabled && (
-                    //true//salary predicate
-                             settingLangs.filter { it in languagesIds }.size == settingLangs.size//languages predicate
-                            && settingSkills.filter { it in skillsIds }.size == settingSkills.size//skills predicate
-                            && ((isJobTypeFilterEnabled && (marker.UF_TYPE_OF_JOB_NAME == jobType)) || (!isJobTypeFilterEnabled))//job type predicate
-                    ))
-                    || (!isFilterEnabled)
-        }.map {
-            AbstractMarker(it.UF_MAP_POINT_LATITUDE, it.UF_MAP_POINT_LONGITUDE, it)
-        })
-        clusterManager?.cluster()
+            Log.e(
+                "test", "isSalaryFilterEnabled = $isSalaryFilterEnabled\n" +
+                        "minSalary = $minSalary\n" +
+                        "maxData = $maxData\n" +
+                        "maxSalary = $maxSalary"
+            )
+
+            clusterManager?.clearItems()
+            clusterManager?.addItems((markers ?: listOf()).filter { marker ->
+                val languagesIds = marker.UF_LANGUAGE_ID_ALL.split(",")
+                val skillsIds = marker.UF_SKILLS_ID_ALL.split(",")
+                val salary = marker.UF_GOLD_PER_MONTH.toDoubleOrNull() ?: .0
+                //predicates for filter
+                (isFilterEnabled && (
+                        ((isSalaryFilterEnabled && (salary > minSalary && salary < maxSalary)) || (!isSalaryFilterEnabled))//salary predicate
+                                && settingLangs.filter { it in languagesIds }.size == settingLangs.size//languages predicate
+                                && settingSkills.filter { it in skillsIds }.size == settingSkills.size//skills predicate
+                                && ((isJobTypeFilterEnabled && (marker.UF_TYPE_OF_JOB_NAME == jobType)) || (!isJobTypeFilterEnabled))//job type predicate
+                        ))
+                        || (!isFilterEnabled)
+            }.map {
+                AbstractMarker(it.UF_MAP_POINT_LATITUDE, it.UF_MAP_POINT_LONGITUDE, it)
+            })
+            clusterManager?.cluster()
+        } catch (e: Exception) {
+            Log.e("test", e.localizedMessage ?: "Unknow Error")
+        }
     }
 
     fun onResult(requestCode: Int, resultCode: Int, data: Intent?) {

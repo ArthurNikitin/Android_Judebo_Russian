@@ -207,7 +207,7 @@ class FilterActivity : AppCompatActivity() {
         setting.filterLanguagesIds = listOf()
         setting.isFilterActive = false
         setting.filterJobType = ""
-        setting.filterSalary = ""
+        setting.filterSalary = "0-10"
         setResult(Activity.RESULT_CANCELED)
         finish()
     }
