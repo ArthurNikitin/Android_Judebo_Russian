@@ -106,7 +106,7 @@ class Setting(ctx: Context) {
         set(value) = pref.edit { putString("filter_skills_ids", value.joinToString(",")) }
 
     var filterSalary
-        get() = pref.getString("filter_salary", "0-10")!!
+        get() = pref.getString("filter_salary", DEFAULT_FILTER_RANGE_PARAMS)!!
         set(value) = pref.edit { putString("filter_salary", value) }
 
     var lastAdShowTimeStamp
@@ -193,8 +193,10 @@ class Setting(ctx: Context) {
         const val DEFAULT_JOB_ID_SERVICE_USED = 1L
 
         //Search filter settings
-        const val SEARCH_GROSS_GOLD_MAX = 1000
-        const val SEARCH_GROSS_STEPS = 100
+        const val SEARCH_GROSS_GOLD_MAX = 1000000
+        const val SEARCH_GROSS_STEPS = 1000
+
+        const val DEFAULT_FILTER_RANGE_PARAMS = "0-${SEARCH_GROSS_GOLD_MAX / SEARCH_GROSS_STEPS}"
 
         //How long text title/company/detail
         const val TEXT_LENGTH_MAX_SYMBOLS_JOB_TITLE = 70
@@ -204,7 +206,7 @@ class Setting(ctx: Context) {
         const val TAGS_POPULARITY_MINIMUM = 2
 
         // disable adv after show
-        const val JSON_REQUEST_ADV_PERIOD_IN_SECONDS = 60_000
+        const val JSON_REQUEST_ADV_PERIOD_IN_SECONDS = 18_000
         const val ADV_DEFAULT_SHOW_ADV_IN_SECONDS = 7
         //setting for Google advertising type
         // = "banner"

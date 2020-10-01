@@ -107,9 +107,10 @@
     <string name="subscription_need_cancel_current_subs_cancel" translatable="false">Cancel</string>
     <string name="search_title_filter" translatable="false">Filter</string>
     <string name="search_all_types_of_jobs" translatable="false">All types</string>
-    <string name="search_languages">Languages</string>
-    <string name="search_tags">Tags</string>
-    <string name="search_tags_search">Search</string>
+    <string name="search_languages" translatable="false">Languages</string>
+    <string name="search_tags" translatable="false">Tags</string>
+    <string name="search_tags_search" translatable="false">Search</string>
+    <string name="search_gross" translatable="false">Gross</string>
 
 
 </resources>

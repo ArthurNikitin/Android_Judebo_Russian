@@ -7,7 +7,7 @@ class Currency(
     val id: Int,
     val name: String,
     @DrawableRes val icon: Int,
-    val rate: Int
+    var rate: Int
 )
 
 val currencies = listOf(

@@ -370,30 +370,30 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
             val isJobTypeFilterEnabled = setting.filterJobType != ""
             val jobType = setting.filterJobType!!
             val isSalaryFilterEnabled =
-                (setting.filterSalary != "") && (setting.filterSalary != "0-10")
-            val minSalary = setting.filterSalary.split("-").first().toInt() *
+                (setting.filterSalary != "") && (setting.filterSalary != Setting.DEFAULT_FILTER_RANGE_PARAMS)
+            val minSalaryGold = setting.filterSalary.split("-").first().toInt() *
                     Setting.SEARCH_GROSS_STEPS.toDouble() * setting.getCurrentCurrency().rate
             val maxData = setting.filterSalary.split("-").last()
-            val maxSalary =
+            val maxSalaryGold =
                 (if (maxData == "∞") 1000000.0
                 else maxData.toInt() * Setting.SEARCH_GROSS_STEPS.toDouble()) *
                         setting.getCurrentCurrency().rate
 
             Log.e(
                 "test", "isSalaryFilterEnabled = $isSalaryFilterEnabled\n" +
-                        "minSalary = $minSalary\n" +
+                        "minSalary = $minSalaryGold\n" +
                         "maxData = $maxData\n" +
-                        "maxSalary = $maxSalary"
+                        "maxSalary = $maxSalaryGold"
             )
 
             clusterManager?.clearItems()
             clusterManager?.addItems((markers ?: listOf()).filter { marker ->
                 val languagesIds = marker.UF_LANGUAGE_ID_ALL.split(",")
                 val skillsIds = marker.UF_SKILLS_ID_ALL.split(",")
-                val salary = marker.UF_GOLD_PER_MONTH.toDoubleOrNull() ?: .0
+                val salaryGold = marker.UF_GOLD_PER_MONTH.toDoubleOrNull() ?: .0
                 //predicates for filter
                 (isFilterEnabled && (
-                        ((isSalaryFilterEnabled && (salary > minSalary && salary < maxSalary)) || (!isSalaryFilterEnabled))//salary predicate
+                        ((isSalaryFilterEnabled && (salaryGold > minSalaryGold && salaryGold < maxSalaryGold)) || (!isSalaryFilterEnabled))//salary predicate
                                 && settingLangs.filter { it in languagesIds }.size == settingLangs.size//languages predicate
                                 && settingSkills.filter { it in skillsIds }.size == settingSkills.size//skills predicate
                                 && ((isJobTypeFilterEnabled && (marker.UF_TYPE_OF_JOB_NAME == jobType)) || (!isJobTypeFilterEnabled))//job type predicate
