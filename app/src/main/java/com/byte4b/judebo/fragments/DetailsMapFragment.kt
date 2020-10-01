@@ -124,6 +124,7 @@ class DetailsMapFragment(
 
         imageView6.visibility = View.GONE
         myGeo_iv.visibility = View.GONE
+        filter.visibility = View.GONE
     }
 
 }

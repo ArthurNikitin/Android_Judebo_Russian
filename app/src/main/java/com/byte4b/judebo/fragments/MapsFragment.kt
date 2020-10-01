@@ -376,26 +376,21 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
             val jobType = setting.filterJobType!!
             val isSalaryFilterEnabled =
                 (setting.filterSalary != "") && (setting.filterSalary != Setting.DEFAULT_FILTER_RANGE_PARAMS)
-            val minSalaryGold = setting.filterSalary.split("-").first().toInt() *
-                    Setting.SEARCH_GROSS_STEPS.toDouble() * currency.rate
+            val minSalaryGold = setting.filterSalary.split("-").first().toInt() * //0-123
+                    Setting.DEFAULT_MAX.toDouble()
             val maxData = setting.filterSalary.split("-").last()
             val maxSalaryGold =
-                (if (maxData == "∞") 1000000.0
-                else maxData.toInt() * Setting.SEARCH_GROSS_STEPS.toDouble()) * currency.rate
+                (if (maxData == "∞") 1_000_000_000.0
+                else maxData.toInt() * Setting.DEFAULT_MAX.toDouble())
 
-            Log.e(
-                "test", "isSalaryFilterEnabled = $isSalaryFilterEnabled\n" +
-                        "minSalary = $minSalaryGold\n" +
-                        "maxData = $maxData\n" +
-                        "maxSalary = $maxSalaryGold"
-            )
 
             clusterManager?.clearItems()
             clusterManager?.addItems((markers ?: listOf()).filter { marker ->
                 val languagesIds = marker.UF_LANGUAGE_ID_ALL.split(",")
                 val skillsIds = marker.UF_SKILLS_ID_ALL.split(",")
                 val salaryGold = marker.UF_GOLD_PER_MONTH.toDoubleOrNull() ?: .0
-                Log.e("test", setting.filterSalary)
+
+                Log.e("test", "id: ${marker.UF_JOBS_ID} $salaryGold $minSalaryGold $maxSalaryGold")
                 //predicates for filter
                 (isFilterEnabled && (
                         ((isSalaryFilterEnabled && (salaryGold > minSalaryGold && salaryGold < maxSalaryGold)) || (!isSalaryFilterEnabled))//salary predicate

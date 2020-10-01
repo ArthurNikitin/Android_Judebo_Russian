@@ -22,16 +22,22 @@ class FilterSkillsActivity : AppCompatActivity() {
     private val skills get() = realm.where<SkillRealm>().findAll().map { it.toBasicVersion() }
     private val realm by lazy { Realm.getDefaultInstance() }
     private var selectedSkills = mutableListOf<Skill>()
-    private val setting by lazy { Setting(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_filter_skills)
         supportActionBar?.hide()
 
-        selectedSkills.addAll(setting.filterSkillsIds.map { id ->
-            skills.first { id == it.id.toString() }
-        })
+        try {
+            Realm.init(this)
+        } catch (e: Exception) {}
+
+        try {
+            selectedSkills.addAll(
+                intent!!.getStringExtra("data")!!.split(",").filter { !it.isEmpty() }.map { id ->
+                    skills.first { id == it.id.toString() }
+                })
+        } catch (e: Exception) {}
 
         try {
             selected_rv.layoutManager = LinearLayoutManager(this)

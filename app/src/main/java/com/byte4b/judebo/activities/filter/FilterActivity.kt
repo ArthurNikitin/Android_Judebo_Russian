@@ -51,6 +51,10 @@ class FilterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_filter)
         supportActionBar?.hide()
 
+        try {
+            Realm.init(this)
+        } catch (e: Exception) {}
+
         currentCurrency.rate =
             realm.where<CurrencyRateRealm>()
                 .equalTo("id", currentCurrency.id)
@@ -75,6 +79,7 @@ class FilterActivity : AppCompatActivity() {
                 salary_range.setRangePinsByIndices(leftData, rightData)
                 showSelectedRange()
             }
+
 
             setOnRangeBarChangeListener(object : RangeBar.OnRangeBarChangeListener {
                 override fun onRangeChangeListener(
@@ -221,12 +226,16 @@ class FilterActivity : AppCompatActivity() {
     }
 
     fun toLanguagesClick(v: View) = startActivityForResult(
-        Intent(this, FilterLanguagesActivity::class.java),
+        Intent(this, FilterLanguagesActivity::class.java).apply {
+            putExtra("data", filterLangs.joinToString(","))
+        },
         REQUEST_LANGUAGES_SELECT
     )
 
     fun toSkillsClick(v: View) = startActivityForResult(
-        Intent(this, FilterSkillsActivity::class.java),
+        Intent(this, FilterSkillsActivity::class.java).apply {
+            putExtra("data", filterSkills.joinToString(","))
+        },
         REQUEST_SKILLS_SELECT
     )
 

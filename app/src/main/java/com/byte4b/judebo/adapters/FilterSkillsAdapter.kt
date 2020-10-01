@@ -28,6 +28,8 @@ class FilterSkillsAdapter(
                 else R.drawable.edit_tags_search_add
             )
 
+            holder.icon.setImageResource(R.drawable.search_tags)
+
             holder.view.setOnClickListener {
                 if (isSelectedItems)
                     ctx.deleteSkill(id)
@@ -40,6 +42,7 @@ class FilterSkillsAdapter(
     class Holder(val view: View) : RecyclerView.ViewHolder(view) {
         val check = view.check!!
         val name = view.name!!
+        val icon = view.icon!!
     }
 
 }
