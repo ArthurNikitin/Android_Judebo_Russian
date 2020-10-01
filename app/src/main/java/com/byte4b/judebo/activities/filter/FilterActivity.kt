@@ -33,6 +33,19 @@ class FilterActivity : AppCompatActivity() {
     }
     private lateinit var jobsType: MutableList<String>
 
+    private fun showSelectedRange() {
+        salary_range.apply {
+            val leftValue = leftIndex.toDouble() * Setting.DEFAULT_MAX.toDouble()
+            val rightValue = rightIndex.toDouble() * Setting.DEFAULT_MAX.toDouble()
+            minRange_tv.text =
+                (leftValue * currentCurrency.rate / 1_000_000).roundToBig().toInt().toString()
+            maxRange_tv.text =
+                if (rightIndex == Setting.SEARCH_GROSS_STEPS) "∞"
+                else (rightValue * currentCurrency.rate / 1_000_000).roundToSmall().toInt()
+                    .toString()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_filter)
@@ -60,12 +73,7 @@ class FilterActivity : AppCompatActivity() {
             if (setting.filterSalary != "") {
                 val (leftData, rightData) = setting.filterSalary.split("-").map { it.toInt() }
                 salary_range.setRangePinsByIndices(leftData, rightData)
-                val leftValue = salary_range.leftIndex.toDouble() * Setting.SEARCH_GROSS_STEPS
-                val rightValue = rightIndex.toDouble() * Setting.SEARCH_GROSS_STEPS
-                minRange_tv.text = (leftValue * currentCurrency.rate / 1_000_000).roundToBig().toInt().toString()
-                maxRange_tv.text =
-                    if (rightPinValue == Setting.DEFAULT_MAX) "∞"
-                    else (rightValue * currentCurrency.rate / 1_000_000).roundToSmall().toInt().toString()
+                showSelectedRange()
             }
 
             setOnRangeBarChangeListener(object : RangeBar.OnRangeBarChangeListener {
@@ -76,12 +84,7 @@ class FilterActivity : AppCompatActivity() {
                     leftPinValue: String?,
                     rightPinValue: String?
                 ) {
-                    val leftValue = leftPinIndex.toDouble() * Setting.SEARCH_GROSS_STEPS
-                    val rightValue = rightPinIndex.toDouble() * Setting.SEARCH_GROSS_STEPS
-                    minRange_tv.text = (leftValue * currentCurrency.rate / 1_000_000).roundToBig().toInt().toString()
-                    maxRange_tv.text =
-                        if (rightPinValue == Setting.DEFAULT_MAX) "∞"
-                        else (rightValue * currentCurrency.rate / 1_000_000).roundToSmall().toInt().toString()
+                    showSelectedRange()
                 }
 
                 override fun onTouchStarted(rangeBar: RangeBar?) {}
