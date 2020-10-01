@@ -2,6 +2,7 @@ package com.byte4b.judebo.fragments
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context.LOCATION_SERVICE
 import android.content.Intent
 import android.location.LocationManager
@@ -42,6 +43,10 @@ import kotlin.math.pow
 
 
 class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
+
+    companion object {
+        const val REQUEST_FILTER = 107
+    }
 
     private val setting by lazy { Setting(ctx) }
     private val ctx by lazy { requireActivity() }
@@ -293,11 +298,7 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
         try {
             refresher.isRefreshing = false
         } catch (e: Exception) {}
-        clusterManager?.clearItems()
-        clusterManager?.addItems((list ?: listOf()).map {
-            AbstractMarker(it.UF_MAP_POINT_LATITUDE, it.UF_MAP_POINT_LONGITUDE, it)
-        })
-        clusterManager?.cluster()
+        showMarkers(setting.isFilterActive)
         markers = list
     }
 
@@ -353,7 +354,48 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
             if (setting.isFilterActive) R.drawable.search_filter_active
             else R.drawable.search_filter_not_active
         )
-        filter_iv.setOnClickListener { requireActivity().startActivity<FilterActivity>() }
+        filter_iv.setOnClickListener {
+            requireActivity().startActivityForResult(
+                Intent(requireActivity(), FilterActivity::class.java),
+                REQUEST_FILTER
+            )
+        }
+    }
+
+    private fun showMarkers(isFilterEnabled: Boolean) {
+        val settingLangs = setting.filterLanguagesIds
+        val settingSkills = setting.filterSkillsIds
+        val isJobTypeFilterEnabled = setting.filterJobType != ""
+        val jobType = setting.filterJobType!!
+        clusterManager?.clearItems()
+        clusterManager?.addItems((markers ?: listOf()).filter { marker ->
+            val languagesIds = marker.UF_LANGUAGE_ID_ALL.split(",")
+            val skillsIds = marker.UF_SKILLS_ID_ALL.split(",")
+
+            //predicates for filter
+            (isFilterEnabled && (
+                    //true//salary predicate
+                             settingLangs.filter { it in languagesIds }.size == settingLangs.size//languages predicate
+                            && settingSkills.filter { it in skillsIds }.size == settingSkills.size//skills predicate
+                            && ((isJobTypeFilterEnabled && (marker.UF_TYPE_OF_JOB_NAME == jobType)) || (!isJobTypeFilterEnabled))//job type predicate
+                    ))
+                    || (!isFilterEnabled)
+        }.map {
+            AbstractMarker(it.UF_MAP_POINT_LATITUDE, it.UF_MAP_POINT_LONGITUDE, it)
+        })
+        clusterManager?.cluster()
+    }
+
+    fun onResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (resultCode == Activity.RESULT_OK) {
+            setting.isFilterActive = true
+            filter_iv.setImageResource(R.drawable.search_filter_active)
+            showMarkers(true)
+        } else if (resultCode == Activity.RESULT_CANCELED) {
+            setting.isFilterActive = false
+            filter_iv.setImageResource(R.drawable.search_filter_not_active)
+            showMarkers(false)
+        }
     }
 
     override fun onStop() {

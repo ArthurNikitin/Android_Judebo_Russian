@@ -45,18 +45,20 @@ class FilterActivity : AppCompatActivity() {
         )
 
         //salary_range.
-        spinner.setItems(jobsType)
-
-        spinner.setOnClickListener {
-            jobType_container.setBackgroundResource(R.drawable.green_container)
+        spinner.apply {
+            setItems(jobsType)
+            setOnClickListener {
+                jobType_container.setBackgroundResource(R.drawable.green_container)
+            }
+            setOnItemSelectedListener { _, _, _, _ ->
+                jobType_container.setBackgroundResource(R.drawable.salary_container_background)
+            }
+            setOnNothingSelectedListener {
+                jobType_container.setBackgroundResource(R.drawable.salary_container_background)
+            }
+            val settingJobType = setting.filterJobType
+            selectedIndex = jobsType.indices.firstOrNull { jobsType[it] == settingJobType } ?: 0
         }
-        spinner.setOnItemSelectedListener { _, _, _, _ ->
-            jobType_container.setBackgroundResource(R.drawable.salary_container_background)
-        }
-        spinner.setOnNothingSelectedListener {
-            jobType_container.setBackgroundResource(R.drawable.salary_container_background)
-        }
-
         filterLangs = setting.filterLanguagesIds
         filterSkills = setting.filterSkillsIds
 
@@ -130,7 +132,15 @@ class FilterActivity : AppCompatActivity() {
         }
     }
 
-    fun closeClick(v: View) = finish()
+    fun closeClick(v: View) {
+        setResult(RESULT_FIRST_USER)
+        finish()
+    }
+
+    override fun onBackPressed() {
+        setResult(RESULT_FIRST_USER)
+        super.onBackPressed()
+    }
 
     fun saveClick(v: View) {
         setting.isFilterActive = true
@@ -158,12 +168,6 @@ class FilterActivity : AppCompatActivity() {
         setting.filterLanguagesIds = listOf()
         setting.isFilterActive = false
         setting.filterJobType = ""
-        setResult(Activity.RESULT_OK)
-        finish()
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
         setResult(Activity.RESULT_CANCELED)
         finish()
     }

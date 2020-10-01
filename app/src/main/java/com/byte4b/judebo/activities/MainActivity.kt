@@ -192,6 +192,8 @@ class MainActivity : AppCompatActivity(), ServiceListener {
                 if (resultCode == Activity.RESULT_OK)
                     getLastFragment<SettingFragment>()
                         ?.setCurrency(data?.getIntExtra("currency", -1) ?: -1)
+            } else if (requestCode == MapsFragment.REQUEST_FILTER) {
+                getLastFragment<MapsFragment>()?.onResult(requestCode, resultCode, data)
             } else {
                 getLoginFragment()?.apply {
                     if (facebookAuth != null && facebookAuth!!.isFB)
