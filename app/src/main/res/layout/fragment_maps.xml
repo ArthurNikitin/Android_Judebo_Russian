@@ -31,15 +31,20 @@
         android:adjustViewBounds="true"
         app:srcCompat="@drawable/default_log_name" />
 
-            <ImageView
-                android:layout_marginTop="40dp"
+            <androidx.cardview.widget.CardView
+                android:layout_marginTop="30dp"
                 android:layout_marginStart="15dp"
+                app:cardCornerRadius="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            <ImageView
                 android:id="@+id/filter_iv"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:adjustViewBounds="true"
                 android:cropToPadding="false"
                 app:srcCompat="@drawable/search_filter_not_active" />
+            </androidx.cardview.widget.CardView>
 
             <ImageView
         android:id="@+id/myGeo_iv"

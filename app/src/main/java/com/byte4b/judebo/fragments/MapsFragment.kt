@@ -21,10 +21,7 @@ import com.byte4b.judebo.activities.filter.FilterActivity
 import com.byte4b.judebo.adapters.ClusterAdapter
 import com.byte4b.judebo.adapters.LanguagesAdapter
 import com.byte4b.judebo.adapters.SkillsAdapter
-import com.byte4b.judebo.models.AbstractMarker
-import com.byte4b.judebo.models.MyMarker
-import com.byte4b.judebo.models.currencies
-import com.byte4b.judebo.models.languages
+import com.byte4b.judebo.models.*
 import com.byte4b.judebo.services.ApiServiceImpl
 import com.byte4b.judebo.utils.OwnIconRendered
 import com.byte4b.judebo.utils.Setting
@@ -38,6 +35,8 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.google.gson.Gson
 import com.google.maps.android.clustering.ClusterManager
+import io.realm.Realm
+import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.fragment_maps.*
 import kotlinx.android.synthetic.main.preview.view.*
 import kotlin.math.pow
@@ -363,8 +362,14 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
         }
     }
 
+    private val realm by lazy { Realm.getDefaultInstance() }
     private fun showMarkers(isFilterEnabled: Boolean) {
         try {
+            val currency = setting.getCurrentCurrency()
+            currency.rate = realm.where<CurrencyRateRealm>()
+                .equalTo("id", currency.id)
+                .findFirst()!!
+                .rate
             val settingLangs = setting.filterLanguagesIds
             val settingSkills = setting.filterSkillsIds
             val isJobTypeFilterEnabled = setting.filterJobType != ""
@@ -372,12 +377,11 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
             val isSalaryFilterEnabled =
                 (setting.filterSalary != "") && (setting.filterSalary != Setting.DEFAULT_FILTER_RANGE_PARAMS)
             val minSalaryGold = setting.filterSalary.split("-").first().toInt() *
-                    Setting.SEARCH_GROSS_STEPS.toDouble() * setting.getCurrentCurrency().rate
+                    Setting.SEARCH_GROSS_STEPS.toDouble() * currency.rate
             val maxData = setting.filterSalary.split("-").last()
             val maxSalaryGold =
                 (if (maxData == "∞") 1000000.0
-                else maxData.toInt() * Setting.SEARCH_GROSS_STEPS.toDouble()) *
-                        setting.getCurrentCurrency().rate
+                else maxData.toInt() * Setting.SEARCH_GROSS_STEPS.toDouble()) * currency.rate
 
             Log.e(
                 "test", "isSalaryFilterEnabled = $isSalaryFilterEnabled\n" +
@@ -391,6 +395,7 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
                 val languagesIds = marker.UF_LANGUAGE_ID_ALL.split(",")
                 val skillsIds = marker.UF_SKILLS_ID_ALL.split(",")
                 val salaryGold = marker.UF_GOLD_PER_MONTH.toDoubleOrNull() ?: .0
+                Log.e("test", setting.filterSalary)
                 //predicates for filter
                 (isFilterEnabled && (
                         ((isSalaryFilterEnabled && (salaryGold > minSalaryGold && salaryGold < maxSalaryGold)) || (!isSalaryFilterEnabled))//salary predicate

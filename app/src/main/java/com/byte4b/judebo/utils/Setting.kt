@@ -193,10 +193,11 @@ class Setting(ctx: Context) {
         const val DEFAULT_JOB_ID_SERVICE_USED = 1L
 
         //Search filter settings
-        const val SEARCH_GROSS_GOLD_MAX = 1000000
-        const val SEARCH_GROSS_STEPS = 1000
+        const val SEARCH_GROSS_GOLD_MAX = 1_50_000
+        const val SEARCH_GROSS_STEPS = 1_000
 
         const val DEFAULT_FILTER_RANGE_PARAMS = "0-${SEARCH_GROSS_GOLD_MAX / SEARCH_GROSS_STEPS}"
+        const val DEFAULT_MAX = (SEARCH_GROSS_GOLD_MAX / SEARCH_GROSS_STEPS).toString()
 
         //How long text title/company/detail
         const val TEXT_LENGTH_MAX_SYMBOLS_JOB_TITLE = 70

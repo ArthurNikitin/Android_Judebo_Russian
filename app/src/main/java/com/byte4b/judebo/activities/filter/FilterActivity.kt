@@ -3,7 +3,6 @@ package com.byte4b.judebo.activities.filter
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.appyvet.materialrangebar.RangeBar
@@ -54,19 +53,19 @@ class FilterActivity : AppCompatActivity() {
         salary_tv.text = currentCurrency.name
 
         salary_range.apply {
-            Log.e("test", setting.filterSalary)
-
             tickStart = 0f
             tickEnd = Setting.SEARCH_GROSS_GOLD_MAX.toFloat()
-            setTickInterval(Setting.SEARCH_GROSS_STEPS.toFloat())
+            setTickInterval(Setting.DEFAULT_MAX.toFloat())
 
             if (setting.filterSalary != "") {
                 val (leftData, rightData) = setting.filterSalary.split("-").map { it.toInt() }
                 salary_range.setRangePinsByIndices(leftData, rightData)
-                minRange_tv.text = (leftPinValue.toDouble() * currentCurrency.rate).roundToBig().toString()
+                val leftValue = salary_range.leftIndex.toDouble() * Setting.SEARCH_GROSS_STEPS
+                val rightValue = rightIndex.toDouble() * Setting.SEARCH_GROSS_STEPS
+                minRange_tv.text = (leftValue * currentCurrency.rate / 1_000_000).roundToBig().toInt().toString()
                 maxRange_tv.text =
-                    if (rightPinValue == Setting.SEARCH_GROSS_GOLD_MAX.toString()) "∞"
-                    else (rightPinValue.toDouble() * currentCurrency.rate).roundToSmall().toString()
+                    if (rightPinValue == Setting.DEFAULT_MAX) "∞"
+                    else (rightValue * currentCurrency.rate / 1_000_000).roundToSmall().toInt().toString()
             }
 
             setOnRangeBarChangeListener(object : RangeBar.OnRangeBarChangeListener {
@@ -77,10 +76,12 @@ class FilterActivity : AppCompatActivity() {
                     leftPinValue: String?,
                     rightPinValue: String?
                 ) {
-                    minRange_tv.text = (leftPinValue!!.toDouble() * currentCurrency.rate).roundToBig().toString()
+                    val leftValue = leftPinIndex.toDouble() * Setting.SEARCH_GROSS_STEPS
+                    val rightValue = rightPinIndex.toDouble() * Setting.SEARCH_GROSS_STEPS
+                    minRange_tv.text = (leftValue * currentCurrency.rate / 1_000_000).roundToBig().toInt().toString()
                     maxRange_tv.text =
-                        if (rightPinValue == Setting.SEARCH_GROSS_GOLD_MAX.toString()) "∞"
-                        else (rightPinValue!!.toDouble() * currentCurrency.rate).roundToSmall().toString()
+                        if (rightPinValue == Setting.DEFAULT_MAX) "∞"
+                        else (rightValue * currentCurrency.rate / 1_000_000).roundToSmall().toInt().toString()
                 }
 
                 override fun onTouchStarted(rangeBar: RangeBar?) {}
@@ -112,11 +113,11 @@ class FilterActivity : AppCompatActivity() {
     }
 
     private fun Double.roundToSmall(): Double {
-        return (this * 100).toInt() / 100.0
+        return ((this / 100).toInt() * 100.0)
     }
 
     private fun Double.roundToBig(): Double {
-        return (this * 100 + 1).toInt() / 100.0
+        return if (this == .0) .0 else (((this / 100).toInt()+1) * 100.0)
     }
 
     private fun setLanguagesList() {
@@ -203,6 +204,15 @@ class FilterActivity : AppCompatActivity() {
         setting.filterLanguagesIds = filterLangs
         setting.filterSkillsIds = filterSkills
         setting.filterSalary = "${salary_range.leftIndex}-${salary_range.rightIndex}"
+
+        if (setting.filterJobType == ""
+            && setting.filterSalary == Setting.DEFAULT_FILTER_RANGE_PARAMS
+            && setting.filterLanguagesIds.isEmpty()
+            && setting.filterSkillsIds.isEmpty()) {
+            clearFilter(v)
+            return
+        }
+
         setResult(Activity.RESULT_OK)
         finish()
     }

@@ -111,6 +111,7 @@
     <string name="search_tags" translatable="false">Tags</string>
     <string name="search_tags_search" translatable="false">Search</string>
     <string name="search_gross" translatable="false">Gross</string>
+    <string name="search_types_of_jobs" translatable="false">Type</string>
 
 
 </resources>
