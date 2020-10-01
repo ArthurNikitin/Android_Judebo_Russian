@@ -3,6 +3,7 @@ package com.byte4b.judebo.activities.filter
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.appyvet.materialrangebar.RangeBar
@@ -137,7 +138,7 @@ class FilterActivity : AppCompatActivity() {
             alignItems = AlignItems.FLEX_START
         }
         try {
-            val languagesList = filterLangs.map {
+            val languagesList = filterLangs.filter { it.isNotEmpty() }.map {
                 languages.first { lang -> lang.id == it.toInt() }
             }
             lang_rv.layoutManager = layoutManager
@@ -213,15 +214,18 @@ class FilterActivity : AppCompatActivity() {
         setting.filterSkillsIds = filterSkills
         setting.filterSalary = "${salary_range.leftIndex}-${salary_range.rightIndex}"
 
+        Log.e("test", setting.filterSalary)
+        Log.e("test", Setting.DEFAULT_FILTER_RANGE_PARAMS)
+
         if (setting.filterJobType == ""
-            && setting.filterSalary == Setting.DEFAULT_FILTER_RANGE_PARAMS
+            && (setting.filterSalary == Setting.DEFAULT_FILTER_RANGE_PARAMS || setting.filterSalary == "")
             && setting.filterLanguagesIds.isEmpty()
             && setting.filterSkillsIds.isEmpty()) {
-            clearFilter(v)
-            return
+            setResult(Activity.RESULT_CANCELED)
+        } else {
+            setResult(Activity.RESULT_OK)
         }
 
-        setResult(Activity.RESULT_OK)
         finish()
     }
 

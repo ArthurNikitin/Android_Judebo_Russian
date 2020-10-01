@@ -390,7 +390,7 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
                 val skillsIds = marker.UF_SKILLS_ID_ALL.split(",")
                 val salaryGold = marker.UF_GOLD_PER_MONTH.toDoubleOrNull() ?: .0
 
-                Log.e("test", "id: ${marker.UF_JOBS_ID} $salaryGold $minSalaryGold $maxSalaryGold")
+                //Log.e("test", "id: ${marker.UF_JOBS_ID} $salaryGold $minSalaryGold $maxSalaryGold")
                 //predicates for filter
                 (isFilterEnabled && (
                         ((isSalaryFilterEnabled && (salaryGold > minSalaryGold && salaryGold < maxSalaryGold)) || (!isSalaryFilterEnabled))//salary predicate

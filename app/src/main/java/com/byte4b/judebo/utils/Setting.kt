@@ -196,13 +196,13 @@ class Setting(ctx: Context) {
         const val SEARCH_GROSS_GOLD_MAX = 1_50_000
         const val SEARCH_GROSS_STEPS = 1_000
 
-        const val DEFAULT_FILTER_RANGE_PARAMS = "0-${SEARCH_GROSS_GOLD_MAX / SEARCH_GROSS_STEPS}"
+        const val DEFAULT_FILTER_RANGE_PARAMS = "0-${SEARCH_GROSS_STEPS}"
         const val DEFAULT_MAX = (SEARCH_GROSS_GOLD_MAX / SEARCH_GROSS_STEPS).toString()
 
         //How long text title/company/detail
         const val TEXT_LENGTH_MAX_SYMBOLS_JOB_TITLE = 70
         const val TEXT_LENGTH_MAX_SYMBOLS_JOB_COMPANY = 40
-        const val TEXT_LENGTH_MAX_SYMBOLS_JOB_DETAIL = 3500
+        const val TEXT_LENGTH_MAX_SYMBOLS_JOB_DETAIL = 7000
 
         const val TAGS_POPULARITY_MINIMUM = 2
 

@@ -87,8 +87,7 @@
                         <com.appyvet.materialrangebar.RangeBar
                             android:id="@+id/salary_range"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_height="50dp"
                             app:mrb_barWeight="2dp"
                             app:mrb_connectingLineColor="@color/toolbar_background_color"
                             app:mrb_connectingLineWeight="4dp"
