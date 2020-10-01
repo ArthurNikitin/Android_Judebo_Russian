@@ -105,6 +105,10 @@ class Setting(ctx: Context) {
         get() = pref.getString("filter_skills_ids", "")!!.split(",").filterNot { it == "" }
         set(value) = pref.edit { putString("filter_skills_ids", value.joinToString(",")) }
 
+    var filterSalary
+        get() = pref.getString("filter_salary", "")!!
+        set(value) = pref.edit { putString("filter_salary", value) }
+
     var lastAdShowTimeStamp
         get() = pref.getLong("lastAdShowTimeStamp", 0L)
         set(value) = pref.edit { putLong("lastAdShowTimeStamp", value) }

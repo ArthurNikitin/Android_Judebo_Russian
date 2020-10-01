@@ -3,8 +3,10 @@ package com.byte4b.judebo.activities.filter
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.appyvet.materialrangebar.RangeBar
 import com.byte4b.judebo.R
 import com.byte4b.judebo.adapters.LanguagesAdapter
 import com.byte4b.judebo.adapters.SkillsAdapter
@@ -44,7 +46,43 @@ class FilterActivity : AppCompatActivity() {
             realm.where<JobTypeRealm>().findAll().map { it.name }.filter { it.trim() != "" }
         )
 
-        //salary_range.
+        salary_range.apply {
+            Log.e("test", setting.filterSalary)
+
+            tickStart = 0f
+            tickEnd = Setting.SEARCH_GROSS_GOLD_MAX.toFloat()
+            setTickInterval(Setting.SEARCH_GROSS_STEPS.toFloat())
+
+            if (setting.filterSalary != "") {
+                val (leftData, rightData) = setting.filterSalary.split("-").map { it.toInt() }
+                salary_range.setRangePinsByIndices(leftData, rightData)
+                minRange_tv.text = leftPinValue
+                maxRange_tv.text =
+                    if (rightPinValue == Setting.SEARCH_GROSS_GOLD_MAX.toString()) "∞"
+                    else rightPinValue
+            }
+
+            setOnRangeBarChangeListener(object : RangeBar.OnRangeBarChangeListener {
+                override fun onRangeChangeListener(
+                    rangeBar: RangeBar?,
+                    leftPinIndex: Int,
+                    rightPinIndex: Int,
+                    leftPinValue: String?,
+                    rightPinValue: String?
+                ) {
+                    minRange_tv.text = leftPinValue
+                    maxRange_tv.text =
+                        if (rightPinValue == Setting.SEARCH_GROSS_GOLD_MAX.toString()) "∞"
+                        else rightPinValue
+                }
+
+                override fun onTouchStarted(rangeBar: RangeBar?) {}
+
+                override fun onTouchEnded(rangeBar: RangeBar?) {}
+
+            })
+        }
+
         spinner.apply {
             setItems(jobsType)
             setOnClickListener {
@@ -149,6 +187,7 @@ class FilterActivity : AppCompatActivity() {
             if (type == getString(R.string.search_all_types_of_jobs)) "" else type
         setting.filterLanguagesIds = filterLangs
         setting.filterSkillsIds = filterSkills
+        setting.filterSalary = "${salary_range.leftIndex}-${salary_range.rightIndex}"
         setResult(Activity.RESULT_OK)
         finish()
     }
@@ -168,6 +207,7 @@ class FilterActivity : AppCompatActivity() {
         setting.filterLanguagesIds = listOf()
         setting.isFilterActive = false
         setting.filterJobType = ""
+        setting.filterSalary = ""
         setResult(Activity.RESULT_CANCELED)
         finish()
     }
