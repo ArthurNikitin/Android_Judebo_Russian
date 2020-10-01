@@ -1,5 +1,7 @@
 package com.byte4b.judebo.activities.filter
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -10,7 +12,6 @@ import com.byte4b.judebo.models.JobTypeRealm
 import com.byte4b.judebo.models.SkillRealm
 import com.byte4b.judebo.models.Vocation
 import com.byte4b.judebo.models.languages
-import com.byte4b.judebo.startActivity
 import com.byte4b.judebo.utils.Setting
 import com.google.android.flexbox.*
 import io.realm.Realm
@@ -19,6 +20,13 @@ import kotlinx.android.synthetic.main.activity_filter.*
 
 class FilterActivity : AppCompatActivity() {
 
+    companion object {
+        private const val REQUEST_LANGUAGES_SELECT = 101
+        private const val REQUEST_SKILLS_SELECT = 102
+    }
+
+    private var filterLangs = listOf<String>()
+    private var filterSkills = listOf<String>()
     private val realm by lazy { Realm.getDefaultInstance() }
     private val setting by lazy { Setting(this) }
     private val skillsRealm by lazy {
@@ -36,6 +44,7 @@ class FilterActivity : AppCompatActivity() {
             realm.where<JobTypeRealm>().findAll().map { it.name }.filter { it.trim() != "" }
         )
 
+        //salary_range.
         spinner.setItems(jobsType)
 
         spinner.setOnClickListener {
@@ -47,6 +56,9 @@ class FilterActivity : AppCompatActivity() {
         spinner.setOnNothingSelectedListener {
             jobType_container.setBackgroundResource(R.drawable.salary_container_background)
         }
+
+        filterLangs = setting.filterLanguagesIds
+        filterSkills = setting.filterSkillsIds
 
         setLanguagesList()
         setSkillsList()
@@ -61,14 +73,17 @@ class FilterActivity : AppCompatActivity() {
             alignItems = AlignItems.FLEX_START
         }
         try {
-            val languagesList = setting.filterLanguagesIds.map {
+            val languagesList = filterLangs.map {
                 languages.first { lang -> lang.id == it.toInt() }
             }
             lang_rv.layoutManager = layoutManager
             lang_rv.adapter =
-                LanguagesAdapter(this, languagesList,
-                    isDetails = true, isEditor = true, vocation = Vocation())
-        } catch (e: Exception) {}
+                LanguagesAdapter(
+                    this, languagesList,
+                    isDetails = true, isEditor = true, vocation = Vocation()
+                )
+        } catch (e: Exception) {
+        }
     }
 
     private fun setSkillsList() {
@@ -79,14 +94,14 @@ class FilterActivity : AppCompatActivity() {
         layoutManager.alignItems = AlignItems.FLEX_START
 
         filters_tv.layoutManager = layoutManager
-        if (setting.filterSkillsIds.isNullOrEmpty()) {
+        if (filterSkills.isNullOrEmpty()) {
             filters_tv.adapter = SkillsAdapter(
                 this,
                 listOf(),
                 isDetails = true, isEditor = true, vocation = Vocation()
             )
         } else {
-            val vocationSkillsIds = setting.filterSkillsIds
+            val vocationSkillsIds = filterSkills
                 .filterNot { it == Setting.DEFAULT_SKILL_ID_ALWAYS_HIDDEN }
             filters_tv.adapter = SkillsAdapter(this,
                 skillsRealm.filter { it.id.toString() in vocationSkillsIds }.map { it.name },
@@ -95,10 +110,24 @@ class FilterActivity : AppCompatActivity() {
         }
     }
 
-    override fun onRestart() {
-        super.onRestart()
-        setLanguagesList()
-        setSkillsList()
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == RESULT_OK) {
+            when (requestCode) {
+                REQUEST_SKILLS_SELECT -> {
+                    filterSkills =
+                        data!!.getStringExtra("skills")!!.split(",")
+                    setSkillsList()
+                }
+
+                REQUEST_LANGUAGES_SELECT -> {
+                    filterLangs =
+                        data!!.getStringExtra("languages")!!.split(",")
+                    setLanguagesList()
+                }
+            }
+        }
     }
 
     fun closeClick(v: View) = finish()
@@ -106,18 +135,37 @@ class FilterActivity : AppCompatActivity() {
     fun saveClick(v: View) {
         setting.isFilterActive = true
         val type = jobsType[spinner.selectedIndex]
-        setting.filterJobType = if (type == getString(R.string.search_all_types_of_jobs)) "" else type
+        setting.filterJobType =
+            if (type == getString(R.string.search_all_types_of_jobs)) "" else type
+        setting.filterLanguagesIds = filterLangs
+        setting.filterSkillsIds = filterSkills
+        setResult(Activity.RESULT_OK)
+        finish()
     }
 
-    fun toLanguagesClick(v: View) = startActivity<FilterLanguagesActivity>()
+    fun toLanguagesClick(v: View) = startActivityForResult(
+        Intent(this, FilterLanguagesActivity::class.java),
+        REQUEST_LANGUAGES_SELECT
+    )
 
-    fun toSkillsClick(v: View) = startActivity<FilterSkillsActivity>()
+    fun toSkillsClick(v: View) = startActivityForResult(
+        Intent(this, FilterSkillsActivity::class.java),
+        REQUEST_SKILLS_SELECT
+    )
 
     fun clearFilter(v: View) {
         setting.filterSkillsIds = listOf()
         setting.filterLanguagesIds = listOf()
         setting.isFilterActive = false
-        setting.filterJobType = ""//jobsType[spinner.selectedIndex]
+        setting.filterJobType = ""
+        setResult(Activity.RESULT_OK)
+        finish()
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        setResult(Activity.RESULT_CANCELED)
+        finish()
     }
 
 }

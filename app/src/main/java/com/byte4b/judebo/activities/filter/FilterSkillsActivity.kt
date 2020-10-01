@@ -1,5 +1,7 @@
 package com.byte4b.judebo.activities.filter
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -92,12 +94,20 @@ class FilterSkillsActivity : AppCompatActivity() {
     }
 
     fun saveClick(v: View) {
-        setting.filterSkillsIds = selectedSkills.map { it.id.toString() }
+        setResult(Activity.RESULT_OK, Intent().apply {
+            putExtra("skills", selectedSkills.map { it.id }.joinToString(","))
+        })
         finish()
     }
 
     fun closeClick(v: View) {
+        onBackPressed()
+    }
+
+    override fun onBackPressed() {
+        setResult(Activity.RESULT_CANCELED, Intent())
         finish()
+        super.onBackPressed()
     }
 
 }
