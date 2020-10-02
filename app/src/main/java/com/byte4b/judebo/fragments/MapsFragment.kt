@@ -132,12 +132,13 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
             true
         }
         clusterManager?.setOnClusterItemClickListener {
-            if (googleMap.cameraPosition.zoom != Setting.MAX_ZOOM) {
-                var zoom = googleMap.cameraPosition.zoom + 1
-                if (zoom > Setting.MAX_ZOOM) zoom = Setting.MAX_ZOOM
-                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(it.position, zoom))
-                Thread.sleep(500)
-            }
+            Handler().postDelayed({
+                if (googleMap.cameraPosition.zoom != Setting.MAX_ZOOM) {
+                    var zoom = googleMap.cameraPosition.zoom + 1
+                    if (zoom > Setting.MAX_ZOOM) zoom = Setting.MAX_ZOOM
+                    googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(it.position, zoom))
+                }
+            }, 100)
             false
         }
 
