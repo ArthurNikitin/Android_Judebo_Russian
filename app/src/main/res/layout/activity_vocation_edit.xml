@@ -94,7 +94,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_marginBottom="8dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 app:errorEnabled="true"
                 android:hint="@string/edit_item_title"
                 app:boxStrokeColor="@color/toolbar_background_color"

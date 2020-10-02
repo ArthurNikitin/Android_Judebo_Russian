@@ -570,7 +570,6 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                             login = setting.email ?: "",
                             vocations = listOf(currentVocationRealm.toBasicVersion())
                         )
-                        val currency = currencies.first { it.id == currentVocationRealm.UF_GROSS_CURRENCY_ID }
                         try {
                             refresher.isRefreshing = true
                             Handler().postDelayed({ refresher.isRefreshing = false },
