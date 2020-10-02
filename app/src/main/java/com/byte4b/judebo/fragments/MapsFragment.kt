@@ -131,6 +131,15 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
             }
             true
         }
+        clusterManager?.setOnClusterItemClickListener {
+            if (googleMap.cameraPosition.zoom != Setting.MAX_ZOOM) {
+                var zoom = googleMap.cameraPosition.zoom + 1
+                if (zoom > Setting.MAX_ZOOM) zoom = Setting.MAX_ZOOM
+                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(it.position, zoom))
+                Thread.sleep(500)
+            }
+            false
+        }
 
         googleMap.setOnMapClickListener { clusterPreview_cv.visibility = View.GONE }
         googleMap.setOnCameraMoveStartedListener { clusterPreview_cv.visibility = View.GONE }
@@ -298,8 +307,8 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
         try {
             refresher.isRefreshing = false
         } catch (e: Exception) {}
-        showMarkers(setting.isFilterActive)
         markers = list
+        showMarkers(setting.isFilterActive)
     }
 
     override fun onResume() {
@@ -379,7 +388,7 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
             Log.e("test", "5")
             val isJobTypeFilterEnabled = setting.filterJobType != ""
             Log.e("test", "6")
-            val jobType = setting.filterJobType!!
+            val jobType = setting.filterJobType ?: ""
             Log.e("test", "7")
             val isSalaryFilterEnabled =
                 (setting.filterSalary != "") && (setting.filterSalary != Setting.DEFAULT_FILTER_RANGE_PARAMS)
@@ -394,14 +403,12 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
                 else maxData.toInt() * Setting.DEFAULT_MAX.toDouble())
             Log.e("test", "11")
 
-
             clusterManager?.clearItems()
             clusterManager?.addItems((markers ?: listOf()).filter { marker ->
                 val languagesIds = marker.UF_LANGUAGE_ID_ALL.split(",")
                 val skillsIds = marker.UF_SKILLS_ID_ALL.split(",")
                 val salaryGold = marker.UF_GOLD_PER_MONTH.toDoubleOrNull() ?: .0
 
-                //Log.e("test", "id: ${marker.UF_JOBS_ID} $salaryGold $minSalaryGold $maxSalaryGold")
                 //predicates for filter
                 (isFilterEnabled && (
                         ((isSalaryFilterEnabled && (salaryGold > minSalaryGold && salaryGold < maxSalaryGold)) || (!isSalaryFilterEnabled))//salary predicate

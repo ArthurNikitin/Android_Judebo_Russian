@@ -121,7 +121,7 @@
                             android:layout_weight="1"
                             android:text="0"
                             android:textColor="@color/toolbar_background_color"
-                            android:textSize="22sp" />
+                            android:textSize="17sp" />
 
                         <TextView
                             android:id="@+id/maxRange_tv"
@@ -131,12 +131,12 @@
                             android:gravity="end"
                             android:text="00"
                             android:textColor="@color/toolbar_background_color"
-                            android:textSize="22sp" />
+                            android:textSize="17sp" />
 
                         <ImageView
                             android:id="@+id/salary_iv"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
                             android:adjustViewBounds="true"
                             app:srcCompat="@drawable/currency_pln" />
 
@@ -145,7 +145,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="TextView"
-                            android:textSize="22sp" />
+                            android:textSize="17sp" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -215,15 +215,13 @@
                             android:id="@+id/lang_rv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="50dp"
-                            android:layout_marginBottom="50dp"
+                            android:layout_marginRight="37dp"
                             android:onClick="toLanguagesClick" />
 
                         <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
                             android:layout_alignParentRight="true"
-                            android:layout_alignParentBottom="true"
                             android:adjustViewBounds="true"
                             android:onClick="toLanguagesClick"
                             android:src="@drawable/edit_jobs_add_tags_and_langs" />
@@ -266,15 +264,13 @@
                             android:id="@+id/filters_tv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="50dp"
-                            android:layout_marginBottom="50dp"
+                            android:layout_marginRight="37dp"
                             android:onClick="toSkillsClick" />
 
                         <ImageView
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
                             android:layout_alignParentRight="true"
-                            android:layout_alignParentBottom="true"
                             android:onClick="toSkillsClick"
                             android:src="@drawable/edit_jobs_add_tags_and_langs" />
 

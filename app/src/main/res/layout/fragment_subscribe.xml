@@ -14,13 +14,13 @@
 
     <LinearLayout
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical">
 
-        <TextView
+        <com.byte4b.judebo.ui.StrokeTextView
             android:id="@+id/title_tv"
             android:textSize="24sp"
             android:gravity="center"
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:text="title" />
 
-        <TextView
+        <com.byte4b.judebo.ui.StrokeTextView
             android:textSize="18sp"
             android:textColor="#000"
             android:gravity="center"

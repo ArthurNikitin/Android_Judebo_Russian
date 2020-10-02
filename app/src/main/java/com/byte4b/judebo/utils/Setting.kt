@@ -132,7 +132,7 @@ class Setting(ctx: Context) {
         //Cron in app
         //and
         // resend request after null/error answer AND checking time interval
-        const val APP_CRON_FREQUENCY_IN_SECONDS = 120
+        const val APP_CRON_FREQUENCY_IN_SECONDS = 60
 
         const val LIMIT_VACANCIES_WITHOUT_SUBSCRIPTION = 1
 
@@ -141,6 +141,7 @@ class Setting(ctx: Context) {
         const val MAX_ZOOM = 21.0f
 
         const val DEFAULT_EDIT_PAGE_ZOOM = 15f
+        const val DETAILS_DEFAULT_ZOOM = 14.0f
         const val DETAILS_MIN_ZOOM = MIN_ZOOM + 5
         const val DETAILS_MAX_ZOOM = MAX_ZOOM
 

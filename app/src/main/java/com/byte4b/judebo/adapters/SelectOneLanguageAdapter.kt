@@ -22,7 +22,7 @@ class SelectOneLanguageAdapter(
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         languages[position].apply {
-            holder.name.text = name
+            holder.name.text = title
             holder.icon.setImageResource(flag)
             holder.view.setBackgroundColor(
                 ctx.resources.getColor(

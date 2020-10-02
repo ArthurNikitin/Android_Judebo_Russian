@@ -33,15 +33,15 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_marginTop="30dp"
-                android:layout_marginStart="22dp"
+                android:layout_marginStart="20dp"
                 app:cardCornerRadius="6dp"
                 android:id="@+id/filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
             <ImageView
                 android:id="@+id/filter_iv"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:adjustViewBounds="true"
                 android:cropToPadding="false"
                 app:srcCompat="@drawable/search_filter_not_active" />

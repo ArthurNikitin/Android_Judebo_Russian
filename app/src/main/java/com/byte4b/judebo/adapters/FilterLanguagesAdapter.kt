@@ -21,7 +21,7 @@ class FilterLanguagesAdapter(
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         languages[position].apply {
-            holder.name.text = first.name
+            holder.name.text = first.title
             holder.icon.setImageResource(first.flag)
             holder.view.setBackgroundColor(
                 ctx.resources.getColor(

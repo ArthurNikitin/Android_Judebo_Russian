@@ -72,7 +72,7 @@ class DetailsMapFragment(
         map?.clear()
         latLng = target.position
         map?.addMarker(target)
-        map?.animateCamera(CameraUpdateFactory.newLatLngZoom(target.position, Setting.BASIC_ZOOM))
+        map?.animateCamera(CameraUpdateFactory.newLatLngZoom(target.position, Setting.DETAILS_DEFAULT_ZOOM))
     }
 
     @SuppressLint("MissingPermission")
@@ -84,11 +84,11 @@ class DetailsMapFragment(
         googleMap.isTrafficEnabled = false
         googleMap.isBuildingsEnabled = true
         googleMap.isIndoorEnabled = false
+        googleMap.uiSettings.isZoomControlsEnabled = true
 
         if (!isEdit) {
             googleMap.uiSettings.isScrollGesturesEnabled = false
             googleMap.uiSettings.isCompassEnabled = false
-            googleMap.uiSettings.isZoomControlsEnabled = true
             googleMap.uiSettings.isZoomGesturesEnabled = false
             googleMap.uiSettings.isTiltGesturesEnabled = false
             googleMap.uiSettings.isMapToolbarEnabled = false
