@@ -15,6 +15,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.graphics.drawable.toDrawable
+import androidx.core.widget.doOnTextChanged
 import com.bumptech.glide.Glide
 import com.byte4b.judebo.*
 import com.byte4b.judebo.R
@@ -74,6 +75,22 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
         name_field.counterMaxLength = Setting.TEXT_LENGTH_MAX_SYMBOLS_JOB_TITLE
         company_field.counterMaxLength = Setting.TEXT_LENGTH_MAX_SYMBOLS_JOB_COMPANY
         detail_field.counterMaxLength = Setting.TEXT_LENGTH_MAX_SYMBOLS_JOB_DETAIL
+
+        name_tv.doOnTextChanged { _, _, _, _ ->
+            if (name_tv.data?.trim() != "")
+                name_field.error = null
+        }
+        details_tv.doOnTextChanged { _, _, _, _ ->
+            if (details_tv.data?.trim() != "")
+            detail_field.error = null
+        }
+        email_tv.doOnTextChanged { _, _, _, _ ->
+            if (email_tv.data?.contains("@") == true
+                    && email_tv.data?.endsWith(".") == false
+                    && email_tv.data?.contains(".") == true
+                    && email_tv.data?.trim()?.isEmpty() == false)
+                email_field.error = null
+        }
 
         val jobInfo: Vocation = try {
             realm.where<VocationRealm>().equalTo(
