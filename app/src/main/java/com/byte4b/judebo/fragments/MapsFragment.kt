@@ -365,23 +365,34 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
     private val realm by lazy { Realm.getDefaultInstance() }
     private fun showMarkers(isFilterEnabled: Boolean) {
         try {
+            Log.e("test", "1")
             val currency = setting.getCurrentCurrency()
+            Log.e("test", "2")
             currency.rate = realm.where<CurrencyRateRealm>()
                 .equalTo("id", currency.id)
                 .findFirst()!!
                 .rate
+            Log.e("test", "3")
             val settingLangs = setting.filterLanguagesIds
+            Log.e("test", "4")
             val settingSkills = setting.filterSkillsIds
+            Log.e("test", "5")
             val isJobTypeFilterEnabled = setting.filterJobType != ""
+            Log.e("test", "6")
             val jobType = setting.filterJobType!!
+            Log.e("test", "7")
             val isSalaryFilterEnabled =
                 (setting.filterSalary != "") && (setting.filterSalary != Setting.DEFAULT_FILTER_RANGE_PARAMS)
+            Log.e("test", "8")
             val minSalaryGold = setting.filterSalary.split("-").first().toInt() * //0-123
                     Setting.DEFAULT_MAX.toDouble()
+            Log.e("test", "9")
             val maxData = setting.filterSalary.split("-").last()
+            Log.e("test", "10")
             val maxSalaryGold =
                 (if (maxData == "∞") 1_000_000_000.0
                 else maxData.toInt() * Setting.DEFAULT_MAX.toDouble())
+            Log.e("test", "11")
 
 
             clusterManager?.clearItems()

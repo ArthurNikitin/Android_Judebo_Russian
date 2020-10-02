@@ -319,10 +319,15 @@ class SettingFragment : Fragment(R.layout.fragment_setting), ServiceListener {
         }
     }
 
-    private fun setLocale(locale: String) {
-        resources.apply {
-            configuration.setLocale(Locale(locale))
-            updateConfiguration(configuration, displayMetrics)
+    private fun setLocale(languageCode: String) {
+        val locale = Locale(languageCode)
+        requireActivity().baseContext.resources.apply {
+            Locale.setDefault(locale)
+            val config = configuration
+            config.setLocale(locale)
+            config.setLayoutDirection(locale)
+            //requireActivity().application.createConfigurationContext(config)
+            updateConfiguration(config, displayMetrics)
         }
     }
 

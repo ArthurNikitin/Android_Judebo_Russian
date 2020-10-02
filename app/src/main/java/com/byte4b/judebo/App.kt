@@ -6,7 +6,7 @@ import android.os.Handler
 import com.byte4b.judebo.activities.AdBannerActivity
 import com.byte4b.judebo.activities.AdPhotoActivity
 import com.byte4b.judebo.activities.AdVideoActivity
-import com.byte4b.judebo.models.CustomAd
+import com.byte4b.judebo.models.*
 import com.byte4b.judebo.services.ApiServiceImpl
 import com.byte4b.judebo.utils.Setting
 import com.byte4b.judebo.view.ServiceListener
@@ -15,15 +15,24 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.InterstitialAd
 import com.google.android.gms.ads.MobileAds
 import com.google.gson.Gson
+import io.realm.Realm
+import io.realm.kotlin.createObject
+import io.realm.kotlin.delete
 import java.util.*
 
 
 class App : Application(), ServiceListener {
 
     private val setting by lazy { Setting(this) }
+    private val realm by lazy { Realm.getDefaultInstance() }
 
     override fun onCreate() {
         super.onCreate()
+
+        try {
+            Realm.init(this)
+        } catch (e: Exception) {}
+
         MobileAds.initialize(this) {}
         val handler = Handler {
             if (setting.isLastTryShowAdHaveError) {
@@ -108,5 +117,82 @@ class App : Application(), ServiceListener {
             setting.isLastTryShowAdHaveError = true
         }
     }
+
+    override fun onSubscriptionsLoaded(list: List<Subscription>?) {
+        if (list != null) {
+            try {
+                realm.executeTransaction {
+                    it.createObject<SubscriptionRealm>()
+                }
+            } catch (e: Exception) {}
+            try {
+                realm.executeTransaction {
+                    it.delete<SubscriptionRealm>()
+                    try {
+                        it.createObject<SubscriptionRealm>()
+                    } catch (e: Exception) {}
+                    it.copyToRealm(list.map { it.toRealmVersion() })
+                }
+            } catch (e: Exception) {}
+        }
+    }
+
+    override fun onRatesLoaded(list: List<CurrencyRate>?) {
+        if (list != null) {
+            try {
+                realm.executeTransaction {
+                    it.createObject<CurrencyRateRealm>()
+                }
+            } catch (e: Exception) {}
+            try {
+                realm.executeTransaction {
+                    it.delete<CurrencyRateRealm>()
+                    try {
+                        it.createObject<CurrencyRateRealm>()
+                    } catch (e: Exception) {}
+                    it.copyToRealm(list.map { it.toRealmVersion() })
+                }
+            } catch (e: Exception) {}
+        }
+    }
+
+    override fun onSkillsLoaded(list: List<Skill>?) {
+        if (list != null) {
+            try {
+                realm.executeTransaction {
+                    it.createObject<SkillRealm>()
+                }
+            } catch (e: Exception) {}
+            try {
+                realm.executeTransaction {
+                    it.delete<SkillRealm>()
+                    try {
+                        it.createObject<SkillRealm>()
+                    } catch (e: Exception) {}
+                    it.copyToRealm(list.filterNot { it.name.trim().isEmpty() }.map { it.toRealmVersion() })
+                }
+            } catch (e: Exception) {}
+        }
+    }
+
+    override fun onJobTypesLoaded(list: List<JobType>?) {
+        if (list != null) {
+            try {
+                realm.executeTransaction {
+                    it.createObject<JobTypeRealm>()
+                }
+            } catch (e: Exception) {}
+            try {
+                realm.executeTransaction {
+                    it.delete<JobTypeRealm>()
+                    try {
+                        it.createObject<JobTypeRealm>()
+                    } catch (e: Exception) {}
+                    it.copyToRealm(list.map { it.toRealmVersion() })
+                }
+            } catch (e: Exception) {}
+        }
+    }
+
 
 }

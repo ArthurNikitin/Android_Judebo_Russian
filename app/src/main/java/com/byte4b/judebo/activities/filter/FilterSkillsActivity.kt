@@ -11,6 +11,7 @@ import com.byte4b.judebo.R
 import com.byte4b.judebo.adapters.FilterSkillsAdapter
 import com.byte4b.judebo.models.Skill
 import com.byte4b.judebo.models.SkillRealm
+import com.byte4b.judebo.rtlSupportActivation
 import com.byte4b.judebo.setLeftDrawable
 import com.byte4b.judebo.utils.Setting
 import io.realm.Realm
@@ -25,6 +26,7 @@ class FilterSkillsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        rtlSupportActivation()
         setContentView(R.layout.activity_filter_skills)
         supportActionBar?.hide()
 

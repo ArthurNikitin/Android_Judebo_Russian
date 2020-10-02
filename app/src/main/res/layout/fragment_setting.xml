@@ -218,6 +218,8 @@
                 android:textColor="@android:color/holo_red_dark" />
 
             <TextView
+                android:layout_marginTop="20dp"
+                android:textSize="8sp"
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

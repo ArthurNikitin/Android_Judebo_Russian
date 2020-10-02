@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".activities.filter.FilterLanguagesActivity">
+
+    <RelativeLayout
+        android:padding="8dp"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@drawable/toolbar_gradient">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:adjustViewBounds="true"
+            android:paddingLeft="5dp"
+            android:scaleType="fitStart"
+            android:onClick="closeClick"
+            app:srcCompat="@drawable/navigate_arrow_back"
+            tools:ignore="VectorDrawableCompat" />
+
+        <TextView
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="28sp"
+            android:textColor="#8BC34A"
+            android:textStyle="bold"
+            android:text="@string/search_languages" />
+
+        <ImageView
+            android:adjustViewBounds="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:onClick="saveClick"
+            android:layout_height="35dp"
+            app:srcCompat="@drawable/search_save" />
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/selected_rv"/>
+
+</LinearLayout>

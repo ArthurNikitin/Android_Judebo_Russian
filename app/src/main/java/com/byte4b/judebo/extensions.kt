@@ -142,6 +142,12 @@ fun View.hideKeyboard() {
     imm.hideSoftInputFromWindow(windowToken, 0)
 }
 
+fun Activity.rtlSupportActivation() {
+    window.decorView.layoutDirection =
+        if (isRtl(this)) View.LAYOUT_DIRECTION_RTL
+        else View.LAYOUT_DIRECTION_LTR
+}
+
 val Calendar.timestamp get() = timeInMillis / 1000
 
 fun getDate(timestampString: Long?) =

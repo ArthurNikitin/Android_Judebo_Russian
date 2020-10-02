@@ -10,6 +10,7 @@ import com.byte4b.judebo.R
 import com.byte4b.judebo.adapters.FilterLanguagesAdapter
 import com.byte4b.judebo.models.Language
 import com.byte4b.judebo.models.languages
+import com.byte4b.judebo.rtlSupportActivation
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_languages_activitiy.*
 
@@ -19,6 +20,7 @@ class FilterLanguagesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        rtlSupportActivation()
         setContentView(R.layout.activity_filter_languages)
         supportActionBar?.hide()
 
@@ -31,7 +33,8 @@ class FilterLanguagesActivity : AppCompatActivity() {
                 intent!!.getStringExtra("data")!!.split(",").filter { !it.isEmpty() }.map { id ->
                     languages.first { id == it.id.toString() }
                 })
-        } catch (e: Exception) {}
+        } catch (e: Exception) {
+        }
 
         try {
             selected_rv.layoutManager = LinearLayoutManager(this)

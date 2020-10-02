@@ -11,6 +11,7 @@ import com.byte4b.judebo.R
 import com.byte4b.judebo.adapters.LanguagesAdapter
 import com.byte4b.judebo.adapters.SkillsAdapter
 import com.byte4b.judebo.models.*
+import com.byte4b.judebo.rtlSupportActivation
 import com.byte4b.judebo.utils.Setting
 import com.google.android.flexbox.*
 import io.realm.Realm
@@ -49,6 +50,7 @@ class FilterActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        rtlSupportActivation()
         setContentView(R.layout.activity_filter)
         supportActionBar?.hide()
 
