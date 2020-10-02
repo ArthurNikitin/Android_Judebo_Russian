@@ -27,6 +27,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.maps.android.clustering.Cluster
 import com.google.maps.android.clustering.ClusterManager
 import com.google.maps.android.clustering.view.DefaultClusterRenderer
+import io.realm.Realm
 import kotlinx.android.synthetic.main.cluster_icon.view.*
 import kotlinx.android.synthetic.main.marker_item.view.*
 import kotlinx.android.synthetic.main.marker_without_salary.view.*
@@ -36,6 +37,7 @@ class OwnIconRendered(
     private val clusterManager: ClusterManager<AbstractMarker>?
 ) : DefaultClusterRenderer<AbstractMarker>(context, map, clusterManager) {
 
+    private val realm by lazy { Realm.getDefaultInstance() }
     val drawables = mutableMapOf<String, Drawable>()
     private val setting by lazy { Setting(context!!) }
 
@@ -159,7 +161,7 @@ class OwnIconRendered(
 
                 val currency2 = setting.getCurrentCurrency()
                 val convertedSalary =
-                    (data.UF_GROSS_PER_MONTH.toDouble() * currency2.rate / (currency?.rate ?: 1))
+                    (data.UF_GROSS_PER_MONTH.toDouble() * currency2.getLastRate(realm) / (currency?.getLastRate(realm) ?: 1))
                         .toString().round().trim()
                 view.secondSalary_tv2.text = "≈${convertedSalary}"
                 view.secondContainer2.visibility =

@@ -19,11 +19,13 @@ import com.byte4b.judebo.models.MyMarker
 import com.byte4b.judebo.models.currencies
 import com.byte4b.judebo.models.languages
 import com.byte4b.judebo.utils.Setting
+import com.byte4b.judebo.utils.getLastRate
 import com.facebook.share.model.ShareLinkContent
 import com.facebook.share.widget.ShareDialog
 import com.google.android.flexbox.*
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
+import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_details.*
 import java.text.SimpleDateFormat
 
@@ -32,12 +34,17 @@ class DetailsActivity : AppCompatActivity() {
 
     private var job: MyMarker? = null
     private val setting by lazy { Setting(this) }
+    private val realm by lazy { Realm.getDefaultInstance() }
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
         supportActionBar?.hide()
+
+        try {
+            Realm.init(this)
+        } catch (e: Exception) {}
 
         try {
             val jobInfo = Gson().fromJson(intent.getStringExtra("marker"), MyMarker::class.java)
@@ -84,7 +91,7 @@ class DetailsActivity : AppCompatActivity() {
 
                     val currency2 = setting.getCurrentCurrency()
                     val convertedSalary =
-                        (jobInfo.UF_GROSS_PER_MONTH.toDouble() * currency2.rate / (currency?.rate ?: 1))
+                        (jobInfo.UF_GROSS_PER_MONTH.toDouble() * currency2.getLastRate(realm) / (currency?.getLastRate(realm) ?: 1))
                             .toString().round().trim()
                     view.secondSalary_tv.text = "≈${convertedSalary}"
                     view.secondContainer.visibility =

@@ -134,7 +134,7 @@ class Setting(ctx: Context) {
         // resend request after null/error answer AND checking time interval
         const val APP_CRON_FREQUENCY_IN_SECONDS = 60
 
-        const val LIMIT_VACANCIES_WITHOUT_SUBSCRIPTION = 1
+        const val LIMIT_VACANCIES_WITHOUT_SUBSCRIPTION = 5
 
         const val BASIC_ZOOM = 11.0f
         const val MIN_ZOOM = 2.0f

@@ -543,7 +543,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
 
                         currentVocationRealm.setSalary(
                             currencies.firstOrNull { it.name == salaryVal_tv.text }?.id ?: 0,
-                            salary_tv.data
+                            salary_tv.data, realm
                         )
 
                         if (isLogoSelected)
@@ -570,6 +570,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                             login = setting.email ?: "",
                             vocations = listOf(currentVocationRealm.toBasicVersion())
                         )
+                        val currency = currencies.first { it.id == currentVocationRealm.UF_GROSS_CURRENCY_ID }
                         try {
                             refresher.isRefreshing = true
                             Handler().postDelayed({ refresher.isRefreshing = false },
@@ -622,7 +623,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
 
         currentVocationRealm.setSalary(
             currencies.firstOrNull { it.name == salaryVal_tv.text }?.id ?: 0,
-            salary_tv.data
+            salary_tv.data, realm
         )
 
         if (isLogoSelected)

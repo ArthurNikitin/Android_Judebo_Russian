@@ -21,10 +21,14 @@ import com.byte4b.judebo.activities.filter.FilterActivity
 import com.byte4b.judebo.adapters.ClusterAdapter
 import com.byte4b.judebo.adapters.LanguagesAdapter
 import com.byte4b.judebo.adapters.SkillsAdapter
-import com.byte4b.judebo.models.*
+import com.byte4b.judebo.models.AbstractMarker
+import com.byte4b.judebo.models.MyMarker
+import com.byte4b.judebo.models.currencies
+import com.byte4b.judebo.models.languages
 import com.byte4b.judebo.services.ApiServiceImpl
 import com.byte4b.judebo.utils.OwnIconRendered
 import com.byte4b.judebo.utils.Setting
+import com.byte4b.judebo.utils.getLastRate
 import com.byte4b.judebo.view.ServiceListener
 import com.github.florent37.runtimepermission.kotlin.askPermission
 import com.google.android.flexbox.*
@@ -36,7 +40,6 @@ import com.google.android.gms.maps.model.*
 import com.google.gson.Gson
 import com.google.maps.android.clustering.ClusterManager
 import io.realm.Realm
-import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.fragment_maps.*
 import kotlinx.android.synthetic.main.preview.view.*
 import kotlin.math.pow
@@ -259,7 +262,7 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
 
                     val currency2 = setting.getCurrentCurrency()
                     val convertedSalary =
-                        (data.UF_GROSS_PER_MONTH.toDouble() * currency2.rate / (currency?.rate ?: 1))
+                        (data.UF_GROSS_PER_MONTH.toDouble() * currency2.getLastRate(realm) / (currency?.getLastRate(realm) ?: 1))
                             .toString().round().trim()
                     view.secondSalary_tv.text = "≈${convertedSalary}"
                     view.secondContainer.visibility =
@@ -378,10 +381,7 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
             Log.e("test", "1")
             val currency = setting.getCurrentCurrency()
             Log.e("test", "2")
-            currency.rate = realm.where<CurrencyRateRealm>()
-                .equalTo("id", currency.id)
-                .findFirst()!!
-                .rate
+            currency.getLastRate(realm)
             Log.e("test", "3")
             val settingLangs = setting.filterLanguagesIds
             Log.e("test", "4")

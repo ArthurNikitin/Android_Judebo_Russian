@@ -6,7 +6,9 @@ import android.os.Build
 import androidx.core.graphics.drawable.toBitmap
 import com.byte4b.judebo.timestamp
 import com.byte4b.judebo.utils.Setting
+import com.byte4b.judebo.utils.getLastRate
 import com.byte4b.judebo.view.ServiceListener
+import io.realm.Realm
 import io.realm.RealmObject
 import java.io.ByteArrayOutputStream
 import java.util.*
@@ -99,7 +101,7 @@ open class VocationRealm : RealmObject() {
         UF_DISABLE = time.timestamp
     }
 
-    fun setSalary(currencyId: Int, salary: String?) {
+    fun setSalary(currencyId: Int, salary: String?, realm: Realm) {
         UF_GROSS_CURRENCY_ID = currencyId
         UF_GROSS_PER_MONTH = try {
             salary?.trim()?.replace(" ", "")?.toInt()
@@ -111,7 +113,7 @@ open class VocationRealm : RealmObject() {
             UF_GROSS_PER_MONTH = null
         if (UF_GROSS_PER_MONTH != null) {
             val currency = currencies.first { it.id == UF_GROSS_CURRENCY_ID }
-            UF_GOLD_PER_MONTH = ((1000000L * UF_GROSS_PER_MONTH!!) / currency.rate).toInt()
+            UF_GOLD_PER_MONTH = ((1000000L * UF_GROSS_PER_MONTH!!) / currency.getLastRate(realm)).toInt()
         }
     }
 
