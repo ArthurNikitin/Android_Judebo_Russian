@@ -2,7 +2,6 @@ package com.byte4b.judebo.ui
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.Gravity
 import android.widget.FrameLayout
 import android.widget.TextView
 import com.byte4b.judebo.R
@@ -14,9 +13,9 @@ class CenterErrorTextInputLayout(context: Context, attrs: AttributeSet) : TextIn
         val errorTextView = this.findViewById<TextView>(R.id.textinput_error)
         val errorFrameLayout = errorTextView.parent as FrameLayout
 
-        errorTextView.gravity = Gravity.END
-        errorFrameLayout.layoutParams =
-            LayoutParams(150, LayoutParams.WRAP_CONTENT).apply {
-                marginStart = 360
-            }
+        //errorTextView.gravity = Gravity.END
+        //errorFrameLayout.layoutParams =
+        //    LayoutParams(120, LayoutParams.WRAP_CONTENT).apply {
+        //        marginStart = 360
+        //    }
     }}

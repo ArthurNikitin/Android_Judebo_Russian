@@ -235,28 +235,60 @@ class VocationsAdapter(
                     .equalTo("UF_APP_JOB_ID", vocation.UF_APP_JOB_ID?.toLong())
                     .findFirst()
                     ?: return@executeTransaction
-                val newVocation = vocationRealm.toBasicVersion().toRealmVersion()
-                newVocation.apply {
-                    val now = Calendar.getInstance()
 
-                    NAME += "-2"
-                    UF_JOBS_ID = null
-                    UF_MODIFED = now.timestamp
-                    UF_APP_JOB_ID = getNewJobAppId().toLong()
+                val copyVocation = VocationRealm()
+                copyVocation.isHided = vocationRealm.isHided
 
-                    now.add(Calendar.DATE, Setting.JOB_LIFETIME_IN_DAYS)
-                    UF_DISABLE = now.timestamp
-                }
-                it.copyToRealm(newVocation)
+                val now = Calendar.getInstance()
+
+                copyVocation.NAME = (vocationRealm.NAME ?: "") + "-2"
+                copyVocation.UF_JOBS_ID = null
+                copyVocation.UF_MODIFED = now.timestamp
+                copyVocation.UF_APP_JOB_ID = getNewJobAppId().toLong()
+
+                now.add(Calendar.DATE, Setting.JOB_LIFETIME_IN_DAYS)
+                copyVocation.UF_DISABLE = now.timestamp
+
+                copyVocation.UF_ACTIVE = vocationRealm.UF_ACTIVE
+                copyVocation.COMPANY = vocationRealm.COMPANY
+                copyVocation. DETAIL_TEXT = vocationRealm.DETAIL_TEXT
+                copyVocation. UF_CONTACT_EMAIL = vocationRealm.UF_CONTACT_EMAIL
+                copyVocation. UF_CONTACT_PHONE = vocationRealm.UF_CONTACT_PHONE
+                copyVocation. UF_DETAIL_IMAGE = vocationRealm.UF_DETAIL_IMAGE
+                copyVocation. UF_GOLD_PER_MONTH = vocationRealm.UF_GOLD_PER_MONTH
+                copyVocation. UF_GROSS_CURRENCY_ID = vocationRealm.UF_GROSS_CURRENCY_ID
+                copyVocation. UF_GROSS_PER_MONTH = vocationRealm.UF_GROSS_PER_MONTH
+                copyVocation. UF_LANGUAGE_ID_ALL = vocationRealm.UF_LANGUAGE_ID_ALL
+                copyVocation. UF_LOGO_IMAGE = vocationRealm.UF_LOGO_IMAGE
+                copyVocation. UF_MAP_POINT = vocationRealm.UF_MAP_POINT
+                copyVocation. UF_PREVIEW_IMAGE = vocationRealm.UF_PREVIEW_IMAGE
+                copyVocation. UF_SKILLS_ID_ALL = vocationRealm.UF_SKILLS_ID_ALL
+                copyVocation. UF_TYPE_OF_JOB_ID = vocationRealm.UF_TYPE_OF_JOB_ID
+                it.insertOrUpdate(copyVocation)
+
+
+                //val newVocation = vocationRealm.toBasicVersion().toRealmVersion()
+                //newVocation.apply {
+                //    val now = Calendar.getInstance()
+
+                //    NAME = (NAME ?: "") + "-2"
+                //    UF_JOBS_ID = null
+                 //   UF_MODIFED = now.timestamp
+                //    UF_APP_JOB_ID = getNewJobAppId().toLong()
+
+                //    now.add(Calendar.DATE, Setting.JOB_LIFETIME_IN_DAYS)
+                //    UF_DISABLE = now.timestamp
+                //}
+                //it.copyToRealm(newVocation)
                 ApiServiceImpl(this).addMyVocation(
                     setting.getCurrentLanguage().locale,
                     token = setting.token ?: "",
                     login = setting.email ?: "",
-                    vocation = newVocation.toBasicVersion()
+                    vocation = copyVocation.toBasicVersion()
                 )
                 ctx.startActivity<VocationEditActivity> {
-                    putExtra("appId", newVocation.UF_APP_JOB_ID)
-                    putExtra("jobId", newVocation.UF_JOBS_ID)
+                    putExtra("appId", (copyVocation.UF_APP_JOB_ID ?: 0))
+                    putExtra("jobId", copyVocation.UF_JOBS_ID ?: 1)
                 }
             }
         } catch (e: Exception) {
@@ -283,6 +315,8 @@ class VocationsAdapter(
                         .equalTo("UF_APP_JOB_ID", vocation.UF_APP_JOB_ID?.toLong())
                         .findFirst()
 
+                    //Log.e("test list", "${vocationRealm?.UF_APP_JOB_ID} ")
+
                     try {
                         vocationRealm?.isHided = true
                         vocationRealm?.COMPANY = null
@@ -303,7 +337,11 @@ class VocationsAdapter(
                         vocationRealm?.UF_TYPE_OF_JOB_ID = null
 
                         vocationRealm?.UF_MODIFED = Calendar.getInstance().timestamp
-                    } catch (e: Exception) {}
+                            //it.insertOrUpdate(vocationRealm!!)
+                    } catch (e: Exception) {
+                        //Log.e("check", e.localizedMessage ?: "set null error")
+                    }
+                    parent.showList()
                     try {
                         ApiServiceImpl(this).deleteVocation(
                             setting.getCurrentLanguage().locale,

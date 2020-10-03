@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -45,7 +46,8 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
         }
     }
     private val setting by lazy { Setting(requireContext()) }
-    private fun vocationsFromRealm() = realm.where<VocationRealm>().findAll().filter { !it.isHided }
+    private fun vocationsFromRealm() =
+        realm.where<VocationRealm>().findAll()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -115,6 +117,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
             val all = realm.where<VocationRealm>().findAll()
                 .map { it.toBasicVersion() }
                 .filter { !it.isHided }
+                .filterNot { "${it.isHided}" == "" }
 
             if (txt.trim().isEmpty()) {
                 setList(all)
@@ -194,7 +197,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
 
         run {
             try {
-                val vocations = vocationsFromRealm()
+                val vocations = vocationsFromRealm().filter { it.isHided == false }.filterNot { "${it.isHided}" == "" }
                 if (vocations.isEmpty())
                     onRefresh()
                 else
@@ -354,7 +357,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                             } else
                             //OLD DATA from WEB, need write only JOBS_ID, (not need: DATA MODIFED, DISABLE)
                             {
-                                //Log.e("test", "itDate <= objDate")
+                               // Log.e("test", "itDate <= objDate")
                                 // rewrite only JOB_ID
                                 objFromRealm.UF_JOBS_ID = objFromServer.UF_JOBS_ID
                             }
@@ -376,18 +379,28 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
 
             //удалить из локаль
             realmList.forEach { objFromRealm ->
-                if (objFromRealm.UF_JOBS_ID == null) return@forEach
-
-                val objFromServer = list.firstOrNull { it.UF_JOBS_ID == objFromRealm.UF_JOBS_ID }
-                if (objFromServer == null)
+                //Log.e("check 1 ", "${objFromRealm.UF_APP_JOB_ID} ${objFromRealm.UF_JOBS_ID}")
+                if (objFromRealm.UF_JOBS_ID == null && objFromRealm.UF_MAP_POINT.isNullOrEmpty()) {
+                //    Log.e("check 4 ", "${objFromRealm.UF_APP_JOB_ID} ${objFromRealm.UF_JOBS_ID}")
                     objFromRealm.deleteFromRealm()
-                //проити по всем локальным элементам у которых JOB_ID не пустое, если такой элемент не пришел с сервера
-                //то удалить запись из REALM
+                }
+                else if (objFromRealm.UF_JOBS_ID != null) {
+                    //Log.e("check 2 ", "${objFromRealm.UF_APP_JOB_ID} ${objFromRealm.UF_JOBS_ID}")
+                    val objFromServer =
+                        list.firstOrNull { it.UF_JOBS_ID == objFromRealm.UF_JOBS_ID }
+                    if (objFromServer == null)
+                        objFromRealm.deleteFromRealm()
+                    //проити по всем локальным элементам у которых JOB_ID не пустое, если такой элемент не пришел с сервера
+                    //то удалить запись из REALM
+                }
+
             }
 
             // update old data on web server
             val vocationsForUploadToServer = mutableListOf<Vocation>()
             realmList.forEach { vocationFromRealm ->
+                //Log.e("check 3 ", "${vocationFromRealm.UF_APP_JOB_ID} ${vocationFromRealm.UF_JOBS_ID}")
+
                 if (vocationFromRealm.UF_JOBS_ID == null)
                 //if JOBS_ID == null
                 {
@@ -425,6 +438,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                 val data = vocations
                     .map { it.toBasicVersion() }
                     .filter { !it.isHided }
+                    .filterNot { "${it.isHided}" == "" }
                 setList(data)
             } catch (e: Exception) {
                 setList(list)
@@ -433,6 +447,16 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
     }
 
     private fun setList(list: List<Vocation>?) {
+        Log.e("check", "for show")
+        list?.forEach {
+            Log.e("check", "${it.UF_JOBS_ID}: ${Gson().toJson(it)}")
+        }
+
+        Log.e("check", "in realm")
+        realm.where<VocationRealm>().findAll().map { it.toBasicVersion() }.forEach {
+            Log.e("check", "${it.isHided} ${it.UF_JOBS_ID}: ${Gson().toJson(it)}")
+        }
+
         try {
             refresher.isRefreshing = false
         } catch (e: Exception) {}
@@ -460,7 +484,9 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
     }
 
     fun showList() {
-        setList(realm.where<VocationRealm>().findAll().filter { !it.isHided }.map { it.toBasicVersion() })
+        setList(
+            realm.where<VocationRealm>().findAll().filter { it.isHided == false }.filterNot { "${it.isHided}" == "" }.map { it.toBasicVersion() }
+        )
     }
 
     override fun onRefresh() {

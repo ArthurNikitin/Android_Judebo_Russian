@@ -398,6 +398,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                     val vocationRealm = it.where<VocationRealm>()
                         .equalTo("UF_APP_JOB_ID", job!!.UF_APP_JOB_ID?.toLong())
                         .findFirst()
+                    //Log.e("test edit", "${vocationRealm?.UF_APP_JOB_ID} ")
 
                     try {
                         vocationRealm?.isHided = true

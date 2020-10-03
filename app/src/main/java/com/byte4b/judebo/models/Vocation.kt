@@ -71,7 +71,7 @@ data class Vocation(
 
 open class VocationRealm : RealmObject() {
     //system
-    var isHided: Boolean = false
+    var isHided: Boolean? = false
 
     var UF_ACTIVE: Byte? = null
     var COMPANY: String? = null
@@ -148,7 +148,7 @@ open class VocationRealm : RealmObject() {
     }
 
     fun toBasicVersion() = Vocation(
-        isHided = isHided,
+        isHided = isHided ?: false,
         COMPANY = COMPANY,
         DETAIL_TEXT = DETAIL_TEXT,
         NAME = NAME,
