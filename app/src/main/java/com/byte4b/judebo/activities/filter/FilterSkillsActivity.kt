@@ -20,7 +20,10 @@ import kotlinx.android.synthetic.main.activity_filter_skills.*
 
 class FilterSkillsActivity : AppCompatActivity() {
 
-    private val skills get() = realm.where<SkillRealm>().findAll().map { it.toBasicVersion() }
+    private val skills get() = realm.where<SkillRealm>().findAll()
+        .map { it.toBasicVersion() }
+        .filterNot { it.id == Setting.DEFAULT_SKILL_ID_ALWAYS_HIDDEN.toInt() }
+
     private val realm by lazy { Realm.getDefaultInstance() }
     private var selectedSkills = mutableListOf<Skill>()
 
