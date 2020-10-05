@@ -22,7 +22,7 @@
             android:paddingLeft="5dp"
             android:scaleType="fitStart"
             android:onClick="closeClick"
-            app:srcCompat="@drawable/navigate_arrow_back"
+            app:srcCompat="@drawable/search_filter_close"
             tools:ignore="VectorDrawableCompat" />
 
         <TextView

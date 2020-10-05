@@ -22,7 +22,7 @@
             android:onClick="closeClick"
             android:paddingLeft="5dp"
             android:scaleType="fitStart"
-            app:srcCompat="@drawable/navigate_arrow_back"
+            app:srcCompat="@drawable/search_filter_close"
             tools:ignore="VectorDrawableCompat" />
 
         <TextView
@@ -120,7 +120,6 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="0"
-                            android:textColor="@color/toolbar_background_color"
                             android:textSize="17sp" />
 
                         <TextView
@@ -130,17 +129,18 @@
                             android:layout_weight="1"
                             android:gravity="end"
                             android:text="00"
-                            android:textColor="@color/toolbar_background_color"
+                            android:paddingEnd="4dp"
                             android:textSize="17sp" />
 
                         <ImageView
                             android:id="@+id/salary_iv"
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
                             android:adjustViewBounds="true"
                             app:srcCompat="@drawable/currency_pln" />
 
                         <TextView
+                            android:paddingStart="4dp"
                             android:id="@+id/salary_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

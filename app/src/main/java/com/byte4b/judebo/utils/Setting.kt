@@ -194,7 +194,7 @@ class Setting(ctx: Context) {
         const val DEFAULT_JOB_ID_SERVICE_USED = 1L
 
         //Search filter settings
-        const val SEARCH_GROSS_GOLD_MAX = 1_50_000
+        const val SEARCH_GROSS_GOLD_MAX = 70_000
         const val SEARCH_GROSS_STEPS = 1_000
 
         const val DEFAULT_FILTER_RANGE_PARAMS = "0-${SEARCH_GROSS_STEPS}"
