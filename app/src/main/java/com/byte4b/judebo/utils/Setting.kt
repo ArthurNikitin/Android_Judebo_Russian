@@ -147,8 +147,9 @@ class Setting(ctx: Context) {
 
         const val SHADOW_WIDTH = 5f
 
-        const val DEFAULT_LATITUDE = 0.0
-        const val DEFAULT_LONGITUDE = 0.0
+        //London
+        const val DEFAULT_LATITUDE = 35.5140
+        const val DEFAULT_LONGITUDE = 5.13120
 
         const val MAX_SEARCH_LATITUDE_SIZE = 0.3
         const val MAX_SEARCH_LONGITUDE_SIZE = 0.3

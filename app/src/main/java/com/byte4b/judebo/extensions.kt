@@ -8,6 +8,7 @@ import android.content.Intent
 import android.location.Location
 import android.location.LocationManager
 import android.net.Uri
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
@@ -34,14 +35,38 @@ fun Context.getLocation(): Location? {
     return try {
         val mLocationManager =
             applicationContext.getSystemService(LOCATION_SERVICE) as LocationManager
-        val providers = mLocationManager.getProviders(true)
-        var bestLocation: Location? = null
-        for (provider in providers) {
-            val l = mLocationManager.getLastKnownLocation(provider) ?: continue
-            if (bestLocation == null || l.accuracy < bestLocation.accuracy)
-                bestLocation = l
-        }
-        return bestLocation
+        //gps test data
+//        mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)?.apply {
+//            Log.e("test", "GPS_PROVIDER")
+//            Log.e("test", "${latitude}=${longitude}=${accuracy}\n")
+//        }
+//
+//        mLocationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)?.apply {
+//            Log.e("test", "NETWORK_PROVIDER")
+//            Log.e("test", "${latitude}=${longitude}=${accuracy}\n")
+//        }
+//
+        mLocationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER)?.apply {
+            Log.e("test", "PASSIVE_PROVIDER")
+            Log.e("test", "${latitude}=${longitude}=${accuracy}\n")
+            return this
+        } ?: return null
+
+        //gps real get data
+        //val providers = mLocationManager.getProviders(true)
+        //var bestLocation: Location? = null
+        //for (provider in providers) {
+        //    val location = mLocationManager.getLastKnownLocation(provider) ?: continue
+            //Log.e("test", "${location.latitude}=${location.longitude}=${location.accuracy}\n")
+        //    Log.e("test 0", "${location.accuracy} ")
+        //    if (bestLocation == null || location.accuracy < bestLocation.accuracy) {
+        //        Log.e("test 1", "${location.accuracy} and ${bestLocation?.accuracy}")
+        //        bestLocation = location
+        //        //Log.e("test", "${location.accuracy} and ${bestLocation?.accuracy}")
+        //        Log.e("test 2", "${location.accuracy} and ${bestLocation.accuracy}")
+        //    }
+        //}
+        //return bestLocation
     } catch (e: Exception) {
         null
     }

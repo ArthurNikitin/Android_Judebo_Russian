@@ -63,18 +63,22 @@ class SettingFragment : Fragment(R.layout.fragment_setting), ServiceListener {
         }
 
         try {
-            val mLocationManager =
-                requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
-            val providers = mLocationManager.getProviders(true)
-            var bestLocation: Location? = null
-            var result = ""
-            for (provider in providers) {
-                val l = mLocationManager.getLastKnownLocation(provider) ?: continue
-                if (bestLocation == null || l.accuracy < bestLocation.accuracy)
-                    bestLocation = l
-                result += "${l.latitude}=${l.longitude}=${l.accuracy}\n"
+            if (BuildConfig.DEBUG) {
+                val mLocationManager =
+                    requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+                val providers = mLocationManager.getProviders(true)
+                var bestLocation: Location? = null
+                var result = ""
+                for (provider in providers) {
+                    val l = mLocationManager.getLastKnownLocation(provider) ?: continue
+                    if (bestLocation == null || l.accuracy < bestLocation.accuracy)
+                        bestLocation = l
+                    result += "${l.latitude}=${l.longitude}=${l.accuracy}\n"
+                }
+
+                result += "\nSelected: ${bestLocation?.latitude}=${bestLocation?.longitude}=${bestLocation?.accuracy}"
+                textView2?.text = result
             }
-            textView2?.text = result
         } catch (e: Exception) {}
 
         try {
