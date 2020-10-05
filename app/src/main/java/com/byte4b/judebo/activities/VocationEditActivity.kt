@@ -11,6 +11,7 @@ import android.os.Handler
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.EditText
+import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.toBitmap
@@ -42,6 +43,7 @@ import kotlin.random.Random
 
 class VocationEditActivity : AppCompatActivity(), ServiceListener {
 
+    private val imageView by lazy { ImageView(this) }
     private val realm by lazy { Realm.getDefaultInstance() }
     private var job: Vocation? = null
     private val setting by lazy { Setting(this) }
@@ -297,12 +299,14 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                 val result = CropImage.getActivityResult(data)
                 if (resultCode == Activity.RESULT_OK) {
                     logo_iv.setImageURI(result.uri)
+                    imageView.setImageURI(result.uri)
                     val bitmap = logo_iv.drawable.toBitmap(100, 100)
                     logo_iv.setImageBitmap(bitmap)
                     Glide.with(this)
                         .load(bitmap)
                         .circleCrop()
                         .into(logo_iv)
+
                     isLogoSelected = true
                 }
             }
@@ -565,7 +569,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
                         )
 
                         if (isLogoSelected)
-                            currentVocationRealm.setIcons(logo_iv.drawable)
+                            currentVocationRealm.setIcons(imageView.drawable)
 
                         val latLng =
                             getMapFragment()?.latLng
@@ -644,7 +648,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
         )
 
         if (isLogoSelected)
-            currentVocationRealm.setIcons(logo_iv.drawable)
+            currentVocationRealm.setIcons(imageView.drawable)
 
         val latLng =
             getMapFragment()?.latLng ?: LatLng(
