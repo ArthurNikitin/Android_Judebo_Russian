@@ -14,8 +14,8 @@ android {
         applicationId "com.byte4b.judebo"
         minSdkVersion 19
         targetSdkVersion 30
-        versionCode 40
-        versionName "2.40.0"
+        versionCode 41
+        versionName "2.40.1"
         multiDexEnabled true
     }
     compileOptions {
@@ -27,6 +27,7 @@ android {
     }
     buildTypes {
         release {
+           // multiDexKeepFile file('multidex-config.txt')
             //release mode
             //minifyEnabled true
             //developing mode
@@ -49,6 +50,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0'
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
     implementation 'com.daimajia.swipelayout:library:1.2.0@aar'
+    implementation 'com.android.support:multidex:1.0.3'
 
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'com.github.florent37:runtime-permission-kotlin:1.1.1'

@@ -217,6 +217,9 @@ class Setting(ctx: Context) {
         // = "disable"
         const val ADV_GOOGLE_ADV_ADMOB_TYPE = "fullscreen"
 
+
+        //Important!!! save format subsription name
+        //playmarket_month_, playmarket_halfyear_, playmarket_year_
         val subs10PeriodVariantsIds = listOf(
             "playmarket_month_limit_00010",
             "playmarket_halfyear_limit_00010",

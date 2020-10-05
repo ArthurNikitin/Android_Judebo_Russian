@@ -1,8 +1,10 @@
 package com.byte4b.judebo
 
 import android.app.Application
+import android.content.Context
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Handler
+import androidx.multidex.MultiDex
 import com.byte4b.judebo.activities.AdBannerActivity
 import com.byte4b.judebo.activities.AdPhotoActivity
 import com.byte4b.judebo.activities.AdVideoActivity
@@ -25,6 +27,11 @@ class App : Application(), ServiceListener {
 
     private val setting by lazy { Setting(this) }
     private val realm by lazy { Realm.getDefaultInstance() }
+
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+        MultiDex.install(this)
+    }
 
     override fun onCreate() {
         super.onCreate()
