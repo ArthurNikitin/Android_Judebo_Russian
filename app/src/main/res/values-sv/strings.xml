@@ -1,6 +1,8 @@
 <resources>
 
 
+    <string name="name_app">Judebo</string>
+    <string name="toast_message">Toast message</string>
     <string name="settings_title_support_email">sv@judebo.com</string>
     <string name="add_job_link">https://sv.judebo.com/jobs/</string>
     <string name="user_registration_privacy_url">https://sv.judebo.com/login/privacy.php</string>
@@ -23,6 +25,13 @@
 
 
     <string name="search_title_search">Sök</string>
+    <string name="search_title_filter">Filtrera</string>
+    <string name="search_all_types_of_jobs">Alla typer</string>
+    <string name="search_gross">Äckligt</string>
+    <string name="search_types_of_jobs">Typ</string>
+    <string name="search_languages">språk</string>
+    <string name="search_tags">Färdigheter och taggar</string>
+    <string name="search_tags_search">Sök</string>
     <string name="button_share">Dela med sig</string>
     <string name="error_label">Fel</string>
     <string name="error_no_internet">Ingen internetanslutning!</string>
@@ -41,7 +50,7 @@
     <string name="settings_delete_account_request_delete">Radera</string>
     <string name="settings_delete_account_request_cancel">Annullera</string>
     <string name="settings_delete_account_message">Dina uppgifter och ditt konto raderades.</string>
-    <string name="action_settings">Action</string>
+    <string name="action_settings">Handling</string>
     <string name="request_logout_title">Logga ut</string>
     <string name="request_logout_message">Är du säker?</string>
     <string name="request_geolocation_title">Geolokalisering</string>
@@ -90,10 +99,20 @@
     <string name="subsription_limit_50_description">Gränsen är 50 lediga platser.</string>
     <string name="subsription_limit_200_title">Stort företag</string>
     <string name="subsription_limit_200_description">Gränsen är 200 lediga platser.</string>
+    <string name="subsription_period_01_month">månad</string>
+    <string name="subsription_period_06_month">6 månader</string>
+    <string name="subsription_period_12_month">12 månader</string>
     <string name="subsription_period_save_6month_at">6 månader kl</string>
     <string name="subsription_period_save_12month_at">12 månader kl</string>
     <string name="subsription_period_save_month">månad</string>
     <string name="subsription_period_save_is">Spara</string>
+    <string name="subsription_restore_subs">Restre dina subs</string>
+    <string name="subsription_restore_subs_success">Dina prenumeranter har återställts</string>
+    <string name="subsription_restore_subs_error">Dina prenumeranter har inte återställts. Fel.</string>
+    <string name="subscription_need_cancel_current_subs">Avbryt nuvarande prenumeration!</string>
+    <string name="subscription_need_cancel_current_subs_ok">Ok</string>
+    <string name="subscription_need_cancel_current_subs_cancel">Annullera</string>
+    <string name="subscription_buy_success">Framgång</string>
     <string name="edit_item_tags_search">Sök</string>
 
 

@@ -1,6 +1,8 @@
 <resources>
 
 
+    <string name="name_app">Judebo</string>
+    <string name="toast_message">Toast message</string>
     <string name="settings_title_support_email">no@judebo.com</string>
     <string name="add_job_link">https://no.judebo.com/jobs/</string>
     <string name="user_registration_privacy_url">https://no.judebo.com/login/privacy.php</string>
@@ -23,11 +25,18 @@
 
 
     <string name="search_title_search">Søk</string>
+    <string name="search_title_filter">Filter</string>
+    <string name="search_all_types_of_jobs">Alle typer</string>
+    <string name="search_gross">Ekkelt</string>
+    <string name="search_types_of_jobs">Type</string>
+    <string name="search_languages">Språk</string>
+    <string name="search_tags">Ferdigheter og merker</string>
+    <string name="search_tags_search">Søk</string>
     <string name="button_share">Dele</string>
     <string name="error_label">Feil</string>
     <string name="error_no_internet">Ingen internettforbindelse!</string>
     <string name="settings_title_language">Språk</string>
-    <string name="settings_title_subsription">Subskripsjon</string>
+    <string name="settings_title_subsription">Subscript</string>
     <string name="settings_logout">Logg ut</string>
     <string name="settings_logout_ok">Ok</string>
     <string name="settings_logout_cancel">Avbryt</string>
@@ -41,7 +50,7 @@
     <string name="settings_delete_account_request_delete">Slett</string>
     <string name="settings_delete_account_request_cancel">Avbryt</string>
     <string name="settings_delete_account_message">Dataene og kontoen din ble slettet.</string>
-    <string name="action_settings">Action</string>
+    <string name="action_settings">Handling</string>
     <string name="request_logout_title">Logg ut</string>
     <string name="request_logout_message">Er du sikker?</string>
     <string name="request_geolocation_title">Geolokalisering</string>
@@ -90,10 +99,20 @@
     <string name="subsription_limit_50_description">Grensen er 50 ledige stillinger.</string>
     <string name="subsription_limit_200_title">Stor bedrift</string>
     <string name="subsription_limit_200_description">Grensen er 200 ledige stillinger.</string>
+    <string name="subsription_period_01_month">måned</string>
+    <string name="subsription_period_06_month">6 måneder</string>
+    <string name="subsription_period_12_month">12 måneder</string>
     <string name="subsription_period_save_6month_at">6 måneder kl</string>
     <string name="subsription_period_save_12month_at">12 måneder kl</string>
     <string name="subsription_period_save_month">måned</string>
     <string name="subsription_period_save_is">Lagre</string>
+    <string name="subsription_restore_subs">Restre dine subs</string>
+    <string name="subsription_restore_subs_success">Dine abonnenter ble gjenopprettet</string>
+    <string name="subsription_restore_subs_error">Dine abonnenter ble ikke gjenopprettet. Feil.</string>
+    <string name="subscription_need_cancel_current_subs">Avslutt gjeldende abonnement!</string>
+    <string name="subscription_need_cancel_current_subs_ok">Ok</string>
+    <string name="subscription_need_cancel_current_subs_cancel">Avbryt</string>
+    <string name="subscription_buy_success">Suksess</string>
     <string name="edit_item_tags_search">Søk</string>
 
 

@@ -1,6 +1,8 @@
 <resources>
 
 
+    <string name="name_app">Judebo</string>
+    <string name="toast_message">Toast message</string>
     <string name="settings_title_support_email">ro@judebo.com</string>
     <string name="add_job_link">https://ro.judebo.com/jobs/</string>
     <string name="user_registration_privacy_url">https://ro.judebo.com/login/privacy.php</string>
@@ -23,6 +25,13 @@
 
 
     <string name="search_title_search">Căutare</string>
+    <string name="search_title_filter">Filtr</string>
+    <string name="search_all_types_of_jobs">Barcha turlari</string>
+    <string name="search_gross">Yalpi</string>
+    <string name="search_types_of_jobs">Turi</string>
+    <string name="search_languages">Tillar</string>
+    <string name="search_tags">Ko\'nikmalar va teglar</string>
+    <string name="search_tags_search">Căutare</string>
     <string name="button_share">Acțiune</string>
     <string name="error_label">Eroare</string>
     <string name="error_no_internet">Fără conexiune internet!</string>
@@ -41,7 +50,7 @@
     <string name="settings_delete_account_request_delete">Șterge</string>
     <string name="settings_delete_account_request_cancel">Anulare</string>
     <string name="settings_delete_account_message">Datele și contul dvs. au fost șterse.</string>
-    <string name="action_settings">Action</string>
+    <string name="action_settings">Acțiune</string>
     <string name="request_logout_title">Deconectați-vă</string>
     <string name="request_logout_message">Esti sigur?</string>
     <string name="request_geolocation_title">Geolocalizare</string>
@@ -85,15 +94,25 @@
     <string name="edit_item_tags_list">Etichete</string>
     <string name="edit_item_add_tag">Adaugă etichetă</string>
     <string name="subsription_limit_10_title">Mici afaceri</string>
-    <string name="subsription_limit_10_description">Limita este de 10 posturi vacante.</string>
+    <string name="subsription_limit_10_description">Limita este de 10 locuri vacante.</string>
     <string name="subsription_limit_50_title">Afaceri medii</string>
     <string name="subsription_limit_50_description">Limita este de 50 de posturi vacante.</string>
     <string name="subsription_limit_200_title">Întreprindere mare</string>
     <string name="subsription_limit_200_description">Limita este de 200 de posturi vacante.</string>
+    <string name="subsription_period_01_month">lună</string>
+    <string name="subsription_period_06_month">6 luni</string>
+    <string name="subsription_period_12_month">12 luni</string>
     <string name="subsription_period_save_6month_at">6 luni la</string>
     <string name="subsription_period_save_12month_at">12 luni la</string>
     <string name="subsription_period_save_month">lună</string>
     <string name="subsription_period_save_is">Salvați</string>
+    <string name="subsription_restore_subs">Înregistrați-vă subs</string>
+    <string name="subsription_restore_subs_success">Abonamentele tale au fost restaurate</string>
+    <string name="subsription_restore_subs_error">Abonamentele dvs. nu au fost restaurate. Eroare.</string>
+    <string name="subscription_need_cancel_current_subs">Vă rugăm să anulați abonamentul curent!</string>
+    <string name="subscription_need_cancel_current_subs_ok">O.K</string>
+    <string name="subscription_need_cancel_current_subs_cancel">Anulare</string>
+    <string name="subscription_buy_success">Succes</string>
     <string name="edit_item_tags_search">Căutare</string>
 
 

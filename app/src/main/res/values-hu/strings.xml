@@ -1,6 +1,8 @@
 <resources>
 
 
+    <string name="name_app">Judebo</string>
+    <string name="toast_message">Toast message</string>
     <string name="settings_title_support_email">hu@judebo.com</string>
     <string name="add_job_link">https://hu.judebo.com/jobs/</string>
     <string name="user_registration_privacy_url">https://hu.judebo.com/login/privacy.php</string>
@@ -23,6 +25,13 @@
 
 
     <string name="search_title_search">Keresés</string>
+    <string name="search_title_filter">Szűrő</string>
+    <string name="search_all_types_of_jobs">Minden típus</string>
+    <string name="search_gross">Bruttó</string>
+    <string name="search_types_of_jobs">típus</string>
+    <string name="search_languages">Nyelvek</string>
+    <string name="search_tags">Készségek és címkék</string>
+    <string name="search_tags_search">Keresés</string>
     <string name="button_share">Ossza meg</string>
     <string name="error_label">Hiba</string>
     <string name="error_no_internet">Nincs internetkapcsolat!</string>
@@ -41,7 +50,7 @@
     <string name="settings_delete_account_request_delete">Töröl</string>
     <string name="settings_delete_account_request_cancel">Megszünteti</string>
     <string name="settings_delete_account_message">Adatait és fiókját törölték.</string>
-    <string name="action_settings">Action</string>
+    <string name="action_settings">Akció</string>
     <string name="request_logout_title">Kijelentkezés</string>
     <string name="request_logout_message">biztos vagy ebben?</string>
     <string name="request_geolocation_title">Földrajzi helymeghatározás</string>
@@ -90,10 +99,20 @@
     <string name="subsription_limit_50_description">A korlát 50 szabad hely.</string>
     <string name="subsription_limit_200_title">Nagyvállalkozás</string>
     <string name="subsription_limit_200_description">A korlát 200 szabad hely.</string>
+    <string name="subsription_period_01_month">hónap</string>
+    <string name="subsription_period_06_month">6 hónap</string>
+    <string name="subsription_period_12_month">12 hónap</string>
     <string name="subsription_period_save_6month_at">6 hónap</string>
     <string name="subsription_period_save_12month_at">12 hónap</string>
     <string name="subsription_period_save_month">hónap</string>
     <string name="subsription_period_save_is">Mentés</string>
+    <string name="subsription_restore_subs">Állítsa vissza az előfizetéseket</string>
+    <string name="subsription_restore_subs_success">Az előfizetőid helyreálltak</string>
+    <string name="subsription_restore_subs_error">Előfizetéseit nem állítottuk vissza. Hiba.</string>
+    <string name="subscription_need_cancel_current_subs">Kérjük, törölje az aktuális előfizetést!</string>
+    <string name="subscription_need_cancel_current_subs_ok">Rendben</string>
+    <string name="subscription_need_cancel_current_subs_cancel">Megszünteti</string>
+    <string name="subscription_buy_success">Siker</string>
     <string name="edit_item_tags_search">Keresés</string>
 
 

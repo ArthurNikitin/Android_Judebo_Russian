@@ -1,6 +1,8 @@
 <resources>
 
 
+    <string name="name_app">Judebo</string>
+    <string name="toast_message">Toast message</string>
     <string name="settings_title_support_email">cs@judebo.com</string>
     <string name="add_job_link">https://cs.judebo.com/jobs/</string>
     <string name="user_registration_privacy_url">https://cs.judebo.com/login/privacy.php</string>
@@ -23,6 +25,13 @@
 
 
     <string name="search_title_search">Vyhledávání</string>
+    <string name="search_title_filter">Filtr</string>
+    <string name="search_all_types_of_jobs">Všechny typy</string>
+    <string name="search_gross">Hrubý</string>
+    <string name="search_types_of_jobs">Typ</string>
+    <string name="search_languages">Jazyky</string>
+    <string name="search_tags">Dovednosti a značky</string>
+    <string name="search_tags_search">Vyhledávání</string>
     <string name="button_share">Podíl</string>
     <string name="error_label">Chyba</string>
     <string name="error_no_internet">Žádné internetové připojení!</string>
@@ -41,7 +50,7 @@
     <string name="settings_delete_account_request_delete">Vymazat</string>
     <string name="settings_delete_account_request_cancel">zrušení</string>
     <string name="settings_delete_account_message">Vaše data a účet byly smazány.</string>
-    <string name="action_settings">Action</string>
+    <string name="action_settings">Akce</string>
     <string name="request_logout_title">Odhlásit se</string>
     <string name="request_logout_message">Jsi si jistá?</string>
     <string name="request_geolocation_title">Geolokace</string>
@@ -66,7 +75,7 @@
     <string name="user_registration_privacy_title">Soukromí</string>
     <string name="user_registration_agreement_title">Dohoda</string>
     <string name="user_registration_forgot_pass">zapomenuté heslo</string>
-    <string name="user_registration_rules_accept">Přijmout</string>
+    <string name="user_registration_rules_accept">Akceptovat</string>
     <string name="user_registration_rules_cancel">zrušení</string>
     <string name="user_registration_activate_code">Kód</string>
     <string name="user_registration_activate_code_resend">Přeposlat</string>
@@ -90,10 +99,20 @@
     <string name="subsription_limit_50_description">Limit je 50 volných míst.</string>
     <string name="subsription_limit_200_title">Velký podnik</string>
     <string name="subsription_limit_200_description">Limit je 200 volných míst.</string>
+    <string name="subsription_period_01_month">Měsíc</string>
+    <string name="subsription_period_06_month">6 měsíců</string>
+    <string name="subsription_period_12_month">12 měsíců</string>
     <string name="subsription_period_save_6month_at">6 měsíců v</string>
     <string name="subsription_period_save_12month_at">12 měsíců v</string>
     <string name="subsription_period_save_month">Měsíc</string>
     <string name="subsription_period_save_is">Uložit</string>
+    <string name="subsription_restore_subs">Uvolněte své ponorky</string>
+    <string name="subsription_restore_subs_success">Vaše odběry byly obnoveny</string>
+    <string name="subsription_restore_subs_error">Vaše odběry nebyly obnoveny. Chyba.</string>
+    <string name="subscription_need_cancel_current_subs">Zrušte prosím aktuální předplatné!</string>
+    <string name="subscription_need_cancel_current_subs_ok">OK</string>
+    <string name="subscription_need_cancel_current_subs_cancel">zrušení</string>
+    <string name="subscription_buy_success">Úspěch</string>
     <string name="edit_item_tags_search">Vyhledávání</string>
 
 

@@ -1,6 +1,8 @@
 <resources>
 
 
+    <string name="name_app">Judebo</string>
+    <string name="toast_message">Toast message</string>
     <string name="settings_title_support_email">th@judebo.com</string>
     <string name="add_job_link">https://th.judebo.com/jobs/</string>
     <string name="user_registration_privacy_url">https://th.judebo.com/login/privacy.php</string>
@@ -23,6 +25,13 @@
 
 
     <string name="search_title_search">ค้นหา</string>
+    <string name="search_title_filter">กรอง</string>
+    <string name="search_all_types_of_jobs">ทุกประเภท</string>
+    <string name="search_gross">ขั้นต้น</string>
+    <string name="search_types_of_jobs">ประเภท</string>
+    <string name="search_languages">ภาษา</string>
+    <string name="search_tags">ทักษะและแท็ก</string>
+    <string name="search_tags_search">ค้นหา</string>
     <string name="button_share">แบ่งปัน</string>
     <string name="error_label">ข้อผิดพลาด</string>
     <string name="error_no_internet">ไม่มีการเชื่อมต่ออินเทอร์เน็ต!</string>
@@ -41,7 +50,7 @@
     <string name="settings_delete_account_request_delete">ลบ</string>
     <string name="settings_delete_account_request_cancel">ยกเลิก</string>
     <string name="settings_delete_account_message">ข้อมูลและบัญชีของคุณถูกลบ</string>
-    <string name="action_settings">Action</string>
+    <string name="action_settings">หนังบู๊</string>
     <string name="request_logout_title">ออกจากระบบ</string>
     <string name="request_logout_message">คุณแน่ใจไหม?</string>
     <string name="request_geolocation_title">ตำแหน่งทางภูมิศาสตร์</string>
@@ -90,10 +99,20 @@
     <string name="subsription_limit_50_description">จำกัด 50 ตำแหน่ง</string>
     <string name="subsription_limit_200_title">องค์กรขนาดใหญ่</string>
     <string name="subsription_limit_200_description">จำกัด 200 ตำแหน่ง</string>
+    <string name="subsription_period_01_month">เดือน</string>
+    <string name="subsription_period_06_month">6 เดือน</string>
+    <string name="subsription_period_12_month">12 เดือน</string>
     <string name="subsription_period_save_6month_at">6 เดือนที่</string>
     <string name="subsription_period_save_12month_at">12 เดือนที่</string>
     <string name="subsription_period_save_month">เดือน</string>
     <string name="subsription_period_save_is">บันทึก</string>
+    <string name="subsription_restore_subs">คืนค่าสมาชิกของคุณ</string>
+    <string name="subsription_restore_subs_success">ผู้ติดตามของคุณได้รับการกู้คืนแล้ว</string>
+    <string name="subsription_restore_subs_error">ผู้ติดตามของคุณไม่ได้รับการกู้คืน ข้อผิดพลาด</string>
+    <string name="subscription_need_cancel_current_subs">กรุณายกเลิกการสมัครสมาชิกปัจจุบัน!</string>
+    <string name="subscription_need_cancel_current_subs_ok">ตกลง</string>
+    <string name="subscription_need_cancel_current_subs_cancel">ยกเลิก</string>
+    <string name="subscription_buy_success">ประสบความสำเร็จ</string>
     <string name="edit_item_tags_search">ค้นหา</string>
 
 

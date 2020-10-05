@@ -1,6 +1,8 @@
 <resources>
-    <string name="name_app" translatable="false">Judebo</string>
 
+
+    <string name="name_app">Judebo</string>
+    <string name="toast_message">Toast message</string>
     <string name="settings_title_support_email">en@judebo.com</string>
     <string name="add_job_link">https://en.judebo.com/jobs/</string>
     <string name="user_registration_privacy_url">https://en.judebo.com/login/privacy.php</string>
@@ -21,7 +23,15 @@
     <string name="add_job_title">You can add vacancies by a web browser</string>
 
 
+
     <string name="search_title_search">Search</string>
+    <string name="search_title_filter">Filter</string>
+    <string name="search_all_types_of_jobs">Any type</string>
+    <string name="search_gross">Gross</string>
+    <string name="search_types_of_jobs">Type</string>
+    <string name="search_languages">Languages</string>
+    <string name="search_tags">Skills and tags</string>
+    <string name="search_tags_search">Search</string>
     <string name="button_share">Share</string>
     <string name="error_label">Error</string>
     <string name="error_no_internet">No internet connection!</string>
@@ -40,7 +50,7 @@
     <string name="settings_delete_account_request_delete">Delete</string>
     <string name="settings_delete_account_request_cancel">Cancel</string>
     <string name="settings_delete_account_message">Your data and account was deleted.</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Action</string>
     <string name="request_logout_title">Logout</string>
     <string name="request_logout_message">Are you sure?</string>
     <string name="request_geolocation_title">Geolocation</string>
@@ -89,29 +99,23 @@
     <string name="subsription_limit_50_description">The limit is 50 vacancies.</string>
     <string name="subsription_limit_200_title">Large enterprise</string>
     <string name="subsription_limit_200_description">The limit is 200 vacancies.</string>
+    <string name="subsription_period_01_month">month</string>
+    <string name="subsription_period_06_month">6 month</string>
+    <string name="subsription_period_12_month">12 month</string>
     <string name="subsription_period_save_6month_at">6 month at</string>
     <string name="subsription_period_save_12month_at">12 month at</string>
     <string name="subsription_period_save_month">month</string>
     <string name="subsription_period_save_is">Save</string>
+    <string name="subsription_restore_subs">Restre your subs</string>
+    <string name="subsription_restore_subs_success">Your subs was restored</string>
+    <string name="subsription_restore_subs_error">Your subs was not restored. Error.</string>
+    <string name="subscription_need_cancel_current_subs">Please cancel current subscription!</string>
+    <string name="subscription_need_cancel_current_subs_ok">Ok</string>
+    <string name="subscription_need_cancel_current_subs_cancel">Cancel</string>
+    <string name="subscription_buy_success">Success</string>
     <string name="edit_item_tags_search">Search</string>
 
-    <string name="subsription_period_01_month" translatable="false">month</string>
-    <string name="subsription_period_06_month" translatable="false">6 month</string>
-    <string name="subsription_period_12_month" translatable="false">12 month</string>
-    <string name="subsription_restore_subs" translatable="false">Restore your subscription.</string>
-    <string name="subsription_restore_subs_success" translatable="false">Your subs was restored</string>
-    <string name="subsription_restore_subs_error" translatable="false">Your subs was not restored. Error.</string>
-    <string name="subscription_need_cancel_current_subs" translatable="false">Please cancel current subscription!</string>
-    <string name="subscription_buy_success">Success!</string>
-    <string name="subscription_need_cancel_current_subs_ok" translatable="false">Ok</string>
-    <string name="subscription_need_cancel_current_subs_cancel" translatable="false">Cancel</string>
-    <string name="search_title_filter" translatable="false">Filter</string>
-    <string name="search_all_types_of_jobs" translatable="false">All types</string>
-    <string name="search_languages" translatable="false">Languages</string>
-    <string name="search_tags" translatable="false">Tags</string>
-    <string name="search_tags_search" translatable="false">Search</string>
-    <string name="search_gross" translatable="false">Gross</string>
-    <string name="search_types_of_jobs" translatable="false">Type</string>
+
 
 
 </resources>

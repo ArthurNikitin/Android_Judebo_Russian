@@ -1,6 +1,8 @@
 <resources>
 
 
+    <string name="name_app">Judebo</string>
+    <string name="toast_message">Toast message</string>
     <string name="settings_title_support_email">et@judebo.com</string>
     <string name="add_job_link">https://et.judebo.com/jobs/</string>
     <string name="user_registration_privacy_url">https://et.judebo.com/login/privacy.php</string>
@@ -23,6 +25,13 @@
 
 
     <string name="search_title_search">Otsing</string>
+    <string name="search_title_filter">Filtreeri</string>
+    <string name="search_all_types_of_jobs">Kõik tüübid</string>
+    <string name="search_gross">Gross</string>
+    <string name="search_types_of_jobs">Tüüp</string>
+    <string name="search_languages">Keeled</string>
+    <string name="search_tags">Oskused ja sildid</string>
+    <string name="search_tags_search">Otsing</string>
     <string name="button_share">Jaga</string>
     <string name="error_label">Viga</string>
     <string name="error_no_internet">Interneti-ühendust pole!</string>
@@ -41,7 +50,7 @@
     <string name="settings_delete_account_request_delete">Kustuta</string>
     <string name="settings_delete_account_request_cancel">Tühista</string>
     <string name="settings_delete_account_message">Teie andmed ja konto kustutati.</string>
-    <string name="action_settings">Action</string>
+    <string name="action_settings">Tegevus</string>
     <string name="request_logout_title">Logi välja</string>
     <string name="request_logout_message">Oled sa kindel?</string>
     <string name="request_geolocation_title">Geolokatsioon</string>
@@ -90,10 +99,20 @@
     <string name="subsription_limit_50_description">Limiit on 50 vaba kohta.</string>
     <string name="subsription_limit_200_title">Suurettevõte</string>
     <string name="subsription_limit_200_description">Limiit on 200 vaba kohta.</string>
+    <string name="subsription_period_01_month">kuu</string>
+    <string name="subsription_period_06_month">6 kuud</string>
+    <string name="subsription_period_12_month">12 kuud</string>
     <string name="subsription_period_save_6month_at">6 kuud kl</string>
     <string name="subsription_period_save_12month_at">12 kuud kl</string>
     <string name="subsription_period_save_month">kuu</string>
     <string name="subsription_period_save_is">Salvesta</string>
+    <string name="subsription_restore_subs">Taastage oma tellimused</string>
+    <string name="subsription_restore_subs_success">Teie tellimused taastati</string>
+    <string name="subsription_restore_subs_error">Teie tellimusi ei taastatud. Viga.</string>
+    <string name="subscription_need_cancel_current_subs">Palun tühistage praegune tellimus!</string>
+    <string name="subscription_need_cancel_current_subs_ok">Okei</string>
+    <string name="subscription_need_cancel_current_subs_cancel">Tühista</string>
+    <string name="subscription_buy_success">Edu</string>
     <string name="edit_item_tags_search">Otsing</string>
 
 

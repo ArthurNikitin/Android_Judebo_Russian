@@ -5,9 +5,11 @@ import android.app.Activity
 import android.content.Context
 import android.content.Context.LOCATION_SERVICE
 import android.content.Intent
+import android.graphics.Bitmap
 import android.location.Location
 import android.location.LocationManager
 import android.net.Uri
+import android.os.Build
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -23,6 +25,7 @@ import com.byte4b.judebo.models.languages
 import com.byte4b.judebo.utils.Setting
 import io.realm.Realm
 import io.realm.kotlin.where
+import java.io.ByteArrayOutputStream
 import java.util.*
 import kotlin.math.roundToInt
 
@@ -195,4 +198,13 @@ fun Context.openBaseUrl(url: String) {
     val intent = Intent(Intent.ACTION_VIEW)
     intent.data = Uri.parse(url)
     startActivity(intent)
+}
+
+fun toBase64(bitmap: Bitmap): String {
+    val stream = ByteArrayOutputStream()
+    bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+        Base64.getEncoder().encodeToString(stream.toByteArray())
+    else
+        android.util.Base64.encodeToString(stream.toByteArray(), android.util.Base64.DEFAULT)
 }

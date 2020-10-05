@@ -1,6 +1,8 @@
 <resources>
 
 
+    <string name="name_app">Judebo</string>
+    <string name="toast_message">Toast message</string>
     <string name="settings_title_support_email">it@judebo.com</string>
     <string name="add_job_link">https://it.judebo.com/jobs/</string>
     <string name="user_registration_privacy_url">https://it.judebo.com/login/privacy.php</string>
@@ -23,6 +25,13 @@
 
 
     <string name="search_title_search">Ricerca</string>
+    <string name="search_title_filter">Filtro</string>
+    <string name="search_all_types_of_jobs">Tutti i tipi</string>
+    <string name="search_gross">Schifoso</string>
+    <string name="search_types_of_jobs">genere</string>
+    <string name="search_languages">Le lingue</string>
+    <string name="search_tags">Competenze e tag</string>
+    <string name="search_tags_search">Ricerca</string>
     <string name="button_share">Condividere</string>
     <string name="error_label">Errore</string>
     <string name="error_no_internet">Nessuna connessione internet!</string>
@@ -34,14 +43,14 @@
     <string name="settings_login">Accesso</string>
     <string name="settings_email">e-mail</string>
     <string name="settings_password">Le password</string>
-    <string name="settings_delete_account_title">Elimina account e cancella i dati</string>
+    <string name="settings_delete_account_title">Elimina l\'account e cancella i dati</string>
     <string name="settings_delete_account_button">Elimina</string>
     <string name="settings_delete_account_request_title">Conferma cancellazione</string>
     <string name="settings_delete_account_request_message">Conferma per cancellare i tuoi dati ed eliminare il tuo account!</string>
     <string name="settings_delete_account_request_delete">Elimina</string>
     <string name="settings_delete_account_request_cancel">Annulla</string>
     <string name="settings_delete_account_message">I tuoi dati e il tuo account sono stati eliminati.</string>
-    <string name="action_settings">Action</string>
+    <string name="action_settings">Azione</string>
     <string name="request_logout_title">Disconnettersi</string>
     <string name="request_logout_message">Sei sicuro?</string>
     <string name="request_geolocation_title">Geolocalizzazione</string>
@@ -90,10 +99,20 @@
     <string name="subsription_limit_50_description">Il limite è di 50 posti vacanti.</string>
     <string name="subsription_limit_200_title">Grande impresa</string>
     <string name="subsription_limit_200_description">Il limite è di 200 posti vacanti.</string>
+    <string name="subsription_period_01_month">mese</string>
+    <string name="subsription_period_06_month">6 mesi</string>
+    <string name="subsription_period_12_month">12 mesi</string>
     <string name="subsription_period_save_6month_at">6 mesi a</string>
     <string name="subsription_period_save_12month_at">12 mesi a</string>
     <string name="subsription_period_save_month">mese</string>
     <string name="subsription_period_save_is">Salva</string>
+    <string name="subsription_restore_subs">Restre i tuoi sottomarini</string>
+    <string name="subsription_restore_subs_success">I tuoi abbonamenti sono stati ripristinati</string>
+    <string name="subsription_restore_subs_error">I tuoi abbonamenti non sono stati ripristinati. Errore.</string>
+    <string name="subscription_need_cancel_current_subs">Annullare l\'abbonamento corrente!</string>
+    <string name="subscription_need_cancel_current_subs_ok">Ok</string>
+    <string name="subscription_need_cancel_current_subs_cancel">Annulla</string>
+    <string name="subscription_buy_success">Successo</string>
     <string name="edit_item_tags_search">Ricerca</string>
 
 

@@ -1,6 +1,8 @@
 <resources>
 
 
+    <string name="name_app">Judebo</string>
+    <string name="toast_message">Toast message</string>
     <string name="settings_title_support_email">tk@judebo.com</string>
     <string name="add_job_link">https://tk.judebo.com/jobs/</string>
     <string name="user_registration_privacy_url">https://tk.judebo.com/login/privacy.php</string>
@@ -23,6 +25,13 @@
 
 
     <string name="search_title_search">Gözleg</string>
+    <string name="search_title_filter">Süzgüç</string>
+    <string name="search_all_types_of_jobs">Typeshli görnüşleri</string>
+    <string name="search_gross">Jemi</string>
+    <string name="search_types_of_jobs">Görnüşi</string>
+    <string name="search_languages">Diller</string>
+    <string name="search_tags">Ussatlyklar we bellikler</string>
+    <string name="search_tags_search">Gözleg</string>
     <string name="button_share">Paýlaş</string>
     <string name="error_label">Roralňyşlyk</string>
     <string name="error_no_internet">Internet birikmesi ýok!</string>
@@ -37,11 +46,11 @@
     <string name="settings_delete_account_title">Hasaby pozuň we maglumatlary pozuň</string>
     <string name="settings_delete_account_button">Öçür</string>
     <string name="settings_delete_account_request_title">Öçürmegi tassyklaň</string>
-    <string name="settings_delete_account_request_message">Maglumatlaryňyzy pozmagy we hasabyňyzy pozmagy tassyklamagyňyzy haýyş edýäris!</string>
+    <string name="settings_delete_account_request_message">Maglumatlaryňyzy pozmagy we hasabyňyzy pozmagy haýyş edýäris!</string>
     <string name="settings_delete_account_request_delete">Öçür</string>
     <string name="settings_delete_account_request_cancel">Elatyr</string>
     <string name="settings_delete_account_message">Maglumatlaryňyz we hasabyňyz öçürildi.</string>
-    <string name="action_settings">Action</string>
+    <string name="action_settings">Hereket</string>
     <string name="request_logout_title">Hasapdan çykmak</string>
     <string name="request_logout_message">Ynanýarsyňyzmy?</string>
     <string name="request_geolocation_title">Geolokasiýa</string>
@@ -90,10 +99,20 @@
     <string name="subsription_limit_50_description">Çäk 50 boş iş.</string>
     <string name="subsription_limit_200_title">Uly kärhana</string>
     <string name="subsription_limit_200_description">Çäk 200 boş iş.</string>
+    <string name="subsription_period_01_month">aý</string>
+    <string name="subsription_period_06_month">6 aý</string>
+    <string name="subsription_period_12_month">12 aý</string>
     <string name="subsription_period_save_6month_at">6 aý</string>
     <string name="subsription_period_save_12month_at">12 aý</string>
     <string name="subsription_period_save_month">aý</string>
     <string name="subsription_period_save_is">Saklaň</string>
+    <string name="subsription_restore_subs">Bölümleriňizi çäklendiriň</string>
+    <string name="subsription_restore_subs_success">Bölümiňiz dikeldildi</string>
+    <string name="subsription_restore_subs_error">Bölümiňiz dikeldilmedi Roralňyşlyk.</string>
+    <string name="subscription_need_cancel_current_subs">Häzirki abunalygy ýatyrmagyňyzy haýyş edýäris!</string>
+    <string name="subscription_need_cancel_current_subs_ok">Bolýar</string>
+    <string name="subscription_need_cancel_current_subs_cancel">Elatyr</string>
+    <string name="subscription_buy_success">Üstünlik</string>
     <string name="edit_item_tags_search">Gözleg</string>
 
 

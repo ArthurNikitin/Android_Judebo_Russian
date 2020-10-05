@@ -1,6 +1,8 @@
 <resources>
 
 
+    <string name="name_app">Judebo</string>
+    <string name="toast_message">Toast message</string>
     <string name="settings_title_support_email">tl@judebo.com</string>
     <string name="add_job_link">https://tl.judebo.com/jobs/</string>
     <string name="user_registration_privacy_url">https://tl.judebo.com/login/privacy.php</string>
@@ -23,6 +25,13 @@
 
 
     <string name="search_title_search">Maghanap</string>
+    <string name="search_title_filter">Salain</string>
+    <string name="search_all_types_of_jobs">Lahat ng uri</string>
+    <string name="search_gross">Gross</string>
+    <string name="search_types_of_jobs">Uri</string>
+    <string name="search_languages">Mga Wika</string>
+    <string name="search_tags">Mga kasanayan at tag</string>
+    <string name="search_tags_search">Maghanap</string>
     <string name="button_share">Magbahagi</string>
     <string name="error_label">Error</string>
     <string name="error_no_internet">Walang koneksyon sa internet!</string>
@@ -41,7 +50,7 @@
     <string name="settings_delete_account_request_delete">Tanggalin</string>
     <string name="settings_delete_account_request_cancel">Kanselahin</string>
     <string name="settings_delete_account_message">Ang iyong data at account ay tinanggal.</string>
-    <string name="action_settings">Action</string>
+    <string name="action_settings">Kilos</string>
     <string name="request_logout_title">Pag-logout</string>
     <string name="request_logout_message">Sigurado ka ba?</string>
     <string name="request_geolocation_title">Geolocation</string>
@@ -90,10 +99,20 @@
     <string name="subsription_limit_50_description">Ang hangganan ay 50 mga bakante.</string>
     <string name="subsription_limit_200_title">Malaking negosyo</string>
     <string name="subsription_limit_200_description">Ang hangganan ay 200 na bakante.</string>
+    <string name="subsription_period_01_month">buwan</string>
+    <string name="subsription_period_06_month">6 na buwan</string>
+    <string name="subsription_period_12_month">12 buwan</string>
     <string name="subsription_period_save_6month_at">6 buwan sa</string>
     <string name="subsription_period_save_12month_at">12 buwan sa</string>
     <string name="subsription_period_save_month">buwan</string>
     <string name="subsription_period_save_is">Magtipid</string>
+    <string name="subsription_restore_subs">I-restre ang iyong subs</string>
+    <string name="subsription_restore_subs_success">Naibalik ang iyong subs</string>
+    <string name="subsription_restore_subs_error">Ang iyong subs ay hindi naibalik. Error</string>
+    <string name="subscription_need_cancel_current_subs">Mangyaring kanselahin ang kasalukuyang subscription!</string>
+    <string name="subscription_need_cancel_current_subs_ok">Sige</string>
+    <string name="subscription_need_cancel_current_subs_cancel">Kanselahin</string>
+    <string name="subscription_buy_success">Tagumpay</string>
     <string name="edit_item_tags_search">Maghanap</string>
 
 

@@ -1,6 +1,8 @@
 <resources>
 
 
+    <string name="name_app">Judebo</string>
+    <string name="toast_message">Toast message</string>
     <string name="settings_title_support_email">si@judebo.com</string>
     <string name="add_job_link">https://si.judebo.com/jobs/</string>
     <string name="user_registration_privacy_url">https://si.judebo.com/login/privacy.php</string>
@@ -23,6 +25,13 @@
 
 
     <string name="search_title_search">සෙවීම</string>
+    <string name="search_title_filter">පෙරහන</string>
+    <string name="search_all_types_of_jobs">සියළු වර්ග</string>
+    <string name="search_gross">දළ</string>
+    <string name="search_types_of_jobs">වර්ගය</string>
+    <string name="search_languages">භාෂා</string>
+    <string name="search_tags">නිපුණතා සහ ටැග්</string>
+    <string name="search_tags_search">සෙවීම</string>
     <string name="button_share">බෙදාගන්න</string>
     <string name="error_label">දෝෂයකි</string>
     <string name="error_no_internet">අන්තර්ජාල සම්බන්ධතාවයක් නොමැත!</string>
@@ -41,7 +50,7 @@
     <string name="settings_delete_account_request_delete">මකන්න</string>
     <string name="settings_delete_account_request_cancel">අවලංගු කරන්න</string>
     <string name="settings_delete_account_message">ඔබගේ දත්ත සහ ගිණුම මකා දමන ලදි.</string>
-    <string name="action_settings">Action</string>
+    <string name="action_settings">කටයුතු</string>
     <string name="request_logout_title">ලොග්අවුට්</string>
     <string name="request_logout_message">ඔබට විශ්වාසද?</string>
     <string name="request_geolocation_title">භූ පිහිටීම</string>
@@ -61,7 +70,7 @@
     <string name="user_jobs_list_error_please_update">කරුණාකර යාවත්කාලීන කරන්න!</string>
     <string name="user_registration_title">ලියාපදිංචි කිරීම</string>
     <string name="user_registration_confirm_password">මුරපදය තහවුරු කරන්න</string>
-    <string name="user_registration_activate_account">කරුණාකර ඔබගේ ගිණුම සක්‍රිය කරන්න. සක්‍රීය කිරීමේ කේතයක් සහිත විද්‍යුත් ලිපියක් තැපෑලට යවා ඇත.</string>
+    <string name="user_registration_activate_account">කරුණාකර ඔබේ ගිණුම සක්‍රිය කරන්න. සක්‍රීය කිරීමේ කේතයක් සහිත විද්‍යුත් ලිපියක් තැපෑලට යවා ඇත.</string>
     <string name="user_registration_required_field">අවශ්‍යයි!</string>
     <string name="user_registration_privacy_title">පෞද්ගලිකත්වය</string>
     <string name="user_registration_agreement_title">ගිවිසුම</string>
@@ -90,10 +99,20 @@
     <string name="subsription_limit_50_description">සීමාව පුරප්පාඩු 50 කි.</string>
     <string name="subsription_limit_200_title">විශාල ව්යවසාය</string>
     <string name="subsription_limit_200_description">සීමාව පුරප්පාඩු 200 කි.</string>
+    <string name="subsription_period_01_month">මාසය</string>
+    <string name="subsription_period_06_month">මාස 6 යි</string>
+    <string name="subsription_period_12_month">මාස 12 යි</string>
     <string name="subsription_period_save_6month_at">මාස 6 යි</string>
     <string name="subsription_period_save_12month_at">මාස 12 යි</string>
     <string name="subsription_period_save_month">මාසය</string>
     <string name="subsription_period_save_is">සුරකින්න</string>
+    <string name="subsription_restore_subs">ඔබේ දායකත්වය නැවත ලබා ගන්න</string>
+    <string name="subsription_restore_subs_success">ඔබේ දායකත්වය ප්‍රතිෂ් was ාපනය කරන ලදි</string>
+    <string name="subsription_restore_subs_error">ඔබගේ දායකත්වය ප්‍රතිෂ් was ාපනය කර නැත. දෝෂයකි.</string>
+    <string name="subscription_need_cancel_current_subs">කරුණාකර වත්මන් දායකත්වය අවලංගු කරන්න!</string>
+    <string name="subscription_need_cancel_current_subs_ok">හරි</string>
+    <string name="subscription_need_cancel_current_subs_cancel">අවලංගු කරන්න</string>
+    <string name="subscription_buy_success">සාර්ථකත්වය</string>
     <string name="edit_item_tags_search">සෙවීම</string>
 
 

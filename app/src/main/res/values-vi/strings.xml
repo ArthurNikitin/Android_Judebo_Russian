@@ -1,6 +1,8 @@
 <resources>
 
 
+    <string name="name_app">Judebo</string>
+    <string name="toast_message">Toast message</string>
     <string name="settings_title_support_email">vi@judebo.com</string>
     <string name="add_job_link">https://vi.judebo.com/jobs/</string>
     <string name="user_registration_privacy_url">https://vi.judebo.com/login/privacy.php</string>
@@ -23,6 +25,13 @@
 
 
     <string name="search_title_search">Tìm kiếm</string>
+    <string name="search_title_filter">Bộ lọc</string>
+    <string name="search_all_types_of_jobs">Các loại</string>
+    <string name="search_gross">Tổng</string>
+    <string name="search_types_of_jobs">Kiểu</string>
+    <string name="search_languages">Ngôn ngữ</string>
+    <string name="search_tags">Kỹ năng và thẻ</string>
+    <string name="search_tags_search">Tìm kiếm</string>
     <string name="button_share">Chia sẻ</string>
     <string name="error_label">lỗi</string>
     <string name="error_no_internet">Không có kết nối Internet!</string>
@@ -41,7 +50,7 @@
     <string name="settings_delete_account_request_delete">Xóa bỏ</string>
     <string name="settings_delete_account_request_cancel">Huỷ bỏ</string>
     <string name="settings_delete_account_message">Dữ liệu và tài khoản của bạn đã bị xóa.</string>
-    <string name="action_settings">Action</string>
+    <string name="action_settings">Hoạt động</string>
     <string name="request_logout_title">Đăng xuất</string>
     <string name="request_logout_message">Bạn có chắc không?</string>
     <string name="request_geolocation_title">Vị trí địa lý</string>
@@ -90,10 +99,20 @@
     <string name="subsription_limit_50_description">Giới hạn là 50 vị trí tuyển dụng.</string>
     <string name="subsription_limit_200_title">Doanh nghiệp lớn</string>
     <string name="subsription_limit_200_description">Giới hạn là 200 vị trí tuyển dụng.</string>
+    <string name="subsription_period_01_month">tháng</string>
+    <string name="subsription_period_06_month">6 tháng</string>
+    <string name="subsription_period_12_month">12 tháng</string>
     <string name="subsription_period_save_6month_at">6 tháng tại</string>
     <string name="subsription_period_save_12month_at">12 tháng tại</string>
     <string name="subsription_period_save_month">tháng</string>
     <string name="subsription_period_save_is">Tiết kiệm</string>
+    <string name="subsription_restore_subs">Phục hồi đăng ký của bạn</string>
+    <string name="subsription_restore_subs_success">Đăng ký của bạn đã được khôi phục</string>
+    <string name="subsription_restore_subs_error">Đăng ký của bạn chưa được khôi phục. Lỗi.</string>
+    <string name="subscription_need_cancel_current_subs">Vui lòng hủy đăng ký hiện tại!</string>
+    <string name="subscription_need_cancel_current_subs_ok">Đồng ý</string>
+    <string name="subscription_need_cancel_current_subs_cancel">Huỷ bỏ</string>
+    <string name="subscription_buy_success">Sự thành công</string>
     <string name="edit_item_tags_search">Tìm kiếm</string>
 
 

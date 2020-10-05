@@ -1,6 +1,8 @@
 <resources>
 
 
+    <string name="name_app">Judebo</string>
+    <string name="toast_message">Toast message</string>
     <string name="settings_title_support_email">ko@judebo.com</string>
     <string name="add_job_link">https://ko.judebo.com/jobs/</string>
     <string name="user_registration_privacy_url">https://ko.judebo.com/login/privacy.php</string>
@@ -23,6 +25,13 @@
 
 
     <string name="search_title_search">검색</string>
+    <string name="search_title_filter">필터</string>
+    <string name="search_all_types_of_jobs">모든 유형</string>
+    <string name="search_gross">심한</string>
+    <string name="search_types_of_jobs">유형</string>
+    <string name="search_languages">언어</string>
+    <string name="search_tags">기술 및 태그</string>
+    <string name="search_tags_search">검색</string>
     <string name="button_share">공유</string>
     <string name="error_label">오류</string>
     <string name="error_no_internet">인터넷에 연결되지 않음!</string>
@@ -41,7 +50,7 @@
     <string name="settings_delete_account_request_delete">지우다</string>
     <string name="settings_delete_account_request_cancel">취소</string>
     <string name="settings_delete_account_message">귀하의 데이터와 계정이 삭제되었습니다.</string>
-    <string name="action_settings">Action</string>
+    <string name="action_settings">동작</string>
     <string name="request_logout_title">로그 아웃</string>
     <string name="request_logout_message">확실합니까?</string>
     <string name="request_geolocation_title">지리적 위치</string>
@@ -90,10 +99,20 @@
     <string name="subsription_limit_50_description">한도는 50 명입니다.</string>
     <string name="subsription_limit_200_title">대기업</string>
     <string name="subsription_limit_200_description">한도는 200 개의 공석입니다.</string>
+    <string name="subsription_period_01_month">달</string>
+    <string name="subsription_period_06_month">6 개월</string>
+    <string name="subsription_period_12_month">12 개월</string>
     <string name="subsription_period_save_6month_at">6 개월</string>
     <string name="subsription_period_save_12month_at">12 개월</string>
     <string name="subsription_period_save_month">달</string>
     <string name="subsription_period_save_is">저장</string>
+    <string name="subsription_restore_subs">구독자 휴식</string>
+    <string name="subsription_restore_subs_success">구독자가 복원되었습니다.</string>
+    <string name="subsription_restore_subs_error">구독자가 복원되지 않았습니다. 오류.</string>
+    <string name="subscription_need_cancel_current_subs">현재 구독을 취소하세요!</string>
+    <string name="subscription_need_cancel_current_subs_ok">확인</string>
+    <string name="subscription_need_cancel_current_subs_cancel">취소</string>
+    <string name="subscription_buy_success">성공</string>
     <string name="edit_item_tags_search">검색</string>
 
 

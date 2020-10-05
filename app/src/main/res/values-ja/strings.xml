@@ -1,6 +1,8 @@
 <resources>
 
 
+    <string name="name_app">Judebo</string>
+    <string name="toast_message">Toast message</string>
     <string name="settings_title_support_email">ja@judebo.com</string>
     <string name="add_job_link">https://ja.judebo.com/jobs/</string>
     <string name="user_registration_privacy_url">https://ja.judebo.com/login/privacy.php</string>
@@ -23,9 +25,16 @@
 
 
     <string name="search_title_search">探す</string>
+    <string name="search_title_filter">フィルタ</string>
+    <string name="search_all_types_of_jobs">いろんなタイプ</string>
+    <string name="search_gross">キモい</string>
+    <string name="search_types_of_jobs">タイプ</string>
+    <string name="search_languages">言語</string>
+    <string name="search_tags">スキルとタグ</string>
+    <string name="search_tags_search">探す</string>
     <string name="button_share">共有</string>
     <string name="error_label">エラー</string>
-    <string name="error_no_internet">インターネットに接続されていません！</string>
+    <string name="error_no_internet">インターネットに接続できません！</string>
     <string name="settings_title_language">言語</string>
     <string name="settings_title_subsription">サブスクリプション</string>
     <string name="settings_logout">ログアウト</string>
@@ -36,16 +45,16 @@
     <string name="settings_password">パスワード</string>
     <string name="settings_delete_account_title">アカウントを削除してデータを消去</string>
     <string name="settings_delete_account_button">削除する</string>
-    <string name="settings_delete_account_request_title">削除を確認</string>
-    <string name="settings_delete_account_request_message">データを消去してアカウントを削除することを確認してください！</string>
+    <string name="settings_delete_account_request_title">削除の確認</string>
+    <string name="settings_delete_account_request_message">データを消去してアカウントを削除することを確認してください。</string>
     <string name="settings_delete_account_request_delete">削除する</string>
     <string name="settings_delete_account_request_cancel">キャンセル</string>
     <string name="settings_delete_account_message">データとアカウントが削除されました。</string>
-    <string name="action_settings">Action</string>
+    <string name="action_settings">アクション</string>
     <string name="request_logout_title">ログアウト</string>
     <string name="request_logout_message">本気ですか？</string>
     <string name="request_geolocation_title">ジオロケーション</string>
-    <string name="request_geolocation_message">地理位置情報を有効にしてください</string>
+    <string name="request_geolocation_message">ジオローカリゼーションを有効にしてください</string>
     <string name="request_geolocation_ok">OK</string>
     <string name="request_geolocation_cancel">キャンセル</string>
     <string name="request_image_access_title">アクセス</string>
@@ -70,7 +79,7 @@
     <string name="user_registration_rules_cancel">キャンセル</string>
     <string name="user_registration_activate_code">コード</string>
     <string name="user_registration_activate_code_resend">再送</string>
-    <string name="user_registration_activate_code_activate">活性化</string>
+    <string name="user_registration_activate_code_activate">アクティベート</string>
     <string name="user_registration_activate_code_wrong">不正なコード</string>
     <string name="user_registration_activate_code_success">成功</string>
     <string name="edit_item_title">職名</string>
@@ -90,10 +99,20 @@
     <string name="subsription_limit_50_description">制限は50の空席です。</string>
     <string name="subsription_limit_200_title">大企業</string>
     <string name="subsription_limit_200_description">制限は200の空席です。</string>
+    <string name="subsription_period_01_month">月</string>
+    <string name="subsription_period_06_month">6ヶ月</string>
+    <string name="subsription_period_12_month">12ヶ月</string>
     <string name="subsription_period_save_6month_at">6か月</string>
-    <string name="subsription_period_save_12month_at">12か月</string>
+    <string name="subsription_period_save_12month_at">12ヶ月</string>
     <string name="subsription_period_save_month">月</string>
     <string name="subsription_period_save_is">保存する</string>
+    <string name="subsription_restore_subs">チャンネル登録者を再開する</string>
+    <string name="subsription_restore_subs_success">あなたの潜水艦は復元されました</string>
+    <string name="subsription_restore_subs_error">あなたの潜水艦は復元されませんでした。エラー。</string>
+    <string name="subscription_need_cancel_current_subs">現在のサブスクリプションをキャンセルしてください！</string>
+    <string name="subscription_need_cancel_current_subs_ok">OK</string>
+    <string name="subscription_need_cancel_current_subs_cancel">キャンセル</string>
+    <string name="subscription_buy_success">成功</string>
     <string name="edit_item_tags_search">探す</string>
 
 

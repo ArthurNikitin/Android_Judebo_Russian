@@ -1,6 +1,8 @@
 <resources>
 
 
+    <string name="name_app">Judebo</string>
+    <string name="toast_message">Toast message</string>
     <string name="settings_title_support_email">sr@judebo.com</string>
     <string name="add_job_link">https://sr.judebo.com/jobs/</string>
     <string name="user_registration_privacy_url">https://sr.judebo.com/login/privacy.php</string>
@@ -18,18 +20,25 @@
 
     <string name="button_detail_title">детаљ</string>
 
-    <string name="add_job_title">Слободна радна места можете да додате путем веб прегледача</string>
+    <string name="add_job_title">Слободна радна места можете додати путем веб прегледача</string>
 
 
 
     <string name="search_title_search">Претрага</string>
+    <string name="search_title_filter">Филтер</string>
+    <string name="search_all_types_of_jobs">Све врсте</string>
+    <string name="search_gross">Бруто</string>
+    <string name="search_types_of_jobs">Тип</string>
+    <string name="search_languages">Језици</string>
+    <string name="search_tags">Вештине и ознаке</string>
+    <string name="search_tags_search">Претрага</string>
     <string name="button_share">Објави</string>
     <string name="error_label">Грешка</string>
     <string name="error_no_internet">Нема интернет везе!</string>
     <string name="settings_title_language">Језик</string>
     <string name="settings_title_subsription">Претплата</string>
     <string name="settings_logout">Одјавити се</string>
-    <string name="settings_logout_ok">Ок</string>
+    <string name="settings_logout_ok">У реду</string>
     <string name="settings_logout_cancel">Поништити, отказати</string>
     <string name="settings_login">Пријавите се</string>
     <string name="settings_email">е-маил</string>
@@ -37,21 +46,21 @@
     <string name="settings_delete_account_title">Избришите налог и избришите податке</string>
     <string name="settings_delete_account_button">Избриши</string>
     <string name="settings_delete_account_request_title">Потврдити брисање</string>
-    <string name="settings_delete_account_request_message">Потврдите брисање података и брисање налога!</string>
+    <string name="settings_delete_account_request_message">Молимо вас да потврдите брисање података и брисање налога!</string>
     <string name="settings_delete_account_request_delete">Избриши</string>
     <string name="settings_delete_account_request_cancel">Поништити, отказати</string>
     <string name="settings_delete_account_message">Подаци и налог су избрисани.</string>
-    <string name="action_settings">Action</string>
+    <string name="action_settings">поступак</string>
     <string name="request_logout_title">Одјавити се</string>
-    <string name="request_logout_message">Јеси ли сигуран?</string>
+    <string name="request_logout_message">Да ли сте сигурни?</string>
     <string name="request_geolocation_title">Геолоцатион</string>
     <string name="request_geolocation_message">Омогућите геолокацију</string>
-    <string name="request_geolocation_ok">Ок</string>
+    <string name="request_geolocation_ok">У реду</string>
     <string name="request_geolocation_cancel">Поништити, отказати</string>
     <string name="request_image_access_title">Приступ</string>
     <string name="request_image_access_message">Треба приступ</string>
     <string name="request_request_delete_title">Избриши</string>
-    <string name="request_request_delete_message">Јеси ли сигуран?</string>
+    <string name="request_request_delete_message">Да ли сте сигурни?</string>
     <string name="request_request_delete_ok">Избриши</string>
     <string name="request_request_delete_cancel">Поништити, отказати</string>
     <string name="user_jobs_list_delete">Избриши</string>
@@ -61,7 +70,7 @@
     <string name="user_jobs_list_error_please_update">Молимо вас да ажурирате!</string>
     <string name="user_registration_title">Регистрација</string>
     <string name="user_registration_confirm_password">Потврди лозинку</string>
-    <string name="user_registration_activate_account">Молимо активирајте свој рачун. На пошту је послата е-пошта са активацијским кодом.</string>
+    <string name="user_registration_activate_account">Молимо активирајте свој рачун. На пошту је послата е-пошта са активационим кодом.</string>
     <string name="user_registration_required_field">Потребан!</string>
     <string name="user_registration_privacy_title">Приватност</string>
     <string name="user_registration_agreement_title">Договор</string>
@@ -90,10 +99,20 @@
     <string name="subsription_limit_50_description">Ограничење је 50 слободних места.</string>
     <string name="subsription_limit_200_title">Велико предузеће</string>
     <string name="subsription_limit_200_description">Ограничење је 200 слободних места.</string>
+    <string name="subsription_period_01_month">месец дана</string>
+    <string name="subsription_period_06_month">6 месеци</string>
+    <string name="subsription_period_12_month">12 месеци</string>
     <string name="subsription_period_save_6month_at">6 месеци у</string>
     <string name="subsription_period_save_12month_at">12 месеци у</string>
     <string name="subsription_period_save_month">месец дана</string>
     <string name="subsription_period_save_is">сачувати</string>
+    <string name="subsription_restore_subs">Поново поставите своје претплатнике</string>
+    <string name="subsription_restore_subs_success">Подморнице су обновљене</string>
+    <string name="subsription_restore_subs_error">Ваша претплата није враћена. Грешка.</string>
+    <string name="subscription_need_cancel_current_subs">Откажите тренутну претплату!</string>
+    <string name="subscription_need_cancel_current_subs_ok">У реду</string>
+    <string name="subscription_need_cancel_current_subs_cancel">Поништити, отказати</string>
+    <string name="subscription_buy_success">Успех</string>
     <string name="edit_item_tags_search">Претрага</string>
 
 

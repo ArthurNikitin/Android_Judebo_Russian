@@ -1,6 +1,8 @@
 <resources>
 
 
+    <string name="name_app">Judebo</string>
+    <string name="toast_message">Toast message</string>
     <string name="settings_title_support_email">ru@judebo.com</string>
     <string name="add_job_link">https://ru.judebo.com/jobs/</string>
     <string name="user_registration_privacy_url">https://ru.judebo.com/login/privacy.php</string>
@@ -23,6 +25,13 @@
 
 
     <string name="search_title_search">Поиск</string>
+    <string name="search_title_filter">Фильтр</string>
+    <string name="search_all_types_of_jobs">Любой тип</string>
+    <string name="search_gross">ЗП</string>
+    <string name="search_types_of_jobs">Тип</string>
+    <string name="search_languages">Языки</string>
+    <string name="search_tags">Навыки и тэги</string>
+    <string name="search_tags_search">Поиск</string>
     <string name="button_share">Поделиться</string>
     <string name="error_label">Ошибка</string>
     <string name="error_no_internet">Проверьте интернет соединение</string>
@@ -90,10 +99,20 @@
     <string name="subsription_limit_50_description">Ограничение - 50 вакансий</string>
     <string name="subsription_limit_200_title">Крупный бизнес</string>
     <string name="subsription_limit_200_description">Ограничение - 200 вакансий</string>
+    <string name="subsription_period_01_month">месяц</string>
+    <string name="subsription_period_06_month">6 месяцев</string>
+    <string name="subsription_period_12_month">12 месяцев</string>
     <string name="subsription_period_save_6month_at">6 месяцев по</string>
     <string name="subsription_period_save_12month_at">12 месяцев по</string>
     <string name="subsription_period_save_month">месяц</string>
     <string name="subsription_period_save_is">Экономия</string>
+    <string name="subsription_restore_subs">Восстановить покупки</string>
+    <string name="subsription_restore_subs_success">Покупки восстановлены</string>
+    <string name="subsription_restore_subs_error">Ошибка! Покупки не восстановлены.</string>
+    <string name="subscription_need_cancel_current_subs">Для изменения подписки требуется отменить текущую подписку.</string>
+    <string name="subscription_need_cancel_current_subs_ok">Включить</string>
+    <string name="subscription_need_cancel_current_subs_cancel">Отмена</string>
+    <string name="subscription_buy_success">Согласен</string>
     <string name="edit_item_tags_search">Поиск</string>
 
 

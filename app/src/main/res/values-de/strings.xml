@@ -1,6 +1,8 @@
 <resources>
 
 
+    <string name="name_app">Judebo</string>
+    <string name="toast_message">Toast message</string>
     <string name="settings_title_support_email">de@judebo.com</string>
     <string name="add_job_link">https://de.judebo.com/jobs/</string>
     <string name="user_registration_privacy_url">https://de.judebo.com/login/privacy.php</string>
@@ -23,6 +25,13 @@
 
 
     <string name="search_title_search">Suche</string>
+    <string name="search_title_filter">Filter</string>
+    <string name="search_all_types_of_jobs">Alle Arten</string>
+    <string name="search_gross">Brutto</string>
+    <string name="search_types_of_jobs">Art</string>
+    <string name="search_languages">Sprachen</string>
+    <string name="search_tags">Fähigkeiten und Tags</string>
+    <string name="search_tags_search">Suche</string>
     <string name="button_share">Aktie</string>
     <string name="error_label">Error</string>
     <string name="error_no_internet">Keine Internetverbindung!</string>
@@ -41,7 +50,7 @@
     <string name="settings_delete_account_request_delete">Löschen</string>
     <string name="settings_delete_account_request_cancel">Stornieren</string>
     <string name="settings_delete_account_message">Ihre Daten und Ihr Konto wurden gelöscht.</string>
-    <string name="action_settings">Action</string>
+    <string name="action_settings">Aktion</string>
     <string name="request_logout_title">Ausloggen</string>
     <string name="request_logout_message">Bist du sicher?</string>
     <string name="request_geolocation_title">Geolocation</string>
@@ -60,7 +69,7 @@
     <string name="user_jobs_list_have_not_subsription">Kein Abonnement</string>
     <string name="user_jobs_list_error_please_update">Bitte aktualisieren!</string>
     <string name="user_registration_title">Anmeldung</string>
-    <string name="user_registration_confirm_password">Bestätige das Passwort</string>
+    <string name="user_registration_confirm_password">Passwort bestätigen</string>
     <string name="user_registration_activate_account">Bitte aktiviere deinen Account. Eine E-Mail mit einem Aktivierungscode wurde an die E-Mail gesendet.</string>
     <string name="user_registration_required_field">Erforderlich!</string>
     <string name="user_registration_privacy_title">Privatsphäre</string>
@@ -90,10 +99,20 @@
     <string name="subsription_limit_50_description">Das Limit liegt bei 50 offenen Stellen.</string>
     <string name="subsription_limit_200_title">Großunternehmen</string>
     <string name="subsription_limit_200_description">Das Limit liegt bei 200 offenen Stellen.</string>
+    <string name="subsription_period_01_month">Monat</string>
+    <string name="subsription_period_06_month">6 Monate</string>
+    <string name="subsription_period_12_month">12 Monate</string>
     <string name="subsription_period_save_6month_at">6 Monate bei</string>
     <string name="subsription_period_save_12month_at">12 Monate bei</string>
     <string name="subsription_period_save_month">Monat</string>
     <string name="subsription_period_save_is">sparen</string>
+    <string name="subsription_restore_subs">Restre deine U-Boote</string>
+    <string name="subsription_restore_subs_success">Ihre U-Boote wurden wiederhergestellt</string>
+    <string name="subsription_restore_subs_error">Ihre Subs wurden nicht wiederhergestellt. Error.</string>
+    <string name="subscription_need_cancel_current_subs">Bitte kündigen Sie das aktuelle Abonnement!</string>
+    <string name="subscription_need_cancel_current_subs_ok">OK</string>
+    <string name="subscription_need_cancel_current_subs_cancel">Stornieren</string>
+    <string name="subscription_buy_success">Erfolg</string>
     <string name="edit_item_tags_search">Suche</string>
 
 

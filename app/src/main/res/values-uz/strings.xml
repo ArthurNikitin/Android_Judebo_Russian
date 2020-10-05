@@ -1,6 +1,8 @@
 <resources>
 
 
+    <string name="name_app">Judebo</string>
+    <string name="toast_message">Toast message</string>
     <string name="settings_title_support_email">uz@judebo.com</string>
     <string name="add_job_link">https://uz.judebo.com/jobs/</string>
     <string name="user_registration_privacy_url">https://uz.judebo.com/login/privacy.php</string>
@@ -23,6 +25,13 @@
 
 
     <string name="search_title_search">Qidirmoq</string>
+    <string name="search_title_filter">Filtr</string>
+    <string name="search_all_types_of_jobs">Barcha turlari</string>
+    <string name="search_gross">Yalpi</string>
+    <string name="search_types_of_jobs">Turi</string>
+    <string name="search_languages">Tillar</string>
+    <string name="search_tags">Ko\'nikmalar va teglar</string>
+    <string name="search_tags_search">Qidirmoq</string>
     <string name="button_share">Baham ko\'ring</string>
     <string name="error_label">Xato</string>
     <string name="error_no_internet">Internet aloqasi yo\'q!</string>
@@ -41,7 +50,7 @@
     <string name="settings_delete_account_request_delete">O\'chirish</string>
     <string name="settings_delete_account_request_cancel">Bekor qilish</string>
     <string name="settings_delete_account_message">Ma\'lumotlaringiz va hisob qaydnomangiz o\'chirildi.</string>
-    <string name="action_settings">Action</string>
+    <string name="action_settings">Amal</string>
     <string name="request_logout_title">Chiqish</string>
     <string name="request_logout_message">Ishonchingiz komilmi?</string>
     <string name="request_geolocation_title">Geolokatsiya</string>
@@ -90,10 +99,20 @@
     <string name="subsription_limit_50_description">Limit - 50 ta bo\'sh ish o\'rinlari.</string>
     <string name="subsription_limit_200_title">Yirik korxona</string>
     <string name="subsription_limit_200_description">Cheklov - 200 ta bo\'sh ish o\'rinlari.</string>
+    <string name="subsription_period_01_month">oy</string>
+    <string name="subsription_period_06_month">6 oy</string>
+    <string name="subsription_period_12_month">12 oy</string>
     <string name="subsription_period_save_6month_at">6 oy soat</string>
     <string name="subsription_period_save_12month_at">12 oy</string>
     <string name="subsription_period_save_month">oy</string>
     <string name="subsription_period_save_is">Saqlash</string>
+    <string name="subsription_restore_subs">Obunachilaringizni dam oling</string>
+    <string name="subsription_restore_subs_success">Obunalaringiz tiklandi</string>
+    <string name="subsription_restore_subs_error">Obunalaringiz tiklanmadi. Xato.</string>
+    <string name="subscription_need_cancel_current_subs">Iltimos, joriy obunani bekor qiling!</string>
+    <string name="subscription_need_cancel_current_subs_ok">Ok</string>
+    <string name="subscription_need_cancel_current_subs_cancel">Bekor qilish</string>
+    <string name="subscription_buy_success">Muvaffaqiyat</string>
     <string name="edit_item_tags_search">Qidirmoq</string>
 
 

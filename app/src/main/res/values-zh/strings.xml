@@ -1,6 +1,8 @@
 <resources>
 
 
+    <string name="name_app">Judebo</string>
+    <string name="toast_message">Toast message</string>
     <string name="settings_title_support_email">zh@judebo.com</string>
     <string name="add_job_link">https://zh.judebo.com/jobs/</string>
     <string name="user_registration_privacy_url">https://zh.judebo.com/login/privacy.php</string>
@@ -23,6 +25,13 @@
 
 
     <string name="search_title_search">搜索</string>
+    <string name="search_title_filter">過濾</string>
+    <string name="search_all_types_of_jobs">所有類型</string>
+    <string name="search_gross">毛</string>
+    <string name="search_types_of_jobs">類型</string>
+    <string name="search_languages">語言能力</string>
+    <string name="search_tags">技能和標籤</string>
+    <string name="search_tags_search">搜索</string>
     <string name="button_share">分享</string>
     <string name="error_label">錯誤</string>
     <string name="error_no_internet">沒有網絡連接！</string>
@@ -41,7 +50,7 @@
     <string name="settings_delete_account_request_delete">刪除</string>
     <string name="settings_delete_account_request_cancel">取消</string>
     <string name="settings_delete_account_message">您的數據和帳戶已刪除。</string>
-    <string name="action_settings">Action</string>
+    <string name="action_settings">行動</string>
     <string name="request_logout_title">登出</string>
     <string name="request_logout_message">你確定嗎？</string>
     <string name="request_geolocation_title">地理位置</string>
@@ -90,10 +99,20 @@
     <string name="subsription_limit_50_description">最多只能有50個職位空缺。</string>
     <string name="subsription_limit_200_title">大型企業</string>
     <string name="subsription_limit_200_description">最多只能有200個職位空缺。</string>
+    <string name="subsription_period_01_month">月</string>
+    <string name="subsription_period_06_month">6個月</string>
+    <string name="subsription_period_12_month">12個月</string>
     <string name="subsription_period_save_6month_at">6個月</string>
     <string name="subsription_period_save_12month_at">12個月</string>
     <string name="subsription_period_save_month">月</string>
-    <string name="subsription_period_save_is">保存</string>
+    <string name="subsription_period_save_is">救</string>
+    <string name="subsription_restore_subs">Restre你的潛艇</string>
+    <string name="subsription_restore_subs_success">您的潛艇已恢復</string>
+    <string name="subsription_restore_subs_error">您的潛艇未還原。錯誤。</string>
+    <string name="subscription_need_cancel_current_subs">請取消當前的訂閱！</string>
+    <string name="subscription_need_cancel_current_subs_ok">好</string>
+    <string name="subscription_need_cancel_current_subs_cancel">取消</string>
+    <string name="subscription_buy_success">成功</string>
     <string name="edit_item_tags_search">搜索</string>
 
 

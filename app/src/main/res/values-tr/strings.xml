@@ -1,6 +1,8 @@
 <resources>
 
 
+    <string name="name_app">Judebo</string>
+    <string name="toast_message">Toast message</string>
     <string name="settings_title_support_email">tr@judebo.com</string>
     <string name="add_job_link">https://tr.judebo.com/jobs/</string>
     <string name="user_registration_privacy_url">https://tr.judebo.com/login/privacy.php</string>
@@ -23,6 +25,13 @@
 
 
     <string name="search_title_search">Arama</string>
+    <string name="search_title_filter">Filtrele</string>
+    <string name="search_all_types_of_jobs">Her türlü</string>
+    <string name="search_gross">Brüt</string>
+    <string name="search_types_of_jobs">Tür</string>
+    <string name="search_languages">Diller</string>
+    <string name="search_tags">Beceriler ve etiketler</string>
+    <string name="search_tags_search">Arama</string>
     <string name="button_share">Paylaş</string>
     <string name="error_label">Hata</string>
     <string name="error_no_internet">İnternet bağlantısı yok!</string>
@@ -41,7 +50,7 @@
     <string name="settings_delete_account_request_delete">Sil</string>
     <string name="settings_delete_account_request_cancel">İptal etmek</string>
     <string name="settings_delete_account_message">Verileriniz ve hesabınız silindi.</string>
-    <string name="action_settings">Action</string>
+    <string name="action_settings">Aksiyon</string>
     <string name="request_logout_title">Çıkış Yap</string>
     <string name="request_logout_message">Emin misiniz?</string>
     <string name="request_geolocation_title">Coğrafi konum</string>
@@ -61,7 +70,7 @@
     <string name="user_jobs_list_error_please_update">Lütfen güncelle!</string>
     <string name="user_registration_title">Kayıt</string>
     <string name="user_registration_confirm_password">Şifreyi Onayla</string>
-    <string name="user_registration_activate_account">Lütfen hesabınızı aktif edin. Postaya aktivasyon kodunu içeren bir e-posta gönderildi.</string>
+    <string name="user_registration_activate_account">Lütfen hesabınızı aktif edin. Postaya aktivasyon kodu içeren bir e-posta gönderildi.</string>
     <string name="user_registration_required_field">Gereklidir!</string>
     <string name="user_registration_privacy_title">Gizlilik</string>
     <string name="user_registration_agreement_title">Anlaşma</string>
@@ -90,10 +99,20 @@
     <string name="subsription_limit_50_description">Limit 50 boş pozisyondur.</string>
     <string name="subsription_limit_200_title">Büyük işletme</string>
     <string name="subsription_limit_200_description">Sınır 200 boş kontenjan.</string>
+    <string name="subsription_period_01_month">ay</string>
+    <string name="subsription_period_06_month">6 ay</string>
+    <string name="subsription_period_12_month">12 ay</string>
     <string name="subsription_period_save_6month_at">6 ay</string>
     <string name="subsription_period_save_12month_at">12 ay</string>
     <string name="subsription_period_save_month">ay</string>
     <string name="subsription_period_save_is">Kayıt etmek</string>
+    <string name="subsription_restore_subs">Abonelerinizi dinlendirin</string>
+    <string name="subsription_restore_subs_success">Aboneleriniz geri yüklendi</string>
+    <string name="subsription_restore_subs_error">Aboneleriniz geri yüklenmedi. Hata.</string>
+    <string name="subscription_need_cancel_current_subs">Lütfen mevcut aboneliği iptal edin!</string>
+    <string name="subscription_need_cancel_current_subs_ok">Tamam</string>
+    <string name="subscription_need_cancel_current_subs_cancel">İptal etmek</string>
+    <string name="subscription_buy_success">Başarı</string>
     <string name="edit_item_tags_search">Arama</string>
 
 

@@ -1,6 +1,8 @@
 <resources>
 
 
+    <string name="name_app">Judebo</string>
+    <string name="toast_message">Toast message</string>
     <string name="settings_title_support_email">ne@judebo.com</string>
     <string name="add_job_link">https://ne.judebo.com/jobs/</string>
     <string name="user_registration_privacy_url">https://ne.judebo.com/login/privacy.php</string>
@@ -23,6 +25,13 @@
 
 
     <string name="search_title_search">खोज्नुहोस्</string>
+    <string name="search_title_filter">फिल्टर</string>
+    <string name="search_all_types_of_jobs">सबै प्रकारहरू</string>
+    <string name="search_gross">सकल</string>
+    <string name="search_types_of_jobs">प्रकार</string>
+    <string name="search_languages">भाषाहरु</string>
+    <string name="search_tags">कौशल र ट्यागहरू</string>
+    <string name="search_tags_search">खोज्नुहोस्</string>
     <string name="button_share">सेयर गर्नुहोस्</string>
     <string name="error_label">त्रुटि</string>
     <string name="error_no_internet">कुनै इन्टरनेट जडान छैन!</string>
@@ -41,7 +50,7 @@
     <string name="settings_delete_account_request_delete">मेटाउन</string>
     <string name="settings_delete_account_request_cancel">रद्द गर्नुहोस्</string>
     <string name="settings_delete_account_message">तपाईंको डाटा र खाता हटाइएको थियो।</string>
-    <string name="action_settings">Action</string>
+    <string name="action_settings">कार्य</string>
     <string name="request_logout_title">बाहिर निस्कनु</string>
     <string name="request_logout_message">के तपाईँ निश्चित हुनुहुन्छ?</string>
     <string name="request_geolocation_title">जियोलोकेशन</string>
@@ -90,10 +99,20 @@
     <string name="subsription_limit_50_description">सीमा 50० खाली छ।</string>
     <string name="subsription_limit_200_title">ठुलो उद्यम</string>
     <string name="subsription_limit_200_description">सीमा २०० खाली ठाउँहरू छन्।</string>
+    <string name="subsription_period_01_month">महिना</string>
+    <string name="subsription_period_06_month">Month महिना</string>
+    <string name="subsription_period_12_month">१२ महिना</string>
     <string name="subsription_period_save_6month_at">Month महिनामा</string>
     <string name="subsription_period_save_12month_at">१२ महिना</string>
     <string name="subsription_period_save_month">महिना</string>
     <string name="subsription_period_save_is">बचत गर्नुहोस्</string>
+    <string name="subsription_restore_subs">तपाइँको सहायक पुन: भण्डारण गर्नुहोस्</string>
+    <string name="subsription_restore_subs_success">तपाईको सब्सक बहाल थियो</string>
+    <string name="subsription_restore_subs_error">तपाईको सब्सक बहाल छैन। त्रुटि</string>
+    <string name="subscription_need_cancel_current_subs">कृपया हालको सदस्यता रद्द गर्नुहोस्!</string>
+    <string name="subscription_need_cancel_current_subs_ok">ठिक छ</string>
+    <string name="subscription_need_cancel_current_subs_cancel">रद्द गर्नुहोस्</string>
+    <string name="subscription_buy_success">सफलता</string>
     <string name="edit_item_tags_search">खोज्नुहोस्</string>
 
 

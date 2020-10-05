@@ -1,6 +1,8 @@
 <resources>
 
 
+    <string name="name_app">Judebo</string>
+    <string name="toast_message">Toast message</string>
     <string name="settings_title_support_email">uk@judebo.com</string>
     <string name="add_job_link">https://uk.judebo.com/jobs/</string>
     <string name="user_registration_privacy_url">https://uk.judebo.com/login/privacy.php</string>
@@ -23,6 +25,13 @@
 
 
     <string name="search_title_search">Пошук</string>
+    <string name="search_title_filter">Фільтр</string>
+    <string name="search_all_types_of_jobs">Всі типи</string>
+    <string name="search_gross">Валовий</string>
+    <string name="search_types_of_jobs">Тип</string>
+    <string name="search_languages">Мови</string>
+    <string name="search_tags">Навички та теги</string>
+    <string name="search_tags_search">Пошук</string>
     <string name="button_share">Поділіться</string>
     <string name="error_label">Помилка</string>
     <string name="error_no_internet">Немає підключення до Інтернету!</string>
@@ -37,11 +46,11 @@
     <string name="settings_delete_account_title">Видалити обліковий запис і стерти дані</string>
     <string name="settings_delete_account_button">Видалити</string>
     <string name="settings_delete_account_request_title">Підтвердьте видалення</string>
-    <string name="settings_delete_account_request_message">Підтвердьте, щоб стерти свої дані та видалити свій рахунок!</string>
+    <string name="settings_delete_account_request_message">Будь ласка, підтвердьте, щоб стерти свої дані та видалити свій рахунок!</string>
     <string name="settings_delete_account_request_delete">Видалити</string>
     <string name="settings_delete_account_request_cancel">Скасувати</string>
     <string name="settings_delete_account_message">Ваші дані та обліковий запис видалено.</string>
-    <string name="action_settings">Action</string>
+    <string name="action_settings">Дія</string>
     <string name="request_logout_title">Вийти</string>
     <string name="request_logout_message">Ти впевнений?</string>
     <string name="request_geolocation_title">Геолокація</string>
@@ -66,7 +75,7 @@
     <string name="user_registration_privacy_title">Конфіденційність</string>
     <string name="user_registration_agreement_title">Угоду</string>
     <string name="user_registration_forgot_pass">Забули пароль</string>
-    <string name="user_registration_rules_accept">Прийняти</string>
+    <string name="user_registration_rules_accept">Прийміть</string>
     <string name="user_registration_rules_cancel">Скасувати</string>
     <string name="user_registration_activate_code">Код</string>
     <string name="user_registration_activate_code_resend">Повторно відправити</string>
@@ -90,10 +99,20 @@
     <string name="subsription_limit_50_description">Ліміт - 50 вакансій.</string>
     <string name="subsription_limit_200_title">Велике підприємство</string>
     <string name="subsription_limit_200_description">Ліміт - 200 вакансій.</string>
+    <string name="subsription_period_01_month">місяць</string>
+    <string name="subsription_period_06_month">6 місяців</string>
+    <string name="subsription_period_12_month">12 місяців</string>
     <string name="subsription_period_save_6month_at">6 місяців о</string>
     <string name="subsription_period_save_12month_at">12 місяців о</string>
     <string name="subsription_period_save_month">місяць</string>
     <string name="subsription_period_save_is">Зберегти</string>
+    <string name="subsription_restore_subs">Перегляньте свої підписки</string>
+    <string name="subsription_restore_subs_success">Ваші підписки відновлено</string>
+    <string name="subsription_restore_subs_error">Ваші підписки не відновлено. Помилка.</string>
+    <string name="subscription_need_cancel_current_subs">Скасуйте поточну передплату!</string>
+    <string name="subscription_need_cancel_current_subs_ok">Гаразд</string>
+    <string name="subscription_need_cancel_current_subs_cancel">Скасувати</string>
+    <string name="subscription_buy_success">Успіху</string>
     <string name="edit_item_tags_search">Пошук</string>
 
 

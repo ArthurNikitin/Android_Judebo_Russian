@@ -1,6 +1,8 @@
 <resources>
 
 
+    <string name="name_app">Judebo</string>
+    <string name="toast_message">Toast message</string>
     <string name="settings_title_support_email">nl@judebo.com</string>
     <string name="add_job_link">https://nl.judebo.com/jobs/</string>
     <string name="user_registration_privacy_url">https://nl.judebo.com/login/privacy.php</string>
@@ -23,6 +25,13 @@
 
 
     <string name="search_title_search">Zoeken</string>
+    <string name="search_title_filter">Filter</string>
+    <string name="search_all_types_of_jobs">Alle typen</string>
+    <string name="search_gross">Bruto</string>
+    <string name="search_types_of_jobs">Type</string>
+    <string name="search_languages">Talen</string>
+    <string name="search_tags">Vaardigheden en tags</string>
+    <string name="search_tags_search">Zoeken</string>
     <string name="button_share">Delen</string>
     <string name="error_label">Fout</string>
     <string name="error_no_internet">Geen internet verbinding!</string>
@@ -41,9 +50,9 @@
     <string name="settings_delete_account_request_delete">Verwijderen</string>
     <string name="settings_delete_account_request_cancel">Annuleer</string>
     <string name="settings_delete_account_message">Uw gegevens en account zijn verwijderd.</string>
-    <string name="action_settings">Action</string>
+    <string name="action_settings">Actie</string>
     <string name="request_logout_title">Uitloggen</string>
-    <string name="request_logout_message">Weet je het zeker?</string>
+    <string name="request_logout_message">Weet je zeker dat?</string>
     <string name="request_geolocation_title">Geolocatie</string>
     <string name="request_geolocation_message">Schakel geolocaltie in</string>
     <string name="request_geolocation_ok">OK</string>
@@ -51,7 +60,7 @@
     <string name="request_image_access_title">Toegang</string>
     <string name="request_image_access_message">Toegang nodig</string>
     <string name="request_request_delete_title">Verwijderen</string>
-    <string name="request_request_delete_message">Weet je het zeker?</string>
+    <string name="request_request_delete_message">Weet je zeker dat?</string>
     <string name="request_request_delete_ok">Verwijderen</string>
     <string name="request_request_delete_cancel">Annuleer</string>
     <string name="user_jobs_list_delete">Verwijderen</string>
@@ -90,10 +99,20 @@
     <string name="subsription_limit_50_description">De limiet is 50 vacatures.</string>
     <string name="subsription_limit_200_title">Grote onderneming</string>
     <string name="subsription_limit_200_description">De limiet is 200 vacatures.</string>
+    <string name="subsription_period_01_month">maand</string>
+    <string name="subsription_period_06_month">6 maanden</string>
+    <string name="subsription_period_12_month">12 maanden</string>
     <string name="subsription_period_save_6month_at">6 maanden om</string>
     <string name="subsription_period_save_12month_at">12 maanden op</string>
     <string name="subsription_period_save_month">maand</string>
-    <string name="subsription_period_save_is">Sparen</string>
+    <string name="subsription_period_save_is">Opslaan</string>
+    <string name="subsription_restore_subs">Herstel je subs</string>
+    <string name="subsription_restore_subs_success">Je abonnement is hersteld</string>
+    <string name="subsription_restore_subs_error">Je abonnement is niet hersteld. Fout.</string>
+    <string name="subscription_need_cancel_current_subs">Annuleer het huidige abonnement!</string>
+    <string name="subscription_need_cancel_current_subs_ok">OK</string>
+    <string name="subscription_need_cancel_current_subs_cancel">Annuleer</string>
+    <string name="subscription_buy_success">Succes</string>
     <string name="edit_item_tags_search">Zoeken</string>
 
 

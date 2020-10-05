@@ -1,6 +1,8 @@
 <resources>
 
 
+    <string name="name_app">Judebo</string>
+    <string name="toast_message">Toast message</string>
     <string name="settings_title_support_email">lv@judebo.com</string>
     <string name="add_job_link">https://lv.judebo.com/jobs/</string>
     <string name="user_registration_privacy_url">https://lv.judebo.com/login/privacy.php</string>
@@ -23,6 +25,13 @@
 
 
     <string name="search_title_search">Meklēt</string>
+    <string name="search_title_filter">Filtrēt</string>
+    <string name="search_all_types_of_jobs">Visi veidi</string>
+    <string name="search_gross">Bruto</string>
+    <string name="search_types_of_jobs">Tips</string>
+    <string name="search_languages">Valodas</string>
+    <string name="search_tags">Prasmes un tagi</string>
+    <string name="search_tags_search">Meklēt</string>
     <string name="button_share">Dalīties</string>
     <string name="error_label">Kļūda</string>
     <string name="error_no_internet">Nav interneta savienojuma!</string>
@@ -41,7 +50,7 @@
     <string name="settings_delete_account_request_delete">Dzēst</string>
     <string name="settings_delete_account_request_cancel">Atcelt</string>
     <string name="settings_delete_account_message">Jūsu dati un konts tika izdzēsti.</string>
-    <string name="action_settings">Action</string>
+    <string name="action_settings">Darbība</string>
     <string name="request_logout_title">Izlogoties</string>
     <string name="request_logout_message">Vai tu esi pārliecināts?</string>
     <string name="request_geolocation_title">Ģeogrāfiskā atrašanās vieta</string>
@@ -90,10 +99,20 @@
     <string name="subsription_limit_50_description">Ierobežojums ir 50 vakances.</string>
     <string name="subsription_limit_200_title">Liels uzņēmums</string>
     <string name="subsription_limit_200_description">Ierobežojums ir 200 vakances.</string>
+    <string name="subsription_period_01_month">mēnesī</string>
+    <string name="subsription_period_06_month">6 mēneši</string>
+    <string name="subsription_period_12_month">12 mēneši</string>
     <string name="subsription_period_save_6month_at">6 mēnešus plkst</string>
     <string name="subsription_period_save_12month_at">12 mēnešus plkst</string>
     <string name="subsription_period_save_month">mēnesī</string>
     <string name="subsription_period_save_is">Saglabāt</string>
+    <string name="subsription_restore_subs">Atjaunojiet savus abonementus</string>
+    <string name="subsription_restore_subs_success">Jūsu abonementi tika atjaunoti</string>
+    <string name="subsription_restore_subs_error">Jūsu abonementi netika atjaunoti. Kļūda.</string>
+    <string name="subscription_need_cancel_current_subs">Lūdzu, atceliet pašreizējo abonementu!</string>
+    <string name="subscription_need_cancel_current_subs_ok">Labi</string>
+    <string name="subscription_need_cancel_current_subs_cancel">Atcelt</string>
+    <string name="subscription_buy_success">Panākumi</string>
     <string name="edit_item_tags_search">Meklēt</string>
 
 

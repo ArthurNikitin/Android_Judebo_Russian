@@ -1,6 +1,8 @@
 <resources>
 
 
+    <string name="name_app">Judebo</string>
+    <string name="toast_message">Toast message</string>
     <string name="settings_title_support_email">bg@judebo.com</string>
     <string name="add_job_link">https://bg.judebo.com/jobs/</string>
     <string name="user_registration_privacy_url">https://bg.judebo.com/login/privacy.php</string>
@@ -23,6 +25,13 @@
 
 
     <string name="search_title_search">Търсене</string>
+    <string name="search_title_filter">Филтър</string>
+    <string name="search_all_types_of_jobs">Всички видове</string>
+    <string name="search_gross">Брутно</string>
+    <string name="search_types_of_jobs">Тип</string>
+    <string name="search_languages">Езици</string>
+    <string name="search_tags">Умения и тагове</string>
+    <string name="search_tags_search">Търсене</string>
     <string name="button_share">Дял</string>
     <string name="error_label">Грешка</string>
     <string name="error_no_internet">Няма интернет връзка!</string>
@@ -41,7 +50,7 @@
     <string name="settings_delete_account_request_delete">Изтрий</string>
     <string name="settings_delete_account_request_cancel">Отказ</string>
     <string name="settings_delete_account_message">Вашите данни и акаунт бяха изтрити.</string>
-    <string name="action_settings">Action</string>
+    <string name="action_settings">Действие</string>
     <string name="request_logout_title">Излез от профила си</string>
     <string name="request_logout_message">Сигурен ли си?</string>
     <string name="request_geolocation_title">Геолокация</string>
@@ -90,10 +99,20 @@
     <string name="subsription_limit_50_description">Ограничението е 50 свободни места.</string>
     <string name="subsription_limit_200_title">Голямо предприятие</string>
     <string name="subsription_limit_200_description">Ограничението е 200 свободни места.</string>
+    <string name="subsription_period_01_month">месец</string>
+    <string name="subsription_period_06_month">6 месеца</string>
+    <string name="subsription_period_12_month">12 месеца</string>
     <string name="subsription_period_save_6month_at">6 месец в</string>
     <string name="subsription_period_save_12month_at">12 месеца в</string>
     <string name="subsription_period_save_month">месец</string>
     <string name="subsription_period_save_is">Запазете</string>
+    <string name="subsription_restore_subs">Възстановете вашите абонаменти</string>
+    <string name="subsription_restore_subs_success">Вашите абонаменти бяха възстановени</string>
+    <string name="subsription_restore_subs_error">Вашите абонаменти не бяха възстановени. Грешка.</string>
+    <string name="subscription_need_cancel_current_subs">Моля, анулирайте текущия абонамент!</string>
+    <string name="subscription_need_cancel_current_subs_ok">Добре</string>
+    <string name="subscription_need_cancel_current_subs_cancel">Отказ</string>
+    <string name="subscription_buy_success">Успех</string>
     <string name="edit_item_tags_search">Търсене</string>
 
 

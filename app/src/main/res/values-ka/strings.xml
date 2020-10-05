@@ -1,6 +1,8 @@
 <resources>
 
 
+    <string name="name_app">Judebo</string>
+    <string name="toast_message">Toast message</string>
     <string name="settings_title_support_email">ka@judebo.com</string>
     <string name="add_job_link">https://ka.judebo.com/jobs/</string>
     <string name="user_registration_privacy_url">https://ka.judebo.com/login/privacy.php</string>
@@ -23,6 +25,13 @@
 
 
     <string name="search_title_search">ძებნა</string>
+    <string name="search_title_filter">ფილტრი</string>
+    <string name="search_all_types_of_jobs">Ყველა სახის</string>
+    <string name="search_gross">მთლიანი</string>
+    <string name="search_types_of_jobs">ტიპი</string>
+    <string name="search_languages">ენები</string>
+    <string name="search_tags">უნარები და ნიშნები</string>
+    <string name="search_tags_search">ძებნა</string>
     <string name="button_share">გაზიარება</string>
     <string name="error_label">შეცდომა</string>
     <string name="error_no_internet">Არ არის ინტერნეტ კავშირი!</string>
@@ -41,7 +50,7 @@
     <string name="settings_delete_account_request_delete">წაშლა</string>
     <string name="settings_delete_account_request_cancel">გაუქმება</string>
     <string name="settings_delete_account_message">თქვენი მონაცემები და ანგარიში წაიშალა.</string>
-    <string name="action_settings">Action</string>
+    <string name="action_settings">მოქმედება</string>
     <string name="request_logout_title">გასვლა</string>
     <string name="request_logout_message">Დარწმუნებული ხარ?</string>
     <string name="request_geolocation_title">გეოლოკაცია</string>
@@ -61,11 +70,11 @@
     <string name="user_jobs_list_error_please_update">Გთხოვთ განაახლოთ!</string>
     <string name="user_registration_title">რეგისტრაცია</string>
     <string name="user_registration_confirm_password">Პაროლის დადასტურება</string>
-    <string name="user_registration_activate_account">გთხოვთ, გაააქტიუროთ თქვენი ანგარიში. ელ.ფოსტით გაიგზავნა აქტივაციის კოდის ელ.</string>
+    <string name="user_registration_activate_account">გთხოვთ, გაააქტიუროთ თქვენი ანგარიში. ელ.ფოსტით გაიგზავნა ელ.წერილი აქტივაციის კოდით.</string>
     <string name="user_registration_required_field">აუცილებელია!</string>
     <string name="user_registration_privacy_title">კონფიდენციალურობა</string>
     <string name="user_registration_agreement_title">Შეთანხმება</string>
-    <string name="user_registration_forgot_pass">Პაროლი დაგავიწყდათ</string>
+    <string name="user_registration_forgot_pass">Პაროლი დაგავიწყდა</string>
     <string name="user_registration_rules_accept">მიღება</string>
     <string name="user_registration_rules_cancel">გაუქმება</string>
     <string name="user_registration_activate_code">კოდი</string>
@@ -90,10 +99,20 @@
     <string name="subsription_limit_50_description">ლიმიტი 50 ვაკანსიაა.</string>
     <string name="subsription_limit_200_title">დიდი საწარმო</string>
     <string name="subsription_limit_200_description">ლიმიტი 200 ვაკანსიაა.</string>
+    <string name="subsription_period_01_month">თვე</string>
+    <string name="subsription_period_06_month">6 თვე</string>
+    <string name="subsription_period_12_month">12 თვე</string>
     <string name="subsription_period_save_6month_at">6 თვის განმავლობაში</string>
     <string name="subsription_period_save_12month_at">12 თვეში</string>
     <string name="subsription_period_save_month">თვე</string>
     <string name="subsription_period_save_is">Გადარჩენა</string>
+    <string name="subsription_restore_subs">აღადგინეთ თქვენი ქვესადგურები</string>
+    <string name="subsription_restore_subs_success">თქვენი ქვესადგურები აღდგენილია</string>
+    <string name="subsription_restore_subs_error">თქვენი ქვესადგურები არ აღდგენილია. შეცდომა</string>
+    <string name="subscription_need_cancel_current_subs">გთხოვთ გააუქმოთ მიმდინარე გამოწერა!</string>
+    <string name="subscription_need_cancel_current_subs_ok">Კარგი</string>
+    <string name="subscription_need_cancel_current_subs_cancel">გაუქმება</string>
+    <string name="subscription_buy_success">წარმატება</string>
     <string name="edit_item_tags_search">ძებნა</string>
 
 

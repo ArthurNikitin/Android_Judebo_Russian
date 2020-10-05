@@ -1,6 +1,8 @@
 <resources>
 
 
+    <string name="name_app">Judebo</string>
+    <string name="toast_message">Toast message</string>
     <string name="settings_title_support_email">fr@judebo.com</string>
     <string name="add_job_link">https://fr.judebo.com/jobs/</string>
     <string name="user_registration_privacy_url">https://fr.judebo.com/login/privacy.php</string>
@@ -23,6 +25,13 @@
 
 
     <string name="search_title_search">Chercher</string>
+    <string name="search_title_filter">Filtre</string>
+    <string name="search_all_types_of_jobs">Tous les types</string>
+    <string name="search_gross">Brut</string>
+    <string name="search_types_of_jobs">Type</string>
+    <string name="search_languages">Langues</string>
+    <string name="search_tags">Compétences et tags</string>
+    <string name="search_tags_search">Chercher</string>
     <string name="button_share">Partager</string>
     <string name="error_label">Erreur</string>
     <string name="error_no_internet">Pas de connexion Internet!</string>
@@ -41,7 +50,7 @@
     <string name="settings_delete_account_request_delete">Supprimer</string>
     <string name="settings_delete_account_request_cancel">Annuler</string>
     <string name="settings_delete_account_message">Vos données et votre compte ont été supprimés.</string>
-    <string name="action_settings">Action</string>
+    <string name="action_settings">action</string>
     <string name="request_logout_title">Se déconnecter</string>
     <string name="request_logout_message">Êtes-vous sûr?</string>
     <string name="request_geolocation_title">Géolocalisation</string>
@@ -90,10 +99,20 @@
     <string name="subsription_limit_50_description">La limite est de 50 postes vacants.</string>
     <string name="subsription_limit_200_title">Grande entreprise</string>
     <string name="subsription_limit_200_description">La limite est de 200 postes vacants.</string>
+    <string name="subsription_period_01_month">mois</string>
+    <string name="subsription_period_06_month">6 mois</string>
+    <string name="subsription_period_12_month">12 mois</string>
     <string name="subsription_period_save_6month_at">6 mois à</string>
     <string name="subsription_period_save_12month_at">12 mois à</string>
     <string name="subsription_period_save_month">mois</string>
-    <string name="subsription_period_save_is">sauver</string>
+    <string name="subsription_period_save_is">sauvegarder</string>
+    <string name="subsription_restore_subs">Restre vos abonnés</string>
+    <string name="subsription_restore_subs_success">Vos abonnements ont été restaurés</string>
+    <string name="subsription_restore_subs_error">Vos abonnements n\'ont pas été restaurés. Erreur.</string>
+    <string name="subscription_need_cancel_current_subs">Veuillez annuler l\'abonnement actuel!</string>
+    <string name="subscription_need_cancel_current_subs_ok">D\'accord</string>
+    <string name="subscription_need_cancel_current_subs_cancel">Annuler</string>
+    <string name="subscription_buy_success">Succès</string>
     <string name="edit_item_tags_search">Chercher</string>
 
 

@@ -1,6 +1,8 @@
 <resources>
 
 
+    <string name="name_app">Judebo</string>
+    <string name="toast_message">Toast message</string>
     <string name="settings_title_support_email">be@judebo.com</string>
     <string name="add_job_link">https://be.judebo.com/jobs/</string>
     <string name="user_registration_privacy_url">https://be.judebo.com/login/privacy.php</string>
@@ -23,6 +25,13 @@
 
 
     <string name="search_title_search">Пошук</string>
+    <string name="search_title_filter">Фільтр</string>
+    <string name="search_all_types_of_jobs">Усе тыпы</string>
+    <string name="search_gross">Валавы</string>
+    <string name="search_types_of_jobs">Тып</string>
+    <string name="search_languages">Мовы</string>
+    <string name="search_tags">Навыкі і пазнакі</string>
+    <string name="search_tags_search">Пошук</string>
     <string name="button_share">Падзяліцеся</string>
     <string name="error_label">Памылка</string>
     <string name="error_no_internet">Няма падключэння да Інтэрнэту!</string>
@@ -41,7 +50,7 @@
     <string name="settings_delete_account_request_delete">Выдаліць</string>
     <string name="settings_delete_account_request_cancel">Адмяніць</string>
     <string name="settings_delete_account_message">Вашы дадзеныя і ўліковы запіс былі выдалены.</string>
-    <string name="action_settings">Action</string>
+    <string name="action_settings">Дзеянне</string>
     <string name="request_logout_title">Выхад</string>
     <string name="request_logout_message">Вы ўпэўнены?</string>
     <string name="request_geolocation_title">Геалакацыя</string>
@@ -90,10 +99,20 @@
     <string name="subsription_limit_50_description">Ліміт - 50 вакансій.</string>
     <string name="subsription_limit_200_title">Буйнае прадпрыемства</string>
     <string name="subsription_limit_200_description">Ліміт - 200 вакансій.</string>
+    <string name="subsription_period_01_month">месяц</string>
+    <string name="subsription_period_06_month">6 месяцаў</string>
+    <string name="subsription_period_12_month">12 месяцаў</string>
     <string name="subsription_period_save_6month_at">6 месяцаў у</string>
     <string name="subsription_period_save_12month_at">12 месяцаў у</string>
     <string name="subsription_period_save_month">месяц</string>
     <string name="subsription_period_save_is">Захаваць</string>
+    <string name="subsription_restore_subs">Restre свае падпісчыкі</string>
+    <string name="subsription_restore_subs_success">Вашы падпісчыкі былі адноўлены</string>
+    <string name="subsription_restore_subs_error">Вашы падпісчыкі не былі адноўлены. Памылка.</string>
+    <string name="subscription_need_cancel_current_subs">Адмяніце бягучую падпіску!</string>
+    <string name="subscription_need_cancel_current_subs_ok">Добра</string>
+    <string name="subscription_need_cancel_current_subs_cancel">Адмяніць</string>
+    <string name="subscription_buy_success">Поспех</string>
     <string name="edit_item_tags_search">Пошук</string>
 
 

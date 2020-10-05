@@ -1,6 +1,8 @@
 <resources>
 
 
+    <string name="name_app">Judebo</string>
+    <string name="toast_message">Toast message</string>
     <string name="settings_title_support_email">lt@judebo.com</string>
     <string name="add_job_link">https://lt.judebo.com/jobs/</string>
     <string name="user_registration_privacy_url">https://lt.judebo.com/login/privacy.php</string>
@@ -23,6 +25,13 @@
 
 
     <string name="search_title_search">Paieška</string>
+    <string name="search_title_filter">Filtras</string>
+    <string name="search_all_types_of_jobs">Visų rūšių</string>
+    <string name="search_gross">Bendras</string>
+    <string name="search_types_of_jobs">Tipas</string>
+    <string name="search_languages">Kalbos</string>
+    <string name="search_tags">Įgūdžiai ir žymos</string>
+    <string name="search_tags_search">Paieška</string>
     <string name="button_share">Dalintis</string>
     <string name="error_label">Klaida</string>
     <string name="error_no_internet">Nėra interneto ryšio!</string>
@@ -41,7 +50,7 @@
     <string name="settings_delete_account_request_delete">Ištrinti</string>
     <string name="settings_delete_account_request_cancel">Atšaukti</string>
     <string name="settings_delete_account_message">Jūsų duomenys ir paskyra buvo ištrinti.</string>
-    <string name="action_settings">Action</string>
+    <string name="action_settings">Veiksmas</string>
     <string name="request_logout_title">Atsijungti</string>
     <string name="request_logout_message">Ar tu tuo tikras?</string>
     <string name="request_geolocation_title">Geolokacija</string>
@@ -90,10 +99,20 @@
     <string name="subsription_limit_50_description">Riba yra 50 laisvų vietų.</string>
     <string name="subsription_limit_200_title">Didelė įmonė</string>
     <string name="subsription_limit_200_description">Riba yra 200 laisvų vietų.</string>
+    <string name="subsription_period_01_month">mėnesį</string>
+    <string name="subsription_period_06_month">6 mėn</string>
+    <string name="subsription_period_12_month">12 mėn</string>
     <string name="subsription_period_save_6month_at">6 mėn</string>
     <string name="subsription_period_save_12month_at">12 mėn</string>
     <string name="subsription_period_save_month">mėnesį</string>
     <string name="subsription_period_save_is">Sutaupyti</string>
+    <string name="subsription_restore_subs">Atkurkite savo sub</string>
+    <string name="subsription_restore_subs_success">Jūsų subs buvo atkurtos</string>
+    <string name="subsription_restore_subs_error">Jūsų abonementai nebuvo atkurti. Klaida.</string>
+    <string name="subscription_need_cancel_current_subs">Atšaukite dabartinę prenumeratą!</string>
+    <string name="subscription_need_cancel_current_subs_ok">Gerai</string>
+    <string name="subscription_need_cancel_current_subs_cancel">Atšaukti</string>
+    <string name="subscription_buy_success">Sėkmė</string>
     <string name="edit_item_tags_search">Paieška</string>
 
 

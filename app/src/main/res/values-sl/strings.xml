@@ -1,6 +1,8 @@
 <resources>
 
 
+    <string name="name_app">Judebo</string>
+    <string name="toast_message">Toast message</string>
     <string name="settings_title_support_email">sl@judebo.com</string>
     <string name="add_job_link">https://sl.judebo.com/jobs/</string>
     <string name="user_registration_privacy_url">https://sl.judebo.com/login/privacy.php</string>
@@ -23,6 +25,13 @@
 
 
     <string name="search_title_search">Iskanje</string>
+    <string name="search_title_filter">Filter</string>
+    <string name="search_all_types_of_jobs">Vse vrste</string>
+    <string name="search_gross">Bruto</string>
+    <string name="search_types_of_jobs">Tip</string>
+    <string name="search_languages">Jeziki</string>
+    <string name="search_tags">Spretnosti in oznake</string>
+    <string name="search_tags_search">Iskanje</string>
     <string name="button_share">Deliti</string>
     <string name="error_label">Napaka</string>
     <string name="error_no_internet">Brez internetne povezave!</string>
@@ -41,7 +50,7 @@
     <string name="settings_delete_account_request_delete">Izbriši</string>
     <string name="settings_delete_account_request_cancel">Prekliči</string>
     <string name="settings_delete_account_message">Vaši podatki in račun so bili izbrisani.</string>
-    <string name="action_settings">Action</string>
+    <string name="action_settings">Ukrepanje</string>
     <string name="request_logout_title">Odjava</string>
     <string name="request_logout_message">Ali si prepričan?</string>
     <string name="request_geolocation_title">Geolokacija</string>
@@ -70,7 +79,7 @@
     <string name="user_registration_rules_cancel">Prekliči</string>
     <string name="user_registration_activate_code">Koda</string>
     <string name="user_registration_activate_code_resend">Ponovno poslati</string>
-    <string name="user_registration_activate_code_activate">Aktivirajte</string>
+    <string name="user_registration_activate_code_activate">Aktiviraj</string>
     <string name="user_registration_activate_code_wrong">Napačna koda</string>
     <string name="user_registration_activate_code_success">Uspeh</string>
     <string name="edit_item_title">Naziv delovnega mesta</string>
@@ -90,10 +99,20 @@
     <string name="subsription_limit_50_description">Omejitev je 50 prostih mest.</string>
     <string name="subsription_limit_200_title">Veliko podjetje</string>
     <string name="subsription_limit_200_description">Omejitev je 200 prostih mest.</string>
+    <string name="subsription_period_01_month">mesec</string>
+    <string name="subsription_period_06_month">6 mesecev</string>
+    <string name="subsription_period_12_month">12 mesecev</string>
     <string name="subsription_period_save_6month_at">6 mesecev ob</string>
     <string name="subsription_period_save_12month_at">12 mesecev ob</string>
     <string name="subsription_period_save_month">mesec</string>
     <string name="subsription_period_save_is">Shrani</string>
+    <string name="subsription_restore_subs">Zamenjajte svoje naročnine</string>
+    <string name="subsription_restore_subs_success">Vaše naročnine so bile obnovljene</string>
+    <string name="subsription_restore_subs_error">Vaše naročnine niso bile obnovljene. Napaka.</string>
+    <string name="subscription_need_cancel_current_subs">Prekličite trenutno naročnino!</string>
+    <string name="subscription_need_cancel_current_subs_ok">V redu</string>
+    <string name="subscription_need_cancel_current_subs_cancel">Prekliči</string>
+    <string name="subscription_buy_success">Uspeh</string>
     <string name="edit_item_tags_search">Iskanje</string>
 
 

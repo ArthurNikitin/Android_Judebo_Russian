@@ -8,26 +8,26 @@ import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Handler
 import android.util.Base64.decode
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
+import androidx.core.graphics.drawable.toBitmap
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
-import com.byte4b.judebo.R
+import com.byte4b.judebo.*
 import com.byte4b.judebo.activities.VocationEditActivity
 import com.byte4b.judebo.fragments.CreatorFragment
-import com.byte4b.judebo.getDate
 import com.byte4b.judebo.models.Vocation
 import com.byte4b.judebo.models.VocationRealm
 import com.byte4b.judebo.models.currencies
 import com.byte4b.judebo.services.ApiServiceImpl
-import com.byte4b.judebo.startActivity
-import com.byte4b.judebo.timestamp
 import com.byte4b.judebo.utils.Setting
 import com.byte4b.judebo.view.ServiceListener
 import com.daimajia.swipe.SwipeLayout
@@ -251,47 +251,133 @@ class VocationsAdapter(
 
                 copyVocation.UF_ACTIVE = vocationRealm.UF_ACTIVE
                 copyVocation.COMPANY = vocationRealm.COMPANY
-                copyVocation. DETAIL_TEXT = vocationRealm.DETAIL_TEXT
-                copyVocation. UF_CONTACT_EMAIL = vocationRealm.UF_CONTACT_EMAIL
-                copyVocation. UF_CONTACT_PHONE = vocationRealm.UF_CONTACT_PHONE
-                copyVocation. UF_DETAIL_IMAGE = vocationRealm.UF_DETAIL_IMAGE
-                copyVocation. UF_GOLD_PER_MONTH = vocationRealm.UF_GOLD_PER_MONTH
-                copyVocation. UF_GROSS_CURRENCY_ID = vocationRealm.UF_GROSS_CURRENCY_ID
-                copyVocation. UF_GROSS_PER_MONTH = vocationRealm.UF_GROSS_PER_MONTH
-                copyVocation. UF_LANGUAGE_ID_ALL = vocationRealm.UF_LANGUAGE_ID_ALL
-                copyVocation. UF_LOGO_IMAGE = vocationRealm.UF_LOGO_IMAGE
-                copyVocation. UF_MAP_POINT = vocationRealm.UF_MAP_POINT
-                copyVocation. UF_PREVIEW_IMAGE = vocationRealm.UF_PREVIEW_IMAGE
-                copyVocation. UF_SKILLS_ID_ALL = vocationRealm.UF_SKILLS_ID_ALL
-                copyVocation. UF_TYPE_OF_JOB_ID = vocationRealm.UF_TYPE_OF_JOB_ID
-                it.insertOrUpdate(copyVocation)
+                copyVocation.DETAIL_TEXT = vocationRealm.DETAIL_TEXT
+                copyVocation.UF_CONTACT_EMAIL = vocationRealm.UF_CONTACT_EMAIL
+                copyVocation.UF_CONTACT_PHONE = vocationRealm.UF_CONTACT_PHONE
+                copyVocation.UF_GOLD_PER_MONTH = vocationRealm.UF_GOLD_PER_MONTH
+                copyVocation.UF_GROSS_CURRENCY_ID = vocationRealm.UF_GROSS_CURRENCY_ID
+                copyVocation.UF_GROSS_PER_MONTH = vocationRealm.UF_GROSS_PER_MONTH
+                copyVocation.UF_LANGUAGE_ID_ALL = vocationRealm.UF_LANGUAGE_ID_ALL
+                copyVocation.UF_MAP_POINT = vocationRealm.UF_MAP_POINT
+                copyVocation.UF_SKILLS_ID_ALL = vocationRealm.UF_SKILLS_ID_ALL
+                copyVocation.UF_TYPE_OF_JOB_ID = vocationRealm.UF_TYPE_OF_JOB_ID
 
 
-                //val newVocation = vocationRealm.toBasicVersion().toRealmVersion()
-                //newVocation.apply {
-                //    val now = Calendar.getInstance()
+                copyVocation.UF_LOGO_IMAGE = vocationRealm.UF_LOGO_IMAGE
+                copyVocation.UF_PREVIEW_IMAGE = vocationRealm.UF_PREVIEW_IMAGE
+                copyVocation.UF_DETAIL_IMAGE = vocationRealm.UF_DETAIL_IMAGE
 
-                //    NAME = (NAME ?: "") + "-2"
-                //    UF_JOBS_ID = null
-                 //   UF_MODIFED = now.timestamp
-                //    UF_APP_JOB_ID = getNewJobAppId().toLong()
+                check {
+                    val iv = ImageView(ctx)
 
-                //    now.add(Calendar.DATE, Setting.JOB_LIFETIME_IN_DAYS)
-                //    UF_DISABLE = now.timestamp
-                //}
-                //it.copyToRealm(newVocation)
-                ApiServiceImpl(this).addMyVocation(
-                    setting.getCurrentLanguage().locale,
-                    token = setting.token ?: "",
-                    login = setting.email ?: "",
-                    vocation = copyVocation.toBasicVersion()
-                )
-                ctx.startActivity<VocationEditActivity> {
-                    putExtra("appId", (copyVocation.UF_APP_JOB_ID ?: 0))
-                    putExtra("jobId", copyVocation.UF_JOBS_ID ?: 1)
+                    val errorHandler = Handler { _ ->
+                        Handler().postDelayed({
+                            Realm.getDefaultInstance().executeTransaction {
+                                it.insertOrUpdate(copyVocation);
+                            }
+                        }, 100)
+                        addCopyVocation(copyVocation)
+                        true
+                    }
+
+                    val successHandler = Handler { _ ->
+                        val resource = iv.drawable
+                        Log.e("test", "ready")
+
+                        val bitmap = resource?.toBitmap(
+                            Setting.MAX_IMG_CROP_HEIGHT,
+                            Setting.MAX_IMG_CROP_HEIGHT
+                        ) ?: return@Handler  true
+
+                        copyVocation.UF_DETAIL_IMAGE = toBase64(bitmap)
+                        val previewBitmap = resource.toBitmap(
+                            Setting.MAX_IMG_CROP_HEIGHT_PREVIEW,
+                            Setting.MAX_IMG_CROP_HEIGHT_PREVIEW
+                        );
+
+                        copyVocation.UF_PREVIEW_IMAGE = toBase64(previewBitmap)
+
+                        val logoBitmap = resource.toBitmap(
+                            Setting.MAX_IMG_CROP_HEIGHT_LOGO,
+                            Setting.MAX_IMG_CROP_HEIGHT_LOGO
+                        );
+
+                        copyVocation.UF_LOGO_IMAGE = toBase64(logoBitmap)
+                        Log.e("test", "base 64 ready")
+
+                        check {
+                            Handler().postDelayed({
+                                Realm.getDefaultInstance().executeTransaction {
+                                    it.insertOrUpdate(copyVocation);
+                                }
+                            }, 100)
+                            addCopyVocation(vocationRealm)
+                        }
+
+                        Log.e("test", "finla")
+                        true;
+                    };
+
+                    if (!vocationRealm.UF_DETAIL_IMAGE.isNullOrEmpty()) {
+                        Log.e("test", "start load")
+                        Glide.with(ctx)
+                            .load(vocationRealm.UF_DETAIL_IMAGE)
+                            .listener(object : RequestListener<Drawable> {
+                                override fun onLoadFailed(
+                                    e: GlideException?,
+                                    model: Any?,
+                                    target: Target<Drawable>?,
+                                    isFirstResource: Boolean
+                                ): Boolean {
+                                    //errorHandler.sendEmptyMessage(0)
+                                    return false
+                                }
+
+                                override fun onResourceReady(
+                                    resource: Drawable?,
+                                    model: Any?,
+                                    target: Target<Drawable>?,
+                                    dataSource: DataSource?,
+                                    isFirstResource: Boolean
+                                ): Boolean {
+                                    Log.e("test", "first lvl")
+                                    iv.setImageDrawable(resource)
+                                    check { successHandler.sendEmptyMessage(0) }
+                                    return false
+                                }
+                            })
+                            .submit()//into(ImageView(ctx))
+                    } else {
+                        it.insertOrUpdate(copyVocation)
+                        addCopyVocation(copyVocation)
+                    }
                 }
             }
         } catch (e: Exception) {
+            Log.e("test", e.localizedMessage ?: "copy error")
+        }
+    }
+
+    private fun addCopyVocation(copyVocation: VocationRealm) {
+        check {
+            ApiServiceImpl(this).addMyVocation(
+                setting.getCurrentLanguage().locale,
+                token = setting.token ?: "",
+                login = setting.email ?: "",
+                vocation = copyVocation.toBasicVersion()
+            )
+            ctx.startActivity<VocationEditActivity> {
+                putExtra("appId", (copyVocation.UF_APP_JOB_ID ?: 0))
+                putExtra("jobId", copyVocation.UF_JOBS_ID ?: 1)
+            }
+        }
+    }
+
+    private fun check(tag: String = "", action: () -> Unit) {
+        try {
+            action()
+        } catch (e: Exception) {
+            Log.e("test$tag", e.localizedMessage ?: tag)
         }
     }
 

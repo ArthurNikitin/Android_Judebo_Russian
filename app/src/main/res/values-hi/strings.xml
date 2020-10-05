@@ -1,6 +1,8 @@
 <resources>
 
 
+    <string name="name_app">Judebo</string>
+    <string name="toast_message">Toast message</string>
     <string name="settings_title_support_email">hi@judebo.com</string>
     <string name="add_job_link">https://hi.judebo.com/jobs/</string>
     <string name="user_registration_privacy_url">https://hi.judebo.com/login/privacy.php</string>
@@ -23,6 +25,13 @@
 
 
     <string name="search_title_search">खोज</string>
+    <string name="search_title_filter">फ़िल्टर</string>
+    <string name="search_all_types_of_jobs">सभी प्रकार के</string>
+    <string name="search_gross">कुल</string>
+    <string name="search_types_of_jobs">प्रकार</string>
+    <string name="search_languages">बोली</string>
+    <string name="search_tags">कौशल और टैग</string>
+    <string name="search_tags_search">खोज</string>
     <string name="button_share">शेयर</string>
     <string name="error_label">त्रुटि</string>
     <string name="error_no_internet">कोई इंटरनेट कनेक्शन नहीं!</string>
@@ -41,7 +50,7 @@
     <string name="settings_delete_account_request_delete">हटाएं</string>
     <string name="settings_delete_account_request_cancel">रद्द करना</string>
     <string name="settings_delete_account_message">आपका डेटा और खाता हटा दिया गया था।</string>
-    <string name="action_settings">Action</string>
+    <string name="action_settings">कार्य</string>
     <string name="request_logout_title">लॉग आउट</string>
     <string name="request_logout_message">क्या आपको यकीन है?</string>
     <string name="request_geolocation_title">जियोलोकेशन</string>
@@ -61,7 +70,7 @@
     <string name="user_jobs_list_error_please_update">कृपया अद्यतन करें!</string>
     <string name="user_registration_title">पंजीकरण</string>
     <string name="user_registration_confirm_password">पासवर्ड की पुष्टि कीजिये</string>
-    <string name="user_registration_activate_account">कृपया अपने खाते को सक्रिय करें। एक सक्रियण कोड वाला एक ईमेल मेल पर भेजा गया है।</string>
+    <string name="user_registration_activate_account">कृपया अपने खाते को सक्रिय करें। सक्रियण कोड वाला एक ईमेल मेल पर भेजा गया है।</string>
     <string name="user_registration_required_field">आवश्यक!</string>
     <string name="user_registration_privacy_title">एकांत</string>
     <string name="user_registration_agreement_title">समझौता</string>
@@ -90,10 +99,20 @@
     <string name="subsription_limit_50_description">सीमा 50 रिक्तियां है।</string>
     <string name="subsription_limit_200_title">बड़ा उद्यम</string>
     <string name="subsription_limit_200_description">सीमा 200 रिक्तियां है।</string>
+    <string name="subsription_period_01_month">महीना</string>
+    <string name="subsription_period_06_month">6 माह</string>
+    <string name="subsription_period_12_month">12 महीने</string>
     <string name="subsription_period_save_6month_at">6 महीने पर</string>
     <string name="subsription_period_save_12month_at">12 महीने पर</string>
     <string name="subsription_period_save_month">महीना</string>
     <string name="subsription_period_save_is">सहेजें</string>
+    <string name="subsription_restore_subs">अपने उपसमुच्चय को पुनर्स्थापित करें</string>
+    <string name="subsription_restore_subs_success">आपकी सदस्यता बहाल कर दी गई</string>
+    <string name="subsription_restore_subs_error">आपका सब कुछ बहाल नहीं किया गया था। त्रुटि।</string>
+    <string name="subscription_need_cancel_current_subs">कृपया वर्तमान सदस्यता रद्द करें!</string>
+    <string name="subscription_need_cancel_current_subs_ok">ठीक</string>
+    <string name="subscription_need_cancel_current_subs_cancel">रद्द करना</string>
+    <string name="subscription_buy_success">सफलता</string>
     <string name="edit_item_tags_search">खोज</string>
 
 

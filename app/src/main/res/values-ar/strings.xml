@@ -1,6 +1,8 @@
 <resources>
 
 
+    <string name="name_app">Judebo</string>
+    <string name="toast_message">Toast message</string>
     <string name="settings_title_support_email">ar@judebo.com</string>
     <string name="add_job_link">https://ar.judebo.com/jobs/</string>
     <string name="user_registration_privacy_url">https://ar.judebo.com/login/privacy.php</string>
@@ -18,11 +20,18 @@
 
     <string name="button_detail_title">التفاصيل</string>
 
-    <string name="add_job_title">يمكنك إضافة الوظائف الشاغرة عن طريق متصفح الويب</string>
+    <string name="add_job_title">يمكنك إضافة وظائف شاغرة عن طريق متصفح الويب</string>
 
 
 
     <string name="search_title_search">بحث</string>
+    <string name="search_title_filter">منقي</string>
+    <string name="search_all_types_of_jobs">كل الانواع</string>
+    <string name="search_gross">إجمالي</string>
+    <string name="search_types_of_jobs">نوع</string>
+    <string name="search_languages">اللغات</string>
+    <string name="search_tags">المهارات والعلامات</string>
+    <string name="search_tags_search">بحث</string>
     <string name="button_share">شارك</string>
     <string name="error_label">خطأ</string>
     <string name="error_no_internet">لا يوجد اتصال بالإنترنت!</string>
@@ -41,7 +50,7 @@
     <string name="settings_delete_account_request_delete">حذف</string>
     <string name="settings_delete_account_request_cancel">إلغاء</string>
     <string name="settings_delete_account_message">تم حذف بياناتك وحسابك.</string>
-    <string name="action_settings">Action</string>
+    <string name="action_settings">عمل</string>
     <string name="request_logout_title">تسجيل خروج</string>
     <string name="request_logout_message">هل أنت واثق؟</string>
     <string name="request_geolocation_title">تحديد الموقع الجغرافي</string>
@@ -58,7 +67,7 @@
     <string name="user_jobs_list_copy">نسخ</string>
     <string name="user_jobs_list_search">بحث</string>
     <string name="user_jobs_list_have_not_subsription">لا اشتراك</string>
-    <string name="user_jobs_list_error_please_update">يرجى تحديث!</string>
+    <string name="user_jobs_list_error_please_update">يرجى التحديث!</string>
     <string name="user_registration_title">التسجيل</string>
     <string name="user_registration_confirm_password">تأكيد كلمة المرور</string>
     <string name="user_registration_activate_account">يرجى تفعيل حسابك. تم إرسال بريد إلكتروني مع رمز التفعيل إلى البريد.</string>
@@ -73,7 +82,7 @@
     <string name="user_registration_activate_code_activate">تفعيل</string>
     <string name="user_registration_activate_code_wrong">رمز خاطئ</string>
     <string name="user_registration_activate_code_success">نجاح</string>
-    <string name="edit_item_title">عنوان وظيفي</string>
+    <string name="edit_item_title">المسمى الوظيفي</string>
     <string name="edit_item_company">شركة</string>
     <string name="edit_item_gross">إجمالي</string>
     <string name="edit_item_email">البريد الإلكتروني</string>
@@ -90,10 +99,20 @@
     <string name="subsription_limit_50_description">الحد الأقصى هو 50 وظيفة شاغرة.</string>
     <string name="subsription_limit_200_title">مشروع كبير</string>
     <string name="subsription_limit_200_description">الحد الأقصى هو 200 وظيفة شاغرة.</string>
+    <string name="subsription_period_01_month">شهر</string>
+    <string name="subsription_period_06_month">6 شهور</string>
+    <string name="subsription_period_12_month">12 شهرا</string>
     <string name="subsription_period_save_6month_at">6 شهر في</string>
-    <string name="subsription_period_save_12month_at">12 شهر في</string>
+    <string name="subsription_period_save_12month_at">12 شهرًا في</string>
     <string name="subsription_period_save_month">شهر</string>
     <string name="subsription_period_save_is">حفظ</string>
+    <string name="subsription_restore_subs">استعد الغواصات</string>
+    <string name="subsription_restore_subs_success">تمت استعادة الغواصات الخاصة بك</string>
+    <string name="subsription_restore_subs_error">لم تتم استعادة الغواصات الخاصة بك. خطأ.</string>
+    <string name="subscription_need_cancel_current_subs">الرجاء إلغاء الاشتراك الحالي!</string>
+    <string name="subscription_need_cancel_current_subs_ok">حسنا</string>
+    <string name="subscription_need_cancel_current_subs_cancel">إلغاء</string>
+    <string name="subscription_buy_success">نجاح</string>
     <string name="edit_item_tags_search">بحث</string>
 
 

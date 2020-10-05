@@ -1,6 +1,8 @@
 <resources>
 
 
+    <string name="name_app">Judebo</string>
+    <string name="toast_message">Toast message</string>
     <string name="settings_title_support_email">hr@judebo.com</string>
     <string name="add_job_link">https://hr.judebo.com/jobs/</string>
     <string name="user_registration_privacy_url">https://hr.judebo.com/login/privacy.php</string>
@@ -23,6 +25,13 @@
 
 
     <string name="search_title_search">traži</string>
+    <string name="search_title_filter">filtar</string>
+    <string name="search_all_types_of_jobs">Svi tipovi</string>
+    <string name="search_gross">Bruto</string>
+    <string name="search_types_of_jobs">Tip</string>
+    <string name="search_languages">Jezici</string>
+    <string name="search_tags">Vještine i oznake</string>
+    <string name="search_tags_search">traži</string>
     <string name="button_share">Udio</string>
     <string name="error_label">Pogreška</string>
     <string name="error_no_internet">Nema internetske veze!</string>
@@ -41,7 +50,7 @@
     <string name="settings_delete_account_request_delete">Izbrisati</string>
     <string name="settings_delete_account_request_cancel">Otkazati</string>
     <string name="settings_delete_account_message">Vaši podaci i račun su izbrisani.</string>
-    <string name="action_settings">Action</string>
+    <string name="action_settings">Akcijski</string>
     <string name="request_logout_title">Odjavite se</string>
     <string name="request_logout_message">Jesi li siguran?</string>
     <string name="request_geolocation_title">Geolokacija</string>
@@ -90,10 +99,20 @@
     <string name="subsription_limit_50_description">Ograničenje je 50 slobodnih mjesta.</string>
     <string name="subsription_limit_200_title">Veliko poduzeće</string>
     <string name="subsription_limit_200_description">Ograničenje je 200 slobodnih mjesta.</string>
+    <string name="subsription_period_01_month">mjesec</string>
+    <string name="subsription_period_06_month">6 mjeseci</string>
+    <string name="subsription_period_12_month">12 mjeseci</string>
     <string name="subsription_period_save_6month_at">6 mjeseci u</string>
     <string name="subsription_period_save_12month_at">12 mjeseci u</string>
     <string name="subsription_period_save_month">mjesec</string>
     <string name="subsription_period_save_is">Uštedjeti</string>
+    <string name="subsription_restore_subs">Zamijenite svoje pretplatnike</string>
+    <string name="subsription_restore_subs_success">Podmornice su vam vraćene</string>
+    <string name="subsription_restore_subs_error">Vaša pretplata nije vraćena. Pogreška.</string>
+    <string name="subscription_need_cancel_current_subs">Otkažite trenutnu pretplatu!</string>
+    <string name="subscription_need_cancel_current_subs_ok">U redu</string>
+    <string name="subscription_need_cancel_current_subs_cancel">Otkazati</string>
+    <string name="subscription_buy_success">Uspjeh</string>
     <string name="edit_item_tags_search">traži</string>
 
 

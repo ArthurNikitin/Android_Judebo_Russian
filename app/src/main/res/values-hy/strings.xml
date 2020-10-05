@@ -1,6 +1,8 @@
 <resources>
 
 
+    <string name="name_app">Judebo</string>
+    <string name="toast_message">Toast message</string>
     <string name="settings_title_support_email">hy@judebo.com</string>
     <string name="add_job_link">https://hy.judebo.com/jobs/</string>
     <string name="user_registration_privacy_url">https://hy.judebo.com/login/privacy.php</string>
@@ -23,6 +25,13 @@
 
 
     <string name="search_title_search">Որոնում</string>
+    <string name="search_title_filter">Filտել</string>
+    <string name="search_all_types_of_jobs">Բոլոր տեսակները</string>
+    <string name="search_gross">Համախառն</string>
+    <string name="search_types_of_jobs">Տիպ</string>
+    <string name="search_languages">Լեզուներ</string>
+    <string name="search_tags">Հմտություններ և պիտակներ</string>
+    <string name="search_tags_search">Որոնում</string>
     <string name="button_share">Կիսվել</string>
     <string name="error_label">Սխալ</string>
     <string name="error_no_internet">Ինտերնետ կապ չկա:</string>
@@ -41,7 +50,7 @@
     <string name="settings_delete_account_request_delete">Նջել</string>
     <string name="settings_delete_account_request_cancel">Չեղարկել</string>
     <string name="settings_delete_account_message">Ձեր տվյալները և հաշիվը ջնջվել են:</string>
-    <string name="action_settings">Action</string>
+    <string name="action_settings">Գործողություն</string>
     <string name="request_logout_title">Դուրս գալ</string>
     <string name="request_logout_message">Համոզված ես?</string>
     <string name="request_geolocation_title">Աշխարհագրական դիրքը</string>
@@ -90,10 +99,20 @@
     <string name="subsription_limit_50_description">Սահմանը 50 թափուր աշխատատեղ է:</string>
     <string name="subsription_limit_200_title">Խոշոր ձեռնարկություն</string>
     <string name="subsription_limit_200_description">Սահմանը 200 թափուր է:</string>
+    <string name="subsription_period_01_month">ամիս</string>
+    <string name="subsription_period_06_month">6 ամիս</string>
+    <string name="subsription_period_12_month">12 ամիս</string>
     <string name="subsription_period_save_6month_at">6 ամիս ժամը</string>
     <string name="subsription_period_save_12month_at">12 ամիս ժամը</string>
     <string name="subsription_period_save_month">ամիս</string>
     <string name="subsription_period_save_is">Խնայել</string>
+    <string name="subsription_restore_subs">Վերականգնեք ձեր բաժանորդները</string>
+    <string name="subsription_restore_subs_success">Ձեր ենթաբաժինները վերականգնվել են</string>
+    <string name="subsription_restore_subs_error">Ձեր ենթաբաժինները չեն վերականգնվել: Սխալ</string>
+    <string name="subscription_need_cancel_current_subs">Խնդրում ենք չեղարկել ընթացիկ բաժանորդագրությունը:</string>
+    <string name="subscription_need_cancel_current_subs_ok">Լավ</string>
+    <string name="subscription_need_cancel_current_subs_cancel">Չեղարկել</string>
+    <string name="subscription_buy_success">Հաջողություն</string>
     <string name="edit_item_tags_search">Որոնում</string>
 
 
