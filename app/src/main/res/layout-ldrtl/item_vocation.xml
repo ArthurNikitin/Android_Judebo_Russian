@@ -82,8 +82,8 @@
 
     <com.zerobranch.layout.SwipeLayout
         app:draggedItem="@id/container"
-        app:rightItem="@id/right1"
-        app:leftItem="@id/left1"
+        app:rightItem="@id/left1"
+        app:leftItem="@id/right1"
         app:isTogether="true"
         app:swipeDirection="left|right"
         android:id="@+id/side_swiper"
@@ -101,7 +101,7 @@
                 android:id="@+id/right_corners"
                 android:layout_width="10dp"
                 android:layout_height="match_parent"
-                android:src="@drawable/corners_right" />
+                android:src="@drawable/corners_left" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -158,7 +158,7 @@
                 android:id="@+id/left_corners"
                 android:layout_width="10dp"
                 android:layout_height="match_parent"
-                android:src="@drawable/corners_left" />
+                android:src="@drawable/corners_right" />
 
         </LinearLayout>
 

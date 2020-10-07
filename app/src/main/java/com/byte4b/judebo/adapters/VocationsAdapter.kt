@@ -174,8 +174,13 @@ class VocationsAdapter(
                         holder.disableLabel.setTypeface(null, Typeface.BOLD)
                     }
 
-                    holder.leftCorners.setImageResource(R.drawable.corners_left_red)
-                    holder.rightCorners.setImageResource(R.drawable.corners_right_red)
+                    if (isRtl(ctx)) {
+                        holder.leftCorners.setImageResource(R.drawable.corners_right_red)
+                        holder.rightCorners.setImageResource(R.drawable.corners_left_red)
+                    } else {
+                        holder.leftCorners.setImageResource(R.drawable.corners_left_red)
+                        holder.rightCorners.setImageResource(R.drawable.corners_right_red)
+                    }
                     holder.main.setBackgroundResource(R.color.jobs_list_not_active_background)
                     holder.errorView.visibility = View.VISIBLE
 
