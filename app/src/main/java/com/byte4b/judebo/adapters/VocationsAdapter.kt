@@ -64,8 +64,10 @@ class VocationsAdapter(
 
     override fun getItemCount() = vocations.size
 
+    private val isRtlConfig by lazy { setting.isLocaleSettingRtl }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        Holder(LayoutInflater.from(ctx).inflate(R.layout.item_vocation, parent, false))
+        Holder(LayoutInflater.from(ctx).inflate(if (!isRtlConfig) R.layout.item_vocation else R.layout.item_vocation_rtl, parent, false))
 
     @SuppressLint("SetTextI18n", "SimpleDateFormat")
     override fun onBindViewHolder(holder: Holder, position: Int) {
@@ -74,7 +76,6 @@ class VocationsAdapter(
                 holder.copyLeft.setImageResource(R.drawable.button_copy_deny)
                 holder.copyRight.setImageResource(R.drawable.button_copy_deny)
             }
-
 
             with(vocations[position]) {
 

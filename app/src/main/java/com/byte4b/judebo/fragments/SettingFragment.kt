@@ -8,8 +8,10 @@ import android.location.Location
 import android.location.LocationManager
 import android.net.Uri
 import android.os.Bundle
+import android.util.LayoutDirection
 import android.view.View
 import androidx.appcompat.app.AlertDialog
+import androidx.core.text.layoutDirection
 import androidx.fragment.app.Fragment
 import com.android.billingclient.api.BillingClient
 import com.byte4b.judebo.*
@@ -325,6 +327,7 @@ class SettingFragment : Fragment(R.layout.fragment_setting), ServiceListener {
 
     private fun setLocale(languageCode: String) {
         val locale = Locale(languageCode)
+        setting.isLocaleSettingRtl = locale.layoutDirection == LayoutDirection.RTL
         requireActivity().baseContext.resources.apply {
             Locale.setDefault(locale)
             val config = configuration

@@ -128,6 +128,10 @@ class Setting(ctx: Context) {
         get() = pref.getBoolean("to_login", false)
         set(value) = pref.edit { putBoolean("to_login", value) }
 
+    var isLocaleSettingRtl
+    get() = pref.getBoolean("isLocaleSettingRtl", false)
+    set(value) = pref.edit { putBoolean("isLocaleSettingRtl", value) }
+
     companion object {
         //Cron in app
         //and

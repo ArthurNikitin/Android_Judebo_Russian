@@ -3,6 +3,7 @@
     android:layout_height="110dp"
     android:layout_width="match_parent"
     android:background="#999"
+    android:layoutDirection="rtl"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
