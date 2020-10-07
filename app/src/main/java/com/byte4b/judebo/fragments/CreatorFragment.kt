@@ -49,6 +49,18 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
     private fun vocationsFromRealm() =
         realm.where<VocationRealm>().findAll()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        val locale = Locale(setting.getCurrentLanguage().locale)
+        requireActivity().baseContext.resources.apply {
+            Locale.setDefault(locale)
+            val config = configuration
+            config.setLocale(locale)
+            config.setLayoutDirection(locale)
+            updateConfiguration(config, displayMetrics)
+        }
+        super.onCreate(savedInstanceState)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

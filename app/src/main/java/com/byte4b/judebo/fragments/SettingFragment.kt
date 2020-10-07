@@ -330,7 +330,6 @@ class SettingFragment : Fragment(R.layout.fragment_setting), ServiceListener {
             val config = configuration
             config.setLocale(locale)
             config.setLayoutDirection(locale)
-            //requireActivity().application.createConfigurationContext(config)
             updateConfiguration(config, displayMetrics)
         }
     }

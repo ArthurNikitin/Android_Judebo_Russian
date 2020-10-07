@@ -42,6 +42,7 @@ import com.google.maps.android.clustering.ClusterManager
 import io.realm.Realm
 import kotlinx.android.synthetic.main.fragment_maps.*
 import kotlinx.android.synthetic.main.preview.view.*
+import java.util.*
 import kotlin.math.pow
 
 
@@ -59,6 +60,18 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
     private var renderer: OwnIconRendered? = null
     private var isFromSetting = false
     private var isMustBeSetLocation = false
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        val locale = Locale(setting.getCurrentLanguage().locale)
+        requireActivity().baseContext.resources.apply {
+            Locale.setDefault(locale)
+            val config = configuration
+            config.setLocale(locale)
+            config.setLayoutDirection(locale)
+            updateConfiguration(config, displayMetrics)
+        }
+        super.onCreate(savedInstanceState)
+    }
 
     private fun addMyLocationTarget() {
         if (map != null) {
