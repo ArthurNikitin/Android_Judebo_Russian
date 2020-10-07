@@ -30,7 +30,6 @@ import com.byte4b.judebo.models.currencies
 import com.byte4b.judebo.services.ApiServiceImpl
 import com.byte4b.judebo.utils.Setting
 import com.byte4b.judebo.view.ServiceListener
-import com.daimajia.swipe.SwipeLayout
 import io.realm.Realm
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.item_vocation.view.*
@@ -86,7 +85,7 @@ class VocationsAdapter(
                 holder.del2.setOnClickListener { deleteVocation(this) }
 
                 holder.main.setOnClickListener {
-                    if (holder.swiper.openStatus == SwipeLayout.Status.Close) {
+                    if (holder.swiper.isClosed) {
                         ctx.startActivity<VocationEditActivity> {
                             putExtra("appId", UF_APP_JOB_ID?.toLongOrNull())
                             putExtra("jobId", UF_JOBS_ID)
@@ -103,37 +102,20 @@ class VocationsAdapter(
                 }
 
                 with(holder.swiper) {
-                    isLeftSwipeEnabled = true
-                    isRightSwipeEnabled = true
                     close(false)
-                    addSwipeListener(object : SwipeLayout.SwipeListener {
-                        override fun onOpen(layout: SwipeLayout?) {
+                    setOnTouchListener { view, motionEvent ->
+                        if (lastSwipedPosition != position && lastSwipedPosition != -1)
+                            notifyItemChanged(lastSwipedPosition)
+                        false
+                    }
+                    setOnActionsListener(object : com.zerobranch.layout.SwipeLayout.SwipeActionsListener {
+                        override fun onOpen(direction: Int, isContinuous: Boolean) {
                             lastSwipedPosition = position
                         }
 
-                        override fun onUpdate(
-                            layout: SwipeLayout?,
-                            leftOffset: Int,
-                            topOffset: Int
-                        ) {}
+                        override fun onClose() {}
 
-                        override fun onStartOpen(layout: SwipeLayout?) {
-                            if (lastSwipedPosition != position)
-                                notifyItemChanged(lastSwipedPosition)
-                        }
-
-                        override fun onStartClose(layout: SwipeLayout?) {}
-                        override fun onHandRelease(
-                            layout: SwipeLayout?,
-                            xvel: Float,
-                            yvel: Float
-                        ) {}
-
-                        override fun onClose(layout: SwipeLayout?) {}
                     })
-
-                    addDrag(SwipeLayout.DragEdge.Left, holder.left)
-                    addDrag(SwipeLayout.DragEdge.Right, holder.right)
                 }
 
                 try {

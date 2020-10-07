@@ -80,12 +80,15 @@
             app:srcCompat="@drawable/button_delete" />
     </LinearLayout>
 
-    <com.daimajia.swipe.SwipeLayout
+    <com.zerobranch.layout.SwipeLayout
+        app:draggedItem="@id/container"
+        app:rightItem="@id/right1"
+        app:leftItem="@id/left1"
+        app:isTogether="true"
+        app:swipeDirection="left|right"
         android:id="@+id/side_swiper"
         android:layout_width="match_parent"
-        android:layout_height="110dp"
-        app:leftEdgeSwipeOffset="0dp"
-        app:rightEdgeSwipeOffset="0dp">
+        android:layout_height="110dp">
 
         <LinearLayout
             android:id="@+id/right1"
@@ -312,7 +315,7 @@
 
         </LinearLayout>
 
-    </com.daimajia.swipe.SwipeLayout>
+    </com.zerobranch.layout.SwipeLayout>
 
     <View
         android:layout_alignParentBottom="true"
