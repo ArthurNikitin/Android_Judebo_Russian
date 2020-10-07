@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="110dp"
+    android:layout_width="match_parent"
+    android:background="#999"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_margin="8dp"
+        android:layout_centerVertical="true"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"
+            android:id="@+id/delete12"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            app:srcCompat="@drawable/button_delete" />
+
+        <View
+            android:layout_marginRight="8dp"
+            android:backgroundTint="@color/toolbar_background_color"
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:background="?android:attr/listDivider" />
+
+        <ImageView
+            android:id="@+id/copy12"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            app:srcCompat="@drawable/button_copy" />
+
+        <View
+            android:layout_marginLeft="8dp"
+            android:backgroundTint="@color/toolbar_background_color"
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:background="?android:attr/listDivider" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <View
+            android:layout_marginRight="8dp"
+            android:backgroundTint="@color/toolbar_background_color"
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:background="?android:attr/listDivider" />
+
+        <ImageView
+            android:id="@+id/copy22"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            app:srcCompat="@drawable/button_copy" />
+
+        <View
+            android:layout_marginLeft="8dp"
+            android:backgroundTint="@color/toolbar_background_color"
+            android:id="@+id/divider2"
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:background="?android:attr/listDivider" />
+
+        <ImageView
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"
+            android:id="@+id/delete22"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            app:srcCompat="@drawable/button_delete" />
+    </LinearLayout>
+
+    <com.zerobranch.layout.SwipeLayout
+        app:draggedItem="@id/container"
+        app:rightItem="@id/right1"
+        app:leftItem="@id/left1"
+        app:isTogether="true"
+        app:swipeDirection="left|right"
+        android:id="@+id/side_swiper"
+        android:layout_width="match_parent"
+        android:layout_height="110dp">
+
+        <LinearLayout
+            android:id="@+id/right1"
+            android:layout_width="166dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <ImageView
+                android:id="@+id/right_corners"
+                android:layout_width="10dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/corners_right" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/copy2"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:alpha="0.0"
+                android:background="@color/colorPrimaryDark"
+                app:srcCompat="@drawable/button_copy" />
+
+            <ImageView
+                android:id="@+id/delete2"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:alpha="0.0"
+                android:background="@color/colorPrimary"
+                app:srcCompat="@drawable/button_delete" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/left1"
+            android:layout_width="166dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <ImageView
+                android:id="@+id/delete1"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:alpha="0.0"
+                android:background="@color/colorPrimary"
+                app:srcCompat="@drawable/button_delete" />
+
+            <ImageView
+                android:id="@+id/copy1"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:alpha="0.0"
+                android:background="@drawable/corners_left"
+                app:srcCompat="@drawable/button_copy" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/left_corners"
+                android:layout_width="10dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/corners_left" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
+            android:padding="5dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:gravity="right"
+                        android:id="@+id/name_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:singleLine="true"
+                        android:text="ОртопедОртопедОртопед Ортопед Ортопед ОртопедОртопедОртопедОртопедОртопедОртопедОртопед"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/icon_iv"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:padding="8dp"
+                            app:srcCompat="@drawable/map_default_marker" />
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_margin="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="90"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:gravity="right"
+                                    android:id="@+id/salary_tv"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="10000 RUB" />
+
+                                <TextView
+                                    android:gravity="right"
+                                    android:id="@+id/company_tv"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="company" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="50"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/error_tv"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="left"
+                                    android:text="@string/user_jobs_list_error_please_update"
+                                    android:textColor="@android:color/holo_red_dark"
+                                    android:visibility="visible" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="left"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="12dp"
+                                        android:layout_height="match_parent"
+                                        android:adjustViewBounds="true"
+                                        android:src="@drawable/jobs_list_date_update" />
+
+                                    <TextView
+                                        android:id="@+id/edit_tv"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="right"
+                                        android:text="15 авг - " />
+
+                                    <ImageView
+                                        android:layout_width="12dp"
+                                        android:layout_height="match_parent"
+                                        android:adjustViewBounds="true"
+                                        android:src="@drawable/jobs_list_date_disable" />
+
+                                    <TextView
+                                        android:id="@+id/disable_tv"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="right"
+                                        android:text="15 авг" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="left"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/id_tv"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="5dp"
+                                        android:gravity="left"
+                                        android:text="#345" />
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/notActive_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="25dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:visibility="gone"
+                    android:layout_marginBottom="15dp"
+                    app:srcCompat="@drawable/jobs_list_not_active_item" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </com.zerobranch.layout.SwipeLayout>
+
+    <View
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider" />
+
+</RelativeLayout>
