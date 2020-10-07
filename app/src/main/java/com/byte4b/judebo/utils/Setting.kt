@@ -209,7 +209,7 @@ class Setting(ctx: Context) {
         const val TAGS_POPULARITY_MINIMUM = 2
 
         // disable adv after show
-        const val JSON_REQUEST_ADV_PERIOD_IN_SECONDS = 18_000
+        const val JSON_REQUEST_ADV_PERIOD_IN_SECONDS = 57_0
         const val ADV_DEFAULT_SHOW_ADV_IN_SECONDS = 7
         //setting for Google advertising type
         // = "banner"
