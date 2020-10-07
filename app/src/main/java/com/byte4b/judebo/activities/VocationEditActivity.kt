@@ -496,7 +496,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
             scroll.post { scroll.smoothScrollTo(0, email_tv.bottom) }
         } else if (details_tv.data?.trim().isNullOrEmpty()) {
             details_tv.requestFocus()
-            scroll.post { scroll.smoothScrollTo(0, details_tv.bottom) }
+            scroll.post { scroll.fullScroll(View.FOCUS_DOWN) }
         } else if (email_tv.data?.contains("@") == false
             && email_tv.data?.contains(".") == false
             && email_tv.data?.trim()?.isEmpty() == false) {
