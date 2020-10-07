@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:paddingRight="40dp">
+            android:paddingLeft="40dp">
 
             <ImageView
                 android:id="@+id/icon_iv"
@@ -53,8 +53,8 @@
             android:paddingLeft="5dp"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
+            android:layout_toRightOf="@id/save1"
             android:layout_centerVertical="true"
-            android:layout_toLeftOf="@id/save1"
             android:adjustViewBounds="true"
             android:onClick="deleteClick"
             app:srcCompat="@drawable/button_delete" />
