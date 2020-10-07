@@ -10,7 +10,9 @@ import android.os.Bundle
 import android.os.Handler
 import android.provider.Settings
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -61,6 +63,14 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
     private var isFromSetting = false
     private var isMustBeSetLocation = false
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(if (!setting.isLocaleSettingRtl) R.layout.fragment_maps else R.layout.fragment_maps_rtl, container, false)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         val locale = Locale(setting.getCurrentLanguage().locale)
         requireActivity().baseContext.resources.apply {
@@ -78,12 +88,16 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
             val location = ctx.getLocation()
             if (location != null) {
                 val me = LatLng(location.latitude, location.longitude)
-                map?.addMarker(MarkerOptions().position(me)
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.me)))
+                map?.addMarker(
+                    MarkerOptions().position(me)
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.me))
+                )
             } else {
                 val me = LatLng(Setting.DEFAULT_LATITUDE, Setting.DEFAULT_LONGITUDE)
-                map?.addMarker(MarkerOptions().position(me)
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.me)))
+                map?.addMarker(
+                    MarkerOptions().position(me)
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.me))
+                )
             }
         }
     }
@@ -161,15 +175,18 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
         googleMap.setOnMapClickListener { clusterPreview_cv.visibility = View.GONE }
         googleMap.setOnCameraMoveStartedListener { clusterPreview_cv.visibility = View.GONE }
 
-        clusterManager?.markerCollection?.setInfoWindowAdapter(object : GoogleMap.InfoWindowAdapter {
+        clusterManager?.markerCollection?.setInfoWindowAdapter(object :
+            GoogleMap.InfoWindowAdapter {
             override fun getInfoContents(marker: Marker) = getPreview(marker)
             override fun getInfoWindow(marker: Marker) = getPreview(marker)
         })
 
         if (setting.lastMapCameraPosition.latitude != 0.0) {
-            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
-                setting.lastMapCameraPosition, Setting.BASIC_ZOOM
-            ))
+            googleMap.moveCamera(
+                CameraUpdateFactory.newLatLngZoom(
+                    setting.lastMapCameraPosition, Setting.BASIC_ZOOM
+                )
+            )
         }
 
         addMyLocationTarget()
@@ -185,17 +202,27 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
                         > Setting.SEARCH_REQUEST_MIN_MOVE_DELTA.pow(2.0)) {
 
                     val polygon = PolygonOptions().add(
-                    LatLng(position.latitude + Setting.MAX_SEARCH_LATITUDE_SIZE,
-                        position.longitude + Setting.MAX_SEARCH_LONGITUDE_SIZE),
-                    LatLng(position.latitude - Setting.MAX_SEARCH_LATITUDE_SIZE,
-                        position.longitude + Setting.MAX_SEARCH_LONGITUDE_SIZE),
-                    LatLng(position.latitude - Setting.MAX_SEARCH_LATITUDE_SIZE,
-                        position.longitude - Setting.MAX_SEARCH_LONGITUDE_SIZE),
-                    LatLng(position.latitude + Setting.MAX_SEARCH_LATITUDE_SIZE,
-                        position.longitude - Setting.MAX_SEARCH_LONGITUDE_SIZE),
-                    LatLng(position.latitude + Setting.MAX_SEARCH_LATITUDE_SIZE,
-                        position.longitude + Setting.MAX_SEARCH_LONGITUDE_SIZE)
-                ).strokeColor(ctx.resources.getColor(R.color.search_polygon_square))
+                        LatLng(
+                            position.latitude + Setting.MAX_SEARCH_LATITUDE_SIZE,
+                            position.longitude + Setting.MAX_SEARCH_LONGITUDE_SIZE
+                        ),
+                        LatLng(
+                            position.latitude - Setting.MAX_SEARCH_LATITUDE_SIZE,
+                            position.longitude + Setting.MAX_SEARCH_LONGITUDE_SIZE
+                        ),
+                        LatLng(
+                            position.latitude - Setting.MAX_SEARCH_LATITUDE_SIZE,
+                            position.longitude - Setting.MAX_SEARCH_LONGITUDE_SIZE
+                        ),
+                        LatLng(
+                            position.latitude + Setting.MAX_SEARCH_LATITUDE_SIZE,
+                            position.longitude - Setting.MAX_SEARCH_LONGITUDE_SIZE
+                        ),
+                        LatLng(
+                            position.latitude + Setting.MAX_SEARCH_LATITUDE_SIZE,
+                            position.longitude + Setting.MAX_SEARCH_LONGITUDE_SIZE
+                        )
+                    ).strokeColor(ctx.resources.getColor(R.color.search_polygon_square))
                 googleMap.clear()
                 addMyLocationTarget()
                 googleMap.addPolygon(polygon)
@@ -275,7 +302,9 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
 
                     val currency2 = setting.getCurrentCurrency()
                     val convertedSalary =
-                        (data.UF_GROSS_PER_MONTH.toDouble() * currency2.getLastRate(realm) / (currency?.getLastRate(realm) ?: 1))
+                        (data.UF_GROSS_PER_MONTH.toDouble() * currency2.getLastRate(realm) / (currency?.getLastRate(
+                            realm
+                        ) ?: 1))
                             .toString().round().trim()
                     view.secondSalary_tv.text = "≈${convertedSalary}"
                     view.secondContainer.visibility =
@@ -297,10 +326,12 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
             try {
                 view.langs_rv.layoutManager = //layoutManager
                     LinearLayoutManager(ctx, LinearLayoutManager.HORIZONTAL, isRtl)
-                view.langs_rv.adapter = LanguagesAdapter(ctx, data.UF_LANGUAGE_ID_ALL.split(",").map {
-                    languages.first { lang -> lang.id == it.toInt() }
-                })
-            } catch (e:Exception) {}
+                view.langs_rv.adapter = LanguagesAdapter(
+                    ctx,
+                    data.UF_LANGUAGE_ID_ALL.split(",").map {
+                        languages.first { lang -> lang.id == it.toInt() }
+                    })
+            } catch (e: Exception) {}
             view.place_tv.text = data.COMPANY
 
 
@@ -340,8 +371,10 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        askPermission(Manifest.permission.ACCESS_COARSE_LOCATION,
-                        Manifest.permission.ACCESS_FINE_LOCATION) {
+        askPermission(
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION
+        ) {
             val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
             mapFragment?.getMapAsync(callback)
 
