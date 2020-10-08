@@ -27,6 +27,7 @@ class App : Application(), ServiceListener {
 
     private val setting by lazy { Setting(this) }
     private val realm by lazy { Realm.getDefaultInstance() }
+    val cycle by lazy { AppLyfeCycle() }
 
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
@@ -35,6 +36,8 @@ class App : Application(), ServiceListener {
 
     override fun onCreate() {
         super.onCreate()
+
+        registerActivityLifecycleCallbacks(cycle)
 
         try {
             Realm.init(this)
@@ -83,45 +86,49 @@ class App : Application(), ServiceListener {
         }.start()
     }
 
+
+
     override fun onAdLoaded(result: CustomAd?) {
-        if (result != null && !result.isEmpty) {
-            setting.lastAdShowTimeStamp = Calendar.getInstance().timestamp
-            if (result.isPhoto)
-                startActivity<AdPhotoActivity> {
-                    addFlags(FLAG_ACTIVITY_NEW_TASK)
-                    putExtra("ad", Gson().toJson(result))
-                }
-            else if (result.isVideo)
-                startActivity<AdVideoActivity> {
-                    addFlags(FLAG_ACTIVITY_NEW_TASK)
-                    putExtra("ad", Gson().toJson(result))
-                }
-
-        } else if (setting.maxVocations == Setting.LIMIT_VACANCIES_WITHOUT_SUBSCRIPTION) {
-            if (Setting.ADV_GOOGLE_ADV_ADMOB_TYPE == "fullscreen") {
-                InterstitialAd(this).apply {
-                    adUnitId = "ca-app-pub-5400099956888878/3325823769"
-                    adListener = object : AdListener() {
-                        override fun onAdLoaded() {
-                            super.onAdLoaded()
-                            setting.lastAdShowTimeStamp = Calendar.getInstance().timestamp
-                            show()
-                        }
-
-                        override fun onAdFailedToLoad(p0: Int) {
-                            super.onAdFailedToLoad(p0)
-                            setting.isLastTryShowAdHaveError = false
-                        }
+        if (cycle.isResumed) {
+            if (result != null && !result.isEmpty) {
+                setting.lastAdShowTimeStamp = Calendar.getInstance().timestamp
+                if (result.isPhoto)
+                    startActivity<AdPhotoActivity> {
+                        addFlags(FLAG_ACTIVITY_NEW_TASK)
+                        putExtra("ad", Gson().toJson(result))
                     }
-                    loadAd(AdRequest.Builder().build())
+                else if (result.isVideo)
+                    startActivity<AdVideoActivity> {
+                        addFlags(FLAG_ACTIVITY_NEW_TASK)
+                        putExtra("ad", Gson().toJson(result))
+                    }
+
+            } else if (setting.maxVocations == Setting.LIMIT_VACANCIES_WITHOUT_SUBSCRIPTION) {
+                if (Setting.ADV_GOOGLE_ADV_ADMOB_TYPE == "fullscreen") {
+                    InterstitialAd(this).apply {
+                        adUnitId = "ca-app-pub-5400099956888878/3325823769"
+                        adListener = object : AdListener() {
+                            override fun onAdLoaded() {
+                                super.onAdLoaded()
+                                setting.lastAdShowTimeStamp = Calendar.getInstance().timestamp
+                                show()
+                            }
+
+                            override fun onAdFailedToLoad(p0: Int) {
+                                super.onAdFailedToLoad(p0)
+                                setting.isLastTryShowAdHaveError = false
+                            }
+                        }
+                        loadAd(AdRequest.Builder().build())
+                    }
+                } else if (Setting.ADV_GOOGLE_ADV_ADMOB_TYPE == "banner") {
+                    startActivity<AdBannerActivity> {
+                        addFlags(FLAG_ACTIVITY_NEW_TASK)
+                    }
                 }
-            } else if (Setting.ADV_GOOGLE_ADV_ADMOB_TYPE == "banner") {
-                startActivity<AdBannerActivity> {
-                    addFlags(FLAG_ACTIVITY_NEW_TASK)
-                }
+            } else {
+                setting.isLastTryShowAdHaveError = true
             }
-        } else {
-            setting.isLastTryShowAdHaveError = true
         }
     }
 
