@@ -112,15 +112,16 @@ class OwnIconRendered(
                 if (item.marker.UF_LOGO_IMAGE.isNullOrEmpty()) 1f
                 else 1f - (((iconHeight as Int) / 2f) / containerHeight as Int)
 
-            if (item.marker.UF_GROSS_PER_MONTH.isEmpty()
-                || item.marker.UF_GROSS_PER_MONTH == "0"
-            ) {
+//            if (item.marker.UF_GROSS_PER_MONTH.isEmpty()
+//                || item.marker.UF_GROSS_PER_MONTH == "0"
+//            ) {
+//                Log.e("test", "true: ${item.marker.UF_JOBS_ID}")
+//                marker.anchor(iconCenterHorizontal, iconCenterVertical)
+//                marker.infoWindowAnchor(000.5f, .5f)
+//            } else {
                 marker.anchor(iconCenterHorizontal, iconCenterVertical)
-                marker.infoWindowAnchor(000.5f, .5f)
-            } else {
-                marker.anchor(iconCenterHorizontal, iconCenterVertical)
-                marker.infoWindowAnchor(000.1f, .5f)
-            }
+                marker.infoWindowAnchor(iconCenterHorizontal, .5f)
+            //}
             marker.icon(BitmapDescriptorFactory.fromBitmap(icon as Bitmap))
         } catch (e: Exception) {}
         super.onBeforeClusterItemRendered(item, marker)
@@ -274,15 +275,16 @@ class OwnIconRendered(
                 if (item.marker.UF_LOGO_IMAGE.isNullOrEmpty()) 1f
                 else 1f - (((iconHeight as Int) / 2f) / containerHeight as Int)
 
-            if (item.marker.UF_GROSS_PER_MONTH.isEmpty()
-                || item.marker.UF_GROSS_PER_MONTH == "0"
-            ) {
+//            if (item.marker.UF_GROSS_PER_MONTH.isEmpty()
+//                || item.marker.UF_GROSS_PER_MONTH == "0"
+//            ) {
+//                Log.e("test", "true: ${item.marker.UF_JOBS_ID}")
+//                marker.setAnchor(iconCenterHorizontal, iconCenterVertical)
+//                marker.setInfoWindowAnchor(000.5f, .5f)
+//            } else {
                 marker.setAnchor(iconCenterHorizontal, iconCenterVertical)
-                marker.setInfoWindowAnchor(000.5f, .5f)
-            } else {
-                marker.setAnchor(iconCenterHorizontal, iconCenterVertical)
-                marker.setInfoWindowAnchor(000.1f, .5f)
-            }
+                marker.setInfoWindowAnchor(iconCenterHorizontal, .5f)
+//            }
             marker.setIcon(BitmapDescriptorFactory.fromBitmap(icon as Bitmap))
         } catch (e: Exception) {}
         super.onClusterItemUpdated(item, marker)

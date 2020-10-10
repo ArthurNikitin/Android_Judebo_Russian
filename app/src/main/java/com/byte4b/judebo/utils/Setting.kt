@@ -214,7 +214,7 @@ class Setting(ctx: Context) {
 
         // disable adv after show
         const val JSON_REQUEST_ADV_PERIOD_IN_SECONDS = 10_800
-        const val ADV_DEFAULT_SHOW_ADV_IN_SECONDS = 2
+        const val ADV_DEFAULT_SHOW_ADV_IN_SECONDS = 5
         //setting for Google advertising type
         // = "banner"
         // = "fullscreen"

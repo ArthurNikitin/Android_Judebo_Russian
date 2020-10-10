@@ -14,7 +14,7 @@ data class MyMarker(
     val UF_GOLD_GROSS_MONTH: String,
     val UF_GOLD_PER_MONTH: String,
     val UF_GROSS_CURRENCY_ID: Int,
-    val UF_GROSS_PER_MONTH: String,
+    val UF_GROSS_PER_MONTH: String = "0",
     val UF_JOBS_ID: Int,
     val UF_LANGUAGE_ID_ALL: String,
     val UF_TYPE_OF_JOB_NAME: String? = null,
