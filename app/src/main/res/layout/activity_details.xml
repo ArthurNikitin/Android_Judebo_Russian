@@ -299,9 +299,9 @@
 
                 <ImageView
                     android:id="@+id/textView11"
-                    android:layout_width="220dp"
+                    android:layout_width="wrap_content"
                     android:adjustViewBounds="true"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:onClick="fbclick"
                     app:srcCompat="@drawable/facebook_share_big" />
 
