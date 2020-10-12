@@ -61,8 +61,13 @@ class SettingFragment : Fragment(R.layout.fragment_setting), ServiceListener {
             val lang = setting.getCurrentLanguage()
                 lang_tv.text = lang.title
                 langIcon_iv.setImageResource(lang.flag)
-        } catch (e: Exception) {
-        }
+        } catch (e: Exception) {}
+
+        blockedMe_tv.text =
+            if (setting.subscribeInfo?.SUBSCRIPTION_STORE_ID == Setting.DEFAULT_SUBSCRIPTION_ID_HOLDEN_ACCOUNT)
+                requireContext().getString(R.string.user_hold_account_unhold)
+            else
+                requireContext().getString(R.string.user_hold_account_hold)
 
         try {
             if (BuildConfig.DEBUG) {
@@ -187,6 +192,8 @@ class SettingFragment : Fragment(R.layout.fragment_setting), ServiceListener {
         }
         subsClickable.setOnClickListener { requireContext().startActivity<SubscribesActivity>() }
 
+        blockedMe_tv.setOnClickListener { blockMe() }
+
         if (setting.toLogin) {
             ApiServiceImpl(this).checkMySub(
                 setting.getCurrentLanguage().locale,
@@ -195,6 +202,61 @@ class SettingFragment : Fragment(R.layout.fragment_setting), ServiceListener {
             )
             setting.toLogin = false
         }
+    }
+
+    private fun blockMe() {
+        if (setting.subscribeInfo?.SUBSCRIPTION_STORE_ID != Setting.DEFAULT_SUBSCRIPTION_ID_HOLDEN_ACCOUNT) {
+            AlertDialog.Builder(requireContext())
+                .setTitle(R.string.user_hold_account_hold_request_title)
+                .setMessage(R.string.user_hold_account_hold_request_text)
+                .setPositiveButton(R.string.user_hold_account_hold_request_yes) { dialog, _ ->
+
+                    //todo:
+
+                    val sub = realm.where<SubscriptionRealm>()
+                        .equalTo("ID", Setting.DEFAULT_SUBSCRIPTION_ID_HOLDEN_ACCOUNT.toInt())
+                        .findFirst() ?: return@setPositiveButton
+
+
+                    ApiServiceImpl(this).setSubs(
+                        setting.getCurrentLanguage().locale,
+                        setting.token ?: "",
+                        setting.email ?: "",
+                        subsId = Setting.DEFAULT_SUBSCRIPTION_ID_HOLDEN_ACCOUNT,
+                        subsEnd = (Calendar.getInstance().timestamp + sub.UF_DURATION).toString(),
+                        storeToken = "efwefwfwef"
+                    )
+
+                    //send new sub
+                    //save new sub local
+
+                    (requireContext() as MainActivity).restartFragment(SettingFragment())
+                }
+                .setNegativeButton(R.string.user_hold_account_hold_request_cancel) { dialog, _ ->
+                    dialog.cancel()
+                }
+                .show()
+        } else {
+            AlertDialog.Builder(requireContext())
+                .setTitle(R.string.user_hold_account_unhold_request_title)
+                .setMessage(R.string.user_hold_account_unhold_request_text)
+                .setPositiveButton(R.string.user_hold_account_unhold_request_yes) { dialog, _ ->
+
+                    //todo:
+                    //send new sub
+                    //save new sub local
+
+                    (requireContext() as MainActivity).restartFragment(SettingFragment())
+                }
+                .setNegativeButton(R.string.user_hold_account_unhold_request_cancel) { dialog, _ ->
+                    dialog.cancel()
+                }
+                .show()
+        }
+    }
+
+    override fun onSubsInstalled(result: AuthResult?) {
+        //todo
     }
 
     private val billingClient by lazy {
@@ -208,6 +270,7 @@ class SettingFragment : Fragment(R.layout.fragment_setting), ServiceListener {
         billingClient.queryPurchases(BillingClient.SkuType.SUBS).purchasesList
 
     override fun onMySubLoaded(result: SubAnswer?) {
+        //todo
         setting.toLogin = false
         if (result?.STATUS == "success") {
             if (result.SUBSCRIPTION_STORE_ID?.startsWith("playmarket") == true) {

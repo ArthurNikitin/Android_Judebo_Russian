@@ -12,24 +12,26 @@
         android:orientation="vertical">
 
         <TextView
+            android:gravity="center"
             android:textSize="18sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="@string/user_hold_account_holden_account_title" />
 
         <TextView
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="@string/user_hold_account_holden_account_text" />
     </LinearLayout>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/toSettingButton"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_margin="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="@string/user_hold_account_holden_account_ok" />
 
 </RelativeLayout>

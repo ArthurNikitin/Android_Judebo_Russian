@@ -80,7 +80,14 @@ class MainActivity : AppCompatActivity(), ServiceListener {
                     supportFragmentManager
                         .beginTransaction()
                         .replace(R.id.frame,
-                            if (setting.isAuth) CreatorFragment() else LoginFragment()
+                            when {
+                                setting.subscribeInfo?.SUBSCRIPTION_STORE_ID == Setting.DEFAULT_SUBSCRIPTION_ID_HOLDEN_ACCOUNT ->
+                                        BlockedAccountStub()
+                                setting.isAuth ->
+                                    CreatorFragment()
+                                else ->
+                                    LoginFragment()
+                            }
                         )
                         .commit()
                     true
@@ -119,6 +126,7 @@ class MainActivity : AppCompatActivity(), ServiceListener {
         billingClient.queryPurchases(BillingClient.SkuType.SUBS).purchasesList
 
     override fun onMySubLoaded(result: SubAnswer?) {
+        //todo
         if (result?.STATUS == "success") {
             if (result.SUBSCRIPTION_STORE_ID?.startsWith("playmarket") == true) {
                 val mySub = queryPurchases()?.firstOrNull {
