@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.text.InputFilter
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.EditText
@@ -77,6 +78,9 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
         name_field.counterMaxLength = Setting.TEXT_LENGTH_MAX_SYMBOLS_JOB_TITLE
         company_field.counterMaxLength = Setting.TEXT_LENGTH_MAX_SYMBOLS_JOB_COMPANY
         detail_field.counterMaxLength = Setting.TEXT_LENGTH_MAX_SYMBOLS_JOB_DETAIL
+        email_field.counterMaxLength = Setting.TEXT_LENGTH_MAX_SYMBOLS_JOB_EMAIL_PHONE_GROSS
+        phone_field.counterMaxLength = Setting.TEXT_LENGTH_MAX_SYMBOLS_JOB_EMAIL_PHONE_GROSS
+        salary_tv.filters = arrayOf(InputFilter.LengthFilter(Setting.TEXT_LENGTH_MAX_SYMBOLS_JOB_EMAIL_PHONE_GROSS))
 
         name_tv.doOnTextChanged { _, _, _, _ ->
             if (name_tv.data?.trim() != "")
@@ -251,6 +255,12 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
 
             details_tv.data = jobInfo.DETAIL_TEXT ?: ""
         } catch (e: Exception) {
+        }
+
+
+        salary_counter.text = "${salary_tv.text.toString().length} / ${Setting.TEXT_LENGTH_MAX_SYMBOLS_JOB_EMAIL_PHONE_GROSS}"
+        salary_tv.doOnTextChanged { _, _, _, _ ->
+            salary_counter.text = "${salary_tv.text.length} / ${Setting.TEXT_LENGTH_MAX_SYMBOLS_JOB_EMAIL_PHONE_GROSS}"
         }
 
         validateForm()

@@ -207,6 +207,7 @@ class Setting(ctx: Context) {
 
         //How long text title/company/detail
         const val TEXT_LENGTH_MAX_SYMBOLS_JOB_TITLE = 70
+        const val TEXT_LENGTH_MAX_SYMBOLS_JOB_EMAIL_PHONE_GROSS = 70
         const val TEXT_LENGTH_MAX_SYMBOLS_JOB_COMPANY = 40
         const val TEXT_LENGTH_MAX_SYMBOLS_JOB_DETAIL = 7000
 

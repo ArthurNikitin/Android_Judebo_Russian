@@ -164,7 +164,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="top"
-                                android:minLines="2"
+                                android:singleLine="true"
                                 android:text="Company name"
                                 android:textSize="17sp" />
                         </com.google.android.material.textfield.TextInputLayout>
@@ -216,7 +216,14 @@
                             </LinearLayout>
 
                         </com.google.android.material.card.MaterialCardView>
-
+                        <TextView
+                            android:id="@+id/salary_counter"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:textSize="12sp"
+                            android:layout_marginLeft="15dp"
+                            android:text="0/70" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -240,6 +247,7 @@
                         android:id="@+id/phone_field"
                         app:boxStrokeColor="@color/toolbar_background_color"
                         app:errorEnabled="true"
+                        app:counterEnabled="true"
                         android:hint="@string/edit_item_phone"
                         android:layout_marginBottom="8dp"
                         app:startIconTint="@color/toolbar_background_color"
@@ -261,6 +269,7 @@
                         android:layout_marginBottom="8dp"
                         app:errorEnabled="true"
                         android:hint="@string/edit_item_email"
+                        app:counterEnabled="true"
                         app:startIconTint="@color/toolbar_background_color"
                         android:layout_height="wrap_content"
                         app:boxStrokeColor="@color/toolbar_background_color">
