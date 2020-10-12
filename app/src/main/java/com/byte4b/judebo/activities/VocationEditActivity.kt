@@ -257,9 +257,10 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
         } catch (e: Exception) {
         }
 
-
-        salary_counter.text = "${salary_tv.text.toString().length} / ${Setting.TEXT_LENGTH_MAX_SYMBOLS_JOB_EMAIL_PHONE_GROSS}"
+        salary_container_hint.visibility = if (salary_tv.text.isEmpty()) View.INVISIBLE else View.VISIBLE
+        salary_counter.text = "${salary_tv.text.length} / ${Setting.TEXT_LENGTH_MAX_SYMBOLS_JOB_EMAIL_PHONE_GROSS}"
         salary_tv.doOnTextChanged { _, _, _, _ ->
+            salary_container_hint.visibility = if (salary_tv.text.isEmpty()) View.INVISIBLE else View.VISIBLE
             salary_counter.text = "${salary_tv.text.length} / ${Setting.TEXT_LENGTH_MAX_SYMBOLS_JOB_EMAIL_PHONE_GROSS}"
         }
 

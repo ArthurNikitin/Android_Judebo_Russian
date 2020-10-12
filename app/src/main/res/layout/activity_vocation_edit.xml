@@ -169,7 +169,13 @@
                             android:textSize="17sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
                     <com.google.android.material.card.MaterialCardView
+                        android:layout_marginTop="10dp"
+                        android:elevation="0dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:cardBackgroundColor="#fff"
@@ -216,6 +222,20 @@
                         </LinearLayout>
 
                     </com.google.android.material.card.MaterialCardView>
+
+
+                        <TextView
+                            android:id="@+id/salary_container_hint"
+                            android:text="@string/edit_item_gross"
+                            android:paddingStart="3dp"
+                            android:paddingEnd="3dp"
+                            android:elevation="1dp"
+                            android:layout_marginLeft="10dp"
+                            android:background="#fff"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </RelativeLayout>
 
                     <TextView
                         android:id="@+id/salary_counter"
