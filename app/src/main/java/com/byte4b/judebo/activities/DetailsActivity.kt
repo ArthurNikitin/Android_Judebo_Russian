@@ -131,7 +131,7 @@ class DetailsActivity : AppCompatActivity() {
 
 
             filters_tv.layoutManager = layoutManager
-            if (jobInfo.UF_SKILLS_ID_ALL == "") {
+            if (jobInfo.UF_SKILLS_ID_ALL == "" || jobInfo.UF_SKILLS_ID_ALL == Setting.DEFAULT_SKILL_ID_ALWAYS_HIDDEN) {
                 filters_tv.visibility = View.GONE
             } else {
                 filters_tv.visibility = View.VISIBLE

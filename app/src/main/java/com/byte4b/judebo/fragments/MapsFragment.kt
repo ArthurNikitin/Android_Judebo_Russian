@@ -336,7 +336,7 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
 
 
             view.filters_tv.layoutManager = layoutManager
-            if (data.UF_SKILLS_ID_ALL == "") {
+            if (data.UF_SKILLS_ID_ALL == "" || data.UF_SKILLS_ID_ALL == Setting.DEFAULT_SKILL_ID_ALWAYS_HIDDEN) {
                 view.filters_tv.visibility = View.GONE
             } else {
                 view.filters_tv.visibility = View.VISIBLE
