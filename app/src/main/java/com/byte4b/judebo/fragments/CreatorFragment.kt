@@ -64,7 +64,17 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        Log.e("test", Gson().toJson(setting.subscribeInfo))
+        if (setting.subscribeInfo?.SUBSCRIPTION_ID == Setting.DEFAULT_SUBSCRIPTION_ID_HOLDEN_ACCOUNT.toInt()) {
+            AlertDialog.Builder(requireContext())
+                .setCancelable(false)
+                .setTitle(R.string.user_hold_account_holden_account_title)
+                .setMessage(R.string.user_hold_account_holden_account_text)
+                .setPositiveButton(R.string.user_hold_account_holden_account_ok) { dialog, _ ->
+                    dialog.dismiss()
+                    (requireActivity() as MainActivity).restartFragment(SettingFragment())
+                }
+                .show()
+        }
 
         refresher.setOnRefreshListener(this)
         refresher.setColorSchemeColors(Color.parseColor("#027E3C"))

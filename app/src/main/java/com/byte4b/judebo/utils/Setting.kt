@@ -121,7 +121,11 @@ class Setting(ctx: Context) {
         get() = Gson().fromJson(pref.getString("sub", null), SubAnswer::class.java)
         set(value) {
             pref.edit { putString("sub", Gson().toJson(value)) }
-            maxVocations = value?.SUBSCRIPTION_LIMIT ?: LIMIT_VACANCIES_WITHOUT_SUBSCRIPTION
+            if (subscribeInfo?.SUBSCRIPTION_ID == DEFAULT_SUBSCRIPTION_ID_HOLDEN_ACCOUNT.toInt()) {
+                maxVocations = 0
+            } else {
+                maxVocations = value?.SUBSCRIPTION_LIMIT ?: LIMIT_VACANCIES_WITHOUT_SUBSCRIPTION
+            }
         }
 
     var toLogin

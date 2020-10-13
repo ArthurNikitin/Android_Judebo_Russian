@@ -81,8 +81,6 @@ class MainActivity : AppCompatActivity(), ServiceListener {
                         .beginTransaction()
                         .replace(R.id.frame,
                             when {
-                                setting.subscribeInfo?.SUBSCRIPTION_ID == Setting.DEFAULT_SUBSCRIPTION_ID_HOLDEN_ACCOUNT.toInt() ->
-                                        BlockedAccountStub()
                                 setting.isAuth ->
                                     CreatorFragment()
                                 else ->
