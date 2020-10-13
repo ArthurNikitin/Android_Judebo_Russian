@@ -64,6 +64,8 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        Log.e("test", Gson().toJson(setting.subscribeInfo))
+
         refresher.setOnRefreshListener(this)
         refresher.setColorSchemeColors(Color.parseColor("#027E3C"))
 

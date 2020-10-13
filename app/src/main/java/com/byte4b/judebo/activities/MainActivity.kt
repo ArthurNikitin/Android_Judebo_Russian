@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity(), ServiceListener {
             Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.ACCESS_FINE_LOCATION) {
 
-            Setting(this).apply {
+            setting.apply {
                 if (isFromRecreate) {
                     isFromRecreate = false
                     restartFragment(SettingFragment())
@@ -81,7 +81,7 @@ class MainActivity : AppCompatActivity(), ServiceListener {
                         .beginTransaction()
                         .replace(R.id.frame,
                             when {
-                                setting.subscribeInfo?.SUBSCRIPTION_STORE_ID == Setting.DEFAULT_SUBSCRIPTION_ID_HOLDEN_ACCOUNT ->
+                                setting.subscribeInfo?.SUBSCRIPTION_ID == Setting.DEFAULT_SUBSCRIPTION_ID_HOLDEN_ACCOUNT.toInt() ->
                                         BlockedAccountStub()
                                 setting.isAuth ->
                                     CreatorFragment()
