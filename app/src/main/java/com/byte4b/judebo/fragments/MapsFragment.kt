@@ -371,7 +371,10 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
         Handler().postDelayed({
             if (jobIdFromUrl != null) {
                 clusterManager?.markerCollection?.markers
-                    ?.firstOrNull { it.snippet == jobIdFromUrl.toString() }?.showInfoWindow()
+                    ?.firstOrNull { it.snippet == jobIdFromUrl.toString() }?.apply {
+                        map?.animateCamera(CameraUpdateFactory.newLatLng(position))
+                        showInfoWindow()
+                    }
             }
         }, 1000)
     }
