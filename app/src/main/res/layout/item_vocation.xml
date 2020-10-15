@@ -43,11 +43,39 @@
             android:layout_height="match_parent"
             android:background="?android:attr/listDivider" />
 
+        <ImageView
+            android:id="@+id/see12"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            app:srcCompat="@drawable/jobs_list_view" />
+
+        <View
+            android:layout_marginLeft="8dp"
+            android:backgroundTint="@color/toolbar_background_color"
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:background="?android:attr/listDivider" />
+
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
+
+        <View
+            android:layout_marginRight="8dp"
+            android:backgroundTint="@color/toolbar_background_color"
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:background="?android:attr/listDivider" />
+
+        <ImageView
+            android:id="@+id/see22"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            app:srcCompat="@drawable/jobs_list_view" />
 
         <View
             android:layout_marginRight="8dp"
@@ -93,7 +121,7 @@
 
         <LinearLayout
             android:id="@+id/right1"
-            android:layout_width="166dp"
+            android:layout_width="200dp"
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:weightSum="1">
@@ -108,6 +136,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/see2"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:alpha="0.0"
+                android:background="@color/colorPrimaryDark"
+                app:srcCompat="@drawable/button_copy" />
 
             <ImageView
                 android:id="@+id/copy2"
@@ -129,7 +165,7 @@
 
         <LinearLayout
             android:id="@+id/left1"
-            android:layout_width="166dp"
+            android:layout_width="200dp"
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:weightSum="1">
@@ -144,6 +180,14 @@
 
             <ImageView
                 android:id="@+id/copy1"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:alpha="0.0"
+                android:background="@drawable/corners_left"
+                app:srcCompat="@drawable/button_copy" />
+
+            <ImageView
+                android:id="@+id/see1"
                 android:layout_width="70dp"
                 android:layout_height="match_parent"
                 android:alpha="0.0"

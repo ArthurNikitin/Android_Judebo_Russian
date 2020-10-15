@@ -22,6 +22,7 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.byte4b.judebo.*
+import com.byte4b.judebo.activities.MainActivity
 import com.byte4b.judebo.activities.VocationEditActivity
 import com.byte4b.judebo.fragments.CreatorFragment
 import com.byte4b.judebo.models.Vocation
@@ -202,6 +203,8 @@ class VocationsAdapter(
                     holder.leftCorners.setImageResource(R.drawable.corners_left)
                     holder.main.setBackgroundResource(R.color.white)
                     holder.errorView.visibility = View.INVISIBLE
+                    holder.seeLeft.setOnClickListener { open(vocations[position]) }
+                    holder.seeRight.setOnClickListener { open(vocations[position]) }
                 }
 
                 val currency = currencies.firstOrNull { it.id == UF_GROSS_CURRENCY_ID }
@@ -213,6 +216,18 @@ class VocationsAdapter(
                 }
             }
         } catch (e: Exception) {}
+    }
+
+    private fun open(vocation: Vocation) {
+        //open map
+        //set position and id
+        if (vocation.UF_JOBS_ID != null) {
+            val (lat, lon) = vocation.UF_MAP_POINT!!.split(",").map { it.toDouble() }
+            (parent.requireActivity() as MainActivity).openVocationOnMap(
+                vocation.UF_JOBS_ID!!.toInt(),
+                lat, lon
+            )
+        }
     }
 
     @SuppressLint("SimpleDateFormat")
@@ -453,6 +468,9 @@ class VocationsAdapter(
         //for limit icon
         val copyLeft = view.copy12!!
         val copyRight = view.copy22!!
+
+        val seeLeft = view.see1!!
+        val seeRight = view.see2!!
 
         val errorView = view.error_tv!!
         val isNotActiveView = view.notActive_iv!!

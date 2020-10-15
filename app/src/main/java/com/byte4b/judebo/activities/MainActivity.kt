@@ -136,6 +136,14 @@ class MainActivity : AppCompatActivity(), ServiceListener {
         checkMySubscription()
     }
 
+    fun openVocationOnMap(jobId: Int, latitude: Double, longitude: Double) {
+        restartFragment(MapsFragment())
+        Handler().postDelayed({
+            getLastFragment<MapsFragment>()
+                ?.showVocationFromUrl(jobId, LatLng(latitude, longitude))
+        }, 500)
+    }
+
     fun checkMySubscription() {
         if (setting.isAuth)
             ApiServiceImpl(this).checkMySub(
