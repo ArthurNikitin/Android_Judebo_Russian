@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -22,6 +23,7 @@ import com.byte4b.judebo.utils.signers.GoogleAuth
 import com.byte4b.judebo.view.ServiceListener
 import com.github.florent37.runtimepermission.kotlin.askPermission
 import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.maps.model.LatLng
 import es.dmoral.toasty.Toasty
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_main.*
@@ -55,6 +57,11 @@ class MainActivity : AppCompatActivity(), ServiceListener {
                     .first { it.startsWith("job_id") }
                     .substring(7)
                     .toInt()
+
+                Handler().postDelayed({
+                    getLastFragment<MapsFragment>()
+                        ?.showVocationFromUrl(jobId, LatLng(latitude, longitude))
+                }, 500)
 
                 //move camera on map fragment to coordinates + open preview
             } catch (e: Exception) {

@@ -83,6 +83,15 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
         super.onCreate(savedInstanceState)
     }
 
+
+    private var locationFromUrl: LatLng? = null
+    private var jobIdFromUrl: Int? = null
+    fun showVocationFromUrl(jobId: Int, latLng: LatLng) {
+        map?.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, Setting.MAX_ZOOM))
+        jobIdFromUrl = jobId
+        locationFromUrl = latLng
+    }
+
     private fun addMyLocationTarget() {
         if (map != null) {
             val location = ctx.getLocation()
@@ -125,6 +134,7 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
         }
     }
 
+    //private var clusterManager: ClusterManager? = null
     @SuppressLint("MissingPermission")
     private val callback = OnMapReadyCallback { googleMap ->
         map = googleMap
@@ -357,6 +367,13 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
         } catch (e: Exception) {}
         markers = list
         showMarkers(setting.isFilterActive)
+
+        Handler().postDelayed({
+            if (jobIdFromUrl != null) {
+                clusterManager?.markerCollection?.markers
+                    ?.firstOrNull { it.snippet == jobIdFromUrl.toString() }?.showInfoWindow()
+            }
+        }, 1000)
     }
 
     override fun onResume() {

@@ -104,6 +104,7 @@ class OwnIconRendered(
 
     override fun onBeforeClusterItemRendered(item: AbstractMarker, marker: MarkerOptions) {
         try {
+            marker.snippet(item.marker.UF_JOBS_ID.toString())
             val (icon, containerWidth, iconWidth, containerHeight, iconHeight) = getMarkerIcon(item)
 
             var iconCenterHorizontal = ((((iconWidth as Int) / 2f)) / containerWidth as Int) / 2
@@ -112,20 +113,20 @@ class OwnIconRendered(
                 if (item.marker.UF_LOGO_IMAGE.isNullOrEmpty()) 1f
                 else 1f - (((iconHeight as Int) / 2f) / containerHeight as Int)
 
-//            if (item.marker.UF_GROSS_PER_MONTH.isEmpty()
-//                || item.marker.UF_GROSS_PER_MONTH == "0"
-//            ) {
-//                Log.e("test", "true: ${item.marker.UF_JOBS_ID}")
-//                marker.anchor(iconCenterHorizontal, iconCenterVertical)
-//                marker.infoWindowAnchor(000.5f, .5f)
-//            } else {
-                marker.anchor(iconCenterHorizontal, iconCenterVertical)
-                marker.infoWindowAnchor(iconCenterHorizontal, .5f)
-            //}
+            marker.anchor(iconCenterHorizontal, iconCenterVertical)
+            marker.infoWindowAnchor(iconCenterHorizontal, .5f)
+
             marker.icon(BitmapDescriptorFactory.fromBitmap(icon as Bitmap))
-        } catch (e: Exception) {}
+        } catch (e: Exception) {
+        }
         super.onBeforeClusterItemRendered(item, marker)
     }
+
+    override fun getMarker(clusterItem: AbstractMarker?): Marker {
+        return super.getMarker(clusterItem).apply { tag = clusterItem?.marker?.UF_JOBS_ID }
+    }
+
+
 
     val k = 0.7
     val size = (Setting.CURRENCY_ICON_SIZE * k).toInt()
