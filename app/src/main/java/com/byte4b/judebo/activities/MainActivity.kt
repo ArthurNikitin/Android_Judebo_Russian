@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -22,6 +23,7 @@ import com.byte4b.judebo.view.ServiceListener
 import com.github.florent37.runtimepermission.kotlin.askPermission
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import es.dmoral.toasty.Toasty
+import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), ServiceListener {
@@ -32,6 +34,33 @@ class MainActivity : AppCompatActivity(), ServiceListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
+
+        try {
+            Realm.init(this)
+        } catch (e: Exception) {}
+
+        if (!intent.dataString.isNullOrEmpty()) {
+            try {
+                val params = intent.dataString!!
+                    .substring(intent.dataString!!.indexOf("?") + 1)
+                    .split("&")
+
+                val (latitude, longitude) = params
+                    .first { it.startsWith("geo") }
+                    .substring(4)
+                    .split(",")
+                    .map { it.toDouble() }
+
+                val jobId = params
+                    .first { it.startsWith("job_id") }
+                    .substring(7)
+                    .toInt()
+
+                //move camera on map fragment to coordinates + open preview
+            } catch (e: Exception) {
+                Log.e("test1", "url parse error: ${e.localizedMessage}")
+            }
+        }
 
         navBar_bnv.layoutDirection =
             if (isRtl(this)) View.LAYOUT_DIRECTION_RTL
