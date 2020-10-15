@@ -126,6 +126,7 @@
     <string name="user_hold_account_holden_account_title" translatable="false">Error! Holden account!</string>
     <string name="user_hold_account_holden_account_text" translatable="false">Your account is holden!</string>
     <string name="user_hold_account_holden_account_ok" translatable="false">Ok</string>
+    <string name="user_jobs_list_view">view</string>
 
 
 </resources>
