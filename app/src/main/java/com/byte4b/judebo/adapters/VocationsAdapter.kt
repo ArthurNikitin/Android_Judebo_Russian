@@ -31,6 +31,7 @@ import com.byte4b.judebo.models.currencies
 import com.byte4b.judebo.services.ApiServiceImpl
 import com.byte4b.judebo.utils.Setting
 import com.byte4b.judebo.view.ServiceListener
+import com.google.gson.Gson
 import io.realm.Realm
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.item_vocation.view.*
@@ -163,6 +164,11 @@ class VocationsAdapter(
                 holder.disableLabel.text = format.format(disableDate)
                 holder.company.text = COMPANY
 
+                holder.seeLeftIcon.visibility = if (!(UF_JOBS_ID != null && UF_MAP_POINT != null && UF_ACTIVE != 0.toByte())) View.INVISIBLE else View.VISIBLE
+                holder.seeRightIcon.visibility = if (!(UF_JOBS_ID != null && UF_MAP_POINT != null && UF_ACTIVE != 0.toByte())) View.INVISIBLE else View.VISIBLE
+                holder.lastDiv.visibility = if (!(UF_JOBS_ID != null && UF_MAP_POINT != null && UF_ACTIVE != 0.toByte())) View.INVISIBLE else View.VISIBLE
+                holder.firstDiv.visibility = if (!(UF_JOBS_ID != null && UF_MAP_POINT != null && UF_ACTIVE != 0.toByte())) View.INVISIBLE else View.VISIBLE
+
                 if ((UF_ACTIVE != 1.toByte()) || ((UF_DISABLE?:0) < Calendar.getInstance().timestamp)) {
                     holder.isNotActiveView.visibility = View.VISIBLE
 
@@ -199,12 +205,20 @@ class VocationsAdapter(
                         holder.disableLabel.setTypeface(null, Typeface.NORMAL)
                     }
 
-                    holder.rightCorners.setImageResource(R.drawable.corners_right)
-                    holder.leftCorners.setImageResource(R.drawable.corners_left)
+                    if (isRtl(ctx)) {
+                        holder.leftCorners.setImageResource(R.drawable.corners_right)
+                        holder.rightCorners.setImageResource(R.drawable.corners_left)
+                    } else {
+                        holder.rightCorners.setImageResource(R.drawable.corners_right)
+                        holder.leftCorners.setImageResource(R.drawable.corners_left)
+                    }
+
                     holder.main.setBackgroundResource(R.color.white)
                     holder.errorView.visibility = View.INVISIBLE
-                    holder.seeLeft.setOnClickListener { open(vocations[position]) }
-                    holder.seeRight.setOnClickListener { open(vocations[position]) }
+                    try {
+                        holder.seeLeft.setOnClickListener { open(vocations[position]) }
+                        holder.seeRight.setOnClickListener { open(vocations[position]) }
+                    } catch (e: Exception) {}
                 }
 
                 val currency = currencies.firstOrNull { it.id == UF_GROSS_CURRENCY_ID }
@@ -215,19 +229,21 @@ class VocationsAdapter(
                     holder.salaryView.text = "$UF_GROSS_PER_MONTH ${currency?.name ?: "USD"}"
                 }
             }
+
+
         } catch (e: Exception) {}
     }
 
     private fun open(vocation: Vocation) {
-        //open map
-        //set position and id
-        if (vocation.UF_JOBS_ID != null) {
-            val (lat, lon) = vocation.UF_MAP_POINT!!.split(",").map { it.toDouble() }
-            (parent.requireActivity() as MainActivity).openVocationOnMap(
-                vocation.UF_JOBS_ID!!.toInt(),
-                lat, lon
-            )
-        }
+        try {
+            if (vocation.UF_JOBS_ID != null) {
+                val (lat, lon) = vocation.UF_MAP_POINT!!.split(",").map { it.toDouble() }
+                (parent.requireActivity() as MainActivity).openVocationOnMap(
+                    vocation.UF_JOBS_ID!!.toInt(),
+                    lat, lon
+                )
+            }
+        } catch(e: Exception) {}
     }
 
     @SuppressLint("SimpleDateFormat")
@@ -469,15 +485,20 @@ class VocationsAdapter(
         val copyLeft = view.copy12!!
         val copyRight = view.copy22!!
 
-        val seeLeft = view.see1!!
-        val seeRight = view.see2!!
-
         val errorView = view.error_tv!!
         val isNotActiveView = view.notActive_iv!!
         val disableLabel = view.disable_tv!!
 
         val leftCorners = view.left_corners!!
         val rightCorners = view.right_corners!!
+
+        val seeLeft = view.see1!!
+        val seeRight = view.see2!!
+
+        val seeLeftIcon = view.see12!!
+        val seeRightIcon = view.see22!!
+        val firstDiv = view.first_div!!
+        val lastDiv = view.last_div!!
     }
 
 }

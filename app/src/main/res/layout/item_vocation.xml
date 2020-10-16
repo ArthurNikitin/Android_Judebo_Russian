@@ -15,10 +15,10 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_marginRight="3dp"
-            android:layout_marginLeft="3dp"
+            android:layout_marginRight="@dimen/two_dp"
+            android:layout_marginLeft="@dimen/two_dp"
             android:id="@+id/delete12"
-            android:layout_width="50dp"
+            android:layout_width="@dimen/width_54"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             app:srcCompat="@drawable/button_delete" />
@@ -31,10 +31,10 @@
             android:background="?android:attr/listDivider" />
 
         <ImageView
-            android:layout_marginRight="3dp"
-            android:layout_marginLeft="3dp"
+            android:layout_marginRight="@dimen/two_dp"
+            android:layout_marginLeft="@dimen/two_dp"
             android:id="@+id/copy12"
-            android:layout_width="50dp"
+            android:layout_width="@dimen/width_54"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             app:srcCompat="@drawable/button_copy" />
@@ -47,15 +47,16 @@
             android:background="?android:attr/listDivider" />
 
         <ImageView
-            android:layout_marginRight="3dp"
-            android:layout_marginLeft="3dp"
+            android:layout_marginRight="@dimen/two_dp"
+            android:layout_marginLeft="@dimen/two_dp"
             android:id="@+id/see12"
-            android:layout_width="50dp"
+            android:layout_width="@dimen/width_54"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             app:srcCompat="@drawable/jobs_list_view" />
 
         <View
+            android:id="@+id/first_div"
             android:layout_marginLeft="0dp"
             android:backgroundTint="@color/toolbar_background_color"
             android:layout_width="3dp"
@@ -69,6 +70,7 @@
             android:layout_weight="1" />
 
         <View
+            android:id="@+id/last_div"
             android:layout_marginRight="0dp"
             android:backgroundTint="@color/toolbar_background_color"
             android:layout_width="3dp"
@@ -76,10 +78,10 @@
             android:background="?android:attr/listDivider" />
 
         <ImageView
-            android:layout_marginRight="3dp"
-            android:layout_marginLeft="3dp"
+            android:layout_marginRight="@dimen/two_dp"
+            android:layout_marginLeft="@dimen/two_dp"
             android:id="@+id/see22"
-            android:layout_width="50dp"
+            android:layout_width="@dimen/width_54"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             app:srcCompat="@drawable/jobs_list_view" />
@@ -92,10 +94,10 @@
             android:background="?android:attr/listDivider" />
 
         <ImageView
-            android:layout_marginRight="3dp"
-            android:layout_marginLeft="3dp"
+            android:layout_marginRight="@dimen/two_dp"
+            android:layout_marginLeft="@dimen/two_dp"
             android:id="@+id/copy22"
-            android:layout_width="50dp"
+            android:layout_width="@dimen/width_54"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             app:srcCompat="@drawable/button_copy" />
@@ -109,10 +111,10 @@
             android:background="?android:attr/listDivider" />
 
         <ImageView
-            android:layout_marginRight="3dp"
-            android:layout_marginLeft="3dp"
+            android:layout_marginRight="@dimen/two_dp"
+            android:layout_marginLeft="@dimen/two_dp"
             android:id="@+id/delete22"
-            android:layout_width="50dp"
+            android:layout_width="@dimen/width_54"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             app:srcCompat="@drawable/button_delete" />
@@ -127,7 +129,7 @@
         app:leftItem="@id/left1"
         app:rightItem="@id/right1"
         app:swipeDirection="left|right"
-        tools:visibility="invisible">
+        tools:visibility="visible">
 
         <LinearLayout
             android:id="@+id/right1"
@@ -211,9 +213,10 @@
 
             <ImageView
                 android:id="@+id/left_corners"
+                android:layout_marginLeft="-20dp"
                 android:layout_width="10dp"
                 android:layout_height="match_parent"
-                android:src="@drawable/corners_left" />
+                app:srcCompat="@drawable/corners_left" />
 
         </LinearLayout>
 
