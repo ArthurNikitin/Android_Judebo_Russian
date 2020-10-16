@@ -75,8 +75,8 @@ class VocationsAdapter(
     override fun onBindViewHolder(holder: Holder, position: Int) {
         try {
             if (isMaxVocations) {
-                holder.copyLeft.setImageResource(R.drawable.button_copy_deny)
-                holder.copyRight.setImageResource(R.drawable.button_copy_deny)
+                holder.copyLeft.setImageResource(R.drawable.jobs_list_copy_deny)
+                holder.copyRight.setImageResource(R.drawable.jobs_list_copy_deny)
             }
 
             with(vocations[position]) {

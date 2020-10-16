@@ -20,7 +20,7 @@
             android:layout_width="@dimen/width_54"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
-            app:srcCompat="@drawable/button_delete" />
+            app:srcCompat="@drawable/jobs_list_delete" />
 
         <View
             android:layout_marginRight="0dp"
@@ -36,7 +36,7 @@
             android:layout_width="@dimen/width_54"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
-            app:srcCompat="@drawable/button_copy" />
+            app:srcCompat="@drawable/jobs_list_copy" />
 
         <View
             android:layout_marginLeft="0dp"
@@ -100,7 +100,7 @@
             android:layout_width="@dimen/width_54"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
-            app:srcCompat="@drawable/button_copy" />
+            app:srcCompat="@drawable/jobs_list_copy" />
 
         <View
             android:layout_marginLeft="0dp"
@@ -117,7 +117,7 @@
             android:layout_width="@dimen/width_54"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
-            app:srcCompat="@drawable/button_delete" />
+            app:srcCompat="@drawable/jobs_list_delete" />
     </LinearLayout>
 
     <com.zerobranch.layout.SwipeLayout
@@ -154,7 +154,7 @@
                 android:layout_height="match_parent"
                 android:alpha="0.0"
                 android:background="@color/colorPrimaryDark"
-                app:srcCompat="@drawable/button_copy" />
+                app:srcCompat="@drawable/jobs_list_copy" />
 
             <ImageView
                 android:id="@+id/copy2"
@@ -162,7 +162,7 @@
                 android:layout_height="match_parent"
                 android:alpha="0.0"
                 android:background="@color/colorPrimaryDark"
-                app:srcCompat="@drawable/button_copy" />
+                app:srcCompat="@drawable/jobs_list_copy" />
 
             <ImageView
                 android:id="@+id/delete2"
@@ -170,7 +170,7 @@
                 android:layout_height="match_parent"
                 android:alpha="0.0"
                 android:background="@color/colorPrimary"
-                app:srcCompat="@drawable/button_delete" />
+                app:srcCompat="@drawable/jobs_list_delete" />
 
         </LinearLayout>
 
@@ -187,7 +187,7 @@
                 android:layout_height="match_parent"
                 android:alpha="0.0"
                 android:background="@color/colorPrimary"
-                app:srcCompat="@drawable/button_delete" />
+                app:srcCompat="@drawable/jobs_list_delete" />
 
             <ImageView
                 android:id="@+id/copy1"
@@ -195,7 +195,7 @@
                 android:layout_height="match_parent"
                 android:alpha="0.0"
                 android:background="@drawable/corners_left"
-                app:srcCompat="@drawable/button_copy" />
+                app:srcCompat="@drawable/jobs_list_copy" />
 
             <ImageView
                 android:id="@+id/see1"
@@ -203,7 +203,7 @@
                 android:layout_height="match_parent"
                 android:alpha="0.0"
                 android:background="@drawable/corners_left"
-                app:srcCompat="@drawable/button_copy" />
+                app:srcCompat="@drawable/jobs_list_copy" />
 
             <TextView
                 android:layout_width="match_parent"
