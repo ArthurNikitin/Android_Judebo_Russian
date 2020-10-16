@@ -17,7 +17,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.byte4b.judebo.*
-import com.byte4b.judebo.R
 import com.byte4b.judebo.activities.DetailsActivity
 import com.byte4b.judebo.activities.filter.FilterActivity
 import com.byte4b.judebo.adapters.ClusterAdapter
@@ -90,9 +89,14 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
     private var locationFromUrl: LatLng? = null
     private var jobIdFromUrl: Int? = null
     fun showVocationFromUrl(jobId: Int, latLng: LatLng) {
-        map?.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, Setting.MAX_ZOOM))
-        jobIdFromUrl = jobId
-        locationFromUrl = latLng
+        Log.e("test1", "showVocationFromUrl id=$jobId loc=$latLng")
+        try {
+            map?.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, Setting.MAX_ZOOM))
+            jobIdFromUrl = jobId
+            locationFromUrl = latLng
+        } catch (e: Exception) {
+            Log.e("test1", "show error: ${e.localizedMessage}")
+        }
     }
 
     private fun addMyLocationTarget() {
@@ -275,6 +279,8 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
         }.start()
 
         if (showJobId != null && positionShow != null) {
+            jobIdFromUrl = showJobId
+            locationFromUrl = positionShow
             showVocationFromUrl(showJobId!!, positionShow!!)
             showJobId = null
             positionShow = null
@@ -378,7 +384,7 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
         showMarkers(setting.isFilterActive)
 
         Handler().postDelayed({
-            Log.e("test", "data job: " + jobIdFromUrl.toString())
+            Log.e("test", "data job: $showJobId " + jobIdFromUrl.toString())
             if (jobIdFromUrl != null) {
                 clusterManager?.markerCollection?.markers
                     ?.firstOrNull { it.snippet == jobIdFromUrl.toString() }?.apply {

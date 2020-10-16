@@ -62,14 +62,21 @@ class MainActivity : AppCompatActivity(), ServiceListener {
                 Log.e("test1", "parse id")
 
                 restartFragment(MapsFragment())
-                getLastFragment<MapsFragment>()?.let {
-                    if (it.map == null) {
-                        it.showJobId = jobId
-                        it.positionShow = LatLng(latitude, longitude)
-                    } else {
-                        it.showVocationFromUrl(jobId, LatLng(latitude, longitude))
+                Handler().postDelayed({
+                    try {
+                    getLastFragment<MapsFragment>()?.let {
+                        if (it.map == null) {
+                            it.showJobId = jobId
+                            it.positionShow = LatLng(latitude, longitude)
+                        } else {
+                            it.showVocationFromUrl(jobId, LatLng(latitude, longitude))
+                        }
+                    }} catch (e: Exception) {
+                        Handler().postDelayed({
+                            openVocationOnMap(jobId, latitude, longitude)
+                        }, 1500)
                     }
-                }
+                }, 500)
 
                 //move camera on map fragment to coordinates + open preview
             } catch (e: Exception) {
@@ -146,14 +153,19 @@ class MainActivity : AppCompatActivity(), ServiceListener {
 
     fun openVocationOnMap(jobId: Int, latitude: Double, longitude: Double) {
         restartFragment(MapsFragment())
-        getLastFragment<MapsFragment>()?.let {
-            if (it.map == null) {
-                it.showJobId = jobId
-                it.positionShow = LatLng(latitude, longitude)
-            } else {
-                it.showVocationFromUrl(jobId, LatLng(latitude, longitude))
+        Handler().postDelayed({
+            getLastFragment<MapsFragment>()?.let {
+                Log.e("test1", "map founded")
+                if (it.map == null) {
+                    Log.e("test1", "map not inited")
+                    it.showJobId = jobId
+                    it.positionShow = LatLng(latitude, longitude)
+                } else {
+                    Log.e("test1", "map inited")
+                    it.showVocationFromUrl(jobId, LatLng(latitude, longitude))
+                }
             }
-        }
+        }, 1000)
     }
 
     fun checkMySubscription() {

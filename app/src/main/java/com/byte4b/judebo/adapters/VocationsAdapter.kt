@@ -31,7 +31,6 @@ import com.byte4b.judebo.models.currencies
 import com.byte4b.judebo.services.ApiServiceImpl
 import com.byte4b.judebo.utils.Setting
 import com.byte4b.judebo.view.ServiceListener
-import com.google.gson.Gson
 import io.realm.Realm
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.item_vocation.view.*
@@ -236,14 +235,18 @@ class VocationsAdapter(
 
     private fun open(vocation: Vocation) {
         try {
+            Log.e("test1", "from adapter: id=${vocation.UF_JOBS_ID} map=${vocation.UF_MAP_POINT}")
             if (vocation.UF_JOBS_ID != null) {
-                val (lat, lon) = vocation.UF_MAP_POINT!!.split(",").map { it.toDouble() }
+                val (lat, lon) = vocation.UF_MAP_POINT!!.split(",").map { it.trim().toDouble() }
+                Log.e("test1", "problem with get activity")
                 (parent.requireActivity() as MainActivity).openVocationOnMap(
                     vocation.UF_JOBS_ID!!.toInt(),
                     lat, lon
                 )
             }
-        } catch(e: Exception) {}
+        } catch(e: Exception) {
+            Log.e("test1", "adapter error: ${e.localizedMessage}")
+        }
     }
 
     @SuppressLint("SimpleDateFormat")
