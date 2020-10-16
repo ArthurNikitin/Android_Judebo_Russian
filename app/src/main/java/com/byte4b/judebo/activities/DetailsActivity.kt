@@ -198,7 +198,7 @@ class DetailsActivity : AppCompatActivity() {
         val locale = setting.getCurrentLanguage().locale
 
         val content = ShareLinkContent.Builder()
-            .setContentUrl(Uri.parse("https://$locale.judebo.com/search_job/detail.php?job_id=${job?.UF_JOBS_ID}"))
+            .setContentUrl(Uri.parse("https://$locale.judebo.com/search_job/detail.php?job_id=${job?.UF_JOBS_ID}&geo=${job?.UF_MAP_POINT_LATITUDE},${job?.UF_MAP_POINT_LONGITUDE}"))
             .build()
         ShareDialog.show(this, content)
     }
