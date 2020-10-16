@@ -377,7 +377,8 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
         markers = list
         showMarkers(setting.isFilterActive)
 
-        Log.e("test", "data job: " + jobIdFromUrl.toString())
+        Handler().postDelayed({
+            Log.e("test", "data job: " + jobIdFromUrl.toString())
             if (jobIdFromUrl != null) {
                 clusterManager?.markerCollection?.markers
                     ?.firstOrNull { it.snippet == jobIdFromUrl.toString() }?.apply {
@@ -385,6 +386,7 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
                         showInfoWindow()
                     }
             }
+        }, 1000)
     }
 
     override fun onResume() {

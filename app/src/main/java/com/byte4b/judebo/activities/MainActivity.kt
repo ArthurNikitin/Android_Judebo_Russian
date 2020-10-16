@@ -47,17 +47,21 @@ class MainActivity : AppCompatActivity(), ServiceListener {
                     .substring(intent.dataString!!.indexOf("?") + 1)
                     .split("&")
 
+                Log.e("test1", "parse params")
                 val (latitude, longitude) = params
                     .first { it.startsWith("geo") }
                     .substring(4)
                     .split(",")
                     .map { it.toDouble() }
+                Log.e("test1", "parse location")
 
                 val jobId = params
                     .first { it.startsWith("job_id") }
                     .substring(7)
                     .toInt()
+                Log.e("test1", "parse id")
 
+                restartFragment(MapsFragment())
                 getLastFragment<MapsFragment>()?.let {
                     if (it.map == null) {
                         it.showJobId = jobId
@@ -142,10 +146,14 @@ class MainActivity : AppCompatActivity(), ServiceListener {
 
     fun openVocationOnMap(jobId: Int, latitude: Double, longitude: Double) {
         restartFragment(MapsFragment())
-        Handler().postDelayed({
-            getLastFragment<MapsFragment>()
-                ?.showVocationFromUrl(jobId, LatLng(latitude, longitude))
-        }, 500)
+        getLastFragment<MapsFragment>()?.let {
+            if (it.map == null) {
+                it.showJobId = jobId
+                it.positionShow = LatLng(latitude, longitude)
+            } else {
+                it.showVocationFromUrl(jobId, LatLng(latitude, longitude))
+            }
+        }
     }
 
     fun checkMySubscription() {
