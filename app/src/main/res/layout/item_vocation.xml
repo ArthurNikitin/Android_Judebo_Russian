@@ -213,9 +213,9 @@
 
             <ImageView
                 android:id="@+id/left_corners"
-                android:layout_marginLeft="-20dp"
                 android:layout_width="10dp"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="-20dp"
                 app:srcCompat="@drawable/corners_left" />
 
         </LinearLayout>

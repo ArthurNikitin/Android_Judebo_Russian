@@ -58,10 +58,14 @@ class MainActivity : AppCompatActivity(), ServiceListener {
                     .substring(7)
                     .toInt()
 
-                Handler().postDelayed({
-                    getLastFragment<MapsFragment>()
-                        ?.showVocationFromUrl(jobId, LatLng(latitude, longitude))
-                }, 500)
+                getLastFragment<MapsFragment>()?.let {
+                    if (it.map == null) {
+                        it.showJobId = jobId
+                        it.positionShow = LatLng(latitude, longitude)
+                    } else {
+                        it.showVocationFromUrl(jobId, LatLng(latitude, longitude))
+                    }
+                }
 
                 //move camera on map fragment to coordinates + open preview
             } catch (e: Exception) {

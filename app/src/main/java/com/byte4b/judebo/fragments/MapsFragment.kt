@@ -56,12 +56,15 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
 
     private val setting by lazy { Setting(ctx) }
     private val ctx by lazy { requireActivity() }
-    private var map: GoogleMap? = null
+    var map: GoogleMap? = null
     private var markers: List<MyMarker>? = null
     private var clusterManager: ClusterManager<AbstractMarker>? = null
     private var renderer: OwnIconRendered? = null
     private var isFromSetting = false
     private var isMustBeSetLocation = false
+
+    var showJobId: Int? = null
+    var positionShow: LatLng? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -270,6 +273,12 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
                 Thread.sleep(Setting.SEARCH_REQUEST_PAUSE_SECONDS * 1000L)
             }
         }.start()
+
+        if (showJobId != null && positionShow != null) {
+            showVocationFromUrl(showJobId!!, positionShow!!)
+            showJobId = null
+            positionShow = null
+        }
     }
 
     @SuppressLint("SetTextI18n")
@@ -368,7 +377,7 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
         markers = list
         showMarkers(setting.isFilterActive)
 
-        Handler().postDelayed({
+        Log.e("test", "data job: " + jobIdFromUrl.toString())
             if (jobIdFromUrl != null) {
                 clusterManager?.markerCollection?.markers
                     ?.firstOrNull { it.snippet == jobIdFromUrl.toString() }?.apply {
@@ -376,7 +385,6 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
                         showInfoWindow()
                     }
             }
-        }, 1000)
     }
 
     override fun onResume() {
