@@ -17,6 +17,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.byte4b.judebo.*
+import com.byte4b.judebo.R
 import com.byte4b.judebo.activities.DetailsActivity
 import com.byte4b.judebo.activities.filter.FilterActivity
 import com.byte4b.judebo.adapters.ClusterAdapter
