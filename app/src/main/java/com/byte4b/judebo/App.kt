@@ -16,6 +16,10 @@ import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.InterstitialAd
 import com.google.android.gms.ads.MobileAds
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.remoteconfig.ktx.get
+import com.google.firebase.remoteconfig.ktx.remoteConfig
+import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 import com.google.gson.Gson
 import io.realm.Realm
 import io.realm.kotlin.createObject
@@ -43,20 +47,36 @@ class App : Application(), ServiceListener {
             Realm.init(this)
         } catch (e: Exception) {}
 
+        val remoteConfig = Firebase.remoteConfig
+        val configSettings = remoteConfigSettings {
+            minimumFetchIntervalInSeconds = 10
+        }
+        var isShowAds = false
+        remoteConfig.setConfigSettingsAsync(configSettings)
+        remoteConfig.fetchAndActivate()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    if (remoteConfig["is_show_ads"].asBoolean())
+                        isShowAds = true
+                }
+            }
+
         MobileAds.initialize(this) {}
         val handler = Handler {
-            if (setting.isLastTryShowAdHaveError) {
-                if (Calendar.getInstance().timestamp >
-                    setting.lastAdShowTimeStamp + Setting.APP_CRON_FREQUENCY_IN_SECONDS
-                ) {
-                    ApiServiceImpl(this).loadAd(setting.getCurrentLanguage().locale)
-                }
-                setting.isLastTryShowAdHaveError = false
-            } else {
-                if (Calendar.getInstance().timestamp >
-                    setting.lastAdShowTimeStamp + Setting.JSON_REQUEST_ADV_PERIOD_IN_SECONDS
-                ) {
-                    ApiServiceImpl(this).loadAd(setting.getCurrentLanguage().locale)
+            if (isShowAds) {
+                if (setting.isLastTryShowAdHaveError) {
+                    if (Calendar.getInstance().timestamp >
+                        setting.lastAdShowTimeStamp + Setting.APP_CRON_FREQUENCY_IN_SECONDS
+                    ) {
+                        ApiServiceImpl(this).loadAd(setting.getCurrentLanguage().locale)
+                    }
+                    setting.isLastTryShowAdHaveError = false
+                } else {
+                    if (Calendar.getInstance().timestamp >
+                        setting.lastAdShowTimeStamp + Setting.JSON_REQUEST_ADV_PERIOD_IN_SECONDS
+                    ) {
+                        ApiServiceImpl(this).loadAd(setting.getCurrentLanguage().locale)
+                    }
                 }
             }
             ApiServiceImpl(this).apply {
