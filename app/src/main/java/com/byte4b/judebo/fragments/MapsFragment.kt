@@ -122,7 +122,9 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
     private fun showMe() {
         if (map != null) {
             val location = ctx.getLocation()
+            Log.e("test", "showMe: "+(location == null).toString())
             if (location != null) {
+                Log.e("test", "showMe location: ${location.latitude}, ${location.longitude}")
                 map?.animateCamera(
                     CameraUpdateFactory.newLatLngZoom(
                         LatLng(location.latitude, location.longitude),
@@ -139,15 +141,18 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
                 )
                 addMyLocationTarget()
             }
-        }
+        } else
+            Log.e("test", "showMe: map is null")
     }
 
     //private var clusterManager: ClusterManager? = null
     @SuppressLint("MissingPermission")
     private val callback = OnMapReadyCallback { googleMap ->
         map = googleMap
+        showMe()
+        Handler().postDelayed({showMe()}, 600)
         if (isMustBeSetLocation) {
-            showMe()
+            //showMe()
             isMustBeSetLocation = false
         }
 
@@ -436,7 +441,7 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
                         .setNegativeButton(R.string.request_geolocation_cancel) { d, _ -> d.cancel()}
                         .show()
                 } else {
-                    showMe()
+                    Handler().postDelayed({showMe()}, 500)
                 }
             }
         }.onDeclined {
