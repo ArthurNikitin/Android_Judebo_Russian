@@ -1,9 +1,12 @@
 package com.byte4b.judebo.fragments
 
+import android.Manifest
 import android.annotation.SuppressLint
+import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
@@ -108,11 +111,18 @@ class DetailsMapFragment(
                     }
                 })
         } else {
-            googleMap.isMyLocationEnabled = true
-            googleMap.setOnMapClickListener {
-                setDraggableMarker(it.latitude, it.longitude)
-            }
-            setDraggableMarker()
+            try {
+                try {
+                    if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                        && ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+                        googleMap.isMyLocationEnabled = true
+                } catch (e: Exception) {
+                }
+                googleMap.setOnMapClickListener {
+                    setDraggableMarker(it.latitude, it.longitude)
+                }
+                setDraggableMarker()
+            } catch (e: Exception) {}
         }
     }
 
