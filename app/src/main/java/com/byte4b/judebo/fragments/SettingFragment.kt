@@ -64,11 +64,15 @@ class SettingFragment : Fragment(R.layout.fragment_setting), ServiceListener {
                 langIcon_iv.setImageResource(lang.flag)
         } catch (e: Exception) {}
 
-        blockedMe_tv.text =
-            if (setting.subscribeInfo?.SUBSCRIPTION_ID == Setting.DEFAULT_SUBSCRIPTION_ID_HOLDEN_ACCOUNT.toInt())
-                requireContext().getString(R.string.user_hold_account_unhold)
-            else
-                requireContext().getString(R.string.user_hold_account_hold)
+        if (setting.isAuth) {
+            blockedMe_tv.text =
+                if (setting.subscribeInfo?.SUBSCRIPTION_ID == Setting.DEFAULT_SUBSCRIPTION_ID_HOLDEN_ACCOUNT.toInt())
+                    requireContext().getString(R.string.user_hold_account_unhold)
+                else
+                    requireContext().getString(R.string.user_hold_account_hold)
+        } else {
+            blockedMe_tv.visibility = View.GONE
+        }
 
         try {
             if (BuildConfig.DEBUG) {
