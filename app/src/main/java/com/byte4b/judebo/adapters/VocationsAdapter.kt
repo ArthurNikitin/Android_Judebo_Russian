@@ -10,6 +10,7 @@ import android.os.Handler
 import android.util.Base64.decode
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -118,6 +119,11 @@ class VocationsAdapter(
                             notifyItemChanged(position)
                         }
                     })
+                    setOnTouchListener { _, _ ->
+                        if (this.isMoving && this.isLeftOpen)
+                            Log.e("swipe", "lol")
+                        false
+                    }
                 }
 
                 try {

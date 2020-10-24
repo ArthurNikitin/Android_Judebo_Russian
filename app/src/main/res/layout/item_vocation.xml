@@ -19,6 +19,7 @@
         <LinearLayout
             android:layout_gravity="right"
             android:id="@+id/right1"
+            android:background="#999"
             android:layout_width="200dp"
             android:layout_height="match_parent"
             android:orientation="horizontal"
@@ -85,6 +86,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:background="#999"
             android:id="@+id/left1"
             android:layout_width="200dp"
             android:layout_height="match_parent"
