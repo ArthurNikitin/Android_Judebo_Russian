@@ -105,7 +105,7 @@ class VocationsAdapter(
 
                 with(holder.swiper) {
                     close(false)
-                    setOnTouchListener { view, motionEvent ->
+                    setOnTouchListener { _, _ ->
                         if (lastSwipedPosition != position && lastSwipedPosition != -1)
                             notifyItemChanged(lastSwipedPosition)
                         false
@@ -114,9 +114,9 @@ class VocationsAdapter(
                         override fun onOpen(direction: Int, isContinuous: Boolean) {
                             lastSwipedPosition = position
                         }
-
-                        override fun onClose() {}
-
+                        override fun onClose() {
+                            notifyItemChanged(position)
+                        }
                     })
                 }
 
@@ -163,10 +163,11 @@ class VocationsAdapter(
                 holder.disableLabel.text = format.format(disableDate)
                 holder.company.text = COMPANY
 
-                holder.seeLeftIcon.visibility = if (!(UF_JOBS_ID != null && UF_MAP_POINT != null && UF_ACTIVE != 0.toByte())) View.INVISIBLE else View.VISIBLE
-                holder.seeRightIcon.visibility = if (!(UF_JOBS_ID != null && UF_MAP_POINT != null && UF_ACTIVE != 0.toByte())) View.INVISIBLE else View.VISIBLE
-                holder.lastDiv.visibility = if (!(UF_JOBS_ID != null && UF_MAP_POINT != null && UF_ACTIVE != 0.toByte())) View.INVISIBLE else View.VISIBLE
-                holder.firstDiv.visibility = if (!(UF_JOBS_ID != null && UF_MAP_POINT != null && UF_ACTIVE != 0.toByte())) View.INVISIBLE else View.VISIBLE
+                val isCanShowOnMap = (UF_JOBS_ID != null && UF_MAP_POINT != null && UF_ACTIVE != 0.toByte())
+                holder.seeLeft.visibility = if (!isCanShowOnMap) View.INVISIBLE else View.VISIBLE
+                holder.seeRight.visibility = if (!isCanShowOnMap) View.INVISIBLE else View.VISIBLE
+                holder.lastDiv.visibility = if (!isCanShowOnMap) View.INVISIBLE else View.VISIBLE
+                holder.firstDiv.visibility = if (!isCanShowOnMap) View.INVISIBLE else View.VISIBLE
 
                 if ((UF_ACTIVE != 1.toByte()) || ((UF_DISABLE?:0) < Calendar.getInstance().timestamp)) {
                     holder.isNotActiveView.visibility = View.VISIBLE
@@ -188,7 +189,7 @@ class VocationsAdapter(
                         holder.leftCorners.setImageResource(R.drawable.corners_left_red)
                         holder.rightCorners.setImageResource(R.drawable.corners_right_red)
                     }
-                    holder.main.setBackgroundResource(R.color.jobs_list_not_active_background)
+                    holder.cont.setBackgroundResource(R.color.jobs_list_not_active_background)
                     holder.errorView.visibility = View.VISIBLE
 
                 } else {
@@ -212,7 +213,7 @@ class VocationsAdapter(
                         holder.leftCorners.setImageResource(R.drawable.corners_left)
                     }
 
-                    holder.main.setBackgroundResource(R.color.white)
+                    holder.cont.setBackgroundResource(R.color.white)
                     holder.errorView.visibility = View.INVISIBLE
                     try {
                         holder.seeLeft.setOnClickListener { open(vocations[position]) }
@@ -479,14 +480,15 @@ class VocationsAdapter(
         val left = view.left1!!
         val right = view.right1!!
         val main = view.container!!
+        val cont = view.cont!!
         val copy1 = view.copy1!!
         val copy2 = view.copy2!!
         val del1 = view.delete1!!
         val del2 = view.delete2!!
         val company = view.company_tv!!
         //for limit icon
-        val copyLeft = view.copy12!!
-        val copyRight = view.copy22!!
+        val copyLeft = view.copy1!!
+        val copyRight = view.copy2!!
 
         val errorView = view.error_tv!!
         val isNotActiveView = view.notActive_iv!!
@@ -498,8 +500,6 @@ class VocationsAdapter(
         val seeLeft = view.see1!!
         val seeRight = view.see2!!
 
-        val seeLeftIcon = view.see12!!
-        val seeRightIcon = view.see22!!
         val firstDiv = view.first_div!!
         val lastDiv = view.last_div!!
     }
