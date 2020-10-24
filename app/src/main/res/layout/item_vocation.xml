@@ -8,6 +8,7 @@
 
     <com.zerobranch.layout.SwipeLayout
         android:id="@+id/side_swiper"
+        android:background="#999"
         android:layout_width="match_parent"
         android:layout_height="110dp"
         app:draggedItem="@id/container"
@@ -19,8 +20,7 @@
         <LinearLayout
             android:layout_gravity="right"
             android:id="@+id/right1"
-            android:background="#999"
-            android:layout_width="200dp"
+            android:layout_width="190dp"
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:gravity="center_vertical">
@@ -86,9 +86,8 @@
         </LinearLayout>
 
         <LinearLayout
-            android:background="#999"
             android:id="@+id/left1"
-            android:layout_width="200dp"
+            android:layout_width="190dp"
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:gravity="center_vertical"
