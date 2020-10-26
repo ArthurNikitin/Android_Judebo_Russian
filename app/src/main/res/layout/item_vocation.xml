@@ -1,175 +1,233 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="110dp"
     android:layout_width="match_parent"
     android:background="#999"
     android:layoutDirection="ltr"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <LinearLayout
+        android:layout_margin="2dp"
+        android:layout_centerVertical="true"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_marginRight="@dimen/two_dp"
+            android:layout_marginLeft="@dimen/two_dp"
+            android:id="@+id/delete12"
+            android:layout_width="@dimen/width_54"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            app:srcCompat="@drawable/jobs_list_delete" />
+
+        <View
+            android:layout_marginRight="0dp"
+            android:backgroundTint="@color/toolbar_background_color"
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:background="?android:attr/listDivider" />
+
+        <ImageView
+            android:layout_marginRight="@dimen/two_dp"
+            android:layout_marginLeft="@dimen/two_dp"
+            android:id="@+id/copy12"
+            android:layout_width="@dimen/width_54"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            app:srcCompat="@drawable/jobs_list_copy" />
+
+        <View
+            android:layout_marginLeft="0dp"
+            android:backgroundTint="@color/toolbar_background_color"
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:background="?android:attr/listDivider" />
+
+        <ImageView
+            android:layout_marginRight="@dimen/two_dp"
+            android:layout_marginLeft="@dimen/two_dp"
+            android:id="@+id/see12"
+            android:layout_width="@dimen/width_54"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            app:srcCompat="@drawable/jobs_list_view" />
+
+        <View
+            android:id="@+id/first_div"
+            android:layout_marginLeft="0dp"
+            android:backgroundTint="@color/toolbar_background_color"
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:background="?android:attr/listDivider" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <View
+            android:id="@+id/last_div"
+            android:layout_marginRight="0dp"
+            android:backgroundTint="@color/toolbar_background_color"
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:background="?android:attr/listDivider" />
+
+        <ImageView
+            android:layout_marginRight="@dimen/two_dp"
+            android:layout_marginLeft="@dimen/two_dp"
+            android:id="@+id/see22"
+            android:layout_width="@dimen/width_54"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            app:srcCompat="@drawable/jobs_list_view" />
+
+        <View
+            android:layout_marginRight="0dp"
+            android:backgroundTint="@color/toolbar_background_color"
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:background="?android:attr/listDivider" />
+
+        <ImageView
+            android:layout_marginRight="@dimen/two_dp"
+            android:layout_marginLeft="@dimen/two_dp"
+            android:id="@+id/copy22"
+            android:layout_width="@dimen/width_54"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            app:srcCompat="@drawable/jobs_list_copy" />
+
+        <View
+            android:layout_marginLeft="0dp"
+            android:backgroundTint="@color/toolbar_background_color"
+            android:id="@+id/divider2"
+            android:layout_width="3dp"
+            android:layout_height="match_parent"
+            android:background="?android:attr/listDivider" />
+
+        <ImageView
+            android:layout_marginRight="@dimen/two_dp"
+            android:layout_marginLeft="@dimen/two_dp"
+            android:id="@+id/delete22"
+            android:layout_width="@dimen/width_54"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            app:srcCompat="@drawable/jobs_list_delete" />
+    </LinearLayout>
+
     <com.zerobranch.layout.SwipeLayout
         android:id="@+id/side_swiper"
-        android:background="#999"
         android:layout_width="match_parent"
         android:layout_height="110dp"
         app:draggedItem="@id/container"
-        app:isTogether="false"
+        app:isTogether="true"
         app:leftItem="@id/left1"
         app:rightItem="@id/right1"
-        app:swipeDirection="left|right">
+        app:swipeDirection="left|right"
+        tools:visibility="visible">
 
         <LinearLayout
-            android:layout_gravity="right"
             android:id="@+id/right1"
-            android:layout_width="190dp"
+            android:layout_width="200dp"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:gravity="center_vertical">
-
-        <LinearLayout
-            android:gravity="center_vertical|right"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="50dp">
-
-            <View
-                android:id="@+id/last_div"
-                android:layout_marginRight="0dp"
-                android:backgroundTint="@color/toolbar_background_color"
-                android:layout_width="3dp"
-                android:layout_height="match_parent"
-                android:background="?android:attr/listDivider" />
+            android:weightSum="1">
 
             <ImageView
-                android:layout_marginRight="@dimen/two_dp"
-                android:layout_marginLeft="@dimen/two_dp"
+                android:id="@+id/right_corners"
+                android:layout_width="10dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/corners_right" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <ImageView
                 android:id="@+id/see2"
-                android:layout_width="@dimen/width_54"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                app:srcCompat="@drawable/jobs_list_view" />
-
-            <View
-                android:layout_marginRight="0dp"
-                android:backgroundTint="@color/toolbar_background_color"
-                android:layout_width="3dp"
+                android:layout_width="70dp"
                 android:layout_height="match_parent"
-                android:background="?android:attr/listDivider" />
-
-            <ImageView
-                android:layout_marginRight="@dimen/two_dp"
-                android:layout_marginLeft="@dimen/two_dp"
-                android:id="@+id/copy2"
-                android:layout_width="@dimen/width_54"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
+                android:alpha="0.0"
+                android:background="@color/colorPrimaryDark"
                 app:srcCompat="@drawable/jobs_list_copy" />
 
-            <View
-                android:layout_marginLeft="0dp"
-                android:backgroundTint="@color/toolbar_background_color"
-                android:id="@+id/divider2"
-                android:layout_width="3dp"
+            <ImageView
+                android:id="@+id/copy2"
+                android:layout_width="70dp"
                 android:layout_height="match_parent"
-                android:background="?android:attr/listDivider" />
+                android:alpha="0.0"
+                android:background="@color/colorPrimaryDark"
+                app:srcCompat="@drawable/jobs_list_copy" />
 
             <ImageView
-                android:layout_marginRight="@dimen/two_dp"
-                android:layout_marginLeft="@dimen/two_dp"
                 android:id="@+id/delete2"
-                android:layout_width="@dimen/width_54"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:alpha="0.0"
+                android:background="@color/colorPrimary"
                 app:srcCompat="@drawable/jobs_list_delete" />
-
-        </LinearLayout>
 
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/left1"
-            android:layout_width="190dp"
+            android:layout_width="200dp"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:gravity="center_vertical"
             android:weightSum="1">
 
-            <LinearLayout
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="50dp">
-
             <ImageView
-                android:layout_marginRight="@dimen/two_dp"
-                android:layout_marginLeft="@dimen/two_dp"
                 android:id="@+id/delete1"
-                android:layout_width="@dimen/width_54"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:alpha="0.0"
+                android:background="@color/colorPrimary"
                 app:srcCompat="@drawable/jobs_list_delete" />
 
-            <View
-                android:layout_marginRight="0dp"
-                android:backgroundTint="@color/toolbar_background_color"
-                android:layout_width="3dp"
-                android:layout_height="match_parent"
-                android:background="?android:attr/listDivider" />
-
             <ImageView
-                android:layout_marginRight="@dimen/two_dp"
-                android:layout_marginLeft="@dimen/two_dp"
                 android:id="@+id/copy1"
-                android:layout_width="@dimen/width_54"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:alpha="0.0"
+                android:background="@drawable/corners_left"
                 app:srcCompat="@drawable/jobs_list_copy" />
 
-            <View
-                android:layout_marginLeft="0dp"
-                android:backgroundTint="@color/toolbar_background_color"
-                android:layout_width="3dp"
+            <ImageView
+                android:id="@+id/see1"
+                android:layout_width="70dp"
                 android:layout_height="match_parent"
-                android:background="?android:attr/listDivider" />
+                android:alpha="0.0"
+                android:background="@drawable/corners_left"
+                app:srcCompat="@drawable/jobs_list_copy" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
 
             <ImageView
-                android:layout_marginRight="@dimen/two_dp"
-                android:layout_marginLeft="@dimen/two_dp"
-                android:id="@+id/see1"
-                android:layout_width="@dimen/width_54"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                app:srcCompat="@drawable/jobs_list_view" />
-
-            <View
-                android:id="@+id/first_div"
-                android:layout_marginLeft="0dp"
-                android:backgroundTint="@color/toolbar_background_color"
-                android:layout_width="3dp"
+                android:id="@+id/left_corners"
+                android:layout_width="10dp"
                 android:layout_height="match_parent"
-                android:background="?android:attr/listDivider" />
-
-        </LinearLayout>
+                android:layout_marginLeft="-20dp"
+                app:srcCompat="@drawable/corners_left" />
 
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/container"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#999">
-
-            <ImageView
-                android:id="@+id/left_corners"
-                android:background="#999"
-                android:layout_width="10dp"
-                android:layout_height="match_parent"
-                app:srcCompat="@drawable/corners_left" />
+            android:background="#FFFFFF"
+            android:padding="5dp">
 
             <RelativeLayout
-                android:background="#FFFFFF"
-                android:padding="5dp"
-                android:id="@+id/cont"
-                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -304,21 +362,10 @@
                     android:layout_height="match_parent"
                     android:layout_centerInParent="true"
                     android:layout_margin="25dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginBottom="15dp"
                     android:visibility="gone"
                     app:srcCompat="@drawable/jobs_list_not_active_item" />
 
             </RelativeLayout>
-
-            <ImageView
-                android:id="@+id/right_corners"
-                android:background="#999"
-                android:layout_width="10dp"
-                android:layout_height="match_parent"
-                app:srcCompat="@drawable/corners_right" />
 
         </LinearLayout>
 

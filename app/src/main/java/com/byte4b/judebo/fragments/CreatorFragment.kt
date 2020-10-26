@@ -293,6 +293,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                             UF_LOGO_IMAGE = objFromServer.UF_LOGO_IMAGE
                             UF_MAP_POINT = objFromServer.UF_MAP_POINT
                             UF_MODIFED = objFromServer.UF_MODIFED
+                            UF_ACTIVE = objFromServer.UF_ACTIVE
                             UF_PREVIEW_IMAGE = objFromServer.UF_PREVIEW_IMAGE
                             UF_SKILLS_ID_ALL = objFromServer.UF_SKILLS_ID_ALL
                             UF_TYPE_OF_JOB_ID = objFromServer.UF_TYPE_OF_JOB_ID
@@ -360,6 +361,7 @@ class CreatorFragment : Fragment(R.layout.fragment_creator), ServiceListener,
                                     COMPANY = objFromServer.COMPANY
                                     DETAIL_TEXT = objFromServer.DETAIL_TEXT
                                     NAME = objFromServer.NAME
+                                    UF_ACTIVE = objFromServer.UF_ACTIVE
                                     UF_APP_JOB_ID = objFromServer.UF_APP_JOB_ID?.toLongOrNull()
                                     UF_CONTACT_EMAIL = objFromServer.UF_CONTACT_EMAIL
                                     UF_CONTACT_PHONE = objFromServer.UF_CONTACT_PHONE

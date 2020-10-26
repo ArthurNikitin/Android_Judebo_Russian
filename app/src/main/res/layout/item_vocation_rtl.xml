@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="110dp"
     android:layout_width="match_parent"
     android:background="#999"
@@ -47,11 +48,11 @@
 
 
         <ImageView
-            android:layout_marginRight="@dimen/two_dp"
-            android:layout_marginLeft="@dimen/two_dp"
             android:id="@+id/see12"
             android:layout_width="@dimen/width_54"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/two_dp"
+            android:layout_marginRight="@dimen/two_dp"
             android:adjustViewBounds="true"
             app:srcCompat="@drawable/jobs_list_view" />
 
@@ -78,11 +79,11 @@
             android:background="?android:attr/listDivider" />
 
         <ImageView
-            android:layout_marginRight="@dimen/two_dp"
-            android:layout_marginLeft="@dimen/two_dp"
             android:id="@+id/see22"
             android:layout_width="@dimen/width_54"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/two_dp"
+            android:layout_marginRight="@dimen/two_dp"
             android:adjustViewBounds="true"
             app:srcCompat="@drawable/jobs_list_view" />
 
@@ -121,14 +122,15 @@
     </LinearLayout>
 
     <com.zerobranch.layout.SwipeLayout
-        app:draggedItem="@id/container"
-        app:rightItem="@id/left1"
-        app:leftItem="@id/right1"
-        app:isTogether="true"
-        app:swipeDirection="left|right"
         android:id="@+id/side_swiper"
         android:layout_width="match_parent"
-        android:layout_height="110dp">
+        android:layout_height="110dp"
+        app:draggedItem="@id/container"
+        app:isTogether="true"
+        app:leftItem="@id/right1"
+        app:rightItem="@id/left1"
+        app:swipeDirection="left|right"
+        tools:visibility="visible">
 
         <LinearLayout
             android:id="@+id/right1"
@@ -213,8 +215,8 @@
             <ImageView
                 android:id="@+id/left_corners"
                 android:layout_width="10dp"
-                android:layout_marginRight="-20dp"
                 android:layout_height="match_parent"
+                android:layout_marginRight="-20dp"
                 android:src="@drawable/corners_right" />
 
         </LinearLayout>
@@ -236,11 +238,11 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:gravity="right"
                         android:id="@+id/name_tv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="12dp"
+                        android:gravity="right"
                         android:singleLine="true"
                         android:text="ОртопедОртопедОртопед Ортопед Ортопед ОртопедОртопедОртопедОртопедОртопедОртопедОртопед"
                         android:textSize="18sp"
@@ -259,10 +261,10 @@
                             app:srcCompat="@drawable/map_default_marker" />
 
                         <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_margin="5dp"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:layout_margin="5dp"
+                            android:orientation="horizontal">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -271,17 +273,17 @@
                                 android:orientation="vertical">
 
                                 <TextView
-                                    android:gravity="right"
                                     android:id="@+id/salary_tv"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:gravity="right"
                                     android:text="10000 RUB" />
 
                                 <TextView
-                                    android:gravity="right"
                                     android:id="@+id/company_tv"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:gravity="right"
                                     android:text="company" />
 
                             </LinearLayout>
@@ -362,13 +364,9 @@
                     android:id="@+id/notActive_iv"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_margin="25dp"
                     android:layout_centerInParent="true"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginEnd="15dp"
+                    android:layout_margin="25dp"
                     android:visibility="gone"
-                    android:layout_marginBottom="15dp"
                     app:srcCompat="@drawable/jobs_list_not_active_item" />
 
             </RelativeLayout>

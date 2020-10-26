@@ -10,13 +10,11 @@ import android.os.Handler
 import android.util.Base64.decode
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import androidx.core.graphics.drawable.toBitmap
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -72,7 +70,7 @@ class VocationsAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         Holder(LayoutInflater.from(ctx).inflate(if (!isRtlConfig) R.layout.item_vocation else R.layout.item_vocation_rtl, parent, false))
 
-    @SuppressLint("SetTextI18n", "SimpleDateFormat", "ClickableViewAccessibility")
+    @SuppressLint("SetTextI18n", "SimpleDateFormat")
     override fun onBindViewHolder(holder: Holder, position: Int) {
         try {
             if (isMaxVocations) {
@@ -105,43 +103,20 @@ class VocationsAdapter(
                     holder.idView.visibility = View.VISIBLE
                 }
 
-                val isCanShowOnMap = (UF_JOBS_ID != null && UF_MAP_POINT != null && UF_ACTIVE != 0.toByte())
-                resetIcons(holder, isCanShowOnMap)
                 with(holder.swiper) {
                     close(false)
-                    setOnTouchListener { _, event ->
+                    setOnTouchListener { view, motionEvent ->
                         if (lastSwipedPosition != position && lastSwipedPosition != -1)
                             notifyItemChanged(lastSwipedPosition)
                         false
                     }
-                    var opened = false
-                    openRight(false)
                     setOnActionsListener(object : com.zerobranch.layout.SwipeLayout.SwipeActionsListener {
                         override fun onOpen(direction: Int, isContinuous: Boolean) {
-                            //opened = if (!opened) {
-//                                if (direction == 1) {
-//
-//                                    Handler().postDelayed({
-//                                        holder.hideLeftIcons()
-//                                        setSeeParams(holder, isCanShowOnMap)
-//                                    }, 210)
-//                                } else if (direction == 2) {
-//                                    Handler().postDelayed({
-//                                        holder.hideRightIcons()
-//                                        setSeeParams(holder, isCanShowOnMap)
-//                                        openRightCompletely(false)
-//                                    }, 210)
-//                                }
-//                                true
-//                            } else {
-//                                false
-//                            }
                             lastSwipedPosition = position
                         }
-                        override fun onClose() {
-//                            if (opened)
-//                                notifyItemChanged(position)
-                        }
+
+                        override fun onClose() {}
+
                     })
                 }
 
@@ -188,6 +163,11 @@ class VocationsAdapter(
                 holder.disableLabel.text = format.format(disableDate)
                 holder.company.text = COMPANY
 
+                holder.seeLeftIcon.visibility = if (!(UF_JOBS_ID != null && UF_MAP_POINT != null && UF_ACTIVE != 0.toByte())) View.INVISIBLE else View.VISIBLE
+                holder.seeRightIcon.visibility = if (!(UF_JOBS_ID != null && UF_MAP_POINT != null && UF_ACTIVE != 0.toByte())) View.INVISIBLE else View.VISIBLE
+                holder.lastDiv.visibility = if (!(UF_JOBS_ID != null && UF_MAP_POINT != null && UF_ACTIVE != 0.toByte())) View.INVISIBLE else View.VISIBLE
+                holder.firstDiv.visibility = if (!(UF_JOBS_ID != null && UF_MAP_POINT != null && UF_ACTIVE != 0.toByte())) View.INVISIBLE else View.VISIBLE
+
                 if ((UF_ACTIVE != 1.toByte()) || ((UF_DISABLE?:0) < Calendar.getInstance().timestamp)) {
                     holder.isNotActiveView.visibility = View.VISIBLE
 
@@ -208,7 +188,7 @@ class VocationsAdapter(
                         holder.leftCorners.setImageResource(R.drawable.corners_left_red)
                         holder.rightCorners.setImageResource(R.drawable.corners_right_red)
                     }
-                    holder.cont.setBackgroundResource(R.color.jobs_list_not_active_background)
+                    holder.main.setBackgroundResource(R.color.jobs_list_not_active_background)
                     holder.errorView.visibility = View.VISIBLE
 
                 } else {
@@ -232,7 +212,7 @@ class VocationsAdapter(
                         holder.leftCorners.setImageResource(R.drawable.corners_left)
                     }
 
-                    holder.cont.setBackgroundResource(R.color.white)
+                    holder.main.setBackgroundResource(R.color.white)
                     holder.errorView.visibility = View.INVISIBLE
                     try {
                         holder.seeLeft.setOnClickListener { open(vocations[position]) }
@@ -251,22 +231,6 @@ class VocationsAdapter(
 
 
         } catch (e: Exception) {}
-    }
-
-    private fun setSeeParams(holder: Holder, isCanShowOnMap: Boolean) {
-        if (holder.seeLeft.isVisible) holder.seeLeft.visibility = if (!isCanShowOnMap) View.INVISIBLE else View.VISIBLE
-        if (holder.seeRight.isVisible) holder.seeRight.visibility = if (!isCanShowOnMap) View.INVISIBLE else View.VISIBLE
-        if (holder.lastDiv.isVisible) holder.lastDiv.visibility = if (!isCanShowOnMap) View.INVISIBLE else View.VISIBLE
-        if (holder.firstDiv.isVisible) holder.firstDiv.visibility = if (!isCanShowOnMap) View.INVISIBLE else View.VISIBLE
-    }
-
-
-
-    private fun resetIcons(holder: Holder, isCanShowOnMap: Boolean) {
-        holder.seeLeft.visibility = if (!isCanShowOnMap) View.INVISIBLE else View.VISIBLE
-        holder.seeRight.visibility = if (!isCanShowOnMap) View.INVISIBLE else View.VISIBLE
-        holder.lastDiv.visibility = if (!isCanShowOnMap) View.INVISIBLE else View.VISIBLE
-        holder.firstDiv.visibility = if (!isCanShowOnMap) View.INVISIBLE else View.VISIBLE
     }
 
     private fun open(vocation: Vocation) {
@@ -515,15 +479,14 @@ class VocationsAdapter(
         val left = view.left1!!
         val right = view.right1!!
         val main = view.container!!
-        val cont = view.cont!!
         val copy1 = view.copy1!!
         val copy2 = view.copy2!!
         val del1 = view.delete1!!
         val del2 = view.delete2!!
         val company = view.company_tv!!
         //for limit icon
-        val copyLeft = view.copy1!!
-        val copyRight = view.copy2!!
+        val copyLeft = view.copy12!!
+        val copyRight = view.copy22!!
 
         val errorView = view.error_tv!!
         val isNotActiveView = view.notActive_iv!!
@@ -535,22 +498,10 @@ class VocationsAdapter(
         val seeLeft = view.see1!!
         val seeRight = view.see2!!
 
+        val seeLeftIcon = view.see12!!
+        val seeRightIcon = view.see22!!
         val firstDiv = view.first_div!!
         val lastDiv = view.last_div!!
-
-        fun hideRightIcons() {
-            seeLeft.visibility = View.VISIBLE
-            seeRight.visibility = View.GONE
-            lastDiv.visibility = View.GONE
-           firstDiv.visibility = View.VISIBLE
-        }
-
-        fun hideLeftIcons() {
-            seeLeft.visibility = View.GONE
-            seeRight.visibility = View.VISIBLE
-            lastDiv.visibility = View.VISIBLE
-            firstDiv.visibility = View.GONE
-        }
     }
 
 }
