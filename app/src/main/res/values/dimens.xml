@@ -3,6 +3,6 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="text_margin">16dp</dimen>
 
-    <dimen name="two_dp">2dp</dimen>
-    <dimen name="width_54">54dp</dimen>
+    <dimen name="two_dp">3dp</dimen>
+    <dimen name="width_54">44dp</dimen>
 </resources>
