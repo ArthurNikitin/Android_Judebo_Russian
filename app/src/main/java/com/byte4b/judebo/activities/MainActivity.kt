@@ -227,10 +227,12 @@ class MainActivity : AppCompatActivity(), ServiceListener {
     }
 
     fun restartFragment(fragment: Fragment) {
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.frame, fragment)
-            .commit()
+        try {
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.frame, fragment)
+                .commit()
+        } catch (e: Exception) {}
     }
 
     override fun onBackPressed() {
