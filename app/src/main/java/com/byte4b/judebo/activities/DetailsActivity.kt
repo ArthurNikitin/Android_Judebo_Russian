@@ -144,7 +144,7 @@ class DetailsActivity : AppCompatActivity() {
                 email_tv.visibility = View.GONE
 
             phone_tv.text = jobInfo.UF_CONTACT_PHONE + " "
-            email_tv.text = jobInfo.UF_CONTACT_EMAIL + " "
+            email_tv.text = " " + jobInfo.UF_CONTACT_EMAIL + " "
 
             val format = SimpleDateFormat("dd.MM.yyyy hh:mm:ss")
             val modifiedDate = format.parse(jobInfo.UF_MODIFED)
