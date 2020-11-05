@@ -294,92 +294,98 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
     }
 
     @SuppressLint("SetTextI18n")
-    private fun getPreview(marker: Marker): View {
-        val view = ctx.layoutInflater.inflate(R.layout.preview, null)
-        val data = markers?.first {
-            marker.position.latitude == it.UF_MAP_POINT_LATITUDE
-                    && marker.position.longitude == it.UF_MAP_POINT_LONGITUDE
-        } ?: return view
+    private fun getPreview(marker: Marker): View? {
         try {
-            view.title_tv.text = data.NAME
-            if (!data.UF_LOGO_IMAGE.isNullOrEmpty()) {
-                renderer?.apply {
-                    view.logo_iv.setImageDrawable(renderer!!.drawables[data.UF_LOGO_IMAGE])
-                }
-            }
-
-            //val currency = setting.getCurrentCurrency()
-            val currency = currencies.firstOrNull { it.id == data.UF_GROSS_CURRENCY_ID }
-
+            val view = ctx.layoutInflater.inflate(R.layout.preview, null)
+            val data = markers?.first {
+                marker.position.latitude == it.UF_MAP_POINT_LATITUDE
+                        && marker.position.longitude == it.UF_MAP_POINT_LONGITUDE
+            } ?: return view
             try {
-
-                if (data.UF_GROSS_PER_MONTH.isEmpty() || data.UF_GROSS_PER_MONTH == "0") {
-                    view.secondContainer.visibility = View.GONE
-                    view.salaryContainer.visibility = View.GONE
-                } else {
-                    view.secondContainer.visibility = View.VISIBLE
-                    view.salaryContainer.visibility = View.VISIBLE
+                view.title_tv.text = data.NAME
+                if (!data.UF_LOGO_IMAGE.isNullOrEmpty()) {
+                    renderer?.apply {
+                        view.logo_iv.setImageDrawable(renderer!!.drawables[data.UF_LOGO_IMAGE])
+                    }
                 }
 
-                if (currency?.name == setting.getCurrentCurrency().name) {
-                    view.salary_tv.text = data.UF_GROSS_PER_MONTH.round()
-                    view.salaryVal_tv.text = " ${currency.name}"
-                    view.salary_tv.setRightDrawable(currency.icon)
-                    view.secondContainer.visibility = View.GONE
-                } else {
-                    view.salary_tv.text = data.UF_GROSS_PER_MONTH.round().trim()
-                    view.salaryVal_tv.text = " ${currency?.name ?: ""}"
-                    view.salary_tv.setRightDrawable(currency?.icon ?: R.drawable.iusd)
+                //val currency = setting.getCurrentCurrency()
+                val currency = currencies.firstOrNull { it.id == data.UF_GROSS_CURRENCY_ID }
 
-                    val currency2 = setting.getCurrentCurrency()
-                    val convertedSalary =
-                        (data.UF_GROSS_PER_MONTH.toDouble() * currency2.getLastRate(realm) / (currency?.getLastRate(
-                            realm
-                        ) ?: 1))
-                            .toString().round().trim()
-                    view.secondSalary_tv.text = "≈${convertedSalary}"
-                    view.secondContainer.visibility =
-                        if (convertedSalary == "0") View.GONE
-                        else View.VISIBLE
-                    view.secondSalaryVal_tv.text = currency2.name
-                    view.secondSalary_tv.setRightDrawable(currency2.icon)
+                try {
+
+                    if (data.UF_GROSS_PER_MONTH.isEmpty() || data.UF_GROSS_PER_MONTH == "0") {
+                        view.secondContainer.visibility = View.GONE
+                        view.salaryContainer.visibility = View.GONE
+                    } else {
+                        view.secondContainer.visibility = View.VISIBLE
+                        view.salaryContainer.visibility = View.VISIBLE
+                    }
+
+                    if (currency?.name == setting.getCurrentCurrency().name) {
+                        view.salary_tv.text = data.UF_GROSS_PER_MONTH.round()
+                        view.salaryVal_tv.text = " ${currency.name}"
+                        view.salary_tv.setRightDrawable(currency.icon)
+                        view.secondContainer.visibility = View.GONE
+                    } else {
+                        view.salary_tv.text = data.UF_GROSS_PER_MONTH.round().trim()
+                        view.salaryVal_tv.text = " ${currency?.name ?: ""}"
+                        view.salary_tv.setRightDrawable(currency?.icon ?: R.drawable.iusd)
+
+                        val currency2 = setting.getCurrentCurrency()
+                        val convertedSalary =
+                            (data.UF_GROSS_PER_MONTH.toDouble() * currency2.getLastRate(realm) / (currency?.getLastRate(
+                                realm
+                            ) ?: 1))
+                                .toString().round().trim()
+                        view.secondSalary_tv.text = "≈${convertedSalary}"
+                        view.secondContainer.visibility =
+                            if (convertedSalary == "0") View.GONE
+                            else View.VISIBLE
+                        view.secondSalaryVal_tv.text = currency2.name
+                        view.secondSalary_tv.setRightDrawable(currency2.icon)
+                    }
+                } catch (e: Exception) {
                 }
-            } catch (e: Exception) {}
-            view.more_tv.text = "#${data.UF_JOBS_ID} ${getString(R.string.button_detail_title)}"
+                view.more_tv.text = "#${data.UF_JOBS_ID} ${getString(R.string.button_detail_title)}"
 
-            val layoutManager = FlexboxLayoutManager(ctx)
-            layoutManager.flexWrap = FlexWrap.WRAP
-            layoutManager.flexDirection = FlexDirection.ROW
-            layoutManager.justifyContent =
-                if (isRtl) JustifyContent.FLEX_END else JustifyContent.FLEX_START
-            layoutManager.alignItems = if (isRtl) AlignItems.FLEX_END else AlignItems.FLEX_START
+                val layoutManager = FlexboxLayoutManager(ctx)
+                layoutManager.flexWrap = FlexWrap.WRAP
+                layoutManager.flexDirection = FlexDirection.ROW
+                layoutManager.justifyContent =
+                    if (isRtl) JustifyContent.FLEX_END else JustifyContent.FLEX_START
+                layoutManager.alignItems = if (isRtl) AlignItems.FLEX_END else AlignItems.FLEX_START
 
-            try {
-                view.langs_rv.layoutManager = //layoutManager
-                    LinearLayoutManager(ctx, LinearLayoutManager.HORIZONTAL, isRtl)
-                view.langs_rv.adapter = LanguagesAdapter(
-                    ctx,
-                    data.UF_LANGUAGE_ID_ALL.split(",").map {
-                        languages.first { lang -> lang.id == it.toInt() }
-                    })
-            } catch (e: Exception) {}
-            view.place_tv.text = data.COMPANY
+                try {
+                    view.langs_rv.layoutManager = //layoutManager
+                        LinearLayoutManager(ctx, LinearLayoutManager.HORIZONTAL, isRtl)
+                    view.langs_rv.adapter = LanguagesAdapter(
+                        ctx,
+                        data.UF_LANGUAGE_ID_ALL.split(",").map {
+                            languages.first { lang -> lang.id == it.toInt() }
+                        })
+                } catch (e: Exception) {
+                }
+                view.place_tv.text = data.COMPANY
 
 
-            view.filters_tv.layoutManager = layoutManager
-            if (data.UF_SKILLS_ID_ALL == "" || data.UF_SKILLS_ID_ALL == Setting.DEFAULT_SKILL_ID_ALWAYS_HIDDEN) {
-                view.filters_tv.visibility = View.GONE
-            } else {
-                view.filters_tv.visibility = View.VISIBLE
-                view.filters_tv.adapter = SkillsAdapter(ctx,
-                    data.ALL_SKILLS_NAME
-                        .split(",")
-                        .filterNot { it == Setting.DEFAULT_SKILL_ID_ALWAYS_HIDDEN }
-                )
+                view.filters_tv.layoutManager = layoutManager
+                if (data.UF_SKILLS_ID_ALL == "" || data.UF_SKILLS_ID_ALL == Setting.DEFAULT_SKILL_ID_ALWAYS_HIDDEN) {
+                    view.filters_tv.visibility = View.GONE
+                } else {
+                    view.filters_tv.visibility = View.VISIBLE
+                    view.filters_tv.adapter = SkillsAdapter(ctx,
+                        data.ALL_SKILLS_NAME
+                            .split(",")
+                            .filterNot { it == Setting.DEFAULT_SKILL_ID_ALWAYS_HIDDEN }
+                    )
+                }
+            } catch (e: Exception) {
             }
+            return view
         } catch (e: Exception) {
+            return null
         }
-        return view
     }
 
     override fun onNearbyMarkersLoaded(list: List<MyMarker>?) {
