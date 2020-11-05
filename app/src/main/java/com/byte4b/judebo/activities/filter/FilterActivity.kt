@@ -61,8 +61,10 @@ class FilterActivity : AppCompatActivity() {
         currentCurrency.rate =
             realm.where<CurrencyRateRealm>()
                 .equalTo("id", currentCurrency.id)
-                .findFirst()!!
-                .rate
+                .findFirst()
+                ?.rate
+                ?: currencies.firstOrNull { it.id == currentCurrency.id }?.rate
+                        ?: currencies.first().rate
 
         jobsType = mutableListOf(getString(R.string.search_all_types_of_jobs))
         jobsType.addAll(
