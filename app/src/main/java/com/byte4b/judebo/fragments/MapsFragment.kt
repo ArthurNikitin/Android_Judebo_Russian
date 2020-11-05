@@ -270,11 +270,13 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
         googleMap.setOnCameraMoveListener { clusterManager?.cluster() }
 
         clusterManager?.markerCollection?.setOnInfoWindowClickListener { marker ->
-            val data = markers?.first {
-                marker.position.latitude == it.UF_MAP_POINT_LATITUDE
-                        && marker.position.longitude == it.UF_MAP_POINT_LONGITUDE
-            } ?: return@setOnInfoWindowClickListener
-            ctx.startActivity<DetailsActivity> { putExtra("marker", Gson().toJson(data)) }
+            Try {
+                val data = markers?.first {
+                    marker.position.latitude == it.UF_MAP_POINT_LATITUDE
+                            && marker.position.longitude == it.UF_MAP_POINT_LONGITUDE
+                } ?: return@Try
+                ctx.startActivity<DetailsActivity> { putExtra("marker", Gson().toJson(data)) }
+            }
         }
         Thread {
             while (true) {
