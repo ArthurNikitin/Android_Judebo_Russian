@@ -413,15 +413,45 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        askPermission(
-            Manifest.permission.ACCESS_COARSE_LOCATION,
-            Manifest.permission.ACCESS_FINE_LOCATION
-        ) {
-            val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
+        if (isHavePermission(Manifest.permission.ACCESS_COARSE_LOCATION)
+            && isHavePermission(Manifest.permission.ACCESS_FINE_LOCATION))
+            mapInit()
+        else
+            Try {
+                askPermission(
+                    Manifest.permission.ACCESS_COARSE_LOCATION,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ) {
+                    mapInit()
+                }.onDeclined {
+                    if (it.hasDenied())
+                        it.askAgain()
+                    if (it.hasForeverDenied())
+                        it.goToSettings()
+                }
+            }
+
+        filter_iv.setImageResource(
+            if (setting.isFilterActive) R.drawable.search_filter_active
+            else R.drawable.search_filter_not_active
+        )
+        filter_iv.setOnClickListener {
+            requireActivity().startActivityForResult(
+                Intent(requireActivity(), FilterActivity::class.java),
+                REQUEST_FILTER
+            )
+        }
+    }
+
+    private fun mapInit() {
+        Try {
+            val mapFragment =
+                childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
             mapFragment?.getMapAsync(callback)
 
             if (setting.lastMapCameraPosition.latitude == 0.0
-                && setting.lastMapCameraPosition.longitude == 0.0) {
+                && setting.lastMapCameraPosition.longitude == 0.0
+            ) {
                 isMustBeSetLocation = true
                 showMe()
             }
@@ -438,28 +468,12 @@ class MapsFragment : Fragment(R.layout.fragment_maps), ServiceListener {
                             dialogInterface.dismiss()
                             isFromSetting = true
                         }
-                        .setNegativeButton(R.string.request_geolocation_cancel) { d, _ -> d.cancel()}
+                        .setNegativeButton(R.string.request_geolocation_cancel) { d, _ -> d.cancel() }
                         .show()
                 } else {
-                    Handler().postDelayed({showMe()}, 500)
+                    Handler().postDelayed({ showMe() }, 500)
                 }
             }
-        }.onDeclined {
-            if (it.hasDenied())
-                it.askAgain()
-            if (it.hasForeverDenied())
-                it.goToSettings()
-        }
-
-        filter_iv.setImageResource(
-            if (setting.isFilterActive) R.drawable.search_filter_active
-            else R.drawable.search_filter_not_active
-        )
-        filter_iv.setOnClickListener {
-            requireActivity().startActivityForResult(
-                Intent(requireActivity(), FilterActivity::class.java),
-                REQUEST_FILTER
-            )
         }
     }
 

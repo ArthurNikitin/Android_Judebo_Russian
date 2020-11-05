@@ -5,19 +5,23 @@ import android.app.Activity
 import android.content.Context
 import android.content.Context.LOCATION_SERVICE
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.location.Location
 import android.location.LocationManager
 import android.net.Uri
 import android.os.Build
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import androidx.annotation.DrawableRes
+import androidx.core.app.ActivityCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.graphics.drawable.toDrawable
 import androidx.core.text.TextUtilsCompat
 import androidx.core.view.ViewCompat
+import androidx.fragment.app.Fragment
 import com.byte4b.judebo.models.Language
 import com.byte4b.judebo.models.SubscriptionRealm
 import com.byte4b.judebo.models.languages
@@ -190,3 +194,15 @@ fun toBase64(bitmap: Bitmap): String {
     else
         android.util.Base64.encodeToString(stream.toByteArray(), android.util.Base64.DEFAULT)
 }
+
+fun Any.Try(action: () -> Unit) {
+    try {
+        action()
+    } catch (e: Exception) {
+        if (BuildConfig.DEBUG) Log.e("error", e.localizedMessage ?: "error")
+    }
+}
+
+fun Fragment.isHavePermission(permission: String) =
+    ActivityCompat.checkSelfPermission(requireContext(), permission) ==
+            PackageManager.PERMISSION_GRANTED
