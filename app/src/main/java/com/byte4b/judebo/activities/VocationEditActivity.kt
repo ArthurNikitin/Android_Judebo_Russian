@@ -515,7 +515,7 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
             && email_tv.data?.contains(".") == false
             && email_tv.data?.trim()?.isEmpty() == false) {
             email_tv.requestFocus()
-            Handler().postDelayed({scroll.post { scroll.smoothScrollTo(0, email_tv.bottom) }}, 100)
+            Handler().postDelayed({scroll.post { scroll.smoothScrollTo(0, email_tv.bottom + 100) }}, 100)
         }
 
         showSystemIcons()
