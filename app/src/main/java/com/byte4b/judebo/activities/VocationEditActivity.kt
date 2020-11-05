@@ -501,18 +501,21 @@ class VocationEditActivity : AppCompatActivity(), ServiceListener {
         //
         if (name_tv.data?.trim().isNullOrEmpty()) {
             name_tv.requestFocus()
-            scroll.post { scroll.smoothScrollTo(0, name_tv.top) }
+            Handler().postDelayed({scroll.post { scroll.smoothScrollTo(0, name_tv.top) }}, 100)
+
         } else if (email_tv.data?.trim().isNullOrEmpty()) {
             email_tv.requestFocus()
-            scroll.post { scroll.smoothScrollTo(0, email_tv.bottom) }
+            Handler().postDelayed({scroll.post { scroll.smoothScrollTo(0, email_tv.bottom + 100) }}, 100)
+
         } else if (details_tv.data?.trim().isNullOrEmpty()) {
             details_tv.requestFocus()
-            scroll.post { scroll.fullScroll(View.FOCUS_DOWN) }
+            Handler().postDelayed({
+                scroll.post { scroll.fullScroll(View.FOCUS_DOWN) }}, 100)
         } else if (email_tv.data?.contains("@") == false
             && email_tv.data?.contains(".") == false
             && email_tv.data?.trim()?.isEmpty() == false) {
             email_tv.requestFocus()
-            scroll.post { scroll.smoothScrollTo(0, email_tv.bottom) }
+            Handler().postDelayed({scroll.post { scroll.smoothScrollTo(0, email_tv.bottom) }}, 100)
         }
 
         showSystemIcons()
