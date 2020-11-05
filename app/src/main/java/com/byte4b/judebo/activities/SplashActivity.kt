@@ -36,7 +36,6 @@ class SplashActivity : AppCompatActivity(), ServiceListener {
         setContentView(R.layout.activity_splash)
         supportActionBar?.hide()
 
-        Realm.init(this)
         val setting = Setting(this)
         if (setting.language != "")
             setLocale(setting.language ?: "")

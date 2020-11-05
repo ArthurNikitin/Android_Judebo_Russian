@@ -40,12 +40,9 @@ class App : Application(), ServiceListener {
 
     override fun onCreate() {
         super.onCreate()
+        Realm.init(this)
 
         registerActivityLifecycleCallbacks(cycle)
-
-        try {
-            Realm.init(this)
-        } catch (e: Exception) {}
 
         val remoteConfig = Firebase.remoteConfig
         val configSettings = remoteConfigSettings {

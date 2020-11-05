@@ -43,10 +43,6 @@ class DetailsActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         try {
-            Realm.init(this)
-        } catch (e: Exception) {}
-
-        try {
             val jobInfo = Gson().fromJson(intent.getStringExtra("marker"), MyMarker::class.java)
             job = jobInfo
 

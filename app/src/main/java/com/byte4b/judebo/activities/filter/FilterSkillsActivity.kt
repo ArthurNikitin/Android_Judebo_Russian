@@ -34,10 +34,6 @@ class FilterSkillsActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         try {
-            Realm.init(this)
-        } catch (e: Exception) {}
-
-        try {
             selectedSkills.addAll(
                 intent!!.getStringExtra("data")!!.split(",").filter { !it.isEmpty() }.map { id ->
                     skills.first { id == it.id.toString() }

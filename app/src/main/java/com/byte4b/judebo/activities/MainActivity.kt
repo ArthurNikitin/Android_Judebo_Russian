@@ -25,7 +25,6 @@ import com.github.florent37.runtimepermission.kotlin.askPermission
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.maps.model.LatLng
 import es.dmoral.toasty.Toasty
-import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), ServiceListener {
@@ -36,10 +35,6 @@ class MainActivity : AppCompatActivity(), ServiceListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
-
-        try {
-            Realm.init(this)
-        } catch (e: Exception) {}
 
         if (!intent.dataString.isNullOrEmpty()) {
             try {

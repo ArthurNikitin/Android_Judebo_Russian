@@ -54,10 +54,6 @@ class FilterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_filter)
         supportActionBar?.hide()
 
-        try {
-            Realm.init(this)
-        } catch (e: Exception) {}
-
         currentCurrency.rate =
             realm.where<CurrencyRateRealm>()
                 .equalTo("id", currentCurrency.id)
