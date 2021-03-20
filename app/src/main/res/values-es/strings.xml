@@ -2,7 +2,7 @@
 
 
     <string name="name_app">Judebo</string>
-    <string name="toast_message">Toast message</string>
+    <string name="toast_message">Toast message.</string>
     <string name="settings_title_support_email">es@judebo.com</string>
     <string name="add_job_link">https://es.judebo.com/jobs/</string>
     <string name="user_registration_privacy_url">https://es.judebo.com/login/privacy.php</string>
